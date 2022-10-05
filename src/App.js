@@ -18,6 +18,11 @@ function App() {
           Learn React
         </a>
       </header>
+      <h1 class="title">Scouting App - by FRC Team 4201</h1>
+      <h2 class="subtitle">the Vituvian Bots</h2>
+      <h4 class="subtitle">Created for the 2023 Season: Charged Up</h4>
+      <h6 class="bottom-text">Established on October 5, 2022</h6>
+
     </div>
   );
 }
