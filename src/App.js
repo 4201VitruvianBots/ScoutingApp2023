@@ -16,8 +16,8 @@ function SignIn() {
             <div className="popup">
                 <form>
                     <h2>Sign In</h2>
-                    <p><label htmlFor="name">Name</label><input type="text" name="name" /></p>
-                    <p><label htmlFor="event">Event</label><input type="text" name="event" /></p>
+                    <p><label htmlFor="name">Name</label><input type="text" id="name" /></p>
+                    <p><label htmlFor="event">Event</label><input type="text" id="event" /></p>
                     <input type="submit" value="Submit"/>
                 </form>
             </div>
