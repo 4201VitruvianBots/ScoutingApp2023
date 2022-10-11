@@ -39,8 +39,8 @@ class SignIn extends React.Component {
                 <div className="popup">
                     <form action="#" onSubmit={this.props.onSubmit}>
                         <h2>Sign In</h2>
-                        <p><label htmlFor="name">Name</label><input type="text" id="name" /></p>
-                        <p><label htmlFor="event">Event</label><input type="text" id="event" /></p>
+                        <p><label htmlFor="name">Name</label><input type="text" name="name" /></p>
+                        <p><label htmlFor="event">Event</label><input type="text" name="event" /></p>
                         <input type="submit" value="Submit"/>
                     </form>
                 </div>
