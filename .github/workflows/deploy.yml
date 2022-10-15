@@ -1,4 +1,4 @@
-name: Deploy React to gh-pages branch
+name: Deploy React to gh-pages
 
 on:
   push:
@@ -13,11 +13,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Configure git
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-      
       - run: npm install
       
-      - run: npm run deploy
+      - run: npm run build
+      
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v1.0.4
+        with:
+          # Path of the directory containing the static assets.
+          path: build
+          
+      - name: Deploy GitHub Pages site
+        uses: actions/deploy-pages@v1.2.1
+        with:
+          # GitHub token
+          token: ${{ github.token }}
