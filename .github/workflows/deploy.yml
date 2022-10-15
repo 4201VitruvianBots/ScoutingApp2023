@@ -1,0 +1,19 @@
+name: Deploy React to gh-pages branch
+
+on:
+  push:
+    branches: [ "master" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: checkout@v3
+      
+      - run: npm install
+      
+      - name: deploy
+        run: npm run deploy
