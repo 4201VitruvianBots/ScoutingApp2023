@@ -1,4 +1,5 @@
 import './App.css';
+import { RadioButtons, NumberInput } from "./Form";
 
 function App() {
   return (
@@ -10,14 +11,14 @@ function App() {
         <h2>Sign In</h2>
         <form>
           <p>
-            <label for="Sname">Name </label>
+            <label htmlFor="Sname">Name </label>
             <input type="text" id="Sname" name="Sname" />
           </p>
           <p>
-            <label for="Ename">Event Name </label>
-            <select name="Ename" id="Ename">
-              <option value="Choose" class="Placeholder" disabled selected>Choose Event</option>
-              <option value="Blitz">Beach Blitz</option>
+            <label htmlFor="Ename">Event Name </label>
+            <select name="Ename" id="Ename" defaultValue="Choose">
+              <option value="Choose" className="Placeholder" disabled>Choose Event</option>
+              <option value="BeachBlitz">Beach Blitz</option>
             </select>
           </p>
           <input type="button" value="START SCOUTING!" />
@@ -32,13 +33,13 @@ function App() {
       <div>
         <h2>Pre-Game</h2>
         <p>
-          <label for="Num">Team Number </label>
+          <label htmlFor="Num">Team Number </label>
           <input type="text" id="Num" name="Num" />
         </p>
         <p>
-          <label for="Alliance">Team Alliance </label>
-          <select name="Alliance" id="Alliance">
-            <option value="Choose" class="Placeholder" disabled selected>Choose Alliance</option>
+          <label htmlFor="Alliance">Team Alliance </label>
+          <select name="Alliance" id="Alliance" defaultValue="Choose">
+            <option value="Choose" className="Placeholder" disabled>Choose Alliance</option>
             <option value="Red">Red Alliance</option>
             <option value="Blue">Blue Alliance</option>
           </select>
@@ -51,38 +52,60 @@ function App() {
     - Taxi?
     - Lower Cargo & upper cargo (large buttons, counter, type in box)
     - Did not attempt*/}
-    <div>
-      <h2>Auto</h2>
-      <p>
-        <label for="Taxi">Taxi</label>
-        <input type="checkbox" id="Taxi" name="Taxi" />
-      </p>
-      <p>
-        <label for="noAuto">Not Attempted</label>
-        <input type="checkbox" id="noAuto" name="noAuto" />
-      </p>
-      <p>
-        <label for="Upper">Upper Cargo</label>
-        <input type="number" value="Upper" name="Upper" min="1" max="100"/>
-      </p>
-      <p>
-        <label for="Lower">Lower Cargo</label>
-        <input type="number" value="Lower" name="Lower" min="1" max="100"/>
-      </p>
-    </div>
+      <div>
+        <h2>Auto</h2>
+        <p>
+          <label htmlFor="Taxi">Taxi</label>
+          <input type="checkbox" id="Taxi" name="Taxi" />
+        </p>
+        <p>
+          <label htmlFor="noAuto">Not Attempted</label>
+          <input type="checkbox" id="noAuto" name="noAuto" />
+        </p>
+        <NumberInput id="autoUp" label="Upper Cargo" />
+        <NumberInput id="autoLow" label="Lower Cargo" />
+      </div>
 
       {/*3. Teleop
     - Upper & Lower Cargo
     - Fouls*/}
-    <h2>Tele-op</h2>
-    <label>Upper Cargo</label>
+      <div>
+        <h2>Teleop</h2>
+
+        <NumberInput id="teleopUp" label="Upper Cargo" />
+        <NumberInput id="teleopLow" label="Lower Cargo" />
+        <NumberInput id="foul" label="Foul" />
+        <NumberInput id="tfoul" label="Tech Foul" />
+      </div>
+
       {/*4. Endgame
     - 5 large multi choice buttons
-        - climb levels + did not attmpet (smaller)
+        - climb levels + did not attempt (smaller)
     - No Timer*/}
+      <div>
+        <h2>Endgame</h2>
+
+        <RadioButtons name="climbType" items={{
+          "lowClimb": "Low Bar",
+          "midClimb": "Mid Bar",
+          "highClimb": "High Bar",
+          "traversalClimb": "Traversal Climb",
+          "noClimb": "Not Attempted"
+        }}/>
+      </div>
 
       {/*5. Save page
     - "Currently saved" counter*/}
+      <div>
+        <h2>Save Page</h2>
+        <p>
+          <input type="submit" value="QR code and clear" /> {/*Make these type="submit", because these are going to be our subit buttons */}
+        </p>
+        <p>
+
+          <input type="submit" value="Save and continue" />
+        </p>
+      </div>
 
 
       {/*Save options:
