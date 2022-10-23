@@ -4,8 +4,13 @@
 
 .App-header {
   background-color: white;
-  min-height: 100vh;
+  min-height: 10px;
   color: black;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 30px;
+}
+.section-header {
+  background-color: green;
+  height: 300px;
+  color: black;
 }
