@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  text-size: 100;
 }
 
 .App-header {
@@ -11,6 +12,6 @@
 }
 .section-header {
   background-color: green;
-  height: 300px;
+  height: 400px;
   color: black;
 }
