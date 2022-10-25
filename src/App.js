@@ -90,7 +90,8 @@ function App() {
           "midClimb": "Mid Bar",
           "highClimb": "High Bar",
           "traversalClimb": "Traversal Climb",
-          "noClimb": "Not Attempted"
+          "noClimb": "Not Attempted" ,
+          "failedClimb": "Attempted But Failed"
         }}/>
       </div>
 
