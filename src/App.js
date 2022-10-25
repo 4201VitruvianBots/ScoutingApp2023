@@ -1,5 +1,5 @@
 import './App.css';
-import { RadioButtons, NumberInput } from "./Form";
+import { RadioButtons, NumberInput, CounterButton } from "./Form";
 
 function App() {
   return (
@@ -14,12 +14,14 @@ function App() {
             <label htmlFor="Sname">Name </label>
             <input type="text" id="Sname" name="Sname" />
           </p>
+
           <p>
             <label htmlFor="Ename">Event Name </label>
             <select name="Ename" id="Ename" defaultValue="Choose">
               <option value="Choose" className="Placeholder" disabled>Choose Event</option>
               <option value="BeachBlitz">Beach Blitz</option>
             </select>
+
           </p>
           <input type="button" value="START SCOUTING!" />
         </form>
@@ -64,6 +66,7 @@ function App() {
         </p>
         <NumberInput id="autoUp" label="Upper Cargo" />
         <NumberInput id="autoLow" label="Lower Cargo" />
+        
       </div>
 
       {/*3. Teleop
@@ -76,6 +79,15 @@ function App() {
         <NumberInput id="teleopLow" label="Lower Cargo" />
         <NumberInput id="foul" label="Foul" />
         <NumberInput id="tfoul" label="Tech Foul" />
+        <CounterButton />
+
+          <label htmlFor="plus">Add</label>
+          <input type="button" value="plus" />
+        
+          <label htmlFor="minus">Subtract</label>
+          <input type="button" value="minus" />
+
+          
       </div>
 
       {/*4. Endgame
@@ -100,11 +112,13 @@ function App() {
       <div>
         <h2>Save Page</h2>
         <p>
-          <input type="submit" value="QR code and clear" /> {/*Make these type="submit", because these are going to be our subit buttons */}
+          <label htmlFor="clear">QR code and clear</label>
+          <input type="submit" value="clear" /> 
+          {/*Make these type="submit", because these are going to be our subit buttons */}
         </p>
         <p>
-
-          <input type="submit" value="Save and continue" />
+          <label htmlFor="continue">Save and continue</label>
+          <input type="submit" value="continue" />
         </p>
       </div>
 
