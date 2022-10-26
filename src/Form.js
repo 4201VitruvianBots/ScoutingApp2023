@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React from "react";
 
 // Radio Buttons
 function RadioButtons(props) {
@@ -16,34 +16,45 @@ function RadioButtons(props) {
 }
 
 // Number input
-function NumberInput(props) {
-    // props = {id: "teleopUp", label: "Upper Cargo"};
-    return (
-        <p>
-            <label htmlFor={props.id}>{props.label}</label>
+class NumberInput extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {id: props.id, label: props.label, value: 0};
+        this.setValue = this.setValue.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.increaseValue = this.increaseValue.bind(this);
+        this.decreaseValue = this.decreaseValue.bind(this);
+    }
+    
+    setValue(value) {
+        this.setState({value: value});
+    }
+    
+    handleChange(event) {
+        this.setValue(event.target.value);
+    }
+    
+    increaseValue() {
+        this.setState({value: this.state.value + 1});
+    }
 
-            <input type="number" defaultValue="0" name={props.id} min="0" />
-        </p>
+    decreaseValue() {
+        this.setState({value: this.state.value - 1});
+    }
 
-    );
+    render() {
+        // props = {id: "teleopUp", label: "Upper Cargo"};
+        return (
+            <p>
+                <label htmlFor={this.state.id}>{this.state.label}</label>
+                <input type="number" value={this.state.value} onChange={this.handleChange} name={this.state.id} min="0" />
+                <input type="button" value="-" onClick={this.decreaseValue}/>
+                <input type="button" value="+" onClick={this.increaseValue}/>
+            </p>
+
+
+        );
+    }
 }
 
-// Button clicker
-function CounterButton(props) {
-    const [count, setCount] = useState(0);
-
-    // Function to increment count by 1
-    const incrementCount = () => {
-        // Update state with incremented value
-        setCount(count + 1);
-    };
-    return (
-        <div className="app">
-            <button onClick={incrementCount}>Click Here</button>
-            {count}
-        </div>
-    );
-}
-
-
-export { RadioButtons, NumberInput, CounterButton };
+export { RadioButtons, NumberInput };
