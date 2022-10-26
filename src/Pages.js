@@ -2,7 +2,7 @@ import { RadioButtons, NumberInput } from "./Form";
 
 function SignIn(props) {
     return (
-        <div>
+        <div className="page">
             <h2>Sign In</h2>
             <form>
                 <p>
@@ -26,7 +26,7 @@ function SignIn(props) {
 
 function PreGame(props) {
     return (
-        <div>
+        <div className="page" id="pre-game">
             <h2>Pre-Game</h2>
             <p>
                 <label htmlFor="Num">Team Number </label>
@@ -47,7 +47,7 @@ function PreGame(props) {
 
 function Auto(props) {
     return (
-        <div>
+        <div className="page" id="auto">
             <h2>Auto</h2>
             <p>
                 <label htmlFor="Taxi">Taxi</label>
@@ -66,7 +66,7 @@ function Auto(props) {
 
 function TeleOp(props) {
     return (
-        <div>
+        <div className={props.selected ? "page selected" : "page"} id="tele-op">
             <h2>Teleop</h2>
 
             <NumberInput id="teleopUp" label="Upper Cargo" />
@@ -79,7 +79,7 @@ function TeleOp(props) {
 
 function Endgame(props) {
     return (
-        <div>
+        <div className="page" id="endgame">
             <h2>Endgame</h2>
             <RadioButtons name="climbType" items={{
                 "lowClimb": "Low Bar",
@@ -95,7 +95,7 @@ function Endgame(props) {
 
 function SavePage(props) {
     return (
-        <div>
+        <div className="page" id="save-page">
             <h2>Save Page</h2>
             <p>
                 <label htmlFor="clear">QR code and clear</label>

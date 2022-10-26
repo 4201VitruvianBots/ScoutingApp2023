@@ -1,3 +1,15 @@
+:root {
+  --accent-1: #b2daa1;
+  --accent-2: #59aa59;
+  --accent-3: #005f00;
+  --accent-4: #003800;
+  --background-1: 
+  --background-2: 
+  --background-3: #253c40;
+  --accent-default: var(--accent-3);
+  --bg-color: var(--bg-3); 
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +17,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-color);
 }
 
 code {
