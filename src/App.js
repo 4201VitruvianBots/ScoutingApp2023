@@ -1,11 +1,79 @@
 import './App.css';
-import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+// import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
 function App() {
   return (
     <div className="App">
-      <div id="Timer"></div>
+      <header>
+        <p className="title">Team 4201<br/>The Vitruvian Bots</p>
+        <p className="megatitle">2022 Scouting App</p>
+      </header>
 
+      {/* GENERAL INFO */}
+      <div className="section-header">
+        <p className="title-in-green">General Info</p>
+          <label for="name1" className="title-in-green-small"> Scouter's Name: </label>
+          <input id="name1" type="text" required/> 
+          <br/>
+          <p className="title-in-green-small" >Robot ID:</p>
+          <button id="robot-id" className="robotIDb-t">Red 1</button>
+          <button id="robot-id" className="robotIDb-t">Red 2</button>
+          <button id="robot-id" className="robotIDb-t">Red 3</button>
+          <br/>
+          <button id="robot-id" className="robotIDb-c">Blue 1</button>
+          <button id="robot-id" className="robotIDb-c">Blue 2</button>
+          <button id="robot-id" className="robotIDb-c">Blue 3</button>
+      </div>
+
+      {/* AUTONOMOUS */}
+      <div className="section-header">
+        <p className="title-in-green">Autonomous</p>
+        <div>
+          <p className="autoB">Taxi: </p>
+          <button type="radio" className="autoB">Yes</button>
+          <button type="radio" className="autoB">No</button>
+        </div>
+      </div>
+
+      {/* TELEOP */}
+      <div className="section-header">
+      <p className="title-in-green">Teleop</p>
+      </div>
+      
+      {/* ENDGAME */}
+      <div className="section-header">
+      <p className="title-in-green">Endgame</p>
+      <p className="title-in-green-small" >Climb status:</p>
+          <button id="robot-id" className="robotIDb-e">Low</button>
+          <button id="robot-id" className="robotIDb-e">Mid</button><br/>
+          <button id="robot-id" className="robotIDb-e">High</button>
+          <button id="robot-id" className="robotIDb-e">Traversal</button><br/>
+          <button id="robot-id" className="robotIDb-e">Not attempted</button>
+          <button id="robot-id" className="robotIDb-e">Attempted but failed</button>
+      </div>
+
+      {/* SUBMISSION */}
+      <div className="submission-header">
+        <p className="title-in-green">Submission</p>
+          <label for="name1" className="title-in-green-small"> Comments: </label>
+          <input id="name1" type="text" required/> 
+        <br/>
+        <br/>
+        <button id="robot-id" className="robotIDb-z">Submit form</button>
+      </div> 
+     </div>
+      
+  );
+}
+
+export default App;
+
+ {/*
+// Skye: text inputs, dropdowns
+// Natalie: radio buttons, checkboxes
+
+
+      <div id="Timer"></div>
       <header className="App-header">
         <p>Scouting App</p>
         <hr></hr>
@@ -19,10 +87,6 @@ function App() {
           <option value="pumpernickel">Pumpernickel</option>
           <option value="reeses">Reeses</option>
         </select>
-
-
-
-
       </header>
       <div className="section-header">
         <p>Scouter's Info</p>
@@ -45,7 +109,6 @@ function App() {
         <input type="text" id="Name" name="Name" minlength="2"></input>
         <br></br>
         <br></br>
-
         <label for="Event">Choose the Event:</label>
         <select name="names of event" id="Name">
           <option value="Port Hueneme">Port Hueneme</option>
@@ -63,12 +126,6 @@ function App() {
         <br></br>
         <label for="Match Number">Match Level:</label>
         <input type="text" id="Name" name="Name" minlength="2"></input>
-
-
-
-
-
-
       </div>
       <div className="section-header">
         <p>Autonomous</p>
@@ -77,7 +134,6 @@ function App() {
           <option value="Yes">Yes</option>
           <option value="No">No</option>
         </select>
-
         <h3><center>Upper Cargo Counter</center></h3>
         <div>
           <center><h3 id="counter-label">0</h3></center>
@@ -103,7 +159,6 @@ function App() {
           </div>
         </center>
       </div>
-
       <div className="section-header">
         <p>Teleop</p>
         <br></br>
@@ -130,8 +185,6 @@ function App() {
             <button onclick="resetCounter()">Reset</button>
           </div>
         </center>
-
-
       </div>
       <div className="section-header">
         <p>Endgame</p>
@@ -144,12 +197,10 @@ function App() {
           <option value="Traversal">Traversal</option>
           <option value="Attempted but failed">Attempted but failed</option>
           <option value="Not attempted">Not attempted</option>
-
         </select>
         <br></br>
         <br></br>
         <div className="section-header">
-
           <div>
           </div>
           <p>Miscellaneous</p>
@@ -164,15 +215,5 @@ function App() {
         >
           {({ remainingTime }) => remainingTime}
         </CountdownCircleTimer>
-      </div>
-
-    </div>
-  );
-
-}
-
-
-
-
-
-export default App;
+      
+  */ }

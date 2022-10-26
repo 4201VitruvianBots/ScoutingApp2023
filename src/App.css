@@ -15,3 +15,96 @@
   height: 400px;
   color: black;
 }
+
+.submission-header {
+  background-color: green;
+  height: 600px;
+  color: black;
+}
+
+.megatitle{
+  font-size: 35px;
+  font-weight: 700;
+  margin: 5px;
+  }
+
+.title{
+font-size:20px;
+font-weight: 200;
+padding:6px;
+}
+
+.title-in-green, .title-in-green-small{
+  font-weight: 300;
+  padding:6px;
+  color:white;
+  }
+
+.title-in-green{
+  font-size:20px;
+}
+.title-in-green-small{
+   font-size: 16px;
+}
+
+.robotIDb-r, .robotIDb-b, .robotIDb-z, .robotIDb-e{
+padding-left: 10px;
+padding-right: 10px;
+background-color: #085f00;
+color:white;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+margin: 10px;
+font-size: 15px;
+}
+
+.robotIDb-t, .robotIDb-c {
+width:70px;
+height:35px;
+}
+.robotIDb-z{
+  width:100px;
+  height:35px;
+}
+.robotIDb-e{
+  width:200px;
+  height:60px;
+}
+.robotIDb-z:focus, .robotIDb-e:focus{
+background-color:white;
+color:#085f00;
+}
+
+.robotIDb-t:focus {
+background-color: red;
+color: white; 
+border-color:red;
+}
+.robotIDb-c:focus{
+background-color: blue;
+color:white;
+border-color:blue;
+}
+.autoB, .autoB-r, .autoB-z {
+/* margin: auto; --> margin is for borders outside the element, 
+padding is inside the element*/
+padding-left: 10px;
+padding-right: 10px;
+background-color: #085f00;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+color: white;
+height:25px;
+font-size:15px;
+display: inline;
+margin:10px;
+}
+.autoB{
+  width: 40px;
+}
+.autoB-r{
+  width:100px;
+}
+.autoB:focus, .autoB-r:focus{
+background-color:white;
+color:#085f00;
+border-color:white;
+}
