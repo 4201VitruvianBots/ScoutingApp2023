@@ -11,14 +11,14 @@ function App() {
         <hr></hr>
         <p> Login Information </p>
         <div></div>
-        <p> Name</p>
+        {/* <p> Name</p>
         <label for="dog-names">Choose your name:</label>
         <select name="names" id="Name">
           <option value="rigatoni">Rigatoni</option>
           <option value="dave">Dave</option>
           <option value="pumpernickel">Pumpernickel</option>
           <option value="reeses">Reeses</option>
-        </select>
+        </select> */}
 
 
 
