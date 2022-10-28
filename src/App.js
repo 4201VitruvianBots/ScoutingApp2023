@@ -11,8 +11,8 @@ function App() {
         <hr></hr>
         <p> Login Information </p>
         <div></div>
-        {/* <p> Name</p>
-        <label for="dog-names">Choose your name:</label>
+        {/* <p> Name</p> */}
+        {/* <label for="dog-names">Choose your name:</label>
         <select name="names" id="Name">
           <option value="rigatoni">Rigatoni</option>
           <option value="dave">Dave</option>
@@ -135,8 +135,15 @@ function App() {
       </div>
       <div className="section-header">
         <p>Endgame</p>
-        <br></br>
-        <timerComponent />
+        <timerComponent /> 
+        <CountdownCircleTimer
+          isPlaying
+          duration={30}
+          colors={['#004777', '#F7B801', '#A30000', '#A30000']}
+          colorsTime={[7, 5, 2, 0]}
+        >
+          {({ remainingTime }) => remainingTime}
+        </CountdownCircleTimer>       
         <label for="Climb">Climb:</label>
         <select name="Climb" id="Climb">
           <option value="Low">Low</option>
@@ -155,17 +162,28 @@ function App() {
           <p>Miscellaneous</p>
           <label for="Comments">Comments:</label>
           <input type="text" id="Name" name="Name" minlength="2"></input>
+          <br></br>
+          <br></br>
+          <div class="form_container">
+<form id="myform" onsubmit="return handle_form_submission()">
+{/* <input type="text" name='name' id='name' placeholder='Name'/> */}
+  <button type='submit'>Sumbit</button>
+</form>
+
+</div>
         </div>
-        <CountdownCircleTimer
+        {/* <CountdownCircleTimer
           isPlaying
           duration={30}
           colors={['#004777', '#F7B801', '#A30000', '#A30000']}
           colorsTime={[7, 5, 2, 0]}
         >
           {({ remainingTime }) => remainingTime}
-        </CountdownCircleTimer>
+        </CountdownCircleTimer> */}
+        
+        
       </div>
-
+     
     </div>
   );
 
