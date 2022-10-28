@@ -9,7 +9,7 @@ function App() {
       <header className="App-header">
         <p>Scouting App</p>
         <hr></hr>
-        <p> Login Information </p>
+
         <div></div>
         {/* <p> Name</p> */}
         {/* <label for="dog-names">Choose your name:</label>
@@ -50,6 +50,8 @@ function App() {
         <select name="names of event" id="Name">
           <option value="Port Hueneme">Port Hueneme</option>
           <option value="LAR">LAR</option>
+          <option value="Beach Blitz">Beach Blitz</option>
+
         </select>
         <br></br>
         <br></br>
@@ -85,7 +87,7 @@ function App() {
         <center>
           <div>
             <button onclick="incrementClick()">Add one point</button>
-            <button onclick="resetCounter()">Reset</button>
+            <button onclick="resetCounter()">Delete one point</button>
             <br></br>
             <br></br>
             <h3><center>Lower Cargo Counter</center></h3>
@@ -95,7 +97,7 @@ function App() {
             <center>
               <div>
                 <button onclick="incrementClick()">Add one point</button>
-                <button onclick="resetCounter()">Reset</button>
+                <button onclick="resetCounter()">Delete one point</button>
                 <br></br>
                 <br></br>
               </div>
@@ -108,6 +110,26 @@ function App() {
         <p>Teleop</p>
         <br></br>
         <br></br>
+        <h3><center>Foul Counter</center></h3>
+            <div>
+              <center><h3 id="counter-label">0</h3></center>
+            </div>
+            <center>
+              <div>         </div>
+
+                <button onclick="incrementClick()">Add one foul</button>
+        <br></br>
+        </center>
+        <h3><center>Tech Foul Counter</center></h3>
+            <div>
+              <center><h3 id="counter-label">0</h3></center>
+            </div>
+            <center>
+              <div>         </div>
+
+                <button onclick="incrementClick()">Add one foul</button>
+        <br></br>
+        </center>
         <h3><center>Upper Cargo Counter</center></h3>
         <div>
           <center><h3 id="counter-label">0</h3></center>
@@ -115,7 +137,7 @@ function App() {
         <center>
           <div>
             <button onclick="incrementClick()">Add one point</button>
-            <button onclick="resetCounter()">Reset</button>
+            <button onclick="resetCounter()">Delete one point</button>
           </div>
         </center>
         <br></br>
@@ -127,7 +149,7 @@ function App() {
         <center>
           <div>
             <button onclick="incrementClick()">Add one point</button>
-            <button onclick="resetCounter()">Reset</button>
+            <button onclick="resetCounter()">Delete one point</button>
           </div>
         </center>
 
@@ -138,12 +160,14 @@ function App() {
         <timerComponent /> 
         <CountdownCircleTimer
           isPlaying
-          duration={30}
+          duration={220}
           colors={['#004777', '#F7B801', '#A30000', '#A30000']}
           colorsTime={[7, 5, 2, 0]}
         >
           {({ remainingTime }) => remainingTime}
-        </CountdownCircleTimer>       
+          
+        </CountdownCircleTimer>    
+           
         <label for="Climb">Climb:</label>
         <select name="Climb" id="Climb">
           <option value="Low">Low</option>
@@ -153,12 +177,21 @@ function App() {
           <option value="Not attempted">Not attempted</option>
 
         </select>
+<br></br>
+<br></br>
+        <label for="Comments">Time it took to climb:</label>
+          <input type="text" id="Name" name="Name" minlength="2"></input>
         <br></br>
         <br></br>
         <div className="section-header">
 
           <div>
           </div>
+          <hr></hr>
+          <br></br>
+          <br></br>
+          <br></br>
+
           <p>Miscellaneous</p>
           <label for="Comments">Comments:</label>
           <input type="text" id="Name" name="Name" minlength="2"></input>
