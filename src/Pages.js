@@ -26,7 +26,7 @@ function SignIn(props) {
                     </select>
 
                 </p>
-                <input type="submit" value="START SCOUTING!" />
+                <input type="submit" className="savept2" value="START SCOUTING!" />
             </form>
         </div>
     );
