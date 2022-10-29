@@ -5,9 +5,18 @@ import React from "react";
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {selected:"pre-game"};
+        this.state = {selected:"pre-game", ScouterName:"", EventName:""};
         this.setSelected = this.setSelected.bind(this);
+        this.SignInHandler = this.SignInHandler.bind(this)
+
     }
+
+    SignInHandler(e) {
+        const answers = e.target.elements;
+        this.setState({ScouterName: answers.Sname.value, EventName: answers.Ename.value})
+        return false;
+    }
+
     setSelected(id) {
         this.setState({selected: id});
     }
@@ -15,7 +24,7 @@ class App extends React.Component {
     render() {
       return (
         <main>
-            <SignIn />
+            <SignIn onSubmit={this.SignInHandler}/>
             <div>
                 <TabButton onClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>
                 <TabButton onClick={this.setSelected} tabId="auto">Auto</TabButton>
