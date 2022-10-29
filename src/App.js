@@ -1,6 +1,8 @@
 import './App.css';
 import { SignIn, PreGame, Auto, TeleOp, Endgame, SavePage } from "./Pages";
 import React from "react";
+import {QRCodeSVG} from 'qrcode.react';
+import ReactDOM from "react-dom";
 
 class App extends React.Component {
     constructor(props) {
@@ -8,12 +10,33 @@ class App extends React.Component {
         this.state = {selected:"pre-game", ScouterName:"", EventName:""};
         this.setSelected = this.setSelected.bind(this);
         this.SignInHandler = this.SignInHandler.bind(this)
+        this.SubmitHandler = this.SignInHandler.bind(this)
 
     }
 
     SignInHandler(e) {
         const answers = e.target.elements;
         this.setState({ScouterName: answers.Sname.value, EventName: answers.Ename.value})
+        return false;
+    }
+
+    SubmitHandler(e) {
+        const answers = e.target.elements;
+        ReactDOM.render(<QRCodeSVG value={
+            this.state.ScouterName + ',' +
+            this.state.EventName + ',' + 
+            answers.Num.value + ',' +
+            answers.Alliance.value + ',' +
+            answers.Taxi.value + ',' +
+            answers.noAuto.value + ',' +
+            answers.autoUp.value + ',' +
+            answers.autoLow.value + ',' +
+            answers.teleopUp.value + ',' +
+            answers.teleopLow.value + ',' +
+            answers.foul.value + ',' +
+            answers.tfoul.value + ',' +
+            answers.climbType.value  
+        } />, document.getElementById("QRCode"));
         return false;
     }
 
@@ -32,14 +55,21 @@ class App extends React.Component {
                 <TabButton onClick={this.setSelected} tabId="endgame">Endgame</TabButton>
                 <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
             </div>
-            <PreGame selected={this.state.selected === 'pre-game'}/>
-            <Auto selected={this.state.selected === 'auto'} />
-            <TeleOp selected={this.state.selected === 'tele-op'} />
-            <Endgame selected={this.state.selected === 'endgame'} />
-            <SavePage selected={this.state.selected === 'save-page'} />
+            <form onSubmit={this.SubmitHandler} action="#"> 
+                <PreGame selected={this.state.selected === 'pre-game'}/>
+                <Auto selected={this.state.selected === 'auto'} />
+                <TeleOp selected={this.state.selected === 'tele-op'} />
+                <Endgame selected={this.state.selected === 'endgame'} />
+                <SavePage selected={this.state.selected === 'save-page'} />
+            </form>
+           
         </main>
         );
-    }   
+    }  
+    
+    QRcodeGenerator() {
+        
+    }
 }
 
 function TabButton(props) {

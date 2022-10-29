@@ -12,7 +12,7 @@ function SignIn(props) {
     return (
         <div>
             <h2>Sign In</h2>
-            <form onSubmit={props.onSubmit} >
+            <form onSubmit={props.onSubmit} action="#">
                 <p>
                     <label htmlFor="Sname">Name </label>
                     <input type="text" id="Sname" name="Sname" />
@@ -113,6 +113,9 @@ function SavePage(props) {
                 <label htmlFor="continue">Save and continue</label>
                 <input type="submit" className="SAVE" value="continue" />
             </p>
+            <div id="QRCode"> 
+
+            </div>
         </Page>
     );
 }
