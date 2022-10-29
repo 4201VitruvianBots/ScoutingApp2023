@@ -165,6 +165,14 @@ function App() {
               00</span>
               <span class="txt">ms</span>
         </div>
+        <div id="buttons">
+            <button class="btn" id="start">
+              Start</button>
+            <button class="btn" id="stop">
+              Stop</button>
+            <button class="btn" id="reset">
+              Reset</button>
+        </div>
         <timerComponent /> 
         <CountdownCircleTimer
           isPlaying
