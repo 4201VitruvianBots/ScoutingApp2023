@@ -12,7 +12,7 @@ function SignIn(props) {
     return (
         <div>
             <h2>Sign In</h2>
-            <form>
+            <form onSubmit={props.onSubmit} >
                 <p>
                     <label htmlFor="Sname">Name </label>
                     <input type="text" id="Sname" name="Sname" />
@@ -26,7 +26,7 @@ function SignIn(props) {
                     </select>
 
                 </p>
-                <input type="button" value="START SCOUTING!" />
+                <input type="submit" value="START SCOUTING!" />
             </form>
         </div>
     );
