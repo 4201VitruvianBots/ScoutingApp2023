@@ -157,6 +157,14 @@ function App() {
       </div>
       <div className="section-header">
         <p>Endgame</p>
+        <div id="time">
+            <span class="digit" id="sec">
+              00</span>
+            <span class="txt">Sec</span>
+            <span class="digit" id="count">
+              00</span>
+              <span class="txt">ms</span>
+        </div>
         <timerComponent /> 
         <CountdownCircleTimer
           isPlaying
