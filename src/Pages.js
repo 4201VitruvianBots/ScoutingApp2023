@@ -107,11 +107,11 @@ function SavePage(props) {
             <h2>Save Page</h2>
             <p>
                 <label htmlFor="clear">QR code and clear</label>
-                <input type="submit" value="clear" />
+                <input type="submit" className="SAVE"value="clear" />
             </p>
             <p>
                 <label htmlFor="continue">Save and continue</label>
-                <input type="submit" value="continue" />
+                <input type="submit" className="SAVE" value="continue" />
             </p>
         </Page>
     );
