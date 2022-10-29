@@ -1,5 +1,6 @@
 import './App.css';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+import { starttimer, stoptimer, resettimer} from './stopwatch'
 
 function App() {
   return (
@@ -158,6 +159,9 @@ function App() {
       <div className="section-header">
         <p>Endgame</p>
         <div id="time">
+        <span class="digit" id="min">
+              00</span>
+            <span class="txt">Min</span>
             <span class="digit" id="sec">
               00</span>
             <span class="txt">Sec</span>
@@ -166,11 +170,11 @@ function App() {
               <span class="txt">ms</span>
         </div>
         <div id="buttons">
-            <button class="btn" id="start">
+            <button onClick={starttimer} class="btn" id="start">
               Start</button>
-            <button class="btn" id="stop">
+            <button onClick={stoptimer} class="btn" id="stop">
               Stop</button>
-            <button class="btn" id="reset">
+            <button onClick={resettimer} class="btn" id="reset">
               Reset</button>
         </div>
         <timerComponent /> 
