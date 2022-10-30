@@ -56,18 +56,19 @@ function PreGame(props) {
 function Auto(props) {
     return (
         <Page selected={props.selected} id="auto">
-            <h2>Auto</h2>
+            <h2>  Auto          </h2>
             <p>
-                <label htmlFor="Taxi">Taxi</label>
+                <label htmlFor="Taxi     "> Taxi       </label>
                 <input type="checkbox" id="Taxi" name="Taxi" />
             </p>
-            <p>
-                <label htmlFor="noAuto">Not Attempted</label>
-                <input type="checkbox" id="noAuto" name="noAuto" />
-            </p>
-            <NumberInput id="autoUp" label="Upper Cargo" />
-            <NumberInput id="autoLow" label="Lower Cargo" />
-
+            <br></br>
+            <br></br>
+            <NumberInput id="   autoUp  " label=" Upper Cargo" />
+            <br></br>
+            <br></br>
+            <NumberInput id="autoLow" label=" Lower Cargo" />
+            <br></br>
+            <br></br>
         </Page>
     );
 }

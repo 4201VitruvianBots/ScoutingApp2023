@@ -33,15 +33,15 @@ button {
   display: block;
   width: 20%;
   float: left;
-  height: 50px;
-  font-size: 25px;
+  height: 70px;
+  font-size: 55px;
 }
 
 input[type="button"] {
   border-color: var(--accent-3);
   background-color:var(--accent-2);
   display: block;
-  width:30;
+  width:59;
   height:40px;
   font-size:20px;
 }
