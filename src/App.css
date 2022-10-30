@@ -12,7 +12,7 @@
 }
 .section-header {
   background-color: green;
-  height: 400px;
+  height: 450px;
   color: black;
 }
 
@@ -34,7 +34,7 @@ font-weight: 200;
 padding:6px;
 }
 
-.title-in-green, .title-in-green-small{
+.title-in-green, .subtitle-in-green{
   font-weight: 300;
   padding:6px;
   color:white;
@@ -43,11 +43,11 @@ padding:6px;
 .title-in-green{
   font-size:20px;
 }
-.title-in-green-small{
+.subtitle-in-green{
    font-size: 16px;
 }
 
-.robotIDb-r, .robotIDb-b, .robotIDb-z, .robotIDb-e{
+.robotIDb-t, .robotIDb-c, .robotIDb-z, .robotIDb-e{
 padding-left: 10px;
 padding-right: 10px;
 background-color: #085f00;
@@ -66,7 +66,7 @@ height:35px;
   height:35px;
 }
 .robotIDb-e{
-  width:200px;
+  width:150px;
   height:60px;
 }
 .robotIDb-z:focus, .robotIDb-e:focus{
@@ -98,7 +98,7 @@ display: inline;
 margin:10px;
 }
 .autoB{
-  width: 40px;
+  width: 50px;
 }
 .autoB-r{
   width:100px;
