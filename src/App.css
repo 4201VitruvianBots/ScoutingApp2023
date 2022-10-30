@@ -1,38 +1,110 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  text-size: 100;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: white;
+  min-height: 10px;
+  color: black;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 30px;
+}
+.section-header {
+  background-color: green;
+  height: 450px;
+  color: black;
 }
 
-.App-link {
-  color: #61dafb;
+.submission-header {
+  background-color: green;
+  height: 600px;
+  color: black;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.megatitle{
+  font-size: 35px;
+  font-weight: 700;
+  margin: 5px;
   }
-  to {
-    transform: rotate(360deg);
+
+.title{
+font-size:20px;
+font-weight: 200;
+padding:6px;
+}
+
+.title-in-green, .subtitle-in-green{
+  font-weight: 300;
+  padding:6px;
+  color:white;
   }
+
+.title-in-green{
+  font-size:20px;
+}
+.subtitle-in-green{
+   font-size: 16px;
+}
+
+.robotIDb-t, .robotIDb-c, .robotIDb-z, .robotIDb-e{
+padding-left: 10px;
+padding-right: 10px;
+background-color: #085f00;
+color:white;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+margin: 10px;
+font-size: 15px;
+}
+
+.robotIDb-t, .robotIDb-c {
+width:70px;
+height:35px;
+}
+.robotIDb-z{
+  width:100px;
+  height:35px;
+}
+.robotIDb-e{
+  width:150px;
+  height:60px;
+}
+.robotIDb-z:focus, .robotIDb-e:focus{
+background-color:white;
+color:#085f00;
+}
+
+.robotIDb-t:focus {
+background-color: red;
+color: white; 
+border-color:red;
+}
+.robotIDb-c:focus{
+background-color: blue;
+color:white;
+border-color:blue;
+}
+.autoB, .autoB-r, .autoB-z {
+/* margin: auto; --> margin is for borders outside the element, 
+padding is inside the element*/
+padding-left: 10px;
+padding-right: 10px;
+background-color: #085f00;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+color: white;
+height:25px;
+font-size:15px;
+display: inline;
+margin:10px;
+}
+.autoB{
+  width: 50px;
+}
+.autoB-r{
+  width:100px;
+}
+.autoB:focus, .autoB-r:focus{
+background-color:white;
+color:#085f00;
+border-color:white;
 }
