@@ -10,17 +10,19 @@ class App extends React.Component {
         this.state = {selected:"pre-game", ScouterName:"", EventName:""};
         this.setSelected = this.setSelected.bind(this);
         this.SignInHandler = this.SignInHandler.bind(this)
-        this.SubmitHandler = this.SignInHandler.bind(this)
+        this.SubmitHandler = this.SubmitHandler.bind(this)
 
     }
 
     SignInHandler(e) {
+        e.preventDefault();
         const answers = e.target.elements;
-        this.setState({ScouterName: answers.Sname.value, EventName: answers.Ename.value})
+        this.setState({ScouterName: answers.Sname.value, EventName: answers.Ename.value});
         return false;
     }
 
     SubmitHandler(e) {
+        e.preventDefault();
         const answers = e.target.elements;
         ReactDOM.render(<QRCodeSVG value={
             this.state.ScouterName + ',' +
