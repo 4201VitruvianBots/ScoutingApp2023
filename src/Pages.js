@@ -98,6 +98,25 @@ function Endgame(props) {
                 "noClimb": "Not Attempted",
                 "failedClimb": "Attempted But Failed"
             }} />
+            <div id="time">
+        <span class="digit" id="min">
+              00</span>
+            <span class="txt">Min</span>
+            <span class="digit" id="sec">
+              00</span>
+            <span class="txt">Sec</span>
+            <span class="digit" id="count">
+              00</span>
+              <span class="txt">ms</span>
+        </div>
+        <div id="buttons">
+            <button onClick={starttimer} class="btn" id="start">
+              Start</button>
+            <button onClick={stoptimer} class="btn" id="stop">
+              Stop</button>
+            <button onClick={resettimer} class="btn" id="reset">
+              Reset</button>
+        </div>
         </Page>
     );
 }
