@@ -3,6 +3,7 @@
   --accent-2: #59aa59;
   --accent-3: #005f00;
   --accent-4: #003800;
+  --accent-5: #64a54f;
   --background-1: #000000;
   /*--background-2: */
   --background-3: #253c40;
@@ -18,8 +19,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--bg-color);
-  color:var(--accent-1);
+  background-color: var(--accent-5);
+}
+.pageselected{
+  background-color: var(--accent-1);
+  border-bottom: #ffffff;
 }
 
 code {
@@ -28,17 +32,17 @@ code {
 }
 
 button {
-  border-color: var(--accent-3);
+  border-color: var(--accent-2);
   background-color:var(--accent-2);
   display: block;
   width: 20%;
   float: left;
   height: 70px;
-  font-size: 55px;
+  font-size: 25px;
 }
 
 input[type="button"] {
-  border-color: var(--accent-3);
+  border-color: var(--accent-2);
   background-color:var(--accent-2);
   display: block;
   width:59;
@@ -48,8 +52,8 @@ input[type="button"] {
 
 
 select {
-  border-color: var(--accent-3);
-  background-color: var(--accent-1);
+  border-color: var(--accent-2);
+  background-color: var(--accent-2);
   display: block;
   width:200px;
   height:40px;
@@ -57,8 +61,8 @@ select {
    }
 
   input[type="text"] {
-    border-color: var(--accent-3);
-    background-color: var(--accent-1);
+    border-color: var(--accent-2);
+    background-color: var(--accent-2);
     display: block;
     width:20%;
     height:30px;
@@ -70,11 +74,10 @@ select {
   width: 100px !important;
   height: 75px !important;
   font-size:50px !important;
+  
 }
 
 input[type="checkbox"] {
-  border-color: var(--accent-3);
-  background-color: var(--accent-1);
   width:10%;
   height:20px;
   font-size:15px;
@@ -82,8 +85,6 @@ input[type="checkbox"] {
 }
 
 input[type="radio"] {
-  border-color: var(--accent-3);
-  background-color: var(--accent-1);
   width:50px;
   height:20px;
   display: inline;
@@ -91,7 +92,7 @@ input[type="radio"] {
 
 input[type="number"] {
   display:inline !important;
-  background-color: var(--accent-1);
+  background-color: var(--accent-2);
   width: 100px !important;
   height: 75px !important;
   font-size:50px;
@@ -110,7 +111,7 @@ h2 {
   width: 15%;
   height: 35px;
   font-size:25px;
-  border-color: var(--accent-3);
+  border-color: var(--accent-2);
   background-color:var(--accent-2);
 }
 
@@ -119,6 +120,6 @@ h2 {
   width: 250px !important;
   height: 35px;
   font-size:25px;
-  border-color: var(--accent-3);
+  border-color: var(--accent-2);
   background-color:var(--accent-2);
 }

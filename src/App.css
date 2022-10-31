@@ -115,4 +115,6 @@ border-color:white;
 
 .selected {
    display: block;
+   background-color: #b2daa1;
+   height: 565px ;
 }
