@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  text-size: 100;
+  font-size: 100;
 }
 
 .App-header {
@@ -107,4 +107,13 @@ margin:10px;
 background-color:white;
 color:#085f00;
 border-color:white;
+}
+
+.buttonright{
+float:left;
+}
+
+.labelleft{
+width: 59%;
+float: left;
 }
