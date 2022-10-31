@@ -48,7 +48,7 @@ class App extends React.Component {
       return (
         <main>
             <SignIn onSubmit={this.SignInHandler}/>
-            <div>
+            <div className="selection">
                 <TabButton onClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>
                 <TabButton onClick={this.setSelected} tabId="auto">Auto</TabButton>
                 <TabButton onClick={this.setSelected} tabId="tele-op">Teleop</TabButton>

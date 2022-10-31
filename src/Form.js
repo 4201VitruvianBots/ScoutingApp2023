@@ -48,7 +48,7 @@ class NumberInput extends React.Component {
             <p>
                 <label htmlFor={this.state.id}>{this.state.label}</label>
                 <input type="button" className="chonk" value="-" onClick={this.decreaseValue}/>
-                <input type="number" value={this.state.value} onChange={this.handleChange} name={this.state.id} min="0" />
+                <input type="number"  value={this.state.value} onChange={this.handleChange} name={this.state.id} min="0" />
                 <input type="button" className="chonk" value="+" onClick={this.increaseValue}/>
             </p>
 

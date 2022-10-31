@@ -10,7 +10,7 @@ function Page(props) {
 
 function SignIn(props) {
     return (
-        <div>
+        <div className="pageselected">
             <h2>Sign In</h2>
             <form onSubmit={props.onSubmit} action="#">
                 <p>
@@ -35,7 +35,7 @@ function SignIn(props) {
 function PreGame(props) {
     return (
         <Page selected={props.selected} className="page" id="pre-game">
-            <h2>Pre-Game</h2>
+            <h2 className="selection">Pre-Game</h2>
             <p>
                 <label htmlFor="Num">Team Number </label>
                 <input type="text" id="Num" name="Num" />
@@ -56,8 +56,8 @@ function PreGame(props) {
 function Auto(props) {
     return (
         <Page selected={props.selected} id="auto">
-            <h2>  Auto          </h2>
-            <p>
+            <h2 className="selection">  Auto          </h2>
+            <p className="selection">
                 <label htmlFor="Taxi     "> Taxi       </label>
                 <input type="checkbox" id="Taxi" name="Taxi" />
             </p>
@@ -76,7 +76,7 @@ function Auto(props) {
 function TeleOp(props) {
     return (
         <Page selected={props.selected} id="tele-op">
-            <h2>Teleop</h2>
+            <h2 className="selection">Teleop</h2>
 
             <NumberInput id="teleopUp" label="Upper Cargo" />
             <NumberInput id="teleopLow" label="Lower Cargo" />
@@ -89,7 +89,7 @@ function TeleOp(props) {
 function Endgame(props) {
     return (
         <Page selected={props.selected} id="endgame">
-            <h2>Endgame</h2>
+            <h2 className="selection">Endgame</h2>
             <RadioButtons name="climbType" items={{
                 "lowClimb": "Low Bar",
                 "midClimb": "Mid Bar",
@@ -124,16 +124,16 @@ function Endgame(props) {
 function SavePage(props) {
     return (
         <Page selected={props.selected} id="save-page">
-            <h2>Save Page</h2>
-            <p>
+            <h2 className="selection">Save Page</h2>
+            <p className="selection">
                 <label htmlFor="clear">QR code and clear</label>
                 <input type="submit" className="SAVE"value="clear" />
             </p>
-            <p>
+            <p className="selection">
                 <label htmlFor="continue">Save and continue</label>
                 <input type="submit" className="SAVE" value="continue" />
             </p>
-            <div id="QRCode"> 
+            <div id="QRCode" className="selection"> 
 
             </div>
         </Page>
