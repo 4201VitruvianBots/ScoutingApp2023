@@ -1,42 +1,89 @@
-:root {
-  --accent-1: #b2daa1;
+ :root {
+  --accent-1: white;
   --accent-2: #59aa59;
   --accent-3: #005f00;
   --accent-4: #003800;
-  --background-1: #000000;
+  --background-1: #085f00;
   /*--background-2: */
-  --background-3: #253c40;
+  --background-3: #ffffff;
   --accent-default: var(--accent-3);
   --bg-color: var(--background-1); 
+  text-align: center;
 }
-
-
+.page-title{
+  color: gray;
+  font-size: 25px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-style: italic;
+}
+.section-label{
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.item-label{
+  color:black;
+  font-size:20px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  display:inline-block;
+}
+/* Standard area formatting, with testing color (orange). USE WHEN MAKING A NEW <DIV></DIV> OR SECTION
+.area {
+  background-color: orange;
+  height: 130px;
+  min-width:300px;
+  padding:30px;
+  margin: 10px;
+}*/
+.areaSI, .areaPG, .areaAU, .areaTE, .areaEG, .areaSaP {
+  background-color: #a1b59f;
+  min-width:300px;
+  padding:25px;
+  margin: 20px;
+}
+.areaSI {
+  height: 180px; 
+}
+.areaPG {
+  height: 180px;
+}
+.areaAU {
+  height: 380px;
+}
+.areaTE {
+  height: 550px;
+}
+.areaEG {
+  height: 320px;
+  color:black;
+  font-size:20px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.areaSaP {
+  height: 650px;
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 100;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-color);
   color:var(--accent-1);
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 button {
   border-color: var(--accent-3);
   background-color:var(--accent-2);
   display: block;
   width: 20%;
-  float: left;
   height: 50px;
-  font-size: 25px;
+  float: left;
+  font-size: 20px;
+  padding: 10px;
+  margin: 10px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-
 input[type="button"] {
   border-color: var(--accent-3);
   background-color:var(--accent-2);
@@ -46,7 +93,6 @@ input[type="button"] {
   font-size:20px;
 }
 
-
 select {
   border-color: var(--accent-3);
   background-color: var(--accent-1);
@@ -54,15 +100,17 @@ select {
   width:200px;
   height:40px;
   font-size:25px;
-   }
+  margin: 0 auto;
+  }
 
   input[type="text"] {
     border-color: var(--accent-3);
     background-color: var(--accent-1);
     display: block;
-    width:20%;
-    height:30px;
-    font-size:25px;
+    width:17%;
+    height:25px;
+    font-size:20px;
+    margin: 0 auto;
   }
 
 .chonk{
@@ -97,25 +145,19 @@ input[type="number"] {
   font-size:50px;
 }
 
-label {
-  font-size:30px;
-}
-
-h2 {
-  font-size:50px;
-}
-
 .SAVE {
-  display:inline;
-  width: 15%;
+  display:inline-block;
+  width: 300px;
   height: 35px;
-  font-size:25px;
+  font-size:20px;
   border-color: var(--accent-3);
   background-color:var(--accent-2);
+  margin: 15px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .savept2 {
-  display:inline;
+  display:inline-block;
   width: 250px !important;
   height: 35px;
   font-size:25px;

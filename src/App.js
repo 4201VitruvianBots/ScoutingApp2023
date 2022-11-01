@@ -48,15 +48,17 @@ class App extends React.Component {
       return (
         <main>
             <SignIn onSubmit={this.SignInHandler}/>
-            <div>
-                <TabButton onClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>
+            {/*
+            <div >
+                <TabButton headerButtonsonClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>
                 <TabButton onClick={this.setSelected} tabId="auto">Auto</TabButton>
                 <TabButton onClick={this.setSelected} tabId="tele-op">Teleop</TabButton>
                 <TabButton onClick={this.setSelected} tabId="endgame">Endgame</TabButton>
                 <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
             </div>
+      */}
             <form onSubmit={this.SubmitHandler} action="#"> 
-                <PreGame selected={this.state.selected === 'pre-game'}/>
+                <PreGame  selected={this.state.selected === 'pre-game'}/>
                 <Auto selected={this.state.selected === 'auto'} />
                 <TeleOp selected={this.state.selected === 'tele-op'} />
                 <Endgame selected={this.state.selected === 'endgame'} />

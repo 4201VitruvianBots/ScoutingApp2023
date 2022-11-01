@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
   text-size: 100;
 }
@@ -86,7 +86,7 @@ border-color:blue;
 }
 .autoB, .autoB-r, .autoB-z {
 /* margin: auto; --> margin is for borders outside the element, 
-padding is inside the element*/
+padding is inside the element
 padding-left: 10px;
 padding-right: 10px;
 background-color: #085f00;
@@ -108,3 +108,4 @@ background-color:white;
 color:#085f00;
 border-color:white;
 }
+*/
