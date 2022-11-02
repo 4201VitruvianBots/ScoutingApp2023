@@ -7,7 +7,7 @@ import ReactDOM from "react-dom";
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {selected:"pre-game", ScouterName:"", EventName:""};
+        this.state = {signedIn: false, ScouterName:"", EventName:""};
         this.setSelected = this.setSelected.bind(this);
         this.SignInHandler = this.SignInHandler.bind(this)
         this.SubmitHandler = this.SubmitHandler.bind(this)
@@ -17,7 +17,7 @@ class App extends React.Component {
     SignInHandler(e) {
         e.preventDefault();
         const answers = e.target.elements;
-        this.setState({ScouterName: answers.Sname.value, EventName: answers.Ename.value});
+        this.setState({signedIn: true, ScouterName: answers.Sname.value, EventName: answers.Ename.value});
         return false;
     }
 
@@ -49,7 +49,8 @@ class App extends React.Component {
     render() {
       return (
         <main>
-            <SignIn onSubmit={this.SignInHandler}/>
+            <p className="page-title">Welcome to Vitruvian Scouting</p>
+            {this.state.signedIn || <SignIn onSubmit={this.SignInHandler}/>}
             {/*
             <div >
                 <TabButton headerButtonsonClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>

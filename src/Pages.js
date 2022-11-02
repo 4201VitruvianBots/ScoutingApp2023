@@ -13,7 +13,6 @@ function Page(props) {
 function SignIn(props) {
     return (
         <div>
-            <p className="page-title">Welcome to Vitruvian Scouting</p>
             <p className="section-label">Sign-In</p>
             <form onSubmit={props.onSubmit} action="#">
                 <div className="areaSI">
@@ -132,11 +131,10 @@ function SavePage(props) {
             <label htmlFor="notes">Notes</label>
                 <input type="text" id="notes" name="notes" />
                 { /* <label className="item-label" htmlFor="clear">QR code and clear</label> */}
-                <input type="submit" className="SAVE" value="QR code and clear" />
+                <input type="submit" className="SAVE" value="Generate QR code"></input>
                 <br />
-                
                 {/* } <label className="item-label" htmlFor="continue">Save and continue</label> */}
-                <input type="submit" className="SAVE" value="Save and continue" />
+                <input type="reset" className="CLEAR" value="Clear Form" />
 
                 <div id="QRCode"></div>                
             </div>

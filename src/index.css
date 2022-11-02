@@ -30,9 +30,6 @@
    Geneva,
    Verdana,
    sans-serif,
-   bolded {
-     font-weight: bold;
-   }
  }
 
  .item-label {
@@ -88,6 +85,7 @@
 
  .areaSaP {
    height: 650px;
+   color: black;
  }
 
  body {
@@ -184,21 +182,24 @@
    text-align:center
  }
 
- .SAVE {
+ .SAVE, .CLEAR {
    display: inline-block;
    width: 300px;
    height: 35px;
    font-size: 20px;
-   border-color: var(--accent-3);
-   background-color: var(--accent-2);
    margin: 15px;
    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
  }
-.BlackBar {
-}
-
-
-
+ 
+ .SAVE {
+   border-color: var(--accent-3);
+   background-color: var(--accent-2);
+ }
+ 
+ .CLEAR {
+   border-color: var(--accent-3);
+   background-color: red; /*Make this color better*/
+ }
 
  .savept2 {
    display: inline-block;
