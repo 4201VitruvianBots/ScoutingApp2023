@@ -46,12 +46,12 @@ class NumberInput extends React.Component {
     render() {
         // props = {id: "teleopUp", label: "Upper Cargo"};
         return (
-            <p>
+            <div>
                <div className = "labelleft"><label htmlFor={this.state.id}>{this.state.label}</label></div>
                 <div className = "buttonright"><input type="button" className="chonk" value="-" onClick={this.decreaseValue}/>
                 <input type="number" value={this.state.value} onChange={this.handleChange} name={this.state.id} min="0" />
                 <input type="button" className="chonk" value="+" onClick={this.increaseValue}/></div>
-            </p>
+            </div>
 
 
         );

@@ -35,7 +35,8 @@ class App extends React.Component {
             `${answers.teleopLow.value}\t` +
             `${answers.foul.value}\t` +
             `${answers.tfoul.value}\t` +
-            `${answers.climbType.value}`
+            `${answers.climbType.value}\t` +
+            `${answers.notes.value}`
         } size={512} />, document.getElementById("QRCode"));
         return false;
     }
