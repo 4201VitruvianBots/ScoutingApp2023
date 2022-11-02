@@ -101,7 +101,6 @@ function Endgame(props) {
         <Page selected={props.selected} id="endgame">
             <p className="section-label">Endgame</p>
             <div className="areaEG">
-            <h3 className="item-label" for="climbType"></h3>
             <div class="radioButtons">
             <RadioButtons className="item-label" name="climbType" items={{
                 "lowClimb": "Low",
