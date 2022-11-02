@@ -15,7 +15,8 @@ jobs:
       
       - run: npm install
       
-      - run: npm run build
+      - name: Build app
+        run: PUBLIC_URL=https://4201VitruvianBots.github.io/ScoutingApp2023 npm run build
       
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v1.0.4
@@ -41,3 +42,20 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+
+  tablet-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - run: npm install
+      
+      - name: Build app for tablet
+        run: ./tablet-build.sh
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3.1.1
+        with:
+          name: tablet-build
+          path: build
