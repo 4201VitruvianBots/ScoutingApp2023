@@ -29,7 +29,6 @@ function SignIn(props) {
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
                         <option value="BeachBlitz">Beach Blitz</option>
                     </select>
-                    <input type="submit" className="SAVE" value="Sign In"/>
                 </div>
 
             </form>
@@ -101,6 +100,7 @@ function Endgame(props) {
         <Page selected={props.selected} id="endgame">
             <p className="section-label">Endgame</p>
             <div className="areaEG">
+            <h3 className="item-label" for="climbType"></h3>
             <div class="radioButtons">
             <RadioButtons className="item-label" name="climbType" items={{
                 "lowClimb": "Low",
@@ -110,8 +110,11 @@ function Endgame(props) {
                 "noClimb": "Not Attempted",
                 "failedClimb": "Attempted But Failed"
             }} />
+            <label htmlFor="ClimbTime">Time it took to climb:</label>
+                <input type="text" id="Ck" name="ClimbTime" />
             </div>
-            </div>   
+            </div> 
+           
         </Page>
     );
 }
@@ -123,14 +126,15 @@ function SavePage(props) {
             <br></br>
             <p className="section-label">Save Page</p>
             <div className="areaSaP">
-                
-            { /* <label className="item-label" htmlFor="clear">QR code and clear</label> */}
-                    <input type="submit" className="SAVE"value="QR code and clear" />
-                <br/>
-            {/* } <label className="item-label" htmlFor="continue">Save and continue</label> */}
-                    <input type="submit" className="SAVE" value="Save and continue" />
 
-            <div id="QRCode"></div>
+                { /* <label className="item-label" htmlFor="clear">QR code and clear</label> */}
+                <input type="submit" className="SAVE" value="QR code and clear" />
+                <br />
+                {/* } <label className="item-label" htmlFor="continue">Save and continue</label> */}
+                <input type="submit" className="SAVE" value="Save and continue" />
+            </div>
+
+            <div className="areaSAP" id="QRCode">
 
             </div>
         </Page>
