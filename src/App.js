@@ -27,6 +27,7 @@ class App extends React.Component {
         ReactDOM.render(<QRCode value={
             `${this.state.ScouterName}\t` +
             `${this.state.EventName}\t` +
+            `${answers.match.value}\t` +
             `${answers.Num.value}\t` +
             `${answers.Alliance.value}\t` +
             `${answers.autoUp.value}\t` +
