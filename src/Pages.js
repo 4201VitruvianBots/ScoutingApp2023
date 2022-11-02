@@ -17,12 +17,12 @@ function SignIn(props) {
             <p className="section-label">Sign-In</p>
             <form onSubmit={props.onSubmit} action="#">
                 <div className="areaSI">
-                    <label className="item-label" htmlFor="Sname" >Name </label>
+                    <label className="item-label" htmlFor="Sname" ><strong>Name</strong> </label>
                     <br />
                     <br />
                     <input type="text" id="Sname" name="Sname" />
                     <br />
-                    <label className="item-label" htmlFor="Ename">Event Name </label>
+                    <label className="item-label" htmlFor="Ename"><strong>Event Name</strong> </label>
                     <br />
                     <br />
                     <select name="Ename" id="Ename" defaultValue="Choose">
@@ -42,12 +42,12 @@ function PreGame(props) {
         <Page selected={props.selected} className="page" id="pre-game">
             <p className="section-label">Pre-Game</p>
             <div className="areaPG">
-                <label className="item-label" htmlFor="Num">Team Number </label>
+                <label className="item-label" htmlFor="Num"><strong>Team Number</strong> </label>
                 <br />
                 <br />
                 <input className="text-input" type="text" id="Num" name="Num" />
                 <br />
-                <label className="item-label" htmlFor="Alliance">Team Alliance </label>
+                <label className="item-label" htmlFor="Alliance"><strong>Team Alliance</strong> </label>
                 <br />
                 <br />
                 <select name="Alliance" id="Alliance" defaultValue="Choose">
@@ -55,6 +55,11 @@ function PreGame(props) {
                     <option value="Red">Red Alliance</option>
                     <option value="Blue">Blue Alliance</option>
                 </select>
+                <br></br>
+                <label className="item-label" htmlFor="Match Number"><strong>Match Number</strong></label>
+                <br />
+                <br />
+                <input className="text-input" type="text" id="Num" name="Num" />
             </div>
 
         </Page>
@@ -69,9 +74,9 @@ function Auto(props) {
             <br/>
             <br/>
             <br/>
-            <label className="item-label" htmlFor="autoUp">Upper Cargo</label>
+            <label className="item-label" htmlFor="autoUp"><strong>Upper Cargo</strong></label>
                 <NumberInput id="autoUp"/>
-            <label className="item-label" htmlFor="autoLow">Lower Cargo</label>
+            <label className="item-label" htmlFor="autoLow"><strong>Lower Cargo</strong></label>
                 <NumberInput id="autoLow"/>
            </div>
         </Page>
@@ -83,13 +88,13 @@ function TeleOp(props) {
         <Page selected={props.selected} id="tele-op">
             <p className="section-label">Teleop</p>
             <div className="areaTE">
-                <label className="item-label" htmlFor="teleopUp">Upper Cargo</label>
+                <label className="item-label" htmlFor="teleopUp"><strong>Upper Cargo</strong></label>
                 <NumberInput id="teleopUp" />
-                <label className="item-label" htmlFor="teleopLow">Lower Cargo</label>
+                <label className="item-label" htmlFor="teleopLow"><strong>Lower Cargo</strong></label>
                 <NumberInput id="teleopLow" />
-                <label className="item-label" htmlFor="foul">Fouls</label>
+                <label className="item-label" htmlFor="foul"><strong>Fouls</strong></label>
                 <NumberInput id="foul" />
-                <label className="item-label" htmlFor="tfoul">Tech Fouls</label>
+                <label className="item-label" htmlFor="tfoul"><strong>Tech Fouls</strong></label>
                 <NumberInput id="tfoul" />
             </div>
         </Page>

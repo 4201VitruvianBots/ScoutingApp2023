@@ -2,7 +2,7 @@
 
 .App {
   text-align: center;
-  font-size: 100;
+  font-size: 103.5;
 }
 
 .App-header {
@@ -39,7 +39,7 @@ padding:6px;
 .title-in-green, .subtitle-in-green{
   font-weight: 300;
   padding:6px;
-  color:white;
+  color:black;
   }
 
 .title-in-green{
