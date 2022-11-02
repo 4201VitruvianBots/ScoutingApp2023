@@ -1,7 +1,7 @@
   import './App.css';
 import { SignIn, PreGame, Auto, TeleOp, Endgame, SavePage } from "./Pages";
 import React from "react";
-import {QRCodeSVG} from 'qrcode.react';
+import QRCode from 'react-qr-code';
 import ReactDOM from "react-dom";
 
 class App extends React.Component {
@@ -10,33 +10,35 @@ class App extends React.Component {
         this.state = {selected:"pre-game", ScouterName:"", EventName:""};
         this.setSelected = this.setSelected.bind(this);
         this.SignInHandler = this.SignInHandler.bind(this)
-        this.SubmitHandler = this.SignInHandler.bind(this)
+        this.SubmitHandler = this.SubmitHandler.bind(this)
 
     }
 
     SignInHandler(e) {
+        e.preventDefault();
         const answers = e.target.elements;
-        this.setState({ScouterName: answers.Sname.value, EventName: answers.Ename.value})
+        this.setState({ScouterName: answers.Sname.value, EventName: answers.Ename.value});
         return false;
     }
 
     SubmitHandler(e) {
+        e.preventDefault();
         const answers = e.target.elements;
-        ReactDOM.render(<QRCodeSVG value={
-            this.state.ScouterName + ',' +
-            this.state.EventName + ',' + 
-            answers.Num.value + ',' +
-            answers.Alliance.value + ',' +
-            answers.Taxi.value + ',' +
-            answers.noAuto.value + ',' +
-            answers.autoUp.value + ',' +
-            answers.autoLow.value + ',' +
-            answers.teleopUp.value + ',' +
-            answers.teleopLow.value + ',' +
-            answers.foul.value + ',' +
-            answers.tfoul.value + ',' +
-            answers.climbType.value  
-        } />, document.getElementById("QRCode"));
+        ReactDOM.render(<QRCode value={
+            `n=${this.state.ScouterName};` +
+            `e=${this.state.EventName};` +
+            `tn=${answers.Num.value};` +
+            `a=${answers.Alliance.value};` +
+            `t=${answers.Taxi.value};` +
+            `na=${answers.noAuto.value};` +
+            `au=${answers.autoUp.value};` +
+            `al=${answers.autoLow.value};` +
+            `tu=${answers.teleopUp.value};` +
+            `tl=${answers.teleopLow.value};` +
+            `f=${answers.foul.value};` +
+            `tf=${answers.tfoul.value};` +
+            `ct=${answers.climbType.value}`
+        } size={512} />, document.getElementById("QRCode"));
         return false;
     }
 
@@ -74,9 +76,9 @@ class App extends React.Component {
     }
 }
 
-function TabButton(props) {
-    return <button onClick={() => props.onClick(props.tabId)}>{props.children}</button>;
-}
+// function TabButton(props) {
+//     return <button onClick={() => props.onClick(props.tabId)}>{props.children}</button>;
+// }
 
 
 
