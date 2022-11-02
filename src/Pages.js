@@ -14,23 +14,23 @@ function SignIn(props) {
     return (
         <div>
             <p className="page-title">Welcome to Vitruvian Scouting</p>
-                <p className="section-label">Sign-In</p>
-                <form onSubmit={props.onSubmit} action="#">
+            <p className="section-label">Sign-In</p>
+            <form onSubmit={props.onSubmit} action="#">
                 <div className="areaSI">
                     <label className="item-label" htmlFor="Sname" >Name </label>
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
                     <input type="text" id="Sname" name="Sname" />
-                    <br/>
+                    <br />
                     <label className="item-label" htmlFor="Ename">Event Name </label>
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
                     <select name="Ename" id="Ename" defaultValue="Choose">
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
                         <option value="BeachBlitz">Beach Blitz</option>
                     </select>
                 </div>
-                
+
             </form>
         </div>
     );
@@ -42,20 +42,20 @@ function PreGame(props) {
             <p className="section-label">Pre-Game</p>
             <div className="areaPG">
                 <label className="item-label" htmlFor="Num">Team Number </label>
-                <br/>
-                <br/>
-                    <input className="text-input" type="text" id="Num" name="Num" />
-                <br/>
+                <br />
+                <br />
+                <input className="text-input" type="text" id="Num" name="Num" />
+                <br />
                 <label className="item-label" htmlFor="Alliance">Team Alliance </label>
-                <br/>
-                <br/>
-                    <select name="Alliance" id="Alliance" defaultValue="Choose">
-                        <option value="Choose" className="Placeholder" disabled>Choose Alliance</option>
-                        <option value="Red">Red Alliance</option>
-                       <option value="Blue">Blue Alliance</option>
+                <br />
+                <br />
+                <select name="Alliance" id="Alliance" defaultValue="Choose">
+                    <option value="Choose" className="Placeholder" disabled>Choose Alliance</option>
+                    <option value="Red">Red Alliance</option>
+                    <option value="Blue">Blue Alliance</option>
                 </select>
             </div>
-            
+
         </Page>
     );
 }
@@ -67,18 +67,18 @@ function Auto(props) {
             <div className="areaAU">
                 <label className="item-label" htmlFor="Taxi"><strong>Taxi (Yes/No)</strong></label>
                 <input type="checkbox" id="Taxi" name="Taxi" />
-                <br/>
-                <br/>
+                <br />
+                <br />
                 <label className="item-label" htmlFor="noAuto"><strong>Taxi Not Attempted</strong></label>
                 <input type="checkbox" id="noAuto" name="noAuto" />
-            <br/>
-            <br/>
-            <br/>
-            <label className="item-label" for="autoUp">Upper Cargo</label>
-                <NumberInput id="autoUp"/>
-            <label className="item-label" for="autoLow">Lower Cargo</label>
-                <NumberInput id="autoLow"/>
-           </div>
+                <br />
+                <br />
+                <br />
+                <label className="item-label" for="autoUp">Upper Cargo</label>
+                <NumberInput id="autoUp" />
+                <label className="item-label" for="autoLow">Lower Cargo</label>
+                <NumberInput id="autoLow" />
+            </div>
         </Page>
     );
 }
@@ -87,16 +87,16 @@ function TeleOp(props) {
     return (
         <Page selected={props.selected} id="tele-op">
             <p className="section-label">Teleop</p>
-        <div className="areaTE">
-            <label className="item-label" for="teleopUp">Upper Cargo</label>
-                <NumberInput id="teleopUp"/>
-            <label className="item-label" for="teleopLow">Lower Cargo</label>
+            <div className="areaTE">
+                <label className="item-label" for="teleopUp">Upper Cargo</label>
+                <NumberInput id="teleopUp" />
+                <label className="item-label" for="teleopLow">Lower Cargo</label>
                 <NumberInput id="teleopLow" />
-            <label className="item-label" for="foul">Fouls</label>
+                <label className="item-label" for="foul">Fouls</label>
                 <NumberInput id="foul" />
-            <label className="item-label" for="tfoul">Tech Fouls</label>
+                <label className="item-label" for="tfoul">Tech Fouls</label>
                 <NumberInput id="tfoul" />
-        </div>
+            </div>
         </Page>
     );
 }
@@ -106,17 +106,23 @@ function Endgame(props) {
         <Page selected={props.selected} id="endgame">
             <p className="section-label">Endgame</p>
             <div className="areaEG">
-            <label className="item-label" for="climbType"><strong>Climb Level</strong></label>
-            <RadioButtons className="item-label" name="climbType" items={{
-                "lowClimb": "Low",
-                "midClimb": "Mid",
-                "highClimb": "High",
-                "traversalClimb": "Traversal",
-                "noClimb": "Not Attempted",
-                "failedClimb": "Attempted But Failed"
-            }} />
+                <label className="item-label" for="climbType"><strong>Climb Level</strong></label>
+                <RadioButtons className="item-label" name="climbType" items={{
+                    "lowClimb": "Low",
+                    "midClimb": "Mid",
+                    "highClimb": "High",
+                    "traversalClimb": "Traversal",
+                    "noClimb": "Not Attempted",
+                    "failedClimb": "Attempted But Failed"
+                }} />
+                <br />
+                <label htmlFor="ClimbTime">Time it took to climb:</label>
+                <input type="text" id="Ck" name="ClimbTime" />
 
-            </div>   
+               
+            </div>
+            
+
         </Page>
     );
 }
@@ -124,17 +130,19 @@ function Endgame(props) {
 function SavePage(props) {
     return (
         <Page selected={props.selected} id="save-page">
+            <br></br>
+            <br></br>
             <p className="section-label">Save Page</p>
             <div className="areaSaP">
-                
-            { /* <label className="item-label" htmlFor="clear">QR code and clear</label> */}
-                    <input type="submit" className="SAVE"value="QR code and clear" />
-                <br/>
-            {/* } <label className="item-label" htmlFor="continue">Save and continue</label> */}
-                    <input type="submit" className="SAVE" value="Save and continue" />
+
+                { /* <label className="item-label" htmlFor="clear">QR code and clear</label> */}
+                <input type="submit" className="SAVE" value="QR code and clear" />
+                <br />
+                {/* } <label className="item-label" htmlFor="continue">Save and continue</label> */}
+                <input type="submit" className="SAVE" value="Save and continue" />
             </div>
 
-            <div className="areaSAP" id="QRCode"> 
+            <div className="areaSAP" id="QRCode">
 
             </div>
         </Page>

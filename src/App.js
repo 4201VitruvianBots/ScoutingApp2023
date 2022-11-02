@@ -76,9 +76,9 @@ class App extends React.Component {
     }
 }
 
-function TabButton(props) {
-    return <button onClick={() => props.onClick(props.tabId)}>{props.children}</button>;
-}
+// function TabButton(props) {
+//     return <button onClick={() => props.onClick(props.tabId)}>{props.children}</button>;
+// }
 
 
 
