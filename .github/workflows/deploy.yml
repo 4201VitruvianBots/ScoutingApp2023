@@ -42,20 +42,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
-
-  tablet-build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-      
-      - run: npm install
-      
-      - name: Build app for tablet
-        run: ./tablet-build.sh
-      
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3.1.1
-        with:
-          name: tablet-build
-          path: build
