@@ -136,7 +136,7 @@ function SavePage(props) {
                 {/* } <label className="item-label" htmlFor="continue">Save and continue</label> */}
                 <input type="reset" className="CLEAR" value="Clear Form" />
 
-                <div id="QRCode"></div>                
+                <div id="QRCode">{props.QRCode}</div>                
             </div>
 
         </Page>

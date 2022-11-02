@@ -2,7 +2,6 @@
 import { SignIn, PreGame, Auto, TeleOp, Endgame, SavePage } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
-import ReactDOM from "react-dom";
 
 class App extends React.Component {
     constructor(props) {
@@ -17,14 +16,14 @@ class App extends React.Component {
     SignInHandler(e) {
         e.preventDefault();
         const answers = e.target.elements;
-        this.setState({signedIn: true, ScouterName: answers.Sname.value, EventName: answers.Ename.value});
+        this.setState({signedIn: true, ScouterName: answers.Sname.value, EventName: answers.Ename.value, QRCode: null});
         return false;
     }
 
     SubmitHandler(e) {
         e.preventDefault();
         const answers = e.target.elements;
-        ReactDOM.render(<QRCode value={
+        this.setState({QRCode: <QRCode value={
             `${this.state.ScouterName}\t` +
             `${this.state.EventName}\t` +
             `${answers.match.value}\t` +
@@ -38,7 +37,7 @@ class App extends React.Component {
             `${answers.tfoul.value}\t` +
             `${answers.climbType.value}\t` +
             `${answers.notes.value}`
-        } size={512} />, document.getElementById("QRCode"));
+        } size={512} />});
         return false;
     }
 
@@ -65,7 +64,7 @@ class App extends React.Component {
                 <Auto selected={this.state.selected === 'auto'} />
                 <TeleOp selected={this.state.selected === 'tele-op'} />
                 <Endgame selected={this.state.selected === 'endgame'} />
-                <SavePage selected={this.state.selected === 'save-page'} />
+                <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
             </form>
            
         </main>
