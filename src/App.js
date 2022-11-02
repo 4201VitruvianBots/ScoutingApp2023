@@ -25,17 +25,17 @@ class App extends React.Component {
         e.preventDefault();
         const answers = e.target.elements;
         ReactDOM.render(<QRCode value={
-            `n=${this.state.ScouterName};` +
-            `e=${this.state.EventName};` +
-            `tn=${answers.Num.value};` +
-            `a=${answers.Alliance.value};` +
-            `au=${answers.autoUp.value};` +
-            `al=${answers.autoLow.value};` +
-            `tu=${answers.teleopUp.value};` +
-            `tl=${answers.teleopLow.value};` +
-            `f=${answers.foul.value};` +
-            `tf=${answers.tfoul.value};` +
-            `ct=${answers.climbType.value}`
+            `${this.state.ScouterName}\t` +
+            `${this.state.EventName}\t` +
+            `${answers.Num.value}\t` +
+            `${answers.Alliance.value}\t` +
+            `${answers.autoUp.value}\t` +
+            `${answers.autoLow.value}\t` +
+            `${answers.teleopUp.value}\t` +
+            `${answers.teleopLow.value}\t` +
+            `${answers.foul.value}\t` +
+            `${answers.tfoul.value}\t` +
+            `${answers.climbType.value}`
         } size={512} />, document.getElementById("QRCode"));
         return false;
     }
