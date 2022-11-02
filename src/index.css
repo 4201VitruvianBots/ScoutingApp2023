@@ -164,3 +164,8 @@ input[type="number"] {
   border-color: var(--accent-3);
   background-color:var(--accent-2);
 }
+
+.radioButtons {
+display:inline-block;
+text-align: left;
+}

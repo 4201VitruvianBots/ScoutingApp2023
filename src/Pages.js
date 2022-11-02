@@ -65,12 +65,6 @@ function Auto(props) {
         <Page selected={props.selected} id="auto">
             <p className="section-label">Auto</p>
             <div className="areaAU">
-                <label className="item-label" htmlFor="Taxi"><strong>Taxi (Yes/No)</strong></label>
-                <input type="checkbox" id="Taxi" name="Taxi" />
-                <br/>
-                <br/>
-                <label className="item-label" htmlFor="noAuto"><strong>Taxi Not Attempted</strong></label>
-                <input type="checkbox" id="noAuto" name="noAuto" />
             <br/>
             <br/>
             <br/>
@@ -106,7 +100,8 @@ function Endgame(props) {
         <Page selected={props.selected} id="endgame">
             <p className="section-label">Endgame</p>
             <div className="areaEG">
-            <label className="item-label" for="climbType"><strong>Climb Level</strong></label>
+            <h3 className="item-label" for="climbType"></h3>
+            <div class="radioButtons">
             <RadioButtons className="item-label" name="climbType" items={{
                 "lowClimb": "Low",
                 "midClimb": "Mid",
@@ -115,7 +110,7 @@ function Endgame(props) {
                 "noClimb": "Not Attempted",
                 "failedClimb": "Attempted But Failed"
             }} />
-
+            </div>
             </div>   
         </Page>
     );
