@@ -29,7 +29,6 @@ class App extends React.Component {
             `e=${this.state.EventName};` +
             `tn=${answers.Num.value};` +
             `a=${answers.Alliance.value};` +
-            `t=${answers.Taxi.value};` +
             `na=${answers.noAuto.value};` +
             `au=${answers.autoUp.value};` +
             `al=${answers.autoLow.value};` +
