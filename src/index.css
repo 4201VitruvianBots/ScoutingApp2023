@@ -43,7 +43,7 @@
   margin: 20px;
 }
 .areaSI {
-  height: 180px; 
+  height: 260px; 
 }
 .areaPG {
   height: 180px;
@@ -168,4 +168,9 @@ input[type="number"] {
 .radioButtons {
 display:inline-block;
 text-align: left;
+}
+
+#QRCode {
+  padding: 20px;
+  background-color: white;
 }

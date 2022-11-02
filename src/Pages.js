@@ -29,6 +29,7 @@ function SignIn(props) {
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
                         <option value="BeachBlitz">Beach Blitz</option>
                     </select>
+                    <input type="submit" className="SAVE" value="Sign In"/>
                 </div>
 
             </form>
@@ -123,15 +124,14 @@ function SavePage(props) {
             <br></br>
             <p className="section-label">Save Page</p>
             <div className="areaSaP">
+                
+            { /* <label className="item-label" htmlFor="clear">QR code and clear</label> */}
+                    <input type="submit" className="SAVE"value="QR code and clear" />
+                <br/>
+            {/* } <label className="item-label" htmlFor="continue">Save and continue</label> */}
+                    <input type="submit" className="SAVE" value="Save and continue" />
 
-                { /* <label className="item-label" htmlFor="clear">QR code and clear</label> */}
-                <input type="submit" className="SAVE" value="QR code and clear" />
-                <br />
-                {/* } <label className="item-label" htmlFor="continue">Save and continue</label> */}
-                <input type="submit" className="SAVE" value="Save and continue" />
-            </div>
-
-            <div className="areaSAP" id="QRCode">
+            <div id="QRCode"></div>
 
             </div>
         </Page>
