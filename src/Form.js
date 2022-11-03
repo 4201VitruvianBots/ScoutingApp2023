@@ -28,7 +28,7 @@ class NumberInput extends React.Component {
     }
     
     setValue(value) {
-        this.setState({value: value});
+        this.setState({value: Math.abs(parseInt(value))});
     }
     
     handleChange(event) {
@@ -40,7 +40,8 @@ class NumberInput extends React.Component {
     }
 
     decreaseValue() {
-        this.setState({value: this.state.value - 1});
+        if (this.state.value > 0)
+            this.setState({value: this.state.value - 1});
     }
 
     render() {
