@@ -23,22 +23,32 @@
    font-size: 30px;
    font-weight: bold;
 
-   font-family: 'Lucida Sans',
-   'Lucida Sans Regular',
-   'Lucida Grande',
-   'Lucida Sans Unicode',
-   Geneva,
-   Verdana,
-   sans-serif,
+   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
  }
 
- .item-label {
+ .item-label, .item-label2 {
    color: black;
-   font-size: 20px;
+   font-size: 20px; 
    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
    display: inline-block;
  }
-
+ .item-label2{
+  margin-bottom:20px;
+  margin-top: 10px;
+ }
+ .dropdown{
+  border-color:#085f00;
+  border-width: 50px;
+ }
+ .textInput{
+  border-color:#085f00;
+  border-width: 50px;
+ }
+.numberInput{
+  border-color:#085f00;
+  border-width: 50px;
+  margin:10px;
+ }
  /* Standard area formatting, with testing color (orange). USE WHEN MAKING A NEW <DIV></DIV> OR SECTION
 .area {
   background-color: orange;
@@ -60,31 +70,31 @@
  }
 
  .areaSI {
-   height: 260px;
+   height: 250px;
  }
 
  .areaPG {
-   height: 280px;
+   height: 275px;
  }
 
  .areaAU {
-   height: 380px;
+   height: 320px;
    color:#b0c0b0;
  }
 
  .areaTE {
-   height: 550px;
+   height: 620px;
  }
 
  .areaEG {
-   height: 450px;
+   height: 320px;
    color: black;
    font-size: 20px;
    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
  }
 
  .areaSaP {
-   height: 650px;
+   height: 830px;
    color: black;
  }
 
@@ -131,15 +141,15 @@
  }
 
  input[type="text"] {
-   border-color: var(--accent-3);
+   border-color: #003800;
    /* background-color: var(--accent-1); */
-   color: #b0c0b0;
+   color: black;
    display: block;
    width: 17%;
    height: 25px;
    font-size: 20px;
    margin: 0 auto;
-
+   
  }
 
  .chonk {
@@ -147,13 +157,13 @@
    width: 100px !important;
    height: 75px !important;
    font-size: 50px !important;
-  background-color:#003800;
+    background-color:#003800;
 
  }
  input[type = button].chonk{
   background-color:#cad3c8;
-
-
+  border-width: 2px;
+  border-color:  #83c183;
  }
 
  input[type="checkbox"] {
@@ -171,6 +181,7 @@
    width: 50px;
    height: 20px;
    display: inline;
+
  }
 
  input[type="number"] {
@@ -179,7 +190,8 @@
    width: 100px !important;
    height: 75px !important;
    font-size: 50px;
-   text-align:center
+   text-align:center;
+   border-color: gray;
  }
 
  .SAVE, .CLEAR {
@@ -192,8 +204,10 @@
  }
  
  .SAVE {
-   border-color: var(--accent-3);
-   background-color: var(--accent-2);
+   background-color: #83c183;
+   margin-top: 30px;
+   margin-bottom: 10px;
+
  }
  
  .CLEAR {

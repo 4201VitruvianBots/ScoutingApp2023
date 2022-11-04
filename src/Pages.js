@@ -70,12 +70,11 @@ function Auto(props) {
         <Page selected={props.selected} id="auto">
             <p className="section-label">Auto</p>
             <div className="areaAU">
+           
+            <label className="item-label2" htmlFor="autoUp"><strong>Upper Cargo</strong></label>
+                <NumberInput id="autoUp" className="numberinput"/>
             <br/>
-            <br/>
-            <br/>
-            <label className="item-label" htmlFor="autoUp"><strong>Upper Cargo</strong></label>
-                <NumberInput id="autoUp"/>
-            <label className="item-label" htmlFor="autoLow"><strong>Lower Cargo</strong></label>
+            <label className="item-label2" htmlFor="autoLow"><strong>Lower Cargo</strong></label>
                 <NumberInput id="autoLow"/>
            </div>
         </Page>
@@ -87,13 +86,16 @@ function TeleOp(props) {
         <Page selected={props.selected} id="tele-op">
             <p className="section-label">Teleop</p>
             <div className="areaTE">
-                <label className="item-label" htmlFor="teleopUp"><strong>Upper Cargo</strong></label>
+                <label className="item-label2" htmlFor="teleopUp"><strong>Upper Cargo</strong></label>
                 <NumberInput id="teleopUp" />
-                <label className="item-label" htmlFor="teleopLow"><strong>Lower Cargo</strong></label>
+                <br/>
+                <label className="item-label2" htmlFor="teleopLow"><strong>Lower Cargo</strong></label>
                 <NumberInput id="teleopLow" />
-                <label className="item-label" htmlFor="foul"><strong>Fouls</strong></label>
+                <br/>
+                <label className="item-label2" htmlFor="foul"><strong>Fouls</strong></label>
                 <NumberInput id="foul" />
-                <label className="item-label" htmlFor="tfoul"><strong>Tech Fouls</strong></label>
+                <br/>
+                <label className="item-label2" htmlFor="tfoul"><strong>Tech Fouls</strong></label>
                 <NumberInput id="tfoul" />
             </div>
         </Page>
@@ -107,12 +109,12 @@ function Endgame(props) {
             <div className="areaEG">
             <div className="radioButtons">
             <RadioButtons className="item-label" name="climbType" items={{
-                "lowClimb": "Low",
-                "midClimb": "Mid",
-                "highClimb": "High",
-                "traversalClimb": "Traversal",
-                "noClimb": "Not Attempted",
-                "failedClimb": "Attempted But Failed"
+                "lowClimb": <strong>Low</strong>,
+                "midClimb": <strong>Mid</strong>,
+                "highClimb": <strong>High</strong>,
+                "traversalClimb": <strong>Traversal</strong>,
+                "noClimb": <strong>Not Attempted</strong>,
+                "failedClimb": <strong>Attempted But Failed</strong>
             }} />
             </div>
             </div>   
@@ -128,13 +130,17 @@ function SavePage(props) {
           
             <p className="section-label">Save Page</p>
             <div className="areaSaP">
-            <label htmlFor="notes">Notes</label>
+            <label htmlFor="notes" className="item-label">Notes</label>
+                <br/>
+                <br/>
                 <input type="text" id="notes" name="notes" />
                 { /* <label className="item-label" htmlFor="clear">QR code and clear</label> */}
                 <input type="submit" className="SAVE" value="Generate QR code"></input>
                 <br />
                 {/* } <label className="item-label" htmlFor="continue">Save and continue</label> */}
-                <input type="reset" className="CLEAR" value="Clear Form" />
+                {/* <input type="reset" className="CLEAR" value="Clear Form" /> */}
+                <br/>
+                <br/>
 
                 <div id="QRCode">{props.QRCode}</div>                
             </div>
