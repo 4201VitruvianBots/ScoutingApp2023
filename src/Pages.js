@@ -50,9 +50,8 @@ function PreGame(props) {
                     <option value="Red">Red Alliance</option>
                     <option value="Blue">Blue Alliance</option>
                 </select>
-                <br></br>
-                <label className="item-label" htmlFor="match"><strong>Match Number</strong></label>
                 <br />
+                <label className="item-label" htmlFor="match"><strong>Match Number</strong></label>
                 <br />
                 <input className="text-input" type="text" id="match" name="match" />
             </div>
