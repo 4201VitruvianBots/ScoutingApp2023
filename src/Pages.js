@@ -42,13 +42,9 @@ function PreGame(props) {
             <p className="section-label">Pre-Game</p>
             <div className="areaPG">
                 <label className="item-label" htmlFor="Num"><strong>Team Number</strong> </label>
-                <br />
-                <br />
                 <input className="text-input" type="text" id="Num" name="Num" />
                 <br />
                 <label className="item-label" htmlFor="Alliance"><strong>Team Alliance</strong> </label>
-                <br />
-                <br />
                 <select name="Alliance" id="Alliance" defaultValue="Choose">
                     <option value="Choose" className="Placeholder" disabled>Choose Alliance</option>
                     <option value="Red">Red Alliance</option>
