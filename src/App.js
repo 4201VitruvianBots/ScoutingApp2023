@@ -36,7 +36,7 @@ class App extends React.Component {
             `${answers.foul.value}\t` +
             `${answers.tfoul.value}\t` +
             `${answers.climbType.value}\t` +
-            `${answers.notes.value}`
+            `${answers.notes.value}\n` // Moves cursor to next row
         } size={512} />});
         return false;
     }
