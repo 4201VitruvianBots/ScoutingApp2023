@@ -1,5 +1,5 @@
   import './App.css';
-import { SignIn, PreGame, Auto, TeleOp, Endgame, SavePage } from "./Pages";
+import { SignIn, PreGame, Auto, TeleOp, SavePage } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 
@@ -63,7 +63,7 @@ class App extends React.Component {
                 <PreGame  selected={this.state.selected === 'pre-game'}/>
                 <Auto selected={this.state.selected === 'auto'} />
                 <TeleOp selected={this.state.selected === 'tele-op'} />
-                <Endgame selected={this.state.selected === 'endgame'} />
+                
                 <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
             </form>
            

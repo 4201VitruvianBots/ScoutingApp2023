@@ -22,7 +22,6 @@
    color: white;
    font-size: 30px;
    font-weight: bold;
-
    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
  }
 
@@ -49,53 +48,13 @@
   border-width: 50px;
   margin:10px;
  }
- /* Standard area formatting, with testing color (orange). USE WHEN MAKING A NEW <DIV></DIV> OR SECTION
-.area {
-  background-color: orange;
-  height: 130px;
-  min-width:300px;
-  padding:30px;
-  margin: 10px;
-}*/
- .areaSI,
- .areaPG,
- .areaAU,
- .areaTE,
- .areaEG,
- .areaSaP {
+ 
+ .textArea{
    background-color: #ecf2eb;
    min-width: 300px;
+   min-height: 100px;
    padding: 25px;
    margin: 20px;
- }
-
- .areaSI {
-   height: 250px;
- }
-
- .areaPG {
-   height: 275px;
- }
-
- .areaAU {
-   height: 320px;
-   color:#b0c0b0;
- }
-
- .areaTE {
-   height: 620px;
- }
-
- .areaEG {
-   height: 320px;
-   color: black;
-   font-size: 20px;
-   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
- }
-
- .areaSaP {
-   height: 830px;
-   color: black;
  }
 
  body {
