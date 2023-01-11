@@ -13,20 +13,18 @@ function Page(props) {
 function SignIn(props) {
     return (
         <div>
-            <p className="section-label">SSSSSSSSSCOUTING (OH YEAH)</p>
+            <p className="section-label">Energized</p>
             <form onSubmit={props.onSubmit} action="#">
                 <div className="textArea">
-                    <label className="item-label" htmlFor="Sname" ><strong>Name</strong> </label>
-                    <br />
-                    <br />
-                    <input type="text" id="Sname" name="Sname" />
+                    
+                    <input type="text" id="Sname" name="Sname" placeholder="Scouter Name"/>
                     <br />
                     <label className="item-label" htmlFor="Ename"><strong>Event Name</strong> </label>
                     <br />
                     <br />
                     <select name="Ename" id="Ename" defaultValue="Choose">
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
-                        <option value="BeachBlitz">Beach Blitz</option>
+                        <option value="BeachBlitz">Port Hueneme</option>
                     </select>
                     <input type="submit" className="SAVE" value="Sign In"/>
                 </div>
@@ -42,7 +40,7 @@ function PreGame(props) {
             <p className="section-label">Pre-Game</p>
      
     <div className="textArea">
-        {/*}
+        
         <label className="item-label" htmlFor="Num"><strong>Team Number</strong> </label>
         <input className="text-input" type="text" id="Num" name="Num" />
         <br />
@@ -55,7 +53,7 @@ function PreGame(props) {
         <br />
         <label className="item-label" htmlFor="match"><strong>Match Number</strong></label>
         <br />
-        <input className="text-input" type="text" id="match" name="match" /> */}
+        <input className="text-input" type="text" id="match" name="match" />
     </div> 
 
         </Page>
