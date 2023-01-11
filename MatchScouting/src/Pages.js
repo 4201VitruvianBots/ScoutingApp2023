@@ -1,5 +1,5 @@
 import { RadioButtons, NumberInput } from "./Form";
-import './index.css';
+import './App.css';
 
 function Page(props) {
     return (

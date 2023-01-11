@@ -1,4 +1,4 @@
-  import './App.css';
+import './App.css';
 import { SignIn, PreGame, Auto, TeleOp, SavePage } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
