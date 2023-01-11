@@ -1,3 +1,3 @@
 #!/bin/sh
-npm run build
+npm run build &&
 sed -i "s/=\"\//=\"/g" build/index.html

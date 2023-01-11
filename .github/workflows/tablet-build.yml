@@ -10,11 +10,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./MatchScouting
+
     steps:
       - uses: actions/checkout@v3
       
       - run: npm install
-      
+        
       - name: Build app for tablet
         run: ./tablet-build.sh
       
