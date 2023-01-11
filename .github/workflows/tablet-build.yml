@@ -13,10 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - run: npm install
-        
       - run: cd MatchScouting
       
+      - run: npm install
+        
       - name: Build app for tablet
         run: ./tablet-build.sh
       
