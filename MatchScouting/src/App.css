@@ -67,7 +67,7 @@
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    background-color: var(--bg-color);
-   color: var(--accent-1);
+   /* color: var(--accent-1); */
  }
 
  button {
