@@ -152,12 +152,15 @@ function TeleOp(props) {
 function SavePage(props) {
     return (
         <Page selected={props.selected} id="S">
+                    <p className="section-label">Sumbit</p>
+
+                                 <div className="textArea">
+
            <br></br>
             <br></br>
           
-            <p className="section-label">Sumbit</p>
             <div className="areaSaP">
-            <label htmlFor="notes" className="item-label">Notes</label>
+            <label htmlFor="notes" className="item-label"><strong>Notes</strong></label>
             <h1>Some things you could comment are</h1>
             <li>disabled during the game</li>
             <li>  defensive bot </li>
@@ -178,6 +181,7 @@ function SavePage(props) {
 
                <div id="QRCode">{props.QRCode}</div>                
             </div> 
+            </div>
         </Page>
         
     );
