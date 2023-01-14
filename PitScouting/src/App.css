@@ -200,7 +200,7 @@
    background-color: white;
  }
 
- .leftSide{
+ /* .leftSide{
   color: red;
   font-size: 50px;
   font-weight: 300;
@@ -213,7 +213,7 @@
   font-weight: 300;
   background-color: red;
   min-width: 400px;
- }
+ } */
 
  .gallery{
   display: flex;
