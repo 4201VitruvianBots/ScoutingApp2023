@@ -1,0 +1,276 @@
+ :root {
+   --accent-1: white;
+   --accent-4: #003800;
+   --background-1: #085f00d2;
+   --accent-default: var(--accent-3);
+   --bg-color: var(--background-1);
+   text-align: center;
+ }
+
+ .page-title {
+   color: gray;
+   font-size: 25px;
+   
+   font-style: italic;
+ }
+
+ ::placeholder {
+    color: gray;
+    font-size: 20px;
+    font-style: italic;
+    text-align: center;
+ }
+
+ .section-label {
+   color: black;
+   font-size: 30px;
+   font-weight: bold;
+   
+ }
+
+ .item-label, .item-label2 {
+   color: black;
+   font-size: 20px; 
+   
+   display: inline-block;
+ }
+ .item-label2{
+  margin-bottom:20px;
+  margin-top: 10px;
+ }
+ .dropdown{
+  border-color:#085f00;
+  border-width: 50px;
+ }
+ .textInput{
+  border-color:#085f00;
+  border-width: 50px;
+ }
+.numberInput{
+  border-color:#085f00;
+  border-width: 50px;
+  margin:10px;
+ }
+ 
+ .textArea{
+   background-color: #ecf2eb;
+   min-width: 300px;
+   min-height: 100px;
+   padding: 25px;
+   margin: 20px;
+ }
+
+ body {
+   margin: 0;
+   font-family: monospace;
+   font-weight: 100;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   background-color: var(--bg-color);
+   /* color: var(--accent-1); */
+ }
+
+ /* button {
+   border-color: var(black);
+   background-color: var(--accent-2);
+   display: block;
+   width: 130%;
+   height: 50px;
+   float: initial;
+   align-self:inherit	 	;
+
+   font-size: 29px;
+   padding: 10px;
+   margin: 10px;
+   
+ } */
+
+ input[type="button"] {
+   border-color: var(--accent-3);
+   background-color: var(--accent-2);
+   display: block;
+   width: 30;
+   height: 40px;
+   font-size: 20px;
+   cursor: default;
+
+ }
+
+ select {
+   border-color: var(--accent-3);
+   background-color: var(--accent-1);
+   display: block;
+   width: 200px;
+   height: 40px;
+   font-size: 25px;
+   margin: 0 auto;
+ }
+
+ input[type="text"] {
+   border-color: #003800;
+   /* background-color: var(--accent-1); */
+   color: black;
+   display: block;
+   width: fit-content;
+   height: 30px;
+   font-size: 20px;
+   margin: 0 auto;
+   
+   
+ }
+
+ .chonk {
+   display: inline !important;
+   align-self: auto;
+   width: 100px !important;
+   height: 75px !important;
+   font-size: 50px !important;
+   /* margin-left: 100; */
+   
+    background-color:#003800;
+
+ }
+ input[type = button].chonk{
+  background-color:#cad3c8;
+  border-width: 2px;
+  border-color:  #83c183;
+  cursor: default;
+
+ }
+ 
+
+ input[type="checkbox"] {
+   border-color: var(--accent-3);
+   background-color: var(--accent-1);
+   width: 10%;
+   height: 20px;
+   font-size: 15px;
+   display: inline;
+ }
+
+ input[type="radio"] {
+   border-color: var(--accent-3);
+   background-color: var(--accent-1);
+   width: 50px;
+   height: 20px;
+   cursor: default;
+
+   display: inline;
+
+ }
+
+ input[type="number"] {
+   display: inline !important;
+   background-color: var(--accent-1);
+   width: 100px !important;
+   height: 75px !important;
+   font-size: 50px;
+   text-align:center;
+   border-color: gray;
+ }
+
+ .SAVE, .CLEAR {
+   display: inline-block;
+   width: 300px;
+   height: 35px;
+   font-size: 20px;
+   margin: 15px;
+ }
+ 
+ .SAVE {
+   background-color: #83c183;
+   margin-top: 30px;
+   margin-bottom: 10px;
+
+ }
+ 
+ .CLEAR {
+   border-color: var(--accent-3);
+   background-color: red; /*Make this color better*/
+ }
+
+ .savept2 {
+   display: inline-block;
+   width: 250px !important;
+   height: 35px;
+   font-size: 25px;
+   border-color: var(--accent-3);
+   background-color: var(--accent-2);
+ }
+
+ .radioButtons {
+   /* display: inline-block;
+   text-align: left;
+   cursor: default; */
+   background-color: initial;
+    cursor: default;
+    appearance: auto;
+    box-sizing: border-box;
+    margin: 3px 3px 0px 5px;
+    padding: initial;
+    border: initial;
+
+ }
+
+ #QRCode {
+   padding: 20px;
+   background-color: white;
+ }
+ .container { 
+  height: 200px;
+  width: 250px ;
+
+  position: relative;
+  /* border: 3px solid green;  */
+}
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 200%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
