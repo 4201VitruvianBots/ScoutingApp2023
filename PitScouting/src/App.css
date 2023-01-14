@@ -1,17 +1,18 @@
  :root {
    --accent-1: white;
    --accent-4: #003800;
-   --background-1: #085f00d2;
+   /* --background-1: linear-gradient(180, #58a163, #ffffff);  */
+   --background-1: #58a163;
    --accent-default: var(--accent-3);
    --bg-color: var(--background-1);
    text-align: center;
  }
 
  .page-title {
-   color: gray;
+   color: white;
    font-size: 25px;
-   
    font-style: italic;
+   font-weight: 300;
  }
 
  ::placeholder {
@@ -25,6 +26,7 @@
    color: black;
    font-size: 30px;
    font-weight: bold;
+   margin: 20px;
    
  }
 
@@ -57,33 +59,31 @@
    min-width: 300px;
    min-height: 100px;
    padding: 25px;
-   margin: 20px;
+   margin: 0px 100px;
  }
 
  body {
    margin: 0;
-   font-family: monospace;
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
    font-weight: 100;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    background-color: var(--bg-color);
-   /* color: var(--accent-1); */
+   color: var(--accent-1);
  }
 
- /* button {
-   border-color: var(black);
+ button {
+   border-color: var(--accent-3);
    background-color: var(--accent-2);
    display: block;
-   width: 130%;
+   width: 20%;
    height: 50px;
-   float: initial;
-   align-self:inherit	 	;
-
-   font-size: 29px;
+   float: left;
+   font-size: 20px;
    padding: 10px;
    margin: 10px;
    
- } */
+ }
 
  input[type="button"] {
    border-color: var(--accent-3);
@@ -92,8 +92,6 @@
    width: 30;
    height: 40px;
    font-size: 20px;
-   cursor: default;
-
  }
 
  select {
@@ -115,18 +113,17 @@
    height: 30px;
    font-size: 20px;
    margin: 0 auto;
+   margin-bottom: 20px;
+  
    
    
  }
 
  .chonk {
    display: inline !important;
-   align-self: auto;
    width: 100px !important;
    height: 75px !important;
    font-size: 50px !important;
-   /* margin-left: 100; */
-   
     background-color:#003800;
 
  }
@@ -134,10 +131,7 @@
   background-color:#cad3c8;
   border-width: 2px;
   border-color:  #83c183;
-  cursor: default;
-
  }
- 
 
  input[type="checkbox"] {
    border-color: var(--accent-3);
@@ -153,8 +147,6 @@
    background-color: var(--accent-1);
    width: 50px;
    height: 20px;
-   cursor: default;
-
    display: inline;
 
  }
@@ -199,78 +191,39 @@
  }
 
  .radioButtons {
-   /* display: inline-block;
+   display: inline-block;
    text-align: left;
-   cursor: default; */
-   background-color: initial;
-    cursor: default;
-    appearance: auto;
-    box-sizing: border-box;
-    margin: 3px 3px 0px 5px;
-    padding: initial;
-    border: initial;
-
  }
 
  #QRCode {
    padding: 20px;
    background-color: white;
  }
- .container { 
-  height: 200px;
-  width: 250px ;
 
-  position: relative;
-  /* border: 3px solid green;  */
-}
-.center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 200%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
+ .leftSide{
+  color: red;
+  font-size: 50px;
+  font-weight: 300;
+  background-color: yellow;
+  min-width: 400px;
+ }
+ .rightSide{
+  color: yellow;
+  font-size: 50px;
+  font-weight: 300;
+  background-color: red;
+  min-width: 400px;
+ }
 
-.vertical-center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+ .gallery{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin: 0 auto;
+  padding: 10px 0;
+  
+  
 }
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-}
-
-/* Style the buttons that are used to open the tab content */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
-}
-
