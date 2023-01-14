@@ -1,11 +1,13 @@
 import { RadioButtons, NumberInput } from "./Form";
 import './App.css';
 
+
 function Page(props) {
     return (
         <div className={props.selected ? 'page selected' : 'page'} id={props.id}>
             {props.children}
         </div>
+        
     );
 }
 
@@ -28,7 +30,29 @@ function SignIn(props) {
                     </select>
                     <input type="submit" className="SAVE" value="Sign In"/>
                 </div>
+                <div id="London" class="tabcontent">
+  <h1>Sign in</h1>
+  <p>Sign in.</p>
+</div>
 
+<div id="Sign in" class="tabcontent">
+  <h1>Sign in</h1>
+  <p>Sign in</p>
+</div>
+
+<div id="Sign In" class="tabcontent">
+  <h1>  Sign in</h1>
+</div>
+
+<div id="Oslo" class="tabcontent">
+  <h1>Oslo</h1>
+  <p>Oslo is the capital of Norway.</p>
+</div>
+
+<button class="tablink" onclick="openCity('Sign in', this, 'red')" id="defaultOpen">Sign In</button>
+<button class="tablink" onclick="openCity('Pre-Game', this, 'green')">Pre-Game</button>
+<button class="tablink" onclick="openCity('Tokyo', this, 'blue')">Auto</button>
+<button class="tablink" onclick="openCity('Telop/Endgame', this, 'orange')">Teleop/Endgame</button>
             </form>
         </div>
     );
@@ -84,10 +108,6 @@ function Auto(props) {
             <br></br>
             <br></br>
             <br></br>
-
-           <h1>Charging Station</h1>
-
-           <RadioButtons items={['Docked', 'Engaged', 'No points']} />
            <h1>Cones</h1>
            <h2>High</h2>
             <NumberInput items={['1']}/>  
@@ -106,7 +126,8 @@ function Auto(props) {
             <h2>Low</h2>  
             <NumberInput items={['1']}/>           
             <br></br>
-            
+            <h1>Charging Station</h1>
+<RadioButtons items={[<strong> Docked </strong>, <strong>Engaged</strong>, <strong>No points</strong>]} />
 
 
            </div>
@@ -120,9 +141,7 @@ function TeleOp(props) {
             <p className="section-label">Teleop/Endgame</p>
 
              <div className="textArea">
-             <h1>Charging Station</h1>
 
-             <RadioButtons items={['Docked', 'Engaged', 'No points', 'Parking']} />
              <h1>Cones</h1>
            <h2>High</h2>
             <NumberInput items={['1']}/>  
@@ -139,7 +158,11 @@ function TeleOp(props) {
             <h2>Mid</h2>  
             <NumberInput items={['1']}/>           
             <h2>Low</h2>  
-            <NumberInput items={['1']}/>         
+            <NumberInput items={['1']}/>
+            <br></br>
+            <br></br>         
+            <h1>Charging Station</h1>
+<RadioButtons items={[<strong> Docked </strong>, <strong>Engaged</strong>, <strong>No points</strong>, <strong>Parking</strong>]} />
 </div>
            
             
@@ -167,7 +190,10 @@ function SavePage(props) {
             <li> do they play defense  </li>
             <li>  do they play optimistical  </li>
             <li> thinking of other questions   </li>
-
+          
+ <li>Can the robot balance with other robots?</li>
+<li>Does the robot securely/conesistently control game pieces?</li> 
+ <li>Does the robot securely/conesistently control game pieces?</li>Did the robot gain the mobility bonus?
                 <br/>
                 <br/>
                 <input type="text" id="notes" name="notes" />
