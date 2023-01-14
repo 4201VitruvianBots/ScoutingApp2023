@@ -52,15 +52,58 @@ function PreGame(props) {
 
         <h1><bold>Team Alliance</bold></h1>
        
-        <RadioButtons items={['Red 1', 'Red 2', 'Red 3', 'Blue 1', 'Blue 2', 'Blue 3']} />
+            <RadioButtons items={['Red 1', 'Red 2', 'Red 3', 'Blue 1', 'Blue 2', 'Blue 3']} />
     <h1><strong>No show robot?</strong></h1>
     <RadioButtons items={['Yes, my robot did not show up', 'No, my robot did  show up']} />
     </div> 
         </div>
         </Page>
-
+    //Take out Viv
+    //All text black
+    //Make text bigger
+    //black outline in every box
+    //
     );
 }
+// function Auto(props) {
+//     return (
+//         <Page selected={props.selected} id="auto">
+//            <p className="section-label">Auto</p>
+//             <div className="textArea">
+//             {/* <button type="button">Mobility?</button> */}
+            
+//             {/* <h2>Mobility</h2> */}
+// <div class="container">
+//   <div class="center">
+//     <button>Mobility</button>
+//   </div>
+// </div>
+//             <br></br>
+//             <br></br>
+//             <br></br>
+//             <br></br>
+//             <br></br>
+
+//            <h1>Charging Station</h1>
+
+//            <RadioButtons items={['Docked', 'Engaged', 'No points']} />
+//            <h1>Cones</h1>
+//            <h2>High</h2>
+//             <NumberInput items={['1']}/>  
+//             <h2>Medium</h2>  
+//             {/* <br></br> */}
+//             <NumberInput items={['1']}/>   
+//             <h2>Low</h2>        
+//             {/* <br></br> */}
+//             <NumberInput items={['1']}/>           
+//             <br></br>
+//             <h1>Cubes</h1>
+//             <h2>High</h2>
+//             <NumberInput items={['1']}/>    
+//             <h2>Medium</h2>  
+//             <NumberInput items={['1']}/>           
+//             <h2>Low</h2>  
+//             <NumberInput items={['1']}/>           
 function Auto(props) {
     return (
         <Page selected={props.selected} id="auto">
@@ -84,19 +127,24 @@ function Auto(props) {
 
            <RadioButtons items={['Docked', 'Engaged', 'No points']} />
            <h1>Cones</h1>
-            <NumberInput items={['1']}/>    
-            <br></br>
-            <NumberInput items={['1']}/>           
-            <br></br>
+           <h2>High</h2>
+            <NumberInput items={['1']}/>  
+            <h2>Medium</h2>  
+            {/* <br></br> */}
+            <NumberInput items={['1']}/>   
+            <h2>Low</h2>        
+            {/* <br></br> */}
             <NumberInput items={['1']}/>           
             <br></br>
             <h1>Cubes</h1>
+            <h2>High</h2>
             <NumberInput items={['1']}/>    
+            <h2>Medium</h2>  
+            <NumberInput items={['1']}/>           
+            <h2>Low</h2>  
+            <NumberInput items={['1']}/>           
             <br></br>
-            <NumberInput items={['1']}/>           
-        	<br></br>
-            <NumberInput items={['1']}/>           
-
+            
 
 
            </div>
@@ -113,19 +161,23 @@ function TeleOp(props) {
              <h1>Charging Station</h1>
 
              <RadioButtons items={['Docked', 'Engaged', 'No points', 'Parking']} />
-           <h1>Cones</h1>
-            <NumberInput items={['1']}/>    
-            <br></br>
-            <NumberInput items={['1']}/>           
-            <br></br>
+             <h1>Cones</h1>
+           <h2>High</h2>
+            <NumberInput items={['1']}/>  
+            <h2>Medium</h2>  
+            {/* <br></br> */}
+            <NumberInput items={['1']}/>   
+            <h2>Low</h2>        
+            {/* <br></br> */}
             <NumberInput items={['1']}/>           
             <br></br>
             <h1>Cubes</h1>
+            <h2>High</h2>
             <NumberInput items={['1']}/>    
-            <br></br>
+            <h2>Medium</h2>  
             <NumberInput items={['1']}/>           
-        	<br></br>
-            <NumberInput items={['1']}/>           
+            <h2>Low</h2>  
+            <NumberInput items={['1']}/>         
 </div>
            
             
@@ -146,6 +198,7 @@ function SavePage(props) {
             <div className="areaSaP">
             <label htmlFor="notes" className="item-label">Notes</label>
             <h1>Some things you could comment are</h1>
+            <li>disabled during the game</li>
             <li>  defensive bot </li>
             <li> do they play defense  </li>
             <li>  do they play optimistical  </li>
@@ -154,7 +207,7 @@ function SavePage(props) {
                 <br/>
                 <br/>
                 <input type="text" id="notes" name="notes" />
-            <label className="item-label" htmlFor="clear">QR code and clear</label> 
+            <label className="item-label" htmlFor="clear">Sumbit and clear</label> 
                 <input type="submit" className="SAVE" value="Generate QR code"></input>
                 <br /> 
                 <label className="item-label" htmlFor="continue">Save and continue</label> 
@@ -165,7 +218,12 @@ function SavePage(props) {
                <div id="QRCode">{props.QRCode}</div>                
             </div> 
         </Page>
+        
     );
 }
+
+
+ 
+   
 
 export { SignIn, PreGame, Auto, TeleOp,  SavePage };
