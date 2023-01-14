@@ -54,7 +54,7 @@ function PreGame(props) {
        
             <RadioButtons items={['Red 1', 'Red 2', 'Red 3', 'Blue 1', 'Blue 2', 'Blue 3']} />
     <h1><strong>No show robot?</strong></h1>
-    <RadioButtons items={['Yes, my robot did not show up', 'No, my robot did  show up']} />
+    <RadioButtons items={['Yes', 'No']} />
     </div> 
         </div>
         </Page>
@@ -65,45 +65,7 @@ function PreGame(props) {
     //
     );
 }
-// function Auto(props) {
-//     return (
-//         <Page selected={props.selected} id="auto">
-//            <p className="section-label">Auto</p>
-//             <div className="textArea">
-//             {/* <button type="button">Mobility?</button> */}
-            
-//             {/* <h2>Mobility</h2> */}
-// <div class="container">
-//   <div class="center">
-//     <button>Mobility</button>
-//   </div>
-// </div>
-//             <br></br>
-//             <br></br>
-//             <br></br>
-//             <br></br>
-//             <br></br>
-
-//            <h1>Charging Station</h1>
-
-//            <RadioButtons items={['Docked', 'Engaged', 'No points']} />
-//            <h1>Cones</h1>
-//            <h2>High</h2>
-//             <NumberInput items={['1']}/>  
-//             <h2>Medium</h2>  
-//             {/* <br></br> */}
-//             <NumberInput items={['1']}/>   
-//             <h2>Low</h2>        
-//             {/* <br></br> */}
-//             <NumberInput items={['1']}/>           
-//             <br></br>
-//             <h1>Cubes</h1>
-//             <h2>High</h2>
-//             <NumberInput items={['1']}/>    
-//             <h2>Medium</h2>  
-//             <NumberInput items={['1']}/>           
-//             <h2>Low</h2>  
-//             <NumberInput items={['1']}/>           
+        
 function Auto(props) {
     return (
         <Page selected={props.selected} id="auto">
@@ -129,7 +91,7 @@ function Auto(props) {
            <h1>Cones</h1>
            <h2>High</h2>
             <NumberInput items={['1']}/>  
-            <h2>Medium</h2>  
+            <h2>Mid</h2>  
             {/* <br></br> */}
             <NumberInput items={['1']}/>   
             <h2>Low</h2>        
@@ -139,7 +101,7 @@ function Auto(props) {
             <h1>Cubes</h1>
             <h2>High</h2>
             <NumberInput items={['1']}/>    
-            <h2>Medium</h2>  
+            <h2>Mid</h2>  
             <NumberInput items={['1']}/>           
             <h2>Low</h2>  
             <NumberInput items={['1']}/>           
@@ -164,7 +126,7 @@ function TeleOp(props) {
              <h1>Cones</h1>
            <h2>High</h2>
             <NumberInput items={['1']}/>  
-            <h2>Medium</h2>  
+            <h2>Mid</h2>  
             {/* <br></br> */}
             <NumberInput items={['1']}/>   
             <h2>Low</h2>        
@@ -174,7 +136,7 @@ function TeleOp(props) {
             <h1>Cubes</h1>
             <h2>High</h2>
             <NumberInput items={['1']}/>    
-            <h2>Medium</h2>  
+            <h2>Mid</h2>  
             <NumberInput items={['1']}/>           
             <h2>Low</h2>  
             <NumberInput items={['1']}/>         
@@ -186,8 +148,7 @@ function TeleOp(props) {
 
     );
 }
-// charge station
-// button for mobility
+
 function SavePage(props) {
     return (
         <Page selected={props.selected} id="S">
