@@ -9,7 +9,6 @@ function Page(props) {
     );
 }
 
-
 function SignIn(props) {
     return (
         <div>
@@ -168,4 +167,17 @@ function SavePage(props) {
     );
 }
 
-export { SignIn, PreGame, Auto, TeleOp,  SavePage };
+function Test(props) {
+    return (
+        <Page>
+            <div>
+                <p>vvv Crisanto's Coding Square vvv</p>
+                <form action="http://127.0.0.1:5000/data" method="POST"> 
+                    <input type="radio" /> <input type="submit" />
+                </form>
+            </div>
+        </Page>
+    );
+}
+
+export { SignIn, PreGame, Auto, TeleOp,  SavePage, Test };
