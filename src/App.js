@@ -1,5 +1,5 @@
 import './App.css';
-import { SignIn, PreGame, Auto, TeleOp, SavePage, Test } from "./Pages";
+import { SignIn, PreGame, Auto, TeleOp, SavePage} from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 
@@ -65,7 +65,6 @@ class App extends React.Component {
                 <TeleOp selected={this.state.selected === 'tele-op'} />
                 
                 <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
-                <Test selected={this.state.selected === 'test'} />
             </form>
            
         </main>
