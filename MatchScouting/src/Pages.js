@@ -66,9 +66,22 @@ function Auto(props) {
         <Page selected={props.selected} id="auto">
            <p className="section-label">Auto</p>
             <div className="textArea">
-           <h1>Mobility</h1>
-           <RadioButtons items={['Yes', 'No']} />
-           <br></br>
+            {/* <button type="button">Mobility?</button> */}
+            
+            {/* <h2>Mobility</h2> */}
+<div class="container">
+  <div class="center">
+    <button>Mobility</button>
+  </div>
+</div>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+
+           <h1>Charging Station</h1>
+
            <RadioButtons items={['Docked', 'Engaged', 'No points']} />
            <h1>Cones</h1>
             <NumberInput items={['1']}/>    
@@ -84,6 +97,8 @@ function Auto(props) {
         	<br></br>
             <NumberInput items={['1']}/>           
 
+
+
            </div>
         </Page>
     );
@@ -93,8 +108,11 @@ function TeleOp(props) {
     return (
         <Page selected={props.selected} id="tele-op">
             <p className="section-label">Teleop/Endgame</p>
+
              <div className="textArea">
-             <RadioButtons items={['Docked', 'Engaged', 'No points']} />
+             <h1>Charging Station</h1>
+
+             <RadioButtons items={['Docked', 'Engaged', 'No points', 'Parking']} />
            <h1>Cones</h1>
             <NumberInput items={['1']}/>    
             <br></br>
@@ -107,21 +125,32 @@ function TeleOp(props) {
             <br></br>
             <NumberInput items={['1']}/>           
         	<br></br>
-            <NumberInput items={['1']}/>   
-            </div>
+            <NumberInput items={['1']}/>           
+</div>
+           
+            
+
         </Page>
+
     );
 }
-
+// charge station
+// button for mobility
 function SavePage(props) {
     return (
-        <Page selected={props.selected} id="save-page">
+        <Page selected={props.selected} id="S">
            <br></br>
             <br></br>
           
-            <p className="section-label">Save Page</p>
+            <p className="section-label">Sumbit</p>
             <div className="areaSaP">
             <label htmlFor="notes" className="item-label">Notes</label>
+            <h1>Some things you could comment are</h1>
+            <li>  defensive bot </li>
+            <li> do they play defense  </li>
+            <li>  do they play optimistical  </li>
+            <li> thinking of other questions   </li>
+
                 <br/>
                 <br/>
                 <input type="text" id="notes" name="notes" />
