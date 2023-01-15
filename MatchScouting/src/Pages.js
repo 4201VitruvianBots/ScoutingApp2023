@@ -23,7 +23,7 @@ function SignIn(props) {
                     <option value="Choose" className="Placeholder" disabled>Choose Event</option>
                     <option value="Hueneme">Port Hueneme</option>
                 </select>
-                <input type="submit" className="SAVE" value="Sign In" />
+                {/* <input type="submit" className="SAVE" value="Sign In" /> */}
             </div>
         </div>
     );
@@ -48,8 +48,10 @@ function PreGame(props) {
                     <h1><bold>Team Alliance</bold></h1>
 
                     <RadioButtons items={['Red 1', 'Red 2', 'Red 3', 'Blue 1', 'Blue 2', 'Blue 3']} name="alliance" />
+                   <br></br>
                     <h1><strong>No show robot?</strong></h1>
                     <input type="checkbox" name="showtime"></input>
+                    <label className="label-size" for="showtime">Robot did not show</label>
                 </div>
             </div>
         </Page>
@@ -64,16 +66,14 @@ function Auto(props) {
                 {/* <button type="button">Mobility?</button> */}
 
                 {/* <h2>Mobility</h2> */}
-                <div class="container">
+                {/* <div class="container">
                     <div class="center">
                         <button>Mobility</button>
                     </div>
-                </div>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
+                </div> */}
+                <input type="checkbox" name="mobility"></input>
+                <label for="mobility" className="label-size">Mobility</label>
+               
 
                 <h1>Charging Station</h1>
 
@@ -130,26 +130,26 @@ function TeleOp(props) {
 function SavePage(props) {
     return (
         <Page selected={props.selected} id="save-page">
-            <br></br>
-            <br></br>
+       
 
             <p className="section-label">Submit</p>
             <div className="areaSaP">
-                <label htmlFor="notes" className="item-label">Notes</label>
-                <h1>Some things you could comment are</h1>
-                <li>  defensive bot </li>
-                <li> do they play defense  </li>
-                <li>  do they play optimistical  </li>
-                <li> thinking of other questions   </li>
-
+                {/* <label htmlFor="notes" className="item-label">Notes</label> */}
+                <h1>Some things you could comment are:</h1>
+                <div className="bullet-points">
+                <li>defensive bot</li>
+                <li>do they play defense</li>
+                <li>do they play optimistical</li>
+                <li>thinking of other questions</li>
+                </div> 
                 <br />
                 <br />
-                <input type="text" id="notes" name="notes" />
-                <label className="item-label" htmlFor="clear">QR code and clear</label>
+                <input type="text" id="notes" name="notes" placeholder="Comment here"/>
+                {/* <label className="item-label" htmlFor="clear">QR code and clear</label>
                 <input type="submit" className="SAVE" value="Generate QR code"></input>
                 <br />
                 <label className="item-label" htmlFor="continue">Save and continue</label>
-                <input type="reset" className="CLEAR" value="Clear Form" />
+                <input type="reset" className="CLEAR" value="Clear Form" /> */}
                 <br />
                 <br />
 

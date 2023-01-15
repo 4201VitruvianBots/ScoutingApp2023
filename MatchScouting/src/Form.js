@@ -7,8 +7,8 @@ function RadioButtons(props) {
     for (let item in props.items) {
         output.push(
             <p key={item}>
-                <input type="radio" id={item} name={props.name} value={item} />
-                <label htmlFor={item}>{props.items[item]}</label>
+                <input className="align-radio" type="radio" id={item} name={props.name} value={item} />
+                <label className="label-size" htmlFor={item}>{props.items[item]}</label>
             </p>
         )
     }
