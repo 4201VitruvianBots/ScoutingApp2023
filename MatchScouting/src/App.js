@@ -67,7 +67,7 @@ class App extends React.Component {
                     <TeleOp selected={this.state.selected === 'tele-op'} />
 
                     <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
-                    <input type="submit"></input>
+                    <input type="submit" className="submit-button"></input>
                 </form>
 
             </main>

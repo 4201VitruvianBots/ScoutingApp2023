@@ -140,7 +140,7 @@ function SavePage(props) {
 
 
             <p className="section-label">Submit</p>
-            <div className="areaSaP">
+            <div className="textArea">
                 {/* <label htmlFor="notes" className="item-label">Notes</label> */}
                 <h1>Some things you could comment are:</h1>
                 <div className="bullet-points">
@@ -157,10 +157,10 @@ function SavePage(props) {
                 <br />
                 <label className="item-label" htmlFor="continue">Save and continue</label>
                 <input type="reset" className="CLEAR" value="Clear Form" /> */}
-                <br />
+                {/* <br />
                 <br />
 
-                <div id="QRCode">{props.QRCode}</div>
+                <div id="QRCode">{props.QRCode}</div> */}
             </div>
             <br></br>
         </Page>

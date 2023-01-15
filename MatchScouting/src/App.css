@@ -291,3 +291,9 @@
   list-style-type: none;
 
 }
+
+.submit-button {
+  width: 500px;
+  font-size: 100px;
+  margin: 100px;
+}
