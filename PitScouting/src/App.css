@@ -48,6 +48,7 @@
   border-color:#085f00;
   border-width: 50px;
  }
+
 .numberInput{
   border-color:#085f00;
   border-width: 50px;
@@ -72,27 +73,8 @@
    color: var(--accent-1);
  }
 
- button {
-   border-color: var(--accent-3);
-   background-color: var(--accent-2);
-   display: block;
-   width: 20%;
-   height: 50px;
-   float: left;
-   font-size: 20px;
-   padding: 10px;
-   margin: 10px;
-   
- }
+ 
 
- input[type="button"] {
-   border-color: var(--accent-3);
-   background-color: var(--accent-2);
-   display: block;
-   width: 30;
-   height: 40px;
-   font-size: 20px;
- }
 
  select {
    border-color: var(--accent-3);
@@ -109,21 +91,18 @@
    /* background-color: var(--accent-1); */
    color: black;
    display: block;
-   width: fit-content;
+   /* width: fit-content; */
    height: 30px;
    font-size: 20px;
    margin: 0 auto;
    margin-bottom: 20px;
-  
-   
-   
  }
 
  .chonk {
    display: inline !important;
-   width: 100px !important;
-   height: 75px !important;
-   font-size: 50px !important;
+   width: 50px !important;
+   height: 32.5px !important;
+   font-size: 25px !important;
     background-color:#003800;
 
  }
@@ -154,11 +133,11 @@
  input[type="number"] {
    display: inline !important;
    background-color: var(--accent-1);
-   width: 100px !important;
-   height: 75px !important;
-   font-size: 50px;
+   width: 50px !important;
+   height: 32.5px !important;
+   font-size: 25px;
    text-align:center;
-   border-color: gray;
+   border-color: teal;
  }
 
  .SAVE, .CLEAR {
@@ -195,24 +174,9 @@
    text-align: left;
  }
 
- #QRCode {
+ /* #QRCode {
    padding: 20px;
    background-color: white;
- }
-
- /* .leftSide{
-  color: red;
-  font-size: 50px;
-  font-weight: 300;
-  background-color: yellow;
-  min-width: 400px;
- }
- .rightSide{
-  color: yellow;
-  font-size: 50px;
-  font-weight: 300;
-  background-color: red;
-  min-width: 400px;
  } */
 
  .gallery{
@@ -224,6 +188,43 @@
   gap: 30px;
   margin: 0 auto;
   padding: 10px 0;
-  
-  
+}
+
+.drivetrain, .gamepieces, .scoringLocation, .motors, .batteries, .motorType, .autos, .workingOn{
+  background-color: var(--background-1);
+  border: 2px solid #58a16383;
+  box-sizing: border-box;
+  padding: 5px;
+  width: 15%;
+ }
+
+ .motors, .batteries {
+  padding: 10px;
+ }
+ .motorType, .autos, .workingOn {
+  padding: 10px;
+  width: (15% + 100px);
+ }
+
+.generalLabel{
+  font-size: 20px;
+  color: black;
+  font-weight: 500;
+}
+
+.generalButton {
+  display: inline-block;
+  width: fit-content;
+  height: 20%;
+  font-size: 20px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  border: 3px solid teal;
+  display: block;
+  padding: 10px;
+} 
+
+.generalButton:focus{
+  background-color: purple;
+
 }
