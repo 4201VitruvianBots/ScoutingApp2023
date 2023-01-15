@@ -1,16 +1,13 @@
 import { RadioButtons, NumberInput } from "./Form";
 import './App.css';
 
-
 function Page(props) {
     return (
         <div className={props.selected ? 'page selected' : 'page'} id={props.id}>
             {props.children}
         </div>
-        
     );
 }
-
 
 function SignIn(props) {
     return (
@@ -30,29 +27,7 @@ function SignIn(props) {
                     </select>
                     <input type="submit" className="SAVE" value="Sign In"/>
                 </div>
-                <div id="London" class="tabcontent">
-  <h1>Sign in</h1>
-  <p>Sign in.</p>
-</div>
 
-<div id="Sign in" class="tabcontent">
-  <h1>Sign in</h1>
-  <p>Sign in</p>
-</div>
-
-<div id="Sign In" class="tabcontent">
-  <h1>  Sign in</h1>
-</div>
-
-<div id="Oslo" class="tabcontent">
-  <h1>Oslo</h1>
-  <p>Oslo is the capital of Norway.</p>
-</div>
-
-<button class="tablink" onclick="openCity('Sign in', this, 'red')" id="defaultOpen">Sign In</button>
-<button class="tablink" onclick="openCity('Pre-Game', this, 'green')">Pre-Game</button>
-<button class="tablink" onclick="openCity('Tokyo', this, 'blue')">Auto</button>
-<button class="tablink" onclick="openCity('Telop/Endgame', this, 'orange')">Teleop/Endgame</button>
             </form>
         </div>
     );
@@ -76,20 +51,15 @@ function PreGame(props) {
 
         <h1><bold>Team Alliance</bold></h1>
        
-            <RadioButtons items={['Red 1', 'Red 2', 'Red 3', 'Blue 1', 'Blue 2', 'Blue 3']} />
+        <RadioButtons items={['Red 1', 'Red 2', 'Red 3', 'Blue 1', 'Blue 2', 'Blue 3']} />
     <h1><strong>No show robot?</strong></h1>
-    <RadioButtons items={['Yes', 'No']} />
+    <RadioButtons items={['Yes, my robot did not show up', 'No, my robot did  show up']} />
     </div> 
         </div>
         </Page>
-    //Take out Viv
-    //All text black
-    //Make text bigger
-    //black outline in every box
-    //
+
     );
 }
-        
 function Auto(props) {
     return (
         <Page selected={props.selected} id="auto">
@@ -108,26 +78,24 @@ function Auto(props) {
             <br></br>
             <br></br>
             <br></br>
+
+           <h1>Charging Station</h1>
+
+           <RadioButtons items={['Docked', 'Engaged', 'No points']} />
            <h1>Cones</h1>
-           <h2>High</h2>
-            <NumberInput items={['1']}/>  
-            <h2>Mid</h2>  
-            {/* <br></br> */}
-            <NumberInput items={['1']}/>   
-            <h2>Low</h2>        
-            {/* <br></br> */}
+            <NumberInput items={['1']}/>    
+            <br></br>
+            <NumberInput items={['1']}/>           
+            <br></br>
             <NumberInput items={['1']}/>           
             <br></br>
             <h1>Cubes</h1>
-            <h2>High</h2>
             <NumberInput items={['1']}/>    
-            <h2>Mid</h2>  
-            <NumberInput items={['1']}/>           
-            <h2>Low</h2>  
-            <NumberInput items={['1']}/>           
             <br></br>
-            <h1>Charging Station</h1>
-<RadioButtons items={[<strong> Docked </strong>, <strong>Engaged</strong>, <strong>No points</strong>]} />
+            <NumberInput items={['1']}/>           
+        	<br></br>
+            <NumberInput items={['1']}/>           
+
 
 
            </div>
@@ -141,28 +109,22 @@ function TeleOp(props) {
             <p className="section-label">Teleop/Endgame</p>
 
              <div className="textArea">
+             <h1>Charging Station</h1>
 
-             <h1>Cones</h1>
-           <h2>High</h2>
-            <NumberInput items={['1']}/>  
-            <h2>Mid</h2>  
-            {/* <br></br> */}
-            <NumberInput items={['1']}/>   
-            <h2>Low</h2>        
-            {/* <br></br> */}
+             <RadioButtons items={['Docked', 'Engaged', 'No points', 'Parking']} />
+           <h1>Cones</h1>
+            <NumberInput items={['1']}/>    
+            <br></br>
+            <NumberInput items={['1']}/>           
+            <br></br>
             <NumberInput items={['1']}/>           
             <br></br>
             <h1>Cubes</h1>
-            <h2>High</h2>
             <NumberInput items={['1']}/>    
-            <h2>Mid</h2>  
-            <NumberInput items={['1']}/>           
-            <h2>Low</h2>  
-            <NumberInput items={['1']}/>
             <br></br>
-            <br></br>         
-            <h1>Charging Station</h1>
-<RadioButtons items={[<strong> Docked </strong>, <strong>Engaged</strong>, <strong>No points</strong>, <strong>Parking</strong>]} />
+            <NumberInput items={['1']}/>           
+        	<br></br>
+            <NumberInput items={['1']}/>           
 </div>
            
             
@@ -171,33 +133,27 @@ function TeleOp(props) {
 
     );
 }
-
+// charge station
+// button for mobility
 function SavePage(props) {
     return (
         <Page selected={props.selected} id="S">
-                    <p className="section-label">Sumbit</p>
-
-                                 <div className="textArea">
-
            <br></br>
             <br></br>
           
+            <p className="section-label">Sumbit</p>
             <div className="areaSaP">
-            <label htmlFor="notes" className="item-label"><strong>Notes</strong></label>
+            <label htmlFor="notes" className="item-label">Notes</label>
             <h1>Some things you could comment are</h1>
-            <li>disabled during the game</li>
             <li>  defensive bot </li>
             <li> do they play defense  </li>
             <li>  do they play optimistical  </li>
             <li> thinking of other questions   </li>
-          
- <li>Can the robot balance with other robots?</li>
-<li>Does the robot securely/conesistently control game pieces?</li> 
- <li>Does the robot securely/conesistently control game pieces?</li>Did the robot gain the mobility bonus?
+
                 <br/>
                 <br/>
                 <input type="text" id="notes" name="notes" />
-            <label className="item-label" htmlFor="clear">Sumbit and clear</label> 
+            <label className="item-label" htmlFor="clear">QR code and clear</label> 
                 <input type="submit" className="SAVE" value="Generate QR code"></input>
                 <br /> 
                 <label className="item-label" htmlFor="continue">Save and continue</label> 
@@ -207,14 +163,8 @@ function SavePage(props) {
 
                <div id="QRCode">{props.QRCode}</div>                
             </div> 
-            </div>
         </Page>
-        
     );
 }
 
-
- 
-   
-
-export { SignIn, PreGame, Auto, TeleOp,  SavePage };
+export { SignIn, PreGame, Auto, TeleOp,  SavePage};
