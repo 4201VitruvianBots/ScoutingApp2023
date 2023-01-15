@@ -42,9 +42,9 @@
   border-color:#085f00;
   border-width: 50px;
  }
- .textInput{
-  border-color:#085f00;
-  border-width: 50px;
+ .text-input{
+  width: 300px; 
+  height: fit-content;
  }
 .numberInput{
   border-color:#085f00;
@@ -295,5 +295,5 @@
 .submit-button {
   width: 500px;
   font-size: 100px;
-  margin: 100px;
+  margin: 20px;
 }

@@ -51,7 +51,6 @@ class App extends React.Component {
         return (
             <main>
                 <p className="page-title">Welcome to Vitruvian Scouting</p>
-                {this.state.signedIn || <SignIn onSubmit={this.SignInHandler} />}
                 {/*
             <div >
                 <TabButton headerButtonsonClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>
@@ -62,12 +61,13 @@ class App extends React.Component {
             </div>
       */}
                 <form action="http://127.0.0.1:5000/data" method="POST">
+                    <SignIn selected={this.state.selected === 'sign-in'} />
                     <PreGame selected={this.state.selected === 'pre-game'} />
                     <Auto selected={this.state.selected === 'auto'} />
                     <TeleOp selected={this.state.selected === 'tele-op'} />
 
                     <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
-                    <input type="submit" className="submit-button"></input>
+                    {/* <input type="submit" className="submit-button"></input> */}
                 </form>
 
             </main>

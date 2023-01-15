@@ -11,10 +11,11 @@ function Page(props) {
 
 function SignIn(props) {
     return (
+        <Page selected={props.selected} className="page" id="sign-in">
         <div>
             <p className="section-label">Energized</p>
             <div className="textArea">
-                <input type="text" id="Sname" name="Sname" placeholder="Scouter Name" />
+                <input type="text" id="Sname" name="Sname" placeholder="Scouter Name" className="text-input"/>
                 <br />
                 <label className="item-label" htmlFor="Ename"><strong>Event Name</strong> </label>
                 <br />
@@ -26,6 +27,7 @@ function SignIn(props) {
                 {/* <input type="submit" className="SAVE" value="Sign In" /> */}
             </div>
         </div>
+        </Page>
     );
 }
 
@@ -150,19 +152,18 @@ function SavePage(props) {
                     <li>thinking of other questions</li>
                 </div>
                 <br />
-                <br />
-                <input type="text" id="notes" name="notes" placeholder="Comment here" />
+                
+                <input type="text" id="notes" name="notes" placeholder="Comment here" className="text-input" />
                 {/* <label className="item-label" htmlFor="clear">QR code and clear</label>
                 <input type="submit" className="SAVE" value="Generate QR code"></input>
                 <br />
                 <label className="item-label" htmlFor="continue">Save and continue</label>
                 <input type="reset" className="CLEAR" value="Clear Form" /> */}
-                {/* <br />
-                <br />
+                <input type="submit" className="submit-button"></input>
 
-                <div id="QRCode">{props.QRCode}</div> */}
+                {/* <div id="QRCode">{props.QRCode}</div> */}
             </div>
-            <br></br>
+            
         </Page>
     );
 }
