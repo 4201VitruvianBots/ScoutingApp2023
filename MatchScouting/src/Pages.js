@@ -42,13 +42,14 @@ function PreGame(props) {
                 <br></br>
                 <label className="item-label" htmlFor="Num"><strong>Team Number</strong> </label>
                 <input className="text-input" type="text" id="Num" name="team" />
-                <br />
+
                 <div className="textArea">
 
                     <h1><bold>Team Alliance</bold></h1>
-
-                    <RadioButtons items={['Red 1', 'Red 2', 'Red 3', 'Blue 1', 'Blue 2', 'Blue 3']} name="alliance" />
-                   <br></br>
+                    <div className="align-radio">
+                        <RadioButtons items={['Red 1', 'Red 2', 'Red 3', 'Blue 1', 'Blue 2', 'Blue 3']} name="alliance" />
+                    </div>
+                    <br></br>
                     <h1><strong>No show robot?</strong></h1>
                     <input type="checkbox" name="showtime"></input>
                     <label className="label-size" for="showtime">Robot did not show</label>
@@ -71,13 +72,18 @@ function Auto(props) {
                         <button>Mobility</button>
                     </div>
                 </div> */}
+                <br></br>
                 <input type="checkbox" name="mobility"></input>
                 <label for="mobility" className="label-size">Mobility</label>
-               
+                <br></br>
+                <br></br>
+                <br></br>
 
                 <h1>Charging Station</h1>
 
-                <RadioButtons items={['Docked', 'Engaged', 'No points']} name="autostation" />
+                <div className="align-radio">
+                    <RadioButtons items={['Docked', 'Engaged', 'No points']} name="autostation" />
+                </div>
                 <h1>Cones</h1>
                 <NumberInput items={['1']} id="autoconehigh" />
                 <br></br>
@@ -106,8 +112,9 @@ function TeleOp(props) {
 
             <div className="textArea">
                 <h1>Charging Station</h1>
-
-                <RadioButtons items={['Docked', 'Engaged', 'No points', 'Parking']} name="telestation" />
+                <div className="align-radio">
+                    <RadioButtons items={['Docked', 'Engaged', 'No points', 'Parking']} name="telestation" />
+                </div>
                 <h1>Cones</h1>
                 <NumberInput items={['1']} id="teleconehigh" />
                 <br></br>
@@ -130,21 +137,21 @@ function TeleOp(props) {
 function SavePage(props) {
     return (
         <Page selected={props.selected} id="save-page">
-       
+
 
             <p className="section-label">Submit</p>
             <div className="areaSaP">
                 {/* <label htmlFor="notes" className="item-label">Notes</label> */}
                 <h1>Some things you could comment are:</h1>
                 <div className="bullet-points">
-                <li>defensive bot</li>
-                <li>do they play defense</li>
-                <li>do they play optimistical</li>
-                <li>thinking of other questions</li>
-                </div> 
+                    <li>defensive bot</li>
+                    <li>do they play defense</li>
+                    <li>do they play optimistical</li>
+                    <li>thinking of other questions</li>
+                </div>
                 <br />
                 <br />
-                <input type="text" id="notes" name="notes" placeholder="Comment here"/>
+                <input type="text" id="notes" name="notes" placeholder="Comment here" />
                 {/* <label className="item-label" htmlFor="clear">QR code and clear</label>
                 <input type="submit" className="SAVE" value="Generate QR code"></input>
                 <br />
@@ -155,6 +162,7 @@ function SavePage(props) {
 
                 <div id="QRCode">{props.QRCode}</div>
             </div>
+            <br></br>
         </Page>
     );
 }

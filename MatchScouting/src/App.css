@@ -286,8 +286,8 @@
 }
 
 .align-radio {
-  width:200px;
-  margin:auto;
-  text-align:left;
-  font-size:25px;
+  display: inline-block;
+  text-align: left; 
+  list-style-type: none;
+
 }
