@@ -66,7 +66,7 @@ class NumberInput extends React.Component {
 class ButtonInput extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { id: props.id, label: props.label, value: 0 };
+        this.state = { id: props.id, off_label: props.off_label, value: 0,  on_label: props.on_label };
         this.setValue = this.setValue.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.increaseValue = this.increaseValue.bind(this);
@@ -107,7 +107,7 @@ class ButtonInput extends React.Component {
                 <div>
 
                     <div className="ToggleButton">
-                        <input type="button" className="number-off" value={this.state.label} onClick={this.setValueFinal} />
+                        <input type="button" className="number-off" value={this.state.off_label} onClick={this.setValueFinal} />
                     </div>
                 </div>
 
