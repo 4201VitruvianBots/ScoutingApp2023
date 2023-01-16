@@ -1,4 +1,4 @@
-import { RadioButtons, NumberInput, ButtonInput } from "./Form";
+import { RadioButtons, NumberInput, ButtonInput, Data } from "./Form";
 import './App.css';
 
 function Page(props) {
@@ -71,7 +71,7 @@ function Auto(props) {
 <div class="container">
   <div class="center">
     {/* <button>Mobility</button> */}
-    <ButtonInput items={['Mobility']} />
+    <ButtonInput label='Mobility' />
 
   </div>
 </div>
@@ -165,6 +165,7 @@ function SavePage(props) {
 
                <div id="QRCode">{props.QRCode}</div>                
             </div> 
+            
         </Page>
     );
 }
