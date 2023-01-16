@@ -37,12 +37,12 @@ function PreGame(props) {
             <p className="section-label">Pre-Game</p>
 
             <div className="textArea">
-                <label className="item-label" htmlFor="Num"><strong>Match Number</strong> </label>
-                <input type="text" id="Num" name="match" />
+                {/* <label className="item-label" htmlFor="Num"><strong>Match Number</strong> </label> */}
+                <input type="text" id="Num" name="match" placeholder="Match Number"/>
                 <br></br>
                 <br></br>
-                <label className="item-label" htmlFor="Num"><strong>Team Number</strong> </label>
-                <input type="text" id="Num" name="team" />
+                {/* <label className="item-label" htmlFor="Num"><strong>Team Number</strong> </label> */}
+                <input type="text" id="Num" name="team" placeholder="Team Number"/>
 
                 <div className="textArea">
 
