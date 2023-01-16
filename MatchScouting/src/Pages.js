@@ -1,4 +1,4 @@
-import { RadioButtons, NumberInput } from "./Form";
+import { RadioButtons, NumberInput, ButtonInput } from "./Form";
 import './App.css';
 
 function Page(props) {
@@ -70,7 +70,9 @@ function Auto(props) {
             {/* <h2>Mobility</h2> */}
 <div class="container">
   <div class="center">
-    <button>Mobility</button>
+    {/* <button>Mobility</button> */}
+    <ButtonInput items={['Mobility']} />
+
   </div>
 </div>
             <br></br>

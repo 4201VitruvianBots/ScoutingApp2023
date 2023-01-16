@@ -284,3 +284,11 @@
    border: 1px solid #ccc;
    border-top: none;
  }
+
+ .number-on {
+ color: black;
+ }
+ 
+ .number-off {
+  color:deeppink;
+ }
