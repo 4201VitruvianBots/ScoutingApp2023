@@ -8,7 +8,7 @@
  }
 
  .page-title {
-   color: gray;
+   color: white;
    font-size: 25px;
 
    font-style: italic;
@@ -25,14 +25,12 @@
    color: black;
    font-size: 40px;
    font-weight: bold;
-
  }
 
  .item-label,
  .item-label2 {
    color: black;
-   font-size: 40px;
-
+   font-size: 30px; 
    display: inline-block;
  }
 
@@ -46,10 +44,9 @@
    border-color: #085f00;
    border-width: 50px;
  }
-
- .textInput {
-   border-color: #085f00;
-   border-width: 50px;
+ .text-input{
+  width: 300px; 
+  height: fit-content;
  }
 
  .numberInput {
@@ -286,30 +283,26 @@
    border-top: none;
  }
 
- button {
-   background-color: #085f00d2;
-   border: none;
-   color: white;
-   padding: 35px 45px;
-   text-align: center;
-   text-decoration: none;
-   display: inline-block;
-   font-size: 70px;
-   margin: 4px 2px;
-   cursor: pointer;border: none;
-   border-radius: 15px;
-   box-shadow: 0 9px #999;
- }
-
- button:focus {
-   background-color: black;
-   box-shadow: 0 5px #666;
-   transform: translateY(4px);
- }
- .floating-section {
-  float: left;
+.label-size {
+  font-size:25px;
 }
-label {
-  text-align: center;
-  font-size: 45px;
+
+.bullet-points {
+  width:500px;
+  margin:auto;
+  text-align:left;
+  font-size:25px;
+}
+
+.align-radio {
+  display: inline-block;
+  text-align: left; 
+  list-style-type: none;
+
+}
+
+.submit-button {
+  width: 500px;
+  font-size: 100px;
+  margin: 20px; 
 }
