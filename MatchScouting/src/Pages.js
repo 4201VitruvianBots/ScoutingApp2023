@@ -9,6 +9,7 @@ function Page(props) {
     );
 }
 
+
 function SignIn(props) {
     return (
         <Page selected={props.selected} className="page" id="sign-in">
@@ -39,7 +40,6 @@ function PreGame(props) {
             <div className="textArea">
                 <label className="item-label" htmlFor="Num"><strong>Match Number</strong> </label>
                 <input className="text-input" type="text" id="Num" name="match" />
-
                 <br></br>
                 <br></br>
                 <label className="item-label" htmlFor="Num"><strong>Team Number</strong> </label>
@@ -61,6 +61,7 @@ function PreGame(props) {
 
     );
 }
+
 function Auto(props) {
     return (
         <Page selected={props.selected} id="auto">
@@ -80,9 +81,7 @@ function Auto(props) {
                 <br></br>
                 <br></br>
                 <br></br>
-
                 <h1>Charging Station</h1>
-
                 <div className="align-radio">
                     <RadioButtons items={['Docked', 'Engaged', 'No points']} name="autostation" />
                 </div>
@@ -99,9 +98,6 @@ function Auto(props) {
                 <NumberInput items={['1']} id="autocubemid" />
                 <br></br>
                 <NumberInput items={['1']} id="autocubelow" />
-
-
-
             </div>
         </Page>
     );
@@ -150,6 +146,8 @@ function SavePage(props) {
                     <li>do they play defense</li>
                     <li>do they play optimistical</li>
                     <li>thinking of other questions</li>
+                     <li>Can the robot balance with other robots?</li>
+                    <li>Does the robot securely/conesistently control game pieces?</li>
                 </div>
                 <br />
                 
@@ -162,10 +160,10 @@ function SavePage(props) {
                 <input type="submit" className="submit-button"></input>
 
                 {/* <div id="QRCode">{props.QRCode}</div> */}
+
             </div>
             
         </Page>
     );
 }
-
 export { SignIn, PreGame, Auto, TeleOp, SavePage };
