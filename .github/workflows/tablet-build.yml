@@ -16,8 +16,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        
+      - uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
       
-      - run: npm install
+      - run: npm ci
         
       - name: Build app for tablet
         run: npm run build-tablet
