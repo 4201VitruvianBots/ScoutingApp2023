@@ -70,6 +70,18 @@ function Auto(props) {
             <p className="section-label">Auto</p>
             <div className="textArea">
            </div>
+           
+            {/* <button type="button">Mobility?</button> */}
+
+                {/* <h2>Mobility</h2> */}
+                {/* <div class="container">
+                    <div class="center">
+                        <button>Mobility</button>
+                    </div>
+                </div> 
+                <br></br>
+                <input type="checkbox" name="mobility"></input>
+                <label for="mobility" className="label-size">Mobility</label> */}
             <ButtonInput on_label='You have selected that the robot has got the Mobility bonus' off_label = 'Mobility ' />
                 <br></br>
                 <br></br>
