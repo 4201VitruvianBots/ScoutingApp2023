@@ -48,12 +48,50 @@ function General(props) {
            <p className="section-label">General</p>
             <div className="textArea">
                 <div className="gallery">
-                    <div className="leftSide">
-                        <p>I'm on the left</p>
+
+                    <div className="drivetrain">
+                        <p className="generalLabel">Drivetrain Type</p>
+                        <input type="button" className="generalButton" value="Tank"/> 
+                        <input type="button" className="generalButton" value="Swerve"/> 
+                        <input type="button" className="generalButton" value="Mecanum"/>
+                        <input type="button" className="generalButton" value="Other"/> 
                     </div>
-                    <div className="rightSide">
-                        <p>I'm on the right</p>
+
+                    <div className="gamepieces">
+                        <p className="generalLabel">Game Piece Capability</p>
+                        <input type="button" className="generalButton" value="Cones"/> 
+                        <input type="button" className="generalButton" value="Cubes"/> 
                     </div>
+
+                    <div className="scoringLocation">
+                        <p className="generalLabel">Scoring Location Capability</p>
+                        <input type="button" className="generalButton" value="Low"/> 
+                        <input type="button" className="generalButton" value="Mid"/> 
+                        <input type="button" className="generalButton" value="High"/> 
+                    </div>
+
+                    <div className="motors">
+                        <p className="generalLabel"># of Motors (Tank- on each side)</p>
+                        <NumberInput items={['1']}/>
+                    </div>
+
+                    <div className="batteries">
+                        <p className="generalLabel"># of Batteries (total)</p>
+                        <NumberInput items={['1']}/>
+                    </div>
+
+                    <div className="motorType">
+                        <input type="text" placeholder="Drivetrain Motor Type"></input>
+                    </div>
+
+                    <div className="autos">
+                    <input type="text" placeholder="Autos (# and type)"></input>
+                    </div>
+
+                    <div className="workingOn">
+                    <input type="text" placeholder="Things they are working on"></input>
+                    </div>
+
                 </div>
            </div>
         </Page>

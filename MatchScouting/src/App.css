@@ -8,7 +8,7 @@
  }
 
  .page-title {
-   color: gray;
+   color: white;
    font-size: 25px;
 
    font-style: italic;
@@ -23,22 +23,21 @@
 
  .section-label {
    color: black;
-   font-size: 30px;
+   font-size: 40px;
    font-weight: bold;
-
  }
 
  .item-label,
  .item-label2 {
    color: black;
-   font-size: 20px;
-
+   font-size: 30px; 
    display: inline-block;
  }
 
  .item-label2 {
    margin-bottom: 20px;
    margin-top: 10px;
+   font-size: 80px;
  }
 
  .dropdown {
@@ -46,9 +45,9 @@
    border-width: 50px;
  }
 
- .textInput {
-   border-color: #085f00;
-   border-width: 50px;
+ .text-input{
+  width: 300px; 
+  height: fit-content;
  }
 
  .numberInput {
@@ -94,7 +93,7 @@
    border-color: var(--accent-3);
    background-color: var(--accent-2);
    display: block;
-   width: 30;
+   width: 120%;
    height: 40px;
    font-size: 20px;
    cursor: default;
@@ -225,14 +224,6 @@
    background-color: white;
  }
 
- .container {
-   height: 200px;
-   width: 250px;
-
-   position: relative;
-   /* border: 3px solid green;  */
- }
-
  .center {
    margin: 0;
    position: absolute;
@@ -249,42 +240,6 @@
    -ms-transform: translateY(-50%);
    transform: translateY(-50%);
  }
-
- .tab {
-   overflow: hidden;
-   border: 1px solid #ccc;
-   background-color: #f1f1f1;
- }
-
- /* Style the buttons that are used to open the tab content */
- .tab button {
-   background-color: inherit;
-   float: left;
-   border: none;
-   outline: none;
-   cursor: pointer;
-   padding: 14px 16px;
-   transition: 0.3s;
- }
-
- /* Change background color of buttons on hover */
- .tab button:hover {
-   background-color: #ddd;
- }
-
- /* Create an active/current tablink class */
- .tab button.active {
-   background-color: #ccc;
- }
-
- /* Style the tab content */
- .tabcontent {
-   display: none;
-   padding: 6px 12px;
-   border: 1px solid #ccc;
-   border-top: none;
- }
-
  .number-on {
  color: green;
  margin: 0 auto;
@@ -297,4 +252,28 @@
 
 
  }
-/* w */
+
+
+.label-size {
+  font-size:25px;
+}
+
+.bullet-points {
+  width:500px;
+  margin:auto;
+  text-align:left;
+  font-size:25px;
+}
+
+.align-radio {
+  display: inline-block;
+  text-align: left; 
+  list-style-type: none;
+
+}
+
+.submit-button {
+  width: 500px;
+  font-size: 100px;
+  margin: 20px; 
+}
