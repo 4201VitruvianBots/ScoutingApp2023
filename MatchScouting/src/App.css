@@ -286,9 +286,15 @@
  }
 
  .number-on {
- color: black;
+ color: green;
+ margin: 0 auto;
+
  }
  
  .number-off {
-  color:deeppink;
+  color:black;
+  margin: 0 auto;
+
+
  }
+/* w */

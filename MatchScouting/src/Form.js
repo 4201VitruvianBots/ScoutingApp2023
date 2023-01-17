@@ -96,7 +96,6 @@ class ButtonInput extends React.Component {
         } else if (this.state.value === 1) {
             this.decreaseValue();
         }
-        console.log("CALLED FUNCTION");
     }
 
 
@@ -104,23 +103,24 @@ class ButtonInput extends React.Component {
     render() {
         if (this.state.value === 0) {
             return (
-                <div>
+                // <div>
 
                     <div className="ToggleButton">
                         <input type="button" className="number-off" value={this.state.off_label} onClick={this.setValueFinal} />
-                    </div>
+
+                    {/* </div> */}
                 </div>
 
             );
         } else if (this.state.value === 1) {
             return (
-                <div>
+                // <div>
 
 
                     <div className="ToggleButton">
-                        <input type="button" className="number-on" value={this.state.label} onClick={this.setValueFinal} />
+                        <input type="button" className="number-on" value={this.state.on_label} onClick={this.setValueFinal} />
                     </div>
-                </div>
+                // </div>
             );
         }
         // return (

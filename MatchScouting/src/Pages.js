@@ -68,19 +68,16 @@ function Auto(props) {
             {/* <button type="button">Mobility?</button> */}
             
             {/* <h2>Mobility</h2> */}
-<div class="container">
+{/* <div class="container"> */}
   <div class="center">
     {/* <button>Mobility</button> */}
-    <ButtonInput label='Mobility' />
 
-  </div>
+  {/* </div> */}
 </div>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
 
+          
+            <ButtonInput on_label='You have selected that the robot has got the Mobility bonus' off_label = 'Mobility ' />
+<br></br>
            <h1>Charging Station</h1>
 
            <RadioButtons items={['Docked', 'Engaged', 'No points']} />
