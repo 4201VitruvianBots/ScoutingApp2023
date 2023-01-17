@@ -66,10 +66,6 @@ class NumberInput extends React.Component {
     }
 }
 
-
-
-
-
 class ButtonInput extends React.Component {
     constructor(props) {
         super(props);
@@ -79,7 +75,6 @@ class ButtonInput extends React.Component {
         this.increaseValue = this.increaseValue.bind(this);
         this.decreaseValue = this.decreaseValue.bind(this);
         this.setValueFinal = this.setValueFinal.bind(this);
-
     }
 
     setValue(value) {
@@ -104,9 +99,6 @@ class ButtonInput extends React.Component {
             this.decreaseValue();
         }
     }
-
-
-
     render() {
         if (this.state.value === 0) {
             return (
@@ -117,31 +109,14 @@ class ButtonInput extends React.Component {
 
                     {/* </div> */}
                 </div>
-
             );
         } else if (this.state.value === 1) {
             return (
-                // <div>
-
-
                     <div className="ToggleButton">
                         <input type="button" className="number-on" value={this.state.on_label} onClick={this.setValueFinal} />
                     </div>
-                // </div>
             );
         }
-        // return (
-        //     <div>
-        //         <div className="labelleft">
-        //             <label htmlFor={this.state.id}>{this.state.label}</label>
-        //             </div>
-
-        //         <div className = "buttonright">
-        //             <input type="button" className="number-input" value={this.state.value} onClick={this.setValueFinal}/>     
-        //     </div>
-        //     </div>
-
-        // );
     }
 }
 

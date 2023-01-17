@@ -1,4 +1,4 @@
-import { RadioButtons, NumberInput, ButtonInput, Data } from "./Form";
+import { RadioButtons, NumberInput, ButtonInput} from "./Form";
 import './App.css';
 
 function Page(props) {
@@ -69,8 +69,18 @@ function Auto(props) {
         <Page selected={props.selected} id="auto">
             <p className="section-label">Auto</p>
             <div className="textArea">
-           </div>
             <ButtonInput on_label='You have selected that the robot has got the Mobility bonus' off_label = 'Mobility ' />
+             {/* <button type="button">Mobility?</button> */}
+
+                {/* <h2>Mobility</h2> */}
+                {/* <div class="container">
+                    <div class="center">
+                        <button>Mobility</button>
+                    </div>
+                </div> 
+                <br></br>
+                <input type="checkbox" name="mobility"></input>
+                <label for="mobility" className="label-size">Mobility</label> */}
                 <br></br>
                 <br></br>
                 <br></br>
