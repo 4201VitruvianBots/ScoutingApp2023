@@ -1,5 +1,5 @@
 import './App.css';
-import { SignIn, PreGame, Auto, TeleOp, SavePage } from "./Pages";
+import { SignIn,  Fouls, SavePage } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 
@@ -62,9 +62,9 @@ class App extends React.Component {
       */}
                 <form action="http://127.0.0.1:5000/data" method="POST">
                     <SignIn selected={this.state.selected === 'sign-in'} />
-                    <PreGame selected={this.state.selected === 'pre-game'} />
-                    <Auto selected={this.state.selected === 'auto'} />
-                    <TeleOp selected={this.state.selected === 'tele-op'} />
+                    {/* <PreGame selected={this.state.selected === 'pre-game'} /> */}
+                    <Fouls selected={this.state.selected === 'Fouls'} />
+                     {/* <TeleOp selected={this.state.selected === 'tele-op'} />  */}
 
                     <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
                     {/* <input type="submit" className="submit-button"></input> */}
@@ -73,6 +73,7 @@ class App extends React.Component {
             </main>
         );
     }
+    
 
     QRcodeGenerator() {
 

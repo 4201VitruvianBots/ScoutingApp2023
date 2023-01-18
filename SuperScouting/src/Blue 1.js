@@ -16,44 +16,55 @@ function SignIn(props) {
             <div>
                 <div class="tab">
                     <button class="tablinks" onclick="openCity(event, 'Sign-in')">Sign-in</button>
-                    <button class="tablinks" onclick="openCity(event, 'Fouls')">          Fouls        </button>
-                    <button class="tablinks" onclick="openCity(event, 'Sumbit')">        Sumbit        </button>
+                    <button class="tablinks" onclick="openCity(event, 'Fouls')">Fouls</button>
+                    <button class="tablinks" onclick="openCity(event, 'Sumbit')">Sumbit</button>
                     <br></br>
-                </div>
-                <br></br>
-                <div class="tab">
-                     <button class="tablinks" onclick="openCity(event, 'Red 1')">Red 1</button>
+                    <button class="tablinks" onclick="openCity(event, 'Red 1')">Red 1</button>
                     <button class="tablinks" onclick="openCity(event, 'Red 2')">Red 2</button>
                     <button class="tablinks" onclick="openCity(event, 'Red 3')">Red 3</button>
-                          <button class="tablinks" onclick="openCity(event, 'Blue 1')">Blue 1</button>
+                    <br></br>
+                    <button class="tablinks" onclick="openCity(event, 'Blue 1')">Blue 1</button>
                     <button class="tablinks" onclick="openCity(event, 'Blue 2')">Blue 2</button>
                     <button class="tablinks" onclick="openCity(event, 'Blue 3')">Blue 3</button>
-                    <br></br>
+                </div>
+
+                <div id="Sign-in" class="tabcontent">
+                    <h3>Sign-in</h3>
+                </div>
+
+                <div id="Fouls" class="tabcontent">
+                    <h3>Fouls</h3>
+                </div>
+
+                <div id="Sumbit" class="tabcontent">
+                    <h3>Sumbit</h3>
+                </div>
+
+                <div id="Red 1" class="tabcontent">
+                    <h3>Red 1</h3>
+                </div>
+
+                <div id="Red 2" class="tabcontent">
+                    <h3>Red 2</h3>
+                </div>
+
+                <div id="Red 3" class="tabcontent">
+                    <h3>Red 3</h3>
+                </div>
+
+                <div id="Blue 1" class="tabcontent">
+                    <h3>Blue 1</h3>
+                </div>
+
+                <div id="Blue 2" class="tabcontent">
+                    <h3>Blue 2</h3>
+                </div>
+
+                <div id="Blue 3" class="tabcontent">
+                    <h3>Blue 3</h3>
                 </div>
                 <p className="section-label">Energized</p>
                 <div className="textArea">
-                    <input type="text" id="Sname" name="Sname" placeholder="Scouter Name" className="text-input" />
-                    <br />
-                    <input type="text" id="Sname" name="Sname" placeholder="Event Name" className="text-input" />
-                    <br></br>
-                    <input type="text" id="Sname" name="Sname" placeholder="Match Number" className="text-input" />
-                    <br></br>
-                    <input type="text" id="Sname" name="Sname" placeholder="Robot Number" className="text-input" />
-                    <div class="btn-group">
-                    <ButtonInput  on_label='You are scouting for Red 1' off_label='Red 1'/>
-                    <ButtonInput on_label='You are scouting for Red 2' off_label='Red 2 ' />
-                    <ButtonInput on_label='You are scouting for Red 3' off_label='Red 3'  />
-                    <ButtonInput on_label='You are scouting for Blue 1' off_label='Blue 1'  />
-                    <ButtonInput on_label='You are scouting for Blue 2' off_label='Blue 2 ' />
-                    <ButtonInput on_label='You are scouting for Blue 3' off_label='Blue 3'  />
-                    <ButtonInput on_label='Data recieved' off_label='Robot(s) not at the match' />
-                    {/* <button type="button">Submit</button> */}
-                  </div>
-
-
-                    <br />
-                    {/* <br />
-                </select> */}
                 </div>
             </div>
         </Page>

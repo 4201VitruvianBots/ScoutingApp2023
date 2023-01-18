@@ -92,7 +92,7 @@
    border-color: var(--accent-3);
    background-color: var(--accent-2);
    display: block;
-   width: 120%;
+   width: 30%;
    height: 40px;
    font-size: 20px;
    cursor: default;
@@ -305,4 +305,20 @@
   width: 500px;
   font-size: 100px;
   margin: 20px; 
+}
+.number-on{
+  color: green;
+ margin: 0 auto;
+ width:400px;
+
+
+}
+.number-off{
+  color:black;
+  margin: 0 auto;
+  width:400px;
+
+}
+button.tablinks{
+  font-size:40px;
 }
