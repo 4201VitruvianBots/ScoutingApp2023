@@ -1,4 +1,4 @@
-import { RadioButtons, NumberInput } from "./Form";
+import { RadioButtons, NumberInput, ButtonInput} from "./Form";
 import './App.css';
 
 function Page(props) {
@@ -9,12 +9,12 @@ function Page(props) {
     );
 }
 
-
 function SignIn(props) {
     return (
         <Page selected={props.selected} className="page" id="sign-in">
         <div>
             <p className="section-label">Energized</p>
+
             <div className="textArea">
                 <input type="text" id="Sname" name="Sname" placeholder="Scouter Name" className="text-input"/>
                 <br />
@@ -36,6 +36,7 @@ function PreGame(props) {
     return (
         <Page selected={props.selected} className="page" id="pre-game">
             <p className="section-label">Pre-Game</p>
+
 
             <div className="textArea">
                 <label className="item-label" htmlFor="Num"><strong>Match Number</strong> </label>
@@ -62,22 +63,24 @@ function PreGame(props) {
     );
 }
 
+
 function Auto(props) {
     return (
         <Page selected={props.selected} id="auto">
             <p className="section-label">Auto</p>
             <div className="textArea">
-                {/* <button type="button">Mobility?</button> */}
+            <ButtonInput on_label='You have selected that the robot has got the Mobility bonus' off_label = 'Mobility ' />
+             {/* <button type="button">Mobility?</button> */}
 
                 {/* <h2>Mobility</h2> */}
                 {/* <div class="container">
                     <div class="center">
                         <button>Mobility</button>
                     </div>
-                </div> */}
+                </div> 
                 <br></br>
                 <input type="checkbox" name="mobility"></input>
-                <label for="mobility" className="label-size">Mobility</label>
+                <label for="mobility" className="label-size">Mobility</label> */}
                 <br></br>
                 <br></br>
                 <br></br>
@@ -108,6 +111,7 @@ function TeleOp(props) {
         <Page selected={props.selected} id="tele-op">
             <p className="section-label">Teleop/Endgame</p>
 
+
             <div className="textArea">
                 <h1>Charging Station</h1>
                 <div className="align-radio">
@@ -134,6 +138,7 @@ function TeleOp(props) {
 // button for mobility
 function SavePage(props) {
     return (
+
         <Page selected={props.selected} id="save-page">
 
 
@@ -166,4 +171,5 @@ function SavePage(props) {
         </Page>
     );
 }
+
 export { SignIn, PreGame, Auto, TeleOp, SavePage };
