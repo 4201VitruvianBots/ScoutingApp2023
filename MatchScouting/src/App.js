@@ -50,7 +50,7 @@ class App extends React.Component {
     render() {
         return (
             <main>
-                <p className="page-title">Welcome to Vitruvian Scouting</p>
+                <p className="page-title">Welcome to Vit<span class="o">ruvian Scouting</span></p>
                 {/*
             <div >
                 <TabButton headerButtonsonClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>
