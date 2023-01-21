@@ -26,14 +26,14 @@
    color: black;
    font-size: 40px;
    font-weight: bold;
-   padding:0px;
+   padding: 0px;
    margin: 0px;
  }
 
  .item-label,
  .item-label2 {
    color: black;
-   font-size: 30px; 
+   font-size: 30px;
    display: inline-block;
  }
 
@@ -172,7 +172,8 @@
    border-color: gray;
  }
 
- .SAVE, .CLEAR {
+ .SAVE,
+ .CLEAR {
    display: inline-block;
    width: 300px;
    height: 35px;
@@ -281,38 +282,73 @@
    border-top: none;
  }
 
-.label-size {
-  font-size:25px;
+ .label-size {
+   font-size: 25px;
+ }
+
+ .bullet-points {
+   width: 400px;
+   margin: auto;
+   text-align: left;
+   font-size: 25px;
+ }
+
+ .align-radio {
+   display: inline-block;
+   text-align: left;
+   list-style-type: none;
+
+ }
+
+ .submit-button {
+   width: 500px;
+   font-size: 50px;
+   margin: 20px;
+ }
+
+ input[type="text"],
+ input::placeholder {
+   width: 500px;
+   height: auto;
+   font-size: 50px;
+ }
+
+ select {
+   width: 500px;
+   height: auto;
+   font-size: 50px;
+ }
+
+ ul {
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   overflow: hidden;
+   background-color: #333;
+ }
+
+ ul {
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
-.bullet-points {
-  width:400px;
-  margin:auto;
-  text-align:left;
-  font-size:25px;
-}
+ li {
+   float: left;
+ }
 
-.align-radio {
-  display: inline-block;
-  text-align: left; 
-  list-style-type: none;
+ li a {
+   display: block;
+   color: white;
+   text-align: center;
+   padding: 14px 16px;
+   text-decoration: none;
+ }
 
-}
+ li a:hover {
+   background-color: #111;
+ }
 
-.submit-button {
-  width: 500px;
-  font-size: 50px;
-  margin: 20px; 
-}
-
-input[type="text"], input::placeholder {
-  width: 500px;
-  height: auto;
-  font-size: 50px;
-}
-
-select {
-  width: 500px;
-  height: auto;
-  font-size: 50px;
-}
+ .questions {
+  
+ }

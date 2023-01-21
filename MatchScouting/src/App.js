@@ -1,5 +1,5 @@
 import './App.css';
-import { SignIn, PreGame, Auto, TeleOp, SavePage } from "./Pages";
+import { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 
@@ -51,6 +51,8 @@ class App extends React.Component {
         return (
             <main>
                 <p className="page-title">Welcome to Vitruvian Scouting</p>
+                <Navigation selected={this.state.selected === 'navigation' } />
+                <br /> <br />
                 {/*
             <div >
                 <TabButton headerButtonsonClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>

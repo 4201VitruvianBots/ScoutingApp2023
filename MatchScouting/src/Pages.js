@@ -9,12 +9,25 @@ function Page(props) {
     );
 }
 
+function Navigation(props) {
+    return (
+        <Page selected={props.selected} className="page" id="navigation">
+            <ul>
+                <li><a href="#SignIn">Sign-In</a></li>
+                <li><a href="#Pre">Pre-Game</a></li>
+                <li><a href="#Auto">Auto</a></li>
+                <li><a href="#Tele">Tele-Op</a></li>
+                <li><a href="#Save">Save</a></li>
+            </ul>
+        </Page>
+    );
+}
 
 function SignIn(props) {
     return (
         <Page selected={props.selected} className="page" id="sign-in">
             <div>
-                <p className="section-label">Energized</p>
+                <p className="section-label" id="SignIn">Energized</p>
                 <div className="textArea">
                     <input type="text" id="Sname" name="Sname" placeholder="Scouter Name" />
                     <br />
@@ -34,15 +47,15 @@ function SignIn(props) {
 function PreGame(props) {
     return (
         <Page selected={props.selected} className="page" id="pre-game">
-            <p className="section-label">Pre-Game</p>
+            <p className="section-label" id="Pre">Pre-Game</p>
 
             <div className="textArea">
                 {/* <label className="item-label" htmlFor="Num"><strong>Match Number</strong> </label> */}
-                <input type="text" id="Num" name="match" placeholder="Match Number"/>
+                <input type="text" id="Num" name="match" placeholder="Match Number" />
                 <br></br>
                 <br></br>
                 {/* <label className="item-label" htmlFor="Num"><strong>Team Number</strong> </label> */}
-                <input type="text" id="Num" name="team" placeholder="Team Number"/>
+                <input type="text" id="Num" name="team" placeholder="Team Number" />
 
                 <div className="textArea">
 
@@ -64,7 +77,7 @@ function PreGame(props) {
 function Auto(props) {
     return (
         <Page selected={props.selected} id="auto">
-            <p className="section-label">Auto</p>
+            <p className="section-label" id="Auto">Auto</p>
             <div className="textArea">
                 {/* <button type="button">Mobility?</button> */}
 
@@ -105,7 +118,7 @@ function Auto(props) {
 function TeleOp(props) {
     return (
         <Page selected={props.selected} id="tele-op">
-            <p className="section-label">Teleop/Endgame</p>
+            <p className="section-label" id="Tele">Teleop/Endgame</p>
 
             <div className="textArea">
                 <h1>Charging Station</h1>
@@ -136,19 +149,19 @@ function SavePage(props) {
         <Page selected={props.selected} id="save-page">
 
 
-            <p className="section-label">Submit</p>
+            <p className="section-label" id="Save">Submit</p>
             <div className="textArea">
                 {/* <label htmlFor="notes" className="item-label">Notes</label> */}
-                <h1>Some things you could comment are:</h1>
+                {/* <h1>Some things you could comment are:</h1>
                 <div className="bullet-points">
-                    <li>Placeholder Questions?</li>
-                    <li>Is it successful?</li>
-                    <li>Does it move?</li>
-                    <li>Conesistent?</li>
-                    <li>Can the robot?</li>
-                    <li>Does it?</li>
+                    <li className="questions">Placeholder Questions?</li>
+                    <li className="questions">Is it successful?</li>
+                    <li className="questions">Does it move?</li>
+                    <li className="questions">Conesistent?</li>
+                    <li className="questions">Can the robot?</li>
+                    <li className="questions">Does it?</li>
                 </div>
-                <br />
+                <br /> */}
 
                 <input type="text" id="notes" name="notes" placeholder="Comment here" />
                 {/* <label className="item-label" htmlFor="clear">QR code and clear</label>
@@ -165,4 +178,4 @@ function SavePage(props) {
         </Page>
     );
 }
-export { SignIn, PreGame, Auto, TeleOp, SavePage };
+export { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation };
