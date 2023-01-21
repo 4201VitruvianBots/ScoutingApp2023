@@ -14,22 +14,23 @@ columns = ('Match_Number', 'Team_Number', 'Scouter_Name', 'Team_Alliance', 'Comp
 mycursor = mydb.cursor()
 
 app = Flask(__name__)
-match_list=[]
+
 @app.route('/data', methods=['GET'])
 def handle_get():
     # Handle GET request
     mycursor.execute("SELECT * FROM matchData")
     rows = mycursor.fetchall()
+    # Format with column names
     return [dict(zip(columns, row)) for row in rows]
 
 
 @app.route('/data', methods=['POST'])
 def handle_post():
-    # Handle POST request\
+    # Handle POST request
     formData = request.form
     # data = request.get_json()
-    # match_list.append(formData)
 
+    # Insert all data into table
     mycursor.execute('INSERT INTO matchData({}) VALUES ({})'.format(
         ', '.join(formData.keys()),
         ', '.join(['%s'] * len(formData))
@@ -41,7 +42,7 @@ def handle_post():
     # Do something with the data
     return 'Data received'
 
-
+# Convert data to proper format
 def format_data(string, name):
     if name in ('Scouter_Name', 'Competition', 'Comments'):
         return string
@@ -49,11 +50,12 @@ def format_data(string, name):
         return bool(string)
     return int(string)
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
+# Close connections before exit
 def exit_handler():
     mycursor.close()
     mydb.close()
 
 atexit.register(exit_handler)
+
+if __name__ == '__main__':
+    app.run(debug=True)
