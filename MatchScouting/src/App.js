@@ -50,9 +50,11 @@ class App extends React.Component {
     render() {
         return (
             <main>
+                <br></br>
+                <br></br>
                 <p className="page-title">Welcome to Vitruvian Scouting</p>
                 <Navigation selected={this.state.selected === 'navigation' } />
-                <br /> <br />
+               
                 {/*
             <div >
                 <TabButton headerButtonsonClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>
