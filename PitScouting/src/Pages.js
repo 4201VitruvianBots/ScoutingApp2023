@@ -1,4 +1,4 @@
-import { RadioButtons, NumberInput } from "./Form";
+import { RadioButtons, NumberInput, ButtonInput } from "./Form";
 import './App.css';
 
 function Page(props) {
@@ -66,6 +66,7 @@ function General(props) {
                     <div className="scoringLocation">
                         <p className="generalLabel">Scoring Location Capability</p>
                         <input type="button" className="generalButton" value="Low"/> 
+                        <ButtonInput items={['1']} onLabel='Low' offLabel='EEK'/>
                         <input type="button" className="generalButton" value="Mid"/> 
                         <input type="button" className="generalButton" value="High"/> 
                     </div>
@@ -89,8 +90,10 @@ function General(props) {
                     </div>
 
                     <div className="workingOn">
-                    <input type="text" placeholder="Things they are working on"></input>
+                    <input type="text" placeholder="They're working on..."></input>
                     </div>
+
+                    
 
                 </div>
            </div>
