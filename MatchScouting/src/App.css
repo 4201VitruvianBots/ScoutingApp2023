@@ -57,7 +57,7 @@
  }
 
  .textArea {
-   background-color: #ecf2eb7f;
+   background-color: #ecf2eb;
    min-width: 300px;
    min-height: 100px;
    padding: 25px;
@@ -318,21 +318,4 @@
   margin: 20px; 
 }
 
-
-:root {
-  --c1: #9aaf91;
-  --c2: #ff00ff;
-}
-body {
-  background: linear-gradient(90deg, var(--c1) 0%, var(--c1) 50%, var(--c2) 50%, var(--c2) 100%);
-}
-.page-title {
-  color: var(--c2);
-}
-.o {
-  color: var(--c1);
-}
-.section-label {
-  color: var(--c2);
-}
-
+ 
