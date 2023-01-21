@@ -6,12 +6,10 @@ function RadioButtons(props) {
     let output = [];
     for (let item in props.items) {
         output.push(
-            <div >
-                <p key={item}>
-                    <input className="align-radio" type="radio" id={item} name={props.name} value={item} />
-                    <label className="label-size" htmlFor={item}>{props.items[item]}</label>
-                </p>
-            </div>
+            <p key={item}>
+                <input className="align-radio" type="radio" id={item} name={props.name} value={item} />
+                <label className="label-size" htmlFor={item}>{props.items[item]}</label>
+            </p>
         )
     }
     return output;
@@ -103,8 +101,8 @@ class ButtonInput extends React.Component {
         if (this.state.value === 0) {
             return (
                 // <div>
-
                     <div className="ToggleButton">
+                        <input type="hidden" value={false} name={this.state.id} />
                         <input type="button" className="number-off" value={this.state.off_label} onClick={this.setValueFinal} />
 
                     {/* </div> */}
@@ -113,6 +111,7 @@ class ButtonInput extends React.Component {
         } else if (this.state.value === 1) {
             return (
                     <div className="ToggleButton">
+                        <input type="hidden" value={true} name={this.state.id} />
                         <input type="button" className="number-on" value={this.state.on_label} onClick={this.setValueFinal} />
                     </div>
             );
