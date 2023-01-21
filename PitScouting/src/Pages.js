@@ -1,4 +1,4 @@
-import { RadioButtons, NumberInput, ButtonInput } from "./Form";
+import { RadioButtons, NumberInput, ButtonInput, MultiButton } from "./Form";
 import './App.css';
 
 function Page(props) {
@@ -51,34 +51,34 @@ function General(props) {
 
                     <div className="drivetrain">
                         <p className="generalLabel">Drivetrain Type</p>
-                        <input type="button" className="generalButton" value="Tank"/> 
-                        <input type="button" className="generalButton" value="Swerve"/> 
-                        <input type="button" className="generalButton" value="Mecanum"/>
-                        <input type="button" className="generalButton" value="Other"/> 
+                        {/* some kind of input where you can declare the number and titles of all your options in one input*/}
+                        <MultiButton name='erp'/>
+                        <MultiButton />
+                        <MultiButton />
+                        <MultiButton />
                     </div>
 
                     <div className="gamepieces">
                         <p className="generalLabel">Game Piece Capability</p>
-                        <input type="button" className="generalButton" value="Cones"/> 
-                        <input type="button" className="generalButton" value="Cubes"/> 
+                        <ButtonInput on_label='CONES' off_label = 'Cones' /> 
+                        <ButtonInput on_label='CUBES' off_label = 'Cubes' />
                     </div>
 
                     <div className="scoringLocation">
                         <p className="generalLabel">Scoring Location Capability</p>
-                        <input type="button" className="generalButton" value="Low"/> 
-                        <ButtonInput items={['1']} onLabel='Low' offLabel='EEK'/>
-                        <input type="button" className="generalButton" value="Mid"/> 
-                        <input type="button" className="generalButton" value="High"/> 
+                        <ButtonInput on_label='LOW' off_label = 'Low' id='1' value="1"/>
+                        <ButtonInput on_label='MID' off_label = 'Mid' id='2' value="1"/>
+                        <ButtonInput on_label='HIGH' off_label = 'High' id='3' value="1"/>
                     </div>
 
                     <div className="motors">
                         <p className="generalLabel"># of Motors (Tank- on each side)</p>
-                        <NumberInput items={['1']}/>
+                        <NumberInput />
                     </div>
 
                     <div className="batteries">
                         <p className="generalLabel"># of Batteries (total)</p>
-                        <NumberInput items={['1']}/>
+                        <NumberInput />
                     </div>
 
                     <div className="motorType">

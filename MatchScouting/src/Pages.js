@@ -162,7 +162,7 @@ function TeleOp(props) {
             <br></br>
             <br></br>         
             <h1>Charging Station</h1>
-<RadioButtons items={[<strong> Docked </strong>, <strong>Engaged</strong>, <strong>No points</strong>, <strong>Parking</strong>]} />
+<RadioButtons items={['Docked', 'Engaged', 'No points', 'Parking']} />
 </div>
            
             

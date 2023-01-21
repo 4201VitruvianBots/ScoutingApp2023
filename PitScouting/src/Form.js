@@ -1,3 +1,4 @@
+
 import React from "react";
 import './App.css';
 
@@ -113,4 +114,57 @@ class ButtonInput extends React.Component {
     }
 }
 
-export { RadioButtons, NumberInput, ButtonInput };
+class MultiButton extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { id: props.id, off_label: props.off_label, value: 0,  on_label: props.on_label, };
+        this.setValue = this.setValue.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.increaseValue = this.increaseValue.bind(this);
+        this.decreaseValue = this.decreaseValue.bind(this);
+        this.setValueFinal = this.setValueFinal.bind(this);
+    }
+
+    setValue(value) {
+        this.setState({ value: Math.abs(parseInt(value)) });
+    }
+
+    handleChange(event) {
+        this.setValue(event.target.value);
+    }
+
+    increaseValue() {
+        this.setState({ value: this.state.value + 1 });
+    }
+
+    decreaseValue() {
+        this.setState({ value: this.state.value - 1 });
+    }
+    setValueFinal() {
+        if (this.state.value === 0) {
+            this.increaseValue();
+        } else if (this.state.value === 1) {
+            this.decreaseValue();
+        }
+    }
+    render() {
+        if (this.state.value === 0) {
+            return (
+                <div className="ToggleButton">
+                        <ButtonInput on_label='' off_label = 'Tank' />
+                        <ButtonInput on_label='SWERVE' off_label = 'Swerve' />
+                        <ButtonInput on_label='MECANUM' off_label = 'Mecanum' />
+                        <ButtonInput on_label='OTHER' off_label = 'Other' />
+                </div>
+            );
+        } else if (this.state.value === 1) {
+            return (
+                    <div className="ToggleButton">
+                        <input type="button" className="number-on" value={this.state.on_label} onClick={this.setValueFinal} />
+                    </div>
+            );
+        }
+    }
+}
+
+export { RadioButtons, NumberInput, ButtonInput, MultiButton };

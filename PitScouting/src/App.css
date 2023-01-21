@@ -231,3 +231,10 @@
 
 }
 
+.number-off {
+  background-color: teal;
+}
+
+.number-on{
+  background-color: orange;
+}
