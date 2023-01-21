@@ -321,6 +321,7 @@
 }
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <<<<<<< refs/remotes/origin/23-super-scout-input
 button.tablinks{
   font-size:40px;
@@ -328,6 +329,11 @@ button.tablinks{
 =======
 button.tablinks{}
 >>>>>>> SS
+=======
+button.tablinks{
+  font-size:40px;
+}
+>>>>>>> Stashed changes
 =======
 button.tablinks{
   font-size:40px;
