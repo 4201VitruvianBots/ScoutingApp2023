@@ -2,7 +2,6 @@ name: Build all pages
 
 on:
   pull_request:
-    types: ["opened", "reopened", "synchronize"]
     branches: [ "master" ]
 
   workflow_dispatch:
@@ -54,8 +53,8 @@ jobs:
       - run: npm ci
       
       - name: Build app
-          env:
-            CI: false
+        env:
+          CI: false
         run: npm run build
       
       - name: Upload artifact
