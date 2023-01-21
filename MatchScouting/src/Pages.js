@@ -61,8 +61,12 @@ function PreGame(props) {
 
                     <h1><bold>Team Alliance</bold></h1>
                     <div className="align-radio">
-                        <RadioButtons items={['Red 1', 'Red 2', 'Red 3', 'Blue 1', 'Blue 2', 'Blue 3']} name="alliance" />
-                    </div>
+                        <RadioButtons items={['Red 1', 'Red 2', 'Red 3']} name="alliance" />
+                        </div>
+                        <div className="align-radio2">
+                        <RadioButtons items={['Blue 1', 'Blue 2', 'Blue 3']} name="alliance" />
+                         </div>
+                    <br></br>
                     <br></br>
                     <h1><strong>No show robot?</strong></h1>
                     <input type="checkbox" name="showtime"></input>
@@ -94,7 +98,7 @@ function Auto(props) {
                 <br></br>
                 <br></br>
                 <h1>Charging Station</h1>
-                <div className="align-radio">
+                <div className="align-radio3">
                     <RadioButtons items={['Docked', 'Engaged', 'No points']} name="autostation" />
                 </div>
                 <h1>Cones</h1>
@@ -122,7 +126,7 @@ function TeleOp(props) {
 
             <div className="textArea">
                 <h1>Charging Station</h1>
-                <div className="align-radio">
+                <div className="align-radio4">
                     <RadioButtons items={['Docked', 'Engaged', 'No points', 'Parking']} name="telestation" />
                 </div>
                 <h1>Cones</h1>

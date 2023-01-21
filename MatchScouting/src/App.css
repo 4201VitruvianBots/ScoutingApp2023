@@ -294,10 +294,42 @@
  }
 
  .align-radio {
-   display: inline-block;
+  /* display: inline-block;
    text-align: left;
-   list-style-type: none;
+   list-style-type: none; */
+   display: flex;
+   border: none;
+	justify-content: flex-start;
+	margin:auto;
+  text-align: center;
+  width: 34%;
+ }
 
+ .align-radio2 {
+  display: flex;
+  border: none;
+ justify-content: flex-start;
+ margin:auto;
+ text-align: center;
+ width: 38%;
+ }
+ 
+ .align-radio3 {
+  display: flex;
+  border: none;
+ justify-content: flex-start;
+ margin:auto;
+ text-align: center;
+ width: 40%;
+ }
+
+ .align-radio4 {
+  display: flex;
+  border: none;
+ justify-content: flex-start;
+ margin:auto;
+ text-align: center;
+ width: 54%;
  }
 
  .submit-button {
