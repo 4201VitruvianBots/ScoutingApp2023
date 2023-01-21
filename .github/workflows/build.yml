@@ -1,10 +1,6 @@
 name: Build all pages
 
 on:
-  pull_request:
-    types: ["opened", "reopened"]
-    branches: [ "master" ]
-  
   # For testing
   push:
     branches: ["status-checks"]
