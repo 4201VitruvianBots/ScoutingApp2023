@@ -13,7 +13,8 @@ function SignIn(props) {
     return (
         <Page selected={props.selected} className="page" id="sign-in">
         <div>
-            <p className="section-label">Energized</p>
+
+            <p className="section-label">Ener<span class="o">gized</span></p>
 
             <div className="textArea">
                 <input type="text" id="Sname" name="Sname" placeholder="Scouter Name" className="text-input"/>
@@ -35,7 +36,7 @@ function SignIn(props) {
 function PreGame(props) {
     return (
         <Page selected={props.selected} className="page" id="pre-game">
-            <p className="section-label">Pre-Game</p>
+            <p className="section-label">Pre-<span class="o">Game</span></p>
 
 
             <div className="textArea">
@@ -67,7 +68,7 @@ function PreGame(props) {
 function Auto(props) {
     return (
         <Page selected={props.selected} id="auto">
-            <p className="section-label">Auto</p>
+            <p className="section-label">Au<span class="o">to</span></p>
             <div className="textArea">
             <ButtonInput on_label='You have selected that the robot has got the Mobility bonus' off_label = 'Mobility ' />
              {/* <button type="button">Mobility?</button> */}
@@ -109,7 +110,7 @@ function Auto(props) {
 function TeleOp(props) {
     return (
         <Page selected={props.selected} id="tele-op">
-            <p className="section-label">Teleop/Endgame</p>
+            <p className="section-label">Teleop/<span class="o">Endgame</span></p>
 
 
             <div className="textArea">
@@ -142,7 +143,7 @@ function SavePage(props) {
         <Page selected={props.selected} id="save-page">
 
 
-            <p className="section-label">Submit</p>
+            <p className="section-label">Sub<span class="o">mit</span></p>
             <div className="textArea">
                 {/* <label htmlFor="notes" className="item-label">Notes</label> */}
                 <h1>Some things you could comment are:</h1>
