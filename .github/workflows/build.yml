@@ -1,0 +1,62 @@
+name: Build all pages
+
+on:
+  pull_request:
+    types: ["opened", "reopened"]
+    branches: [ "master" ]
+
+  workflow_dispatch:
+
+jobs:
+  build-match-scouting:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./MatchScouting
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
+          cache-dependency-path: MatchScouting/package-lock.json
+      
+      - run: npm ci
+      
+      - name: Build app
+        run: npm run build
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3.1.1
+        with:
+          # Path of the directory containing the static assets.
+          path: MatchScouting/build
+
+  build-pit-scouting:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./PitScouting
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
+          cache-dependency-path: PitScouting/package-lock.json
+      
+      - run: npm ci
+      
+      - name: Build app
+        run: npm run build
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3.1.1
+        with:
+          # Path of the directory containing the static assets.
+          path: PitScouting/build
+
