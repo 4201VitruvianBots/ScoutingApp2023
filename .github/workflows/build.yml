@@ -2,7 +2,7 @@ name: Build all pages
 
 on:
   pull_request:
-    types: ["opened", "reopened", "edited"]
+    types: ["opened", "reopened", "synchronize"]
     branches: [ "master" ]
 
   workflow_dispatch:
