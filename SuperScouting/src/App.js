@@ -73,12 +73,12 @@ class App extends React.Component {
             </main>
         );
     }
-    
+   
 
-    QRcodeGenerator() {
+    // QRcodeGenerator() {
 
     }
-}
+
 
 // function TabButton(props) {
 //     return <button onClick={() => props.onClick(props.tabId)}>{props.children}</button>;
