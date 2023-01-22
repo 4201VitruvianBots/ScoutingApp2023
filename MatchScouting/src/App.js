@@ -1,5 +1,5 @@
 import './App.css';
-import { SignIn, PreGame, Auto, TeleOp, SavePage} from "./Pages";
+import { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation } from "./Pages";
 import React from "react";
 
 class App extends React.Component {
@@ -18,7 +18,11 @@ class App extends React.Component {
     render() {
         return (
             <main>
+                <br></br>
+                <br></br>
                 <p className="page-title">Welcome to Vitruvian Scouting</p>
+                <Navigation selected={this.state.selected === 'navigation' } />
+               
                 {/*
             <div >
                 <TabButton headerButtonsonClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>
