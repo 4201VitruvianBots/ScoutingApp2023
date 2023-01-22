@@ -9,11 +9,25 @@ function Page(props) {
     );
 }
 
+function Navigation(props) {
+    return (
+        <Page selected={props.selected} className="page" id="navigation">
+            <ul>
+                <li><a href="#SignIn">Sign-In</a></li>
+                <li><a href="#Pre">Pre-Game</a></li>
+                <li><a href="#Auto">Auto</a></li>
+                <li><a href="#Tele">Tele-Op</a></li>
+                <li><a href="#Save">Save</a></li>
+            </ul>
+        </Page>
+    );
+}
+
 function SignIn(props) {
     return (
         <Page selected={props.selected} className="page" id="sign-in">
         <div>
-            <p className="section-label">Energized</p>
+            <p className="section-label" id="SignIn">Energized</p>
 
             <div className="textArea">
                 <input type="text" id="Scouter_Name" name="Scouter_Name" placeholder="Scouter Name" className="text-input"/>
@@ -35,23 +49,27 @@ function SignIn(props) {
 function PreGame(props) {
     return (
         <Page selected={props.selected} className="page" id="pre-game">
-            <p className="section-label">Pre-Game</p>
-
+            <p className="section-label" id="Pre">Pre-Game</p>
 
             <div className="textArea">
-                <label className="item-label" htmlFor="Match_Number"><strong>Match Number</strong> </label>
-                <input className="text-input" type="text" id="Match_Number" name="Match_Number" />
+                {/* <label className="item-label" htmlFor="Match_Number"><strong>Match Number</strong> </label> */}
+                <input type="text" id="Match_Number" name="Match_Number" placeholder="Match Number" />
                 <br></br>
                 <br></br>
-                <label className="item-label" htmlFor="Team_Number"><strong>Team Number</strong> </label>
-                <input className="text-input" type="text" id="Team_Number" name="Team_Number" />
+                {/* <label className="item-label" htmlFor="Team_Number"><strong>Team Number</strong> </label> */}
+                <input type="text" id="Team_Number" name="Team_Number" placeholder="Team Number" />
 
                 <div className="textArea">
 
                     <h1><strong>Team Alliance</strong></h1>
                     <div className="align-radio">
-                        <RadioButtons items={['Red 1', 'Red 2', 'Red 3', 'Blue 1', 'Blue 2', 'Blue 3']} name="Team_Alliance" />
-                    </div>
+                        <RadioButtons items={['Red 1', 'Red 2', 'Red 3']} name="Team_Alliance" />
+                        </div>
+                        <br></br>
+                        <div className="align-radio">
+                        <RadioButtons items={['Blue 1', 'Blue 2', 'Blue 3']} name="Team_Alliance" />
+                         </div>
+                    <br></br>
                     <br></br>
                     <h1><strong>No show robot?</strong></h1>
                     <ButtonInput on_label="Robot did not show" off_label="Robot showed" id="Show_Time" />
@@ -66,7 +84,7 @@ function PreGame(props) {
 function Auto(props) {
     return (
         <Page selected={props.selected} id="auto">
-            <p className="section-label">Auto</p>
+            <p className="section-label" id="Auto">Auto</p>
             <div className="textArea">
             <ButtonInput on_label='You have selected that the robot has got the Mobility bonus' off_label = 'Mobility ' id="Mobility" />
              {/* <button type="button">Mobility?</button> */}
@@ -108,8 +126,7 @@ function Auto(props) {
 function TeleOp(props) {
     return (
         <Page selected={props.selected} id="tele-op">
-            <p className="section-label">Teleop/Endgame</p>
-
+            <p className="section-label" id="Tele">Teleop/Endgame</p>
 
             <div className="textArea">
                 <h1>Charging Station</h1>
@@ -141,21 +158,21 @@ function SavePage(props) {
         <Page selected={props.selected} id="save-page">
 
 
-            <p className="section-label">Submit</p>
+            <p className="section-label" id="Save">Submit</p>
             <div className="textArea">
                 {/* <label htmlFor="notes" className="item-label">Notes</label> */}
-                <h1>Some things you could comment are:</h1>
+                {/* <h1>Some things you could comment are:</h1>
                 <div className="bullet-points">
-                    <li>defensive bot</li>
-                    <li>do they play defense</li>
-                    <li>do they play optimistical</li>
-                    <li>thinking of other questions</li>
-                     <li>Can the robot balance with other robots?</li>
-                    <li>Does the robot securely/conesistently control game pieces?</li>
+                    <li className="questions">Placeholder Questions?</li>
+                    <li className="questions">Is it successful?</li>
+                    <li className="questions">Does it move?</li>
+                    <li className="questions">Conesistent?</li>
+                    <li className="questions">Can the robot?</li>
+                    <li className="questions">Does it?</li>
                 </div>
-                <br />
-                
-                <input type="text" id="Comments" name="Comments" placeholder="Comment here" className="text-input" />
+                <br /> */}
+
+                <input type="text" id="Comments" name="Comments" placeholder="Comment here" />
                 {/* <label className="item-label" htmlFor="clear">QR code and clear</label>
                 <input type="submit" className="SAVE" value="Generate QR code"></input>
                 <br />
@@ -166,9 +183,8 @@ function SavePage(props) {
                 {/* <div id="QRCode">{props.QRCode}</div> */}
 
             </div>
-            
+
         </Page>
     );
 }
-
-export { SignIn, PreGame, Auto, TeleOp, SavePage };
+export { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation };

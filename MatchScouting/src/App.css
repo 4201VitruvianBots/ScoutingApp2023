@@ -19,18 +19,21 @@
    font-size: 20px;
    font-style: italic;
    text-align: center;
+   font-family: monospace;
  }
 
  .section-label {
    color: black;
    font-size: 40px;
    font-weight: bold;
+   padding: 0px;
+   margin: 0px;
  }
 
  .item-label,
  .item-label2 {
    color: black;
-   font-size: 30px; 
+   font-size: 30px;
    display: inline-block;
  }
 
@@ -45,11 +48,6 @@
    border-width: 50px;
  }
 
- .text-input{
-  width: 300px; 
-  height: fit-content;
- }
-
  .numberInput {
    border-color: #085f00;
    border-width: 50px;
@@ -60,7 +58,7 @@
    background-color: #ecf2eb;
    min-width: 300px;
    min-height: 100px;
-   padding: 25px;
+   padding: 20px;
    margin: 20px;
  }
 
@@ -147,7 +145,7 @@
  input[type="checkbox"] {
    border-color: var(--accent-3);
    background-color: var(--accent-1);
-   width: 10%;
+   width: 50px;
    height: 20px;
    font-size: 15px;
    display: inline;
@@ -298,24 +296,70 @@
   font-size:25px;
 }
 
-.bullet-points {
-  width:500px;
-  margin:auto;
-  text-align:left;
-  font-size:25px;
+ .bullet-points {
+   width: 400px;
+   margin: auto;
+   text-align: left;
+   font-size: 25px;
+ }
+
+ .align-radio {
+  /* display: inline-block;
+   text-align: left;
+   list-style-type: none; */
+   display: inline-flex;
+	/* justify-content: flex-start;
+	margin:auto;
+  text-align: center;
+  width: 34%; */
+ }
+
+
+ .submit-button {
+   width: 500px;
+   font-size: 50px;
+   margin: 20px;
+ }
+
+ input[type="text"],
+ input::placeholder {
+   width: 500px;
+   height: auto;
+   font-size: 50px;
+ }
+
+ select {
+   width: 500px;
+   height: auto;
+   font-size: 50px;
+ }
+
+ ul {
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   overflow: hidden;
+   background-color: #333;
+ }
+
+ ul {
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
-.align-radio {
-  display: inline-block;
-  text-align: left; 
-  list-style-type: none;
+ li {
+   float: left;
+ }
 
-}
+ li a {
+   display: block;
+   color: white;
+   text-align: center;
+   padding: 14px 16px;
+   text-decoration: none;
+ }
 
-.submit-button {
-  width: 500px;
-  font-size: 100px;
-  margin: 20px; 
-}
-
- 
+ li a:hover {
+   background-color: #111;
+ }
