@@ -20,9 +20,18 @@ def handle_get():
     # Handle GET request
     mycursor.execute("SELECT * FROM matchData")
     rows = mycursor.fetchall()
+
     # Format with column names
     return [dict(zip(columns, row)) for row in rows]
 
+@app.route('/data/team/<int:teamNumber>', methods=['GET'])
+def handle_get2(teamNumber):
+    # Handle GET request
+    mycursor.execute("SELECT * FROM matchData WHERE Team_Number=%s", [teamNumber])
+    rows = mycursor.fetchall()
+
+    # Format with column names
+    return [dict(zip(columns, row)) for row in rows]
 
 @app.route('/data', methods=['POST'])
 def handle_post():
@@ -34,7 +43,7 @@ def handle_post():
     mycursor.execute('INSERT INTO matchData({}) VALUES ({})'.format(
         ', '.join(formData.keys()),
         ', '.join(['%s'] * len(formData))
-    ), tuple([format_data(formData[key], key) for key in formData]))
+    ), [format_data(formData[key], key) for key in formData])
 
     mydb.commit()
     #for i in variable:
