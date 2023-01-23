@@ -18,20 +18,35 @@ app = Flask(__name__)
 @app.route('/data', methods=['GET'])
 def handle_get():
     # Handle GET request
-    mycursor.execute("SELECT * FROM matchData")
-    rows = mycursor.fetchall()
-
-    # Format with column names
-    return [dict(zip(columns, row)) for row in rows]
+    return getRawMatchData()
 
 @app.route('/data/team/<int:teamNumber>', methods=['GET'])
 def handle_get2(teamNumber):
     # Handle GET request
-    mycursor.execute("SELECT * FROM matchData WHERE Team_Number=%s", [teamNumber])
+    return getRawMatchData(teamNumber=teamNumber)
+
+def getRawMatchData(**kwargs):
+    request = "SELECT * FROM matchData"
+    requestInput = []
+    if 'teamNumber' in kwargs:
+        request += " WHERE Team_Number=%s"
+        requestInput.append(kwargs['teamNumber'])
+    if 'matchNumber' in kwargs:
+        request += " WHERE Match_Number=%s"
+        requestInput.append(kwargs['matchNumber'])
+    if 'sortBy' in kwargs:
+        request += " ORDER BY %s"
+        requestInput.append(kwargs['sortBy'])
+    if 'limitTo' in kwargs:
+        request += " LIMIT %s"
+        requestInput.append(kwargs['limitTo'])
+    print(requestInput,request)
+    mycursor.execute(request,requestInput)
     rows = mycursor.fetchall()
 
     # Format with column names
     return [dict(zip(columns, row)) for row in rows]
+
 
 @app.route('/data', methods=['POST'])
 def handle_post():
