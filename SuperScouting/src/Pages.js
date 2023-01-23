@@ -66,34 +66,34 @@ const FoulsDrop = [
     { label: 'Foul (Bumpers)', value: 'Foul0' },
     { label: 'RED CARD Keep it together', value: 'Foul1' },
     { label: 'FOUL (Tall ROBOTS not allowed.)', value: 'Foul2' },
-    { label: 'FOUL ( Don’t overextend yourself )', value: 'Foul3' },
+    { label: 'FOUL ( Don\’t overextend yourself )', value: 'Foul3' },
     { label: 'TECH FOUL if the over-extension scores a GAME PIECE ( Don’t overextend yourself )', value: 'Foul4' },
-    { label: 'FOUL (Opponent’s zone, no extension.)', value: 'Foul5' },
-    { label: 'TECH FOUL (Opponent’s zone, no extension.)', value: 'Foul6' },
-    { label: 'TECH FOUL (Opponent’s zone, no extension.)', value: 'Foul6' },
-    { label: 'FOUL (Don’t extend in multiple directions.)', value: 'Foul7' },
+    { label: 'FOUL (Opponent\’s zone, no extension.)', value: 'Foul5' },
+    { label: 'TECH FOUL (Opponent\’s zone, no extension.)', value: 'Foul6' },
+    { label: 'TECH FOUL (Opponent\’s zone, no extension.)', value: 'Foul6' },
+    { label: 'FOUL (Don\’t extend in multiple directions.)', value: 'Foul7' },
     { label: 'TECH FOUL (if extending in multiple directions scores a GAME PIECE.)', value: 'Foul8' },
     { label: 'RED CARD(If extendingin multiple directions results in the ROBOT blocking all access to a FIELD ELEMENT) .', value: 'Foul9' },
     { label: 'RED CARD(If extendingin multiple directions results in the ROBOT blocking all access to a FIELD ELEMENT) .', value: 'Foul10' },
-    { label: 'FOUL (*Don’t expect to gain by doing others harm).', value: 'Foul11' },
-    { label: 'TECH FOUL ( Don’t expect to gain by doing others harm)', value: 'Foul12' },
-    { label: ' FOUL(*There’s a 5-count on PINS.)', value: 'Foul13' },
+    { label: 'FOUL (*Don\’t expect to gain by doing others harm).', value: 'Foul11' },
+    { label: 'TECH FOUL ( Don\’t expect to gain by doing others harm)', value: 'Foul12' },
+    { label: ' FOUL(*There\’s a 5-count on PINS.)', value: 'Foul13' },
     { label: 'TECH FOUL for every 5 seconds in which the situation is not corrected (There’s a 5-count on PINS) ', value: 'Foul14' },
-    { label: 'TECH FOUL (*Don’t collude with your partners to shut down major parts of game play), plus an additional TECH FOUL for every 5 seconds in which the situation is not corrected ', value: 'Foul15' },
+    { label: 'TECH FOUL (*Don\’t collude with your partners to shut down major parts of game play), plus an additional TECH FOUL for every 5 seconds in which the situation is not corrected ', value: 'Foul15' },
     { label: 'FOUL (*Stay out of other ROBOTS) ', value: 'Foul16' },
-    { label: 'TECH FOUL (*This isn’t combat robotics) ', value: 'Foul17' },
-    { label: ' YELLOW CARD (This isn’t combat robotics) ', value: 'Foul18' },
+    { label: 'TECH FOUL (*This isn\’t combat robotics) ', value: 'Foul17' },
+    { label: ' YELLOW CARD (This isn\’t combat robotics) ', value: 'Foul18' },
     { label: ' TECH FOUL  and RED CARD (If opponent ROBOT is unable to drives) ', value: 'Foul19' },
-    { label: ' TECH FOUL and YELLOW CARD (Don’t tip or entangle) ', value: 'Foul20' },
+    { label: ' TECH FOUL and YELLOW CARD (Don\’t tip or entangle) ', value: 'Foul20' },
     { label: '  If CONTINUOUS or opponent ROBOT is unable to drive,TECH FOUL and RED CARD (Don’t tip or entangle) ', value: 'Foul21' },
     { label: 'FOUL per instance. ( Right of way) ', value: 'Foul22' },
-    { label: 'TECH FOUL per instance.(Don’t climb on each other unless in the COMMUNITY) ', value: 'Foul23' },
+    { label: 'TECH FOUL per instance.(Don\’t climb on each other unless in the COMMUNITY) ', value: 'Foul23' },
     { label: ' If during a MATCH, TECH FOUL (Be careful what you interact with.) ', value: 'Foul24' },
     { label: 'FOUL (Stay on your side in AUTO)  ', value: 'Foul25' },
     { label: 'If contact with an opponent ROBOT, TECH FOUL (Stay on your side in AUTO)  ', value: 'Foul26' },
     { label: 'TECH FOUL per moved GAME PIECE (Do not interfere with opponent GAME PIECES in AUTO) ', value: 'Foul27' },
-    { label: ' FOUL per instance ( Don’t mess with the opponent’s CHARGE STATION.) ', value: 'Foul28' },
-    { label: ' RED CARD for the ALLIANCE (Don’t trick the sensors.) ', value: 'Foul29' },
+    { label: ' FOUL per instance ( Don\’t mess with the opponent’s CHARGE STATION.) ', value: 'Foul28' },
+    { label: ' RED CARD for the ALLIANCE (Don\’t trick the sensors.) ', value: 'Foul29' },
     { label: ' RED CARD (Don’t jam the CHARGE STATION) ', value: 'Foul30' },
     { label: ' FOUL per GAME PIECE (*Keep GAME PIECES in bounds) ', value: 'Foul31' },
     { label: 'TECH FOUL per GAME PIECE (GAME PIECES: use as directed.) ', value: 'Foul32' },
@@ -123,6 +123,7 @@ const FoulsDrop = [
     { label: '  FOUL per GAME PIECE (COACHES, GAME PIECES are off limits)', value: 'Foul56'},
     { label: ' FOUL per GAME PIECES. (GAME PIECES through PORTALS only)', value: 'Foul57'},
     { label: '  FOUL (DRIVE TEAMS, watch your reach)', value: 'Foul58'},
+    { label: '  NO FOULS', value: 'Foul59'},
 
 
 
@@ -139,8 +140,13 @@ function Fouls(props) {
             <p className="section-label">Fouls</p>
 
             <div className="textArea">
-                <ButtonInput on_label='Robot recieved a yellow card' off_label='Yellow Card ' />
+                <ButtonInput on_label='Your robot got Foul (Bumpers)' off_label='Foul (Bumpers) ' />
+                <ButtonInput on_label='Your robot got DISABLED (ROBOTS, stay on the FIELD during the MATCH)' off_label='DISABLED (ROBOTS, stay on the FIELD during the MATCH) ' />
+                <ButtonInput on_label='Your robot got DISABLED(Keep your BUMPERS together.)' off_label='DISABLED(Keep your BUMPERS together.) ' />
+                <ButtonInput on_label='RED CARD (Keep it together)' off_label='RED CARD (Keep it together) ' />
+
                 <ButtonInput on_label='Robot recieved a red card' off_label='Red Card ' />
+                <ButtonInput on_label='Robot recieved a yellow card' off_label='Yellow Card ' />
 
 
                 <div className="textArea">
