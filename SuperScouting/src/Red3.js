@@ -1,6 +1,7 @@
-import { NumberInput, ButtonInput } from "./Form";
+import { RadioButtons, NumberInput, ButtonInput } from "./Form";
 import './App.css';
 import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 
 function Page(props) {
     return (
@@ -30,8 +31,8 @@ function SignIn(props) {
                     <button class="tablinks" onclick="openCity(event, 'Blue 2')">Blue 2</button>
                     <button class="tablinks" onclick="openCity(event, 'Blue 3')">Blue 3</button>
                     <br></br>
-                </div>
-                <p className="section-label">Energized</p>
+                {/* </div> */}
+                {/* <p className="section-label">Energized</p>
                 <div className="textArea">
                     <input type="text" id="Sname" name="Sname" placeholder="Scouter Name" className="text-input" />
                     <br />
@@ -42,7 +43,7 @@ function SignIn(props) {
                     <input type="text" id="Sname" name="Sname" placeholder="Robot Number" className="text-input" />
                     <div class="btn-group">
                         <ButtonInput on_label='You are scouting for Red Allaince' off_label='Red ' />
-                        <ButtonInput on_label='You are scouting for Blue Allaince' off_label='Blue ' />
+                        <ButtonInput on_label='You are scouting for Blue Allaince' off_label='Blue ' /> */}
 
                         {/* <ButtonInput on_label='You are scouting for Red 2' off_label='Red 2 ' />
                         <ButtonInput on_label='You are scouting for Red 3' off_label='Red 3' /> */}
@@ -51,7 +52,7 @@ function SignIn(props) {
                         <ButtonInput on_label='You are scouting for Blue 3' off_label='Blue 3' /> */}
                         {/* <ButtonInput on_label='Data recieved' off_label='Robot(s) not at the match' /> */}
                         {/* <button type="button">Submit</button> */}
-                    </div>
+                    {/* </div> */}
 
 
                     <br />
@@ -147,4 +148,4 @@ function SavePage(props) {
         </Page>
     );
 }
-export { SignIn, SavePage, Fouls };
+export { SignIn, SavePage, Fouls};
