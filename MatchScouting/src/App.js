@@ -32,7 +32,7 @@ class App extends React.Component {
                 <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
             </div>
       */}
-                <form action="http://127.0.0.1:5000/data" method="POST">
+                <form action="http://127.0.0.1:5000/data" method="POST" target="frame" id="myForm" onSubmit={clearForm}>
                     <SignIn selected={this.state.selected === 'sign-in'} />
                     <PreGame selected={this.state.selected === 'pre-game'} />
                     <Auto selected={this.state.selected === 'auto'} />
@@ -41,20 +41,21 @@ class App extends React.Component {
                     <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
                     {/* <input type="submit" className="submit-button"></input> */}
                 </form>
+                <iframe name="frame"></iframe>
 
             </main>
         );
     }
 
-    QRcodeGenerator() {
-
-    }
 }
 
-// function TabButton(props) {
-//     return <button onClick={() => props.onClick(props.tabId)}>{props.children}</button>;
-// }
-
-
+// Test on slower connection in the future vvv
+function clearForm() { 
+    document.getElementById("myForm").submit();
+    setTimeout(function() {
+        document.getElementById("myForm").reset();
+        window.location.href="#SignIn"
+    }, 0)
+} 
 
 export default App;
