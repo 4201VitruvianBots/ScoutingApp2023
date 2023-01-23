@@ -25,7 +25,9 @@ class NumberInput extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.increaseValue = this.increaseValue.bind(this);
         this.decreaseValue = this.decreaseValue.bind(this);
+        addEventListener('reset', () => {this.setState({value: 0})})
     }
+
 
     setValue(value) {
         this.setState({ value: Math.abs(parseInt(value)) });
@@ -73,6 +75,7 @@ class ButtonInput extends React.Component {
         this.increaseValue = this.increaseValue.bind(this);
         this.decreaseValue = this.decreaseValue.bind(this);
         this.setValueFinal = this.setValueFinal.bind(this);
+        addEventListener('reset', () => {this.setState({value: 0})})
     }
 
     setValue(value) {
