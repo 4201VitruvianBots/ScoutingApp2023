@@ -179,7 +179,6 @@ function SavePage(props) {
                 <label className="item-label" htmlFor="continue">Save and continue</label>
                 <input type="reset" className="CLEAR" value="Clear Form" /> */}
                 <input type="submit" className="submit-button"></input>
-
                 {/* <div id="QRCode">{props.QRCode}</div> */}
 
             </div>
@@ -187,4 +186,5 @@ function SavePage(props) {
         </Page>
     );
 }
+
 export { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation };

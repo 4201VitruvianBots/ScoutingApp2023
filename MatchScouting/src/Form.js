@@ -25,7 +25,10 @@ class NumberInput extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.increaseValue = this.increaseValue.bind(this);
         this.decreaseValue = this.decreaseValue.bind(this);
+        // eslint-disable-next-line no-restricted-globals
+        addEventListener('reset', () => {this.setState({value: 0})})
     }
+
 
     setValue(value) {
         this.setState({ value: Math.abs(parseInt(value)) });
@@ -73,6 +76,8 @@ class ButtonInput extends React.Component {
         this.increaseValue = this.increaseValue.bind(this);
         this.decreaseValue = this.decreaseValue.bind(this);
         this.setValueFinal = this.setValueFinal.bind(this);
+        // eslint-disable-next-line no-restricted-globals
+        addEventListener('reset', () => {this.setState({value: 0})})
     }
 
     setValue(value) {
