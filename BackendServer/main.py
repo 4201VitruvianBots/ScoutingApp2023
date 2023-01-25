@@ -20,10 +20,15 @@ def handle_get():
     # Handle GET request
     return getRawMatchData()
 
-@app.route('/data/team/<int:teamNumber>', methods=['GET'])
-def handle_get2(teamNumber):
+@app.route('/data/team/<int:number>', methods=['GET'])
+def handle_get_team(number):
     # Handle GET request
-    return getRawMatchData(teamNumber=teamNumber)
+    return getRawMatchData(teamNumber=number)
+
+@app.route('/data/match/<int:number>', methods=['GET'])
+def handle_get_match(number):
+    # Handle GET request
+    return getRawMatchData(matchNumber=number)
 
 def getRawMatchData(**kwargs):
     request = "SELECT * FROM matchData"
