@@ -86,7 +86,7 @@ function Auto(props) {
         <Page selected={props.selected} id="auto">
             <p className="section-label" id="Auto">Auto</p>
             <div className="textArea">
-            <ButtonInput on_label='You have selected that the robot has got the Mobility bonus' off_label = 'Mobility ' id="Mobility" />
+            <ButtonInput on_label='Mobility Bonus Selected' off_label = 'Mobility ' id="Mobility" />
              {/* <button type="button">Mobility?</button> */}
 
                 {/* <h2>Mobility</h2> */}
