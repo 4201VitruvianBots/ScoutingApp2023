@@ -24,3 +24,20 @@ CREATE TABLE matchData(
 	Tele_Station INT NULL,
 	Comments TEXT NULL
 );
+
+CREATE TABLE pitData(
+	Scouter_Name TEXT NULL,
+	Team_Number INT NULL,
+	Competition TEXT NULL,
+	Team_Name TEXT NULL,
+	DriveTrain INT NULL,
+	Game_Piece INT NULL,
+	Scoring_Location_Capability INT NULL,
+	Numer_Of_Motors INT NULL,
+	Number_Of_Batteries INT NULL,
+	DriveTrain_Motor_Type TEXT NULL,
+	Autos TEXT NULL,
+	Comments TEXT NULL
+);
+
+CREATE TABLE dataAnalysis()

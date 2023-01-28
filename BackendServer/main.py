@@ -15,17 +15,27 @@ mycursor = mydb.cursor()
 
 app = Flask(__name__)
 
-@app.route('/data', methods=['GET'])
+@app.route('/data/matches', methods=['GET'])
 def handle_get():
     # Handle GET request
     return getRawMatchData()
 
-@app.route('/data/team/<int:number>', methods=['GET'])
+@app.route('/data/pits', methods=['GET'])
+def handle_get():
+    request = "SELECT * FROM pitData"
+    mycursor.execute(request)
+    rows = mycursor.fetchall()
+
+    # Format with column names
+    return [dict(zip(columns, row)) for row in rows]
+
+
+@app.route('/data/matches/team/<int:number>', methods=['GET'])
 def handle_get_team(number):
     # Handle GET request
     return getRawMatchData(teamNumber=number)
 
-@app.route('/data/match/<int:number>', methods=['GET'])
+@app.route('/data/matches/match/<int:number>', methods=['GET'])
 def handle_get_match(number):
     # Handle GET request
     return getRawMatchData(matchNumber=number)
@@ -53,7 +63,7 @@ def getRawMatchData(**kwargs):
     return [dict(zip(columns, row)) for row in rows]
 
 
-@app.route('/data', methods=['POST'])
+@app.route('/data/matches', methods=['POST'])
 def handle_post():
     # Handle POST request
     formData = request.form
@@ -70,6 +80,26 @@ def handle_post():
        # print(i)
     # Do something with the data
     return 'Data received'
+
+@app.route('/data/pits', methods=['POST'])
+def handle_post3():
+    # Handle POST request
+    formData = request.form
+    # data = request.get_json()
+
+    # Insert all data into table
+    mycursor.execute('INSERT INTO pitData({}) VALUES ({})'.format(
+        ', '.join(formData.keys()),
+        ', '.join(['%s'] * len(formData))
+    ), [format_data(formData[key], key) for key in formData])   
+
+    mydb.commit()
+    #for i in variable:
+       # print(i)
+    # Do something with the data
+    return 'Data received'
+
+
 
 # Convert data to proper format
 def format_data(string, name):
