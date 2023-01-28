@@ -1,4 +1,4 @@
-import { RadioButtons, NumberInput } from "./Form";
+import { RadioButtons, NumberInput, ButtonInput } from "./Form";
 import './App.css';
 
 function Page(props) {
@@ -40,17 +40,28 @@ function TeamInfo(props) {
         <h2>Team number (sync)</h2>
         <h2>match number (sync?)</h2>
         <p><strong>Score Averages</strong></p>
-        <button className="generalButton">High</button>
+        {/* <button className="generalButton">High</button>
         <button className="generalButton">Mid</button>
-        <button className="generalButton">Low</button>
+        <button className="generalButton">Low</button> */}
+         <ButtonInput off_label="Show High Average?" on_label="(a popup?)" />
+        <ButtonInput off_label="Show Mid Average?" on_label="(a popup?)" />
+        <ButtonInput off_label="Show Low Average?" on_label="(a popup?)" />
         <br></br>
-        <button className="generalButton">Fouls</button>
-        <button className="generalButton">Cooperation</button>
+        <ButtonInput off_label="Show Fouls" on_label="(a popup?)" />
+        <ButtonInput off_label="Cooperation" on_label="(a popup?)" />
+        {/* <button className="generalButton">Fouls</button>
+        <button className="generalButton">Cooperation</button> */}
         <br></br>
-        <button className="generalButton">Cargo Preference</button>
-        <button className="generalButton">Autos Average</button>
+        <ButtonInput off_label="Cargo Preference?" on_label="(a popup?)" />
+        <ButtonInput off_label="Autos Average?" on_label="(a popup?)" />
+        {/* <button className="generalButton">Cargo Preference</button>
+        <button className="generalButton">Autos Average</button> */}
+        
         {/* <input className="text-input" type="text" id="Num" name="Num" placeholder="Team NUMBER"/>
         <input className="text-input" type="text" id="Num" name="Num" placeholder="Team NAME"/> */}
+
+       
+
     </div>
         </Page>
     );
