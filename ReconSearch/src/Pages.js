@@ -49,17 +49,20 @@ function TeamInfo(props) {
         {/* <button className="generalButton">High</button>
         <button className="generalButton">Mid</button>
         <button className="generalButton">Low</button> */}
+        <p>Autos Average</p>
+         <ButtonInput off_label="Show High Average?" on_label="(a popup?)" />
+        <ButtonInput off_label="Show Mid Average?" on_label="(a popup?)" />
+        <ButtonInput off_label="Show Low Average?" on_label="(a popup?)" />
+
+        <p>Teleop Average</p>
          <ButtonInput off_label="Show High Average?" on_label="(a popup?)" />
         <ButtonInput off_label="Show Mid Average?" on_label="(a popup?)" />
         <ButtonInput off_label="Show Low Average?" on_label="(a popup?)" />
         <br></br>
         <ButtonInput off_label="Show Fouls" on_label="(a popup?)" />
-        <ButtonInput off_label="Cooperation" on_label="(a popup?)" />
-        {/* <button className="generalButton">Fouls</button>
-        <button className="generalButton">Cooperation</button> */}
-        <br></br>
         <ButtonInput off_label="Cargo Preference?" on_label="(a popup?)" />
-        <ButtonInput off_label="Autos Average?" on_label="(a popup?)" />
+        <br></br>
+    
         {/* <button className="generalButton">Cargo Preference</button>
         <button className="generalButton">Autos Average</button> */}
 
@@ -79,7 +82,7 @@ function General(props) {
            <p className="section-label">Comments</p>
             <div className="textArea">
                 <div className="gallery">
-                    <strong><p>example comments example commentd fjfngrskgndrtkjgtjbgtdrjbgtrbkgts</p></strong>
+                    <strong><p>info about the effort the team puts in</p></strong>
                     
                     <input type="textbox" placeholder="Type here"></input>
                     <button>submit comment</button>
