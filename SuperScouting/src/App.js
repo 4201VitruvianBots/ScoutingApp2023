@@ -1,5 +1,5 @@
 import './App.css';
-import { SignIn,  Fouls, SavePage } from "./Pages";
+import { SignIn, Fouls, SavePage, RobotData, Red1, Red2, Red3 } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 
@@ -10,7 +10,6 @@ class App extends React.Component {
         this.setSelected = this.setSelected.bind(this);
         this.SignInHandler = this.SignInHandler.bind(this)
         this.SubmitHandler = this.SubmitHandler.bind(this)
-
     }
 
     SignInHandler(e) {
@@ -60,30 +59,18 @@ class App extends React.Component {
                 <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
             </div>
       */}
-                <form action="http://127.0.0.1:5000/data" method="POST">
                     <SignIn selected={this.state.selected === 'sign-in'} />
-                    {/* <PreGame selected={this.state.selected === 'pre-game'} /> */}
-                    <Fouls selected={this.state.selected === 'Fouls'} />
-                     {/* <TeleOp selected={this.state.selected === 'tele-op'} />  */}
+                    <RobotData selected={this.state.selected === 'robot 1'} />
+                    <Red1 selected={this.state.selected === 'red 1'} />
+                    <Red2 selected={this.state.selected === 'red 2'} />
+                    <Red3 selected={this.state.selected === 'red 3'} />
 
-                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
-                    {/* <input type="submit" className="submit-button"></input> */}
-                </form>
-
+                    {/* <RobotData selected={this.state.selected === 'robot 2'} />
+                    <RobotData selected={this.state.selected === 'robot 3'} /> */}
             </main>
         );
     }
-   
 
-    // QRcodeGenerator() {
-
-    }
-
-
-// function TabButton(props) {
-//     return <button onClick={() => props.onClick(props.tabId)}>{props.children}</button>;
-// }
-
-
+}
 
 export default App;

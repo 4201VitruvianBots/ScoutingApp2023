@@ -11,7 +11,6 @@ function Page(props) {
     );
 }
 
-
 function SignIn(props) {
     return (
         <Page selected={props.selected} className="page" id="sign-in">
@@ -31,33 +30,7 @@ function SignIn(props) {
                     <button class="tablinks" onclick="openCity(event, 'Blue 2')">Blue 2</button>
                     <button class="tablinks" onclick="openCity(event, 'Blue 3')">Blue 3</button>
                     <br></br>
-                {/* </div> */}
-                {/* <p className="section-label">Energized</p>
-                <div className="textArea">
-                    <input type="text" id="Sname" name="Sname" placeholder="Scouter Name" className="text-input" />
                     <br />
-                    <input type="text" id="Sname" name="Sname" placeholder="Event Name" className="text-input" />
-                    <br></br>
-                    <input type="text" id="Sname" name="Sname" placeholder="Match Number" className="text-input" />
-                    <br></br>
-                    <input type="text" id="Sname" name="Sname" placeholder="Robot Number" className="text-input" />
-                    <div class="btn-group">
-                        <ButtonInput on_label='You are scouting for Red Allaince' off_label='Red ' />
-                        <ButtonInput on_label='You are scouting for Blue Allaince' off_label='Blue ' /> */}
-
-                        {/* <ButtonInput on_label='You are scouting for Red 2' off_label='Red 2 ' />
-                        <ButtonInput on_label='You are scouting for Red 3' off_label='Red 3' /> */}
-                        {/* <ButtonInput on_label='You are scouting for Blue 1' off_label='Blue 1' />
-                        <ButtonInput on_label='You are scouting for Blue 2' off_label='Blue 2 ' />
-                        <ButtonInput on_label='You are scouting for Blue 3' off_label='Blue 3' /> */}
-                        {/* <ButtonInput on_label='Data recieved' off_label='Robot(s) not at the match' /> */}
-                        {/* <button type="button">Submit</button> */}
-                    {/* </div> */}
-
-
-                    <br />
-                    {/* <br />
-                </select> */}
                 </div>
             </div>
         </Page>
@@ -72,17 +45,13 @@ const FoulsDrop = [
     { label: 'FOUL (Opponent’s zone, no extension.)', value: 'Foul6' },
 ];
  
-
 function Fouls(props) {
     return (
         <Page selected={props.selected} className="page" id="Fouls">
             <p className="section-label">Fouls</p>
-
             <div className="textArea">
                 <ButtonInput on_label='Robot recieved a yellow card' off_label='Yellow Card ' />
                 <ButtonInput on_label='Robot recieved a red card' off_label='Red Card ' />
-
-
                 <div className="textArea">
                     <h1>Fouls</h1>
                     <NumberInput items={['1']} id="autoconehigh" />
@@ -94,9 +63,7 @@ function Fouls(props) {
                     <NumberInput items={['1']} id="autoconelow" />
                     <br></br>
                     {/* //ButtonInput for red and yellow card */}
-
                 </div>
-                
             </div>
             <Select
             isMulti
@@ -104,21 +71,13 @@ function Fouls(props) {
                 onChange={opt => console.log(opt)}
             />
         </Page>
-
     );
 }
-
-
-
-
 function SavePage(props) {
     return (
         <Page selected={props.selected} id="save-page">
-
-
             <p className="section-label">Submit</p>
             <div className="textArea">
-                {/* <label htmlFor="notes" className="item-label">Notes</label> */}
                 <h1>Some things you could comment are:</h1>
                 <div className="bullet-points">
                     <li>defensive bot</li>
@@ -129,7 +88,6 @@ function SavePage(props) {
                     <li>Does the robot securely/conesistently control game pieces?</li>
                 </div>
                 <br />
-
                 <input type="text" id="notes" name="notes" placeholder="Comment here" className="text-input" />
                 {/* <label className="item-label" htmlFor="clear">QR code and clear</label>
                 <input type="submit" className="SAVE" value="Generate QR code"></input>
@@ -137,14 +95,8 @@ function SavePage(props) {
                 <label className="item-label" htmlFor="continue">Save and continue</label>
                 <input type="reset" className="CLEAR" value="Clear Form" /> */}
                 <input type="submit" className="submit-button"></input>
-
                 {/* <div id="QRCode">{props.QRCode}</div> */}
-
             </div>
-
-
-                 
-          
         </Page>
     );
 }

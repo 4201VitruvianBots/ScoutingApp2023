@@ -11,7 +11,6 @@ function Page(props) {
     );
 }
 
-
 function SignIn(props) {
     return (
         <Page selected={props.selected} className="page" id="sign-in">
@@ -31,8 +30,8 @@ function SignIn(props) {
                     <button class="tablinks" onclick="openCity(event, 'Blue 2')">Blue 2</button>
                     <button class="tablinks" onclick="openCity(event, 'Blue 3')">Blue 3</button>
                     <br></br>
-                {/* </div> */}
-                {/* <p className="section-label">Energized</p>
+                    {/* </div> */}
+                    {/* <p className="section-label">Energized</p>
                 <div className="textArea">
                     <input type="text" id="Sname" name="Sname" placeholder="Scouter Name" className="text-input" />
                     <br />
@@ -45,13 +44,13 @@ function SignIn(props) {
                         <ButtonInput on_label='You are scouting for Red Allaince' off_label='Red ' />
                         <ButtonInput on_label='You are scouting for Blue Allaince' off_label='Blue ' /> */}
 
-                        {/* <ButtonInput on_label='You are scouting for Red 2' off_label='Red 2 ' />
+                    {/* <ButtonInput on_label='You are scouting for Red 2' off_label='Red 2 ' />
                         <ButtonInput on_label='You are scouting for Red 3' off_label='Red 3' /> */}
-                        {/* <ButtonInput on_label='You are scouting for Blue 1' off_label='Blue 1' />
+                    {/* <ButtonInput on_label='You are scouting for Blue 1' off_label='Blue 1' />
                         <ButtonInput on_label='You are scouting for Blue 2' off_label='Blue 2 ' />
                         <ButtonInput on_label='You are scouting for Blue 3' off_label='Blue 3' /> */}
-                        {/* <ButtonInput on_label='Data recieved' off_label='Robot(s) not at the match' /> */}
-                        {/* <button type="button">Submit</button> */}
+                    {/* <ButtonInput on_label='Data recieved' off_label='Robot(s) not at the match' /> */}
+                    {/* <button type="button">Submit</button> */}
                     {/* </div> */}
 
 
@@ -71,7 +70,7 @@ const FoulsDrop = [
     { label: 'TECH FOUL if the over-extension scores a GAME PIECE ( Don’t overextend yourself )', value: 'Foul3' },
     { label: 'FOUL (Opponent’s zone, no extension.)', value: 'Foul6' },
 ];
- 
+
 
 function Fouls(props) {
     return (
@@ -96,10 +95,10 @@ function Fouls(props) {
                     {/* //ButtonInput for red and yellow card */}
 
                 </div>
-                
+
             </div>
             <Select
-            isMulti
+                isMulti
                 options={FoulsDrop}
                 onChange={opt => console.log(opt)}
             />
@@ -143,9 +142,9 @@ function SavePage(props) {
             </div>
 
 
-                 
-          
+
+
         </Page>
     );
 }
-export { SignIn, SavePage, Fouls};
+export { SignIn, SavePage, Fouls };
