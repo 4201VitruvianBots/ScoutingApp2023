@@ -17,6 +17,7 @@ function SignIn(props) {
             <p><em>Is that the roof?!</em></p>
 
             <input type="text" placeholder="Enter Team Name or Number" className="searchbar"></input>
+            <button>Submit</button>
             {/* <form onSubmit={props.onSubmit} action="#">
                 <div className="textArea">
                 
@@ -137,9 +138,9 @@ function Photos(props) {
         <Page selected={props.selected} id="photos">
             <p className="section-label">Photos</p>
              <div className="textArea">
-             <div className="textArea">
+             {/* <div className="textArea">
             <input type="submit" className="submit-button"></input>
-            </div>
+            </div> */}
             </div>
         </Page>
     );
