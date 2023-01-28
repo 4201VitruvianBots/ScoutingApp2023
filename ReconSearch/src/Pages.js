@@ -13,9 +13,11 @@ function Page(props) {
 function SignIn(props) {
     return (
         <div>
-            <p className="section-label">Pit Scouting</p>
-            <form onSubmit={props.onSubmit} action="#">
+            <p className="section-label">Team LOOK UP!</p>
+            <p><em>Is that the roof?!</em></p>
+            {/* <form onSubmit={props.onSubmit} action="#">
                 <div className="textArea">
+                
                     <input type="text" id="Sname" name="Sname" placeholder="Scouter Name"/>
                     <label className="item-label" htmlFor="Ename"><strong>Event Name</strong> </label>
                     <select name="Ename" id="Ename" defaultValue="Choose">
@@ -25,7 +27,7 @@ function SignIn(props) {
                     <input type="submit" className="SAVE" value="Sign In"/> 
                 </div>
 
-            </form>
+            </form> */}
         </div>
     );
 }
@@ -35,8 +37,20 @@ function TeamInfo(props) {
         <Page selected={props.selected} className="page" id="teaminfo">
             <p className="section-label">Team Info</p>
     <div className="textArea">
-        <input className="text-input" type="text" id="Num" name="Num" placeholder="Team NUMBER"/>
-        <input className="text-input" type="text" id="Num" name="Num" placeholder="Team NAME"/>
+        <h2>Team number (sync)</h2>
+        <h2>match number (sync?)</h2>
+        <p><strong>Score Averages</strong></p>
+        <button className="generalButton">High</button>
+        <button className="generalButton">Mid</button>
+        <button className="generalButton">Low</button>
+        <br></br>
+        <button className="generalButton">Fouls</button>
+        <button className="generalButton">Cooperation</button>
+        <br></br>
+        <button className="generalButton">Cargo Preference</button>
+        <button className="generalButton">Autos Average</button>
+        {/* <input className="text-input" type="text" id="Num" name="Num" placeholder="Team NUMBER"/>
+        <input className="text-input" type="text" id="Num" name="Num" placeholder="Team NAME"/> */}
     </div>
         </Page>
     );
@@ -44,53 +58,54 @@ function TeamInfo(props) {
 
 function General(props) {
     return (
-        <Page selected={props.selected} id="general">
-           <p className="section-label">General</p>
+        <Page selected={props.selected} id="comments">
+           <p className="section-label">Comments</p>
             <div className="textArea">
                 <div className="gallery">
+                    <input type="textbox" placeholder="Type here"></input>
 
-                    <div className="drivetrain">
+                    {/* <div className="green-block">
                         <p className="generalLabel">Drivetrain Type</p>
                         <input type="button" className="generalButton" value="Tank"/> 
                         <input type="button" className="generalButton" value="Swerve"/> 
                         <input type="button" className="generalButton" value="Mecanum"/>
                         <input type="button" className="generalButton" value="Other"/> 
-                    </div>
+                    </div> */}
 
-                    <div className="gamepieces">
+                    {/* <div className="green-block">
                         <p className="generalLabel">Game Piece Capability</p>
                         <input type="button" className="generalButton" value="Cones"/> 
                         <input type="button" className="generalButton" value="Cubes"/> 
-                    </div>
+                    </div> */}
 
-                    <div className="scoringLocation">
+                    {/* <div className="green-block">
                         <p className="generalLabel">Scoring Location Capability</p>
                         <input type="button" className="generalButton" value="Low"/> 
                         <input type="button" className="generalButton" value="Mid"/> 
                         <input type="button" className="generalButton" value="High"/> 
-                    </div>
+                    </div> */}
 
-                    <div className="motors">
+                    {/* <div className="motors">
                         <p className="generalLabel"># of Motors (Tank- on each side)</p>
                         <NumberInput items={['1']}/>
-                    </div>
+                    </div> */}
 
-                    <div className="batteries">
+                    {/* <div className="batteries">
                         <p className="generalLabel"># of Batteries (total)</p>
                         <NumberInput items={['1']}/>
-                    </div>
+                    </div> */}
 
-                    <div className="motorType">
+                    {/* <div className="motorType">
                         <input type="text" placeholder="Drivetrain Motor Type"></input>
-                    </div>
+                    </div> */}
 
-                    <div className="autos">
+                    {/* <div className="autos">
                     <input type="text" placeholder="Autos (# and type)"></input>
-                    </div>
+                    </div> */}
 
-                    <div className="workingOn">
+                    {/* <div className="workingOn">
                     <input type="text" placeholder="Things they are working on"></input>
-                    </div>
+                    </div> */}
 
                 </div>
            </div>

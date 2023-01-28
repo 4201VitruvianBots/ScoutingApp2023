@@ -48,7 +48,7 @@ class App extends React.Component {
     render() {
       return (
         <main>
-            <p className="page-title">Welcome to Vitruvian Scouting</p>
+            {/* <p className="page-title">Is that the roof?!</p> */}
             {this.state.signedIn || <SignIn onSubmit={this.SignInHandler}/>}
             {/*
             <div >

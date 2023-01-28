@@ -1,15 +1,15 @@
  :root {
-   --accent-1: white;
+   /* --accent-1: white; */
    --accent-4: #003800;
    /* --background-1: linear-gradient(180, #58a163, #ffffff);  */
-   --background-1: #58a163;
+   --background-1: #f3f3f3ff;
    --accent-default: var(--accent-3);
    --bg-color: var(--background-1);
    text-align: center;
  }
 
  .page-title {
-   color: white;
+   color: black;
    font-size: 25px;
    font-style: italic;
    font-weight: 300;
@@ -56,7 +56,7 @@
  }
  
  .textArea{
-   background-color: #ecf2eb;
+   background-color: #b6d7a8ff;
    min-width: 300px;
    min-height: 100px;
    padding: 25px;
@@ -190,7 +190,7 @@
   padding: 10px 0;
 }
 
-.drivetrain, .gamepieces, .scoringLocation, .motors, .batteries, .motorType, .autos, .workingOn{
+.green-block, .motors, .batteries, .motorType, .autos, .workingOn{
   background-color: var(--background-1);
   border: 2px solid #58a16383;
   box-sizing: border-box;
@@ -213,15 +213,21 @@
 }
 
 .generalButton {
-  display: inline-block;
   width: fit-content;
   height: 20%;
   font-size: 20px;
   margin: 0 auto;
   margin-bottom: 10px;
-  border: 3px solid teal;
   display: block;
   padding: 10px;
+  display:inline-flex;
+  /* display:inline-block;
+  cursor: default;
+  appearance: auto;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 10px; */
+  border: 3px solid #6aa84fff;
 } 
 
 .generalButton:focus{
