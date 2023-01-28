@@ -367,3 +367,8 @@
  iframe {
    display: none;
  }
+
+ .ToggleButton {
+   margin: auto;
+   width: 250px;
+ }
