@@ -15,6 +15,8 @@ function SignIn(props) {
         <div>
             <p className="section-label">Team LOOK UP!</p>
             <p><em>Is that the roof?!</em></p>
+
+            <input type="text" placeholder="Enter Team Name or Number" className="searchbar"></input>
             {/* <form onSubmit={props.onSubmit} action="#">
                 <div className="textArea">
                 
@@ -37,8 +39,11 @@ function TeamInfo(props) {
         <Page selected={props.selected} className="page" id="teaminfo">
             <p className="section-label">Team Info</p>
     <div className="textArea">
-        <h2>Team number (sync)</h2>
-        <h2>match number (sync?)</h2>
+        <div className="">        
+              <h2>Team number (sync)</h2>
+              <h2>match number (sync?)</h2>
+        </div>
+       
         <p><strong>Score Averages</strong></p>
         {/* <button className="generalButton">High</button>
         <button className="generalButton">Mid</button>
@@ -56,7 +61,7 @@ function TeamInfo(props) {
         <ButtonInput off_label="Autos Average?" on_label="(a popup?)" />
         {/* <button className="generalButton">Cargo Preference</button>
         <button className="generalButton">Autos Average</button> */}
-        
+
         {/* <input className="text-input" type="text" id="Num" name="Num" placeholder="Team NUMBER"/>
         <input className="text-input" type="text" id="Num" name="Num" placeholder="Team NAME"/> */}
 
@@ -73,7 +78,10 @@ function General(props) {
            <p className="section-label">Comments</p>
             <div className="textArea">
                 <div className="gallery">
+                    <strong><p>example comments example commentd fjfngrskgndrtkjgtjbgtdrjbgtrbkgts</p></strong>
+                    
                     <input type="textbox" placeholder="Type here"></input>
+                    <button>submit comment</button>
 
                     {/* <div className="green-block">
                         <p className="generalLabel">Drivetrain Type</p>
@@ -129,6 +137,9 @@ function Photos(props) {
         <Page selected={props.selected} id="photos">
             <p className="section-label">Photos</p>
              <div className="textArea">
+             <div className="textArea">
+            <input type="submit" className="submit-button"></input>
+            </div>
             </div>
         </Page>
     );
@@ -137,8 +148,11 @@ function Photos(props) {
 function SavePage(props) {
     return (
         <Page selected={props.selected} id="save-page">
+             {/* <p className="section-label" id="Save">Submit</p> */}
+           
             {/* <br></br>
             <br></br>
+            
           
             <p className="section-label">Save Page</p>
             <div className="areaSaP">
