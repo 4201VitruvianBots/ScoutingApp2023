@@ -42,7 +42,6 @@ function TeamInfo(props) {
     <div className="textArea">
         <div className="">        
               <h2>Team number (sync)</h2>
-              <h2>match number (sync?)</h2>
         </div>
        
         <p><strong>Score Averages</strong></p>
@@ -60,8 +59,9 @@ function TeamInfo(props) {
         <ButtonInput off_label="Show Low Average?" on_label="(a popup?)" />
         <br></br>
         <ButtonInput off_label="Show Fouls" on_label="(a popup?)" />
-        <ButtonInput off_label="Cargo Preference?" on_label="(a popup?)" />
-        <br></br>
+        <p>Cargo Abilities</p>
+        <p>Cargo Preference</p>
+
     
         {/* <button className="generalButton">Cargo Preference</button>
         <button className="generalButton">Autos Average</button> */}
