@@ -53,11 +53,11 @@ function PreGame(props) {
 
             <div className="textArea">
                 {/* <label className="item-label" htmlFor="Match_Number"><strong>Match Number</strong> </label> */}
-                <input type="text" id="Match_Number" name="Match_Number" placeholder="Match Number" />
+                <input type="number" id="Match_Number" name="Match_Number" placeholder="Match Number" />
                 <br></br>
                 <br></br>
                 {/* <label className="item-label" htmlFor="Team_Number"><strong>Team Number</strong> </label> */}
-                <input type="text" id="Team_Number" name="Team_Number" placeholder="Team Number" />
+                <input type="number" id="Team_Number" name="Team_Number" placeholder="Team Number" />
 
                 <div className="textArea">
 
