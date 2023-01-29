@@ -126,7 +126,33 @@ function Auto(props) {
 function TeleOp(props) {
     return (
         <Page selected={props.selected} id="tele-op">
-            <p className="section-label" id="Tele">Teleop/Endgame</p>
+            <p className="section-label">Teleop/Endgame</p>
+
+             <div className="textArea">
+
+             <h1>Cones</h1>
+           <h2>High</h2>
+            <NumberInput items={['1']}/>  
+            <h2>Mid</h2>  
+            {/* <br></br> */}
+            <NumberInput items={['1']}/>   
+            <h2>Low</h2>        
+            {/* <br></br> */}
+            <NumberInput items={['1']}/>           
+            <br></br>
+            <h1>Cubes</h1>
+            <h2>High</h2>
+            <NumberInput items={['1']}/>    
+            <h2>Mid</h2>  
+            <NumberInput items={['1']}/>           
+            <h2>Low</h2>  
+            <NumberInput items={['1']}/>
+            <br></br>
+            <br></br>         
+            <h1>Charging Station</h1>
+<RadioButtons items={['Docked', 'Engaged', 'No points', 'Parking']} />
+</div>
+
 
             <div className="textArea">
                 <h1>Charging Station</h1>
