@@ -1,136 +1,124 @@
-import { RadioButtons, NumberInput } from "./Form";
+import { RadioButtons, NumberInput, ButtonInput} from "./Form";
 import './App.css';
-
 
 function Page(props) {
     return (
         <div className={props.selected ? 'page selected' : 'page'} id={props.id}>
             {props.children}
         </div>
-        
     );
 }
 
+function Navigation(props) {
+    return (
+        <Page selected={props.selected} className="page" id="navigation">
+            <ul>
+                <li><a href="#SignIn">Sign-In</a></li>
+                <li><a href="#Pre">Pre-Game</a></li>
+                <li><a href="#Auto">Auto</a></li>
+                <li><a href="#Tele">Tele-Op</a></li>
+                <li><a href="#Save">Save</a></li>
+            </ul>
+        </Page>
+    );
+}
 
 function SignIn(props) {
     return (
+        <Page selected={props.selected} className="page" id="sign-in">
         <div>
-            <p className="section-label">Energized</p>
-            <form onSubmit={props.onSubmit} action="#">
-                <div className="textArea">
-                    
-                    <input type="text" id="Sname" name="Sname" placeholder="Scouter Name"/>
-                    <br />
-                    <label className="item-label" htmlFor="Ename"><strong>Event Name</strong> </label>
-                    <br />
-                    <br />
-                    <select name="Ename" id="Ename" defaultValue="Choose">
-                        <option value="Choose" className="Placeholder" disabled>Choose Event</option>
-                        <option value="BeachBlitz">Port Hueneme</option>
-                    </select>
-                    <input type="submit" className="SAVE" value="Sign In"/>
-                </div>
-                <div id="London" class="tabcontent">
-  <h1>Sign in</h1>
-  <p>Sign in.</p>
-</div>
+            <p className="section-label" id="SignIn">Energized</p>
 
-<div id="Sign in" class="tabcontent">
-  <h1>Sign in</h1>
-  <p>Sign in</p>
-</div>
-
-<div id="Sign In" class="tabcontent">
-  <h1>  Sign in</h1>
-</div>
-
-<div id="Oslo" class="tabcontent">
-  <h1>Oslo</h1>
-  <p>Oslo is the capital of Norway.</p>
-</div>
-
-<button class="tablink" onclick="openCity('Sign in', this, 'red')" id="defaultOpen">Sign In</button>
-<button class="tablink" onclick="openCity('Pre-Game', this, 'green')">Pre-Game</button>
-<button class="tablink" onclick="openCity('Tokyo', this, 'blue')">Auto</button>
-<button class="tablink" onclick="openCity('Telop/Endgame', this, 'orange')">Teleop/Endgame</button>
-            </form>
+            <div className="textArea">
+                <input type="text" id="Scouter_Name" name="Scouter_Name" placeholder="Scouter Name" className="text-input"/>
+                <br />
+                <label className="item-label" htmlFor="Competition"><strong>Event Name</strong> </label>
+                <br />
+                <br />
+                <select name="Competition" id="Competition" defaultValue="Choose">
+                    <option value="Choose" className="Placeholder" disabled>Choose Event</option>
+                    <option value="Hueneme">Port Hueneme</option>
+                </select>
+                {/* <input type="submit" className="SAVE" value="Sign In" /> */}
+            </div>
         </div>
+        </Page>
     );
 }
 
 function PreGame(props) {
     return (
         <Page selected={props.selected} className="page" id="pre-game">
-            <p className="section-label">Pre-Game</p>
-     
-    <div className="textArea">
-    <label className="item-label" htmlFor="Num"><strong>Math Number</strong> </label> 
-    <input className="text-input" type="text" id="Num" name="Num" />
+            <p className="section-label" id="Pre">Pre-Game</p>
 
-    <br></br>
-<br></br>
-        <label className="item-label" htmlFor="Num"><strong>Team Number</strong> </label>
-        <input className="text-input" type="text" id="Num" name="Num" />
-        <br />
-        <div className="textArea">
+            <div className="textArea">
+                {/* <label className="item-label" htmlFor="Match_Number"><strong>Match Number</strong> </label> */}
+                <input type="text" id="Match_Number" name="Match_Number" placeholder="Match Number" />
+                <br></br>
+                <br></br>
+                {/* <label className="item-label" htmlFor="Team_Number"><strong>Team Number</strong> </label> */}
+                <input type="text" id="Team_Number" name="Team_Number" placeholder="Team Number" />
 
-        <h1><bold>Team Alliance</bold></h1>
-       
-            <RadioButtons items={['Red 1', 'Red 2', 'Red 3', 'Blue 1', 'Blue 2', 'Blue 3']} />
-    <h1><strong>No show robot?</strong></h1>
-    <RadioButtons items={['Yes', 'No']} />
-    </div> 
-        </div>
+                <div className="textArea">
+
+                    <h1><strong>Team Alliance</strong></h1>
+                    <div className="align-radio">
+                        <RadioButtons items={['Red 1', 'Red 2', 'Red 3']} name="Team_Alliance" />
+                        </div>
+                        <br></br>
+                        <div className="align-radio">
+                        <RadioButtons items={['Blue 1', 'Blue 2', 'Blue 3']} name="Team_Alliance" />
+                         </div>
+                    <br></br>
+                    <br></br>
+                    <h1><strong>No show robot?</strong></h1>
+                    <ButtonInput on_label="Robot did not show" off_label="Robot showed" id="Show_Time" />
+                </div>
+            </div>
         </Page>
-    //Take out Viv
-    //All text black
-    //Make text bigger
-    //black outline in every box
-    //
+
     );
 }
-        
+
+
 function Auto(props) {
     return (
         <Page selected={props.selected} id="auto">
-           <p className="section-label">Auto</p>
+            <p className="section-label" id="Auto">Auto</p>
             <div className="textArea">
-            {/* <button type="button">Mobility?</button> */}
-            
-            {/* <h2>Mobility</h2> */}
-<div class="container">
-  <div class="center">
-    <button>Mobility</button>
-  </div>
-</div>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-           <h1>Cones</h1>
-           <h2>High</h2>
-            <NumberInput items={['1']}/>  
-            <h2>Mid</h2>  
-            {/* <br></br> */}
-            <NumberInput items={['1']}/>   
-            <h2>Low</h2>        
-            {/* <br></br> */}
-            <NumberInput items={['1']}/>           
-            <br></br>
-            <h1>Cubes</h1>
-            <h2>High</h2>
-            <NumberInput items={['1']}/>    
-            <h2>Mid</h2>  
-            <NumberInput items={['1']}/>           
-            <h2>Low</h2>  
-            <NumberInput items={['1']}/>           
-            <br></br>
-            <h1>Charging Station</h1>
-<RadioButtons items={[<strong> Docked </strong>, <strong>Engaged</strong>, <strong>No points</strong>]} />
+            <ButtonInput on_label='Mobility Bonus Selected' off_label = 'Mobility ' id="Mobility" />
+             {/* <button type="button">Mobility?</button> */}
 
-
-           </div>
+                {/* <h2>Mobility</h2> */}
+                {/* <div className="container">
+                    <div className="center">
+                        <button>Mobility</button>
+                    </div>
+                </div> 
+                <br></br>
+                <input type="checkbox" name="mobility"></input>
+                <label htmlFor="mobility" className="label-size">Mobility</label> */}
+                <br></br>
+                <br></br>
+                <br></br>
+                <h1>Charging Station</h1>
+                <div className="align-radio">
+                    <RadioButtons items={['Docked', 'Engaged', 'No points']} name="Auto_Station" />
+                </div>
+                <h1>Cones</h1>
+                <NumberInput id="Auto_Cone_High" />
+                <br></br>
+                <NumberInput id="Auto_Cone_Mid" />
+                <br></br>
+                <NumberInput id="Auto_Cone_Low" />
+                <br></br>
+                <h1>Cubes</h1>
+                <NumberInput id="Auto_Cube_High" />
+                <br></br>
+                <NumberInput id="Auto_Cube_Mid" />
+                <br></br>
+                <NumberInput id="Auto_Cube_Low" />
+            </div>
         </Page>
     );
 }
@@ -164,57 +152,65 @@ function TeleOp(props) {
             <h1>Charging Station</h1>
 <RadioButtons items={['Docked', 'Engaged', 'No points', 'Parking']} />
 </div>
-           
-            
 
-        </Page>
 
-    );
-}
-
-function SavePage(props) {
-    return (
-        <Page selected={props.selected} id="S">
-                    <p className="section-label">Sumbit</p>
-
-                                 <div className="textArea">
-
-           <br></br>
-            <br></br>
-          
-            <div className="areaSaP">
-            <label htmlFor="notes" className="item-label"><strong>Notes</strong></label>
-            <h1>Some things you could comment are</h1>
-            <li>disabled during the game</li>
-            <li>  defensive bot </li>
-            <li> do they play defense  </li>
-            <li>  do they play optimistical  </li>
-            <li> thinking of other questions   </li>
-          
- <li>Can the robot balance with other robots?</li>
-<li>Does the robot securely/conesistently control game pieces?</li> 
- <li>Does the robot securely/conesistently control game pieces?</li>Did the robot gain the mobility bonus?
-                <br/>
-                <br/>
-                <input type="text" id="notes" name="notes" />
-            <label className="item-label" htmlFor="clear">Sumbit and clear</label> 
-                <input type="submit" className="SAVE" value="Generate QR code"></input>
-                <br /> 
-                <label className="item-label" htmlFor="continue">Save and continue</label> 
-                <input type="reset" className="CLEAR" value="Clear Form" />
-                <br/>
-                <br/>
-
-               <div id="QRCode">{props.QRCode}</div>                
-            </div> 
+            <div className="textArea">
+                <h1>Charging Station</h1>
+                <div className="align-radio">
+                    <RadioButtons items={['Docked', 'Engaged', 'No points', 'Parking']} name="Tele_Station" />
+                </div>
+                <h1>Cones</h1>
+                <NumberInput id="Tele_Cone_High" />
+                <br></br>
+                <NumberInput id="Tele_Cone_Mid" />
+                <br></br>
+                <NumberInput id="Tele_Cone_Low" />
+                <br></br>
+                <h1>Cubes</h1>
+                <NumberInput id="Tele_Cube_High" />
+                <br></br>
+                <NumberInput id="Tele_Cube_Mid" />
+                <br></br>
+                <NumberInput id="Tele_Cube_Low" />
             </div>
         </Page>
-        
+    );
+}
+// charge station
+// button for mobility
+function SavePage(props) {
+    return (
+
+        <Page selected={props.selected} id="save-page">
+
+
+            <p className="section-label" id="Save">Submit</p>
+            <div className="textArea">
+                {/* <label htmlFor="notes" className="item-label">Notes</label> */}
+                {/* <h1>Some things you could comment are:</h1>
+                <div className="bullet-points">
+                    <li className="questions">Placeholder Questions?</li>
+                    <li className="questions">Is it successful?</li>
+                    <li className="questions">Does it move?</li>
+                    <li className="questions">Conesistent?</li>
+                    <li className="questions">Can the robot?</li>
+                    <li className="questions">Does it?</li>
+                </div>
+                <br /> */}
+
+                <input type="text" id="Comments" name="Comments" placeholder="Comment here" />
+                {/* <label className="item-label" htmlFor="clear">QR code and clear</label>
+                <input type="submit" className="SAVE" value="Generate QR code"></input>
+                <br />
+                <label className="item-label" htmlFor="continue">Save and continue</label>
+                <input type="reset" className="CLEAR" value="Clear Form" /> */}
+                <input type="submit" className="submit-button"></input>
+                {/* <div id="QRCode">{props.QRCode}</div> */}
+
+            </div>
+
+        </Page>
     );
 }
 
-
- 
-   
-
-export { SignIn, PreGame, Auto, TeleOp,  SavePage };
+export { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation };

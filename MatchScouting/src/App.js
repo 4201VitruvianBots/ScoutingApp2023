@@ -1,56 +1,29 @@
 import './App.css';
-import { SignIn, PreGame, Auto, TeleOp, SavePage } from "./Pages";
+import { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation } from "./Pages";
 import React from "react";
-import QRCode from 'react-qr-code';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {signedIn: false, ScouterName:"", EventName:""};
+        this.state = { signedIn: false, ScouterName: "", EventName: "" };
         this.setSelected = this.setSelected.bind(this);
-        this.SignInHandler = this.SignInHandler.bind(this)
-        this.SubmitHandler = this.SubmitHandler.bind(this)
 
     }
 
-    SignInHandler(e) {
-        e.preventDefault();
-        const answers = e.target.elements;
-        this.setState({signedIn: true, ScouterName: answers.Sname.value, EventName: answers.Ename.value, QRCode: null});
-        return false;
-    }
-
-    SubmitHandler(e) {
-        e.preventDefault();
-        const answers = e.target.elements;
-        this.setState({QRCode: <QRCode value={
-            `${this.state.ScouterName}\t` +
-            `${this.state.EventName}\t` +
-            `${answers.match.value}\t` +
-            `${answers.Num.value}\t` +
-            `${answers.Alliance.value}\t` +
-            `${answers.autoUp.value}\t` +
-            `${answers.autoLow.value}\t` +
-            `${answers.teleopUp.value}\t` +
-            `${answers.teleopLow.value}\t` +
-            `${answers.foul.value}\t` +
-            `${answers.tfoul.value}\t` +
-            `${answers.climbType.value}\t` +
-            `${answers.notes.value}`
-        } size={512} />});
-        return false;
-    }
 
     setSelected(id) {
-        this.setState({selected: id});
+        this.setState({ selected: id });
     }
 
     render() {
-      return (
-        <main>
-            <p className="page-title">Welcome to Vitruvian Scouting</p>
-            {this.state.signedIn || <SignIn onSubmit={this.SignInHandler}/>}
-            {/*
+        return (
+            <main>
+                <br></br>
+                <br></br>
+                <p className="page-title">Welcome to Vitruvian Scouting</p>
+                <Navigation selected={this.state.selected === 'navigation' } />
+               
+                {/*
             <div >
                 <TabButton headerButtonsonClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>
                 <TabButton onClick={this.setSelected} tabId="auto">Auto</TabButton>
@@ -59,27 +32,30 @@ class App extends React.Component {
                 <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
             </div>
       */}
-            <form onSubmit={this.SubmitHandler} action="#"> 
-                <PreGame  selected={this.state.selected === 'pre-game'}/>
-                <Auto selected={this.state.selected === 'auto'} />
-                <TeleOp selected={this.state.selected === 'tele-op'} />
-                
-                <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
-            </form>
-           
-        </main>
+                <form action="http://127.0.0.1:5000/data" method="POST" target="frame" id="myForm" onSubmit={clearForm}>
+                    <SignIn selected={this.state.selected === 'sign-in'} />
+                    <PreGame selected={this.state.selected === 'pre-game'} />
+                    <Auto selected={this.state.selected === 'auto'} />
+                    <TeleOp selected={this.state.selected === 'tele-op'} />
+
+                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
+                    {/* <input type="submit" className="submit-button"></input> */}
+                </form>
+                <iframe name="frame"></iframe>
+
+            </main>
         );
-    }  
-    
-    QRcodeGenerator() {
-        
     }
+
 }
 
-// function TabButton(props) {
-//     return <button onClick={() => props.onClick(props.tabId)}>{props.children}</button>;
-// }
-
-
+// Test on slower connection in the future vvv
+function clearForm() { 
+    document.getElementById("myForm").submit();
+    setTimeout(function() {
+        document.getElementById("myForm").reset();
+        window.location.href="#SignIn"
+    }, 0)
+} 
 
 export default App;
