@@ -13,21 +13,21 @@ function Page(props) {
 function SignIn(props) {
     return (
         <Page selected={props.selected} className="page" id="sign-in">
-        <div>
-            <p className="section-label">Energized</p>
-            <div className="textArea">
-                <input type="text" id="Sname" name="Sname" placeholder="Scouter Name" className="text-input"/>
-                <br />
-                <label className="item-label" htmlFor="Ename"><strong>Event Name</strong> </label>
-                <br />
-                <br />
-                <select name="Ename" id="Ename" defaultValue="Choose">
-                    <option value="Choose" className="Placeholder" disabled>Choose Event</option>
-                    <option value="Hueneme">Port Hueneme</option>
-                </select>
-                {/* <input type="submit" className="SAVE" value="Sign In" /> */}
+            <div>
+                <p className="section-label">Energized</p>
+                <div className="textArea">
+                    <input type="text" id="Sname" name="Sname" placeholder="Scouter Name" className="text-input" />
+                    <br />
+                    <label className="item-label" htmlFor="Ename"><strong>Event Name</strong> </label>
+                    <br />
+                    <br />
+                    <select name="Ename" id="Ename" defaultValue="Choose">
+                        <option value="Choose" className="Placeholder" disabled>Choose Event</option>
+                        <option value="Hueneme">Port Hueneme</option>
+                    </select>
+                    {/* <input type="submit" className="SAVE" value="Sign In" /> */}
+                </div>
             </div>
-        </div>
         </Page>
     );
 }
@@ -146,11 +146,11 @@ function SavePage(props) {
                     <li>do they play defense</li>
                     <li>do they play optimistical</li>
                     <li>thinking of other questions</li>
-                     <li>Can the robot balance with other robots?</li>
+                    <li>Can the robot balance with other robots?</li>
                     <li>Does the robot securely/conesistently control game pieces?</li>
                 </div>
                 <br />
-                
+
                 <input type="text" id="notes" name="notes" placeholder="Comment here" className="text-input" />
                 {/* <label className="item-label" htmlFor="clear">QR code and clear</label>
                 <input type="submit" className="SAVE" value="Generate QR code"></input>
@@ -162,7 +162,7 @@ function SavePage(props) {
                 {/* <div id="QRCode">{props.QRCode}</div> */}
 
             </div>
-            
+
         </Page>
     );
 }

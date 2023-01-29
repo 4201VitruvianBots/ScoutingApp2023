@@ -64,6 +64,7 @@ class App extends React.Component {
                     <Red1 selected={this.state.selected === 'red 1'} />
                     <Red2 selected={this.state.selected === 'red 2'} />
                     <Red3 selected={this.state.selected === 'red 3'} />
+                    <SavePage selected={this.state.selected === 'save-page'} />
 
                     {/* <RobotData selected={this.state.selected === 'robot 2'} />
                     <RobotData selected={this.state.selected === 'robot 3'} /> */}

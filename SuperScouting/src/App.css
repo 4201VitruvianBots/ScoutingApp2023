@@ -5,12 +5,16 @@
    --accent-default: var(--accent-3);
    --bg-color: var(--background-1);
    text-align: center;
+   font-family:cursive;
+
  }
 
  .page-title {
    color: white;
    font-size: 25px;
    font-style: italic;
+   font-family:cursive;
+
  }
 
  ::placeholder {
@@ -86,17 +90,40 @@
    margin: 10px;
    
  } */
+ ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
 
- input[type="button"] {
-   border-color: var(--accent-3);
-   background-color: var(--accent-2);
-   display: block;
-   width: 30%;
-   height: 40px;
-   font-size: 20px;
-   cursor: default;
+ul {
+ position: fixed;
+ top: 0;
+ width: 100%;
+}
 
- }
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+iframe {
+  display: none;
+}
+
 
  select {
    border-color: var(--accent-3);
@@ -228,6 +255,8 @@
    left: 200%;
    -ms-transform: translate(-50%, -50%);
    transform: translate(-50%, -50%);
+   font-family:cursive;
+
  }
 
  .vertical-center {
@@ -236,33 +265,43 @@
    top: 50%;
    -ms-transform: translateY(-50%);
    transform: translateY(-50%);
+   font-family:cursive;
+
  }
 
  .tab {
    overflow: hidden;
    border: 1px solid #ccc;
    background-color: #f1f1f1;
+   font-family:cursive;
+
  }
 
  /* Style the buttons that are used to open the tab content */
  .tab button {
    background-color: inherit;
-   float: left;
+   /* float: left; */
    border: none;
    outline: none;
    cursor: pointer;
    padding: 14px 16px;
    transition: 0.3s;
+   font-family:cursive;
+
  }
 
  /* Change background color of buttons on hover */
  .tab button:hover {
    background-color: #ddd;
+   font-family:cursive;
+
  }
 
  /* Create an active/current tablink class */
  .tab button.active {
    background-color: #ccc;
+   font-family:cursive;
+
  }
 
  /* Style the tab content */
@@ -271,10 +310,14 @@
    padding: 6px 12px;
    border: 1px solid #ccc;
    border-top: none;
+   font-family:cursive;
+
  }
 
 .label-size {
   font-size:25px;
+  font-family:cursive;
+
 }
 
 .bullet-points {
@@ -282,46 +325,92 @@
   margin:auto;
   text-align:left;
   font-size:25px;
+  font-family:cursive;
+
 }
 
 .align-radio {
   display: inline-block;
   text-align: left; 
   list-style-type: none;
+  font-family:cursive;
+
 }
 
 .submit-button {
   width: 500px;
   font-size: 100px;
   margin: 20px; 
+  font-family:cursive;
+
 }
 .number-on{
   color: green;
  margin: 0 auto;
- width:400px;
+ width:600px;
+ font-family:cursive;
+
 }
+
 .number-off{
   color:black;
   margin: 0 auto;
-  width:400px;
+  width:600px;
+  font-family:cursive;
+
 }
 
 button.tablinks{
   font-size:40px;
+  font-family:cursive;
+
 }
 
-button.tablinks{
-  font-size:40px;
-}
-button.tablinks{
-  font-size:40px;
-}
-button.tablinks{
-  font-size:40px;
-}
 .RobotData{
   display: none;
+  font-family:cursive;
+
 }
 .RobotData.selected{
   display: block;
+  font-family:cursive;
+
+}
+
+input[type="button"] {
+  border-color: var(--accent-3);
+  background-color: var(--accent-2);
+  display: block;
+  /* width: 30%; */
+  height: 40px;
+  font-size: 20px;
+  cursor: default;
+  font-family:cursive;
+
+}
+
+.buttonright {
+  display:inline-flex;
+}
+ h1 {
+  display: block;
+  font-size: 2em;
+  font-weight: bold; 
+  display:auto;
+  margin: auto; 
+  text-align:middle;
+  font-family:cursive;
+
+} 
+NumberInput{
+  margin-right: 100px;  
+  }
+
+p.section-label{
+  font-family:cursive;
+
+}
+p.page-title{
+  font-family:cursive;
+
 }
