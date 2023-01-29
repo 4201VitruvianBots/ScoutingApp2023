@@ -72,12 +72,8 @@ class ButtonInput extends React.Component {
         this.increaseValue = this.increaseValue.bind(this);
         this.decreaseValue = this.decreaseValue.bind(this);
         this.setValueFinal = this.setValueFinal.bind(this);
-        // if (props.test1 != null) {
-        //     this.state.test1 = props.test1
-        // }
-    }
-    //put function into here
 
+    }
 
     setValue(value) {
         this.setState({ value: Math.abs(parseInt(value)) });
@@ -112,7 +108,7 @@ class ButtonInput extends React.Component {
         //issue now - id is undefined - because it's running in ButtonInput 
     }
     render() {
-       
+
         if (this.state.value === 0) {
             return (
                 // <div>
@@ -198,23 +194,27 @@ class MultiButton extends React.Component {
 
     generateButtons() {
         let output = [];
-    
-        for (let index in this.state.items) {
-            let component;
 
+        for (let index in this.state.items) {
+
+            let component;
+        
             if (this.state.selected === index) {
-                component = <ButtonInput value={1} on_label={(this.state.items[index][0])} off_label={(this.state.items[index][1])} id={index} test1={this.test1} />
+                component = <input key={index} type="button" className="number-on" value={this.state.items[index][0]} onClick={() => this.test1(index)} />
+                // component = <input type="button" value={1} on_label={(this.state.items[index][0])} off_label={(this.state.items[index][1])} id={index} test1={this.test1} />
                 console.log('Selected button generated');
 
             } else {
-                component = <ButtonInput value={0} on_label={(this.state.items[index][0])} off_label={(this.state.items[index][1])} id={index} test1={this.test1} />
+                // component = <input type="button" value={0} on_label={(this.state.items[index][0])} off_label={(this.state.items[index][1])} id={index} test1={this.test1} />
+                component = <input key={index} type="button" className="number-off" value={this.state.items[index][1]} onClick={() => this.test1(index)} />
                 console.log('Not selected button generated');
             }
 
-            // Has to be 1 first - if not, all of them will begin as selected
-
             output.push(component)
 
+// do we need some reset code? to reset the non-selected buttons?
+
+// Has to be 1 first - if not, all of them will begin as selected
 
             /*
             
@@ -240,8 +240,10 @@ class MultiButton extends React.Component {
         return output;
     }
 
+    //rendering twice from here
+
     render() {
-        console.log('helllo)');
+        
         return (
             <div>
                 <this.generateButtons />
