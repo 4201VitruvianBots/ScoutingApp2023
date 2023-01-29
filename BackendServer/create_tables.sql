@@ -40,4 +40,28 @@ CREATE TABLE pitData(
 	Comments TEXT NULL
 );
 
-CREATE TABLE dataAnalysis()
+CREATE TABLE dataAnalysis(
+	Team INT NOT NULL,
+	Auto_Low_Min FLOAT,
+	Auto_Low_Average FLOAT,
+	Auto_low_Max FLOAT,
+	Auto_Mid_Min FLOAT,
+	Auto_Mid_Average FLOAT,
+	Auto_Mid_Max FLOAT,
+	Auto_High_Min FLOAT,
+	Auto_High_Average FLOAT,
+	Auto_High_Max FLOAT,
+	Tele_Low_Min FLOAT,
+	Tele_Low_Average FLOAT,
+	Tele_Low_Max FLOAT,
+	Tele_Mid_Min FLOAT,
+	Tele_Mid_Average FLOAT,
+	Tele_Mid_Max FLOAT,
+	Tele_High_Min FLOAT,
+	Tele_High_Average FLOAT,
+	Tele_High_Max FLOAT,
+	Average_Fouls FLOAT,
+	Game_Piece INT NULL,
+	Comments TEXT NULL,
+	PRIMARY KEY(Team)
+);

@@ -32,7 +32,7 @@ class App extends React.Component {
                 <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
             </div>
       */}
-                <form action="http://127.0.0.1:5000/data" method="POST">
+                <form action="http://127.0.0.1:5000/data/matches" method="POST">
                     <SignIn selected={this.state.selected === 'sign-in'} />
                     <PreGame selected={this.state.selected === 'pre-game'} />
                     <Auto selected={this.state.selected === 'auto'} />

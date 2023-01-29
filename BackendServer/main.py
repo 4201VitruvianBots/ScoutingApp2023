@@ -21,7 +21,7 @@ def handle_get():
     return getRawMatchData()
 
 @app.route('/data/pits', methods=['GET'])
-def handle_get():
+def handle_get4():
     request = "SELECT * FROM pitData"
     mycursor.execute(request)
     rows = mycursor.fetchall()
@@ -61,13 +61,15 @@ def getRawMatchData(**kwargs):
 
     # Format with column names
     return [dict(zip(columns, row)) for row in rows]
-
+              
+                                                                                                                                                                                                                          
 
 @app.route('/data/matches', methods=['POST'])
 def handle_post():
     # Handle POST request
     formData = request.form
     # data = request.get_json()
+    print(formData)
 
     # Insert all data into table
     mycursor.execute('INSERT INTO matchData({}) VALUES ({})'.format(
@@ -76,6 +78,7 @@ def handle_post():
     ), [format_data(formData[key], key) for key in formData])
 
     mydb.commit()
+    updateAnalysis(formData.get("Team_Number"))
     #for i in variable:
        # print(i)
     # Do something with the data
@@ -99,14 +102,44 @@ def handle_post3():
     # Do something with the data
     return 'Data received'
 
-
+def updateAnalysis(Team_Number):
+    mycursor.execute('UPDATE dataAnalysis SET Auto_Low_Min = (SELECT MIN(Auto_Cone_Low) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
+    mycursor.execute('UPDATE dataAnalysis SET Auto_Low_Average = (SELECT AVG(Auto_Cone_Low) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
+    mycursor.execute('UPDATE dataAnalysis SET Auto_Low_Max = (SELECT MAX(Auto_Cone_Low) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
+    mycursor.execute('UPDATE dataAnalysis SET Auto_Mid_Min = (SELECT MIN(Auto_Cone_Mid) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
+    mycursor.execute('UPDATE dataAnalysis SET Auto_Mid_Average = (SELECT AVG(Auto_Cone_Mid) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
+    mycursor.execute('UPDATE dataAnalysis SET Auto_Mid_Max = (SELECT MAX(Auto_Cone_Mid) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
+    mycursor.execute('UPDATE dataAnalysis SET Auto_High_Min = (SELECT MIN(Auto_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
+    mycursor.execute('UPDATE dataAnalysis SET Auto_High_Average = (SELECT AVG(Auto_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
+    mycursor.execute('UPDATE dataAnalysis SET Auto_High_Max = (SELECT MAX(Auto_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
+    mycursor.execute('UPDATE dataAnalysis SET Tele_Low_Min = (SELECT MIN(Tele_Cone_Low) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
+    mycursor.execute('UPDATE dataAnalysis SET Tele_Low_Average = (SELECT AVG(Tele_Cone_Low) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
+    mycursor.execute('UPDATE dataAnalysis SET Tele_Low_Max = (SELECT MAX(Tele_Cone_Low) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
+    mycursor.execute('UPDATE dataAnalysis SET Tele_Mid_Min = (SELECT MIN(Tele_Cone_Mid) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
+    mycursor.execute('UPDATE dataAnalysis SET Tele_Mid_Average = (SELECT AVG(Tele_Cone_Mid) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
+    mycursor.execute('UPDATE dataAnalysis SET Tele_Mid_Max = (SELECT MAX(Tele_Cone_Mid) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
+    mycursor.execute('UPDATE dataAnalysis SET Tele_High_Min = (SELECT MIN(Tele_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
+    mycursor.execute('UPDATE dataAnalysis SET Tele_High_Average = (SELECT AVG(Tele_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
+    mycursor.execute('UPDATE dataAnalysis SET Tele_High_Max = (SELECT MAX(Tele_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
+    mydb.commit()
+    print('Update Analysis run')
 
 # Convert data to proper format
 def format_data(string, name):
+    print("formatting data")
+    print(string)
+    print(name)
     if name in ('Scouter_Name', 'Competition', 'Comments'):
         return string
     if name in ('Mobility', 'Show_Time'):
         return bool(string)
+
+    len(string)
+    if len(string)==0:
+        print(f"string='{string}',with no spaces is empty")
+        return (0)
+    else:
+        print(f"string='{string}',with no spaces is not empty")
     return int(string)
 
 # Close connections before exit
