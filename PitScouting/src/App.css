@@ -187,7 +187,7 @@
   padding: 10px 0;
 }
 
-.drivetrain, .gamepieces, .scoringLocation, .motors, .batteries, .motorType, .autos, .workingOn{
+.drivetrain, .gamepieces, .scoringLocation, .motors, .batteries, .motorType, .autos, .workingOn, .test2{
   background-color: var(--background-1);
   border: 2px solid darkgreen;
   box-sizing: border-box;
