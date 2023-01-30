@@ -15,7 +15,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./${{ react-dir }}
+        working-directory: ./${{ matrix.react-dir }}
 
     steps:
       - uses: actions/checkout@v3
@@ -23,7 +23,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           cache: 'npm'
-          cache-dependency-path: ${{ react-dir }}/package-lock.json
+          cache-dependency-path: ${{ matrix.react-dir }}/package-lock.json
       
       - run: npm ci
       
@@ -35,6 +35,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3.1.1
         with:
-          name: build-${{ react-dir }}
+          name: build-${{ matrix.react-dir }}
           # Path of the directory containing the static assets.
-          path: ${{ react-dir }}/build
+          path: ${{ matrix.react-dir }}/build
