@@ -43,9 +43,8 @@ class App extends React.Component {
                     {/* <input type="submit" className="submit-button"></input> */}
                 </form>
                 <iframe name="frame" title="frame"></iframe>
-            <iframe g={
 
-            <main>
+            </main>
         );
     }
 
