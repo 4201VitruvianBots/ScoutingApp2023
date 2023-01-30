@@ -45,7 +45,7 @@ class App extends React.Component {
                 <iframe name="frame" title="frame"></iframe>
             <iframe g={
 
-            </main>
+            <main>
         );
     }
 
