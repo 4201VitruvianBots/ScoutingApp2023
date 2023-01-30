@@ -12,6 +12,7 @@ jobs:
     strategy:
       matrix:
         react-dir: [ "MatchScouting", "PitScouting", "SuperScouting" ]
+      fail-fast: false
 
     defaults:
       run:
