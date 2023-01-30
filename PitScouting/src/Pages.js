@@ -1,5 +1,6 @@
-import { RadioButtons, NumberInput } from "./Form";
+import { RadioButtons, NumberInput, ButtonInput, MultiButton } from "./Form";
 import './App.css';
+
 
 function Page(props) {
     return (
@@ -16,13 +17,13 @@ function SignIn(props) {
             <p className="section-label">Pit Scouting</p>
             <form onSubmit={props.onSubmit} action="#">
                 <div className="textArea">
-                    <input type="text" id="Sname" name="Sname" placeholder="Scouter Name"/>
+                    <input type="text" id="Sname" name="Sname" placeholder="Scouter Name" />
                     <label className="item-label" htmlFor="Ename"><strong>Event Name</strong> </label>
                     <select name="Ename" id="Ename" defaultValue="Choose">
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
                         <option value="BeachBlitz">Port Hueneme</option>
                     </select>
-                    <input type="submit" className="SAVE" value="Sign In"/> 
+                    <input type="submit" className="SAVE" value="Sign In" />
                 </div>
 
             </form>
@@ -34,10 +35,11 @@ function TeamInfo(props) {
     return (
         <Page selected={props.selected} className="page" id="teaminfo">
             <p className="section-label">Team Info</p>
-    <div className="textArea">
-        <input className="text-input" type="text" id="Num" name="Num" placeholder="Team NUMBER"/>
-        <input className="text-input" type="text" id="Num" name="Num" placeholder="Team NAME"/>
-    </div>
+            <div className="textArea">
+                <input className="text-input" type="text" id="Num" name="Num" placeholder="Team NUMBER" />
+                <input className="text-input" type="text" id="Num" name="Num" placeholder="Team NAME" />
+                <RadioButtons />
+            </div>
         </Page>
     );
 }
@@ -45,39 +47,54 @@ function TeamInfo(props) {
 function General(props) {
     return (
         <Page selected={props.selected} id="general">
-           <p className="section-label">General</p>
+            <p className="section-label">General</p>
             <div className="textArea">
                 <div className="gallery">
 
                     <div className="drivetrain">
                         <p className="generalLabel">Drivetrain Type</p>
-                        <input type="button" className="generalButton" value="Tank"/> 
-                        <input type="button" className="generalButton" value="Swerve"/> 
-                        <input type="button" className="generalButton" value="Mecanum"/>
-                        <input type="button" className="generalButton" value="Other"/> 
+                        {/* some kind of input where you can declare the number and titles of all your options in one input*/}
+                        {/* <MultiButton />
+                        <MultiButton />
+                        <MultiButton />
+                        <MultiButton /> */}
+                        <MultiButton items={[['Tank', 't'], ['Swerve', 's'], ['Mecanum', 'm'], ['Other', 'o']]} name="autostation" />
                     </div>
+
+                    
+                    {/* <div className="test2" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
+                        <label class="btn btn-outline-primary" for="btnradio1">Radio 1</label>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
+                        <label class="btn btn-outline-primary" for="btnradio2">Radio 2</label>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
+                        <label class="btn btn-outline-primary" for="btnradio3">Radio 3</label>
+                    </div> */}
 
                     <div className="gamepieces">
                         <p className="generalLabel">Game Piece Capability</p>
-                        <input type="button" className="generalButton" value="Cones"/> 
-                        <input type="button" className="generalButton" value="Cubes"/> 
+                        <ButtonInput on_label='CONES' off_label='Cones' />
+                        <ButtonInput on_label='CUBES' off_label='Cubes' />
                     </div>
 
                     <div className="scoringLocation">
                         <p className="generalLabel">Scoring Location Capability</p>
-                        <input type="button" className="generalButton" value="Low"/> 
-                        <input type="button" className="generalButton" value="Mid"/> 
-                        <input type="button" className="generalButton" value="High"/> 
+                        <ButtonInput on_label='LOW' off_label='Low' id='1' value="1" />
+                        <ButtonInput on_label='MID' off_label='Mid' id='2' value="1" />
+                        <ButtonInput on_label='HIGH' off_label='High' id='3' value="1" />
+
                     </div>
 
                     <div className="motors">
                         <p className="generalLabel"># of Motors (Tank- on each side)</p>
-                        <NumberInput items={['1']}/>
+                        <NumberInput />
                     </div>
 
                     <div className="batteries">
                         <p className="generalLabel"># of Batteries (total)</p>
-                        <NumberInput items={['1']}/>
+                        <NumberInput />
                     </div>
 
                     <div className="motorType">
@@ -85,15 +102,17 @@ function General(props) {
                     </div>
 
                     <div className="autos">
-                    <input type="text" placeholder="Autos (# and type)"></input>
+                        <input type="text" placeholder="Autos (# and type)"></input>
                     </div>
 
                     <div className="workingOn">
-                    <input type="text" placeholder="Things they are working on"></input>
+                        <input type="text" placeholder="They're working on..."></input>
                     </div>
 
+
+
                 </div>
-           </div>
+            </div>
         </Page>
     );
 }
@@ -102,7 +121,7 @@ function Photos(props) {
     return (
         <Page selected={props.selected} id="photos">
             <p className="section-label">Photos</p>
-             <div className="textArea">
+            <div className="textArea">
             </div>
         </Page>
     );
@@ -121,17 +140,17 @@ function SavePage(props) {
                 <br/>
                 <input type="text" id="notes" name="notes" />
                 { /* <label className="item-label" htmlFor="clear">QR code and clear</label> */}
-                {/* <input type="submit" className="SAVE" value="Generate QR code"></input>
+            {/* <input type="submit" className="SAVE" value="Generate QR code"></input>
                 <br /> */}
-                {/* } <label className="item-label" htmlFor="continue">Save and continue</label> */}
-                {/* <input type="reset" className="CLEAR" value="Clear Form" /> */}
-                <br/>
-                <br/>
+            {/* } <label className="item-label" htmlFor="continue">Save and continue</label> */}
+            {/* <input type="reset" className="CLEAR" value="Clear Form" /> */}
+            <br />
+            <br />
 
-                {/* <div id="QRCode">{props.QRCode}</div>                
+            {/* <div id="QRCode">{props.QRCode}</div>                
             </div> */}
         </Page>
     );
 }
 
-export { SignIn, TeamInfo, General, Photos,  SavePage };
+export { SignIn, TeamInfo, General, Photos, SavePage };
