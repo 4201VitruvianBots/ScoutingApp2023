@@ -41,7 +41,7 @@ function SignIn(props) {
                 </select>
                 {/* <input type="submit" className="SAVE" value="Sign In" /> */}
             </div>
-        </div>
+            </div>
         </Page>
     );
 }
@@ -189,6 +189,7 @@ function SavePage(props) {
                 {/* <label htmlFor="notes" className="item-label">Notes</label> */}
                 {/* <h1>Some things you could comment are:</h1>
                 <div className="bullet-points">
+
                     <li className="questions">Placeholder Questions?</li>
                     <li className="questions">Is it successful?</li>
                     <li className="questions">Does it move?</li>
