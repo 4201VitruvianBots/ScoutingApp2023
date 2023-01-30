@@ -9,7 +9,9 @@ mydb = mysql.connector.connect(
   database="rawData"
 )
 
-columns = ('Match_Number', 'Team_Number', 'Scouter_Name', 'Team_Alliance', 'Competition', 'Mobility', 'Show_Time', 'Auto_Cube_Low', 'Auto_Cube_Mid', 'Auto_Cube_High', 'Auto_Cone_Low', 'Auto_Cone_Mid', 'Auto_Cone_High', 'Auto_Station', 'Tele_Cube_Low', 'Tele_Cube_Mid', 'Tele_Cube_High', 'Tele_Cone_Low', 'Tele_Cone_Mid', 'Tele_Cone_High', 'Tele_Station', 'Comments')
+matchColumns = ('Match_Number', 'Team_Number', 'Scouter_Name', 'Team_Alliance', 'Competition', 'Mobility', 'Show_Time', 'Auto_Cube_Low', 'Auto_Cube_Mid', 'Auto_Cube_High', 'Auto_Cone_Low', 'Auto_Cone_Mid', 'Auto_Cone_High', 'Auto_Station', 'Tele_Cube_Low', 'Tele_Cube_Mid', 'Tele_Cube_High', 'Tele_Cone_Low', 'Tele_Cone_Mid', 'Tele_Cone_High', 'Tele_Station', 'Comments')
+analysisColumns = ('Team_Number', 'Auto_Low_Min', 'Auto_Low_Average', 'Auto_low_Max', 'Auto_Mid_Min', 'Auto_Mid_Average', 'Auto_Mid_Max', 'Auto_High_Min', 'Auto_High_Average', 'Auto_High_Max', 'Tele_Low_Min', 'Tele_Low_Average', 'Tele_Low_Max', 'Tele_Mid_Min', 'Tele_Mid_Average', 'Tele_Mid_Max', 'Tele_High_Min', 'Tele_High_Average', 'Tele_High_Max', 'Average_Fouls', 'Game_Piece', 'Comments')
+
 
 mycursor = mydb.cursor()
 
@@ -20,6 +22,11 @@ def handle_get():
     # Handle GET request
     return getRawMatchData()
 
+@app.route('/data/analysis', methods=['GET'])
+def handle_get5():
+    # Handle GET request
+    return getdataAnalysis()
+
 @app.route('/data/pits', methods=['GET'])
 def handle_get4():
     request = "SELECT * FROM pitData"
@@ -27,13 +34,22 @@ def handle_get4():
     rows = mycursor.fetchall()
 
     # Format with column names
-    return [dict(zip(columns, row)) for row in rows]
+    return [dict(zip(matchColumns, row)) for row in rows]
 
 
 @app.route('/data/matches/team/<int:number>', methods=['GET'])
 def handle_get_team(number):
     # Handle GET request
     return getRawMatchData(teamNumber=number)
+
+@app.route('/data/analysis/team/<int:number>', methods=['GET'])
+def handle_get_team2(number):
+    # Handle GET request
+    rows = getdataAnalysis(teamNumber=number)
+    if len(rows) == 0:
+        return "robot not found :3", 404
+    return rows[0]
+
 
 @app.route('/data/matches/match/<int:number>', methods=['GET'])
 def handle_get_match(number):
@@ -60,7 +76,7 @@ def getRawMatchData(**kwargs):
     rows = mycursor.fetchall()
 
     # Format with column names
-    return [dict(zip(columns, row)) for row in rows]
+    return [dict(zip(matchColumns, row)) for row in rows]
               
                                                                                                                                                                                                                           
 
@@ -103,26 +119,34 @@ def handle_post3():
     return 'Data received'
 
 def updateAnalysis(Team_Number):
-    mycursor.execute('UPDATE dataAnalysis SET Auto_Low_Min = (SELECT MIN(Auto_Cone_Low) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
-    mycursor.execute('UPDATE dataAnalysis SET Auto_Low_Average = (SELECT AVG(Auto_Cone_Low) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
-    mycursor.execute('UPDATE dataAnalysis SET Auto_Low_Max = (SELECT MAX(Auto_Cone_Low) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
-    mycursor.execute('UPDATE dataAnalysis SET Auto_Mid_Min = (SELECT MIN(Auto_Cone_Mid) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
-    mycursor.execute('UPDATE dataAnalysis SET Auto_Mid_Average = (SELECT AVG(Auto_Cone_Mid) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
-    mycursor.execute('UPDATE dataAnalysis SET Auto_Mid_Max = (SELECT MAX(Auto_Cone_Mid) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
-    mycursor.execute('UPDATE dataAnalysis SET Auto_High_Min = (SELECT MIN(Auto_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
-    mycursor.execute('UPDATE dataAnalysis SET Auto_High_Average = (SELECT AVG(Auto_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
-    mycursor.execute('UPDATE dataAnalysis SET Auto_High_Max = (SELECT MAX(Auto_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
-    mycursor.execute('UPDATE dataAnalysis SET Tele_Low_Min = (SELECT MIN(Tele_Cone_Low) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
-    mycursor.execute('UPDATE dataAnalysis SET Tele_Low_Average = (SELECT AVG(Tele_Cone_Low) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
-    mycursor.execute('UPDATE dataAnalysis SET Tele_Low_Max = (SELECT MAX(Tele_Cone_Low) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
-    mycursor.execute('UPDATE dataAnalysis SET Tele_Mid_Min = (SELECT MIN(Tele_Cone_Mid) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
-    mycursor.execute('UPDATE dataAnalysis SET Tele_Mid_Average = (SELECT AVG(Tele_Cone_Mid) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
-    mycursor.execute('UPDATE dataAnalysis SET Tele_Mid_Max = (SELECT MAX(Tele_Cone_Mid) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
-    mycursor.execute('UPDATE dataAnalysis SET Tele_High_Min = (SELECT MIN(Tele_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
-    mycursor.execute('UPDATE dataAnalysis SET Tele_High_Average = (SELECT AVG(Tele_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
-    mycursor.execute('UPDATE dataAnalysis SET Tele_High_Max = (SELECT MAX(Tele_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team = %s' ,  (Team_Number,Team_Number))
+    mycursor.execute('INSERT IGNORE INTO dataAnalysis(Team_Number) VALUES (%s)', (Team_Number,))
+    for phase in 'Auto', 'Tele':
+        for level in 'Low', 'Mid', 'High':
+            for func in ('Min', 'MIN'), ('Average', 'AVG'), ('Max', 'MAX'):
+                mycursor.execute(f"UPDATE dataAnalysis SET {phase}_{level}_{func[0]} = (SELECT {func[1]}({phase}_Cone_{level} + {phase}_Cube_{level}) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s" ,  (Team_Number,Team_Number))
+
     mydb.commit()
     print('Update Analysis run')
+
+def getdataAnalysis(**kwargs):
+    request = "SELECT * FROM dataAnalysis"
+    requestInput = []
+    if 'teamNumber' in kwargs:
+        request += " WHERE Team_Number=%s"
+        requestInput.append(kwargs['teamNumber'])
+    if 'sortBy' in kwargs:
+        request += " ORDER BY %s"
+        requestInput.append(kwargs['sortBy'])
+    if 'limitTo' in kwargs:
+        request += " LIMIT %s"
+        requestInput.append(kwargs['limitTo'])
+    print(requestInput,request)
+    mycursor.execute(request,requestInput)
+    rows = mycursor.fetchall()
+
+    # Format with column names
+    return [dict(zip(analysisColumns, row)) for row in rows]
+              
 
 # Convert data to proper format
 def format_data(string, name):
