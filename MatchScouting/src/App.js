@@ -42,7 +42,8 @@ class App extends React.Component {
                     <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
                     {/* <input type="submit" className="submit-button"></input> */}
                 </form>
-                <iframe name="frame" title="frame"></iframe>
+                <iframe name="frame" title="frame"></iframe
+                ///>
 
             </main>
         );
