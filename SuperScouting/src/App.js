@@ -1,5 +1,5 @@
 import './App.css';
-import { SignIn, Fouls, SavePage, RobotData, Red1, Red2, Red3 } from "./Pages";
+import { SignIn, SavePage, RobotData, Red1, Red2, Red3} from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 
@@ -59,6 +59,7 @@ class App extends React.Component {
                 <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
             </div>
       */}
+                      <form action="http://127.0.0.1:5000/data" method="POST" target="frame" id="myForm" onSubmit={clearForm}>
                     <SignIn selected={this.state.selected === 'sign-in'} />
                     <RobotData selected={this.state.selected === 'robot 1'} />
                     <Red1 selected={this.state.selected === 'red 1'} />
@@ -68,10 +69,19 @@ class App extends React.Component {
 
                     {/* <RobotData selected={this.state.selected === 'robot 2'} />
                     <RobotData selected={this.state.selected === 'robot 3'} /> */}
+                    </form>
+                    <iframe name="frame"></iframe>
             </main>
         );
     }
 
 }
+function clearForm() { 
+    document.getElementById("myForm").submit();
+    setTimeout(function() {
+        document.getElementById("myForm").reset();
+        window.location.href="#SignIn"
+    }, 0)
+} 
 
 export default App;

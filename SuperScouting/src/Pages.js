@@ -75,7 +75,7 @@ function SignIn(props) {
                     <br />
                     {/* <br />
                 </select> */}
-                                <input type="submit" className="submit-button"></input>
+                                <input type="submit" className="next-button" value="Next"></input>
 
                 </div>
             </div>
@@ -114,7 +114,7 @@ function Fouls(props) {
                 onChange={opt => console.log(opt)}
             /> */}
         </Page>
-
+                
     );
 }
 // const FoulsDrop = [
@@ -201,6 +201,7 @@ function Red1(props) {
                         <NumberInput items={['1']} id="autoconelow" />
                     </div>
                 </div>
+                <br></br>
                 {/* //ButtonInput for red and yellow card */}
                 <Select
                 isMulti
@@ -298,6 +299,7 @@ function Red2(props) {
                         <NumberInput items={['1']} id="autoconelow" />
                     </div>
                 </div>
+                <br></br>
                 {/* //ButtonInput for red and yellow card */}
                 <Select
                 isMulti
@@ -330,6 +332,7 @@ function Red3(props) {
                         <h1>Disable</h1>
                         <NumberInput items={['1']} id="autoconelow" />
                     </div>
+                    <br></br>
                     <Select
                 isMulti
                 options={FoulsDrop}
@@ -349,13 +352,14 @@ function SavePage(props) {
                 <h1>Some things you could comment are:</h1>
                 <div className="bullet-points">
                     <li>defensive bot</li>
-                    <li>do they play defense</li>
+                    {/* <li>do they play defense</li> */}
                     <li>do they play optimistical</li>
                     <li>thinking of other questions</li>
                     <li>Can the robot balance with other robots?</li>
                     <li>Does the robot securely/conesistently control game pieces?</li>
                 </div>
                 <br />
+              
                 <input type="text" id="notes" name="notes" placeholder="Comment here" className="text-input" />
                 {/* <label className="item-label" htmlFor="clear">QR code and clear</label>
                 <input type="submit" className="SAVE" value="Generate QR code"></input>
