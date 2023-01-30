@@ -6,12 +6,10 @@ function RadioButtons(props) {
     let output = [];
     for (let item in props.items) {
         output.push(
-            <div >
-                <p key={item}>
-                    <input className="align-radio" type="radio" id={item} name={props.name} value={item} />
-                    <label className="label-size" htmlFor={item}>{props.items[item]}</label>
-                </p>
-            </div>
+            <p key={item}>
+                <input className="align-radio" type="radio" id={item} name={props.name} value={item} />
+                <label className="label-size" htmlFor={item}>{props.items[item]}</label>
+            </p>
         )
     }
     return output;
@@ -27,7 +25,10 @@ class NumberInput extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.increaseValue = this.increaseValue.bind(this);
         this.decreaseValue = this.decreaseValue.bind(this);
+        // eslint-disable-next-line no-restricted-globals
+        addEventListener('reset', () => { this.setState({ value: 0 }) })
     }
+
 
     setValue(value) {
         this.setState({ value: Math.abs(parseInt(value)) });
@@ -50,6 +51,7 @@ class NumberInput extends React.Component {
         // props = {id: "teleopUp", label: "Upper Cargo"};
         return (
             <div>
+
                 <div className="labelleft">
                     <label htmlFor={this.state.id}>{this.state.label}</label>
                 </div>
@@ -65,9 +67,59 @@ class NumberInput extends React.Component {
     }
 }
 
-export { RadioButtons, NumberInput };
+class ButtonInput extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { id: props.id, off_label: props.off_label, value: 0, on_label: props.on_label };
+        this.setValue = this.setValue.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.increaseValue = this.increaseValue.bind(this);
+        this.decreaseValue = this.decreaseValue.bind(this);
+        this.setValueFinal = this.setValueFinal.bind(this);
+        // eslint-disable-next-line no-restricted-globals
+        addEventListener('reset', () => { this.setState({ value: 0 }) })
+    }
 
+    setValue(value) {
+        this.setState({ value: Math.abs(parseInt(value)) });
+    }
 
+    handleChange(event) {
+        this.setValue(event.target.value);
+    }
 
+    increaseValue() {
+        this.setState({ value: this.state.value + 1 });
+    }
 
+    decreaseValue() {
+        this.setState({ value: this.state.value - 1 });
+    }
+    setValueFinal() {
+        if (this.state.value === 0) {
+            this.increaseValue();
+        } else if (this.state.value === 1) {
+            this.decreaseValue();
+        }
+    }
+    render() {
+        if (this.state.value === 0) {
+            return (
+                <div className="ToggleButton">
+                    <input type="hidden" value={false} name={this.state.id} />
+                    <input type="button" className="number-off" value={this.state.off_label} onClick={this.setValueFinal} />
+                </div>
+            );
+        } else if (this.state.value === 1) {
+            return (
+                <div className="ToggleButton">
+                    <input type="hidden" value={true} name={this.state.id} />
+                    <input type="button" className="number-on" value={this.state.on_label} onClick={this.setValueFinal} />
+                </div>
+            );
+        }
+    }
+}
+
+export { RadioButtons, NumberInput, ButtonInput };
 
