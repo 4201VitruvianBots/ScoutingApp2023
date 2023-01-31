@@ -238,3 +238,33 @@
 .number-on{
   background-color: orange;
 }
+
+input[type="file" ] {
+  background-color: teal;
+
+}
+input[type="file" i] {
+  background-color: orange;
+  
+
+}
+
+.photoSelect{
+  color: black;
+  font-size: 60px;
+}
+
+p {
+  color: black;
+}
+
+.photoInput{
+ 
+  max-height:300px;
+  max-width:300px;
+}
+
+.img{
+  height: 100px;
+  width: 100px;
+}

@@ -198,7 +198,7 @@ class MultiButton extends React.Component {
         for (let index in this.state.items) {
 
             let component;
-        
+
             if (this.state.selected === index) {
                 component = <input key={index} type="button" className="number-on" value={this.state.items[index][0]} onClick={() => this.test1(index)} />
                 // component = <input type="button" value={1} on_label={(this.state.items[index][0])} off_label={(this.state.items[index][1])} id={index} test1={this.test1} />
@@ -212,9 +212,9 @@ class MultiButton extends React.Component {
 
             output.push(component)
 
-// do we need some reset code? to reset the non-selected buttons?
+            // do we need some reset code? to reset the non-selected buttons?
 
-// Has to be 1 first - if not, all of them will begin as selected
+            // Has to be 1 first - if not, all of them will begin as selected
 
             /*
             
@@ -243,7 +243,7 @@ class MultiButton extends React.Component {
     //rendering twice from here
 
     render() {
-        
+
         return (
             <div>
                 <this.generateButtons />
@@ -265,7 +265,37 @@ class MultiButton extends React.Component {
 
 // }
 
-export { RadioButtons, NumberInput, ButtonInput, MultiButton };
+
+// const React = require('react')
+
+class Upload extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = { file: null }
+        this.handleChange = this.handleChange.bind(this)
+    }
+    handleChange(event) {
+        this.setState({
+            file: URL.createObjectURL(event.target.files[0])
+        })
+    }
+
+    render() {
+        return (
+            <div>
+                <input type="file" onChange={this.handleChange} />
+                <img src={this.state.file} height="400px" width="300px"/>
+            </div>
+        );
+
+    }
+}
+// module.exports = Upload
+
+//something is making it think it's html...?
+
+
+export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload };
 
 
 // RadioButtons

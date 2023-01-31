@@ -1,4 +1,4 @@
-import { RadioButtons, NumberInput, ButtonInput, MultiButton } from "./Form";
+import { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload } from "./Form";
 import './App.css';
 
 
@@ -117,11 +117,24 @@ function General(props) {
     );
 }
 
+
+
 function Photos(props) {
     return (
         <Page selected={props.selected} id="photos">
             <p className="section-label">Photos</p>
             <div className="textArea">
+                <p>DRIVETRAIN</p>
+                <Upload size="100px"></Upload>
+                <p>INTAKE</p>
+                <Upload></Upload>
+                <p>UPTAKE</p>
+                <Upload></Upload>
+                <p>OUTTAKE</p>
+                <Upload></Upload>
+                <p>EXTRAS</p>
+                <Upload></Upload>
+            {/* <input type="file" multiple accept="image/*" /> */}
             </div>
         </Page>
     );
