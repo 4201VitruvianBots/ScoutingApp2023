@@ -143,25 +143,21 @@ function Photos(props) {
 function SavePage(props) {
     return (
         <Page selected={props.selected} id="save-page">
-            {/* <br></br>
-            <br></br>
-          
+            
             <p className="section-label">Save Page</p>
-            <div className="areaSaP">
+            <div className="textArea">
             <label htmlFor="notes" className="item-label">Notes</label>
                 <br/>
                 <br/>
                 <input type="text" id="notes" name="notes" />
-                { /* <label className="item-label" htmlFor="clear">QR code and clear</label> */}
-            {/* <input type="submit" className="SAVE" value="Generate QR code"></input>
-                <br /> */}
-            {/* } <label className="item-label" htmlFor="continue">Save and continue</label> */}
-            {/* <input type="reset" className="CLEAR" value="Clear Form" /> */}
-            <br />
-            <br />
+                
+             <label className="item-label" htmlFor="continue">Save and continue</label> 
+            <input type="reset" className="CLEAR" value="Clear Form" />
+            {/* </div> */}
 
             {/* <div id="QRCode">{props.QRCode}</div>                
             </div> */}
+            </div>
         </Page>
     );
 }
