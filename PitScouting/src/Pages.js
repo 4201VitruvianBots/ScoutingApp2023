@@ -109,8 +109,6 @@ function General(props) {
                         <input type="text" placeholder="They're working on..."></input>
                     </div>
 
-
-
                 </div>
             </div>
         </Page>
@@ -151,8 +149,11 @@ function SavePage(props) {
                 <br/>
                 <input type="text" id="notes" name="notes" />
                 
-             <label className="item-label" htmlFor="continue">Save and continue</label> 
-            <input type="reset" className="CLEAR" value="Clear Form" />
+             {/* <label className="item-label" htmlFor="continue">Save and continue</label>  */}
+            
+            <input type="submit" className="submit-button"/>Save and continue
+
+            <input type="reset" className="CLEAR" value="Clear Form"/>
             {/* </div> */}
 
             {/* <div id="QRCode">{props.QRCode}</div>                
