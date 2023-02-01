@@ -15,18 +15,18 @@ function SignIn(props) {
     return (
         <div>
             <p className="section-label">Pit Scouting</p>
-            <form onSubmit={props.onSubmit} action="#">
+             
                 <div className="textArea">
-                    <input type="text" id="Sname" name="Sname" placeholder="Scouter Name" />
+                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" />
                     <label className="item-label" htmlFor="Ename"><strong>Event Name</strong> </label>
-                    <select name="Ename" id="Ename" defaultValue="Choose">
+                    <select name="Competition" id="Ename" defaultValue="Choose">
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
                         <option value="BeachBlitz">Port Hueneme</option>
                     </select>
                     <input type="submit" className="SAVE" value="Sign In" />
                 </div>
 
-            </form>
+        
         </div>
     );
 }
@@ -36,8 +36,8 @@ function TeamInfo(props) {
         <Page selected={props.selected} className="page" id="teaminfo">
             <p className="section-label">Team Info</p>
             <div className="textArea">
-                <input className="text-input" type="text" id="Num" name="Num" placeholder="Team NUMBER" />
-                <input className="text-input" type="text" id="Num" name="Num" placeholder="Team NAME" />
+                <input className="text-input" type="text" id="Num" name="Team_Number" placeholder="Team NUMBER" />
+                <input className="text-input" type="text" id="Num" name="Team_Name" placeholder="Team NAME" />
                 <RadioButtons />
             </div>
         </Page>
@@ -89,24 +89,24 @@ function General(props) {
 
                     <div className="motors">
                         <p className="generalLabel"># of Motors (Tank- on each side)</p>
-                        <NumberInput />
+                        <NumberInput id="Number_Of_Motors" />
                     </div>
 
                     <div className="batteries">
                         <p className="generalLabel"># of Batteries (total)</p>
-                        <NumberInput />
+                        <NumberInput id="Number_Of_Batteries" />
                     </div>
 
                     <div className="motorType">
-                        <input type="text" placeholder="Drivetrain Motor Type"></input>
+                        <input type="text" placeholder="Drivetrain Motor Type" name="DriveTrain_Motor_Type" ></input>
                     </div>
 
                     <div className="autos">
-                        <input type="text" placeholder="Autos (# and type)"></input>
+                        <input type="text" placeholder="Autos (# and type)" name="Autos"></input>
                     </div>
 
                     <div className="workingOn">
-                        <input type="text" placeholder="They're working on..."></input>
+                        <input type="text" placeholder="They're working on..." name="Working_On" ></input>
                     </div>
 
                 </div>
@@ -144,10 +144,10 @@ function SavePage(props) {
             
             <p className="section-label">Save Page</p>
             <div className="textArea">
-            <label htmlFor="notes" className="item-label">Notes</label>
+            <label htmlFor="Comments" className="item-label">Notes</label>
                 <br/>
                 <br/>
-                <input type="text" id="notes" name="notes" />
+                <input type="text" id="notes" name="Comments" />
                 
              {/* <label className="item-label" htmlFor="continue">Save and continue</label>  */}
             
