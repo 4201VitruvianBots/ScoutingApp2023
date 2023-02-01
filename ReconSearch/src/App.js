@@ -1,5 +1,5 @@
 import './App.css';
-import { SignIn, TeamInfo, General, Photos, SavePage } from "./Pages";
+import { SignIn, TeamInfo, General, Photos, SavePage, SearchBarClass } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 
@@ -10,6 +10,7 @@ class App extends React.Component {
         this.setSelected = this.setSelected.bind(this);
         this.SignInHandler = this.SignInHandler.bind(this)
         this.SubmitHandler = this.SubmitHandler.bind(this)
+
     }
 
     SignInHandler(e) {

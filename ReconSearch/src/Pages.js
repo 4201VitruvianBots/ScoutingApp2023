@@ -1,4 +1,6 @@
-import { RadioButtons, NumberInput, ButtonInput } from "./Form";
+import React, { useState, useEffect } from 'react'
+import { RadioButtons, NumberInput, ButtonInput, GetData } from "./Form";
+import ReactSearchBox from "react-search-box";
 import './App.css';
 
 function Page(props) {
@@ -49,6 +51,7 @@ function TeamInfo(props) {
         <button className="generalButton">Mid</button>
         <button className="generalButton">Low</button> */}
         <p>Autos Average</p>
+        <GetData />
          <ButtonInput off_label="Show High Average?" on_label="(a popup?)" />
         <ButtonInput off_label="Show Mid Average?" on_label="(a popup?)" />
         <ButtonInput off_label="Show Low Average?" on_label="(a popup?)" />
@@ -178,4 +181,40 @@ function SavePage(props) {
     );
 }
 
-export { SignIn, TeamInfo, General, Photos,  SavePage };
+class SearchBarClass extends React.Component {
+    data = [
+      {
+        key: "john",
+        value: "John Doe",
+      },
+      {
+        key: "jane",
+        value: "Jane Doe",
+      },
+      {
+        key: "mary",
+        value: "Mary Phillips",
+      },
+      {
+        key: "robert",
+        value: "Robert",
+      },
+      {
+        key: "karius",
+        value: "Karius",
+      },
+    ];
+  
+    render() {
+      return (
+        <ReactSearchBox
+          placeholder="Placeholder"
+          value="Doe"
+          data={this.data}
+          callback={(record) => console.log(record)}
+        />
+      );
+    }
+  }
+
+export { SignIn, TeamInfo, General, Photos,  SavePage, SearchBarClass };

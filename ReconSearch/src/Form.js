@@ -1,5 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from 'react'
 import './App.css';
+
+class GetData extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {AutoConeHighValue: 0};
+        this.state = {AutoConeMidValue: 0};
+    }
+
+    // componentDidMount() {
+    //     // Simple GET request using fetch
+    //     fetch('https://api.npms.io/v2/search?q=react')
+    //     .then(response => console.log(response.json()))
+    //         // .then(data => this.setState({ totalReactPackages: data.total }));
+
+    // }
+
+    async componentDidMount() {
+        // GET request using fetch with async/await
+        const response = await fetch('https://751904a8-ff13-4192-8e12-e09dfb769f53.mock.pstmn.io/data/matches');
+        const data = await response.json();
+        this.setState({ AutoConeHighValue: data[0].Auto_Cone_High })
+        this.setState({AutoConeMidValue: data[0].Auto_Cone_Mid})
+    }
+
+    render() {
+        return (
+            <div>
+                <p>Auto Cone High, {this.state.AutoConeHighValue}</p>
+                <p>Auto Cone Mid, {this.state.AutoConeMidValue}</p>
+            </div>
+        );
+    }
+}
 
 // Radio Buttons
 function RadioButtons(props) {
@@ -117,4 +150,4 @@ class ButtonInput extends React.Component {
 }
 
 
-export { RadioButtons, NumberInput,ButtonInput };
+export { RadioButtons, NumberInput, ButtonInput, GetData };
