@@ -32,7 +32,8 @@ class App extends React.Component {
                 <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
             </div>
       */}
-                <form action="http://127.0.0.1:5000/data" method="POST" target="frame" id="myForm" onSubmit={clearForm}>
+
+                <form action="http://127.0.0.1:5000/data/matches" method="POST" target="frame" id="myForm" onSubmit={clearForm}>
                     <SignIn selected={this.state.selected === 'sign-in'} />
                     <PreGame selected={this.state.selected === 'pre-game'} />
                     <Auto selected={this.state.selected === 'auto'} />
@@ -41,7 +42,7 @@ class App extends React.Component {
                     <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
                     {/* <input type="submit" className="submit-button"></input> */}
                 </form>
-                <iframe name="frame"></iframe>
+                <iframe name="frame" title="frame"></iframe>
 
             </main>
         );

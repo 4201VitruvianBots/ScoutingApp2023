@@ -41,7 +41,7 @@ function SignIn(props) {
                 </select>
                 {/* <input type="submit" className="SAVE" value="Sign In" /> */}
             </div>
-        </div>
+            </div>
         </Page>
     );
 }
@@ -53,11 +53,11 @@ function PreGame(props) {
 
             <div className="textArea">
                 {/* <label className="item-label" htmlFor="Match_Number"><strong>Match Number</strong> </label> */}
-                <input type="text" id="Match_Number" name="Match_Number" placeholder="Match Number" />
+                <input type="number" id="Match_Number" name="Match_Number" placeholder="Match Number" />
                 <br></br>
                 <br></br>
                 {/* <label className="item-label" htmlFor="Team_Number"><strong>Team Number</strong> </label> */}
-                <input type="text" id="Team_Number" name="Team_Number" placeholder="Team Number" />
+                <input type="number" id="Team_Number" name="Team_Number" placeholder="Team Number" />
 
                 <div className="textArea">
 
@@ -126,7 +126,33 @@ function Auto(props) {
 function TeleOp(props) {
     return (
         <Page selected={props.selected} id="tele-op">
-            <p className="section-label" id="Tele">Teleop/Endgame</p>
+            <p className="section-label">Teleop/Endgame</p>
+
+             <div className="textArea">
+
+             <h1>Cones</h1>
+           <h2>High</h2>
+            <NumberInput items={['1']}/>  
+            <h2>Mid</h2>  
+            {/* <br></br> */}
+            <NumberInput items={['1']}/>   
+            <h2>Low</h2>        
+            {/* <br></br> */}
+            <NumberInput items={['1']}/>           
+            <br></br>
+            <h1>Cubes</h1>
+            <h2>High</h2>
+            <NumberInput items={['1']}/>    
+            <h2>Mid</h2>  
+            <NumberInput items={['1']}/>           
+            <h2>Low</h2>  
+            <NumberInput items={['1']}/>
+            <br></br>
+            <br></br>         
+            <h1>Charging Station</h1>
+<RadioButtons items={['Docked', 'Engaged', 'No points', 'Parking']} />
+</div>
+
 
             <div className="textArea">
                 <h1>Charging Station</h1>
@@ -163,6 +189,7 @@ function SavePage(props) {
                 {/* <label htmlFor="notes" className="item-label">Notes</label> */}
                 {/* <h1>Some things you could comment are:</h1>
                 <div className="bullet-points">
+
                     <li className="questions">Placeholder Questions?</li>
                     <li className="questions">Is it successful?</li>
                     <li className="questions">Does it move?</li>
