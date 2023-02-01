@@ -63,7 +63,7 @@ function PreGame(props) {
 
 
                     <div>
-                        <MultiButton items={[['BLUE 1', 'Blue 1'], ['BLUE 2', 'Blue 2'], ['BLUE 3', 'Blue 3'], ['RED 1', 'Red 1'], ['RED 2', 'Red 2'], ['RED 3', 'Red 3']]} name="autostation" />
+                        <MultiButton className="alliance" items={[['BLUE 1', 'Blue 1'], ['BLUE 2', 'Blue 2'], ['BLUE 3', 'Blue 3'], ['RED 1', 'Red 1'], ['RED 2', 'Red 2'], ['RED 3', 'Red 3']]} name="autostation" />
                     </div>
 
                     <h1><strong>No show robot?</strong></h1>

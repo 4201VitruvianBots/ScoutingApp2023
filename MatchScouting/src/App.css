@@ -392,3 +392,21 @@
   color: black;
   font-weight: 400;
 }
+
+.alliance{
+  
+}
+
+
+/* input.number-on, input.number-off {
+  margin: 25px;
+
+} */
+
+input.number-on.alliance{
+  background-color: orange;
+}
+
+input.number-off.alliance{
+  background-color: teal;
+}
