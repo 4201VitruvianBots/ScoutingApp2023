@@ -5,6 +5,8 @@
    --accent-default: var(--accent-3);
    --bg-color: var(--background-1);
    text-align: center;
+   font-family: system-ui;
+   
  }
 
  .page-title {
@@ -64,12 +66,10 @@
 
  body {
    margin: 0;
-   font-family: monospace;
    font-weight: 100;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    background-color: var(--bg-color);
-   /* color: var(--accent-1); */
  }
 
  /* button {
@@ -110,13 +110,22 @@
 
  input[type="text"] {
    border-color: #003800;
-   /* background-color: var(--accent-1); */
    color: black;
    display: block;
    width: fit-content;
-   height: 30px;
+   height: 10px;
+   font-size: 10px;
+   margin: 10px auto 10px;
+   padding: 10px;
+
+ }
+ input[type="text"],
+ input::placeholder {
+   width: fit-content;
+   height: auto;
    font-size: 20px;
-   margin: 0 auto;
+   font-family: system-ui;
+ 
 
 
  }
@@ -253,8 +262,6 @@
  .number-off {
   color:black;
   margin: 0 auto;
-
-
  }
 
  .tab {
@@ -321,12 +328,7 @@
    margin: 20px;
  }
 
- input[type="text"],
- input::placeholder {
-   width: 500px;
-   height: auto;
-   font-size: 50px;
- }
+ 
 
  select {
    width: 500px;
@@ -339,14 +341,16 @@
    margin: 0;
    padding: 0;
    overflow: hidden;
-   background-color: #333;
- }
-
- ul {
+   background-color: rgba(8, 95, 0, 0.542);
+   font-size: 20px;
+   font-weight: 300;
   position: fixed;
   top: 0;
-  width: 100%;
+  width: fit-content;
+  margin: 0 auto;
+  
 }
+
 
  li {
    float: left;
@@ -372,3 +376,19 @@
    margin: auto;
    width: 250px;
  }
+
+.number-on, .number-off {
+  display: inline !important;
+  background-color: orange;
+  width: 100px !important;
+  height: 75px !important;
+  font-size: 50px;
+  text-align: center;
+  border-color: gray;
+}
+
+.generalLabel{
+  font-size: 20px;
+  color: black;
+  font-weight: 400;
+}
