@@ -10,8 +10,10 @@ function RadioButtons(props) {
 
         output.push(
             <p key={item}>
-                <input type="radio" id={item} name={props.name} value={item} />
-                <label htmlFor={item}>{props.items[item]}</label>
+                <label className="label-size">
+                    <input className="align-radio" type="radio" name={props.name} value={item} />
+                    {props.items[item]}
+                </label>
             </p>
         )
     }
