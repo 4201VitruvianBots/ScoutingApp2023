@@ -1,3 +1,5 @@
+/* General */
+ 
  :root {
    --accent-1: white;
    --accent-4: #003800;
@@ -6,97 +8,91 @@
    --bg-color: var(--background-1);
    text-align: center;
    font-family: system-ui;
-   
  }
+
+ .textArea {
+  background-color: #ecf2eb;
+  min-width: 300px;
+  min-height: 100px;
+  padding: 20px;
+  margin: 20px;
+}
+
+body {
+  margin: 0;
+  font-weight: 100;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-color);
+}
+
+ /* Titles, Headers, & Labels */
 
  .page-title {
    color: white;
    font-size: 25px;
-
    font-style: italic;
- }
-
- ::placeholder {
-   color: gray;
-   font-size: 20px;
-   font-style: italic;
-   text-align: center;
-   font-family: monospace;
  }
 
  .section-label {
-   color: black;
-   font-size: 40px;
-   font-weight: bold;
-   padding: 0px;
-   margin: 0px;
+  color: black;
+  font-size: 40px;
+  font-weight: bold;
+  padding: 0px;
+  margin: 0px;
  }
 
- .item-label,
- .item-label2 {
-   color: black;
-   font-size: 30px;
-   display: inline-block;
+ .itemLabel {
+  color: ba;
+  font-size: 20px;
+  font-weight: 500;
  }
 
- .item-label2 {
-   margin-bottom: 20px;
-   margin-top: 10px;
-   font-size: 80px;
- }
 
- .dropdown {
-   border-color: #085f00;
-   border-width: 50px;
- }
+ /* Inputs */
+ input[type="checkbox"] {
+  border-color: var(--accent-3);
+  background-color: var(--accent-1);
+  width: 50px;
+  height: 20px;
+  font-size: 15px;
+  display: inline;
+}
 
- .numberInput {
-   border-color: #085f00;
-   border-width: 50px;
-   margin: 10px;
- }
+input[type="radio"] {
+  border-color: var(--accent-3);
+  background-color: var(--accent-1);
+  width: 50px;
+  height: 20px;
+  cursor: default;
+  display: inline;
 
- .textArea {
-   background-color: #ecf2eb;
-   min-width: 300px;
-   min-height: 100px;
-   padding: 20px;
-   margin: 20px;
- }
+}
+ /* This input is for the counters */
+input[type="number"] {
+  display: inline !important;
+  background-color: var(--accent-1);
+  width: 100px !important;
+  height: 75px !important;
+  font-size: 50px;
+  text-align: center;
+  border-color: gray;
+  margin-top: 10px;
+}
 
- body {
-   margin: 0;
-   font-weight: 100;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
-   background-color: var(--bg-color);
- }
 
- /* button {
-   border-color: var(black);
-   background-color: var(--accent-2);
-   display: block;
-   width: 130%;
-   height: 50px;
-   float: initial;
-   align-self:inherit	 	;
+.save-button, .submit-button {
+  background-color: #83c183;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  display: inline-block;
+  width: 300px;
+  height: 35px;
+  font-size: 20px;
+  margin: 15px;
+}
 
-   font-size: 29px;
-   padding: 10px;
-   margin: 10px;
-   
- } */
-
- input[type="button"] {
-   border-color: var(--accent-3);
-   background-color: var(--accent-2);
-   display: block;
-   width: 120%;
-   height: 40px;
-   font-size: 20px;
-   cursor: default;
-
- }
+ 
 
  select {
    border-color: var(--accent-3);
@@ -106,7 +102,7 @@
    height: 40px;
    font-size: 25px;
    margin: 0 auto;
- }
+ } 
 
  input[type="text"] {
    border-color: #003800;
@@ -119,16 +115,23 @@
    padding: 10px;
 
  }
- input[type="text"],
- input::placeholder {
-   width: fit-content;
+
+ ::placeholder {
+  width: fit-content;
+  color: gray;
    height: auto;
    font-size: 20px;
+   font-style: italic;
    font-family: system-ui;
- 
+   text-align: center;
 
+}
+ /* input[type="text"],
+ input::placeholder {
+   
+ } */
 
- }
+ /* Buttons */
 
  .chonk {
    display: inline !important;
@@ -150,68 +153,19 @@
 
  }
 
+ input[type="button"] {
+  border-color: var(--accent-3);
+  /* background-color: var(--accent-2); */
+  display: block;
+  width: 120%;
+  height: 40px;
+  font-size: 20px;
+  cursor: default;
 
- input[type="checkbox"] {
-   border-color: var(--accent-3);
-   background-color: var(--accent-1);
-   width: 50px;
-   height: 20px;
-   font-size: 15px;
-   display: inline;
- }
+}
 
- input[type="radio"] {
-   border-color: var(--accent-3);
-   background-color: var(--accent-1);
-   width: 50px;
-   height: 20px;
-   cursor: default;
 
-   display: inline;
-
- }
-
- input[type="number"] {
-   display: inline !important;
-   background-color: var(--accent-1);
-   width: 100px !important;
-   height: 75px !important;
-   font-size: 50px;
-   text-align: center;
-   border-color: gray;
- }
-
- .SAVE,
- .CLEAR {
-   display: inline-block;
-   width: 300px;
-   height: 35px;
-   font-size: 20px;
-   margin: 15px;
- }
-
- .SAVE {
-   background-color: #83c183;
-   margin-top: 30px;
-   margin-bottom: 10px;
-
- }
-
- .CLEAR {
-   border-color: var(--accent-3);
-   background-color: red;
-   /*Make this color better*/
- }
-
- .savept2 {
-   display: inline-block;
-   width: 250px !important;
-   height: 35px;
-   font-size: 25px;
-   border-color: var(--accent-3);
-   background-color: var(--accent-2);
- }
-
+ 
  .radioButtons {
    /* display: inline-block;
    text-align: left;
@@ -379,7 +333,7 @@
 
 .number-on, .number-off {
   display: inline !important;
-  background-color: orange;
+  background-color: orange; 
   width: 100px !important;
   height: 75px !important;
   font-size: 50px;
@@ -393,20 +347,14 @@
   font-weight: 400;
 }
 
-.alliance{
-  
+.gallery{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin: 0 auto;
+  padding: 10px 0;
 }
 
-
-/* input.number-on, input.number-off {
-  margin: 25px;
-
-} */
-
-input.number-on.alliance{
-  background-color: orange;
-}
-
-input.number-off.alliance{
-  background-color: teal;
-}

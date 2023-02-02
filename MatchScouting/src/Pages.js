@@ -16,7 +16,7 @@ function Navigation(props) {
                 <li><a href="#SignIn">Sign-In</a></li>
                 <li><a href="#Pre">Pre-Game</a></li>
                 <li><a href="#Auto">Auto</a></li>
-                <li><a href="#Tele">Teleop</a></li>
+                <li><a href="#Tele">Tele-Op</a></li>
                 <li><a href="#Save">Save</a></li>
             </ul>
         </Page>
@@ -31,13 +31,11 @@ function SignIn(props) {
 
                 <div className="textArea">
                     <input type="text" id="Scouter_Name" name="Scouter_Name" placeholder="Scouter Name" className="text-input" />
-
-
                     <select name="Competition" id="Competition" defaultValue="Choose">
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
                         <option value="Hueneme">Port Hueneme</option>
                     </select>
-                    <input type="submit" className="SAVE" value="Sign In" />
+                    <input type="submit" className="save-button" value="Sign In" />
                 </div>
             </div>
         </Page>
@@ -50,25 +48,22 @@ function PreGame(props) {
             <p className="section-label" id="Pre">Pre-Game</p>
 
             <div className="textArea">
-                {/* <label className="item-label" htmlFor="Match_Number"><strong>Match Number</strong> </label> */}
-                <input type="number" id="Match_Number" name="Match_Number" placeholder="Match Number" />
-                <br></br>
-                <br></br>
-                {/* <label className="item-label" htmlFor="Team_Number"><strong>Team Number</strong> </label> */}
-                <input type="number" id="Team_Number" name="Team_Number" placeholder="Team Number" />
-
-                <div className="textArea">
-
-                    <h1><strong>Team Alliance</strong></h1>
+                <p className="itemLabel" htmlFor="Match_Number">MATCH NUMBER</p>
+                {/* <p className="item-label">Match Number</p> */}
+                <input type="number" id="Match_Number" name="Match_Number" />
+                <p className="itemLabel" htmlFor="Match_Number">TEAM NUMBER</p>
+                <input type="number" id="Team_Number" name="Team_Number" />
+                <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
 
 
-                    <div>
-                        <MultiButton className="alliance" items={[['BLUE 1', 'Blue 1'], ['BLUE 2', 'Blue 2'], ['BLUE 3', 'Blue 3'], ['RED 1', 'Red 1'], ['RED 2', 'Red 2'], ['RED 3', 'Red 3']]} name="autostation" />
+                    <div className="multi">
+                        <MultiButton items={[['BLUE 1', 'Blue 1'], ['BLUE 2', 'Blue 2'], ['BLUE 3', 'Blue 3'], ['RED 1', 'Red 1'], ['RED 2', 'Red 2'], ['RED 3', 'Red 3']]} name="autostation" />
                     </div>
 
                     <h1><strong>No show robot?</strong></h1>
-                    <ButtonInput on_label="Robot did not show" off_label="Robot showed" id="Show_Time" />
-                </div>
+                    {/* <ButtonInput id="Show_Time" on_label="Robot did not show" off_label="Robot showed" /> */}
+                    <MultiButton items={[['Showed up', 'Didn\'t show up']]} name="noShow" />
+                
             </div>
         </Page>
 
@@ -98,21 +93,23 @@ function Auto(props) {
                 <br></br>
                 <h1>Charging Station</h1>
                 <div className="align-radio">
-                    <RadioButtons items={['Docked', 'Engaged', 'No points']} name="Auto_Station" />
+                    <MultiButton items={[['Docked', 'DOCKED'], ['Engaged', 'ENGAGED'], ['No points', 'NO POINTS']]} name="Auto_Station" />
+                    
                 </div>
-                <h1>Cones</h1>
-                <NumberInput id="Auto_Cone_High" />
-                <br></br>
-                <NumberInput id="Auto_Cone_Mid" />
-                <br></br>
-                <NumberInput id="Auto_Cone_Low" />
-                <br></br>
-                <h1>Cubes</h1>
-                <NumberInput id="Auto_Cube_High" />
-                <br></br>
-                <NumberInput id="Auto_Cube_Mid" />
-                <br></br>
-                <NumberInput id="Auto_Cube_Low" />
+                <div className="gallery">
+                    <div>
+                        <h1>Cones</h1>
+                        <NumberInput id="Auto_Cone_High" />
+                        <NumberInput id="Auto_Cone_Mid" />
+                        <NumberInput id="Auto_Cone_Low" />
+                    </div>
+                    <div>
+                        <h1>Cubes</h1>
+                        <NumberInput id="Auto_Cube_High" />
+                        <NumberInput id="Auto_Cube_Mid" />
+                        <NumberInput id="Auto_Cube_Low" />
+                    </div>
+                </div>
             </div>
         </Page>
     );
@@ -120,32 +117,32 @@ function Auto(props) {
 
 function TeleOp(props) {
     return (
-        <Page selected={props.selected} id="tele-op">
+        <Page selected={props.selected} id="Tele">
             <p className="section-label">Teleop/Endgame</p>
 
             <div className="textArea">
 
-                <h1>Cones</h1>
+                <div className="gallery">
+                    <div>
+                        <h1>Cones</h1>
+                        <NumberInput id="Auto_Cone_High" />
+                        <NumberInput id="Auto_Cone_Mid" />
+                        <NumberInput id="Auto_Cone_Low" />
+                    </div>
+                    <div>
+                        <h1>Cubes</h1>
+                        <NumberInput id="Auto_Cube_High" />
+                        <NumberInput id="Auto_Cube_Mid" />
+                        <NumberInput id="Auto_Cube_Low" />
+                    </div>
+                </div>
+
+                {/* <h1>Cones</h1>
                 <h2>High</h2>
                 <NumberInput items={['1']} />
                 <h2>Mid</h2>
                 {/* <br></br> */}
-                <NumberInput items={['1']} />
-                <h2>Low</h2>
-                {/* <br></br> */}
-                <NumberInput items={['1']} />
-                <br></br>
-                <h1>Cubes</h1>
-                <h2>High</h2>
-                <NumberInput items={['1']} />
-                <h2>Mid</h2>
-                <NumberInput items={['1']} />
-                <h2>Low</h2>
-                <NumberInput items={['1']} />
-                <br></br>
-                <br></br>
-                <h1>Charging Station</h1>
-                <RadioButtons items={['Docked', 'Engaged', 'No points', 'Parking']} />
+
             </div>
 
 
@@ -154,19 +151,7 @@ function TeleOp(props) {
                 <div className="align-radio">
                     <RadioButtons items={['Docked', 'Engaged', 'No points', 'Parking']} name="Tele_Station" />
                 </div>
-                <h1>Cones</h1>
-                <NumberInput id="Tele_Cone_High" />
-                <br></br>
-                <NumberInput id="Tele_Cone_Mid" />
-                <br></br>
-                <NumberInput id="Tele_Cone_Low" />
-                <br></br>
-                <h1>Cubes</h1>
-                <NumberInput id="Tele_Cube_High" />
-                <br></br>
-                <NumberInput id="Tele_Cube_Mid" />
-                <br></br>
-                <NumberInput id="Tele_Cube_Low" />
+
             </div>
         </Page>
     );
@@ -199,8 +184,9 @@ function SavePage(props) {
                 <input type="submit" className="SAVE" value="Generate QR code"></input>
                 <br />
                 <label className="item-label" htmlFor="continue">Save and continue</label>
-                <input type="reset" className="CLEAR" value="Clear Form" /> */}
+                 */}
                 <input type="submit" className="submit-button"></input>
+                {/* <input type="reset" className="CLEAR" value="Clear Form" /> */}
                 {/* <div id="QRCode">{props.QRCode}</div> */}
 
             </div>
