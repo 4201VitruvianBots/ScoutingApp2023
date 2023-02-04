@@ -66,7 +66,6 @@ class App extends React.Component {
                     <TeamInfo selected={this.state.selected === 'teaminfo'} />
                     <General selected={this.state.selected === 'general'} />
                     <Photos selected={this.state.selected === 'photos'} />
-
                     <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
                 </form>
 
