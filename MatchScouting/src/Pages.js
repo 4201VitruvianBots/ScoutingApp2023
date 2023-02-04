@@ -17,7 +17,7 @@ function Navigation(props) {
                 <li><a href="#Pre">Pre-Game</a></li>
                 <li><a href="#Auto">Auto</a></li>
                 <li><a href="#Tele">Tele-Op</a></li>
-                <li><a href="#Save">Save</a></li>
+                <li><a href="#Save">Submit</a></li> {/*change the rest of the code to 'submit' as well? does it matter?*/}
             </ul>
         </Page>
     );
@@ -30,7 +30,7 @@ function SignIn(props) {
                 <p className="section-label" id="SignIn">Energized</p>
 
                 <div className="textArea">
-                    <input type="text" id="Scouter_Name" name="Scouter_Name" placeholder="Scouter Name" className="text-input" />
+                    <input type="text" id="Scouter_Name" name="Scouter_Name" placeholder="Scouter Name" className="textInput" />
                     <select name="Competition" id="Competition" defaultValue="Choose">
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
                         <option value="Hueneme">Port Hueneme</option>
@@ -48,22 +48,28 @@ function PreGame(props) {
             <p className="section-label" id="Pre">Pre-Game</p>
 
             <div className="textArea">
+
                 <p className="itemLabel" htmlFor="Match_Number">MATCH NUMBER</p>
-                {/* <p className="item-label">Match Number</p> */}
-                <input type="number" id="Match_Number" name="Match_Number" />
+                <input type="number" id="Match_Number" name="Match_Number" className="textInput" />
+
                 <p className="itemLabel" htmlFor="Match_Number">TEAM NUMBER</p>
-                <input type="number" id="Team_Number" name="Team_Number" />
+                <input type="number" id="Team_Number" name="Team_Number" className="textInput" />
+
+
                 <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
+                <div className="allianceSelect">
+                    <MultiButton items={[['Blue 1', 'BLUE 1'], ['Blue 2', 'BLUE 2'], ['Blue 3', 'BLUE 3'], ['Red 1', 'RED 1'], ['Red 2', 'RED 2'], ['Red 3', 'RED 3']]} name="autostation" />
+
+                </div>
+                {/* Off value at index 0, ON value at index 1 */}
 
 
-                    <div className="multi">
-                        <MultiButton items={[['BLUE 1', 'Blue 1'], ['BLUE 2', 'Blue 2'], ['BLUE 3', 'Blue 3'], ['RED 1', 'Red 1'], ['RED 2', 'Red 2'], ['RED 3', 'Red 3']]} name="autostation" />
-                    </div>
-
-                    <h1><strong>No show robot?</strong></h1>
-                    {/* <ButtonInput id="Show_Time" on_label="Robot did not show" off_label="Robot showed" /> */}
+                {/* <h1><strong>No show robot?</strong></h1>
+                 <ButtonInput id="Show_Time" on_label="Robot did not show" off_label="Robot showed" />
+                <div className="one">
                     <MultiButton items={[['Showed up', 'Didn\'t show up']]} name="noShow" />
-                
+                </div> */}
+                <div></div>
             </div>
         </Page>
 
@@ -76,7 +82,8 @@ function Auto(props) {
         <Page selected={props.selected} id="auto">
             <p className="section-label" id="Auto">Auto</p>
             <div className="textArea">
-                <ButtonInput on_label='Mobility Bonus Selected' off_label='Mobility ' id="Mobility" />
+
+                <ButtonInput on_label='Mobility' off_label='Mobility' id="Mobility" />
                 {/* <button type="button">Mobility?</button> */}
 
                 {/* <h2>Mobility</h2> */}
@@ -88,13 +95,11 @@ function Auto(props) {
                 <br></br>
                 <input type="checkbox" name="mobility"></input>
                 <label htmlFor="mobility" className="label-size">Mobility</label> */}
-                <br></br>
-                <br></br>
-                <br></br>
-                <h1>Charging Station</h1>
+                <br />
+                <p className="itemLabel">CHARGING STATION</p>
                 <div className="align-radio">
                     <MultiButton items={[['Docked', 'DOCKED'], ['Engaged', 'ENGAGED'], ['No points', 'NO POINTS']]} name="Auto_Station" />
-                    
+
                 </div>
                 <div className="gallery">
                     <div>
@@ -149,7 +154,7 @@ function TeleOp(props) {
             <div className="textArea">
                 <h1>Charging Station</h1>
                 <div className="align-radio">
-                    <RadioButtons items={['Docked', 'Engaged', 'No points', 'Parking']} name="Tele_Station" />
+                    <MultiButton items={[['Docked', 'DOCKED'], ['Engaged', 'ENGAGED'], ['No points', 'NO POINTS'], ['Parked', 'PARKED']]} name="Tele_Station" />
                 </div>
 
             </div>
@@ -179,7 +184,7 @@ function SavePage(props) {
                 </div>
                 <br /> */}
 
-                <input type="text" id="Comments" name="Comments" placeholder="Comment here" />
+                <input type="text" id="Comments" name="Comments" placeholder="Comment here" className="textInput" />
                 {/* <label className="item-label" htmlFor="clear">QR code and clear</label>
                 <input type="submit" className="SAVE" value="Generate QR code"></input>
                 <br />
