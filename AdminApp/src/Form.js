@@ -7,10 +7,8 @@ function RadioButtons(props) {
     for (let item in props.items) {
         output.push(
             <p key={item}>
-                <label className="label-size">
-                    <input className="align-radio" type="radio" name={props.name} value={item} />
-                    {props.items[item]}
-                </label>
+                <input className="align-radio" type="radio" id={item} name={props.name} value={item} />
+                <label className="label-size" htmlFor={item}>{props.items[item]}</label>
             </p>
         )
     }
@@ -123,70 +121,5 @@ class ButtonInput extends React.Component {
     }
 }
 
+export { RadioButtons, NumberInput, ButtonInput };
 
-class MultiButton extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { items: props.items, id: props.id, label: props.label, value: 0, selected: 0 };
-        this.test1 = this.test1.bind(this);
-        this.generateButtons = this.generateButtons.bind(this);
-    }
-
-    test1(id) {
-        this.setState({
-            selected: id
-        })
-        console.log('I\'ve been called ' + (id));
-    }
-
-    generateButtons() {
-        let output = [];
-
-        for (let index in this.state.items) {
-
-            let component;
-
-            if (this.state.selected === index) {
-                component = <input key={index} type="button" className="number-on" value={this.state.items[index][0]} onClick={() => this.test1(index)} />
-                // component = <input type="button" value={1} on_label={(this.state.items[index][0])} off_label={(this.state.items[index][1])} id={index} test1={this.test1} />
-                console.log('Selected button generated');
-
-            } else {
-                // component = <input type="button" value={0} on_label={(this.state.items[index][0])} off_label={(this.state.items[index][1])} id={index} test1={this.test1} />
-                component = <input key={index} type="button" className="number-off" value={this.state.items[index][1]} onClick={() => this.test1(index)} />
-                console.log('Not selected button generated');
-            }
-
-            output.push(component)
-
-
-        }
-        return output;
-    }
-
-
-    render() {
-
-        return (
-            <div>
-                <this.generateButtons />
-            </div>
-        )
-
-    }
-}
-
-class Upload extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = { file: null }
-        this.handleChange = this.handleChange.bind(this)
-    }
-    handleChange(event) {
-        this.setState({
-            file: URL.createObjectURL(event.target.files[0])
-        })
-    }
-}
-
-export { RadioButtons, NumberInput, ButtonInput, MultiButton };
