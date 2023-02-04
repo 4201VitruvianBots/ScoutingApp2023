@@ -1,4 +1,4 @@
-name: Build app for tablets
+name: Build all pages
 
 on:
   push:
@@ -9,26 +9,31 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        react-dir: [ "MatchScouting", "PitScouting", "SuperScouting" ]
+      fail-fast: false
 
     defaults:
       run:
-        working-directory: ./MatchScouting
+        working-directory: ./${{ matrix.react-dir }}
 
     steps:
       - uses: actions/checkout@v3
-        
+      
       - uses: actions/setup-node@v3
         with:
           cache: 'npm'
-          cache-dependency-path: MatchScouting/package-lock.json
+          cache-dependency-path: ${{ matrix.react-dir }}/package-lock.json
       
       - run: npm ci
-        
+      
       - name: Build app for tablet
         run: npm run build-tablet
       
       - name: Upload artifact
         uses: actions/upload-artifact@v3.1.1
         with:
-          name: build
-          path: MatchScouting/build
+          name: build-tablet-${{ matrix.react-dir }}
+          # Path of the directory containing the static assets.
+          path: ${{ matrix.react-dir }}/build
