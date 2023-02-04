@@ -116,6 +116,7 @@ class ButtonInput extends React.Component {
                 // <div>
 
                 <div className="ToggleButton">
+                    <input type='hidden' value= {false} name= {this.state.id} />
                     <input type="button" className="number-off" value={this.state.off_label} onClick={this.setValueFinal} />
 
                     {/* for the onClick function:
@@ -132,6 +133,7 @@ class ButtonInput extends React.Component {
         } else if (this.state.value === 1) {
             return (
                 <div className="ToggleButton">
+                    <input type='hidden' value= {true} name= {this.state.id} />
                     <input type="button" className="number-on" value={this.state.on_label} onClick={this.setValueFinal} />
                 </div>
             );
@@ -249,6 +251,7 @@ class MultiButton extends React.Component {
         return (
             <div>
                 <this.generateButtons />
+                <input type='hidden' name= {this.state.id} value= {this.state.selected}/>
             </div>
         )
 

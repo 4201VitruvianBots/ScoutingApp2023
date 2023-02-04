@@ -11,7 +11,7 @@ mydb = mysql.connector.connect(
 
 matchColumns = ('Match_Number', 'Team_Number', 'Scouter_Name', 'Team_Alliance', 'Competition', 'Mobility', 'Show_Time', 'Auto_Cube_Low', 'Auto_Cube_Mid', 'Auto_Cube_High', 'Auto_Cone_Low', 'Auto_Cone_Mid', 'Auto_Cone_High', 'Auto_Station', 'Tele_Cube_Low', 'Tele_Cube_Mid', 'Tele_Cube_High', 'Tele_Cone_Low', 'Tele_Cone_Mid', 'Tele_Cone_High', 'Tele_Station', 'Comments')
 analysisColumns = ('Team_Number', 'Auto_Low_Min', 'Auto_Low_Average', 'Auto_low_Max', 'Auto_Mid_Min', 'Auto_Mid_Average', 'Auto_Mid_Max', 'Auto_High_Min', 'Auto_High_Average', 'Auto_High_Max', 'Tele_Low_Min', 'Tele_Low_Average', 'Tele_Low_Max', 'Tele_Mid_Min', 'Tele_Mid_Average', 'Tele_Mid_Max', 'Tele_High_Min', 'Tele_High_Average', 'Tele_High_Max', 'Average_Fouls', 'Game_Piece', 'Comments')
-
+pitColumns = ('Scouter_Name', 'Team_Number', 'Competition', 'Team_Name', 'DriveTrain', 'Can_Hold_Cone', 'Can_Hold_Cube', 'Scoring_Location_Capability', 'Number_Of_Motors', 'Number_Of_Batteries', 'DriveTrain_Motor_Type', 'Working_On', 'Autos', 'Comments')
 
 mycursor = mydb.cursor()
 
@@ -34,7 +34,7 @@ def handle_get4():
     rows = mycursor.fetchall()
 
     # Format with column names
-    return [dict(zip(matchColumns, row)) for row in rows]
+    return [dict(zip(pitColumns, row)) for row in rows]
 
 
 @app.route('/data/matches/team/<int:number>', methods=['GET'])
@@ -153,9 +153,9 @@ def format_data(string, name):
     print("formatting data")
     print(string)
     print(name)
-    if name in ('Scouter_Name', 'Competition', 'Comments'):
+    if name in ('Scouter_Name', 'Competition', 'Team_Name', 'Comments','DriveTrain_Motor_Type', 'Working_On', 'Autos'):
         return string
-    if name in ('Mobility', 'Show_Time'):
+    if name in ('Mobility', 'Show_Time', 'Can_Hold_Cone', 'Can_Hold_Cube'):
         return bool(string)
 
     len(string)

@@ -31,11 +31,13 @@ CREATE TABLE pitData(
 	Competition TEXT NULL,
 	Team_Name TEXT NULL,
 	DriveTrain INT NULL,
-	Game_Piece INT NULL,
+	Can_Hold_Cone BOOLEAN NULL,
+	Can_Hold_Cube BOOLEAN NULL,
 	Scoring_Location_Capability INT NULL,
-	Numer_Of_Motors INT NULL,
+	Number_Of_Motors INT NULL,
 	Number_Of_Batteries INT NULL,
 	DriveTrain_Motor_Type TEXT NULL,
+	Working_On TEXT NULL,
 	Autos TEXT NULL,
 	Comments TEXT NULL
 );

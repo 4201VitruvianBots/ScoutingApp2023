@@ -49,7 +49,8 @@ class App extends React.Component {
       return (
         <main>
             <p className="page-title">Welcome to Vitruvian Scouting</p>
-            {this.state.signedIn || <SignIn onSubmit={this.SignInHandler}/>}
+            {<SignIn onSubmit={this.SignInHandler}/>}
+
             {/*
             <div >
                 <TabButton headerButtonsonClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>
@@ -59,22 +60,29 @@ class App extends React.Component {
                 <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
             </div>
       */}
-            <form onSubmit={this.SubmitHandler} action="#"> 
+              <form action="http://127.0.0.1:5000/data/pits" method="POST" target="frame" id="myForm" onSubmit={clearForm}>
+                <input type='hidden' value={this.state.EventName} name='Competition' />
+                <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
                 <TeamInfo  selected={this.state.selected === 'teaminfo'}/>
                 <General selected={this.state.selected === 'general'} />
                 <Photos selected={this.state.selected === 'photos'} />
-                
                 <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
+
             </form>
+            <iframe name="frame" title="frame"></iframe>
            
         </main>
         );
     }  
-    
-    QRcodeGenerator() {
-        
-    }
 }
+
+function clearForm() { 
+    document.getElementById("myForm").submit();
+    setTimeout(function() {
+        document.getElementById("myForm").reset();
+        window.location.href="#SignIn"
+    }, 0)
+} 
 
 // function TabButton(props) {
 //     return <button onClick={() => props.onClick(props.tabId)}>{props.children}</button>;
