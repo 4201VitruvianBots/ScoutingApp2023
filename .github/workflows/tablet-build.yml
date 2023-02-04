@@ -13,6 +13,8 @@ jobs:
       matrix:
         react-dir: [ "MatchScouting", "PitScouting", "SuperScouting" ]
       fail-fast: false
+    env: 
+      CI: false
 
     defaults:
       run:
