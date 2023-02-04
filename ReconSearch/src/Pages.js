@@ -3,6 +3,18 @@ import { ButtonInput, GetData } from "./Form";
 import Select from 'react-select'
 import './App.css';
 
+const options = [
+    { value: 'amogus', label: 'Amogus' },
+    { value: 'imposter', label: 'Imposter' },
+    { value: 'crewmate', label: 'Crewmate' }
+]
+
+function Among(props) {
+    return (
+        <Select options={options} />
+    );
+}
+
 function Page(props) {
     return (
         <div className={props.selected ? 'page selected' : 'page'} id={props.id}>
@@ -41,40 +53,40 @@ function TeamInfo(props) {
     return (
         <Page selected={props.selected} className="page" id="teaminfo">
             <p className="section-label">Team Info</p>
-    <div className="textArea">
-        <div className="">        
-              <h2>Team number (sync)</h2>
-        </div>
-       
-        <p><strong>Score Averages</strong></p>
-        {/* <button className="generalButton">High</button>
+            <div className="textArea">
+                <div className="">
+                    <h2>Team number (sync)</h2>
+                </div>
+
+                <p><strong>Score Averages</strong></p>
+                {/* <button className="generalButton">High</button>
         <button className="generalButton">Mid</button>
         <button className="generalButton">Low</button> */}
-        <p>Autos Average</p>
-        <GetData />
-         <ButtonInput off_label="Show High Average?" on_label="(a popup?)" />
-        <ButtonInput off_label="Show Mid Average?" on_label="(a popup?)" />
-        <ButtonInput off_label="Show Low Average?" on_label="(a popup?)" />
+                <p>Autos Average</p>
+                <GetData />
+                <ButtonInput off_label="Show High Average?" on_label="(a popup?)" />
+                <ButtonInput off_label="Show Mid Average?" on_label="(a popup?)" />
+                <ButtonInput off_label="Show Low Average?" on_label="(a popup?)" />
 
-        <p>Teleop Average</p>
-         <ButtonInput off_label="Show High Average?" on_label="(a popup?)" />
-        <ButtonInput off_label="Show Mid Average?" on_label="(a popup?)" />
-        <ButtonInput off_label="Show Low Average?" on_label="(a popup?)" />
-        <br></br>
-        <ButtonInput off_label="Show Fouls" on_label="(a popup?)" />
-        <p>Cargo Abilities</p>
-        <p>Cargo Preference</p>
+                <p>Teleop Average</p>
+                <ButtonInput off_label="Show High Average?" on_label="(a popup?)" />
+                <ButtonInput off_label="Show Mid Average?" on_label="(a popup?)" />
+                <ButtonInput off_label="Show Low Average?" on_label="(a popup?)" />
+                <br></br>
+                <ButtonInput off_label="Show Fouls" on_label="(a popup?)" />
+                <p>Cargo Abilities</p>
+                <p>Cargo Preference</p>
 
-    
-        {/* <button className="generalButton">Cargo Preference</button>
+
+                {/* <button className="generalButton">Cargo Preference</button>
         <button className="generalButton">Autos Average</button> */}
 
-        {/* <input className="text-input" type="text" id="Num" name="Num" placeholder="Team NUMBER"/>
+                {/* <input className="text-input" type="text" id="Num" name="Num" placeholder="Team NUMBER"/>
         <input className="text-input" type="text" id="Num" name="Num" placeholder="Team NAME"/> */}
 
-       
 
-    </div>
+
+            </div>
         </Page>
     );
 }
@@ -82,11 +94,11 @@ function TeamInfo(props) {
 function General(props) {
     return (
         <Page selected={props.selected} id="comments">
-           <p className="section-label">Comments</p>
+            <p className="section-label">Comments</p>
             <div className="textArea">
                 <div className="gallery">
                     <strong><p>info about the effort the team puts in</p></strong>
-                    
+
                     <input type="textbox" placeholder="Type here"></input>
                     <button>submit comment</button>
 
@@ -134,7 +146,7 @@ function General(props) {
                     </div> */}
 
                 </div>
-           </div>
+            </div>
         </Page>
     );
 }
@@ -143,8 +155,8 @@ function Photos(props) {
     return (
         <Page selected={props.selected} id="photos">
             <p className="section-label">Photos</p>
-             <div className="textArea">
-             {/* <div className="textArea">
+            <div className="textArea">
+                {/* <div className="textArea">
             <input type="submit" className="submit-button"></input>
             </div> */}
             </div>
@@ -155,8 +167,8 @@ function Photos(props) {
 function SavePage(props) {
     return (
         <Page selected={props.selected} id="save-page">
-             {/* <p className="section-label" id="Save">Submit</p> */}
-           
+            {/* <p className="section-label" id="Save">Submit</p> */}
+
             {/* <br></br>
             <br></br>
             
@@ -168,17 +180,17 @@ function SavePage(props) {
                 <br/>
                 <input type="text" id="notes" name="notes" />
                 { /* <label className="item-label" htmlFor="clear">QR code and clear</label> */}
-                {/* <input type="submit" className="SAVE" value="Generate QR code"></input>
+            {/* <input type="submit" className="SAVE" value="Generate QR code"></input>
                 <br /> */}
-                {/* } <label className="item-label" htmlFor="continue">Save and continue</label> */}
-                {/* <input type="reset" className="CLEAR" value="Clear Form" /> */}
-                <br/>
-                <br/>
+            {/* } <label className="item-label" htmlFor="continue">Save and continue</label> */}
+            {/* <input type="reset" className="CLEAR" value="Clear Form" /> */}
+            <br />
+            <br />
 
-                {/* <div id="QRCode">{props.QRCode}</div>                
+            {/* <div id="QRCode">{props.QRCode}</div>                
             </div> */}
         </Page>
     );
 }
 
-export { SignIn, TeamInfo, General, Photos,  SavePage };
+export { SignIn, TeamInfo, General, Photos, SavePage, Among };

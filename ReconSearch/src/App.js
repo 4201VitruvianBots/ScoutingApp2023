@@ -1,5 +1,5 @@
 import './App.css';
-import { SignIn, TeamInfo, General, Photos, SavePage } from "./Pages";
+import { SignIn, TeamInfo, General, Photos, SavePage, Among } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 
@@ -50,6 +50,7 @@ class App extends React.Component {
     render() {
         return (
             <main>
+                <Among />
                 {/* <p className="page-title">Is that the roof?!</p> */}
                 {this.state.signedIn || <SignIn onSubmit={this.SignInHandler} />}
                 {/*
