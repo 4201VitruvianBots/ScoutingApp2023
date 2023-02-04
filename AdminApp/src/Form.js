@@ -7,10 +7,8 @@ function RadioButtons(props) {
     for (let item in props.items) {
         output.push(
             <p key={item}>
-                <label className="label-size">
-                    <input className="align-radio" type="radio" name={props.name} value={item} />
-                    {props.items[item]}
-                </label>
+                <input className="align-radio" type="radio" id={item} name={props.name} value={item} />
+                <label className="label-size" htmlFor={item}>{props.items[item]}</label>
             </p>
         )
     }
@@ -27,7 +25,10 @@ class NumberInput extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.increaseValue = this.increaseValue.bind(this);
         this.decreaseValue = this.decreaseValue.bind(this);
+        // eslint-disable-next-line no-restricted-globals
+        addEventListener('reset', () => { this.setState({ value: 0 }) })
     }
+
 
     setValue(value) {
         this.setState({ value: Math.abs(parseInt(value)) });
@@ -50,6 +51,7 @@ class NumberInput extends React.Component {
         // props = {id: "teleopUp", label: "Upper Cargo"};
         return (
             <div>
+
                 <div className="labelleft">
                     <label htmlFor={this.state.id}>{this.state.label}</label>
                 </div>
@@ -65,27 +67,6 @@ class NumberInput extends React.Component {
     }
 }
 
-
-function openCity(evt, cityName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
 class ButtonInput extends React.Component {
     constructor(props) {
         super(props);
@@ -95,7 +76,8 @@ class ButtonInput extends React.Component {
         this.increaseValue = this.increaseValue.bind(this);
         this.decreaseValue = this.decreaseValue.bind(this);
         this.setValueFinal = this.setValueFinal.bind(this);
-
+        // eslint-disable-next-line no-restricted-globals
+        addEventListener('reset', () => { this.setState({ value: 0 }) })
     }
 
     setValue(value) {
@@ -120,38 +102,24 @@ class ButtonInput extends React.Component {
             this.decreaseValue();
         }
     }
-
-
-
     render() {
         if (this.state.value === 0) {
             return (
-                // <div>
-
                 <div className="ToggleButton">
+                    <input type="hidden" value={false} name={this.state.id} />
                     <input type="button" className="number-off" value={this.state.off_label} onClick={this.setValueFinal} />
-
-                    {/* </div> */}
                 </div>
-
             );
         } else if (this.state.value === 1) {
             return (
-                // <div>
-
-
                 <div className="ToggleButton">
+                    <input type="hidden" value={true} name={this.state.id} />
                     <input type="button" className="number-on" value={this.state.on_label} onClick={this.setValueFinal} />
                 </div>
-
-
             );
         }
-
     }
-
 }
 
-
-
 export { RadioButtons, NumberInput, ButtonInput };
+
