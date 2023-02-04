@@ -1,5 +1,5 @@
 import './App.css';
-import { SignIn, TeamInfo, General, Photos, SavePage, SearchBarClass } from "./Pages";
+import { SignIn, TeamInfo, General, Photos, SavePage } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 

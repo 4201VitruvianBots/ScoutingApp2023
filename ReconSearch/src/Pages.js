@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { RadioButtons, NumberInput, ButtonInput, GetData } from "./Form";
-import ReactSearchBox from "react-search-box";
+import React from 'react'
+import { ButtonInput, GetData } from "./Form";
+import Select from 'react-select'
 import './App.css';
 
 function Page(props) {
