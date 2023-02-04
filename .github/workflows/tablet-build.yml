@@ -1,4 +1,4 @@
-name: Build all pages
+name: Build all pages for tablet
 
 on:
   push:
