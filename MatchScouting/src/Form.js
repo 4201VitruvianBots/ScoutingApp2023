@@ -7,8 +7,10 @@ function RadioButtons(props) {
     for (let item in props.items) {
         output.push(
             <p key={item}>
-                <input className="align-radio" type="radio" id={item} name={props.name} value={item} />
-                <label className="label-size" htmlFor={item}>{props.items[item]}</label>
+                <label className="label-size">
+                    <input className="align-radio" type="radio" name={props.name} value={item} />
+                    {props.items[item]}
+                </label>
             </p>
         )
     }
@@ -122,4 +124,3 @@ class ButtonInput extends React.Component {
 }
 
 export { RadioButtons, NumberInput, ButtonInput };
-
