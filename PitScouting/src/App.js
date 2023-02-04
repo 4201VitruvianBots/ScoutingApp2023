@@ -49,7 +49,8 @@ class App extends React.Component {
       return (
         <main>
             <p className="page-title">Welcome to Vitruvian Scouting</p>
-            
+            {<SignIn onSubmit={this.SignInHandler}/>}
+
             {/*
             <div >
                 <TabButton headerButtonsonClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>
@@ -60,7 +61,8 @@ class App extends React.Component {
             </div>
       */}
               <form action="http://127.0.0.1:5000/data/pits" method="POST" target="frame" id="myForm" onSubmit={clearForm}>
-              {this.state.signedIn || <SignIn />}
+                <input type='hidden' value={this.state.EventName} name='Competition' />
+                <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
                 <TeamInfo  selected={this.state.selected === 'teaminfo'}/>
                 <General selected={this.state.selected === 'general'} />
                 <Photos selected={this.state.selected === 'photos'} />

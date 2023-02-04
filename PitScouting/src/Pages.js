@@ -15,7 +15,7 @@ function SignIn(props) {
     return (
         <div>
             <p className="section-label">Pit Scouting</p>
-             
+            <form onSubmit={props.onSubmit} action="#">
                 <div className="textArea">
                     <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" />
                     <label className="item-label" htmlFor="Ename"><strong>Event Name</strong> </label>
@@ -25,8 +25,7 @@ function SignIn(props) {
                     </select>
                     <input type="submit" className="SAVE" value="Sign In" />
                 </div>
-
-        
+            </form>
         </div>
     );
 }
