@@ -181,40 +181,4 @@ function SavePage(props) {
     );
 }
 
-class SearchBarClass extends React.Component {
-    data = [
-      {
-        key: "john",
-        value: "John Doe",
-      },
-      {
-        key: "jane",
-        value: "Jane Doe",
-      },
-      {
-        key: "mary",
-        value: "Mary Phillips",
-      },
-      {
-        key: "robert",
-        value: "Robert",
-      },
-      {
-        key: "karius",
-        value: "Karius",
-      },
-    ];
-  
-    render() {
-      return (
-        <ReactSearchBox
-          placeholder="Placeholder"
-          value="Doe"
-          data={this.data}
-          callback={(record) => console.log(record)}
-        />
-      );
-    }
-  }
-
-export { SignIn, TeamInfo, General, Photos,  SavePage, SearchBarClass };
+export { SignIn, TeamInfo, General, Photos,  SavePage };
