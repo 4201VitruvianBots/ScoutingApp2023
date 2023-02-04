@@ -21,7 +21,7 @@ function SignIn(props) {
                     <label className="item-label" htmlFor="Ename"><strong>Event Name</strong> </label>
                     <select name="Competition" id="Ename" defaultValue="Choose">
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
-                        <option value="BeachBlitz">Port Hueneme</option>
+                        <option value="Port Hueneme">Port Hueneme</option>
                     </select>
                     <input type="submit" className="SAVE" value="Sign In" />
                 </div>
@@ -58,7 +58,7 @@ function General(props) {
                         <MultiButton />
                         <MultiButton />
                         <MultiButton /> */}
-                        <MultiButton items={[['Tank', 't'], ['Swerve', 's'], ['Mecanum', 'm'], ['Other', 'o']]} name="autostation" />
+                        <MultiButton items={[['Tank', 't'], ['Swerve', 's'], ['Mecanum', 'm'], ['Other', 'o']]} id="DriveTrain" />
                     </div>
 
                     
@@ -75,8 +75,8 @@ function General(props) {
 
                     <div className="gamepieces">
                         <p className="generalLabel">Game Piece Capability</p>
-                        <ButtonInput on_label='CONES' off_label='Cones' />
-                        <ButtonInput on_label='CUBES' off_label='Cubes' />
+                        <ButtonInput on_label='CONES' off_label='Cones' id='Can_Hold_Cone' />
+                        <ButtonInput on_label='CUBES' off_label='Cubes' id='Can_Hold_Cube' />
                     </div>
 
                     <div className="scoringLocation">
