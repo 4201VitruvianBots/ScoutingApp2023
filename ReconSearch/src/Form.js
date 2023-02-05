@@ -11,11 +11,11 @@ class GetDataAuto extends React.Component {
 
     async componentDidMount() {
         // GET request using fetch with async/await
-        const response = await fetch('https://751904a8-ff13-4192-8e12-e09dfb769f53.mock.pstmn.io/data/matches');
-        const data = await response.json();
-        this.setState({ AutoConeHighValue: data[0].Auto_Cone_High })
-        this.setState({ AutoConeMidValue: data[0].Auto_Cone_Mid })
-        this.setState({ AutoConeLowValue: data[0].Auto_Cone_Low })
+        const response = await fetch('http://localhost:5000/data/matches', {crossDomain:true, method: 'GET'});
+        const data = await response.json();        
+        this.setState({ AutoConeHighValue: data[2].Auto_Cone_High })
+        this.setState({ AutoConeMidValue: data[2].Auto_Cone_Mid })
+        this.setState({ AutoConeLowValue: data[2].Auto_Cone_Low })
     }
 
     render() {
@@ -39,19 +39,19 @@ class GetDataTele extends React.Component {
 
     async componentDidMount() {
         // GET request using fetch with async/await
-        const response = await fetch('https://751904a8-ff13-4192-8e12-e09dfb769f53.mock.pstmn.io/data/matches');
+        const response = await fetch('http://localhost:5000/data/matches', {crossDomain:true, method: 'GET'});
         const data = await response.json();
-        this.setState({ TeleConeHighValue: data[0].Tele_Cone_High })
-        this.setState({ TeleConeMidValue: data[0].Tele_Cone_Mid })
-        this.setState({ TeleConeLowValue: data[0].Tele_Cone_Low })
+        this.setState({ TeleConeHighValue: data[2].Tele_Cone_High })
+        this.setState({ TeleConeMidValue: data[2].Tele_Cone_Mid })
+        this.setState({ TeleConeLowValue: data[2].Tele_Cone_Low })
     }
 
     render() {
         return (
             <div>
-                <p>Auto Cone High, {this.state.TeleConeHighValue}</p>
-                <p>Auto Cone Mid, {this.state.TeleConeMidValue}</p>
-                <p>Auto Cone Low, {this.state.TeleConeLowValue}</p>
+                <p>Tele Cone High, {this.state.TeleConeHighValue}</p>
+                <p>Tele Cone Mid, {this.state.TeleConeMidValue}</p>
+                <p> Cone Low, {this.state.TeleConeLowValue}</p>
             </div>
         );
     }
