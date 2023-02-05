@@ -23,15 +23,12 @@ function Page(props) {
     );
 }
 
-
 function TeamInfo(props) {
     return (
         <Page selected={props.selected} className="page" id="teaminfo">
             <p className="section-label">Team Info</p>
             <div className="textArea">
-                <div className="">
-                    <h2>Team number (sync)</h2>
-                </div>
+                <h2>Team number (sync)</h2>
 
                 <p><strong>Score Averages</strong></p>
                 <GetDataAuto />
@@ -40,7 +37,9 @@ function TeamInfo(props) {
                 <GetDataTele />
                 <br></br>
                 <p><strong>Cargo Abilities</strong></p>
+                <p>Can pick up: (cone, cube, or both)</p>
                 <p><strong>Cargo Preference</strong></p>
+                <p>Prefers to pick up: _________</p>
             </div>
         </Page>
     );
@@ -68,6 +67,11 @@ function Photos(props) {
             <p className="section-label">Photos</p>
             <div className="textArea">
             </div>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+
         </Page>
     );
 }
