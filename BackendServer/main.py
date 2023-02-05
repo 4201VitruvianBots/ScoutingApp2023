@@ -1,4 +1,5 @@
 from flask import Flask, request
+from flask_cors import CORS
 import mysql.connector
 import atexit
 
@@ -16,6 +17,7 @@ pitColumns = ('Scouter_Name', 'Team_Number', 'Competition', 'Team_Name', 'DriveT
 mycursor = mydb.cursor()
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/data/matches', methods=['GET'])
 def handle_get():
