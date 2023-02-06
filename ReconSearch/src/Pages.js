@@ -41,6 +41,32 @@ function TeamInfo(props) {
                 <p><strong>Cargo Preference</strong></p>
                 <p>Prefers to pick up: _________</p>
             </div>
+
+            <div>
+                <p>kyle's wireframe</p>
+                <div>
+                    <button>auto points</button>
+                    <button>teleop points</button>
+                    <button>endgame points</button>
+                </div>
+
+                <div>
+                    <button>fouls</button>
+                    <button>tech fouls</button>
+                    <button>disabled?</button>
+                </div>
+
+                <div>
+                    <button>yellow/red cards?</button>
+                    <button>pit scouting info</button>
+                    <button>all matches</button>
+                    <br></br>
+                    <p>photo of robot?</p>
+                </div>
+                <br></br>
+                <br></br>
+                <br></br>
+            </div>
         </Page>
     );
 }
