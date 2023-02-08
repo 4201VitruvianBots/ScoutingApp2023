@@ -355,10 +355,34 @@
    font-weight: 700;
  }
 
+ .motorType textarea,
+ .autos textarea {
+   font-size: 20px;
+   font-weight: 400;
+ }
+
+
+
  .test2 .team input[type="text"] {
    font-weight: 900;
    color: rgb(0, 0, 0);
    text-align: center;
    font-size: 30px;
    width: 45%;
+ }
+
+ .textArea input[type="submit"]:active {
+   background-color: darkgreen;
+ }
+
+ .check {
+   width: 50px;
+   height: 20px;
+   border-left: 10px solid green;
+   border-bottom: 10px solid green;
+   transform: rotate(-45deg);
+   margin-left: 70%;
+   margin-bottom: 50%;
+   position: absolute;
+
  }

@@ -1,5 +1,6 @@
 import { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload } from "./Form";
 import './App.css';
+import { useState } from "react";
 
 
 function Page(props) {
@@ -12,19 +13,32 @@ function Page(props) {
 
 
 function SignIn(props) {
+    const [showCheck, setshowCheck] = useState(false);
+
+    const handleSubmit = (event) => {
+        setshowCheck(true);
+        props.onSubmit(event);
+        setTimeout(() => { setshowCheck(false) }, 5000);
+    }
+
     return (
         <div>
             <p className="section-label">Pit Scouting</p>
             <p className="topNote">If the robot has an "other" drivetrain, specify it in the notes at the bottom!</p>
-            <form onSubmit={props.onSubmit} action="#">
+            <form onSubmit={handleSubmit} action="#">
                 <div className="textArea">
-                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" />
+                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" className="name" />
                     <br />
                     <select name="Competition" id="Ename" defaultValue="Choose">
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
                         <option value="Port Hueneme">Port Hueneme</option>
                     </select>
+                    {showCheck && <div class="check"></div>}
                     <input type="submit" className="SAVE" value="Sign In" />
+
+                    {/* when submitted 
+                        <>checkmark image</> */}
+
                 </div>
             </form>
         </div>
@@ -76,11 +90,11 @@ function General(props) {
                     </div>
 
                     <div className="motorType">
-                        <textarea rows="5" cols="20" placeholder="Drivetrain Motor Types" name="DriveTrain_Motor_Type" ></textarea>
+                        <textarea rows="4" cols="15" placeholder="Drivetrain Motor Types" name="DriveTrain_Motor_Type" ></textarea>
                     </div>
 
                     <div className="autos">
-                        <textarea rows="5" cols="20" placeholder="Autos (# and type)" name="Autos"></textarea>
+                        <textarea rows="4" cols="15" placeholder="Autos (# and type)" name="Autos"></textarea>
                     </div>
 
                     <div className="workingOn">
