@@ -43,11 +43,10 @@ body {
 }
 
 .itemLabel {
-  color: ba;
+
   font-size: 20px;
   font-weight: 500;
 }
-
 
 /* Inputs */
 input[type="checkbox"] {

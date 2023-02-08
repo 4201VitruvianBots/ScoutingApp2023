@@ -168,7 +168,7 @@ class MultiButton extends React.Component {
     render() {
 
         return (
-            <div>
+            <div className="[className]">
                 <this.generateButtons />
             </div>
         )

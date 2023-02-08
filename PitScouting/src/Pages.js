@@ -1,5 +1,6 @@
 import { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload } from "./Form";
 import './App.css';
+import { useState } from "react";
 
 
 function Page(props) {
@@ -12,82 +13,74 @@ function Page(props) {
 
 
 function SignIn(props) {
+    const [showCheck, setshowCheck] = useState(false);
+
+    const handleSubmit = (event) => {
+        setshowCheck(true);
+        props.onSubmit(event);
+        setTimeout(() => { setshowCheck(false) }, 5000);
+    }
+
     return (
         <div>
             <p className="section-label">Pit Scouting</p>
-            <form onSubmit={props.onSubmit} action="#">
+            <p className="topNote">If the robot has an "other" drivetrain, specify it in the notes at the bottom!</p>
+            <form onSubmit={handleSubmit} action="#">
                 <div className="textArea">
-                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" />
-                    <label className="item-label" htmlFor="Ename"><strong>Event Name</strong> </label>
+                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" className="name" />
+                    <br />
                     <select name="Competition" id="Ename" defaultValue="Choose">
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
                         <option value="Port Hueneme">Port Hueneme</option>
                     </select>
+                    {showCheck && <div class="check"></div>}
                     <input type="submit" className="SAVE" value="Sign In" />
+
+                    {/* when submitted 
+                        <>checkmark image</> */}
+
                 </div>
             </form>
         </div>
     );
 }
 
-function TeamInfo(props) {
-    return (
-        <Page selected={props.selected} className="page" id="teaminfo">
-            <p className="section-label">Team Info</p>
-            <div className="textArea">
-                <input className="text-input" type="text" id="Num" name="Team_Number" placeholder="Team NUMBER" />
-                <input className="text-input" type="text" id="Num" name="Team_Name" placeholder="Team NAME" />
-                <RadioButtons />
-            </div>
-        </Page>
-    );
-}
 
 function General(props) {
     return (
         <Page selected={props.selected} id="general">
             <p className="section-label">General</p>
             <div className="textArea">
-                <div className="gallery">
+                <div className="test2">
+
+                    <div className="team">
+                        <input className="text-input" type="text" id="Num" name="Team_Number" placeholder="Team NUMBER" />
+                    </div>
 
                     <div className="drivetrain">
                         <p className="generalLabel">Drivetrain Type</p>
-                        {/* some kind of input where you can declare the number and titles of all your options in one input*/}
-                        {/* <MultiButton />
-                        <MultiButton />
-                        <MultiButton />
-                        <MultiButton /> */}
-                        <MultiButton items={[['Tank', 't'], ['Swerve', 's'], ['Mecanum', 'm'], ['Other', 'o']]} id="DriveTrain" />
+                        <div className="allianceSelect">
+                            <MultiButton items={[['TANK', 'Tank'], ['SWERVE', 'Swerve'], ['MECANUM', 'Mecanum'], ['OTHER', 'Other']]} id="DriveTrain" />
+                        </div>
                     </div>
-
-                    
-                    {/* <div className="test2" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
-                        <label class="btn btn-outline-primary" for="btnradio1">Radio 1</label>
-
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
-                        <label class="btn btn-outline-primary" for="btnradio2">Radio 2</label>
-
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
-                        <label class="btn btn-outline-primary" for="btnradio3">Radio 3</label>
-                    </div> */}
 
                     <div className="gamepieces">
                         <p className="generalLabel">Game Piece Capability</p>
-                        <ButtonInput on_label='CONES' off_label='Cones' id='Can_Hold_Cone' />
-                        <ButtonInput on_label='CUBES' off_label='Cubes' id='Can_Hold_Cube' />
+                        <ButtonInput on_label='CONES' off_label='Cones' id='Can_Hold_Cone' className="cone" />
+                        <ButtonInput on_label='CUBES' off_label='Cubes' id='Can_Hold_Cube' className="cube" />
                     </div>
 
                     <div className="scoringLocation">
                         <p className="generalLabel">Scoring Location Capability</p>
-                        <ButtonInput on_label='LOW' off_label='Low' id='1' value="1" />
-                        <ButtonInput on_label='MID' off_label='Mid' id='2' value="1" />
-                        <ButtonInput on_label='HIGH' off_label='High' id='3' value="1" />
+                        <ButtonInput on_label='LOW' off_label='Low' id='1' />
+                        <ButtonInput on_label='MID' off_label='Mid' id='2' />
+                        <ButtonInput on_label='HIGH' off_label='High' id='3' />
+
 
                     </div>
 
                     <div className="motors">
-                        <p className="generalLabel"># of Motors (Tank- on each side)</p>
+                        <p className="generalLabel"># of Motors </p> {/*(Tank- on each side)*/}
                         <NumberInput id="Number_Of_Motors" />
                     </div>
 
@@ -97,20 +90,21 @@ function General(props) {
                     </div>
 
                     <div className="motorType">
-                        <input type="text" placeholder="Drivetrain Motor Type" name="DriveTrain_Motor_Type" ></input>
+                        <textarea rows="4" cols="15" placeholder="Drivetrain Motor Types" name="DriveTrain_Motor_Type" ></textarea>
                     </div>
 
                     <div className="autos">
-                        <input type="text" placeholder="Autos (# and type)" name="Autos"></input>
+                        <textarea rows="4" cols="15" placeholder="Autos (# and type)" name="Autos"></textarea>
                     </div>
 
                     <div className="workingOn">
-                        <input type="text" placeholder="They're working on..." name="Working_On" ></input>
+                        <textarea rows="5" cols="40" placeholder="They're working on..." name="Working_On" ></textarea>
                     </div>
 
                 </div>
+
             </div>
-        </Page>
+        </Page >
     );
 }
 
@@ -121,17 +115,17 @@ function Photos(props) {
         <Page selected={props.selected} id="photos">
             <p className="section-label">Photos</p>
             <div className="textArea">
-                <p>DRIVETRAIN</p>
-                <Upload size="100px"></Upload>
-                <p>INTAKE</p>
+                <p className="smallLabel">DRIVETRAIN</p>
                 <Upload></Upload>
-                <p>UPTAKE</p>
+                <p className="smallLabel">INTAKE</p>
                 <Upload></Upload>
-                <p>OUTTAKE</p>
+                <p className="smallLabel">UPTAKE</p>
                 <Upload></Upload>
-                <p>EXTRAS</p>
+                <p className="smallLabel">OUTTAKE</p>
                 <Upload></Upload>
-            {/* <input type="file" multiple accept="image/*" /> */}
+                <p className="smallLabel">EXTRAS</p>
+                <Upload></Upload>
+                {/* <input type="file" multiple accept="image/*" /> */}
             </div>
         </Page>
     );
@@ -140,26 +134,14 @@ function Photos(props) {
 function SavePage(props) {
     return (
         <Page selected={props.selected} id="save-page">
-            
             <p className="section-label">Save Page</p>
             <div className="textArea">
-            <label htmlFor="Comments" className="item-label">Notes</label>
-                <br/>
-                <br/>
-                <input type="text" id="notes" name="Comments" />
-                
-             {/* <label className="item-label" htmlFor="continue">Save and continue</label>  */}
-            
-            <input type="submit" className="submit-button"/>Save and continue
-
-            <input type="reset" className="CLEAR" value="Clear Form"/>
-            {/* </div> */}
-
-            {/* <div id="QRCode">{props.QRCode}</div>                
-            </div> */}
+                <p className="generalLabel">Notes</p>
+                <textarea rows="5" cols="20" id="notes" name="Comments" />
+                <input type="submit" className="submit-button" />
             </div>
         </Page>
     );
 }
 
-export { SignIn, TeamInfo, General, Photos, SavePage };
+export { SignIn, General, Photos, SavePage };
