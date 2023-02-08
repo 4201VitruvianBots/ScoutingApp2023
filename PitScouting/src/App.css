@@ -6,6 +6,7 @@
    --bg-color: var(--background-1);
    text-align: center;
    font-family: system-ui;
+
  }
 
  .textArea {
@@ -77,18 +78,21 @@
 
  input[type="text"],
  textarea {
-   border-color: #003800;
+   border: black 1.5px solid;
+   border-radius: 3.5px;
    color: black;
    display: block;
    font-size: 15px;
    margin: 0 auto;
-   margin-bottom: 20px;
+   /* margin-bottom: 20px; */
    overflow-wrap: break-word;
    font-family: system-ui;
+   text-align: center;
  }
 
  input[type="text"] {
    height: 30px;
+   text-align: center;
  }
 
 
@@ -142,6 +146,7 @@
    height: 35px;
    font-size: 20px;
    margin: 15px;
+   border-radius: 30px;
  }
 
  .SAVE {
@@ -196,12 +201,13 @@
    border: 2px solid rgba(13, 125, 13, 0.585);
    box-sizing: border-box;
    padding: 5px;
-   width: 15%;
+   width: 10%;
    min-width: fit-content;
    border-radius: 10px;
    display: inline-block;
    margin: 15px;
    flex-grow: 1;
+   max-height: fit-content;
  }
 
  .team {
@@ -237,7 +243,7 @@
    font-size: 15px;
    font-weight: 550;
    margin: 0 auto;
-   margin-bottom: 10px;
+   /* margin-bottom: 10px; */
    /* border: 2px solid darkgreen; */
    display: block;
  }
@@ -314,6 +320,7 @@
    font-size: 30px;
    margin: 20px;
    height: 40px;
+   border-radius: 30px;
  }
 
  .workingOn input[type="text"] {
@@ -330,10 +337,28 @@
  .smallLabel {
    color: darkgreen;
    font-weight: 700;
+   font-size: 20px;
  }
 
  .topNote {
    font-weight: 500;
    font-style: italic;
    color: darkgreen;
+ }
+
+ .team input[type="number"] {
+   width: 150px !important;
+ }
+
+ .textArea input[type="text"] {
+   font-size: 20px;
+   font-weight: 700;
+ }
+
+ .test2 .team input[type="text"] {
+   font-weight: 900;
+   color: rgb(0, 0, 0);
+   text-align: center;
+   font-size: 30px;
+   width: 45%;
  }

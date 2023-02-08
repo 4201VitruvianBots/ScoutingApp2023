@@ -18,9 +18,8 @@ function SignIn(props) {
             <p className="topNote">If the robot has an "other" drivetrain, specify it in the notes at the bottom!</p>
             <form onSubmit={props.onSubmit} action="#">
                 <div className="textArea">
-
                     <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" />
-
+                    <br />
                     <select name="Competition" id="Ename" defaultValue="Choose">
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
                         <option value="Port Hueneme">Port Hueneme</option>
@@ -32,17 +31,6 @@ function SignIn(props) {
     );
 }
 
-function TeamInfo(props) {
-    return (
-        <Page selected={props.selected} className="page" id="teaminfo">
-            <p className="section-label">Team Info</p>
-            <div className="textArea">
-
-                <input className="text-input" type="text" id="Num" name="Team_Name" placeholder="Team NAME" />
-            </div>
-        </Page>
-    );
-}
 
 function General(props) {
     return (
@@ -142,4 +130,4 @@ function SavePage(props) {
     );
 }
 
-export { SignIn, TeamInfo, General, Photos, SavePage };
+export { SignIn, General, Photos, SavePage };
