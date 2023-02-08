@@ -7,7 +7,6 @@ CREATE TABLE matchData(
 	Team_Alliance INT NULL,
 	Competition TEXT NULL,
 	Mobility BOOLEAN NULL,
-	Show_Time BOOLEAN NULL,
 	Auto_Cube_low INT NULL,
 	Auto_Cube_Mid INT NULL,
 	Auto_Cube_High INT NULL,
