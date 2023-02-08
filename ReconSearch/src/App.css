@@ -16,10 +16,10 @@
  }
 
  ::placeholder {
-    color: gray;
-    font-size: 20px;
-    font-style: italic;
-    text-align: center;
+   color: gray;
+   font-size: 20px;
+   font-style: italic;
+   text-align: center;
  }
 
  .section-label {
@@ -27,35 +27,39 @@
    font-size: 30px;
    font-weight: bold;
    margin: 20px;
-   
+
  }
 
- .item-label, .item-label2 {
+ .item-label,
+ .item-label2 {
    color: black;
-   font-size: 20px; 
-   
+   font-size: 20px;
+
    display: inline-block;
  }
- .item-label2{
-  margin-bottom:20px;
-  margin-top: 10px;
- }
- .dropdown{
-  border-color:#085f00;
-  border-width: 50px;
- }
- .textInput{
-  border-color:#085f00;
-  border-width: 50px;
+
+ .item-label2 {
+   margin-bottom: 20px;
+   margin-top: 10px;
  }
 
-.numberInput{
-  border-color:#085f00;
-  border-width: 50px;
-  margin:10px;
+ .dropdown {
+   border-color: #085f00;
+   border-width: 50px;
  }
- 
- .textArea{
+
+ .textInput {
+   border-color: #085f00;
+   border-width: 50px;
+ }
+
+ .numberInput {
+   border-color: #085f00;
+   border-width: 50px;
+   margin: 10px;
+ }
+
+ .textArea {
    background-color: #b6d7a8ff;
    min-width: 300px;
    min-height: 100px;
@@ -73,7 +77,7 @@
    color: var(--accent-1);
  }
 
- 
+
 
 
  select {
@@ -99,17 +103,23 @@
  }
 
  .chonk {
-   display: inline !important;
-   width: 50px !important;
-   height: 32.5px !important;
+   height: auto;
    font-size: 25px !important;
-    background-color:#003800;
-
+   width: 230px;
+   font-size: 30px;
+   padding: 15px;
+   margin: 10px;
+   background-color: #83c183;
  }
- input[type = button].chonk{
-  background-color:#cad3c8;
-  border-width: 2px;
-  border-color:  #83c183;
+
+ .chonk:active {
+   background-color: #b6d7a8ff;
+ }
+
+ input[type=button].chonk {
+   background-color: #cad3c8;
+   border-width: 2px;
+   border-color: #83c183;
  }
 
  input[type="checkbox"] {
@@ -136,28 +146,30 @@
    width: 50px !important;
    height: 32.5px !important;
    font-size: 25px;
-   text-align:center;
+   text-align: center;
    border-color: teal;
  }
 
- .SAVE, .CLEAR {
+ .SAVE,
+ .CLEAR {
    display: inline-block;
    width: 300px;
    height: 35px;
    font-size: 20px;
    margin: 15px;
  }
- 
+
  .SAVE {
    background-color: #83c183;
    margin-top: 30px;
    margin-bottom: 10px;
 
  }
- 
+
  .CLEAR {
    border-color: var(--accent-3);
-   background-color: red; /*Make this color better*/
+   background-color: red;
+   /*Make this color better*/
  }
 
  .savept2 {
@@ -179,67 +191,83 @@
    background-color: white;
  } */
 
- .gallery{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  margin: 0 auto;
-  padding: 10px 0;
-}
-
-.green-block, .motors, .batteries, .motorType, .autos, .workingOn{
-  background-color: var(--background-1);
-  border: 2px solid #58a16383;
-  box-sizing: border-box;
-  padding: 5px;
-  width: 15%;
+ .gallery {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+   gap: 30px;
+   margin: 0 auto;
+   padding: 10px 0;
  }
 
- .motors, .batteries {
-  padding: 10px;
- }
- .motorType, .autos, .workingOn {
-  padding: 10px;
-  width: (15% + 100px);
+ .green-block,
+ .motors,
+ .batteries,
+ .motorType,
+ .autos,
+ .workingOn {
+   background-color: var(--background-1);
+   border: 2px solid #58a16383;
+   box-sizing: border-box;
+   padding: 5px;
+   width: 15%;
  }
 
-.generalLabel{
-  font-size: 20px;
-  color: black;
-  font-weight: 500;
-}
+ .motors,
+ .batteries {
+   padding: 10px;
+ }
 
-.generalButton {
-  width: fit-content;
-  height: 20%;
-  font-size: 20px;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  display: block;
-  padding: 10px;
-  display:inline-flex;
-  /* display:inline-block;
+ .motorType,
+ .autos,
+ .workingOn {
+   padding: 10px;
+   width: (15% + 100px);
+ }
+
+ .generalLabel {
+   font-size: 20px;
+   color: black;
+   font-weight: 500;
+ }
+
+ .generalButton {
+   width: fit-content;
+   height: 20%;
+   font-size: 20px;
+   margin: 0 auto;
+   margin-bottom: 10px;
+   display: block;
+   padding: 10px;
+   display: inline-flex;
+   /* display:inline-block;
   cursor: default;
   appearance: auto;
   box-sizing: border-box;
   margin: 0 auto;
   padding: 10px; */
-  border: 3px solid #6aa84fff;
-} 
+   border: 3px solid #6aa84fff;
+ }
 
-.submit-button {
-  width: 500px;
-  font-size: 50px;
-  margin: 20px;
-}
+ .submit-button {
+   width: 500px;
+   font-size: 50px;
+   margin: 20px;
+ }
 
-.searchbar {
-  width:500px;
-}
-/* .generalButton:focus{
+ .searchbar {
+   width: 500px;
+ }
+
+ /* .generalButton:focus{
   background-color: purple;
 
 } */
+
+ .buttons {
+   width: 200px;
+   height: auto;
+
+ }

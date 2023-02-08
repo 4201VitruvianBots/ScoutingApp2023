@@ -1,5 +1,5 @@
 import React from 'react'
-import { GetDataAuto, GetDataTele } from "./Form";
+import { GetDataAuto, GetDataTele, Upload } from "./Form";
 import Select from 'react-select'
 import './App.css';
 
@@ -41,32 +41,38 @@ function TeamInfo(props) {
                 <p><strong>Cargo Preference</strong></p>
                 <p>Prefers to pick up: _________</p>
             </div>
+            <br></br>
 
-            <div>
-                <p>kyle's wireframe</p>
+            <div className="textArea">
                 <div>
-                    <button>auto points</button>
-                    <button>teleop points</button>
-                    <button>endgame points</button>
+                    <button className="chonk">auto points</button>
+                    <button className="chonk">teleop points</button>
+                    <button className="chonk">endgame points</button>
                 </div>
 
                 <div>
-                    <button>fouls</button>
-                    <button>tech fouls</button>
-                    <button>disabled?</button>
+                    <button className="chonk">fouls</button>
+                    <button className="chonk">tech fouls</button>
+                    <button className="chonk">disabled?</button>
                 </div>
 
                 <div>
-                    <button>yellow/red cards?</button>
-                    <button>pit scouting info</button>
-                    <button>all matches</button>
-                    <br></br>
-                    <p>photo of robot?</p>
+                    <button className="chonk">yellow/red cards?</button>
+                    <button className="chonk">pit scouting info</button>
+                    <button className="chonk">all matches</button>
                 </div>
-                <br></br>
-                <br></br>
+
+            </div>
+            <br></br>
+            <div className="textArea">
+                <h1>photo of robot?</h1>
+                <Upload></Upload>
                 <br></br>
             </div>
+
+            <br></br>
+            <br></br>
+            <br></br>
         </Page>
     );
 }

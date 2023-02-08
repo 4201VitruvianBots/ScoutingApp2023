@@ -11,8 +11,8 @@ class GetDataAuto extends React.Component {
 
     async componentDidMount() {
         // GET request using fetch with async/await
-        const response = await fetch('http://localhost:5000/data/matches', {crossDomain:true, method: 'GET'});
-        const data = await response.json();        
+        const response = await fetch('http://localhost:5000/data/matches', { crossDomain: true, method: 'GET' });
+        const data = await response.json();
         this.setState({ AutoConeHighValue: data[2].Auto_Cone_High })
         this.setState({ AutoConeMidValue: data[2].Auto_Cone_Mid })
         this.setState({ AutoConeLowValue: data[2].Auto_Cone_Low })
@@ -39,7 +39,7 @@ class GetDataTele extends React.Component {
 
     async componentDidMount() {
         // GET request using fetch with async/await
-        const response = await fetch('http://localhost:5000/data/matches', {crossDomain:true, method: 'GET'});
+        const response = await fetch('http://localhost:5000/data/matches', { crossDomain: true, method: 'GET' });
         const data = await response.json();
         this.setState({ TeleConeHighValue: data[2].Tele_Cone_High })
         this.setState({ TeleConeMidValue: data[2].Tele_Cone_Mid })
@@ -172,5 +172,25 @@ class ButtonInput extends React.Component {
     }
 }
 
+class Upload extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = { file: null }
+        this.handleChange = this.handleChange.bind(this)
+    }
+    handleChange(event) {
+        this.setState({
+            file: URL.createObjectURL(event.target.files[0])
+        })
+    }
+    render() {
+        return (
+            <div>
+                <input type="file" onChange={this.handleChange} />
+                <img src={this.state.file} height="275px" width="225px" />
+            </div>
+        );
+    }
+}
 
-export { RadioButtons, NumberInput, ButtonInput, GetDataAuto, GetDataTele };
+export { RadioButtons, NumberInput, ButtonInput, GetDataAuto, GetDataTele, Upload };
