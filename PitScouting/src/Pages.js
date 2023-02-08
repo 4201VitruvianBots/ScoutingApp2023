@@ -15,10 +15,12 @@ function SignIn(props) {
     return (
         <div>
             <p className="section-label">Pit Scouting</p>
+            <p className="topNote">If the robot has an "other" drivetrain, specify it in the notes at the bottom!</p>
             <form onSubmit={props.onSubmit} action="#">
                 <div className="textArea">
+
                     <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" />
-                    <label className="item-label" htmlFor="Ename"><strong>Event Name</strong> </label>
+
                     <select name="Competition" id="Ename" defaultValue="Choose">
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
                         <option value="Port Hueneme">Port Hueneme</option>
@@ -35,7 +37,7 @@ function TeamInfo(props) {
         <Page selected={props.selected} className="page" id="teaminfo">
             <p className="section-label">Team Info</p>
             <div className="textArea">
-                <input className="text-input" type="text" id="Num" name="Team_Number" placeholder="Team NUMBER" />
+
                 <input className="text-input" type="text" id="Num" name="Team_Name" placeholder="Team NAME" />
             </div>
         </Page>
@@ -48,6 +50,11 @@ function General(props) {
             <p className="section-label">General</p>
             <div className="textArea">
                 <div className="test2">
+
+                    <div className="team">
+                        <input className="text-input" type="text" id="Num" name="Team_Number" placeholder="Team NUMBER" />
+                    </div>
+
                     <div className="drivetrain">
                         <p className="generalLabel">Drivetrain Type</p>
                         <div className="allianceSelect">
@@ -81,15 +88,15 @@ function General(props) {
                     </div>
 
                     <div className="motorType">
-                        <input type="text" placeholder="Drivetrain Motor Type" name="DriveTrain_Motor_Type" ></input>
+                        <textarea rows="5" cols="20" placeholder="Drivetrain Motor Types" name="DriveTrain_Motor_Type" ></textarea>
                     </div>
 
                     <div className="autos">
-                        <input type="text" placeholder="Autos (# and type)" name="Autos"></input>
+                        <textarea rows="5" cols="20" placeholder="Autos (# and type)" name="Autos"></textarea>
                     </div>
 
                     <div className="workingOn">
-                        <input type="text" placeholder="They're working on..." name="Working_On" ></input>
+                        <textarea rows="5" cols="40" placeholder="They're working on..." name="Working_On" ></textarea>
                     </div>
 
                 </div>
@@ -106,15 +113,15 @@ function Photos(props) {
         <Page selected={props.selected} id="photos">
             <p className="section-label">Photos</p>
             <div className="textArea">
-                <p>DRIVETRAIN</p>
+                <p className="smallLabel">DRIVETRAIN</p>
                 <Upload></Upload>
-                <p>INTAKE</p>
+                <p className="smallLabel">INTAKE</p>
                 <Upload></Upload>
-                <p>UPTAKE</p>
+                <p className="smallLabel">UPTAKE</p>
                 <Upload></Upload>
-                <p>OUTTAKE</p>
+                <p className="smallLabel">OUTTAKE</p>
                 <Upload></Upload>
-                <p>EXTRAS</p>
+                <p className="smallLabel">EXTRAS</p>
                 <Upload></Upload>
                 {/* <input type="file" multiple accept="image/*" /> */}
             </div>
@@ -128,7 +135,7 @@ function SavePage(props) {
             <p className="section-label">Save Page</p>
             <div className="textArea">
                 <p className="generalLabel">Notes</p>
-                <input type="text" id="notes" name="Comments" />
+                <textarea rows="5" cols="20" id="notes" name="Comments" />
                 <input type="submit" className="submit-button" />
             </div>
         </Page>

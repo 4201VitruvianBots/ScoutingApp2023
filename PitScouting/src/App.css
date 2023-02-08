@@ -36,23 +36,9 @@
 
  ::placeholder {
    color: gray;
-   font-size: 20px;
+   font-size: 15px;
    font-style: italic;
    text-align: center;
- }
-
-
- .item-label,
- .item-label2 {
-   color: black;
-   font-size: 20px;
-
-   display: inline-block;
- }
-
- .item-label2 {
-   margin-bottom: 20px;
-   margin-top: 10px;
  }
 
  .dropdown {
@@ -89,15 +75,22 @@
    margin: 0 auto;
  }
 
- input[type="text"] {
+ input[type="text"],
+ textarea {
    border-color: #003800;
    color: black;
    display: block;
-   height: 30px;
-   font-size: 20px;
+   font-size: 15px;
    margin: 0 auto;
    margin-bottom: 20px;
+   overflow-wrap: break-word;
+   font-family: system-ui;
  }
+
+ input[type="text"] {
+   height: 30px;
+ }
+
 
  .chonk {
    display: inline !important;
@@ -197,7 +190,8 @@
  .batteries,
  .motorType,
  .autos,
- .workingOn {
+ .workingOn,
+ .team {
    background-color: var(--background-1);
    border: 2px solid rgba(13, 125, 13, 0.585);
    box-sizing: border-box;
@@ -208,6 +202,10 @@
    display: inline-block;
    margin: 15px;
    flex-grow: 1;
+ }
+
+ .team {
+   height: fit-content;
 
  }
 
@@ -222,6 +220,7 @@
  .workingOn {
    padding: 10px;
    min-width: fit-content;
+   font: 15px;
  }
 
  .generalLabel {
@@ -315,4 +314,26 @@
    font-size: 30px;
    margin: 20px;
    height: 40px;
+ }
+
+ .workingOn input[type="text"] {
+   width: 600px;
+   height: 50px;
+ }
+
+ .autos input[type="text"],
+ .motorType input[type="text"] {
+   width: 200px;
+   height: 50px;
+ }
+
+ .smallLabel {
+   color: darkgreen;
+   font-weight: 700;
+ }
+
+ .topNote {
+   font-weight: 500;
+   font-style: italic;
+   color: darkgreen;
  }
