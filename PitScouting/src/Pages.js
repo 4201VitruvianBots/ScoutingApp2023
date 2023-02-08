@@ -37,7 +37,6 @@ function TeamInfo(props) {
             <div className="textArea">
                 <input className="text-input" type="text" id="Num" name="Team_Number" placeholder="Team NUMBER" />
                 <input className="text-input" type="text" id="Num" name="Team_Name" placeholder="Team NAME" />
-                <RadioButtons />
             </div>
         </Page>
     );
@@ -48,46 +47,31 @@ function General(props) {
         <Page selected={props.selected} id="general">
             <p className="section-label">General</p>
             <div className="textArea">
-                <div className="gallery">
-
+                <div className="test2">
                     <div className="drivetrain">
                         <p className="generalLabel">Drivetrain Type</p>
-                        {/* some kind of input where you can declare the number and titles of all your options in one input*/}
-                        {/* <MultiButton />
-                        <MultiButton />
-                        <MultiButton />
-                        <MultiButton /> */}
-                        <MultiButton items={[['Tank', 't'], ['Swerve', 's'], ['Mecanum', 'm'], ['Other', 'o']]} id="DriveTrain" />
+                        <div className="allianceSelect">
+                            <MultiButton items={[['TANK', 'Tank'], ['SWERVE', 'Swerve'], ['MECANUM', 'Mecanum'], ['OTHER', 'Other']]} id="DriveTrain" />
+                        </div>
                     </div>
-
-                    
-                    {/* <div className="test2" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
-                        <label class="btn btn-outline-primary" for="btnradio1">Radio 1</label>
-
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
-                        <label class="btn btn-outline-primary" for="btnradio2">Radio 2</label>
-
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
-                        <label class="btn btn-outline-primary" for="btnradio3">Radio 3</label>
-                    </div> */}
 
                     <div className="gamepieces">
                         <p className="generalLabel">Game Piece Capability</p>
-                        <ButtonInput on_label='CONES' off_label='Cones' id='Can_Hold_Cone' />
-                        <ButtonInput on_label='CUBES' off_label='Cubes' id='Can_Hold_Cube' />
+                        <ButtonInput on_label='CONES' off_label='Cones' id='Can_Hold_Cone' className="cone" />
+                        <ButtonInput on_label='CUBES' off_label='Cubes' id='Can_Hold_Cube' className="cube" />
                     </div>
 
                     <div className="scoringLocation">
                         <p className="generalLabel">Scoring Location Capability</p>
-                        <ButtonInput on_label='LOW' off_label='Low' id='1' value="1" />
-                        <ButtonInput on_label='MID' off_label='Mid' id='2' value="1" />
-                        <ButtonInput on_label='HIGH' off_label='High' id='3' value="1" />
+                        <ButtonInput on_label='LOW' off_label='Low' id='1' />
+                        <ButtonInput on_label='MID' off_label='Mid' id='2' />
+                        <ButtonInput on_label='HIGH' off_label='High' id='3' />
+
 
                     </div>
 
                     <div className="motors">
-                        <p className="generalLabel"># of Motors (Tank- on each side)</p>
+                        <p className="generalLabel"># of Motors </p> {/*(Tank- on each side)*/}
                         <NumberInput id="Number_Of_Motors" />
                     </div>
 
@@ -109,8 +93,9 @@ function General(props) {
                     </div>
 
                 </div>
+
             </div>
-        </Page>
+        </Page >
     );
 }
 
@@ -122,7 +107,7 @@ function Photos(props) {
             <p className="section-label">Photos</p>
             <div className="textArea">
                 <p>DRIVETRAIN</p>
-                <Upload size="100px"></Upload>
+                <Upload></Upload>
                 <p>INTAKE</p>
                 <Upload></Upload>
                 <p>UPTAKE</p>
@@ -131,7 +116,7 @@ function Photos(props) {
                 <Upload></Upload>
                 <p>EXTRAS</p>
                 <Upload></Upload>
-            {/* <input type="file" multiple accept="image/*" /> */}
+                {/* <input type="file" multiple accept="image/*" /> */}
             </div>
         </Page>
     );
@@ -140,23 +125,11 @@ function Photos(props) {
 function SavePage(props) {
     return (
         <Page selected={props.selected} id="save-page">
-            
             <p className="section-label">Save Page</p>
             <div className="textArea">
-            <label htmlFor="Comments" className="item-label">Notes</label>
-                <br/>
-                <br/>
+                <p className="generalLabel">Notes</p>
                 <input type="text" id="notes" name="Comments" />
-                
-             {/* <label className="item-label" htmlFor="continue">Save and continue</label>  */}
-            
-            <input type="submit" className="submit-button"/>Save and continue
-
-            <input type="reset" className="CLEAR" value="Clear Form"/>
-            {/* </div> */}
-
-            {/* <div id="QRCode">{props.QRCode}</div>                
-            </div> */}
+                <input type="submit" className="submit-button" />
             </div>
         </Page>
     );

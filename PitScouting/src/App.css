@@ -1,12 +1,23 @@
  :root {
    --accent-1: white;
    --accent-4: #003800;
-   /* --background-1: linear-gradient(180, #58a163, #ffffff);  */
-   --background-1: #58a163;
+   --background-1: #59aa59;
    --accent-default: var(--accent-3);
    --bg-color: var(--background-1);
    text-align: center;
+   font-family: system-ui;
  }
+
+ .textArea {
+   background-color: #ecf2eb;
+   min-width: 300px;
+   min-height: 100px;
+   padding: 20px;
+   margin: 20px;
+   border-radius: 10px;
+ }
+
+ /* Titles, Headers, & Labels */
 
  .page-title {
    color: white;
@@ -15,53 +26,48 @@
    font-weight: 300;
  }
 
- ::placeholder {
-    color: gray;
-    font-size: 20px;
-    font-style: italic;
-    text-align: center;
- }
-
  .section-label {
    color: black;
    font-size: 30px;
    font-weight: bold;
    margin: 20px;
-   
+
  }
 
- .item-label, .item-label2 {
+ ::placeholder {
+   color: gray;
+   font-size: 20px;
+   font-style: italic;
+   text-align: center;
+ }
+
+
+ .item-label,
+ .item-label2 {
    color: black;
-   font-size: 20px; 
-   
+   font-size: 20px;
+
    display: inline-block;
  }
- .item-label2{
-  margin-bottom:20px;
-  margin-top: 10px;
- }
- .dropdown{
-  border-color:#085f00;
-  border-width: 50px;
- }
- .textInput{
-  border-color:#085f00;
-  border-width: 50px;
+
+ .item-label2 {
+   margin-bottom: 20px;
+   margin-top: 10px;
  }
 
-.numberInput{
-  border-color:#085f00;
-  border-width: 50px;
-  margin:10px;
+ .dropdown {
+   border-color: #085f00;
+   border-width: 50px;
  }
- 
- .textArea{
-   background-color: #ecf2eb;
-   min-width: 300px;
-   min-height: 100px;
-   padding: 25px;
-   margin: 0px 100px;
+
+
+ .numberInput {
+   border-color: #085f00;
+   border-width: 50px;
+   margin: 10px;
  }
+
+
 
  body {
    margin: 0;
@@ -85,10 +91,8 @@
 
  input[type="text"] {
    border-color: #003800;
-   /* background-color: var(--accent-1); */
    color: black;
    display: block;
-   /* width: fit-content; */
    height: 30px;
    font-size: 20px;
    margin: 0 auto;
@@ -100,13 +104,14 @@
    width: 50px !important;
    height: 32.5px !important;
    font-size: 25px !important;
-    background-color:#003800;
+   background-color: #003800;
 
  }
- input[type = button].chonk{
-  background-color:#cad3c8;
-  border-width: 2px;
-  border-color:  #83c183;
+
+ input[type=button].chonk {
+   background-color: #cad3c8;
+   border-width: 2px;
+   border-color: #83c183;
  }
 
  input[type="checkbox"] {
@@ -133,28 +138,30 @@
    width: 50px !important;
    height: 32.5px !important;
    font-size: 25px;
-   text-align:center;
+   text-align: center;
    border-color: teal;
  }
 
- .SAVE, .CLEAR {
+ .SAVE,
+ .CLEAR {
    display: inline-block;
    width: 300px;
    height: 35px;
    font-size: 20px;
    margin: 15px;
  }
- 
+
  .SAVE {
    background-color: #83c183;
    margin-top: 30px;
    margin-bottom: 10px;
 
  }
- 
+
  .CLEAR {
    border-color: var(--accent-3);
-   background-color: red; /*Make this color better*/
+   background-color: red;
+   /*Make this color better*/
  }
 
  .savept2 {
@@ -171,100 +178,141 @@
    text-align: left;
  }
 
- /* #QRCode {
-   padding: 20px;
-   background-color: white;
+ .gallery {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+   gap: 30px;
+   margin: 0 auto;
+   padding: 10px 0;
+ }
+
+
+ .drivetrain,
+ .gamepieces,
+ .scoringLocation,
+ .motors,
+ .batteries,
+ .motorType,
+ .autos,
+ .workingOn {
+   background-color: var(--background-1);
+   border: 2px solid rgba(13, 125, 13, 0.585);
+   box-sizing: border-box;
+   padding: 5px;
+   width: 15%;
+   min-width: fit-content;
+   border-radius: 10px;
+   display: inline-block;
+   margin: 15px;
+   flex-grow: 1;
+
+ }
+
+ .motors,
+ .batteries {
+   padding: 10px;
+   min-width: 190px;
+ }
+
+ .motorType,
+ .autos,
+ .workingOn {
+   padding: 10px;
+   min-width: fit-content;
+ }
+
+ .generalLabel {
+   font-size: 20px;
+   color: black;
+   font-weight: 300;
+   padding: 0px;
+   margin: 10px auto;
+ }
+
+ .generalButton {
+   width: fit-content;
+   height: 20%;
+   font-size: 15px;
+   font-weight: 550;
+   margin: 0 auto;
+   margin-bottom: 10px;
+   /* border: 2px solid darkgreen; */
+   display: block;
+ }
+
+ .photoSelect {
+   color: black;
+   font-size: 60px;
+ }
+
+ p {
+   color: black;
+ }
+
+ .photoInput {
+
+   max-height: 300px;
+   max-width: 300px;
+ }
+
+ /* .img {
+   height: 100px;
+   width: 100px;
+   border-color: orange;
  } */
 
- .gallery{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  margin: 0 auto;
-  padding: 10px 0;
-}
-
-.drivetrain, .gamepieces, .scoringLocation, .motors, .batteries, .motorType, .autos, .workingOn, .test2{
-  background-color: var(--background-1);
-  border: 2px solid darkgreen;
-  box-sizing: border-box;
-  padding: 5px;
-  width: 15%;
-  min-width: fit-content;
-  border-radius: 5%;
+ .test2 {
+   display: flex;
+   flex-flow: row wrap;
+   align-items: stretch;
+   align-content: stretch;
  }
 
- .motors, .batteries {
-  padding: 10px;
-  min-width: 190px;
+
+ .allianceSelect .number-off,
+ .gamepieces .ToggleButton .number-off,
+ .scoringLocation .ToggleButton .number-off {
+   background-color: #87bd87;
+   color: white;
+   font-weight: 600;
+   border: 1.5px darkgreen solid;
  }
 
- .motorType, .autos, .workingOn {
-  padding: 10px;
-  min-width: fit-content;
+ .allianceSelect .number-on,
+ .gamepieces .ToggleButton .number-on,
+ .scoringLocation .ToggleButton .number-on {
+   /* background-color: rgb(242, 255, 0); */
+   background-color: rgb(5, 255, 5);
+   color: black;
+   font-weight: 600;
+   border: 1.5px rgba(16, 127, 16, 0.61) solid;
+
  }
 
-.generalLabel{
-  font-size: 20px;
-  color: black;
-  font-weight: 400;
-}
+ .number-on,
+ .number-off {
+   display: inline !important;
+   width: 100px;
+   font-size: 15px;
+   text-align: center;
+   border-radius: 7px;
+   font-weight: 600;
+   padding: 5px;
+   margin: 5px;
+ }
 
-.generalButton {
-  width: fit-content;
-  height: 20%;
-  font-size: 15px;
-  font-weight: 550;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  /* border: 2px solid darkgreen; */
-  display: block;
-} 
-
-.generalButton:focus{
-  background-color: purple;
-  color: white;
-  border: 1px solid white;
-
-}
-
-.number-off {
-  background-color: teal;
-}
-
-.number-on{
-  background-color: orange;
-}
-
-input[type="file" ] {
-  background-color: teal;
-
-}
-input[type="file" i] {
-  background-color: orange;
-  
-
-}
-
-.photoSelect{
-  color: black;
-  font-size: 60px;
-}
-
-p {
-  color: black;
-}
-
-.photoInput{
- 
-  max-height:300px;
-  max-width:300px;
-}
-
-.img{
-  height: 100px;
-  width: 100px;
-}
+ .submit-button {
+   background-color: #83c183;
+   margin-top: 30px;
+   margin-bottom: 10px;
+   display: inline-block;
+   font-size: 20px;
+   margin: 15px;
+   width: 500px;
+   font-size: 30px;
+   margin: 20px;
+   height: 40px;
+ }
