@@ -1,6 +1,7 @@
 import './App.css';
 import { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation } from "./Pages";
 import React from "react";
+import { Table } from './Form';
 
 class App extends React.Component {
     constructor(props) {
@@ -18,111 +19,46 @@ class App extends React.Component {
     render() {
         return (
             <main>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>Scout</td>
-                            <td>Robot</td>
-                            <td>Team</td>
-                            <td>Match</td>
-                            <td>Status</td>
-                            <td>Tablet Battery</td>
-                        </tr>
-                        <tr>
-                            <td>Josiah</td>
-                            <td>Blue 1</td>
-                            <td>4414</td>
-                            <td>22</td>
-                            <td>Auto</td>
-                            <td>61</td>
-                        </tr>
-                        <tr>
-                            <td>Haley</td>
-                            <td>Blue 2</td>
-                            <td>4201</td>
-                            <td>22</td>
-                            <td>Auto</td>
-                            <td>66</td>
-                        </tr>
-                        <td>
-                            <td>Natalie</td>
-                            <td>Blue 3</td>
-                            <td>1678</td>
-                            <td>22</td>
-                            <td>Auto</td>
-                            <td>72</td>
-                        </td>
-                        <tr>
-                            <td>Gaby</td>
-                            <td>Red 1</td>
-                            <td>1323</td>
-                            <td>22</td>
-                            <td>Auto</td>
-                            <td>68</td>
-                        </tr>
-                        <tr>
-                            <td>Devin</td>
-                            <td>Red 2</td>
-                            <td>254</td>
-                            <td>22</td>
-                            <td>Auto</td>
-                            <td>67</td>
-                        </tr>
-                        <tr>
-                            <td>Cassie</td>
-                            <td>Red 3</td>
-                            <td>7157</td>
-                            <td>22</td>
-                            <td>Auto</td>
-                            <td>70</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>Super Scout</td>
-                            <td>Alliance</td>
-                            <td>Match</td>
-                            <td>Status</td>
-                            <td>Tablet Battery</td>
-                        </tr>
-                        <tr>
-                            <td>Robyn</td>
-                            <td>Blue</td>
-                            <td>22</td>
-                            <td>Sign-In</td>
-                            <td>26</td>
-                        </tr>
-                        <tr>
-                            <td>Naomi</td>
-                            <td>Red</td>
-                            <td>22</td>
-                            <td>Sign-In</td>
-                            <td>31</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>Match</td>
-                            <td>B1</td>
-                            <td>B2</td>
-                            <td>B3</td>
-                            <td>R1</td>
-                            <td>R2</td>
-                            <td>R3</td>
-                            <td>Match</td>
-                            <td>B1</td>
-                            <td>B2</td>
-                            <td>B3</td>
-                            <td>R1</td>
-                            <td>R2</td>
-                            <td>R3</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <Table data={[
+                    ['Scout', 'Robot', 'Team', 'Match', 'Status', 'Tablet Battery'],
+                    ['Josiah', 'Blue 1', '4414', '22', 'Auto', '61'],
+                    ['Haley', 'Blue 2', '4201', '22', 'Auto', '66'],
+                    ['Natalie', 'Blue 3', '1678', '22', 'Auto', '72'],
+                    ['Gaby', 'Red 1', '1323', '22', 'Auto', '68'],
+                    ['Devin', 'Red 2', '254', '22', 'Auto', '67'],
+                    ['Cassie', 'Red 3', '7157', '22', 'Auto', '70']
+                ]} />
+                <Table data={[
+                    ['Super Scout', 'Alliance', 'Match', 'Status', 'Tablet Battery'],
+                    ['Robyn', 'Blue', '22', 'Sign-In', '26'],
+                    ['Naomi', 'Red', '22', 'Sign-In', '31']
+                ]} />
+                <Table data={[
+                        ['Match', 'B1', 'B2', 'B3', 'R1', 'R2', 'R3', 'Match', 'B1', 'B2', 'B3', 'R1', 'R2', 'R3'],
+                        ['1' , '' , '' , '' , '' , '' , '' , '24' ,  '' , '' , '' , '' , '' , '' ], 
+                        ['2' , '' , '' , '' , '' , '' , '' , '25' ,  '' , '' , '' , '' , '' , '' ],
+                        ['3' , '' , '' , '' , '' , '' , '' , '26' ,  '' , '' , '' , '' , '' , '' ],
+                        ['4' , '' , '' , '' , '' , '' , '' , '27' ,  '' , '' , '' , '' , '' , '' ],
+                        ['5' , '' , '' , '' , '' , '' , '' , '28' ,  '' , '' , '' , '' , '' , '' ],
+                        ['6' , '' , '' , '' , '' , '' , '' , '29' ,  '' , '' , '' , '' , '' , '' ],
+                        ['7' , '' , '' , '' , '' , '' , '' , '30' ,  '' , '' , '' , '' , '' , '' ],
+                        ['8' , '' , '' , '' , '' , '' , '' , '31' ,  '' , '' , '' , '' , '' , '' ],
+                        ['9' , '' , '' , '' , '' , '' , '' , '32' ,  '' , '' , '' , '' , '' , '' ],
+                        ['10' , '' , '' , '' , '' , '' , '' , '33' ,  '' , '' , '' , '' , '' , '' ],
+                        ['11' , '' , '' , '' , '' , '' , '' , '34' ,  '' , '' , '' , '' , '' , '' ],
+                        ['12' , '' , '' , '' , '' , '' , '' , '35' ,  '' , '' , '' , '' , '' , '' ],
+                        ['13' , '' , '' , '' , '' , '' , '' , '36' ,  '' , '' , '' , '' , '' , '' ],
+                        ['14' , '' , '' , '' , '' , '' , '' , '37' ,  '' , '' , '' , '' , '' , '' ],
+                        ['15' , '' , '' , '' , '' , '' , '' , '38' ,  '' , '' , '' , '' , '' , '' ],
+                        ['16' , '' , '' , '' , '' , '' , '' , '39' ,  '' , '' , '' , '' , '' , '' ], 
+                        ['17' , '' , '' , '' , '' , '' , '' , '40' ,  '' , '' , '' , '' , '' , '' ],
+                        ['18' , '' , '' , '' , '' , '' , '' , '41' ,  '' , '' , '' , '' , '' , '' ],
+                        ['19' , '' , '' , '' , '' , '' , '' , '42' ,  '' , '' , '' , '' , '' , '' ],
+                        ['20' , '' , '' , '' , '' , '' , '' , '43' ,  '' , '' , '' , '' , '' , '' ],
+                        ['21' , '' , '' , '' , '' , '' , '' , '44' ,  '' , '' , '' , '' , '' , '' ],
+                        ['22' , '' , '' , '' , '' , '' , '' , '45' ,  '' , '' , '' , '' , '' , '' ],
+                        ['23' , '' , '' , '' , '' , '' , '' , '46' ,  '' , '' , '' , '' , '' , '' ],
+                ]} />
             </main>
         );
     }
