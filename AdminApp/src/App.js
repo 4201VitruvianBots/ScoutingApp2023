@@ -84,8 +84,20 @@ class App extends React.Component {
                     ['21' , '' , '' , '' , '' , '' , '' , '44' ,  '' , '' , '' , '' , '' , '', '67' , '' , '' , '' , '' , '' , '' , '90' ,  '' , '' , '' , '' , '' , '' ],
                     ['22' , '' , '' , '' , '' , '' , '' , '45' ,  '' , '' , '' , '' , '' , '', '68' , '' , '' , '' , '' , '' , '' , '91' ,  '' , '' , '' , '' , '' , '' ],
                     ['23' , '' , '' , '' , '' , '' , '' , '46' ,  '' , '' , '' , '' , '' , '', '69' , '' , '' , '' , '' , '' , '' , '92' ,  '' , '' , '' , '' , '' , '' ],
-                ]}
-                />
+                ]} />
+                <Table data={[
+                    ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+                    ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+                    ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+                    ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+                    ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+                    ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+                    ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+                    ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+                    ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+                    ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+                    ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+                ]} />
             </main>
         );
     }
