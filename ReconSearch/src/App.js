@@ -1,5 +1,5 @@
 import './App.css';
-import { TeamInfo, General, Photos, SavePage, Among } from "./Pages";
+import { TeamInfo, Among, PopupGfg, Photos } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 
@@ -51,10 +51,12 @@ class App extends React.Component {
         return (
             <main>
                 <Among />
+
                 <form onSubmit={this.SubmitHandler} action="#">
                     <TeamInfo selected={this.state.selected === 'teaminfo'} />
+                    <PopupGfg />
                     {/* <General selected={this.state.selected === 'general'} /> */}
-                    {/* <Photos selected={this.state.selected === 'photos'} /> */}
+                    <Photos selected={this.state.selected === 'photos'} />
                     {/* <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} /> */}
                 </form>
 
