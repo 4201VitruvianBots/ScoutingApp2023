@@ -1,6 +1,8 @@
 import { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, PageSelector } from "./Form";
 import './App.css';
 import { useState } from "react";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 
 function Page(props) {
@@ -10,6 +12,8 @@ function Page(props) {
         </div>
     );
 }
+
+
 
 function SignIn(props) {
     const [showCheck, setshowCheck] = useState(false);
@@ -54,7 +58,47 @@ function General(props) {
         <Page selected={props.selected} id="general">
             <p className="section-label">General</p>
             <div className="textArea">
+
+                <Popup trigger=
+                    {<button className="chonk"></button>}
+                    modal nested>
+                    {
+                        close => (
+                            <div className='modal'>
+                                <div className='content'>
+                                    IT WORKS!!!!!!!!!!!!!!!!!1
+                                </div>
+                                <div>
+                                    <button onClick=
+                                        {() => close()}>
+                                        Close popup
+                                    </button>
+                                </div>
+                            </div>
+                        )
+                    }
+                </Popup>
+                <Popup trigger=
+                    {<button className="chonk"> Teleop Points </button>}
+                    modal nested>
+                    {
+                        close => (
+                            <div className='modal'>
+                                <div className='content'>
+                                    IT WORKS!!!!!!!!!!!!!!!!!1
+                                </div>
+                                <div>
+                                    <button onClick=
+                                        {() => close()}>
+                                        Close popup
+                                    </button>
+                                </div>
+                            </div>
+                        )
+                    }
+                </Popup>
                 <div className="test2">
+
 
                     <div className="team">
                         <input className="text-input" type="text" id="Num" name="Team_Number" placeholder="Team NUMBER" />
