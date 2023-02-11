@@ -1,5 +1,5 @@
 import './App.css';
-import { SignIn, TeamInfo, General, Photos, SavePage, Among } from "./Pages";
+import { TeamInfo, General, Photos, SavePage, Among } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 
@@ -51,17 +51,6 @@ class App extends React.Component {
         return (
             <main>
                 <Among />
-                {/* <p className="page-title">Is that the roof?!</p> */}
-                {this.state.signedIn || <SignIn onSubmit={this.SignInHandler} />}
-                {/*
-            <div >
-                <TabButton headerButtonsonClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>
-                <TabButton onClick={this.setSelected} tabId="General">General</TabButton>
-                <TabButton onClick={this.setSelected} tabId="tele-op">Photos</TabButton>
-                <TabButton onClick={this.setSelected} tabId="endgame">Endgame</TabButton>
-                <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
-            </div>
-      */}
                 <form onSubmit={this.SubmitHandler} action="#">
                     <TeamInfo selected={this.state.selected === 'teaminfo'} />
                     <General selected={this.state.selected === 'general'} />
@@ -73,15 +62,6 @@ class App extends React.Component {
         );
     }
 
-    QRcodeGenerator() {
-
-    }
 }
-
-// function TabButton(props) {
-//     return <button onClick={() => props.onClick(props.tabId)}>{props.children}</button>;
-// }
-
-
 
 export default App;
