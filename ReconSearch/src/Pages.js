@@ -211,20 +211,20 @@ class SearchBar extends React.Component {
         selectedOption: null,
     }
     handleChange = (selectedOption) => {
-        this.setState({selectedOption});
+        this.setState({ selectedOption });
         document.write(`Option selected:`, selectedOption.value);
     }
 
     render() {
-        const {selectedOption} = this.state;
+        const { selectedOption } = this.state;
         return (
-        <div>
-            <Select 
-            options={options} 
-            value={selectedOption}
-            onChange={this.handleChange}
-            />
-        </div>
+            <div>
+                <Select
+                    options={options}
+                    value={selectedOption}
+                    onChange={this.handleChange}
+                />
+            </div>
         );
     }
 }
@@ -237,10 +237,18 @@ function Page(props) {
     );
 }
 
+function Title(props) {
+    return (
+        <Page selected={props.selected} id="title">
+            <p className="section-label">Recon Interface</p>
+        </Page>
+    );
+}
+
 function TeamInfo(props) {
     return (
         <Page selected={props.selected} className="page" id="teaminfo">
-            <p className="section-label">Team Info</p>
+            <br></br>
             <div className="textArea">
 
                 <h2>Team number (sync)</h2>
@@ -298,11 +306,5 @@ function Photos(props) {
     );
 }
 
-function SavePage(props) {
-    return (
-        <Page selected={props.selected} id="save-page">
-        </Page>
-    );
-}
 
-export { TeamInfo, General, Photos, SavePage, SearchBar, PopupGfg };
+export { TeamInfo, General, Photos, Title, SearchBar, PopupGfg };

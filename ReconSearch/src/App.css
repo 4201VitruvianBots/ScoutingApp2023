@@ -257,9 +257,9 @@
    margin: 20px;
  }
 
- .searchbar {
-   width: 500px;
- }
+ /* .searchbar {
+   width: 1px;
+ } */
 
  /* .generalButton:focus{
   background-color: purple;
@@ -270,4 +270,10 @@
    width: 200px;
    height: auto;
 
+ }
+
+ .css-b62m3t-container {
+   width: 500px;
+   /* padding-left: 40px; */
+   display: inline-block;
  }

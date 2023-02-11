@@ -1,5 +1,5 @@
 import './App.css';
-import { TeamInfo, PopupGfg, Photos, SearchBar } from "./Pages";
+import { TeamInfo, PopupGfg, Photos, SearchBar, Title } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 
@@ -50,9 +50,10 @@ class App extends React.Component {
     render() {
         return (
             <main>
-                <SearchBar />
 
                 <form onSubmit={this.SubmitHandler} action="#">
+                    <Title selected={this.state.selected === 'title'} />
+                    <SearchBar />
                     <TeamInfo selected={this.state.selected === 'teaminfo'} />
                     <PopupGfg />
                     {/* <General selected={this.state.selected === 'general'} /> */}
