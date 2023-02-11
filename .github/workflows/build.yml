@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        react-dir: [ "MatchScouting", "PitScouting", "SuperScouting" ]
+        react-dir: [ "MatchScouting", "PitScouting", "SuperScouting", "AdminApp"]
       fail-fast: false
 
     defaults:
