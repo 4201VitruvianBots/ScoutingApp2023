@@ -13,6 +13,7 @@
     "react-scripts": "5.0.1",
     "react-search-box": "^2.3.0",
     "react-select": "^5.7.0",
+    "reactjs-popup": "^2.0.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -3,6 +3,203 @@ import { GetDataAuto, GetDataTele, Upload } from "./Form";
 import Select from 'react-select'
 import './App.css';
 
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+export default function PopupGfg() {
+    return (
+        <div className="textArea">
+
+            <Popup trigger=
+                {<button className="chonk"> Auto Points </button>}
+                modal nested>
+                {
+                    close => (
+                        <div className='modal'>
+                            <div className='content'>
+                                IT WORKS!!!!!!!!!!!!!!!!!1
+                            </div>
+                            <div>
+                                <button onClick=
+                                    {() => close()}>
+                                    Close popup
+                                </button>
+                            </div>
+                        </div>
+                    )
+                }
+            </Popup>
+            <Popup trigger=
+                {<button className="chonk"> Teleop Points </button>}
+                modal nested>
+                {
+                    close => (
+                        <div className='modal'>
+                            <div className='content'>
+                                IT WORKS!!!!!!!!!!!!!!!!!1
+                            </div>
+                            <div>
+                                <button onClick=
+                                    {() => close()}>
+                                    Close popup
+                                </button>
+                            </div>
+                        </div>
+                    )
+                }
+            </Popup>
+
+            <Popup trigger=
+                {<button className="chonk"> Endgame Points </button>}
+                modal nested>
+                {
+                    close => (
+                        <div className='modal'>
+                            <div className='content'>
+                                IT WORKS!!!!!!!!!!!!!!!!!1
+                            </div>
+                            <div>
+                                <button onClick=
+                                    {() => close()}>
+                                    Close popup
+                                </button>
+                            </div>
+                        </div>
+                    )
+                }
+            </Popup>
+
+            <br></br>
+
+            <Popup trigger=
+                {<button className="chonk"> Fouls </button>}
+                modal nested>
+                {
+                    close => (
+                        <div className='modal'>
+                            <div className='content'>
+                                IT WORKS!!!!!!!!!!!!!!!!!1
+                            </div>
+                            <div>
+                                <button onClick=
+                                    {() => close()}>
+                                    Close popup
+                                </button>
+                            </div>
+                        </div>
+                    )
+                }
+            </Popup>
+
+            <Popup trigger=
+                {<button className="chonk"> Tech Fouls </button>}
+                modal nested>
+                {
+                    close => (
+                        <div className='modal'>
+                            <div className='content'>
+                                IT WORKS!!!!!!!!!!!!!!!!!1
+                            </div>
+                            <div>
+                                <button onClick=
+                                    {() => close()}>
+                                    Close popup
+                                </button>
+                            </div>
+                        </div>
+                    )
+                }
+            </Popup>
+
+            <Popup trigger=
+                {<button className="chonk"> Disabled? </button>}
+                modal nested>
+                {
+                    close => (
+                        <div className='modal'>
+                            <div className='content'>
+                                IT WORKS!!!!!!!!!!!!!!!!!1
+                            </div>
+                            <div>
+                                <button onClick=
+                                    {() => close()}>
+                                    Close popup
+                                </button>
+                            </div>
+                        </div>
+                    )
+                }
+            </Popup>
+
+            <br></br>
+
+            <Popup trigger=
+                {<button className="chonk"> Yellow/Red Cards </button>}
+                modal nested>
+                {
+                    close => (
+                        <div className='modal'>
+                            <div className='content'>
+                                IT WORKS!!!!!!!!!!!!!!!!!1
+                            </div>
+                            <div>
+                                <button onClick=
+                                    {() => close()}>
+                                    Close popup
+                                </button>
+                            </div>
+                        </div>
+                    )
+                }
+            </Popup>
+
+            <Popup trigger=
+                {<button className="chonk"> Pit Scouting Info </button>}
+                modal nested>
+                {
+                    close => (
+                        <div className='modal'>
+                            <div className='content'>
+                                IT WORKS!!!!!!!!!!!!!!!!!1
+                            </div>
+                            <div>
+                                <button onClick=
+                                    {() => close()}>
+                                    Close popup
+                                </button>
+                            </div>
+                        </div>
+                    )
+                }
+            </Popup>
+
+            <Popup trigger=
+                {<button className="chonk"> All Matches </button>}
+                modal nested>
+                {
+                    close => (
+                        <div className='modal'>
+                            <div className='content'>
+                                IT WORKS!!!!!!!!!!!!!!!!!1
+                            </div>
+                            <div>
+                                <button onClick=
+                                    {() => close()}>
+                                    Close popup
+                                </button>
+                            </div>
+                        </div>
+                    )
+                }
+            </Popup>
+
+            <br></br>
+        </div>
+
+    )
+};
+
+
+
 const options = [
     { value: 0, label: 'Test One' },
     { value: 1, label: 'Test Two' },
@@ -45,6 +242,7 @@ function TeamInfo(props) {
         <Page selected={props.selected} className="page" id="teaminfo">
             <p className="section-label">Team Info</p>
             <div className="textArea">
+
                 <h2>Team number (sync)</h2>
 
                 <p><strong>Score Averages</strong></p>
@@ -59,40 +257,11 @@ function TeamInfo(props) {
                 <p>Prefers to pick up: _________</p>
             </div>
             <br></br>
-
-            <div className="textArea">
-                <div>
-                    <button className="chonk">auto points</button>
-                    <button className="chonk">teleop points</button>
-                    <button className="chonk">endgame points</button>
-                </div>
-
-                <div>
-                    <button className="chonk">fouls</button>
-                    <button className="chonk">tech fouls</button>
-                    <button className="chonk">disabled?</button>
-                </div>
-
-                <div>
-                    <button className="chonk">yellow/red cards?</button>
-                    <button className="chonk">pit scouting info</button>
-                    <button className="chonk">all matches</button>
-                </div>
-
-            </div>
-            <br></br>
-            <div className="textArea">
-                <h1>photo of robot?</h1>
-                <Upload></Upload>
-                <br></br>
-            </div>
-
-            <br></br>
-            <br></br>
-            <br></br>
         </Page>
     );
 }
+
+
 
 function General(props) {
     return (
@@ -110,17 +279,21 @@ function General(props) {
     );
 }
 
+<br></br>
+
 function Photos(props) {
     return (
         <Page selected={props.selected} id="photos">
-            <p className="section-label">Photos</p>
+            <div>
+                <br></br>
+            </div>
             <div className="textArea">
+                <h1>Photo of Robot?</h1>
+                <Upload></Upload>
             </div>
             <br></br>
             <br></br>
             <br></br>
-            <br></br>
-
         </Page>
     );
 }
@@ -132,4 +305,4 @@ function SavePage(props) {
     );
 }
 
-export { TeamInfo, General, Photos, SavePage, SearchBar };
+export { TeamInfo, General, Photos, SavePage, Among, PopupGfg };

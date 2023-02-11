@@ -187,7 +187,7 @@ class Upload extends React.Component {
         return (
             <div>
                 <input type="file" onChange={this.handleChange} />
-                <img src={this.state.file} height="275px" width="225px" alt="Uploaded File"/>
+                <img src={this.state.file} height="275px" width="225px" alt="Uploaded File" />
             </div>
         );
     }
