@@ -5,22 +5,27 @@ import {MainPage, MatchArchive, AllMatches, MatchData} from './Pages';
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { signedIn: false, ScouterName: "", EventName: "", selected: "MainPage"};
+        this.state = { signedIn: false, ScouterName: "", EventName: "", selected: "MainPage", selectedMatch: 1};
         this.setSelected = this.setSelected.bind(this);
+        this.setSelectedMatch = this.setSelectedMatch.bind(this);
 
     }
-
 
     setSelected(id) {
         this.setState({ selected: id });
     }
+
+    setSelectedMatch(id) {
+        this.setState({ selectedMatch: id });
+    }
+
     render() {
 
         let selectedPage;
 
         switch (this.state.selected) {
             case 'MainPage':
-                selectedPage = <MainPage/>;
+                selectedPage = <MainPage setSelected={this.setSelected} setSelectedMatch={this.setSelectedMatch}/>;
                 break;
             case 'MatchArchive':
                 selectedPage = <MatchArchive/>;
@@ -29,7 +34,7 @@ class App extends React.Component {
                 selectedPage = <AllMatches/>;
                 break;
             case 'MatchData':
-                selectedPage = <MatchData/>
+                selectedPage = <MatchData selectedMatch={this.state.selectedMatch}/>
                 break;
             default:
         }
