@@ -63,6 +63,11 @@ CREATE TABLE dataAnalysis(
 	Tele_High_Max INT,
 	Average_Fouls INT,
 	Game_Piece INT NULL,
+	Average_Cubes FLOAT,
+	Average_Cones FLOAT,
+	Average_Pieces FLOAT,
+	Dock_Frequency FLOAT,
+	Balance_Frequency FLOAT,
 	Comments TEXT NULL,
 	PRIMARY KEY(Team_Number)
 );
