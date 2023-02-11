@@ -1,5 +1,5 @@
 import './App.css';
-import { TeamInfo, Among, PopupGfg, Photos } from "./Pages";
+import { TeamInfo, PopupGfg, Photos, SearchBar } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 
@@ -50,7 +50,7 @@ class App extends React.Component {
     render() {
         return (
             <main>
-                <Among />
+                <SearchBar />
 
                 <form onSubmit={this.SubmitHandler} action="#">
                     <TeamInfo selected={this.state.selected === 'teaminfo'} />

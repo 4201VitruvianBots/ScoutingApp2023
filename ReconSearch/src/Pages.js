@@ -16,7 +16,7 @@ export default function PopupGfg() {
                     close => (
                         <div className='modal'>
                             <div className='content'>
-                                IT WORKS!!!!!!!!!!!!!!!!!1
+                                Auto Popup!
                             </div>
                             <div>
                                 <button onClick=
@@ -35,7 +35,7 @@ export default function PopupGfg() {
                     close => (
                         <div className='modal'>
                             <div className='content'>
-                                IT WORKS!!!!!!!!!!!!!!!!!1
+                                Teleop Popup!
                             </div>
                             <div>
                                 <button onClick=
@@ -55,7 +55,7 @@ export default function PopupGfg() {
                     close => (
                         <div className='modal'>
                             <div className='content'>
-                                IT WORKS!!!!!!!!!!!!!!!!!1
+                                Endgame Popup
                             </div>
                             <div>
                                 <button onClick=
@@ -77,7 +77,7 @@ export default function PopupGfg() {
                     close => (
                         <div className='modal'>
                             <div className='content'>
-                                IT WORKS!!!!!!!!!!!!!!!!!1
+                                Foul Popup!
                             </div>
                             <div>
                                 <button onClick=
@@ -97,7 +97,7 @@ export default function PopupGfg() {
                     close => (
                         <div className='modal'>
                             <div className='content'>
-                                IT WORKS!!!!!!!!!!!!!!!!!1
+                                Tech Foul Popup!
                             </div>
                             <div>
                                 <button onClick=
@@ -117,7 +117,7 @@ export default function PopupGfg() {
                     close => (
                         <div className='modal'>
                             <div className='content'>
-                                IT WORKS!!!!!!!!!!!!!!!!!1
+                                Disabled? Not sure what this is here for.
                             </div>
                             <div>
                                 <button onClick=
@@ -139,7 +139,7 @@ export default function PopupGfg() {
                     close => (
                         <div className='modal'>
                             <div className='content'>
-                                IT WORKS!!!!!!!!!!!!!!!!!1
+                                Card average popup!
                             </div>
                             <div>
                                 <button onClick=
@@ -159,7 +159,7 @@ export default function PopupGfg() {
                     close => (
                         <div className='modal'>
                             <div className='content'>
-                                IT WORKS!!!!!!!!!!!!!!!!!1
+                                Info, also not sure how this popup works
                             </div>
                             <div>
                                 <button onClick=
@@ -179,7 +179,7 @@ export default function PopupGfg() {
                     close => (
                         <div className='modal'>
                             <div className='content'>
-                                IT WORKS!!!!!!!!!!!!!!!!!1
+                                Matches, I do not know what will appear here either
                             </div>
                             <div>
                                 <button onClick=
@@ -305,4 +305,4 @@ function SavePage(props) {
     );
 }
 
-export { TeamInfo, General, Photos, SavePage, Among, PopupGfg };
+export { TeamInfo, General, Photos, SavePage, SearchBar, PopupGfg };
