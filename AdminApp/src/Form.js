@@ -12,14 +12,5 @@ function Table(props) {
     );
 }
 
-class ShiftScouts extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { data: props.data, id: props.id, label: props.label, value: 0, selected: 0 };
-        this.scout = this.scout.bind(this);
-        
-    }
-}
-
 export {Table};
 

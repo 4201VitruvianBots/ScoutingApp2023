@@ -95,5 +95,9 @@ function AllMatches(props) {
         ]} />
     )
 }
-
-export {MainPage, MatchArchive, AllMatches};
+function MatchData(props) {
+    return (
+        <h1>Josiah</h1>
+    );
+}
+export {MainPage, MatchArchive, AllMatches, MatchData};
