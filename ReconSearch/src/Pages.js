@@ -4,15 +4,32 @@ import Select from 'react-select'
 import './App.css';
 
 const options = [
-    { value: 'amogus', label: 'Amogus' },
-    { value: 'imposter', label: 'Imposter' },
-    { value: 'crewmate', label: 'Crewmate' }
-]
+    { value: 0, label: 'Test One' },
+    { value: 1, label: 'Test Two' },
+    { value: 2, label: 'Test Three' }
+];
 
-function Among(props) {
-    return (
-        <Select options={options} />
-    );
+class SearchBar extends React.Component {
+    state = {
+        selectedOption: null,
+    }
+    handleChange = (selectedOption) => {
+        this.setState({selectedOption});
+        document.write(`Option selected:`, selectedOption.value);
+    }
+
+    render() {
+        const {selectedOption} = this.state;
+        return (
+        <div>
+            <Select 
+            options={options} 
+            value={selectedOption}
+            onChange={this.handleChange}
+            />
+        </div>
+        );
+    }
 }
 
 function Page(props) {
@@ -115,4 +132,4 @@ function SavePage(props) {
     );
 }
 
-export { TeamInfo, General, Photos, SavePage, Among };
+export { TeamInfo, General, Photos, SavePage, SearchBar };
