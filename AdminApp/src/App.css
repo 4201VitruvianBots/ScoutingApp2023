@@ -1,7 +1,7 @@
  :root {
    --accent-1: white;
    --accent-4: #003800;
-   --background-1: #085f00d2;
+   --background-1: #212121ff;
    --accent-default: var(--accent-3);
    --bg-color: var(--background-1);
    text-align: center;
@@ -69,7 +69,7 @@
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    background-color: var(--bg-color);
-   /* color: var(--accent-1); */
+   color: var(--accent-1);
  }
 
  /* button {
