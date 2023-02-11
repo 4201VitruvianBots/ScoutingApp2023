@@ -116,7 +116,7 @@ class ButtonInput extends React.Component {
                 // <div>
 
                 <div className="ToggleButton">
-                    <input type='hidden' value= {false} name= {this.state.id} />
+                    <input type='hidden' value={false} name={this.state.id} />
                     <input type="button" className="number-off" value={this.state.off_label} onClick={this.setValueFinal} />
 
                     {/* for the onClick function:
@@ -133,7 +133,7 @@ class ButtonInput extends React.Component {
         } else if (this.state.value === 1) {
             return (
                 <div className="ToggleButton">
-                    <input type='hidden' value= {true} name= {this.state.id} />
+                    <input type='hidden' value={true} name={this.state.id} />
                     <input type="button" className="number-on" value={this.state.on_label} onClick={this.setValueFinal} />
                 </div>
             );
@@ -147,19 +147,6 @@ class MultiButton extends React.Component {
         this.state = { items: props.items, id: props.id, label: props.label, value: 0, selected: 0 };
         this.test1 = this.test1.bind(this);
         this.generateButtons = this.generateButtons.bind(this);
-
-        //switch case
-        //if/else statement? for?
-
-        /* 
-         Multibutton is the parent, buttoninput is the child?
-        the id of the button that's on will be the state of MultiButton
-        gets state of multibutton, to see what is selected
-        prop in button that's optional but still gets looked for (?)
-        when multibutton is rendered, set one of the props to true 
-        (state of MultiButton)
-        declarative - as you create them, they get altered, you're not changing them
-        */
     }
 
     test1(id) {
@@ -168,33 +155,7 @@ class MultiButton extends React.Component {
         })
         console.log('I\'ve been called ' + (id));
 
-        //test1 updates the state of MultiButton (updating its parent based on the state of the child, which is where this function is getting run from)
-        //(id) and this.test1 are the same? 
     }
-
-
-    // next question : how to make only one selected at a time?
-    /* 
-        possible solutions
-         - the component state can only accept 1 value at a time? the state has a max of 1?
-         - the default of togglebutton is off, unless on, and if one is on, only one can be on 
-         (default is already off),
-         some setting so that what's using the button id only accepts 1 at a time
-            what's using the button id - <ButtonInput id={index}> in generateButtons in MultiButton
-            some kind of updating state, if/else, conditional, on event? event listener?
-    */
-    // another step : changing the formatting for on and off label
-
-    /*
-        only allow 1 state?
-
-        keeps its state unless another is clicked
-        default is off, unless clicked, and if another is clicked, then reset to default?
-        instances can't talk to each other, so something in the parent (multibutton?)
-
-        parent delegating which things are on
-
-    */
 
     generateButtons() {
         let output = [];
@@ -205,39 +166,16 @@ class MultiButton extends React.Component {
 
             if (this.state.selected === index) {
                 component = <input key={index} type="button" className="number-on" value={this.state.items[index][0]} onClick={() => this.test1(index)} />
-                // component = <input type="button" value={1} on_label={(this.state.items[index][0])} off_label={(this.state.items[index][1])} id={index} test1={this.test1} />
+
                 console.log('Selected button generated');
 
             } else {
-                // component = <input type="button" value={0} on_label={(this.state.items[index][0])} off_label={(this.state.items[index][1])} id={index} test1={this.test1} />
+
                 component = <input key={index} type="button" className="number-off" value={this.state.items[index][1]} onClick={() => this.test1(index)} />
                 console.log('Not selected button generated');
             }
 
             output.push(component)
-
-            // do we need some reset code? to reset the non-selected buttons?
-
-            // Has to be 1 first - if not, all of them will begin as selected
-
-            /*
-            
-            if (selected:id === special index (index at the moment) {
-                render on_label
-            } else (){
-                render off_label
-
-            }  
-            
-            this will take the "special" index, the one that's telling the parent it's selected at the moment,
-                and render it with the on_label. The other three will be on the off_label.
-
-            Do we need the else? the others should be set to their defaults...
-            */
-
-            // <p key={index}>
-            //     <ButtonInput on_label={(this.state.items[index][0])} off_label={(this.state.items[index][1])}  id={index} test1={this.test1}/>
-            // </p>
 
         }
 
@@ -251,27 +189,62 @@ class MultiButton extends React.Component {
         return (
             <div>
                 <this.generateButtons />
-                <input type='hidden' name= {this.state.id} value= {this.state.selected}/>
+                <input type='hidden' name={this.state.id} value={this.state.selected} />
             </div>
         )
 
     }
 }
 
-// // Radio Buttons
-// function ExtraButton(props) {
+class PageSelector extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { items: props.items, id: props.id, label: props.label, value: 0, selected: 0 };
+        this.test1 = this.test1.bind(this);
+        this.generateButtons = this.generateButtons.bind(this);
+    }
 
+    setSelected(id) {
+        this.setState({ selected: id });
+    }
 
+    generateButtons() {
+        let output = [];
 
-//     <ButtonInput {id, function, '0'}/>
-//     <ButtonInput {id, function, '1'}/>
+        for (let index in this.state.items) {
 
+            let component;
 
+            if (this.state.selected === index) {
+                component = this.state.items[index]
 
-// }
+                console.log('Selected page generated');
 
+            } else {
+                component = null;
+                console.log('Not selected page generated');
+            }
 
-// const React = require('react')
+            output.push(component)
+        }
+
+        return output;
+    }
+
+    //rendering twice from here
+
+    render() {
+
+        return (
+            <div>
+                <this.generateButtons />
+                <input type='hidden' name={this.state.id} value={this.state.selected} />
+            </div>
+        )
+
+    }
+}
+
 
 class Upload extends React.Component {
     constructor(props) {
@@ -289,18 +262,14 @@ class Upload extends React.Component {
         return (
             <div>
                 <input type="file" onChange={this.handleChange} />
-                <img src={this.state.file} height="400px" width="300px"/>
+                <img src={this.state.file} height="400px" width="300px" />
             </div>
         );
 
     }
 }
-// module.exports = Upload
-
-//something is making it think it's html...?
 
 
 export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload };
 
 
-// RadioButtons
