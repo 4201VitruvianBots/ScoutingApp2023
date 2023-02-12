@@ -301,3 +301,16 @@
  .test {
    text-align: right;
  }
+
+ .popupleft {
+   display: inline-block;
+   text-align: left;
+
+   ;
+ }
+
+ .popupright {
+   display: inline-block;
+   text-align: left;
+   margin-left: 20px;
+ }

@@ -225,22 +225,29 @@ export default function PopupGfg() {
                             <div className='content'>
                                 <h3>Pit Scouting Info</h3>
                             </div>
-                            <div className="popuplocation">
+                            <div className="popupleft">
                                 <p>Drivetrain Type: ______</p>
                                 <p>Game Piece Capability: _____</p>
-                                <p>Scoring Location Capability:_____</p>
-
+                                <p>Scoring Location Capability:_____ </p>
+                                <p>Drivetrain Motor Types: _____</p>
+                            </div>
+                            <div className="popupright">
                                 <p>Number of motors: ___ </p>
                                 <p>Number of batteries (total): ___</p>
-                                <br></br>
-                                <p>Drivetrain Motor Types: _____</p>
                                 <p>Autos (# and type)</p>
                                 <p>They're working on....   ____________</p>
-                                <p>notes and the whatnot</p>
-                                <button className="">photo inputs of their Drivetrain, Intake, Uptake, Outtake, and Extras</button>
-                                <br></br>
-                                <br></br>
                             </div>
+                            <div className="popupleft">
+                                <br></br>
+
+
+                            </div>
+                            <p>notes and the whatnot</p>
+                            <button className="">photo inputs of their Drivetrain, Intake, Uptake, Outtake, and Extras</button>
+                            <br></br>
+                            <br></br>
+
+
                             <div>
                                 <button onClick=
                                     {() => close()}>
@@ -262,7 +269,8 @@ export default function PopupGfg() {
                                 <h3>Matches, I do not know what will appear here either</h3>
                             </div>
                             <div>
-                                pulled stuff
+                                <p>pulled stuff</p>
+                                <br></br>
                             </div>
                             <div>
                                 <button onClick=
