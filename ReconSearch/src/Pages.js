@@ -1,5 +1,5 @@
 import React from 'react'
-import { GetDataAuto, GetDataTele, Upload } from "./Form";
+import { Upload } from "./Form";
 import Select from 'react-select'
 import './App.css';
 
@@ -333,29 +333,6 @@ function Title(props) {
     );
 }
 
-function TeamInfo(props) {
-    return (
-        <Page selected={props.selected} className="page" id="teaminfo">
-            <br></br>
-            <div className="textArea">
-
-                <h2>Team number (sync)</h2>
-
-                <p><strong>Score Averages</strong></p>
-                <GetDataAuto selectedOption={props.selectedOption} />
-
-                <p><strong>Teleop Average</strong></p>
-                <GetDataTele selectedOption={props.selectedOption} />
-                <br></br>
-                <p><strong>Cargo Abilities</strong></p>
-                <p>Can pick up: (cone, cube, or both)</p>
-                <p><strong>Cargo Preference</strong></p>
-                <p>Prefers to pick up: _________</p>
-            </div>
-            <br></br>
-        </Page>
-    );
-}
 
 
 
@@ -395,4 +372,4 @@ function Photos(props) {
 }
 
 
-export { TeamInfo, General, Photos, Title, SearchBar, PopupGfg, options };
+export { General, Photos, Title, SearchBar, PopupGfg, options };

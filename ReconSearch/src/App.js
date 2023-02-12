@@ -1,5 +1,5 @@
 import './App.css';
-import { TeamInfo, PopupGfg, Photos, SearchBar, Title, options } from "./Pages";
+import { PopupGfg, Photos, SearchBar, Title, options } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 
@@ -68,17 +68,14 @@ class App extends React.Component {
         
         return (
             <main>
-
                 <form onSubmit={this.SubmitHandler} action="#">
                     <Title selected={this.state.selected === 'title'} />
                     <SearchBar setSelectedOption={this.setSelectedOption} selectedOption={this.state.selectedOption} />
-                    <TeamInfo selected={this.state.selected === 'teaminfo'} selectedOption={this.state.selectedOption} />
                     <PopupGfg data={this.state.data}/>
                     {/* <General selected={this.state.selected === 'general'} /> */}
                     <Photos selected={this.state.selected === 'photos'} />
                     {/* <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} /> */}
                 </form>
-
             </main>
         );
     }
