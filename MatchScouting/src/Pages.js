@@ -1,5 +1,4 @@
-import { RadioButtons, NumberInput, ButtonInput } from "./Form";
-
+import { RadioButtons, NumberInput, ButtonInput, MultiButton } from "./Form";
 import './App.css';
 
 function Page(props) {
@@ -27,26 +26,18 @@ function Navigation(props) {
 function SignIn(props) {
     return (
         <Page selected={props.selected} className="page" id="sign-in">
-            <div>
+            <form onSubmit={props.onSubmit} >
                 <p className="section-label" id="SignIn">Energized</p>
 
                 <div className="textArea">
-
-                    <input type="text" id="Scouter_Name" name="Scouter_Name" placeholder="Scouter Name" className="text-input" />
-                    <br />
-                    <label className="item-label" htmlFor="Competition"><strong>Event Name</strong> </label>
-                    <br />
-                    <br />
-
+                    <input type="text" id="Scouter_Name" name="Scouter_Name" placeholder="Scouter Name" className="textInput" />
                     <select name="Competition" id="Competition" defaultValue="Choose">
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
                         <option value="Hueneme">Port Hueneme</option>
                     </select>
-                    
-                    {/* <input type="submit" className="SAVE" value="Sign In" /> */}
-
+                    <input type="submit" className="save-button" value="Sign In" />
                 </div>
-            </div>
+            </form>
         </Page>
     );
 }
@@ -67,20 +58,7 @@ function PreGame(props) {
 
                 <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
                 <div className="allianceSelect">
-                    <MultiButton items={[['Blue 1', 'BLUE 1'], ['Blue 2', 'BLUE 2'], ['Blue 3', 'BLUE 3'], ['Red 1', 'RED 1'], ['Red 2', 'RED 2'], ['Red 3', 'RED 3']]} name="autostation" />
-
-                    <h1><strong>Team Alliance</strong></h1>
-                    <div className="align-radio">
-                        <RadioButtons items={['Red 1', 'Red 2', 'Red 3']} name="Team_Alliance" />
-                    </div>
-                    <br></br>
-                    <div className="align-radio">
-                        <RadioButtons items={['Blue 1', 'Blue 2', 'Blue 3']} name="Team_Alliance" />
-                    </div>
-                    <br></br>
-                    <br></br>
-                    <h1><strong>No show robot?</strong></h1>
-                    <ButtonInput on_label="Robot did not show" off_label="Robot showed" id="Show_Time" />
+                    <MultiButton items={[['Blue 1', 'BLUE 1'], ['Blue 2', 'BLUE 2'], ['Blue 3', 'BLUE 3'], ['Red 1', 'RED 1'], ['Red 2', 'RED 2'], ['Red 3', 'RED 3']]} id="Team_Alliance" />
 
                 </div>
                 {/* Off value at index 0, ON value at index 1 */}
@@ -105,8 +83,7 @@ function Auto(props) {
             <p className="section-label" id="Auto">Auto</p>
             <div className="textArea">
 
-                <ButtonInput on_label='Mobility Bonus Selected' off_label='Mobility ' id="Mobility" />
-
+                <ButtonInput on_label='Mobility' off_label='Mobility' id="Mobility" />
                 {/* <button type="button">Mobility?</button> */}
 
                 {/* <h2>Mobility</h2> */}
@@ -121,7 +98,7 @@ function Auto(props) {
                 <br />
                 <p className="itemLabel">CHARGING STATION</p>
                 <div className="align-radio">
-                    <MultiButton items={[['Docked', 'DOCKED'], ['Engaged', 'ENGAGED'], ['No points', 'NO POINTS']]} name="Auto_Station" />
+                    <MultiButton items={[['Docked', 'DOCKED'], ['Engaged', 'ENGAGED'], ['No points', 'NO POINTS']]} id="Auto_Station" />
 
                 </div>
                 <div className="gallery">
@@ -138,24 +115,6 @@ function Auto(props) {
                         <NumberInput id="Auto_Cube_Low" />
                     </div>
                 </div>
-
-                <h1>Cones</h1>
-                <NumberInput id="Auto_Cone_High" />
-                <br></br>
-                <NumberInput id="Auto_Cone_Mid" />
-                <br></br>
-                <NumberInput id="Auto_Cone_Low" />
-                <br></br>
-                <h1>Cubes</h1>
-                <NumberInput id="Auto_Cube_High" />
-                <br></br>
-                <NumberInput id="Auto_Cube_Mid" />
-                <br></br>
-                <NumberInput id="Auto_Cube_Low" />
-                
-                <br></br>
-                <br></br>
-
             </div>
         </Page>
     );
@@ -163,34 +122,40 @@ function Auto(props) {
 
 function TeleOp(props) {
     return (
+        <Page selected={props.selected} id="Tele">
+            <p className="section-label">Teleop/Endgame</p>
 
-        <Page selected={props.selected} id="tele-op">
-            <p className="section-label" id="Tele">Teleop/Endgame</p>
+            <div className="textArea">
+
+                <div className="gallery">
+                    <div>
+                        <h1>Cones</h1>
+                        <NumberInput id="Tele_Cone_High" />
+                        <NumberInput id="Tele_Cone_Mid" />
+                        <NumberInput id="Tele_Cone_Low" />
+                    </div>
+                    <div>
+                        <h1>Cubes</h1>
+                        <NumberInput id="Tele_Cube_High" />
+                        <NumberInput id="Tele_Cube_Mid" />
+                        <NumberInput id="Tele_Cube_Low" />
+                    </div>
+                </div>
+
+                {/* <h1>Cones</h1>
+                <h2>High</h2>
+                <NumberInput items={['1']} />
+                <h2>Mid</h2>
+                {/* <br></br> */}
+
+            </div>
 
 
             <div className="textArea">
                 <h1>Charging Station</h1>
                 <div className="align-radio">
-                    <MultiButton items={[['Docked', 'DOCKED'], ['Engaged', 'ENGAGED'], ['No points', 'NO POINTS'], ['Parked', 'PARKED']]} name="Tele_Station" />
+                    <MultiButton items={[['Docked', 'DOCKED'], ['Engaged', 'ENGAGED'], ['No points', 'NO POINTS'], ['Parked', 'PARKED']]} id="Tele_Station" />
                 </div>
-
-                <h1>Cones</h1>
-                <h2>High</h2>
-                <NumberInput id="Tele_Cone_High" />
-                <br></br>
-                <NumberInput id="Tele_Cone_Mid" />
-                <br></br>
-                <NumberInput id="Tele_Cone_Low" />
-                <br></br>
-                <h1>Cubes</h1>
-                <NumberInput id="Tele_Cube_High" />
-                <br></br>
-                <NumberInput id="Tele_Cube_Mid" />
-                <br></br>
-                <NumberInput id="Tele_Cube_Low" />
-
-                <br></br>
-                <br></br>
 
             </div>
         </Page>
