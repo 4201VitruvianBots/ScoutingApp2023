@@ -1,4 +1,4 @@
-import { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, PageSelector } from "./Form";
+import { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, PageSelector, FoulCards } from "./Form";
 import './App.css';
 import { useState } from "react";
 import Popup from 'reactjs-popup';
@@ -54,23 +54,59 @@ function SignIn(props) {
 
 
 function General(props) {
+
+    const [fouls, setFouls] = useState([]);
+
+    const [teamNumber, setTeamNumber] = useState('');
+
+    const handleMultiButtonChange = (teamNumber) => {
+        setTeamNumber(teamNumber);
+    }
+
+
+
+    // this.state.items[id][0] pass this in somehow?
+
     return (
         <Page selected={props.selected} id="general">
             <p className="section-label">General</p>
             <div className="textArea">
 
                 <Popup trigger=
-                    {<button className="chonk"></button>}
+                    {<input type="button" className="popupButton" value="Add foul"></input>}
                     modal nested>
                     {
                         close => (
                             <div className='modal'>
                                 <div className='content'>
-                                    IT WORKS!!!!!!!!!!!!!!!!!1
+                                    <MultiButton items={[['4201', '4201'], ['330', '330'], ['4414', '4414']]} id="popupSelect" onChange={handleMultiButtonChange
+                                    } />
+                                    <br />
+                                    <select name="Competition" id="selector" defaultValue="Choose" >
+                                        <option value="Choose" className="Placeholder" disabled>For?</option>
+                                        <option value="Pinning">Pinning</option>
+                                        <option value="Disabled">Disabled</option>
+                                        <option value="Overextension">Overextension</option>
+                                        <option value="InsideOtherRobot">Inside other robot</option>
+                                    </select>
+                                    <br />
+                                    <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
+                                    <br />
                                 </div>
                                 <div>
-                                    <button onClick=
-                                        {() => close()}>
+
+                                    <button onClick={() => {
+                                        // setFouls = [document.getElementById("popupSelect"), document.getElementById("selector"), document.getElementById("note")];
+
+                                        var selector = document.getElementById("selector");
+                                        var text = selector.options[selector.selectedIndex].text; //then save var text as index 1?
+                                        var content = document.getElementById("note").value;
+                                        setFouls([...fouls, [teamNumber, text, content]]);
+
+                                        close();
+                                    }
+
+                                    }>
                                         Close popup
                                     </button>
                                 </div>
@@ -78,105 +114,20 @@ function General(props) {
                         )
                     }
                 </Popup>
-                <Popup trigger=
-                    {<button className="chonk"> Teleop Points </button>}
-                    modal nested>
-                    {
-                        close => (
-                            <div className='modal'>
-                                <div className='content'>
-                                    IT WORKS!!!!!!!!!!!!!!!!!1
-                                </div>
-                                <div>
-                                    <button onClick=
-                                        {() => close()}>
-                                        Close popup
-                                    </button>
-                                </div>
-                            </div>
-                        )
-                    }
-                </Popup>
+
+                <br />
+                <br />
+
                 <div className="test2">
-
-
-                    <div className="team">
-                        <input className="text-input" type="text" id="Num" name="Team_Number" placeholder="Team NUMBER" />
-                    </div>
-
-                    <div className="drivetrain">
-                        <p className="generalLabel">Drivetrain Type</p>
-                        <div className="allianceSelect">
-                            <MultiButton items={[['TANK', 'Tank'], ['SWERVE', 'Swerve'], ['MECANUM', 'Mecanum'], ['OTHER', 'Other']]} id="DriveTrain" />
-                        </div>
-                    </div>
-
-                    <div className="gamepieces">
-                        <p className="generalLabel">Game Piece Capability</p>
-                        <ButtonInput on_label='CONES' off_label='Cones' id='Can_Hold_Cone' className="cone" />
-                        <ButtonInput on_label='CUBES' off_label='Cubes' id='Can_Hold_Cube' className="cube" />
-                    </div>
-
-                    <div className="scoringLocation">
-                        <p className="generalLabel">Scoring Location Capability</p>
-                        <ButtonInput on_label='LOW' off_label='Low' id='1' />
-                        <ButtonInput on_label='MID' off_label='Mid' id='2' />
-                        <ButtonInput on_label='HIGH' off_label='High' id='3' />
-
-
-                    </div>
-
-                    <div className="motors">
-                        <p className="generalLabel"># of Motors </p> {/*(Tank- on each side)*/}
-                        <NumberInput id="Number_Of_Motors" />
-                    </div>
-
-                    <div className="batteries">
-                        <p className="generalLabel"># of Batteries (total)</p>
-                        <NumberInput id="Number_Of_Batteries" />
-                    </div>
-
-                    <div className="motorType">
-                        <textarea rows="4" cols="15" placeholder="Drivetrain Motor Types" name="DriveTrain_Motor_Type" ></textarea>
-                    </div>
-
-                    <div className="autos">
-                        <textarea rows="4" cols="15" placeholder="Autos (# and type)" name="Autos"></textarea>
-                    </div>
-
-                    <div className="workingOn">
-                        <textarea rows="5" cols="40" placeholder="They're working on..." name="Working_On" ></textarea>
-                    </div>
-
+                    <FoulCards fouls={fouls}></FoulCards>
                 </div>
 
             </div>
+
         </Page >
     );
 }
 
-
-
-function Photos(props) {
-    return (
-        <Page selected={props.selected} id="photos">
-            <p className="section-label">Photos</p>
-            <div className="textArea">
-                <p className="smallLabel">DRIVETRAIN</p>
-                <Upload></Upload>
-                <p className="smallLabel">INTAKE</p>
-                <Upload></Upload>
-                <p className="smallLabel">UPTAKE</p>
-                <Upload></Upload>
-                <p className="smallLabel">OUTTAKE</p>
-                <Upload></Upload>
-                <p className="smallLabel">EXTRAS</p>
-                <Upload></Upload>
-                {/* <input type="file" multiple accept="image/*" /> */}
-            </div>
-        </Page>
-    );
-}
 
 function SavePage(props) {
     return (
@@ -191,4 +142,4 @@ function SavePage(props) {
     );
 }
 
-export { SignIn, General, Photos, SavePage };
+export { SignIn, General, SavePage };

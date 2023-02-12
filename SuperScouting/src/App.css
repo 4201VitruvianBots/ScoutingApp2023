@@ -1,13 +1,11 @@
  :root {
    --accent-1: white;
    --accent-4: #003800;
-   /* --background-1: #59aa59; */
    --background-1: #255025;
    --accent-default: var(--accent-3);
    --bg-color: var(--background-1);
    text-align: center;
    font-family: system-ui;
-
  }
 
  .textArea {
@@ -47,7 +45,6 @@
    border-color: #085f00;
    border-width: 50px;
  }
-
 
  .numberInput {
    border-color: #085f00;
@@ -110,6 +107,17 @@
    background-color: #cad3c8;
    border-width: 2px;
    border-color: #83c183;
+ }
+
+ .popupButton {
+   display: inline !important;
+   width: 300px;
+   height: 35px;
+   font-size: 15px;
+   font-weight: 600;
+   background-color: teal;
+   font-family: system-ui;
+   border-radius: 5px;
  }
 
  input[type="checkbox"] {
@@ -279,7 +287,8 @@
 
  .allianceSelect .number-off,
  .gamepieces .ToggleButton .number-off,
- .scoringLocation .ToggleButton .number-off {
+ .scoringLocation .ToggleButton .number-off,
+ .content .number-off {
    background-color: #87bd87;
    color: white;
    font-weight: 600;
@@ -288,7 +297,8 @@
 
  .allianceSelect .number-on,
  .gamepieces .ToggleButton .number-on,
- .scoringLocation .ToggleButton .number-on {
+ .scoringLocation .ToggleButton .number-on,
+ .content .number-on {
    /* background-color: rgb(242, 255, 0); */
    background-color: rgb(5, 255, 5);
    color: black;
@@ -385,4 +395,59 @@
    margin-bottom: 50%;
    position: absolute;
 
+ }
+
+ .content {
+   color: orange;
+   background-color: blue;
+   height: fit-content;
+ }
+
+ select {
+   font-size: 20px;
+ }
+
+ .foul {
+   width: fit-content;
+   background-color: teal;
+   height: fit-content;
+   padding: 10px;
+   margin: 20px;
+
+ }
+
+ .label4 {
+   font-size: 15px;
+   font-weight: 600;
+ }
+
+ .label-size {
+   font-size: 15px;
+   padding: 2px;
+   width: fit-content;
+   font-weight: 400;
+   margin: 0 auto;
+   margin-bottom: 5px;
+ }
+
+ .test2 {
+   display: flex;
+   flex-flow: row wrap;
+   align-items: stretch;
+   align-content: stretch;
+ }
+
+ .nav {
+   background-color: green;
+   font-family: system-ui;
+   font-size: 17px;
+   font-weight: 600;
+   padding: 7px;
+   border: 2px solid green;
+
+ }
+
+ .nav:focus {
+   background-color: lightgreen;
+   border: 2px solid lightgreen;
  }

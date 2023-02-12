@@ -1,5 +1,5 @@
 import './App.css';
-import { SignIn, TeamInfo, General, Photos, SavePage } from "./Pages";
+import { SignIn, TeamInfo, General, SavePage } from "./Pages";
 import { PageSelector } from "./Form";
 import React from "react";
 import QRCode from 'react-qr-code';
@@ -61,9 +61,7 @@ class App extends React.Component {
             case 'general':
                 selectedPage = <General />;
                 break;
-            case 'photos':
-                selectedPage = <Photos />;
-                break;
+
             case 'save-page':
                 selectedPage = <SavePage />;
                 break;
@@ -74,12 +72,12 @@ class App extends React.Component {
         return (
             <main>
                 <p className="page-title">Welcome to Vitruvian Scouting</p>
-                <input type="button" onClick={() => this.test2('sign-in')} value="signin" />
-                <input type="button" onClick={() => this.test2('general')} value="general" />
-                <input type="button" onClick={() => this.test2('photos')} value="photos" />
-                <input type="button" onClick={() => this.test2('save-page')} value="savepage" />
+                <input type="button" onClick={() => this.test2('sign-in')} value="Sign In" className="nav" />
+                <input type="button" onClick={() => this.test2('general')} value="General" className="nav" />
 
-                <input type="button"></input>
+                <input type="button" onClick={() => this.test2('save-page')} value="Save Page" className="nav" />
+
+
                 <form action="http://127.0.0.1:5000/data/pits" method="POST" target="frame" id="myForm" onSubmit={clearForm}>
                     <input type='hidden' value={this.state.EventName} name='Competition' />
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />

@@ -144,12 +144,13 @@ class ButtonInput extends React.Component {
 class MultiButton extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { items: props.items, id: props.id, label: props.label, value: 0, selected: 0 };
+        this.state = { items: props.items, id: props.id, label: props.label, value: 0, selected: 0, onChange: props.onChange };
         this.test1 = this.test1.bind(this);
         this.generateButtons = this.generateButtons.bind(this);
     }
 
     test1(id) {
+        this.state.onChange(this.state.items[id][0]); //when onChange is run (when test1 is run) its setting the state to the first of the array
         this.setState({
             selected: id
         })
@@ -245,6 +246,44 @@ class PageSelector extends React.Component {
     }
 }
 
+class FoulCards extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { fouls: props.fouls, items: props.items, id: props.id, label: props.label, value: 0, selected: 0 };
+        this.generateDiv = this.generateDiv.bind(this);
+    }
+
+    // importing all 3 into the component like we did before
+    // thissetstsate ?
+
+    generateDiv() {
+        let output = [];
+
+        for (let index in this.props.fouls) {
+
+            output.push(
+                <div className="foul">
+                    <p className="label4">FOUL</p>
+                    <p className="label-size" key={1}>{this.props.fouls[index][0]}</p>
+                    <p className="label-size" key={2}>{this.props.fouls[index][1]}</p>
+                    <p className="label-size" key={3}>{this.props.fouls[index][2]}</p>
+                </div>
+            )
+        }
+        return output;
+    }
+
+    render() {
+
+        return (
+            <div className="[className]">
+                <this.generateDiv></this.generateDiv>
+            </div>
+        )
+
+    }
+}
+
 
 class Upload extends React.Component {
     constructor(props) {
@@ -270,6 +309,6 @@ class Upload extends React.Component {
 }
 
 
-export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload };
+export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, FoulCards };
 
 
