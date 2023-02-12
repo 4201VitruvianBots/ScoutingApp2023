@@ -1,5 +1,4 @@
 import './App.css';
-import Matches from './matches.json';
 import { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation } from "./Pages";
 import React from "react";
 

@@ -1,5 +1,6 @@
 import { RadioButtons, NumberInput, ButtonInput, MultiButton } from "./Form";
 import './App.css';
+import Matches from './matches.json';
 
 function Page(props) {
     return (
@@ -43,6 +44,22 @@ function SignIn(props) {
 }
 
 function PreGame(props) {
+    const syncing =() => {
+        // Get robot position
+        let  robotPosition = document.getElementById("Team_Alliance").value
+        // Get match number
+        let matchNumber =document.getElementById("Match_Number").value
+        // Combine to get robot number
+       
+        // Set input to robot number
+        
+        let colorAlliance = "";
+        
+
+
+        
+        console.log()
+    }
     return (
         <Page selected={props.selected} className="page" id="pre-game">
             <p className="section-label" id="Pre">Pre-Game</p>
@@ -70,6 +87,7 @@ function PreGame(props) {
                     <MultiButton items={[['Showed up', 'Didn\'t show up']]} name="noShow" />
                 </div> */}
                 <div></div>
+
             </div>
         </Page>
 

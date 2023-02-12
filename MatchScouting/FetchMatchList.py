@@ -5,11 +5,11 @@ x = requests.get('https://www.thebluealliance.com/api/v3/event/2016nytr/matches/
 
 output = x.json()
 matchTeams = [{
-    'red': match['alliances']['red']['team_keys'],
-    'blue':match['alliances']['blue']['team_keys']
+    'red': [int(team[3:]) for team in match['alliances']['red']['team_keys']],
+    'blue':[int(team[3:]) for team in match['alliances']['blue']['team_keys']]
 } for match in output]
 print(x.status_code)
 
-file = open('public/matches.json', 'w')
+file = open('src/matches.json', 'w')
 file.write(json.dumps(matchTeams, indent=2))
 file.close()
