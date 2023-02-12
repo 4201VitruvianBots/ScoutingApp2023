@@ -51,7 +51,7 @@ def handle_get_team2(number):
     return rows[0]
 
 @app.route('/data/analysis/sortby/<column>')
-def handle_get3():
+def handle_get3(column):
     return getdataAnalysis(sortBy=column)
 
 
@@ -144,8 +144,10 @@ def getdataAnalysis(**kwargs):
         request += " WHERE Team_Number=%s"
         requestInput.append(kwargs['teamNumber'])
     if 'sortBy' in kwargs:
-        request += " ORDER BY %s"
-        requestInput.append(kwargs['sortBy'])
+        if kwargs['sortBy'] in analysisColumns:
+            request += f" ORDER BY {kwargs['sortBy']} DESC"
+        else:
+            return "Column not found", 404
     if 'limitTo' in kwargs:
         request += " LIMIT %s"
         requestInput.append(kwargs['limitTo'])
