@@ -277,3 +277,27 @@
    /* padding-left: 40px; */
    display: inline-block;
  }
+
+ .popupbutton {
+   height: auto;
+   font-size: 25px !important;
+   width: 235px;
+   font-size: 30px;
+   padding: 15px;
+   margin: 10px;
+   background-color: #83c183;
+   border: #085f00
+ }
+
+ .popuplocation {
+   text-align: left;
+   padding-left: 10px;
+ }
+
+ .foultype {
+   background-color: #83c183;
+ }
+
+ .test {
+   text-align: right;
+ }

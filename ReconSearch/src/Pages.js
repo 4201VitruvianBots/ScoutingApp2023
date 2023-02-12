@@ -16,7 +16,14 @@ export default function PopupGfg() {
                     close => (
                         <div className='modal'>
                             <div className='content'>
-                                Auto Popup!
+                                <h3>Auto Points Average</h3>
+                            </div>
+                            <div className="popuplocation">
+                                <button className="popupbutton">Mobility</button>
+                                <br></br>
+                                <button className="popupbutton">Scoring Nodes</button>
+                                <br></br>
+                                <button className="popupbutton">Charging Station</button>
                             </div>
                             <div>
                                 <button onClick=
@@ -35,7 +42,14 @@ export default function PopupGfg() {
                     close => (
                         <div className='modal'>
                             <div className='content'>
-                                Teleop Popup!
+                                <h3>Teleop Points Average</h3>
+                            </div>
+                            <div className="popuplocation">
+                                <button className="popupbutton">High Node</button>
+                                <br></br>
+                                <button className="popupbutton">Middle Node</button>
+                                <br></br>
+                                <button className="popupbutton">Low Node</button>
                             </div>
                             <div>
                                 <button onClick=
@@ -55,7 +69,10 @@ export default function PopupGfg() {
                     close => (
                         <div className='modal'>
                             <div className='content'>
-                                Endgame Popup
+                                <h3>Endgame Points Average</h3>
+                            </div>
+                            <div className="popuplocation">
+                                <button className="popupbutton">Charging Station</button>
                             </div>
                             <div>
                                 <button onClick=
@@ -77,7 +94,21 @@ export default function PopupGfg() {
                     close => (
                         <div className='modal'>
                             <div className='content'>
-                                Foul Popup!
+                                <h3>Fouls</h3>
+                            </div>
+                            <div>
+                                <p>boxplot is supposed to be here, but isn't! :0</p>
+                            </div>
+                            <div className="popuplocation">
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
                             </div>
                             <div>
                                 <button onClick=
@@ -97,7 +128,21 @@ export default function PopupGfg() {
                     close => (
                         <div className='modal'>
                             <div className='content'>
-                                Tech Foul Popup!
+                                <h3>Tech Fouls</h3>
+                            </div>
+                            <div>
+                                <p>boxplot is supposed to be here, but isn't! :0</p>
+                            </div>
+                            <div className="popuplocation">
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
                             </div>
                             <div>
                                 <button onClick=
@@ -117,7 +162,21 @@ export default function PopupGfg() {
                     close => (
                         <div className='modal'>
                             <div className='content'>
-                                Disabled? Not sure what this is here for.
+                                <h3>Disabled</h3>
+                            </div>
+                            <div>
+                                <p>boxplot is supposed to be here, but isn't! :0</p>
+                            </div>
+                            <div className="popuplocation">
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
+                                <p>Foul Type:</p>
                             </div>
                             <div>
                                 <button onClick=
@@ -139,7 +198,12 @@ export default function PopupGfg() {
                     close => (
                         <div className='modal'>
                             <div className='content'>
-                                Card average popup!
+                                <h3>Yellow/Red Card Averages</h3>
+                            </div>
+                            <div className="popuplocation">
+                                <button className="popupbutton">Yellow Cards</button>
+                                <br></br>
+                                <button className="popupbutton">Red Cards</button>
                             </div>
                             <div>
                                 <button onClick=
@@ -159,7 +223,23 @@ export default function PopupGfg() {
                     close => (
                         <div className='modal'>
                             <div className='content'>
-                                Info, also not sure how this popup works
+                                <h3>Pit Scouting Info</h3>
+                            </div>
+                            <div className="popuplocation">
+                                <p>Drivetrain Type: ______</p>
+                                <p>Game Piece Capability: _____</p>
+                                <p>Scoring Location Capability:_____</p>
+
+                                <p>Number of motors: ___ </p>
+                                <p>Number of batteries (total): ___</p>
+                                <br></br>
+                                <p>Drivetrain Motor Types: _____</p>
+                                <p>Autos (# and type)</p>
+                                <p>They're working on....   ____________</p>
+                                <p>notes and the whatnot</p>
+                                <button className="">photo inputs of their Drivetrain, Intake, Uptake, Outtake, and Extras</button>
+                                <br></br>
+                                <br></br>
                             </div>
                             <div>
                                 <button onClick=
@@ -179,7 +259,10 @@ export default function PopupGfg() {
                     close => (
                         <div className='modal'>
                             <div className='content'>
-                                Matches, I do not know what will appear here either
+                                <h3>Matches, I do not know what will appear here either</h3>
+                            </div>
+                            <div>
+                                pulled stuff
                             </div>
                             <div>
                                 <button onClick=
