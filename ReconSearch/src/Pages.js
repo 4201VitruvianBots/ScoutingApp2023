@@ -63,29 +63,6 @@ export default function PopupGfg(props) {
                 }
             </Popup>
 
-            <Popup trigger=
-                {<button className="chonk"> Endgame Points </button>}
-                modal nested>
-                {
-                    close => (
-                        <div className='modal'>
-                            <div className='content'>
-                                <h3>Endgame Points Average</h3>
-                            </div>
-                            <div className="popuplocation">
-                                <button className="popupbutton">Charging Station</button>
-                            </div>
-                            <div>
-                                <button onClick=
-                                    {() => close()}>
-                                    Close popup
-                                </button>
-                            </div>
-                        </div>
-                    )
-                }
-            </Popup>
-
             <br></br>
 
             <Popup trigger=
