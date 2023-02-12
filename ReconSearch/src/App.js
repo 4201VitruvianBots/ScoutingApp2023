@@ -1,16 +1,21 @@
 import './App.css';
-import { TeamInfo, PopupGfg, Photos, SearchBar, Title } from "./Pages";
+import { TeamInfo, PopupGfg, Photos, SearchBar, Title, options } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { signedIn: false, ScouterName: "", EventName: "" };
+        this.state = { signedIn: false, ScouterName: "", EventName: "", selectedOption: options[0] };
+        this.setSelectedOption = this.setSelectedOption.bind(this);
         this.setSelected = this.setSelected.bind(this);
         this.SignInHandler = this.SignInHandler.bind(this)
         this.SubmitHandler = this.SubmitHandler.bind(this)
 
+    }
+
+    setSelectedOption(e) {
+        this.setState({ selectedOption: e })
     }
 
     SignInHandler(e) {
@@ -53,8 +58,8 @@ class App extends React.Component {
 
                 <form onSubmit={this.SubmitHandler} action="#">
                     <Title selected={this.state.selected === 'title'} />
-                    <SearchBar />
-                    <TeamInfo selected={this.state.selected === 'teaminfo'} />
+                    <SearchBar setSelectedOption={this.setSelectedOption} selectedOption={this.state.selectedOption} />
+                    <TeamInfo selected={this.state.selected === 'teaminfo'} selectedOption={this.state.selectedOption} />
                     <PopupGfg />
                     {/* <General selected={this.state.selected === 'general'} /> */}
                     <Photos selected={this.state.selected === 'photos'} />

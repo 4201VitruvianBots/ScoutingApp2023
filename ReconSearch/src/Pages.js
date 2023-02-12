@@ -292,27 +292,23 @@ export default function PopupGfg() {
 
 
 const options = [
-    { value: 0, label: 'Test One' },
-    { value: 1, label: 'Test Two' },
-    { value: 2, label: 'Test Three' }
+    { value: 0, label: 'The Goof Troop' },
+    { value: 1, label: 'The Meme Team' },
+    { value: 2, label: 'The Griddy Commitee' }
 ];
 
 class SearchBar extends React.Component {
-    state = {
-        selectedOption: null,
-    }
     handleChange = (selectedOption) => {
-        this.setState({ selectedOption });
-        document.write(`Option selected:`, selectedOption.value);
+        this.props.setSelectedOption(selectedOption)
     }
 
     render() {
-        const { selectedOption } = this.state;
+        // console.log(this.props.selectedOption)
         return (
             <div>
                 <Select
                     options={options}
-                    value={selectedOption}
+                    value={this.props.selectedOption}
                     onChange={this.handleChange}
                 />
             </div>
@@ -345,10 +341,10 @@ function TeamInfo(props) {
                 <h2>Team number (sync)</h2>
 
                 <p><strong>Score Averages</strong></p>
-                <GetDataAuto />
+                <GetDataAuto selectedOption={props.selectedOption} />
 
                 <p><strong>Teleop Average</strong></p>
-                <GetDataTele />
+                <GetDataTele selectedOption={props.selectedOption} />
                 <br></br>
                 <p><strong>Cargo Abilities</strong></p>
                 <p>Can pick up: (cone, cube, or both)</p>
@@ -398,4 +394,4 @@ function Photos(props) {
 }
 
 
-export { TeamInfo, General, Photos, Title, SearchBar, PopupGfg };
+export { TeamInfo, General, Photos, Title, SearchBar, PopupGfg, options };

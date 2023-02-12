@@ -4,27 +4,36 @@ import './App.css';
 class GetDataAuto extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { AutoConeHighValue: 0 };
-        this.state = { AutoConeMidValue: 0 };
-        this.state = { AutoConeLowValue: 0 };
+        this.state = { AutoConeHighValue: 0, AutoConeMidValue: 0, AutoConeLowValue: 0, data: [] };
     }
 
     async componentDidMount() {
         // GET request using fetch with async/await
-        const response = await fetch('http://localhost:5000/data/matches', { crossDomain: true, method: 'GET' });
-        const data = await response.json();
-        this.setState({ AutoConeHighValue: data[2].Auto_Cone_High })
-        this.setState({ AutoConeMidValue: data[2].Auto_Cone_Mid })
-        this.setState({ AutoConeLowValue: data[2].Auto_Cone_Low })
+        const response = await fetch('http://localhost:5000/data/analysis', { crossDomain: true, method: 'GET' });
+        this.setState({data: await response.json()})
+        // const data = await response.json();
+        // console.log(data)
+        // console.log(this.props.selectedOption.value)
+        // this.setState({ AutoConeHighValue: data[this.props.selectedOption.value].Auto_Cone_High })
+        // this.setState({ AutoConeMidValue: data[this.props.selectedOption.value].Auto_Cone_Mid })
+        // this.setState({ AutoConeLowValue: data[this.props.selectedOption.value].Auto_Cone_Low })
+        // data?.[this.props.selectedOption.value]?.Auto_Cone_High ?? 0
     }
-
     render() {
         return (
             <div>
-                <p>Auto Cone High, {this.state.AutoConeHighValue}</p>
-                <p>Auto Cone Mid, {this.state.AutoConeMidValue}</p>
-                <p>Auto Cone Low, {this.state.AutoConeLowValue}</p>
+
+                {
+                    this.state.data.length > 0 && (
+                        <div>
+                            <p>Auto Cone High, {this.state.data[this.props.selectedOption.value].Auto_High_Average}</p>
+                            <p>Auto Cone Mid, {this.state.data[this.props.selectedOption.value].Auto_Mid_Average}</p>
+                            <p>Auto Cone Low, {this.state.data[this.props.selectedOption.value].Auto_Low_Average}</p>
+                        </div>
+                    )
+                }
             </div>
+
         );
     }
 }
@@ -32,30 +41,67 @@ class GetDataAuto extends React.Component {
 class GetDataTele extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { TeleConeHighValue: 0 };
-        this.state = { TeleConeMidValue: 0 };
-        this.state = { TeleConeLowValue: 0 };
+        this.state = { AutoConeHighValue: 0, AutoConeMidValue: 0, AutoConeLowValue: 0, data: [] };
     }
 
     async componentDidMount() {
         // GET request using fetch with async/await
-        const response = await fetch('http://localhost:5000/data/matches', { crossDomain: true, method: 'GET' });
-        const data = await response.json();
-        this.setState({ TeleConeHighValue: data[2].Tele_Cone_High })
-        this.setState({ TeleConeMidValue: data[2].Tele_Cone_Mid })
-        this.setState({ TeleConeLowValue: data[2].Tele_Cone_Low })
+        const response = await fetch('http://localhost:5000/data/analysis', { crossDomain: true, method: 'GET' });
+        this.setState({data: await response.json()})
+        // const data = await response.json();
+        // console.log(data)
+        // console.log(this.props.selectedOption.value)
+        // this.setState({ AutoConeHighValue: data[this.props.selectedOption.value].Auto_Cone_High })
+        // this.setState({ AutoConeMidValue: data[this.props.selectedOption.value].Auto_Cone_Mid })
+        // this.setState({ AutoConeLowValue: data[this.props.selectedOption.value].Auto_Cone_Low })
+        // data?.[this.props.selectedOption.value]?.Auto_Cone_High ?? 0
     }
-
     render() {
         return (
             <div>
-                <p>Tele Cone High, {this.state.TeleConeHighValue}</p>
-                <p>Tele Cone Mid, {this.state.TeleConeMidValue}</p>
-                <p> Cone Low, {this.state.TeleConeLowValue}</p>
+
+                {
+                    this.state.data.length > 0 && (
+                        <div>
+                            <p>Auto Cone High, {this.state.data[this.props.selectedOption.value].Tele_High_Average}</p>
+                            <p>Auto Cone Mid, {this.state.data[this.props.selectedOption.value].Tele_Mid_Average}</p>
+                            <p>Auto Cone Low, {this.state.data[this.props.selectedOption.value].Tele_Low_Average}</p>
+                        </div>
+                    )
+                }
             </div>
+
         );
     }
 }
+
+// class GetDataTele extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = { TeleConeHighValue: 0 };
+//         this.state = { TeleConeMidValue: 0 };
+//         this.state = { TeleConeLowValue: 0 };
+//     }
+
+//     async componentDidUpdate() {
+//         // GET request using fetch with async/await
+//         const response = await fetch('http://localhost:5000/data/analysis', { crossDomain: true, method: 'GET' });
+//         const data = await response.json();
+//         this.setState({ TeleConeHighValue: data[this.props.selectedOption.value].Tele_High_Average })
+//         this.setState({ TeleConeMidValue: data[this.props.selectedOption.value].Tele_Mid_Average })
+//         this.setState({ TeleConeLowValue: data[this.props.selectedOption.value].Tele_Low_Average })
+//     }
+
+//     render() {
+//         return (
+//             <div>
+//                 <p>Tele Cone High, {this.state.TeleConeHighValue}</p>
+//                 <p>Tele Cone Mid, {this.state.TeleConeMidValue}</p>
+//                 <p>Tele Cone Low, {this.state.TeleConeLowValue}</p>
+//             </div>
+//         );
+//     }
+// }
 
 // Radio Buttons
 function RadioButtons(props) {
