@@ -7,7 +7,6 @@ CREATE TABLE matchData(
 	Team_Alliance INT NULL,
 	Competition TEXT NULL,
 	Mobility BOOLEAN NULL,
-	Show_Time BOOLEAN NULL,
 	Auto_Cube_low INT NULL,
 	Auto_Cube_Mid INT NULL,
 	Auto_Cube_High INT NULL,
@@ -64,6 +63,11 @@ CREATE TABLE dataAnalysis(
 	Tele_High_Max INT,
 	Average_Fouls INT,
 	Game_Piece INT NULL,
+	Average_Cubes FLOAT,
+	Average_Cones FLOAT,
+	Average_Pieces FLOAT,
+	Dock_Frequency FLOAT,
+	Balance_Frequency FLOAT,
 	Comments TEXT NULL,
 	PRIMARY KEY(Team_Number)
 );

@@ -11,7 +11,7 @@ mydb = mysql.connector.connect(
 )
 
 matchColumns = ('Match_Number', 'Team_Number', 'Scouter_Name', 'Team_Alliance', 'Competition', 'Mobility', 'Show_Time', 'Auto_Cube_Low', 'Auto_Cube_Mid', 'Auto_Cube_High', 'Auto_Cone_Low', 'Auto_Cone_Mid', 'Auto_Cone_High', 'Auto_Station', 'Tele_Cube_Low', 'Tele_Cube_Mid', 'Tele_Cube_High', 'Tele_Cone_Low', 'Tele_Cone_Mid', 'Tele_Cone_High', 'Tele_Station', 'Comments')
-analysisColumns = ('Team_Number', 'Auto_Low_Min', 'Auto_Low_Average', 'Auto_low_Max', 'Auto_Mid_Min', 'Auto_Mid_Average', 'Auto_Mid_Max', 'Auto_High_Min', 'Auto_High_Average', 'Auto_High_Max', 'Tele_Low_Min', 'Tele_Low_Average', 'Tele_Low_Max', 'Tele_Mid_Min', 'Tele_Mid_Average', 'Tele_Mid_Max', 'Tele_High_Min', 'Tele_High_Average', 'Tele_High_Max', 'Average_Fouls', 'Game_Piece', 'Comments')
+analysisColumns = ('Team_Number', 'Auto_Low_Min', 'Auto_Low_Average', 'Auto_low_Max', 'Auto_Mid_Min', 'Auto_Mid_Average', 'Auto_Mid_Max', 'Auto_High_Min', 'Auto_High_Average', 'Auto_High_Max', 'Tele_Low_Min', 'Tele_Low_Average', 'Tele_Low_Max', 'Tele_Mid_Min', 'Tele_Mid_Average', 'Tele_Mid_Max', 'Tele_High_Min', 'Tele_High_Average', 'Tele_High_Max', 'Average_Fouls', 'Game_Piece', 'Average_Cubes', 'Average_Cones', 'Average_Pieces', 'Dock_Frequency', 'Balance_Frequency', 'Comments')
 pitColumns = ('Scouter_Name', 'Team_Number', 'Competition', 'Team_Name', 'DriveTrain', 'Can_Hold_Cone', 'Can_Hold_Cube', 'Scoring_Location_Capability', 'Number_Of_Motors', 'Number_Of_Batteries', 'DriveTrain_Motor_Type', 'Working_On', 'Autos', 'Comments')
 
 mycursor = mydb.cursor()
@@ -51,6 +51,10 @@ def handle_get_team2(number):
     if len(rows) == 0:
         return "robot not found :3", 404
     return rows[0]
+
+@app.route('/data/analysis/sortby/<column>')
+def handle_get3(column):
+    return getdataAnalysis(sortBy=column)
 
 
 @app.route('/data/matches/match/<int:number>', methods=['GET'])
@@ -126,6 +130,11 @@ def updateAnalysis(Team_Number):
         for level in 'Low', 'Mid', 'High':
             for func in ('Min', 'MIN'), ('Average', 'AVG'), ('Max', 'MAX'):
                 mycursor.execute(f"UPDATE dataAnalysis SET {phase}_{level}_{func[0]} = (SELECT {func[1]}({phase}_Cone_{level} + {phase}_Cube_{level}) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s" ,  (Team_Number,Team_Number))
+            
+    mycursor.execute("UPDATE dataAnalysis SET Average_Cubes = (SELECT AVG(Auto_Cube_Low + Auto_Cube_Mid + Auto_Cube_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_Cube_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
+    mycursor.execute("UPDATE dataAnalysis SET Average_Cones = (SELECT AVG(Auto_Cone_Low + Auto_Cone_Mid + Auto_Cone_High + Tele_Cone_Low + Tele_Cone_Mid + Tele_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
+    mycursor.execute("UPDATE dataAnalysis SET Average_Pieces = (SELECT AVG(Auto_Cone_Low + Auto_Cone_Mid + Auto_Cone_High + Tele_Cone_Low + Tele_Cone_Mid + Tele_Cone_High + Auto_Cube_Low + Auto_Cube_Mid + Auto_Cube_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_Cube_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
+    # mycursor.execute("UPDATE dataAnalysis SET Dock_Frequency = ")
 
     mydb.commit()
     print('Update Analysis run')
@@ -137,8 +146,10 @@ def getdataAnalysis(**kwargs):
         request += " WHERE Team_Number=%s"
         requestInput.append(kwargs['teamNumber'])
     if 'sortBy' in kwargs:
-        request += " ORDER BY %s"
-        requestInput.append(kwargs['sortBy'])
+        if kwargs['sortBy'] in analysisColumns:
+            request += f" ORDER BY {kwargs['sortBy']} DESC"
+        else:
+            return "Column not found", 404
     if 'limitTo' in kwargs:
         request += " LIMIT %s"
         requestInput.append(kwargs['limitTo'])
