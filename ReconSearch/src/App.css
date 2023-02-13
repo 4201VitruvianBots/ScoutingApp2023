@@ -2,7 +2,7 @@
    /* --accent-1: white; */
    --accent-4: #003800;
    /* --background-1: linear-gradient(180, #58a163, #ffffff);  */
-   --background-1: #f3f3f3ff;
+   --background-1: f3f3f3ff;
    --accent-default: var(--accent-3);
    --bg-color: var(--background-1);
    text-align: center;
@@ -77,8 +77,13 @@
    color: var(--accent-1);
  }
 
-
-
+ /* .modal {
+   display: flex;
+   flex-flow: row wrap;
+   align-items: stretch;
+   align-content: stretch;
+   width: 2px;
+ } */
 
  select {
    border-color: var(--accent-3);
@@ -294,23 +299,53 @@
    padding-left: 10px;
  }
 
- .foultype {
+ /* .foultype {
    background-color: #83c183;
- }
+ } */
 
- .test {
+ /* .test {
    text-align: right;
- }
+ } */
 
- .popupleft {
+ /* .popupleft {
    display: inline-block;
    text-align: left;
-
-   ;
+  
  }
 
  .popupright {
    display: inline-block;
    text-align: left;
    margin-left: 20px;
+ } */
+
+ .pitscout {
+   /* background-color: #b6d7a8ff;
+   min-width: 300px;
+   min-height: 100px; */
+   /* margin: 0px 200px;
+   display: block; */
+   height: auto;
+   font-size: 15px !important;
+   width: 150px;
+   font-size: 30px;
+   padding: 15px;
+   margin: 10px;
+   background-color: #b6d7a8ff;
+   display: inline-block;
+ }
+
+ .pitscoutinfo {
+   height: auto;
+   font-size: 15px !important;
+   width: auto;
+   font-size: 30px;
+   padding: auto;
+   margin: auto;
+   background-color: #dbe9d3ff;
+   border: #085f00
+ }
+
+ .popup-overlay .popup-content {
+   width: auto;
  }

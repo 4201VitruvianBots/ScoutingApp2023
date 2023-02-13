@@ -203,7 +203,7 @@ export default function PopupGfg(props) {
                             <div className='content'>
                                 <h3>Pit Scouting Info</h3>
                             </div>
-                            <div className="popupleft">
+                            {/* <div className="popupleft">
                                 <p>Drivetrain Type: ______</p>
                                 <p>Game Piece Capability: _____</p>
                                 <p>Scoring Location Capability:_____ </p>
@@ -223,7 +223,49 @@ export default function PopupGfg(props) {
                             <p>notes and the whatnot</p>
                             <button className="">photo inputs of their Drivetrain, Intake, Uptake, Outtake, and Extras</button>
                             <br></br>
+                            <br></br> */}
+
+                            <div className="pitscout">
+                                <h4>Drivetrain</h4>
+                                <button className="pitscoutinfo">_______</button>
+                            </div>
+
+                            <div className="pitscout">
+                                <h4>Drivetrain</h4>
+                                <button className="pitscoutinfo">_______</button>
+                            </div>
+
+                            <div className="pitscout">
+                                <h4>Drivetrain</h4>
+                                <button className="pitscoutinfo">_______</button>
+                            </div>
+
+                            <div className="pitscout">
+                                <h4>Drivetrain</h4>
+                                <button className="pitscoutinfo">________</button>
+                            </div>
+
                             <br></br>
+
+                            <div className="pitscout">
+                                <h4>Drivetrain</h4>
+                                <button className="pitscoutinfo">________</button>
+                            </div>
+
+                            <div className="pitscout">
+                                <h4>Drivetrain</h4>
+                                <button className="pitscoutinfo">________</button>
+                            </div>
+
+                            <div className="pitscout">
+                                <h4>Drivetrain</h4>
+                                <button className="pitscoutinfo">________</button>
+                            </div>
+
+                            <div className="pitscout">
+                                <h4>Drivetrain</h4>
+                                <button className="pitscoutinfo">________</button>
+                            </div>
 
 
                             <div>
