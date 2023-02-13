@@ -5,7 +5,8 @@ import './App.css';
 
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-export default function PopupGfg() {
+
+export default function PopupGfg(props) {
     return (
         <div className="textArea">
 
@@ -19,11 +20,11 @@ export default function PopupGfg() {
                                 <h3>Auto Points Average</h3>
                             </div>
                             <div className="popuplocation">
-                                <button className="popupbutton">Mobility</button>
+                                <button className="popupbutton">High: {props.data?.Auto_High_Average}</button>
                                 <br></br>
-                                <button className="popupbutton">Scoring Nodes</button>
+                                <button className="popupbutton">Middle: {props.data?.Auto_Mid_Average}</button>
                                 <br></br>
-                                <button className="popupbutton">Charging Station</button>
+                                <button className="popupbutton">Low: {props.data?.Auto_Low_Average}</button>
                             </div>
                             <div>
                                 <button onClick=
@@ -45,11 +46,11 @@ export default function PopupGfg() {
                                 <h3>Teleop Points Average</h3>
                             </div>
                             <div className="popuplocation">
-                                <button className="popupbutton">High Node</button>
+                                <button className="popupbutton">High: {props.data?.Tele_High_Average}</button>
                                 <br></br>
-                                <button className="popupbutton">Middle Node</button>
+                                <button className="popupbutton">Middle: {props.data?.Tele_Mid_Average}</button>
                                 <br></br>
-                                <button className="popupbutton">Low Node</button>
+                                <button className="popupbutton">Low: {props.data?.Tele_Low_Average}</button>
                             </div>
                             <div>
                                 <button onClick=
