@@ -292,9 +292,9 @@ export default function PopupGfg() {
 
 
 const options = [
-    { value: 0, label: 'The Goof Troop' },
-    { value: 1, label: 'The Meme Team' },
-    { value: 2, label: 'The Griddy Commitee' }
+    { value: "4201", label: 'The Virtruvian Bots' },
+    { value: "4414", label: 'High Tide' },
+    { value: "1678", label: 'Citrus Circuits' }
 ];
 
 class SearchBar extends React.Component {

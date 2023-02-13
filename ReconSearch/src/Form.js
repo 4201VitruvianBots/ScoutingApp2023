@@ -4,13 +4,18 @@ import './App.css';
 class GetDataAuto extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { AutoConeHighValue: 0, AutoConeMidValue: 0, AutoConeLowValue: 0, data: [] };
+        this.state = { data: null};
     }
 
     async componentDidMount() {
+        await this.componentDidUpdate({selectedOption: {value: null}});
+    }
+
+    async componentDidUpdate(prevProps) {
+        if (prevProps.selectedOption.value === this.props.selectedOption.value) return;
         // GET request using fetch with async/await
-        const response = await fetch('http://localhost:5000/data/analysis', { crossDomain: true, method: 'GET' });
-        this.setState({data: await response.json()})
+        const response = await fetch('http://localhost:5000/data/analysis/team/' + this.props.selectedOption.value, { crossDomain: true, method: 'GET' });
+        this.setState({data: await response.json()});
         // const data = await response.json();
         // console.log(data)
         // console.log(this.props.selectedOption.value)
@@ -24,11 +29,11 @@ class GetDataAuto extends React.Component {
             <div>
 
                 {
-                    this.state.data.length > 0 && (
+                    this.state.data != null && (
                         <div>
-                            <p>Auto Cone High, {this.state.data[this.props.selectedOption.value].Auto_High_Average}</p>
-                            <p>Auto Cone Mid, {this.state.data[this.props.selectedOption.value].Auto_Mid_Average}</p>
-                            <p>Auto Cone Low, {this.state.data[this.props.selectedOption.value].Auto_Low_Average}</p>
+                            <p>Auto Cone High, {this.state.data.Auto_High_Average}</p>
+                            <p>Auto Cone Mid, {this.state.data.Auto_Mid_Average}</p>
+                            <p>Auto Cone Low, {this.state.data.Auto_Low_Average}</p>
                         </div>
                     )
                 }
@@ -41,13 +46,18 @@ class GetDataAuto extends React.Component {
 class GetDataTele extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { AutoConeHighValue: 0, AutoConeMidValue: 0, AutoConeLowValue: 0, data: [] };
+        this.state = { data: null };
     }
 
     async componentDidMount() {
+        await this.componentDidUpdate({selectedOption: {value: null}});
+    }
+
+    async componentDidUpdate(prevProps) {
+        if (prevProps.selectedOption.value === this.props.selectedOption.value) return;
         // GET request using fetch with async/await
-        const response = await fetch('http://localhost:5000/data/analysis', { crossDomain: true, method: 'GET' });
-        this.setState({data: await response.json()})
+        const response = await fetch('http://localhost:5000/data/analysis/team/' + this.props.selectedOption.value, { crossDomain: true, method: 'GET' });
+        this.setState({data: await response.json()});
         // const data = await response.json();
         // console.log(data)
         // console.log(this.props.selectedOption.value)
@@ -61,11 +71,11 @@ class GetDataTele extends React.Component {
             <div>
 
                 {
-                    this.state.data.length > 0 && (
+                    this.state.data != null && (
                         <div>
-                            <p>Auto Cone High, {this.state.data[this.props.selectedOption.value].Tele_High_Average}</p>
-                            <p>Auto Cone Mid, {this.state.data[this.props.selectedOption.value].Tele_Mid_Average}</p>
-                            <p>Auto Cone Low, {this.state.data[this.props.selectedOption.value].Tele_Low_Average}</p>
+                            <p>Auto Cone High, {this.state.data.Tele_High_Average}</p>
+                            <p>Auto Cone Mid, {this.state.data.Tele_Mid_Average}</p>
+                            <p>Auto Cone Low, {this.state.data.Tele_Low_Average}</p>
                         </div>
                     )
                 }
