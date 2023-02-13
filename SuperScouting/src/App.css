@@ -109,13 +109,33 @@
    border-color: #83c183;
  }
 
+ .label-number {
+   font-weight: 900;
+   font-size: 20px;
+ }
+
+ .label-cause {
+   font-weight: 600;
+   font-size: 15px;
+ }
+
+ .label-notes {
+   font-size: 20px;
+ }
+
+ .label4 {
+   font-size: 15px;
+   font-weight: 600;
+   color: black;
+ }
+
  .popupButton {
    display: inline !important;
    width: 300px;
-   height: 35px;
-   font-size: 15px;
-   font-weight: 600;
-   background-color: teal;
+   height: 50px;
+   font-size: 30px;
+   font-weight: 700;
+   background-color: green;
    font-family: system-ui;
    border-radius: 5px;
  }
@@ -196,28 +216,6 @@
  }
 
 
- .drivetrain,
- .gamepieces,
- .scoringLocation,
- .motors,
- .batteries,
- .motorType,
- .autos,
- .workingOn,
- .team {
-   background-color: var(--background-1);
-   border: 2px solid rgba(13, 125, 13, 0.585);
-   box-sizing: border-box;
-   padding: 5px;
-   width: 10%;
-   min-width: fit-content;
-   border-radius: 10px;
-   display: inline-block;
-   margin: 15px;
-   flex-grow: 1;
-   max-height: fit-content;
- }
-
  .team {
    height: fit-content;
 
@@ -284,10 +282,27 @@
    align-content: stretch;
  }
 
+ .foul {
+   background-color: #b2daa1;
+   /* border: #005f00 2px solid; */
+   color: white;
+   box-sizing: border-box;
+   padding: 5px;
+   min-width: fit-content;
+   width: 150px;
+   border-radius: 10px;
+   display: inline-block;
+   margin: 15px;
+   flex-grow: 1;
+ }
+
+ .fouls {
+   margin: 0 auto;
+   width: 75%;
+ }
+
 
  .allianceSelect .number-off,
- .gamepieces .ToggleButton .number-off,
- .scoringLocation .ToggleButton .number-off,
  .content .number-off {
    background-color: #87bd87;
    color: white;
@@ -296,10 +311,7 @@
  }
 
  .allianceSelect .number-on,
- .gamepieces .ToggleButton .number-on,
- .scoringLocation .ToggleButton .number-on,
  .content .number-on {
-   /* background-color: rgb(242, 255, 0); */
    background-color: rgb(5, 255, 5);
    color: black;
    font-weight: 600;
@@ -372,7 +384,6 @@
  }
 
 
-
  .test2 .team input[type="text"] {
    font-weight: 900;
    color: rgb(0, 0, 0);
@@ -397,29 +408,49 @@
 
  }
 
- .content {
-   color: orange;
-   background-color: blue;
-   height: fit-content;
+ .popup-overlay .popup-content {
+   background-color: #b2daa1;
+   border-radius: 15px;
+   border: 0px;
  }
+
+ .content {
+   height: fit-content;
+   padding: 10px;
+   margin: 10px;
+ }
+
+ .content .number-off,
+ .content .number-on {
+   font-size: 25px;
+   border: 0px black solid;
+ }
+
+ .content .number-off {
+   background-color: #085f00;
+ }
+
+ .content textarea {
+   font-size: 25px;
+ }
+
+ .subButton button {
+   background-color: #085f00;
+   font-size: 20px;
+   border-radius: 15px;
+   padding: 10px;
+   color: white;
+
+ }
+
 
  select {
    font-size: 20px;
  }
 
- .foul {
-   width: fit-content;
-   background-color: teal;
-   height: fit-content;
-   padding: 10px;
-   margin: 20px;
 
- }
 
- .label4 {
-   font-size: 15px;
-   font-weight: 600;
- }
+
 
  .label-size {
    font-size: 15px;
@@ -430,20 +461,16 @@
    margin-bottom: 5px;
  }
 
- .test2 {
-   display: flex;
-   flex-flow: row wrap;
-   align-items: stretch;
-   align-content: stretch;
- }
+
 
  .nav {
    background-color: green;
    font-family: system-ui;
-   font-size: 17px;
+   font-size: 30px;
    font-weight: 600;
    padding: 7px;
    border: 2px solid green;
+   margin: 5px;
 
  }
 

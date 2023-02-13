@@ -150,7 +150,11 @@ class MultiButton extends React.Component {
     }
 
     test1(id) {
-        this.state.onChange(this.state.items[id][0]); //when onChange is run (when test1 is run) its setting the state to the first of the array
+
+        if (this.state.onChange) {
+            this.state.onChange(this.state.items[id][0]); //when onChange is run (when test1 is run) its setting the state to the first of the array
+
+        };
         this.setState({
             selected: id
         })
@@ -264,9 +268,9 @@ class FoulCards extends React.Component {
             output.push(
                 <div className="foul">
                     <p className="label4">FOUL</p>
-                    <p className="label-size" key={1}>{this.props.fouls[index][0]}</p>
-                    <p className="label-size" key={2}>{this.props.fouls[index][1]}</p>
-                    <p className="label-size" key={3}>{this.props.fouls[index][2]}</p>
+                    <p className="label-number" key={1}>{this.props.fouls[index][0]}</p>
+                    <p className="label-cause" key={2}>{this.props.fouls[index][1]}</p>
+                    <p className="label-notes" key={3}>{this.props.fouls[index][2]}</p>
                 </div>
             )
         }
@@ -276,7 +280,7 @@ class FoulCards extends React.Component {
     render() {
 
         return (
-            <div className="[className]">
+            <div className="fouls">
                 <this.generateDiv></this.generateDiv>
             </div>
         )

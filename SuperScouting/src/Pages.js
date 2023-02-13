@@ -93,7 +93,7 @@ function General(props) {
                                     <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
                                     <br />
                                 </div>
-                                <div>
+                                <div className="subButton">
 
                                     <button onClick={() => {
                                         // setFouls = [document.getElementById("popupSelect"), document.getElementById("selector"), document.getElementById("note")];
