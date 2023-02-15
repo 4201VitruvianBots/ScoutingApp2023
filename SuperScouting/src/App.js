@@ -17,7 +17,13 @@ class App extends React.Component {
     SignInHandler(e) {
         e.preventDefault();
         const answers = e.target.elements;
-        this.setState({ signedIn: true, ScouterName: answers.Sname.value, EventName: answers.Ename.value, QRCode: null });
+        this.setState({
+            signedIn: true,
+            ScouterName: answers.Scouter_Name.value,
+            EventName: answers.Competition.value,
+            Alliance: answers.Team_Alliance.value,
+            QRCode: null
+        });
         return false;
     }
 
@@ -60,7 +66,14 @@ class App extends React.Component {
                 
                 break;
             case 'general':
-                selectedPage = <General />;
+                selectedPage = ( <form action="http://127.0.0.1:5000/data/superScout" method="POST" target="frame" id="myForm" onSubmit={clearForm}>
+                <input type='hidden' value={this.state.EventName} name='Competition' />
+                <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
+                <input type='hidden' value={this.state.Alliance} name="Team_Alliance" />
+                <General />
+                
+
+            </form>);
                 break;
         }
 
@@ -70,14 +83,8 @@ class App extends React.Component {
                 <p className="page-title">Welcome to Vitruvian Scouting</p>
                 <input type="button" onClick={() => this.test2('sign-in')} value="Sign In" className="nav" />
                 <input type="button" onClick={() => this.test2('general')} value="Fouls" className="nav" />
-
-                <form action="http://127.0.0.1:5000/data/superScout" method="POST" target="frame" id="myForm" onSubmit={clearForm}>
-                    <input type='hidden' value={this.state.EventName} name='Competition' />
-                    <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
-                    {selectedPage}
-                    
-
-                </form>
+                {selectedPage}
+               
                 <iframe name="frame" title="frame"></iframe>
 
             </main>

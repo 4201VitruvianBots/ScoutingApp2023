@@ -28,7 +28,7 @@ function SignIn(props) {
         <div>
             <p className="section-label">Super Scouting</p>
             {/* <p className="topNote">If the robot has an "other" drivetrain, specify it in the notes at the bottom!</p> */}
-            <form action="#">
+            <form action="#" onSubmit={props.onSubmit}>
                 <div className="textArea">
                     <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" className="name" />
                     <br />
@@ -38,7 +38,7 @@ function SignIn(props) {
                     </select>
                     <br />
                     <div className="allianceSelect">
-                        <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} id="DriveTrain" />
+                        <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} id="Team_Alliance" />
                     </div>
                     <div className="loginButtons">
                         <input type="text" placeholder="TEAM 1" className="login" />
