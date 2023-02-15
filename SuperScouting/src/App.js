@@ -1,15 +1,17 @@
 import './App.css';
-import { SignIn, SavePage, RobotData, Red1, Red2, Red3} from "./Pages";
+import { SignIn, TeamInfo, General, SavePage } from "./Pages";
+import { PageSelector } from "./Form";
 import React from "react";
 import QRCode from 'react-qr-code';
+import { render } from '@testing-library/react';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { signedIn: false, ScouterName: "", EventName: "" };
-        this.setSelected = this.setSelected.bind(this);
+        this.state = { signedIn: false, ScouterName: "", EventName: "", selected: 'sign-in' };
         this.SignInHandler = this.SignInHandler.bind(this)
         this.SubmitHandler = this.SubmitHandler.bind(this)
+        this.test2 = this.test2.bind(this)
     }
 
     SignInHandler(e) {
@@ -29,10 +31,10 @@ class App extends React.Component {
                 `${answers.match.value}\t` +
                 `${answers.Num.value}\t` +
                 `${answers.Alliance.value}\t` +
-                `${answers.autoUp.value}\t` +
-                `${answers.autoLow.value}\t` +
-                `${answers.teleopUp.value}\t` +
-                `${answers.teleopLow.value}\t` +
+                `${answers.GeneralUp.value}\t` +
+                `${answers.GeneralLow.value}\t` +
+                `${answers.PhotosUp.value}\t` +
+                `${answers.PhotosLow.value}\t` +
                 `${answers.foul.value}\t` +
                 `${answers.tfoul.value}\t` +
                 `${answers.climbType.value}\t` +
@@ -42,46 +44,58 @@ class App extends React.Component {
         return false;
     }
 
-    setSelected(id) {
-        this.setState({ selected: id });
+    test2(id) {
+        this.setState({
+            selected: id
+        })
+        console.log('I\'ve been called ' + (id));
     }
 
     render() {
+        let selectedPage;
+
+        switch (this.state.selected) {
+            case 'sign-in':
+                selectedPage = <SignIn onSubmit={this.SignInHandler} />;
+                
+                break;
+            case 'general':
+                selectedPage = <General />;
+                break;
+        }
+
+
         return (
             <main>
                 <p className="page-title">Welcome to Vitruvian Scouting</p>
-                {/*
-            <div >
-                <TabButton headerButtonsonClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>
-                <TabButton onClick={this.setSelected} tabId="auto">Auto</TabButton>
-                <TabButton onClick={this.setSelected} tabId="tele-op">Teleop</TabButton>
-                <TabButton onClick={this.setSelected} tabId="endgame">Endgame</TabButton>
-                <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
-            </div>
-      */}
-                      <form action="http://127.0.0.1:5000/data" method="POST" target="frame" id="myForm" onSubmit={clearForm}>
-                    <SignIn selected={this.state.selected === 'sign-in'} />
-                    <RobotData selected={this.state.selected === 'robot 1'} />
-                    <Red1 selected={this.state.selected === 'red 1'} />
-                    <Red2 selected={this.state.selected === 'red 2'} />
-                    <Red3 selected={this.state.selected === 'red 3'} />
-                    <SavePage selected={this.state.selected === 'save-page'} />
+                <input type="button" onClick={() => this.test2('sign-in')} value="Sign In" className="nav" />
+                <input type="button" onClick={() => this.test2('general')} value="Fouls" className="nav" />
 
-                    {/* <RobotData selected={this.state.selected === 'robot 2'} />
-                    <RobotData selected={this.state.selected === 'robot 3'} /> */}
-                    </form>
-                    <iframe name="frame"></iframe>
+                <form action="http://127.0.0.1:5000/data/superScout" method="POST" target="frame" id="myForm" onSubmit={clearForm}>
+                    <input type='hidden' value={this.state.EventName} name='Competition' />
+                    <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
+                    {selectedPage}
+                    
+
+                </form>
+                <iframe name="frame" title="frame"></iframe>
+
             </main>
         );
     }
-
 }
-function clearForm() { 
+
+function clearForm() {
     document.getElementById("myForm").submit();
-    setTimeout(function() {
+    setTimeout(function () {
         document.getElementById("myForm").reset();
-        window.location.href="#SignIn"
     }, 0)
-} 
+}
+
+// function TabButton(props) {
+//     return <button onClick={() => props.onClick(props.tabId)}>{props.children}</button>;
+// }
+
+
 
 export default App;

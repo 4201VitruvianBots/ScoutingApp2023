@@ -13,6 +13,7 @@ mydb = mysql.connector.connect(
 matchColumns = ('Match_Number', 'Team_Number', 'Scouter_Name', 'Team_Alliance', 'Competition', 'Mobility', 'Show_Time', 'Auto_Cube_Low', 'Auto_Cube_Mid', 'Auto_Cube_High', 'Auto_Cone_Low', 'Auto_Cone_Mid', 'Auto_Cone_High', 'Auto_Station', 'Tele_Cube_Low', 'Tele_Cube_Mid', 'Tele_Cube_High', 'Tele_Cone_Low', 'Tele_Cone_Mid', 'Tele_Cone_High', 'Tele_Station', 'Comments')
 analysisColumns = ('Team_Number', 'Auto_Low_Min', 'Auto_Low_Average', 'Auto_low_Max', 'Auto_Mid_Min', 'Auto_Mid_Average', 'Auto_Mid_Max', 'Auto_High_Min', 'Auto_High_Average', 'Auto_High_Max', 'Tele_Low_Min', 'Tele_Low_Average', 'Tele_Low_Max', 'Tele_Mid_Min', 'Tele_Mid_Average', 'Tele_Mid_Max', 'Tele_High_Min', 'Tele_High_Average', 'Tele_High_Max', 'Average_Fouls', 'Game_Piece', 'Average_Cubes', 'Average_Cones', 'Average_Pieces', 'Dock_Frequency', 'Balance_Frequency', 'Comments')
 pitColumns = ('Scouter_Name', 'Team_Number', 'Competition', 'Team_Name', 'DriveTrain', 'Can_Hold_Cone', 'Can_Hold_Cube', 'Scoring_Location_Capability', 'Number_Of_Motors', 'Number_Of_Batteries', 'DriveTrain_Motor_Type', 'Working_On', 'Autos', 'Comments')
+superScoutColumns = ('Scouter_Name', 'Competition', 'Team_Alliance', 'Comments')
 
 mycursor = mydb.cursor()
 
@@ -95,6 +96,26 @@ def handle_post():
 
     # Insert all data into table
     mycursor.execute('INSERT INTO matchData({}) VALUES ({})'.format(
+        ', '.join(formData.keys()),
+        ', '.join(['%s'] * len(formData))
+    ), [format_data(formData[key], key) for key in formData])
+
+    mydb.commit()
+    updateAnalysis(formData.get("Team_Number"))
+    #for i in variable:
+       # print(i)
+    # Do something with the data
+    return 'Data received'
+
+@app.route('/data/superScout', methods=['POST'])
+def handle_post6():
+    # Handle POST request
+    formData = request.form
+    # data = request.get_json()
+    print(formData)
+
+    # Insert all data into table
+    mycursor.execute('INSERT INTO superScout({}) VALUES ({})'.format(
         ', '.join(formData.keys()),
         ', '.join(['%s'] * len(formData))
     ), [format_data(formData[key], key) for key in formData])
