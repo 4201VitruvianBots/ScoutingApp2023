@@ -1,217 +1,99 @@
-import { RadioButtons, NumberInput, ButtonInput} from "./Form";
 import './App.css';
+import { Table } from './Form';
 
-function Page(props) {
+function MainPage(props) {
     return (
-        <div className={props.selected ? 'page selected' : 'page'} id={props.id}>
-            {props.children}
-        </div>
+        <>
+            <Table data={[
+                ['Scout', 'Robot', 'Team', 'Match', 'Status', 'Tablet Battery'],
+                ['Josiah', 'Blue 1', '4414', '22', 'Auto', '61'],
+                ['Haley', 'Blue 2', '4201', '22', 'Auto', '66'],
+                ['Natalie', 'Blue 3', '1678', '22', 'Auto', '72'],
+                ['Gaby', 'Red 1', '1323', '22', 'Auto', '68'],
+                ['Devin', 'Red 2', '254', '22', 'Auto', '67'],
+                ['Cassie', 'Red 3', '7157', '22', 'Auto', '70']
+            ]} />
+            <Table data={[
+                ['Super Scout', 'Alliance', 'Match', 'Status', 'Tablet Battery'],
+                ['Robyn', 'Blue', '22', 'Sign-In', '26'],
+                ['Naomi', 'Red', '22', 'Sign-In', '31']
+            ]} />
+            <Table data={[
+                ['Match', 'B1', 'B2', 'B3', 'R1', 'R2', 'R3', 'Match', 'B1', 'B2', 'B3', 'R1', 'R2', 'R3'],
+                ['1' , '' , '' , '' , '' , '' , '' , '24' ,  '' , '' , '' , '' , '' , '' ], 
+                ['2' , '' , '' , '' , '' , '' , '' , '25' ,  '' , '' , '' , '' , '' , '' ],
+                ['3' , '' , '' , '' , '' , '' , '' , '26' ,  '' , '' , '' , '' , '' , '' ],
+                ['4' , '' , '' , '' , '' , '' , '' , '27' ,  '' , '' , '' , '' , '' , '' ],
+                ['5' , '' , '' , '' , '' , '' , '' , '28' ,  '' , '' , '' , '' , '' , '' ],
+                ['6' , '' , '' , '' , '' , '' , '' , '29' ,  '' , '' , '' , '' , '' , '' ],
+                ['7' , '' , '' , '' , '' , '' , '' , '30' ,  '' , '' , '' , '' , '' , '' ],
+                ['8' , '' , '' , '' , '' , '' , '' , '31' ,  '' , '' , '' , '' , '' , '' ],
+                ['9' , '' , '' , '' , '' , '' , '' , '32' ,  '' , '' , '' , '' , '' , '' ],
+                ['10' , '' , '' , '' , '' , '' , '' , '33' ,  '' , '' , '' , '' , '' , '' ],
+                ['11' , '' , '' , '' , '' , '' , '' , '34' ,  '' , '' , '' , '' , '' , '' ],
+                ['12' , '' , '' , '' , '' , '' , '' , '35' ,  '' , '' , '' , '' , '' , '' ],
+                ['13' , '' , '' , '' , '' , '' , '' , '36' ,  '' , '' , '' , '' , '' , '' ],
+                ['14' , '' , '' , '' , '' , '' , '' , '37' ,  '' , '' , '' , '' , '' , '' ],
+                ['15' , '' , '' , '' , '' , '' , '' , '38' ,  '' , '' , '' , '' , '' , '' ],
+                ['16' , '' , '' , '' , '' , '' , '' , '39' ,  '' , '' , '' , '' , '' , '' ], 
+                ['17' , '' , '' , '' , '' , '' , '' , '40' ,  '' , '' , '' , '' , '' , '' ],
+                ['18' , '' , '' , '' , '' , '' , '' , '41' ,  '' , '' , '' , '' , '' , '' ],
+                ['19' , '' , '' , '' , '' , '' , '' , '42' ,  '' , '' , '' , '' , '' , '' ],
+                ['20' , '' , '' , '' , '' , '' , '' , '43' ,  '' , '' , '' , '' , '' , '' ],
+                ['21' , '' , '' , '' , '' , '' , '' , '44' ,  '' , '' , '' , '' , '' , '' ],
+                ['22' , '' , '' , '' , '' , '' , '' , '45' ,  '' , '' , '' , '' , '' , '' ],
+                ['23' , '' , '' , '' , '' , '' , '' , '46' ,  '' , '' , '' , '' , '' , '' ],
+            ]} />
+        </>
     );
 }
 
-function Navigation(props) {
+function MatchArchive(props) {
     return (
-        <Page selected={props.selected} className="page" id="navigation">
-            <ul>
-                <li><a href="#SignIn">Sign-In</a></li>
-                <li><a href="#Pre">Pre-Game</a></li>
-                <li><a href="#Auto">Auto</a></li>
-                <li><a href="#Tele">Tele-Op</a></li>
-                <li><a href="#Save">Save</a></li>
-            </ul>
-        </Page>
+        <Table data={[
+            ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+            ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+            ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+            ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+            ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+            ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+            ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+            ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+            ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+            ['Match Number' , 'Review Match Data' , 'Remove From Archive' , 'Delete'],
+        ]} />
     );
 }
 
-function SignIn(props) {
+function AllMatches(props) {
     return (
-        <Page selected={props.selected} className="page" id="sign-in">
-        <div>
-            <p className="section-label" id="SignIn">Energized</p>
-
-            <div className="textArea">
-                <input type="text" id="Scouter_Name" name="Scouter_Name" placeholder="Scouter Name" className="text-input"/>
-                <br />
-                <label className="item-label" htmlFor="Competition"><strong>Event Name</strong> </label>
-                <br />
-                <br />
-                <select name="Competition" id="Competition" defaultValue="Choose">
-                    <option value="Choose" className="Placeholder" disabled>Choose Event</option>
-                    <option value="Hueneme">Port Hueneme</option>
-                </select>
-                {/* <input type="submit" className="SAVE" value="Sign In" /> */}
-            </div>
-            </div>
-        </Page>
-    );
+        <Table data={[
+            ['Match', 'B1', 'B2', 'B3', 'R1', 'R2', 'R3', 'Match', 'B1', 'B2', 'B3', 'R1', 'R2', 'R3', 'Match', 'B1', 'B2', 'B3', 'R1', 'R2', 'R3', 'Match', 'B1', 'B2', 'B3', 'R1', 'R2', 'R3'],
+            ['1' , '' , '' , '' , '' , '' , '' , '24' ,  '' , '' , '' , '' , '' , '', '47' , '' , '' , '' , '' , '' , '' , '70' ,  '' , '' , '' , '' , '' , '' ], 
+            ['2' , '' , '' , '' , '' , '' , '' , '25' ,  '' , '' , '' , '' , '' , '', '48' , '' , '' , '' , '' , '' , '' , '71' ,  '' , '' , '' , '' , '' , '' ],
+            ['3' , '' , '' , '' , '' , '' , '' , '26' ,  '' , '' , '' , '' , '' , '', '49' , '' , '' , '' , '' , '' , '' , '72' ,  '' , '' , '' , '' , '' , '' ],
+            ['4' , '' , '' , '' , '' , '' , '' , '27' ,  '' , '' , '' , '' , '' , '', '50' , '' , '' , '' , '' , '' , '' , '73' ,  '' , '' , '' , '' , '' , '' ],
+            ['5' , '' , '' , '' , '' , '' , '' , '28' ,  '' , '' , '' , '' , '' , '', '51' , '' , '' , '' , '' , '' , '' , '74' ,  '' , '' , '' , '' , '' , '' ],
+            ['6' , '' , '' , '' , '' , '' , '' , '29' ,  '' , '' , '' , '' , '' , '', '52' , '' , '' , '' , '' , '' , '' , '75' ,  '' , '' , '' , '' , '' , '' ],
+            ['7' , '' , '' , '' , '' , '' , '' , '30' ,  '' , '' , '' , '' , '' , '', '53' , '' , '' , '' , '' , '' , '' , '76' ,  '' , '' , '' , '' , '' , '' ],
+            ['8' , '' , '' , '' , '' , '' , '' , '31' ,  '' , '' , '' , '' , '' , '', '54' , '' , '' , '' , '' , '' , '' , '77' ,  '' , '' , '' , '' , '' , '' ],
+            ['9' , '' , '' , '' , '' , '' , '' , '32' ,  '' , '' , '' , '' , '' , '', '55' , '' , '' , '' , '' , '' , '' , '78' ,  '' , '' , '' , '' , '' , '' ],
+            ['10' , '' , '' , '' , '' , '' , '' , '33' ,  '' , '' , '' , '' , '' , '', '56' , '' , '' , '' , '' , '' , '' , '79' ,  '' , '' , '' , '' , '' , '' ],
+            ['11' , '' , '' , '' , '' , '' , '' , '34' ,  '' , '' , '' , '' , '' , '', '57' , '' , '' , '' , '' , '' , '' , '80' ,  '' , '' , '' , '' , '' , '' ],
+            ['12' , '' , '' , '' , '' , '' , '' , '35' ,  '' , '' , '' , '' , '' , '', '58' , '' , '' , '' , '' , '' , '' , '81' ,  '' , '' , '' , '' , '' , '' ],
+            ['13' , '' , '' , '' , '' , '' , '' , '36' ,  '' , '' , '' , '' , '' , '', '59' , '' , '' , '' , '' , '' , '' , '82' ,  '' , '' , '' , '' , '' , '' ],
+            ['14' , '' , '' , '' , '' , '' , '' , '37' ,  '' , '' , '' , '' , '' , '', '60' , '' , '' , '' , '' , '' , '' , '83' ,  '' , '' , '' , '' , '' , '' ],
+            ['15' , '' , '' , '' , '' , '' , '' , '38' ,  '' , '' , '' , '' , '' , '', '61' , '' , '' , '' , '' , '' , '' , '84' ,  '' , '' , '' , '' , '' , '' ],
+            ['16' , '' , '' , '' , '' , '' , '' , '39' ,  '' , '' , '' , '' , '' , '', '62' , '' , '' , '' , '' , '' , '' , '85' ,  '' , '' , '' , '' , '' , '' ], 
+            ['17' , '' , '' , '' , '' , '' , '' , '40' ,  '' , '' , '' , '' , '' , '', '63' , '' , '' , '' , '' , '' , '' , '86' ,  '' , '' , '' , '' , '' , '' ],
+            ['18' , '' , '' , '' , '' , '' , '' , '41' ,  '' , '' , '' , '' , '' , '', '64' , '' , '' , '' , '' , '' , '' , '87' ,  '' , '' , '' , '' , '' , '' ],
+            ['19' , '' , '' , '' , '' , '' , '' , '42' ,  '' , '' , '' , '' , '' , '', '65' , '' , '' , '' , '' , '' , '' , '88' ,  '' , '' , '' , '' , '' , '' ],
+            ['20' , '' , '' , '' , '' , '' , '' , '43' ,  '' , '' , '' , '' , '' , '', '66' , '' , '' , '' , '' , '' , '' , '89' ,  '' , '' , '' , '' , '' , '' ],
+            ['21' , '' , '' , '' , '' , '' , '' , '44' ,  '' , '' , '' , '' , '' , '', '67' , '' , '' , '' , '' , '' , '' , '90' ,  '' , '' , '' , '' , '' , '' ],
+            ['22' , '' , '' , '' , '' , '' , '' , '45' ,  '' , '' , '' , '' , '' , '', '68' , '' , '' , '' , '' , '' , '' , '91' ,  '' , '' , '' , '' , '' , '' ],
+            ['23' , '' , '' , '' , '' , '' , '' , '46' ,  '' , '' , '' , '' , '' , '', '69' , '' , '' , '' , '' , '' , '' , '92' ,  '' , '' , '' , '' , '' , '' ],
+        ]} />
+    )
 }
 
-function PreGame(props) {
-    return (
-        <Page selected={props.selected} className="page" id="pre-game">
-            <p className="section-label" id="Pre">Pre-Game</p>
-
-            <div className="textArea">
-                {/* <label className="item-label" htmlFor="Match_Number"><strong>Match Number</strong> </label> */}
-                <input type="number" id="Match_Number" name="Match_Number" placeholder="Match Number" />
-                <br></br>
-                <br></br>
-                {/* <label className="item-label" htmlFor="Team_Number"><strong>Team Number</strong> </label> */}
-                <input type="number" id="Team_Number" name="Team_Number" placeholder="Team Number" />
-
-                <div className="textArea">
-
-                    <h1><strong>Team Alliance</strong></h1>
-                    <div className="align-radio">
-                        <RadioButtons items={['Red 1', 'Red 2', 'Red 3']} name="Team_Alliance" />
-                        </div>
-                        <br></br>
-                        <div className="align-radio">
-                        <RadioButtons items={['Blue 1', 'Blue 2', 'Blue 3']} name="Team_Alliance" />
-                         </div>
-                    <br></br>
-                    <br></br>
-                    <h1><strong>No show robot?</strong></h1>
-                    <ButtonInput on_label="Robot did not show" off_label="Robot showed" id="Show_Time" />
-                </div>
-            </div>
-        </Page>
-
-    );
-}
-
-
-function Auto(props) {
-    return (
-        <Page selected={props.selected} id="auto">
-            <p className="section-label" id="Auto">Auto</p>
-            <div className="textArea">
-            <ButtonInput on_label='Mobility Bonus Selected' off_label = 'Mobility ' id="Mobility" />
-             {/* <button type="button">Mobility?</button> */}
-
-                {/* <h2>Mobility</h2> */}
-                {/* <div className="container">
-                    <div className="center">
-                        <button>Mobility</button>
-                    </div>
-                </div> 
-                <br></br>
-                <input type="checkbox" name="mobility"></input>
-                <label htmlFor="mobility" className="label-size">Mobility</label> */}
-                <br></br>
-                <br></br>
-                <br></br>
-                <h1>Charging Station</h1>
-                <div className="align-radio">
-                    <RadioButtons items={['Docked', 'Engaged', 'No points']} name="Auto_Station" />
-                </div>
-                <h1>Cones</h1>
-                <NumberInput id="Auto_Cone_High" />
-                <br></br>
-                <NumberInput id="Auto_Cone_Mid" />
-                <br></br>
-                <NumberInput id="Auto_Cone_Low" />
-                <br></br>
-                <h1>Cubes</h1>
-                <NumberInput id="Auto_Cube_High" />
-                <br></br>
-                <NumberInput id="Auto_Cube_Mid" />
-                <br></br>
-                <NumberInput id="Auto_Cube_Low" />
-            </div>
-        </Page>
-    );
-}
-
-function TeleOp(props) {
-    return (
-        <Page selected={props.selected} id="tele-op">
-            <p className="section-label">Teleop/Endgame</p>
-
-             <div className="textArea">
-
-             <h1>Cones</h1>
-           <h2>High</h2>
-            <NumberInput items={['1']}/>  
-            <h2>Mid</h2>  
-            {/* <br></br> */}
-            <NumberInput items={['1']}/>   
-            <h2>Low</h2>        
-            {/* <br></br> */}
-            <NumberInput items={['1']}/>           
-            <br></br>
-            <h1>Cubes</h1>
-            <h2>High</h2>
-            <NumberInput items={['1']}/>    
-            <h2>Mid</h2>  
-            <NumberInput items={['1']}/>           
-            <h2>Low</h2>  
-            <NumberInput items={['1']}/>
-            <br></br>
-            <br></br>         
-            <h1>Charging Station</h1>
-<RadioButtons items={['Docked', 'Engaged', 'No points', 'Parking']} />
-</div>
-
-
-            <div className="textArea">
-                <h1>Charging Station</h1>
-                <div className="align-radio">
-                    <RadioButtons items={['Docked', 'Engaged', 'No points', 'Parking']} name="Tele_Station" />
-                </div>
-                <h1>Cones</h1>
-                <NumberInput id="Tele_Cone_High" />
-                <br></br>
-                <NumberInput id="Tele_Cone_Mid" />
-                <br></br>
-                <NumberInput id="Tele_Cone_Low" />
-                <br></br>
-                <h1>Cubes</h1>
-                <NumberInput id="Tele_Cube_High" />
-                <br></br>
-                <NumberInput id="Tele_Cube_Mid" />
-                <br></br>
-                <NumberInput id="Tele_Cube_Low" />
-            </div>
-        </Page>
-    );
-}
-// charge station
-// button for mobility
-function SavePage(props) {
-    return (
-
-        <Page selected={props.selected} id="save-page">
-
-
-            <p className="section-label" id="Save">Submit</p>
-            <div className="textArea">
-                {/* <label htmlFor="notes" className="item-label">Notes</label> */}
-                {/* <h1>Some things you could comment are:</h1>
-                <div className="bullet-points">
-
-                    <li className="questions">Placeholder Questions?</li>
-                    <li className="questions">Is it successful?</li>
-                    <li className="questions">Does it move?</li>
-                    <li className="questions">Conesistent?</li>
-                    <li className="questions">Can the robot?</li>
-                    <li className="questions">Does it?</li>
-                </div>
-                <br /> */}
-
-                <input type="text" id="Comments" name="Comments" placeholder="Comment here" />
-                {/* <label className="item-label" htmlFor="clear">QR code and clear</label>
-                <input type="submit" className="SAVE" value="Generate QR code"></input>
-                <br />
-                <label className="item-label" htmlFor="continue">Save and continue</label>
-                <input type="reset" className="CLEAR" value="Clear Form" /> */}
-                <input type="submit" className="submit-button"></input>
-                {/* <div id="QRCode">{props.QRCode}</div> */}
-
-            </div>
-
-        </Page>
-    );
-}
-
-export { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation };
+export {MainPage, MatchArchive, AllMatches};

@@ -7,12 +7,19 @@ class App extends React.Component {
         super(props);
         this.state = { signedIn: false, ScouterName: "", EventName: "" };
         this.setSelected = this.setSelected.bind(this);
-
+        this.SignInHandler = this.SignInHandler.bind(this)
     }
 
 
     setSelected(id) {
         this.setState({ selected: id });
+    }
+
+    SignInHandler(e) {
+        e.preventDefault();
+        const answers = e.target.elements;
+        this.setState({signedIn: true, ScouterName: answers.Scouter_Name.value, EventName: answers.Competition.value, QRCode: null});
+        return false;
     }
 
     render() {
@@ -22,7 +29,8 @@ class App extends React.Component {
                 <br></br>
                 <p className="page-title">Welcome to Vitruvian Scouting</p>
                 <Navigation selected={this.state.selected === 'navigation' } />
-               
+                {/* <SignIn selected={this.state.selected === 'sign-in'} /> */}
+                <SignIn onSubmit={this.SignInHandler} />
                 {/*
             <div >
                 <TabButton headerButtonsonClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>
@@ -34,7 +42,8 @@ class App extends React.Component {
       */}
 
                 <form action="http://127.0.0.1:5000/data/matches" method="POST" target="frame" id="myForm" onSubmit={clearForm}>
-                    <SignIn selected={this.state.selected === 'sign-in'} />
+                    <input type='hidden' value={this.state.EventName} name='Competition' />
+                    <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
                     <PreGame selected={this.state.selected === 'pre-game'} />
                     <Auto selected={this.state.selected === 'auto'} />
                     <TeleOp selected={this.state.selected === 'tele-op'} />

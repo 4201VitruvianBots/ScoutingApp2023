@@ -26,7 +26,7 @@ function Navigation(props) {
 function SignIn(props) {
     return (
         <Page selected={props.selected} className="page" id="sign-in">
-            <div>
+            <form onSubmit={props.onSubmit} >
                 <p className="section-label" id="SignIn">Energized</p>
 
                 <div className="textArea">
@@ -37,7 +37,7 @@ function SignIn(props) {
                     </select>
                     <input type="submit" className="save-button" value="Sign In" />
                 </div>
-            </div>
+            </form>
         </Page>
     );
 }
@@ -58,7 +58,7 @@ function PreGame(props) {
 
                 <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
                 <div className="allianceSelect">
-                    <MultiButton items={[['Blue 1', 'BLUE 1'], ['Blue 2', 'BLUE 2'], ['Blue 3', 'BLUE 3'], ['Red 1', 'RED 1'], ['Red 2', 'RED 2'], ['Red 3', 'RED 3']]} name="autostation" />
+                    <MultiButton items={[['Blue 1', 'BLUE 1'], ['Blue 2', 'BLUE 2'], ['Blue 3', 'BLUE 3'], ['Red 1', 'RED 1'], ['Red 2', 'RED 2'], ['Red 3', 'RED 3']]} id="Team_Alliance" />
 
                 </div>
                 {/* Off value at index 0, ON value at index 1 */}
@@ -98,7 +98,7 @@ function Auto(props) {
                 <br />
                 <p className="itemLabel">CHARGING STATION</p>
                 <div className="align-radio">
-                    <MultiButton items={[['Docked', 'DOCKED'], ['Engaged', 'ENGAGED'], ['No points', 'NO POINTS']]} name="Auto_Station" />
+                    <MultiButton items={[['Docked', 'DOCKED'], ['Engaged', 'ENGAGED'], ['No points', 'NO POINTS']]} id="Auto_Station" />
 
                 </div>
                 <div className="gallery">
@@ -130,15 +130,15 @@ function TeleOp(props) {
                 <div className="gallery">
                     <div>
                         <h1>Cones</h1>
-                        <NumberInput id="Auto_Cone_High" />
-                        <NumberInput id="Auto_Cone_Mid" />
-                        <NumberInput id="Auto_Cone_Low" />
+                        <NumberInput id="Tele_Cone_High" />
+                        <NumberInput id="Tele_Cone_Mid" />
+                        <NumberInput id="Tele_Cone_Low" />
                     </div>
                     <div>
                         <h1>Cubes</h1>
-                        <NumberInput id="Auto_Cube_High" />
-                        <NumberInput id="Auto_Cube_Mid" />
-                        <NumberInput id="Auto_Cube_Low" />
+                        <NumberInput id="Tele_Cube_High" />
+                        <NumberInput id="Tele_Cube_Mid" />
+                        <NumberInput id="Tele_Cube_Low" />
                     </div>
                 </div>
 
@@ -154,7 +154,7 @@ function TeleOp(props) {
             <div className="textArea">
                 <h1>Charging Station</h1>
                 <div className="align-radio">
-                    <MultiButton items={[['Docked', 'DOCKED'], ['Engaged', 'ENGAGED'], ['No points', 'NO POINTS'], ['Parked', 'PARKED']]} name="Tele_Station" />
+                    <MultiButton items={[['Docked', 'DOCKED'], ['Engaged', 'ENGAGED'], ['No points', 'NO POINTS'], ['Parked', 'PARKED']]} id="Tele_Station" />
                 </div>
 
             </div>
