@@ -98,6 +98,8 @@ export default function PopupGfg(props) {
                 }
             </Popup>
 
+            <br></br>
+
             {/* <Popup trigger=
                 {<button className="chonk"> Tech Fouls </button>}
                 modal nested>
@@ -222,6 +224,8 @@ export default function PopupGfg(props) {
                             <button className="">photo inputs of their Drivetrain, Intake, Uptake, Outtake, and Extras</button>
                             <br></br>
                             <br></br> */}
+
+                            <br></br>
 
                             <div className="pitscout">
                                 <h4>Drivetrain</h4>
