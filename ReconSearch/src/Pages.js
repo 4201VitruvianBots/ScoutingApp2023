@@ -225,7 +225,7 @@ export default function PopupGfg(props) {
                             <br></br>
                             <br></br> */}
 
-                            <br></br>
+
 
                             <div className="pitscout">
                                 <h4>Drivetrain</h4>
@@ -280,6 +280,8 @@ export default function PopupGfg(props) {
                     )
                 }
             </Popup>
+
+            <br></br>
 
             <Popup trigger=
                 {<button className="chonk"> All Matches </button>}
