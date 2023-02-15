@@ -57,6 +57,7 @@ class App extends React.Component {
         switch (this.state.selected) {
             case 'sign-in':
                 selectedPage = <SignIn onSubmit={this.SignInHandler} />;
+                
                 break;
             case 'general':
                 selectedPage = <General />;
@@ -70,13 +71,15 @@ class App extends React.Component {
                 <input type="button" onClick={() => this.test2('sign-in')} value="Sign In" className="nav" />
                 <input type="button" onClick={() => this.test2('general')} value="Fouls" className="nav" />
 
-                <form action="http://127.0.0.1:5000/data/pits" method="POST" target="frame" id="myForm" onSubmit={clearForm}>
+                <form action="http://127.0.0.1:5000/data/superScout" method="POST" target="frame" id="myForm" onSubmit={clearForm}>
                     <input type='hidden' value={this.state.EventName} name='Competition' />
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
-
                     {selectedPage}
+                    
 
                 </form>
+                <iframe name="frame" title="frame"></iframe>
+
             </main>
         );
     }
@@ -86,7 +89,6 @@ function clearForm() {
     document.getElementById("myForm").submit();
     setTimeout(function () {
         document.getElementById("myForm").reset();
-        window.location.href = "#SignIn"
     }, 0)
 }
 

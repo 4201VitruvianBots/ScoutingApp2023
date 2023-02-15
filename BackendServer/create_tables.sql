@@ -41,6 +41,13 @@ CREATE TABLE pitData(
 	Comments TEXT NULL
 );
 
+CREATE TABLE superScout(
+	Scouter_Name TEXT NULL, 
+	Competition TEXT NULL,
+	Team_Alliance INT NULL,
+	Comments TEXT NULL
+);
+
 CREATE TABLE dataAnalysis(
 	Team_Number INT NOT NULL,
 	Auto_Low_Min INT,
