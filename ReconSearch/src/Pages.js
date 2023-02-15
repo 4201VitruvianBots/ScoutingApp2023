@@ -310,6 +310,7 @@ export default function PopupGfg(props) {
 
 
 const options = [
+    { value: "0", label: 'Select...' },
     { value: "4", label: '4: Team 4 Element' },
     { value: "294", label: '294: Beach Cities Robotics' },
     { value: "498", label: '498: The Cobra Commanders' },
