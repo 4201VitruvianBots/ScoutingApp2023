@@ -63,7 +63,6 @@ export default function PopupGfg(props) {
                 }
             </Popup>
 
-            <br></br>
 
             <Popup trigger=
                 {<button className="chonk"> Fouls </button>}
@@ -99,7 +98,7 @@ export default function PopupGfg(props) {
                 }
             </Popup>
 
-            <Popup trigger=
+            {/* <Popup trigger=
                 {<button className="chonk"> Tech Fouls </button>}
                 modal nested>
                 {
@@ -131,7 +130,7 @@ export default function PopupGfg(props) {
                         </div>
                     )
                 }
-            </Popup>
+            </Popup> */}
 
             <Popup trigger=
                 {<button className="chonk"> Disabled? </button>}
@@ -167,7 +166,6 @@ export default function PopupGfg(props) {
                 }
             </Popup>
 
-            <br></br>
 
             <Popup trigger=
                 {<button className="chonk"> Yellow/Red Cards </button>}
