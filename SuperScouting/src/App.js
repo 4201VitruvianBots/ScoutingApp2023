@@ -61,11 +61,6 @@ class App extends React.Component {
             case 'general':
                 selectedPage = <General />;
                 break;
-
-            case 'save-page':
-                selectedPage = <SavePage />;
-                break;
-            default:
         }
 
 
@@ -73,10 +68,7 @@ class App extends React.Component {
             <main>
                 <p className="page-title">Welcome to Vitruvian Scouting</p>
                 <input type="button" onClick={() => this.test2('sign-in')} value="Sign In" className="nav" />
-                <input type="button" onClick={() => this.test2('general')} value="General" className="nav" />
-
-                <input type="button" onClick={() => this.test2('save-page')} value="Save Page" className="nav" />
-
+                <input type="button" onClick={() => this.test2('general')} value="Fouls" className="nav" />
 
                 <form action="http://127.0.0.1:5000/data/pits" method="POST" target="frame" id="myForm" onSubmit={clearForm}>
                     <input type='hidden' value={this.state.EventName} name='Competition' />

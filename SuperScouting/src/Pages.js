@@ -16,19 +16,19 @@ function Page(props) {
 
 
 function SignIn(props) {
-    const [showCheck, setshowCheck] = useState(false);
+    // const [showCheck, setshowCheck] = useState(false);
 
-    const handleSubmit = (event) => {
-        setshowCheck(true);
-        props.onSubmit(event);
-        setTimeout(() => { setshowCheck(false) }, 5000);
-    }
+    // const handleSubmit = (event) => {
+    //     setshowCheck(true);
+    //     props.onSubmit(event);
+    //     setTimeout(() => { setshowCheck(false) }, 5000);
+    // }
 
     return (
         <div>
             <p className="section-label">Super Scouting</p>
             {/* <p className="topNote">If the robot has an "other" drivetrain, specify it in the notes at the bottom!</p> */}
-            <form onSubmit={handleSubmit} action="#">
+            <form action="#">
                 <div className="textArea">
                     <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" className="name" />
                     <br />
@@ -40,11 +40,18 @@ function SignIn(props) {
                     <div className="allianceSelect">
                         <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} id="DriveTrain" />
                     </div>
-                    {showCheck && <div class="check"></div>}
+                    <div className="loginButtons">
+                        <input type="text" placeholder="TEAM 1" className="login" />
+                        <input type="text" placeholder="TEAM 2" className="login" />
+                        <input type="text" placeholder="TEAM 3" className="login" />
+                    </div>
+
+                    {/* {showCheck && <div class="check"></div>} */}
                     <input type="submit" className="SAVE" value="Sign In" />
 
                     {/* when submitted 
                         <>checkmark image</> */}
+                    {/* onSubmit={handleSubmit} */}
 
                 </div>
             </form>
@@ -107,7 +114,7 @@ function General(props) {
                                     }
 
                                     }>
-                                        Close popup
+                                        Enter foul
                                     </button>
                                 </div>
                             </div>
@@ -122,6 +129,12 @@ function General(props) {
                     <FoulCards fouls={fouls}></FoulCards>
                 </div>
 
+                <div className="textArea">
+                    <p className="generalLabel">Notes</p>
+                    <textarea rows="5" cols="20" id="notes" name="Comments" />
+                    <input type="submit" className="submit-button" />
+                </div>
+
             </div>
 
         </Page >
@@ -129,17 +142,5 @@ function General(props) {
 }
 
 
-function SavePage(props) {
-    return (
-        <Page selected={props.selected} id="save-page">
-            <p className="section-label">Save Page</p>
-            <div className="textArea">
-                <p className="generalLabel">Notes</p>
-                <textarea rows="5" cols="20" id="notes" name="Comments" />
-                <input type="submit" className="submit-button" />
-            </div>
-        </Page>
-    );
-}
 
-export { SignIn, General, SavePage };
+export { SignIn, General };
