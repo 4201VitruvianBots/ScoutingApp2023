@@ -168,9 +168,8 @@ class MultiButton extends React.Component {
     render() {
 
         return (
-            <div className="[className]">
+            <div>
                 <this.generateButtons />
-                <input type='hidden' name= {this.state.id} value= {this.state.selected}/>
             </div>
         )
 

@@ -1,55 +1,49 @@
  :root {
    --accent-1: white;
    --accent-4: #003800;
-   --background-1: #085f00d2;
+   --background-1: #255025;
    --accent-default: var(--accent-3);
    --bg-color: var(--background-1);
    text-align: center;
-   font-family:cursive;
-
+   font-family: system-ui;
  }
 
+ .textArea {
+   background-color: #ecf2eb;
+   min-width: 300px;
+   min-height: 100px;
+   padding: 20px;
+   margin: 20px;
+   border-radius: 10px;
+ }
+
+ /* Titles, Headers, & Labels */
+
  .page-title {
-   color: white;
-   font-size: 25px;
+   color: black;
+   font-size: 20px;
    font-style: italic;
-   font-family:cursive;
+   font-weight: 400;
+ }
+
+ .section-label {
+   color: white;
+   font-size: 30px;
+   font-weight: bold;
+   margin: 20px;
 
  }
 
  ::placeholder {
    color: gray;
-   font-size: 20px;
+   font-size: 15px;
    font-style: italic;
    text-align: center;
- }
-
- .section-label {
-   color: black;
-   font-size: 40px;
-   font-weight: bold;
- }
-
- .item-label,
- .item-label2 {
-   color: black;
-   font-size: 30px; 
-   display: inline-block;
- }
-
- .item-label2 {
-   margin-bottom: 20px;
-   margin-top: 10px;
-   font-size: 80px;
  }
 
  .dropdown {
    border-color: #085f00;
    border-width: 50px;
- }
- .text-input{
-  width: 300px; 
-  height: fit-content;
  }
 
  .numberInput {
@@ -58,72 +52,17 @@
    margin: 10px;
  }
 
- .textArea {
-   background-color: #ecf2eb;
-   min-width: 300px;
-   min-height: 100px;
-   padding: 25px;
-   margin: 20px;
- }
+
 
  body {
    margin: 0;
-   font-family: monospace;
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
    font-weight: 100;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    background-color: var(--bg-color);
-   /* color: var(--accent-1); */
+   color: var(--accent-1);
  }
-
- /* button {
-   border-color: var(black);
-   background-color: var(--accent-2);
-   display: block;
-   width: 130%;
-   height: 50px;
-   float: initial;
-   align-self:inherit	 	;
-
-   font-size: 29px;
-   padding: 10px;
-   margin: 10px;
-   
- } */
- /* ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-ul {
- position: fixed;
- top: 0;
- width: 100%;
-}
-
-li {
-  float: left;
-} */
-
-/* li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover {
-  background-color: #111;
-}
-
-iframe {
-  display: none;
-} */
-
 
  select {
    border-color: var(--accent-3);
@@ -135,34 +74,71 @@ iframe {
    margin: 0 auto;
  }
 
- input[type="text"] {
-   border-color: #003800;
-   /* background-color: var(--accent-1); */
+ input[type="text"],
+ textarea {
+   border: black 1.5px solid;
+   border-radius: 3.5px;
    color: black;
    display: block;
-   width: fit-content;
-   height: 30px;
-   font-size: 20px;
+   font-size: 15px;
    margin: 0 auto;
+   /* margin-bottom: 20px; */
+   overflow-wrap: break-word;
+   font-family: system-ui;
+   text-align: center;
  }
+
+ input[type="text"] {
+   height: 30px;
+   text-align: center;
+ }
+
 
  .chonk {
    display: inline !important;
-   align-self: auto;
-   width: 100px !important;
-   height: 75px !important;
-   font-size: 50px !important;
-   /* margin-left: 100; */
+   width: 50px !important;
+   height: 32.5px !important;
+   font-size: 25px !important;
    background-color: #003800;
+
  }
 
  input[type=button].chonk {
    background-color: #cad3c8;
    border-width: 2px;
    border-color: #83c183;
-   cursor: default;
  }
 
+ .label-number {
+   font-weight: 900;
+   font-size: 20px;
+ }
+
+ .label-cause {
+   font-weight: 600;
+   font-size: 15px;
+ }
+
+ .label-notes {
+   font-size: 20px;
+ }
+
+ .label4 {
+   font-size: 15px;
+   font-weight: 600;
+   color: black;
+ }
+
+ .popupButton {
+   display: inline !important;
+   width: 300px;
+   height: 50px;
+   font-size: 30px;
+   font-weight: 700;
+   background-color: green;
+   font-family: system-ui;
+   border-radius: 5px;
+ }
 
  input[type="checkbox"] {
    border-color: var(--accent-3);
@@ -178,18 +154,18 @@ iframe {
    background-color: var(--accent-1);
    width: 50px;
    height: 20px;
-   cursor: default;
    display: inline;
+
  }
 
  input[type="number"] {
    display: inline !important;
    background-color: var(--accent-1);
-   width: 100px !important;
-   height: 75px !important;
-   font-size: 50px;
+   width: 50px !important;
+   height: 32.5px !important;
+   font-size: 25px;
    text-align: center;
-   border-color: gray;
+   border-color: teal;
  }
 
  .SAVE,
@@ -199,12 +175,13 @@ iframe {
    height: 35px;
    font-size: 20px;
    margin: 15px;
+   border-radius: 30px;
  }
 
  .SAVE {
    background-color: #83c183;
-   margin-top: 30px;
    margin-bottom: 10px;
+
  }
 
  .CLEAR {
@@ -223,201 +200,281 @@ iframe {
  }
 
  .radioButtons {
-   /* display: inline-block;
+   display: inline-block;
    text-align: left;
-   cursor: default; */
-   background-color: initial;
-   cursor: default;
-   appearance: auto;
+ }
+
+ .gallery {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+   gap: 30px;
+   margin: 0 auto;
+   padding: 10px 0;
+ }
+
+
+ .team {
+   height: fit-content;
+
+ }
+
+ .motors,
+ .batteries {
+   padding: 10px;
+   min-width: 190px;
+ }
+
+ .motorType,
+ .autos,
+ .workingOn {
+   padding: 10px;
+   min-width: fit-content;
+   font: 15px;
+ }
+
+ .generalLabel {
+   font-size: 20px;
+   color: black;
+   font-weight: 300;
+   padding: 0px;
+   margin: 10px auto;
+ }
+
+ .generalButton {
+   width: fit-content;
+   height: 20%;
+   font-size: 15px;
+   font-weight: 550;
+   margin: 0 auto;
+   /* margin-bottom: 10px; */
+   /* border: 2px solid darkgreen; */
+   display: block;
+ }
+
+ .photoSelect {
+   color: black;
+   font-size: 60px;
+ }
+
+ p {
+   color: black;
+ }
+
+ .photoInput {
+
+   max-height: 300px;
+   max-width: 300px;
+ }
+
+ /* .img {
+   height: 100px;
+   width: 100px;
+   border-color: orange;
+ } */
+
+ .test2 {
+   display: flex;
+   flex-flow: row wrap;
+   align-items: stretch;
+   align-content: stretch;
+ }
+
+ .foul {
+   background-color: #b2daa1;
+   /* border: #005f00 2px solid; */
+   color: white;
    box-sizing: border-box;
-   margin: 3px 3px 0px 5px;
-   padding: initial;
-   border: initial;
+   padding: 5px;
+   min-width: fit-content;
+   width: 150px;
+   border-radius: 10px;
+   display: inline-block;
+   margin: 15px;
+   flex-grow: 1;
+ }
+
+ .fouls {
+   margin: 0 auto;
+   width: 75%;
+ }
+
+
+ .allianceSelect .number-off,
+ .content .number-off {
+   background-color: #87bd87;
+   color: white;
+   font-weight: 600;
+   border: 1.5px darkgreen solid;
+ }
+
+ .allianceSelect .number-on,
+ .content .number-on {
+   background-color: rgb(5, 255, 5);
+   color: black;
+   font-weight: 600;
+   border: 1.5px rgba(16, 127, 16, 0.61) solid;
 
  }
 
- #QRCode {
-   padding: 20px;
-   background-color: white;
+ .number-on,
+ .number-off {
+   display: inline !important;
+   width: 100px;
+   font-size: 15px;
+   text-align: center;
+   border-radius: 7px;
+   font-weight: 600;
+   padding: 5px;
+   margin: 5px;
  }
 
- .container {
-   height: 200px;
-   width: 250px;
-   position: relative;
-   /* border: 3px solid green;  */
+ .submit-button {
+   background-color: #83c183;
+   margin-top: 30px;
+   margin-bottom: 10px;
+   display: inline-block;
+   font-size: 20px;
+   margin: 15px;
+   width: 500px;
+   font-size: 30px;
+   margin: 20px;
+   height: 40px;
+   border-radius: 30px;
  }
 
- .center {
-   margin: 0;
+ .workingOn input[type="text"] {
+   width: 600px;
+   height: 50px;
+ }
+
+ .autos input[type="text"],
+ .motorType input[type="text"] {
+   width: 200px;
+   height: 50px;
+ }
+
+ .smallLabel {
+   color: darkgreen;
+   font-weight: 700;
+   font-size: 20px;
+ }
+
+ .topNote {
+   font-weight: 500;
+   font-style: italic;
+   color: darkgreen;
+ }
+
+ .team input[type="number"] {
+   width: 150px !important;
+ }
+
+ .textArea input[type="text"] {
+   font-size: 20px;
+   font-weight: 700;
+ }
+
+ .motorType textarea,
+ .autos textarea {
+   font-size: 20px;
+   font-weight: 400;
+ }
+
+
+ .test2 .team input[type="text"] {
+   font-weight: 900;
+   color: rgb(0, 0, 0);
+   text-align: center;
+   font-size: 30px;
+   width: 45%;
+ }
+
+ .textArea input[type="submit"]:active {
+   background-color: darkgreen;
+ }
+
+ .check {
+   width: 50px;
+   height: 20px;
+   border-left: 10px solid green;
+   border-bottom: 10px solid green;
+   transform: rotate(-45deg);
+   margin-left: 70%;
+   margin-bottom: 50%;
    position: absolute;
-   top: 50%;
-   left: 200%;
-   -ms-transform: translate(-50%, -50%);
-   transform: translate(-50%, -50%);
-   font-family:cursive;
 
  }
 
- .vertical-center {
-   margin: 0;
-   position: absolute;
-   top: 50%;
-   -ms-transform: translateY(-50%);
-   transform: translateY(-50%);
-   font-family:cursive;
+ .popup-overlay .popup-content {
+   background-color: #b2daa1;
+   border-radius: 15px;
+   border: 0px;
+ }
+
+ .content {
+   height: fit-content;
+   padding: 10px;
+   margin: 10px;
+ }
+
+ .content .number-off,
+ .content .number-on {
+   font-size: 25px;
+   border: 0px black solid;
+ }
+
+ .content .number-off {
+   background-color: #085f00;
+ }
+
+ .content textarea {
+   font-size: 25px;
+ }
+
+ .subButton button {
+   background-color: #085f00;
+   font-size: 20px;
+   border-radius: 15px;
+   padding: 10px;
+   color: white;
 
  }
 
- .tab {
-   overflow: hidden;
-   border: 1px solid #ccc;
-   background-color: #f1f1f1;
-   font-family:cursive;
+
+ select {
+   font-size: 20px;
+ }
+
+
+
+
+
+ .label-size {
+   font-size: 15px;
+   padding: 2px;
+   width: fit-content;
+   font-weight: 400;
+   margin: 0 auto;
+   margin-bottom: 5px;
+ }
+
+
+
+ .nav {
+   background-color: green;
+   font-family: system-ui;
+   font-size: 30px;
+   font-weight: 600;
+   padding: 7px;
+   border: 2px solid green;
+   margin: 5px;
 
  }
 
- /* Style the buttons that are used to open the tab content */
- .tab button {
-   background-color: inherit;
-   /* float: left; */
-   border: none;
-   outline: none;
-   cursor: pointer;
-   padding: 14px 16px;
-   transition: 0.3s;
-   font-family:cursive;
-
+ .nav:focus {
+   background-color: lightgreen;
+   border: 2px solid lightgreen;
  }
-
- /* Change background color of buttons on hover */
- .tab button:hover {
-   background-color: #ddd;
-   font-family:cursive;
-
- }
-
- /* Create an active/current tablink class */
- .tab button.active {
-   background-color: #ccc;
-   font-family:cursive;
-
- }
-
- /* Style the tab content */
- .tabcontent {
-   display: none;
-   padding: 6px 12px;
-   border: 1px solid #ccc;
-   border-top: none;
-   font-family:cursive;
-
- }
-
-.label-size {
-  font-size:25px;
-  font-family:cursive;
-
-}
-
-.bullet-points {
-  width:500px;
-  margin:auto;
-  text-align:left;
-  font-size:25px;
-  font-family:cursive;
-
-}
-
-.align-radio {
-  display: inline-block;
-  text-align: left; 
-  list-style-type: none;
-  font-family:cursive;
-
-}
-
-.submit-button {
-  width: 500px;
-  font-size: 100px;
-  margin: 20px; 
-  font-family:cursive;
-
-}
-.next-button {
-  width: 500px;
-  height: 60px;
-  font-size: 50px;
-  margin: 20px; 
-  font-family:cursive;
-
-}
-.number-on{
-  color: green;
- margin: 0 auto;
- width:600px;
- font-family:cursive;
-
-}
-
-.number-off{
-  color:black;
-  margin: 0 auto;
-  width:600px;
-  font-family:cursive;
-
-}
-
-button.tablinks{
-  font-size:40px;
-  font-family:cursive;
-
-}
-
-.RobotData{
-  display: none;
-  font-family:cursive;
-
-}
-.RobotData.selected{
-  display: block;
-  font-family:cursive;
-
-}
-
-input[type="button"] {
-  border-color: var(--accent-3);
-  background-color: var(--accent-2);
-  display: block;
-  /* width: 30%; */
-  height: 40px;
-  font-size: 20px;
-  cursor: default;
-  font-family:cursive;
-
-}
-
-.buttonright {
-  display:inline-flex;
-}
- h1 {
-  display: block;
-  font-size: 2em;
-  font-weight: bold; 
-  display:auto;
-  margin: auto; 
-  text-align:middle;
-  font-family:cursive;
-
-} 
-NumberInput{
-  margin-right: 100px;  
-  }
-
-p.section-label{
-  font-family:cursive;
-}
-p.page-title{
-  font-family:cursive;
-
-}
