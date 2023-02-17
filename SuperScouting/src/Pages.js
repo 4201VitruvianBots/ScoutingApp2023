@@ -16,13 +16,6 @@ function Page(props) {
 
 
 function SignIn(props) {
-    // const [showCheck, setshowCheck] = useState(false);
-
-    // const handleSubmit = (event) => {
-    //     setshowCheck(true);
-    //     props.onSubmit(event);
-    //     setTimeout(() => { setshowCheck(false) }, 5000);
-    // }
 
     return (
         <div>
@@ -30,7 +23,9 @@ function SignIn(props) {
             {/* <p className="topNote">If the robot has an "other" drivetrain, specify it in the notes at the bottom!</p> */}
             <form action="#" onSubmit={props.onSubmit}>
                 <div className="textArea">
-                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" className="name" />
+                    <input type="text" id="Sname" name="Scouter_Name" placeholder="SCOUTER NAME" className="name" />
+                    <br />
+                    <input type="text" id="Sname" name="Match_Number" placeholder="MATCH NUMBER" className="name" />
                     <br />
                     <select name="Competition" id="Ename" defaultValue="Choose">
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
@@ -38,7 +33,7 @@ function SignIn(props) {
                     </select>
                     <br />
                     <div className="allianceSelect">
-                        <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} id="Team_Alliance" />
+                        <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} id="DriveTrain" />
                     </div>
                     <div className="loginButtons">
                         <input type="text" placeholder="TEAM 1" className="login" />
@@ -47,8 +42,10 @@ function SignIn(props) {
                     </div>
 
                     {/* {showCheck && <div class="check"></div>} */}
+
                     <input type="submit" className="SAVE" value="Sign In" />
-                     
+
+
                     {/* when submitted 
                         <>checkmark image</> */}
                     {/* onSubmit={handleSubmit} */}
@@ -65,62 +62,179 @@ function General(props) {
     const [fouls, setFouls] = useState([]);
 
     const [teamNumber, setTeamNumber] = useState('');
+    const [teamInput, setTeamInput] = useState('');
 
-    const handleMultiButtonChange = (teamNumber) => {
-        setTeamNumber(teamNumber);
+
+    const handleInputChange = (teamInput) => {
+        var one = document.getElementById("team1").value;
+        var two = document.getElementById("team2").value;
+        var three = document.getElementById("team3").value;
+        setTeamInput([one, two, three]);
     }
 
 
-
-    // this.state.items[id][0] pass this in somehow?
-
     return (
-        <Page selected={props.selected} id="general">
-            <p className="section-label">General</p>
+        <Page selected={props.selected} id="general" className="page">
+            <p className="section-label">Fouls</p>
             <div className="textArea">
 
-                <Popup trigger=
-                    {<input type="button" className="popupButton" value="Add foul"></input>}
-                    modal nested>
-                    {
-                        close => (
-                            <div className='modal'>
-                                <div className='content'>
-                                    <MultiButton items={[['4201', '4201'], ['330', '330'], ['4414', '4414']]} id="popupSelect" onChange={handleMultiButtonChange
-                                    } />
-                                    <br />
-                                    <select name="Competition" id="selector" defaultValue="Choose" >
-                                        <option value="Choose" className="Placeholder" disabled>For?</option>
-                                        <option value="Pinning">Pinning</option>
-                                        <option value="Disabled">Disabled</option>
-                                        <option value="Overextension">Overextension</option>
-                                        <option value="InsideOtherRobot">Inside other robot</option>
-                                    </select>
-                                    <br />
-                                    <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
-                                    <br />
-                                </div>
-                                <div className="subButton">
+                <br />
+                <br />
+                <div className="boxes">
+                    <div className="team1">
 
-                                    <button onClick={() => {
-                                        // setFouls = [document.getElementById("popupSelect"), document.getElementById("selector"), document.getElementById("note")];
+                        <input type="text" placeholder="TEAM 1" className="login" id="team1" onChange={handleInputChange} />
+                        <Popup trigger=
+                            {<input type="button" className="popupButton" value="Add foul"></input>}
+                            modal nested>
+                            {
+                                close => (
+                                    <div className='modal'>
+                                        <div className='content'>
+                                            <label className="label-title">{[teamInput[0]]}</label>
+                                            <br />
+                                            <br />
+                                            <select name="Competition" id="selector" defaultValue="Choose" >
+                                                <option value="Choose" className="Placeholder" disabled>For?</option>
+                                                <option value="Pinning">Pinning</option>
+                                                <option value="Disabled">Disabled</option>
+                                                <option value="Overextension">Overextension</option>
+                                                <option value="InsideOtherRobot">Inside other robot</option>
+                                            </select>
+                                            <br />
+                                            <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
 
-                                        var selector = document.getElementById("selector");
-                                        var text = selector.options[selector.selectedIndex].text; //then save var text as index 1?
-                                        var content = document.getElementById("note").value;
-                                        setFouls([...fouls, [teamNumber, text, content]]);
+                                        </div>
 
-                                        close();
-                                    }
+                                        <div className="subButton">
 
-                                    }>
-                                        Enter foul
-                                    </button>
-                                </div>
-                            </div>
-                        )
-                    }
-                </Popup>
+                                            <button onClick={() => {
+                                                // setFouls = [document.getElementById("popupSelect"), document.getElementById("selector"), document.getElementById("note")];
+
+                                                var selector = document.getElementById("selector");
+                                                var text = selector.options[selector.selectedIndex].text; //then save var text as index 1?
+                                                var content = document.getElementById("note").value;
+                                                setFouls([...fouls, [[teamInput[0]], text, content]]);
+
+                                                close();
+                                            }
+
+                                            }>
+                                                Enter foul
+                                            </button>
+                                            <br />
+
+                                        </div>
+                                        <br />
+                                    </div>
+                                )
+                            }
+                        </Popup>
+
+
+                    </div>
+                    <div className="team2">
+
+                        <input type="text" placeholder="TEAM 2" className="login" id="team2" onChange={handleInputChange} />
+                        <Popup trigger=
+                            {<input type="button" className="popupButton" value="Add foul"></input>}
+                            modal nested>
+                            {
+                                close => (
+                                    <div className='modal'>
+                                        <div className='content'>
+                                            <label className="label-title">{[teamInput[1]]}</label>
+
+                                            <br />
+                                            <br />
+                                            <select name="Competition" id="selector" defaultValue="Choose" >
+                                                <option value="Choose" className="Placeholder" disabled>For?</option>
+                                                <option value="Pinning">Pinning</option>
+                                                <option value="Disabled">Disabled</option>
+                                                <option value="Overextension">Overextension</option>
+                                                <option value="InsideOtherRobot">Inside other robot</option>
+                                            </select>
+                                            <br />
+                                            <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
+                                            <br />
+                                        </div>
+                                        <div className="subButton">
+
+                                            <button onClick={() => {
+                                                // setFouls = [document.getElementById("popupSelect"), document.getElementById("selector"), document.getElementById("note")];
+
+                                                var selector = document.getElementById("selector");
+                                                var text = selector.options[selector.selectedIndex].text; //then save var text as index 1?
+                                                var content = document.getElementById("note").value;
+                                                setFouls([...fouls, [[teamInput[1]], text, content]]);
+
+                                                close();
+                                            }
+
+                                            }>
+                                                Enter foul
+                                            </button>
+                                            <br />
+                                        </div>
+                                        <br />
+                                    </div>
+                                )
+                            }
+                        </Popup>
+
+
+                    </div>
+
+                    <div className="team3">
+
+                        <input type="text" placeholder="TEAM 3" className="login" id="team3" onChange={handleInputChange} />
+                        <Popup trigger=
+                            {<input type="button" className="popupButton" value="Add foul"></input>}
+                            modal nested>
+                            {
+                                close => (
+                                    <div className='modal'>
+                                        <div className='content'>
+                                            <label className="label-title">{[teamInput[2]]}</label>
+                                            <br />
+                                            <br />
+                                            <select name="Competition" id="selector" defaultValue="Choose" >
+                                                <option value="Choose" className="Placeholder" disabled>For?</option>
+                                                <option value="Pinning">Pinning</option>
+                                                <option value="Disabled">Disabled</option>
+                                                <option value="Overextension">Overextension</option>
+                                                <option value="InsideOtherRobot">Inside other robot</option>
+                                            </select>
+                                            <br />
+                                            <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
+                                            <br />
+                                        </div>
+                                        <div className="subButton">
+
+                                            <button onClick={() => {
+                                                // setFouls = [document.getElementById("popupSelect"), document.getElementById("selector"), document.getElementById("note")];
+
+                                                var selector = document.getElementById("selector");
+                                                var text = selector.options[selector.selectedIndex].text; //then save var text as index 1?
+                                                var content = document.getElementById("note").value;
+                                                setFouls([...fouls, [[teamInput[2]], text, content]]);
+
+                                                close();
+                                            }
+
+                                            }>
+                                                Enter foul
+                                            </button>
+                                            <br />
+                                        </div>
+                                        <br />
+                                    </div>
+                                )
+                            }
+                        </Popup>
+
+                    </div>
+                </div>
 
                 <br />
                 <br />
