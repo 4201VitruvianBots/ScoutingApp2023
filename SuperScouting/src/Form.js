@@ -265,7 +265,7 @@ class FoulCards extends React.Component {
         for (let index in this.props.fouls) {
 
             output.push(
-                <div className="foul">
+                <div className="foul" key={index}>
                     <p className="label4">FOUL</p>
                     <p className="label-number" key={1}>{this.props.fouls[index][0]}</p>
                     <p className="label-cause" key={2}>{this.props.fouls[index][1]}</p>

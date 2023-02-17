@@ -46,6 +46,7 @@ CREATE TABLE superScout(
 	Competition TEXT NULL,
 	Team_Alliance INT NULL,
 	Team_Number INT NULL,
+	Cause INT NULL,
 	Comments TEXT NULL
 );
 

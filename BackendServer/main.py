@@ -63,6 +63,19 @@ def handle_get_match(number):
     # Handle GET request
     return getRawMatchData(matchNumber=number)
 
+
+@app.route('/data/superScout', methods=['GET'])
+def handle_get_fouls():
+    return getSuperScoutData()
+
+@app.route('/data/superScout/team/<int:number>', methods=['GET'])
+def handle_get_fouls_team(number):
+    return getSuperScoutData(teamNumber=number)
+
+@app.route('/data/superScout/match/<int:number>', methods=['GET'])
+def handle_get_fouls_match(number):
+    return getSuperScoutData(matchNumber=number)
+
 def getRawMatchData(**kwargs):
     request = "SELECT * FROM matchData"
     requestInput = []
@@ -85,7 +98,27 @@ def getRawMatchData(**kwargs):
     # Format with column names
     return [dict(zip(matchColumns, row)) for row in rows]
               
-                                                                                                                                                                                                                          
+def getSuperScoutData(**kwargs):
+    request = "SELECT * FROM superScout"
+    requestInput = []
+    if 'teamNumber' in kwargs:
+        request += " WHERE Team_Number=%s"
+        requestInput.append(kwargs['teamNumber'])
+    if 'matchNumber' in kwargs:
+        request += " WHERE Match_Number=%s"
+        requestInput.append(kwargs['matchNumber'])
+    # if 'sortBy' in kwargs:
+    #     request += " ORDER BY %s"
+    #     requestInput.append(kwargs['sortBy'])
+    # if 'limitTo' in kwargs:
+    #     request += " LIMIT %s"
+    #     requestInput.append(kwargs['limitTo'])
+    print(requestInput,request)
+    mycursor.execute(request,requestInput)
+    rows = mycursor.fetchall()
+
+    # Format with column names
+    return [dict(zip(matchColumns, row)) for row in rows]                                                                                                                                                                                                        
 
 @app.route('/data/matches', methods=['POST'])
 def handle_post():
@@ -115,10 +148,22 @@ def handle_post6():
     print(formData)
 
     # Insert all data into table
-    mycursor.execute('INSERT INTO superScout({}) VALUES ({})'.format(
-        ', '.join(formData.keys()),
-        ', '.join(['%s'] * len(formData))
-    ), [format_data(formData[key], key) for key in formData])
+    for i in range(int(formData['length'])):
+        mycursor.execute(
+            'INSERT INTO superScout(Scouter_Name, Competition, Team_Alliance, Team_Number, Cause, Comments) VALUES(%s, %s, %s, %s, %s, %s)',
+            [format_data(formData[key], key) for key in ['Scouter_Name', 'Competition', 'Team_Alliance', f"Team_Number[{i}]", f"Cause[{i}]", f"Comments[{i}]"]]
+        )
+    
+    mycursor.execute(
+        'INSERT INTO superScout(Scouter_Name, Competition, Team_Alliance, Comments) VALUES(%s, %s, %s, %s)',
+        [format_data(formData[key], key) for key in ['Scouter_Name', 'Competition', 'Team_Alliance', 'Comments']]
+    )
+
+   
+    # mycursor.execute('INSERT INTO superScout({}) VALUES ({})'.format(
+    #     ', '.join(formData.keys()),
+    #     ', '.join(['%s'] * len(formData))
+    # ), [format_data(formData[key], key) for key in formData])
 
     mydb.commit()
     updateAnalysis(formData.get("Team_Number"))
@@ -187,6 +232,9 @@ def format_data(string, name):
     print("formatting data")
     print(string)
     print(name)
+    if name[-3] == '[' and name[-1] == ']':
+        name = name[:-3]
+
     if name in ('Scouter_Name', 'Competition', 'Team_Name', 'Comments','DriveTrain_Motor_Type', 'Working_On', 'Autos'):
         return string
     if name in ('Mobility', 'Show_Time', 'Can_Hold_Cone', 'Can_Hold_Cube'):
