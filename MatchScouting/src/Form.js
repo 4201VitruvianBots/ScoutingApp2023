@@ -170,7 +170,7 @@ class MultiButton extends React.Component {
         return (
             <div className="[className]">
                 <this.generateButtons />
-                <input type='hidden' name= {this.state.id} value= {this.state.selected}/>
+                <input type='hidden' name={this.state.id} value={this.state.selected} />
             </div>
         )
 
@@ -190,4 +190,4 @@ class Upload extends React.Component {
     }
 }
 
-export { RadioButtons, NumberInput, ButtonInput, MultiButton };
+export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload };

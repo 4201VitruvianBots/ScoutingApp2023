@@ -1,4 +1,3 @@
-import { tSDeclareFunction } from "@babel/types";
 import React from "react";
 import './App.css';
 
@@ -289,7 +288,7 @@ class Upload extends React.Component {
         return (
             <div>
                 <input type="file" onChange={this.handleChange} />
-                <img src={this.state.file} height="400px" width="300px" />
+                <img src={this.state.file} height="400px" width="300px" alt="Upload" />
             </div>
         );
 
