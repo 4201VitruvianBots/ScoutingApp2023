@@ -44,6 +44,7 @@ CREATE TABLE pitData(
 CREATE TABLE superScout(
 	Scouter_Name TEXT NULL, 
 	Competition TEXT NULL,
+	Match_Number INT NULL,
 	Team_Alliance INT NULL,
 	Team_Number INT NULL,
 	Cause INT NULL,
