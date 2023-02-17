@@ -1,4 +1,3 @@
-import { tSDeclareFunction } from "@babel/types";
 import React from "react";
 import './App.css';
 
@@ -314,5 +313,3 @@ class Upload extends React.Component {
 
 
 export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, FoulCards };
-
-

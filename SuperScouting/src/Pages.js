@@ -1,4 +1,4 @@
-import { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, PageSelector, FoulCards } from "./Form";
+import { MultiButton, FoulCards } from "./Form";
 import './App.css';
 import { useState } from "react";
 import Popup from 'reactjs-popup';
@@ -35,11 +35,11 @@ function SignIn(props) {
                     <div className="allianceSelect">
                         <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} id="DriveTrain" />
                     </div>
-                    <div className="loginButtons">
+                    {/* <div className="loginButtons">
                         <input type="text" placeholder="TEAM 1" className="login" />
                         <input type="text" placeholder="TEAM 2" className="login" />
                         <input type="text" placeholder="TEAM 3" className="login" />
-                    </div>
+                    </div> */}
 
                     {/* {showCheck && <div class="check"></div>} */}
 
@@ -61,7 +61,6 @@ function General(props) {
 
     const [fouls, setFouls] = useState([]);
 
-    const [teamNumber, setTeamNumber] = useState('');
     const [teamInput, setTeamInput] = useState('');
 
 

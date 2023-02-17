@@ -1,9 +1,7 @@
 import './App.css';
-import { SignIn, TeamInfo, General, SavePage } from "./Pages";
-import { PageSelector } from "./Form";
+import { SignIn, General } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
-import { render } from '@testing-library/react';
 
 class App extends React.Component {
     constructor(props) {
@@ -63,18 +61,19 @@ class App extends React.Component {
         switch (this.state.selected) {
             case 'sign-in':
                 selectedPage = <SignIn onSubmit={this.SignInHandler} />;
-                
+
                 break;
             case 'general':
-                selectedPage = ( <form action="http://127.0.0.1:5000/data/superScout" method="POST" target="frame" id="myForm" onSubmit={clearForm}>
-                <input type='hidden' value={this.state.EventName} name='Competition' />
-                <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
-                <input type='hidden' value={this.state.Alliance} name="Team_Alliance" />
-                <General />
-                
+                selectedPage = (<form action="http://127.0.0.1:5000/data/superScout" method="POST" target="frame" id="myForm" onSubmit={clearForm}>
+                    <input type='hidden' value={this.state.EventName} name='Competition' />
+                    <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
+                    <input type='hidden' value={this.state.Alliance} name="Team_Alliance" />
+                    <General />
 
-            </form>);
+
+                </form>);
                 break;
+            default:
         }
 
 
@@ -84,7 +83,7 @@ class App extends React.Component {
                 <input type="button" onClick={() => this.test2('sign-in')} value="Sign In" className="nav" />
                 <input type="button" onClick={() => this.test2('general')} value="Fouls" className="nav" />
                 {selectedPage}
-               
+
                 <iframe name="frame" title="frame"></iframe>
 
             </main>
