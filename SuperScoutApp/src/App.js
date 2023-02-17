@@ -21,8 +21,8 @@ class App extends React.Component {
                 <br></br>
                 <br></br>
                 <p className="page-title">Welcome to Vitruvian Scouting</p>
-                <Navigation selected={this.state.selected === 'navigation' } />
-               
+                <Navigation selected={this.state.selected === 'navigation'} />
+
                 {/*
             <div >
                 <TabButton headerButtonsonClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>
@@ -33,7 +33,7 @@ class App extends React.Component {
             </div>
       */}
 
-                <form action="http://127.0.0.1:5000/data/matches" method="POST" target="frame" id="myForm" onSubmit={clearForm}>
+                <form action={`http://${process.env.BACKEND_SERVER_IP}:5000/data/matches`} method="POST" target="frame" id="myForm" onSubmit={clearForm}>
                     <SignIn selected={this.state.selected === 'sign-in'} />
                     <PreGame selected={this.state.selected === 'pre-game'} />
                     <Auto selected={this.state.selected === 'auto'} />
@@ -51,12 +51,12 @@ class App extends React.Component {
 }
 
 // Test on slower connection in the future vvv
-function clearForm() { 
+function clearForm() {
     document.getElementById("myForm").submit();
-    setTimeout(function() {
+    setTimeout(function () {
         document.getElementById("myForm").reset();
-        window.location.href="#SignIn"
+        window.location.href = "#SignIn"
     }, 0)
-} 
+}
 
 export default App;

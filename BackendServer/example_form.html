@@ -3,7 +3,7 @@
 <head></head>
 
 <body>
-    <form action="http://127.0.0.1:5000/data" method="POST"> <input name="text"> <input type="submit"> </form>
+    <form action="http://${process.env.BACKEND_SERVER_IP}:5000/data" method="POST"> <input name="text"> <input type="submit"> </form>
 </body>
 
 </html>

@@ -11,8 +11,8 @@ class GetDataAuto extends React.Component {
 
     async componentDidMount() {
         // GET request using fetch with async/await
-        const response = await fetch('http://localhost:5000/data/matches', {crossDomain:true, method: 'GET'});
-        const data = await response.json();        
+        const response = await fetch(`http://${process.env.BACKEND_SERVER_IP}:5000/data/matches`, { crossDomain: true, method: 'GET' });
+        const data = await response.json();
         this.setState({ AutoConeHighValue: data[2].Auto_Cone_High })
         this.setState({ AutoConeMidValue: data[2].Auto_Cone_Mid })
         this.setState({ AutoConeLowValue: data[2].Auto_Cone_Low })
@@ -39,7 +39,7 @@ class GetDataTele extends React.Component {
 
     async componentDidMount() {
         // GET request using fetch with async/await
-        const response = await fetch('http://localhost:5000/data/matches', {crossDomain:true, method: 'GET'});
+        const response = await fetch('http://localhost:5000/data/matches', { crossDomain: true, method: 'GET' });
         const data = await response.json();
         this.setState({ TeleConeHighValue: data[2].Tele_Cone_High })
         this.setState({ TeleConeMidValue: data[2].Tele_Cone_Mid })
