@@ -5,12 +5,12 @@
    --accent-default: var(--accent-3);
    --bg-color: var(--background-1);
    text-align: center;
+   font-family: system-ui;
  }
 
  .page-title {
    color: white;
    font-size: 25px;
-
    font-style: italic;
  }
 
@@ -87,16 +87,7 @@
    
  } */
 
- input[type="button"] {
-   border-color: var(--accent-3);
-   background-color: var(--accent-2);
-   display: block;
-   width: 120%;
-   height: 40px;
-   font-size: 20px;
-   cursor: default;
 
- }
 
  select {
    border-color: var(--accent-3);
@@ -172,6 +163,22 @@
    border-color: gray;
  }
 
+ td input[type="button"] {
+   font-size: 17px;
+   width: 50px;
+   border-radius: 10%;
+   border-radius: 10;
+   font-weight: 500;
+ }
+
+
+ /* input[type="button"] {
+   border-color: var(--accent-3);
+   background-color: var(--accent-2);
+   
+
+ } */
+
  .SAVE,
  .CLEAR {
    display: inline-block;
@@ -221,13 +228,15 @@
    padding: 20px;
    background-color: white;
  }
- .container {
-  height: 200px;
-  width: 250px;
 
-  position: relative;
-  /* border: 3px solid green;  */
-}
+ .container {
+   height: 200px;
+   width: 250px;
+
+   position: relative;
+   /* border: 3px solid green;  */
+ }
+
  .center {
    margin: 0;
    position: absolute;
@@ -244,57 +253,58 @@
    -ms-transform: translateY(-50%);
    transform: translateY(-50%);
  }
+
  .number-on {
- color: green;
- margin: 0 auto;
+   color: green;
+   margin: 0 auto;
 
  }
- 
+
  .number-off {
-  color:black;
-  margin: 0 auto;
+   color: black;
+   margin: 0 auto;
 
 
  }
 
  .tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-} 
+   overflow: hidden;
+   border: 1px solid #ccc;
+   background-color: #f1f1f1;
+ }
 
-/* Style the buttons that are used to open the tab content */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-}
+ /* Style the buttons that are used to open the tab content */
+ .tab button {
+   background-color: inherit;
+   float: left;
+   border: none;
+   outline: none;
+   cursor: pointer;
+   padding: 14px 16px;
+   transition: 0.3s;
+ }
 
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
+ /* Change background color of buttons on hover */
+ .tab button:hover {
+   background-color: #ddd;
+ }
 
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
+ /* Create an active/current tablink class */
+ .tab button.active {
+   background-color: #ccc;
+ }
 
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
-}
+ /* Style the tab content */
+ .tabcontent {
+   display: none;
+   padding: 6px 12px;
+   border: 1px solid #ccc;
+   border-top: none;
+ }
 
-.label-size {
-  font-size:25px;
-}
+ .label-size {
+   font-size: 25px;
+ }
 
  .bullet-points {
    width: 400px;
@@ -304,11 +314,11 @@
  }
 
  .align-radio {
-  /* display: inline-block;
+   /* display: inline-block;
    text-align: left;
    list-style-type: none; */
    display: inline-flex;
-	/* justify-content: flex-start;
+   /* justify-content: flex-start;
 	margin:auto;
   text-align: center;
   width: 34%; */
@@ -343,10 +353,10 @@
  }
 
  ul {
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
+   position: fixed;
+   top: 0;
+   width: 100%;
+ }
 
  li {
    float: left;
@@ -371,4 +381,101 @@
  .ToggleButton {
    margin: auto;
    width: 250px;
+ }
+
+ .navButton {
+   background-color: white;
+   display: inline-block;
+   width: 100x;
+   height: 40px;
+   font-size: 15px;
+   font-weight: 600;
+   cursor: default;
+   padding: 10px;
+   margin: 5px;
+   border: green 3px solid;
+   border-radius: 15px;
+ }
+
+
+
+ .matchTables {
+   background-color: lightgray;
+
+ }
+
+ table {
+   border-collapse: collapse;
+ }
+
+
+ /* tbody {
+   background-color: limegreen;
+ } */
+
+
+ /*Table 1*/
+ .matchTables .table1 table {
+   width: 60%;
+
+   background-color: #d878a3;
+
+ }
+
+ .matchTables .table1 table td {
+   font-weight: 400;
+   padding: 5px;
+   min-width: fit-content;
+   border: 2px solid #93526f;
+
+ }
+
+ /*Table 2*/
+ .matchTables .table2 table {
+   width: 60%;
+   background-color: rgb(51, 181, 224);
+
+ }
+
+ .matchTables .table2 table td {
+   font-weight: 400;
+   min-width: 90px;
+   padding: 3px;
+
+   border: 2px solid rgb(59, 127, 150);
+ }
+
+ /*Table 3*/
+ .matchTables .table3 table,
+ .allMatchTable table {
+   width: 80%;
+   background-color: #58a163;
+ }
+
+ .matchTables .table3 table td,
+ .allMatchTable td {
+   font-weight: 600;
+   padding: 5px;
+   min-width: 60px;
+   border: 2px solid #3b6c42;
+   color: rgb(11, 60, 11);
+ }
+
+ /*All Tables*/
+ .matchTables .table1 table,
+ .matchTables .table2 table,
+ .matchTables .table3 table,
+ .allMatchTable table {
+   margin: 0 auto;
+   font-family: system-ui;
+   /* font-size: 15px;
+   font-weight: 500; */
+   margin-bottom: 20px;
+   color: black;
+ }
+
+ .allMatchTable table {
+   /* background-color: orange; */
+   /* overflow: auto; */
+   width: 80%;
  }
