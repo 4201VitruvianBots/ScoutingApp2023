@@ -352,3 +352,8 @@
  .popup-overlay .popup-content {
    width: 800px;
  }
+
+ .highlight {
+   background-color: #dbefd3ff;
+   height: 40px;
+ }

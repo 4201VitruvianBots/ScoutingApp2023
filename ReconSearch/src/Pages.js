@@ -78,15 +78,15 @@ export default function PopupGfg(props) {
                             </div>
                             <div className="popuplocation">
                                 <button className="popupbutton">Average Fouls: {props.data?.Average_Fouls}</button>
+                                <p className="highlight">Foul Type:</p>
                                 <p>Foul Type:</p>
+                                <p className="highlight">Foul Type:</p>
                                 <p>Foul Type:</p>
+                                <p className="highlight">Foul Type:</p>
                                 <p>Foul Type:</p>
+                                <p className="highlight">Foul Type:</p>
                                 <p>Foul Type:</p>
-                                <p>Foul Type:</p>
-                                <p>Foul Type:</p>
-                                <p>Foul Type:</p>
-                                <p>Foul Type:</p>
-                                <p>Foul Type:</p>
+                                <p className="highlight">Foul Type:</p>
                             </div>
                             <div>
                                 <button onClick=
@@ -147,15 +147,15 @@ export default function PopupGfg(props) {
                                 <p>boxplot is supposed to be here, but isn't! :0</p>
                             </div>
                             <div className="popuplocation">
+                                <p className="highlight">Details:</p>
                                 <p>Details:</p>
+                                <p className="highlight">Details:</p>
                                 <p>Details:</p>
+                                <p className="highlight">Details:</p>
                                 <p>Details:</p>
+                                <p className="highlight">Details:</p>
                                 <p>Details:</p>
-                                <p>Details:</p>
-                                <p>Details:</p>
-                                <p>Details:</p>
-                                <p>Details:</p>
-                                <p>Details:</p>
+                                <p className="highlight">Details:</p>
                             </div>
                             <div>
                                 <button onClick=
@@ -181,15 +181,15 @@ export default function PopupGfg(props) {
                                 <p>boxplot is supposed to be here, but isn't! :0</p>
                             </div>
                             <div className="popuplocation">
+                                <p className="highlight">Details:</p>
                                 <p>Details:</p>
+                                <p className="highlight">Details:</p>
                                 <p>Details:</p>
+                                <p className="highlight">Details:</p>
                                 <p>Details:</p>
+                                <p className="highlight">Details:</p>
                                 <p>Details:</p>
-                                <p>Details:</p>
-                                <p>Details:</p>
-                                <p>Details:</p>
-                                <p>Details:</p>
-                                <p>Details:</p>
+                                <p className="highlight">Details:</p>
                             </div>
                             <div>
                                 <button onClick=
@@ -215,15 +215,15 @@ export default function PopupGfg(props) {
                                 <p>boxplot is supposed to be here, but isn't! :0</p>
                             </div>
                             <div className="popuplocation">
+                                <p className="highlight">Details:</p>
                                 <p>Details:</p>
+                                <p className="highlight">Details:</p>
                                 <p>Details:</p>
+                                <p className="highlight">Details:</p>
                                 <p>Details:</p>
+                                <p className="highlight">Details:</p>
                                 <p>Details:</p>
-                                <p>Details:</p>
-                                <p>Details:</p>
-                                <p>Details:</p>
-                                <p>Details:</p>
-                                <p>Details:</p>
+                                <p className="highlight">Details:</p>
                             </div>
                             <div>
                                 <button onClick=
@@ -248,15 +248,15 @@ export default function PopupGfg(props) {
                                 <h3>Inside Another Robot</h3>
                             </div>
                             <div className="popuplocation">
+                                <p className="highlight">Details:</p>
                                 <p>Details:</p>
+                                <p className="highlight">Details:</p>
                                 <p>Details:</p>
+                                <p className="highlight">Details:</p>
                                 <p>Details:</p>
+                                <p className="highlight">Details:</p>
                                 <p>Details:</p>
-                                <p>Details:</p>
-                                <p>Details:</p>
-                                <p>Details:</p>
-                                <p>Details:</p>
-                                <p>Details:</p>
+                                <p className="highlight">Details:</p>
                             </div>
                             <div>
                                 <button onClick=
