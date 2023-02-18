@@ -1,9 +1,7 @@
 import './App.css';
-import { SignIn, TeamInfo, General, SavePage } from "./Pages";
-import { PageSelector } from "./Form";
+import { SignIn, General } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
-import { render } from '@testing-library/react';
 
 class App extends React.Component {
     constructor(props) {
@@ -61,6 +59,7 @@ class App extends React.Component {
             case 'general':
                 selectedPage = <General />;
                 break;
+            default:
         }
 
 

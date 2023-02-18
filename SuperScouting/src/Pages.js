@@ -1,4 +1,4 @@
-import { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, PageSelector, FoulCards } from "./Form";
+import { MultiButton, FoulCards } from "./Form";
 import './App.css';
 import { useState } from "react";
 import Popup from 'reactjs-popup';
@@ -57,7 +57,6 @@ function General(props) {
 
     const [fouls, setFouls] = useState([]);
 
-    const [teamNumber, setTeamNumber] = useState('');
     const [teamInput, setTeamInput] = useState('');
 
 
