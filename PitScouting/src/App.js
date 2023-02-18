@@ -1,5 +1,5 @@
 import './App.css';
-import { SignIn, TeamInfo, General, Photos, SavePage } from "./Pages";
+import { SignIn, General, Photos, SavePage } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 
@@ -62,7 +62,7 @@ class App extends React.Component {
                 <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
             </div>
       */}
-                <form action="http://127.0.0.1:5000/data/pits" method="POST" target="frame" id="myForm" onSubmit={clearForm}>
+                <form action={`http://${process.env.BACKEND_SERVER_IP}:5000/data/pits`} method="POST" target="frame" id="myForm" onSubmit={clearForm}>
                     <input type='hidden' value={this.state.EventName} name='Competition' />
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
 

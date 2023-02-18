@@ -304,7 +304,7 @@ class Upload extends React.Component {
         return (
             <div>
                 <input type="file" onChange={this.handleChange} />
-                <img src={this.state.file} height="400px" width="300px" />
+                <img src={this.state.file} height="400px" width="300px" alt="Upload" />
             </div>
         );
 
@@ -312,4 +312,4 @@ class Upload extends React.Component {
 }
 
 
-export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, FoulCards };
+export { RadioButtons, NumberInput, ButtonInput, MultiButton, PageSelector, Upload, FoulCards };
