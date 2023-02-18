@@ -82,7 +82,7 @@ function General(props) {
                 <div className="boxes">
                     <div className="team1">
 
-                        <input type="text" placeholder="TEAM 1" className="login" id="team1" onChange={handleInputChange} />
+                        <input type="text" placeholder="TEAM 1" className="login" id="team1" name="Team_1" onChange={handleInputChange} />
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
@@ -134,7 +134,7 @@ function General(props) {
                     </div>
                     <div className="team2">
 
-                        <input type="text" placeholder="TEAM 2" className="login" id="team2" onChange={handleInputChange} />
+                        <input type="text" placeholder="TEAM 2" className="login" id="team2" name="Team_2" onChange={handleInputChange} />
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
@@ -186,7 +186,7 @@ function General(props) {
 
                     <div className="team3">
 
-                        <input type="text" placeholder="TEAM 3" className="login" id="team3" onChange={handleInputChange} />
+                        <input type="text" placeholder="TEAM 3" className="login" id="team3" name="Team_3" onChange={handleInputChange} />
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
