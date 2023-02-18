@@ -236,6 +236,7 @@ export default function PopupGfg(props) {
                 }
             </Popup>
 
+            <br></br>
 
             <Popup trigger=
                 {<button className="chonk"> Inside Another Robot </button>}
