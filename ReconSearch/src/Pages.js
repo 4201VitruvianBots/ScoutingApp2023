@@ -77,7 +77,7 @@ export default function PopupGfg(props) {
                                 <p>boxplot is supposed to be here, but isn't! :0</p>
                             </div>
                             <div className="popuplocation">
-                                <button className="popupbutton">Average Fouls: { props.data?.Average_Fouls }</button>
+                                <button className="popupbutton">Average Fouls: {props.data?.Average_Fouls}</button>
                                 <p>Foul Type:</p>
                                 <p>Foul Type:</p>
                                 <p>Foul Type:</p>
@@ -135,6 +135,40 @@ export default function PopupGfg(props) {
             </Popup> */}
 
             <Popup trigger=
+                {<button className="chonk"> Pinning </button>}
+                modal nested>
+                {
+                    close => (
+                        <div className='modal'>
+                            <div className='content'>
+                                <h3>Pinning</h3>
+                            </div>
+                            <div>
+                                <p>boxplot is supposed to be here, but isn't! :0</p>
+                            </div>
+                            <div className="popuplocation">
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                            </div>
+                            <div>
+                                <button onClick=
+                                    {() => close()}>
+                                    Close popup
+                                </button>
+                            </div>
+                        </div>
+                    )
+                }
+            </Popup>
+
+            <Popup trigger=
                 {<button className="chonk"> Disabled </button>}
                 modal nested>
                 {
@@ -147,15 +181,15 @@ export default function PopupGfg(props) {
                                 <p>boxplot is supposed to be here, but isn't! :0</p>
                             </div>
                             <div className="popuplocation">
-                                <p>Foul Type:</p>
-                                <p>Foul Type:</p>
-                                <p>Foul Type:</p>
-                                <p>Foul Type:</p>
-                                <p>Foul Type:</p>
-                                <p>Foul Type:</p>
-                                <p>Foul Type:</p>
-                                <p>Foul Type:</p>
-                                <p>Foul Type:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
                             </div>
                             <div>
                                 <button onClick=
@@ -181,15 +215,15 @@ export default function PopupGfg(props) {
                                 <p>boxplot is supposed to be here, but isn't! :0</p>
                             </div>
                             <div className="popuplocation">
-                                <p>Foul Type:</p>
-                                <p>Foul Type:</p>
-                                <p>Foul Type:</p>
-                                <p>Foul Type:</p>
-                                <p>Foul Type:</p>
-                                <p>Foul Type:</p>
-                                <p>Foul Type:</p>
-                                <p>Foul Type:</p>
-                                <p>Foul Type:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
                             </div>
                             <div>
                                 <button onClick=
@@ -213,9 +247,15 @@ export default function PopupGfg(props) {
                                 <h3>Inside Another Robot</h3>
                             </div>
                             <div className="popuplocation">
-                                <button className="popupbutton">Yellow Cards</button>
-                                <br></br>
-                                <button className="popupbutton">Red Cards</button>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
+                                <p>Details:</p>
                             </div>
                             <div>
                                 <button onClick=
