@@ -115,6 +115,9 @@
    padding: 15px;
    margin: 10px;
    background-color: #83c183;
+   /* below code causes round buttons */
+   border-radius: 8px;
+   border-color: #83c183;
  }
 
  .chonk:active {
@@ -347,5 +350,5 @@
  }
 
  .popup-overlay .popup-content {
-   width: auto;
+   width: 800px;
  }
