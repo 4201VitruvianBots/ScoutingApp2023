@@ -26,7 +26,7 @@ class App extends React.Component {
     async componentDidUpdate(prevProps, prevState) {
         if (prevState.selectedOption.value === this.state.selectedOption.value) return;
         // GET request using fetch with async/await
-        const response = await fetch('http://localhost:5000/data/analysis/team/' + this.state.selectedOption.value, { crossDomain: true, method: 'GET' });
+        const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/analysis/team/` + this.state.selectedOption.value, { crossDomain: true, method: 'GET' });
         this.setState({data: await response.json()});
     }
 
