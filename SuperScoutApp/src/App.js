@@ -33,7 +33,7 @@ class App extends React.Component {
             </div>
       */}
 
-                <form action={`http://${process.env.BACKEND_SERVER_IP}:5000/data/matches`} method="POST" target="frame" id="myForm" onSubmit={clearForm}>
+                <form action={`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/matches`} method="POST" target="frame" id="myForm" onSubmit={clearForm}>
                     <SignIn selected={this.state.selected === 'sign-in'} />
                     <PreGame selected={this.state.selected === 'pre-game'} />
                     <Auto selected={this.state.selected === 'auto'} />
