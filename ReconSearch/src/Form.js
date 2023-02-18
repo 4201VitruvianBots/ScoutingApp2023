@@ -1,61 +1,5 @@
-import React from 'react'
+import React from 'react';
 import './App.css';
-
-class GetDataAuto extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { AutoConeHighValue: 0 };
-        this.state = { AutoConeMidValue: 0 };
-        this.state = { AutoConeLowValue: 0 };
-    }
-
-    async componentDidMount() {
-        // GET request using fetch with async/await
-        const response = await fetch(`http://${process.env.BACKEND_SERVER_IP}:5000/data/matches`, { crossDomain: true, method: 'GET' });
-        const data = await response.json();
-        this.setState({ AutoConeHighValue: data[2].Auto_Cone_High })
-        this.setState({ AutoConeMidValue: data[2].Auto_Cone_Mid })
-        this.setState({ AutoConeLowValue: data[2].Auto_Cone_Low })
-    }
-
-    render() {
-        return (
-            <div>
-                <p>Auto Cone High, {this.state.AutoConeHighValue}</p>
-                <p>Auto Cone Mid, {this.state.AutoConeMidValue}</p>
-                <p>Auto Cone Low, {this.state.AutoConeLowValue}</p>
-            </div>
-        );
-    }
-}
-
-class GetDataTele extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { TeleConeHighValue: 0 };
-        this.state = { TeleConeMidValue: 0 };
-        this.state = { TeleConeLowValue: 0 };
-    }
-
-    async componentDidMount() {
-        // GET request using fetch with async/await
-        const response = await fetch('http://localhost:5000/data/matches', { crossDomain: true, method: 'GET' });
-        const data = await response.json();
-        this.setState({ TeleConeHighValue: data[2].Tele_Cone_High })
-        this.setState({ TeleConeMidValue: data[2].Tele_Cone_Mid })
-        this.setState({ TeleConeLowValue: data[2].Tele_Cone_Low })
-    }
-
-    render() {
-        return (
-            <div>
-                <p>Tele Cone High, {this.state.TeleConeHighValue}</p>
-                <p>Tele Cone Mid, {this.state.TeleConeMidValue}</p>
-                <p> Cone Low, {this.state.TeleConeLowValue}</p>
-            </div>
-        );
-    }
-}
 
 // Radio Buttons
 function RadioButtons(props) {
@@ -172,5 +116,25 @@ class ButtonInput extends React.Component {
     }
 }
 
+class Upload extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = { file: null }
+        this.handleChange = this.handleChange.bind(this)
+    }
+    handleChange(event) {
+        this.setState({
+            file: URL.createObjectURL(event.target.files[0])
+        })
+    }
+    render() {
+        return (
+            <div>
+                <input type="file" onChange={this.handleChange} />
+                <img src={this.state.file} height="275px" width="225px" alt="Uploaded File" />
+            </div>
+        );
+    }
+}
 
-export { RadioButtons, NumberInput, ButtonInput, GetDataAuto, GetDataTele };
+export { RadioButtons, NumberInput, ButtonInput, Upload };

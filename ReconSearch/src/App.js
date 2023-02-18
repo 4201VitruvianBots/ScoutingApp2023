@@ -1,16 +1,33 @@
 import './App.css';
-import { TeamInfo, General, Photos, SavePage, Among } from "./Pages";
+import { PopupGfg, Photos, SearchBar, Title, options } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { signedIn: false, ScouterName: "", EventName: "" };
+        this.state = { signedIn: false, ScouterName: "", EventName: "", selectedOption: options[0], data: null };
+        this.setSelectedOption = this.setSelectedOption.bind(this);
         this.setSelected = this.setSelected.bind(this);
         this.SignInHandler = this.SignInHandler.bind(this)
         this.SubmitHandler = this.SubmitHandler.bind(this)
 
+    }
+    
+    setSelectedOption(e) {
+        this.setState({ selectedOption: e });
+    }
+    
+    async componentDidMount() {
+        await this.componentDidUpdate({selectedOption: {value: null}});
+    }
+
+    // Replace all props with state
+    async componentDidUpdate(prevProps, prevState) {
+        if (prevState.selectedOption.value === this.state.selectedOption.value) return;
+        // GET request using fetch with async/await
+        const response = await fetch('http://localhost:5000/data/analysis/team/' + this.state.selectedOption.value, { crossDomain: true, method: 'GET' });
+        this.setState({data: await response.json()});
     }
 
     SignInHandler(e) {
@@ -48,16 +65,17 @@ class App extends React.Component {
     }
 
     render() {
+        
         return (
             <main>
-                <Among />
                 <form onSubmit={this.SubmitHandler} action="#">
-                    <TeamInfo selected={this.state.selected === 'teaminfo'} />
-                    <General selected={this.state.selected === 'general'} />
+                    <Title selected={this.state.selected === 'title'} />
+                    <SearchBar setSelectedOption={this.setSelectedOption} selectedOption={this.state.selectedOption} />
+                    <PopupGfg data={this.state.data}/>
+                    {/* <General selected={this.state.selected === 'general'} /> */}
                     <Photos selected={this.state.selected === 'photos'} />
-                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
+                    {/* <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} /> */}
                 </form>
-
             </main>
         );
     }

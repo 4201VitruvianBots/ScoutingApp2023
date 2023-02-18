@@ -15,7 +15,13 @@ class App extends React.Component {
     SignInHandler(e) {
         e.preventDefault();
         const answers = e.target.elements;
-        this.setState({ signedIn: true, ScouterName: answers.Sname.value, EventName: answers.Ename.value, QRCode: null });
+        this.setState({
+            signedIn: true,
+            ScouterName: answers.Scouter_Name.value,
+            EventName: answers.Competition.value,
+            Alliance: answers.Team_Alliance.value,
+            QRCode: null
+        });
         return false;
     }
 
@@ -55,9 +61,17 @@ class App extends React.Component {
         switch (this.state.selected) {
             case 'sign-in':
                 selectedPage = <SignIn onSubmit={this.SignInHandler} />;
+
                 break;
             case 'general':
-                selectedPage = <General />;
+                selectedPage = (<form action={`http://${process.env.BACKEND_SERVER_IP}/data/superScout`} method="POST" target="frame" id="myForm" onSubmit={clearForm}>
+                    <input type='hidden' value={this.state.EventName} name='Competition' />
+                    <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
+                    <input type='hidden' value={this.state.Alliance} name="Team_Alliance" />
+                    <General />
+
+
+                </form>);
                 break;
             default:
         }
@@ -68,14 +82,10 @@ class App extends React.Component {
                 <p className="page-title">Welcome to Vitruvian Scouting</p>
                 <input type="button" onClick={() => this.test2('sign-in')} value="Sign In" className="nav" />
                 <input type="button" onClick={() => this.test2('general')} value="Fouls" className="nav" />
+                {selectedPage}
 
-                <form action={`http://${process.env.BACKEND_SERVER_IP}:5000/data/pits`} method="POST" target="frame" id="myForm" onSubmit={clearForm}>
-                    <input type='hidden' value={this.state.EventName} name='Competition' />
-                    <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
+                <iframe name="frame" title="frame"></iframe>
 
-                    {selectedPage}
-
-                </form>
             </main>
         );
     }
@@ -85,7 +95,6 @@ function clearForm() {
     document.getElementById("myForm").submit();
     setTimeout(function () {
         document.getElementById("myForm").reset();
-        window.location.href = "#SignIn"
     }, 0)
 }
 

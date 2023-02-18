@@ -41,6 +41,27 @@ CREATE TABLE pitData(
 	Comments TEXT NULL
 );
 
+CREATE TABLE superScout(
+	Scouter_Name TEXT NULL,
+	Competition TEXT NULL,
+	Match_Number INT NULL,
+	Team_Alliance INT NULL,
+	Team_1 INT NULL,
+	Team_2 INT NULL,
+	Team_3 INT NULL,
+	Comments TEXT NULL
+);
+
+CREATE TABLE fouls(
+	Scouter_Name TEXT NULL, 
+	Competition TEXT NULL,
+	Match_Number INT NULL,
+	Team_Alliance INT NULL,
+	Team_Number INT NULL,
+	Cause INT NULL,
+	Comments TEXT NULL
+);
+
 CREATE TABLE dataAnalysis(
 	Team_Number INT NOT NULL,
 	Auto_Low_Min INT,
@@ -61,7 +82,7 @@ CREATE TABLE dataAnalysis(
 	Tele_High_Min INT,
 	Tele_High_Average FLOAT,
 	Tele_High_Max INT,
-	Average_Fouls INT,
+	Average_Fouls FLOAT,
 	Game_Piece INT NULL,
 	Average_Cubes FLOAT,
 	Average_Cones FLOAT,

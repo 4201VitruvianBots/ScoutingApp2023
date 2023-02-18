@@ -10,14 +10,23 @@ mydb = mysql.connector.connect(
   database="rawData"
 )
 
-matchColumns = ('Match_Number', 'Team_Number', 'Scouter_Name', 'Team_Alliance', 'Competition', 'Mobility', 'Show_Time', 'Auto_Cube_Low', 'Auto_Cube_Mid', 'Auto_Cube_High', 'Auto_Cone_Low', 'Auto_Cone_Mid', 'Auto_Cone_High', 'Auto_Station', 'Tele_Cube_Low', 'Tele_Cube_Mid', 'Tele_Cube_High', 'Tele_Cone_Low', 'Tele_Cone_Mid', 'Tele_Cone_High', 'Tele_Station', 'Comments')
-analysisColumns = ('Team_Number', 'Auto_Low_Min', 'Auto_Low_Average', 'Auto_low_Max', 'Auto_Mid_Min', 'Auto_Mid_Average', 'Auto_Mid_Max', 'Auto_High_Min', 'Auto_High_Average', 'Auto_High_Max', 'Tele_Low_Min', 'Tele_Low_Average', 'Tele_Low_Max', 'Tele_Mid_Min', 'Tele_Mid_Average', 'Tele_Mid_Max', 'Tele_High_Min', 'Tele_High_Average', 'Tele_High_Max', 'Average_Fouls', 'Game_Piece', 'Average_Cubes', 'Average_Cones', 'Average_Pieces', 'Dock_Frequency', 'Balance_Frequency', 'Comments')
-pitColumns = ('Scouter_Name', 'Team_Number', 'Competition', 'Team_Name', 'DriveTrain', 'Can_Hold_Cone', 'Can_Hold_Cube', 'Scoring_Location_Capability', 'Number_Of_Motors', 'Number_Of_Batteries', 'DriveTrain_Motor_Type', 'Working_On', 'Autos', 'Comments')
-
 mycursor = mydb.cursor()
 
 app = Flask(__name__)
 CORS(app)
+
+def get_columns(table):
+    mycursor.execute("SHOW COLUMNS FROM " + table)
+    columnList = mycursor.fetchall()
+    # Return name of column
+    return [column[0] for column in columnList]
+
+
+matchColumns = get_columns('matchData')
+analysisColumns = get_columns('dataAnalysis')
+pitColumns = get_columns('pitData')
+superScoutColumns = get_columns('superScout')
+foulColumns = get_columns('fouls')
 
 @app.route('/data/matches', methods=['GET'])
 def handle_get():
@@ -62,6 +71,19 @@ def handle_get_match(number):
     # Handle GET request
     return getRawMatchData(matchNumber=number)
 
+
+@app.route('/data/fouls', methods=['GET'])
+def handle_get_fouls():
+    return getRawFoulData()
+
+@app.route('/data/fouls/team/<int:number>', methods=['GET'])
+def handle_get_fouls_team(number):
+    return getRawFoulData(teamNumber=number)
+
+@app.route('/data/fouls/match/<int:number>', methods=['GET'])
+def handle_get_fouls_match(number):
+    return getRawFoulData(matchNumber=number)
+
 def getRawMatchData(**kwargs):
     request = "SELECT * FROM matchData"
     requestInput = []
@@ -84,7 +106,27 @@ def getRawMatchData(**kwargs):
     # Format with column names
     return [dict(zip(matchColumns, row)) for row in rows]
               
-                                                                                                                                                                                                                          
+def getRawFoulData(**kwargs):
+    request = "SELECT * FROM fouls"
+    requestInput = []
+    if 'teamNumber' in kwargs:
+        request += " WHERE Team_Number=%s"
+        requestInput.append(kwargs['teamNumber'])
+    if 'matchNumber' in kwargs:
+        request += " WHERE Match_Number=%s"
+        requestInput.append(kwargs['matchNumber'])
+    # if 'sortBy' in kwargs:
+    #     request += " ORDER BY %s"
+    #     requestInput.append(kwargs['sortBy'])
+    # if 'limitTo' in kwargs:
+    #     request += " LIMIT %s"
+    #     requestInput.append(kwargs['limitTo'])
+    print(requestInput,request)
+    mycursor.execute(request,requestInput)
+    rows = mycursor.fetchall()
+
+    # Format with column names
+    return [dict(zip(superScoutColumns, row)) for row in rows]                                                                                                                                                                                                        
 
 @app.route('/data/matches', methods=['POST'])
 def handle_post():
@@ -101,6 +143,34 @@ def handle_post():
 
     mydb.commit()
     updateAnalysis(formData.get("Team_Number"))
+    #for i in variable:
+       # print(i)
+    # Do something with the data
+    return 'Data received'
+
+@app.route('/data/superScout', methods=['POST'])
+def handle_post6():
+    # Handle POST request
+    formData = request.form
+    # data = request.get_json()
+    print(formData)
+
+    # Insert all data into table
+    for i in range(int(formData['length'])):
+        mycursor.execute(
+            'INSERT INTO fouls(Scouter_Name, Competition, Match_Number, Team_Alliance, Team_Number, Cause, Comments) VALUES(%s, %s, %s, %s, %s, %s, %s)',
+            [format_data(formData[key], key) for key in ['Scouter_Name', 'Competition', 'Match_Number', 'Team_Alliance', f"Team_Number[{i}]", f"Cause[{i}]", f"Comments[{i}]"]]
+        )
+
+    mycursor.execute('INSERT INTO superScout({}) VALUES ({})'.format(
+        ', '.join(superScoutColumns),
+        ', '.join(['%s'] * len(superScoutColumns))
+    ), [format_data(formData[key], key) for key in superScoutColumns])
+
+    mydb.commit()
+    updateAnalysis(formData.get("Team_1"))
+    updateAnalysis(formData.get("Team_2"))
+    updateAnalysis(formData.get("Team_3"))
     #for i in variable:
        # print(i)
     # Do something with the data
@@ -134,6 +204,8 @@ def updateAnalysis(Team_Number):
     mycursor.execute("UPDATE dataAnalysis SET Average_Cubes = (SELECT AVG(Auto_Cube_Low + Auto_Cube_Mid + Auto_Cube_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_Cube_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
     mycursor.execute("UPDATE dataAnalysis SET Average_Cones = (SELECT AVG(Auto_Cone_Low + Auto_Cone_Mid + Auto_Cone_High + Tele_Cone_Low + Tele_Cone_Mid + Tele_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
     mycursor.execute("UPDATE dataAnalysis SET Average_Pieces = (SELECT AVG(Auto_Cone_Low + Auto_Cone_Mid + Auto_Cone_High + Tele_Cone_Low + Tele_Cone_Mid + Tele_Cone_High + Auto_Cube_Low + Auto_Cube_Mid + Auto_Cube_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_Cube_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
+    mycursor.execute("UPDATE dataAnalysis SET Average_Fouls = (SELECT COUNT(*) FROM fouls WHERE Team_Number = %s) / (SELECT COUNT(*) FROM superScout WHERE Team_1 = %s OR TEAM_2 = %s OR TEAM_3 = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number,Team_Number,Team_Number))
+
     # mycursor.execute("UPDATE dataAnalysis SET Dock_Frequency = ")
 
     mydb.commit()
@@ -166,6 +238,9 @@ def format_data(string, name):
     print("formatting data")
     print(string)
     print(name)
+    if name[-3] == '[' and name[-1] == ']':
+        name = name[:-3]
+
     if name in ('Scouter_Name', 'Competition', 'Team_Name', 'Comments','DriveTrain_Motor_Type', 'Working_On', 'Autos'):
         return string
     if name in ('Mobility', 'Show_Time', 'Can_Hold_Cone', 'Can_Hold_Cube'):
