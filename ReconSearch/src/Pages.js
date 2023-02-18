@@ -1,12 +1,22 @@
 import React from 'react'
 import { Upload } from "./Form";
 import Select from 'react-select'
+// import Boxplot, { computeBoxplotStats } from 'react-boxplot'
 import './App.css';
 
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
 export default function PopupGfg(props) {
+    // const AutoHigh = [
+    //     (props.data?.Auto_High_Min), (props.data?.Auto_High_Average), (props.data?.Auto_High_Max)
+    // ]
+    // const AutoMid = [
+    //     (props.data?.Auto_Mid_Min), (props.data?.Auto_Mid_Average), (props.data?.Auto_Mid_Max)
+    // ]
+    // const AutoLow = [
+    //     (props.data?.Auto_Low_Min), (props.data?.Auto_Low_Average), (props.data?.Auto_low_Max)
+    // ]
     return (
         <div className="textArea">
 
@@ -21,10 +31,34 @@ export default function PopupGfg(props) {
                             </div>
                             <div className="popuplocation">
                                 <button className="popupbutton">High: {props.data?.Auto_High_Average}</button>
+                                {/* <Boxplot
+                                    width={400}
+                                    height={20}
+                                    orientation="horizontal"
+                                    min={0}
+                                    max={10}
+                                    stats={computeBoxplotStats(AutoHigh)}
+                                /> */}
                                 <br></br>
                                 <button className="popupbutton">Middle: {props.data?.Auto_Mid_Average}</button>
+                                {/* <Boxplot
+                                    width={400}
+                                    height={20}
+                                    orientation="horizontal"
+                                    min={0}
+                                    max={10}
+                                    stats={computeBoxplotStats(AutoMid)}
+                                /> */}
                                 <br></br>
                                 <button className="popupbutton">Low: {props.data?.Auto_Low_Average}</button>
+                                {/* <Boxplot
+                                    width={400}
+                                    height={20}
+                                    orientation="horizontal"
+                                    min={0}
+                                    max={10}
+                                    stats={computeBoxplotStats(AutoLow)}
+                                /> */}
                             </div>
                             <div>
                                 <button onClick=
