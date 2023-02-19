@@ -168,9 +168,8 @@ def handle_post6():
     ), [format_data(formData[key], key) for key in superScoutColumns])
 
     mydb.commit()
-    updateAnalysis(formData.get("Team_1"))
-    updateAnalysis(formData.get("Team_2"))
-    updateAnalysis(formData.get("Team_3"))
+    for num in ('1','2','3'):
+        updateFoulAnalysis(formData.get('Team_' + num))
     #for i in variable:
        # print(i)
     # Do something with the data
@@ -197,19 +196,10 @@ def handle_post3():
 def updateAnalysis(Team_Number):
     mycursor.execute('INSERT IGNORE INTO dataAnalysis(Team_Number) VALUES (%s)', (Team_Number,))
 
-    for type_phase in 'Auto', 'Tele_Pieces', 'Tele_Cone', 'Tele_Cube':
-        if type_phase == 'Auto':
-            prefixes = ('Auto_Cone', 'Auto_Cube')
-        elif type_phase == 'Tele_Pieces':
-            prefixes = ('Tele_Cone', 'Tele_Cube')
-        else:
-            prefixes = (type_phase,)
+    for type_phase, prefixes in ('Auto', ('Auto_Cone', 'Auto_Cube')), ('Tele_Pieces', ('Tele_Cone', 'Tele_Cube')), ('Tele_Cone', ('Tele_Cone',)), ('Tele_Cube', ('Tele_Cube',)):
 
         for level in 'Total', 'Low', 'Mid', 'High':
-            if level == 'Total':
-                suffixes = ('Low', 'Mid', 'High')
-            else:
-                suffixes = (level,)
+            suffixes = ('Low', 'Mid', 'High') if level == 'Total' else level
 
             included_columns = [f"{prefix}_{suffix}" for prefix in prefixes for suffix in suffixes ]
 
@@ -228,12 +218,16 @@ def updateAnalysis(Team_Number):
     # mycursor.execute("UPDATE dataAnalysis SET Average_Cubes = (SELECT AVG(Auto_Cube_Low + Auto_Cube_Mid + Auto_Cube_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_Cube_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
     # mycursor.execute("UPDATE dataAnalysis SET Average_Cones = (SELECT AVG(Auto_Cone_Low + Auto_Cone_Mid + Auto_Cone_High + Tele_Cone_Low + Tele_Cone_Mid + Tele_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
     # mycursor.execute("UPDATE dataAnalysis SET Average_Pieces = (SELECT AVG(Auto_Cone_Low + Auto_Cone_Mid + Auto_Cone_High + Tele_Cone_Low + Tele_Cone_Mid + Tele_Cone_High + Auto_Cube_Low + Auto_Cube_Mid + Auto_Cube_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_Cube_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
-    # mycursor.execute("UPDATE dataAnalysis SET Average_Fouls = (SELECT COUNT(*) FROM fouls WHERE Team_Number = %s) / (SELECT COUNT(*) FROM superScout WHERE Team_1 = %s OR TEAM_2 = %s OR TEAM_3 = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number,Team_Number,Team_Number))
 
     # mycursor.execute("UPDATE dataAnalysis SET Dock_Frequency = ")
 
     mydb.commit()
     print('Update Analysis run')
+
+def updateFoulAnalysis(Team_Number):
+    mycursor.execute('INSERT IGNORE INTO dataAnalysis(Team_Number) VALUES (%s)', (Team_Number,))
+    mycursor.execute("UPDATE dataAnalysis SET Average_Fouls = (SELECT COUNT(*) FROM fouls WHERE Team_Number = %s) / (SELECT COUNT(*) FROM superScout WHERE Team_1 = %s OR TEAM_2 = %s OR TEAM_3 = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number,Team_Number,Team_Number))
+    mydb.commit()
 
 def getdataAnalysis(**kwargs):
     request = "SELECT * FROM dataAnalysis"
