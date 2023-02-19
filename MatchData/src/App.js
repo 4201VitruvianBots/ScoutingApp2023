@@ -113,7 +113,7 @@ class App extends React.Component {
 
                     <table className="test">
                         <tr>
-                            <td rowspan="2" colspan="3">Match search bar TO BE ADDED</td>
+                            <td rowspan="2" colspan="3">Match Data Table</td>
                             <td className="test" colspan="2">
                                 <SearchBar setSelectedOption={this.setSelectedOption1} selectedOption={this.state.selectedOption1} />
                             </td>
