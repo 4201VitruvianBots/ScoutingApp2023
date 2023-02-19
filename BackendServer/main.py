@@ -168,8 +168,8 @@ def handle_post6():
     ), [format_data(formData[key], key) for key in superScoutColumns])
 
     mydb.commit()
-    for num in ('1','2','3'):
-        updateFoulAnalysis(formData.get('Team_' + num))
+    # for num in ('1','2','3'):
+    #     updateFoulAnalysis(formData.get('Team_' + num))
     #for i in variable:
        # print(i)
     # Do something with the data
@@ -199,12 +199,12 @@ def updateAnalysis(Team_Number):
     for type_phase, prefixes in ('Auto', ('Auto_Cone', 'Auto_Cube')), ('Tele_Pieces', ('Tele_Cone', 'Tele_Cube')), ('Tele_Cone', ('Tele_Cone',)), ('Tele_Cube', ('Tele_Cube',)):
 
         for level in 'Total', 'Low', 'Mid', 'High':
-            suffixes = ('Low', 'Mid', 'High') if level == 'Total' else level
+            suffixes = ('Low', 'Mid', 'High') if level == 'Total' else (level,)
 
             included_columns = [f"{prefix}_{suffix}" for prefix in prefixes for suffix in suffixes ]
 
-            for func in ('Average', 'AVG'), ('Max', 'MAX'):
-                request = f"UPDATE dataAnalysis SET {type_phase}_{level}_{func[0]} = (SELECT {func[1]}({' + '.join(included_columns)}) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s"
+            for stat, func in ('Average', 'AVG'), ('Max', 'MAX'):
+                request = f"UPDATE dataAnalysis SET {type_phase}_{level}_{stat} = (SELECT {func}({' + '.join(included_columns)}) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s"
                 # print(request)
 
                 mycursor.execute(
