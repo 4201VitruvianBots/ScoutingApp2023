@@ -4,7 +4,7 @@
 
 Set up the cables and tablets as below.
 
-![Scouting cable layout](setup.png)
+![Scouting cable layout](Setup.png)
 
 ## B. 
 
