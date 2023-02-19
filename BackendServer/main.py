@@ -196,15 +196,39 @@ def handle_post3():
 
 def updateAnalysis(Team_Number):
     mycursor.execute('INSERT IGNORE INTO dataAnalysis(Team_Number) VALUES (%s)', (Team_Number,))
-    for phase in 'Auto', 'Tele':
-        for level in 'Low', 'Mid', 'High':
-            for func in ('Min', 'MIN'), ('Average', 'AVG'), ('Max', 'MAX'):
-                mycursor.execute(f"UPDATE dataAnalysis SET {phase}_{level}_{func[0]} = (SELECT {func[1]}({phase}_Cone_{level} + {phase}_Cube_{level}) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s" ,  (Team_Number,Team_Number))
-            
-    mycursor.execute("UPDATE dataAnalysis SET Average_Cubes = (SELECT AVG(Auto_Cube_Low + Auto_Cube_Mid + Auto_Cube_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_Cube_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
-    mycursor.execute("UPDATE dataAnalysis SET Average_Cones = (SELECT AVG(Auto_Cone_Low + Auto_Cone_Mid + Auto_Cone_High + Tele_Cone_Low + Tele_Cone_Mid + Tele_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
-    mycursor.execute("UPDATE dataAnalysis SET Average_Pieces = (SELECT AVG(Auto_Cone_Low + Auto_Cone_Mid + Auto_Cone_High + Tele_Cone_Low + Tele_Cone_Mid + Tele_Cone_High + Auto_Cube_Low + Auto_Cube_Mid + Auto_Cube_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_Cube_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
-    mycursor.execute("UPDATE dataAnalysis SET Average_Fouls = (SELECT COUNT(*) FROM fouls WHERE Team_Number = %s) / (SELECT COUNT(*) FROM superScout WHERE Team_1 = %s OR TEAM_2 = %s OR TEAM_3 = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number,Team_Number,Team_Number))
+
+    for type_phase in 'Auto', 'Tele_Pieces', 'Tele_Cone', 'Tele_Cube':
+        if type_phase == 'Auto':
+            prefixes = ('Auto_Cone', 'Auto_Cube')
+        elif type_phase == 'Tele_Pieces':
+            prefixes = ('Tele_Cone', 'Tele_Cube')
+        else:
+            prefixes = (type_phase,)
+
+        for level in 'Total', 'Low', 'Mid', 'High':
+            if level == 'Total':
+                suffixes = ('Low', 'Mid', 'High')
+            else:
+                suffixes = (level,)
+
+            included_columns = [f"{prefix}_{suffix}" for prefix in prefixes for suffix in suffixes ]
+
+            for func in ('Average', 'AVG'), ('Max', 'MAX'):
+                request = f"UPDATE dataAnalysis SET {type_phase}_{level}_{func[0]} = (SELECT {func[1]}({' + '.join(included_columns)}) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s"
+                # print(request)
+
+                mycursor.execute(
+                    request,
+                    (Team_Number,Team_Number)
+                )
+
+    mycursor.execute("UPDATE dataAnalysis SET End_Balance_Frequency = (SELECT COUNT(*) FROM matchData WHERE Tele_Station = 1 AND Team_Number = %s) / (SELECT COUNT(*) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
+    mycursor.execute("UPDATE dataAnalysis SET End_Dock_Frequency = (SELECT COUNT(*) FROM matchData WHERE (Tele_Station = 0 OR Tele_Station = 1) AND Team_Number = %s) / (SELECT COUNT(*) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
+    mycursor.execute("UPDATE dataAnalysis SET Auto_Balance_Frequency = (SELECT COUNT(*) FROM matchData WHERE Auto_Station = 1 AND Team_Number = %s) / (SELECT COUNT(*) FROM matchData WHERE (Auto_Station = 0 OR Auto_Station = 1) AND Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
+    # mycursor.execute("UPDATE dataAnalysis SET Average_Cubes = (SELECT AVG(Auto_Cube_Low + Auto_Cube_Mid + Auto_Cube_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_Cube_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
+    # mycursor.execute("UPDATE dataAnalysis SET Average_Cones = (SELECT AVG(Auto_Cone_Low + Auto_Cone_Mid + Auto_Cone_High + Tele_Cone_Low + Tele_Cone_Mid + Tele_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
+    # mycursor.execute("UPDATE dataAnalysis SET Average_Pieces = (SELECT AVG(Auto_Cone_Low + Auto_Cone_Mid + Auto_Cone_High + Tele_Cone_Low + Tele_Cone_Mid + Tele_Cone_High + Auto_Cube_Low + Auto_Cube_Mid + Auto_Cube_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_Cube_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
+    # mycursor.execute("UPDATE dataAnalysis SET Average_Fouls = (SELECT COUNT(*) FROM fouls WHERE Team_Number = %s) / (SELECT COUNT(*) FROM superScout WHERE Team_1 = %s OR TEAM_2 = %s OR TEAM_3 = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number,Team_Number,Team_Number))
 
     # mycursor.execute("UPDATE dataAnalysis SET Dock_Frequency = ")
 
@@ -262,4 +286,4 @@ def exit_handler():
 atexit.register(exit_handler)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='192.168.1.200')
+    app.run(debug=True)
