@@ -6,8 +6,27 @@ import 'reactjs-popup/dist/index.css';
 
 export default function PopupGfg(props) {
     return (
-        <div className="textArea">
-
+        <div>
+            {/* <table className="test">
+                <tr>
+                    <td rowspan="2">&nbsp;</td>
+                    <td className="test">
+                        <SearchBar setSelectedOption={this.setSelectedOption1} selectedOption={this.state.selectedOption1} />
+                    </td>
+                    <td>text 2</td>
+                </tr>
+                <tr>
+                    <td>aaaaaaaaaaaaaaaaaa</td>
+                    <td className="test">rjkjkgrjkrgjkdgkjdf</td>
+                </tr>
+                <tr>
+                    <td className="test">rererrf</td>
+                    <td>hi</td>
+                    <td>qwertui</td>
+                </tr>
+            </table> */}
+            <br></br>
+            <br></br>
 
         </div>
 

@@ -103,15 +103,393 @@ class App extends React.Component {
                 <form onSubmit={this.SubmitHandler} action="#">
                     <Title selected={this.state.selected === 'title'} />
 
-                    <SearchBar setSelectedOption={this.setSelectedOption1} selectedOption={this.state.selectedOption1} />
-                    <SearchBar setSelectedOption={this.setSelectedOption2} selectedOption={this.state.selectedOption2} />
-                    <SearchBar setSelectedOption={this.setSelectedOption3} selectedOption={this.state.selectedOption3} />
+                    {/* <SearchBar setSelectedOption={this.setSelectedOption1} selectedOption={this.state.selectedOption1} /> */}
+                    {/* <SearchBar setSelectedOption={this.setSelectedOption2} selectedOption={this.state.selectedOption2} /> */}
+                    {/* <SearchBar setSelectedOption={this.setSelectedOption3} selectedOption={this.state.selectedOption3} /> */}
 
-                    <SearchBar setSelectedOption={this.setSelectedOption4} selectedOption={this.state.selectedOption4} />
-                    <SearchBar setSelectedOption={this.setSelectedOption5} selectedOption={this.state.selectedOption5} />
-                    <SearchBar setSelectedOption={this.setSelectedOption6} selectedOption={this.state.selectedOption6} />
+                    {/* <SearchBar setSelectedOption={this.setSelectedOption3} selectedOption={this.state.selectedOption3} /> */}
+                    {/* <SearchBar setSelectedOption={this.setSelectedOption5} selectedOption={this.state.selectedOption5} /> */}
+                    {/* <SearchBar setSelectedOption={this.setSelectedOption6} selectedOption={this.state.selectedOption6} /> */}
+
+                    <table className="test">
+                        <tr>
+                            <td rowspan="2" colspan="3">Match search bar TO BE ADDED</td>
+                            <td className="test" colspan="2">
+                                <SearchBar setSelectedOption={this.setSelectedOption1} selectedOption={this.state.selectedOption1} />
+                            </td>
+                            <td colspan="2">
+                                <SearchBar setSelectedOption={this.setSelectedOption2} selectedOption={this.state.selectedOption2} />
+                            </td>
+                            <td colspan="2">
+                                <SearchBar setSelectedOption={this.setSelectedOption3} selectedOption={this.state.selectedOption3} />
+                            </td>
+                            <td colspan="2">
+                                <SearchBar setSelectedOption={this.setSelectedOption3} selectedOption={this.state.selectedOption3} />
+                            </td>
+                            <td colspan="2">
+                                <SearchBar setSelectedOption={this.setSelectedOption5} selectedOption={this.state.selectedOption5} />
+                            </td>
+                            <td colspan="2">
+                                <SearchBar setSelectedOption={this.setSelectedOption6} selectedOption={this.state.selectedOption6} />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td className="test">AVG</td>
+                            <td>MAX</td>
+                            <td>AVG</td>
+                            <td>MAX</td>
+                            <td>AVG</td>
+                            <td>MAX</td>
+                            <td>AVG</td>
+                            <td>MAX</td>
+                            <td>AVG</td>
+                            <td>MAX</td>
+                            <td>AVG</td>
+                            <td>MAX</td>
+                        </tr>
+                        <tr>
+                            <td className="test" colspan="3">Pin Fouls</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="3">G204 Fouls</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td ></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="5">Auto</td>
+                            <td colspan="2">Total Game Pieces</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+
+                            <td></td>
+                            <td>Game Pieces High</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Game Pieces Mid</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Game Pieces Low</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td ></td>
+                        </tr>
+                        <tr>
+
+                            <td colspan="2">% Balanced / Docked</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td ></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="12">Tele-Op</td>
+                            <td colspan="2">Total Game Pieces</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Game Pieces High</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Game Pieces Mid</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td ></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Game Pieces Low</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Total Cubes Scored</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Cube High</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td ></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Cube Mid</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Cube Low</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Total Cones Scored</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Cone High</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td ></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Cone Mid</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Cone Low</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td ></td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="2">Endgame</td>
+                            <td colspan="2">% Docked</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td ></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">% Balanced</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                    </table>
 
                     <PopupGfg data={this.state.data} />
+
                     {/* <General selected={this.state.selected === 'general'} /> */}
 
                     {/* <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} /> */}

@@ -293,3 +293,15 @@
  .popup-overlay .popup-content {
    width: auto;
  }
+
+ table,
+ th,
+ td {
+   /* background-color: whit; */
+   border: 2px solid;
+ }
+
+ table {
+   border-collapse: collapse;
+   margin: auto;
+ }
