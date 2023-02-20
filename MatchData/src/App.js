@@ -301,33 +301,28 @@ class App extends React.Component {
                         <tr>
 
                             <td colspan="2">% Balanced / Docked</td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-
-
-
-
-
+                            <td colspan="2">{this.state.data1?.Auto_Balance_Frequency}</td>
+                            <td colspan="2">{this.state.data2?.Auto_Balance_Frequency}</td>
+                            <td colspan="2">{this.state.data3?.Auto_Balance_Frequency}</td>
+                            <td colspan="2">{this.state.data4?.Auto_Balance_Frequency}</td>
+                            <td colspan="2">{this.state.data5?.Auto_Balance_Frequency}</td>
+                            <td colspan="2">{this.state.data6?.Auto_Balance_Frequency}</td>
                         </tr>
                         <tr>
                             <td rowspan="12">Tele-Op</td>
                             <td colspan="2">Total Game Pieces</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{this.state.data1?.Tele_Pieces_Total_Average}</td>
+                            <td>{this.state.data1?.Tele_Pieces_Total_Max}</td>
+                            <td>{this.state.data2?.Tele_Pieces_Total_Average}</td>
+                            <td>{this.state.data2?.Tele_Pieces_Total_Max}</td>
+                            <td>{this.state.data3?.Tele_Pieces_Total_Average}</td>
+                            <td>{this.state.data3?.Tele_Pieces_Total_Max}</td>
+                            <td>{this.state.data4?.Tele_Pieces_Total_Average}</td>
+                            <td>{this.state.data4?.Tele_Pieces_Total_Max}</td>
+                            <td>{this.state.data5?.Tele_Pieces_Total_Average}</td>
+                            <td>{this.state.data5?.Tele_Pieces_Total_Max}</td>
+                            <td>{this.state.data6?.Tele_Pieces_Total_Average}</td>
+                            <td>{this.state.data6?.Tele_Pieces_Total_Max}</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -379,151 +374,151 @@ class App extends React.Component {
                         </tr>
                         <tr>
                             <td colspan="2">Total Cubes Scored</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-
+                            <td>{this.state.data1?.Tele_Cube_Total_Average}</td>
+                            <td>{this.state.data1?.Tele_Cube_Total_Max}</td>
+                            <td>{this.state.data2?.Tele_Cube_Total_Average}</td>
+                            <td>{this.state.data2?.Tele_Cube_Total_Max}</td>
+                            <td>{this.state.data3?.Tele_Cube_Total_Average}</td>
+                            <td>{this.state.data3?.Tele_Cube_Total_Max}</td>
+                            <td>{this.state.data4?.Tele_Cube_Total_Average}</td>
+                            <td>{this.state.data4?.Tele_Cube_Total_Max}</td>
+                            <td>{this.state.data5?.Tele_Cube_Total_Average}</td>
+                            <td>{this.state.data5?.Tele_Cube_Total_Max}</td>
+                            <td>{this.state.data6?.Tele_Cube_Total_Average}</td>
+                            <td>{this.state.data6?.Tele_Cube_Total_Max}</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>Cube High</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td ></td>
+                            <td>{this.state.data1?.Tele_Cube_High_Average}</td>
+                            <td>{this.state.data1?.Tele_Cube_High_Max}</td>
+                            <td>{this.state.data2?.Tele_Cube_High_Average}</td>
+                            <td>{this.state.data2?.Tele_Cube_High_Max}</td>
+                            <td>{this.state.data3?.Tele_Cube_High_Average}</td>
+                            <td>{this.state.data3?.Tele_Cube_High_Max}</td>
+                            <td>{this.state.data4?.Tele_Cube_High_Average}</td>
+                            <td>{this.state.data4?.Tele_Cube_High_Max}</td>
+                            <td>{this.state.data5?.Tele_Cube_High_Average}</td>
+                            <td>{this.state.data5?.Tele_Cube_High_Max}</td>
+                            <td>{this.state.data6?.Tele_Cube_High_Average}</td>
+                            <td>{this.state.data6?.Tele_Cube_High_Max}</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>Cube Mid</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{this.state.data1?.Tele_Cube_Mid_Average}</td>
+                            <td>{this.state.data1?.Tele_Cube_Mid_Max}</td>
+                            <td>{this.state.data2?.Tele_Cube_Mid_Average}</td>
+                            <td>{this.state.data2?.Tele_Cube_Mid_Max}</td>
+                            <td>{this.state.data3?.Tele_Cube_Mid_Average}</td>
+                            <td>{this.state.data3?.Tele_Cube_Mid_Max}</td>
+                            <td>{this.state.data4?.Tele_Cube_Mid_Average}</td>
+                            <td>{this.state.data4?.Tele_Cube_Mid_Max}</td>
+                            <td>{this.state.data5?.Tele_Cube_Mid_Average}</td>
+                            <td>{this.state.data5?.Tele_Cube_Mid_Max}</td>
+                            <td>{this.state.data6?.Tele_Cube_Mid_Average}</td>
+                            <td>{this.state.data6?.Tele_Cube_Mid_Max}</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>Cube Low</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{this.state.data1?.Tele_Cube_Low_Average}</td>
+                            <td>{this.state.data1?.Tele_Cube_Low_Max}</td>
+                            <td>{this.state.data2?.Tele_Cube_Low_Average}</td>
+                            <td>{this.state.data2?.Tele_Cube_Low_Max}</td>
+                            <td>{this.state.data3?.Tele_Cube_Low_Average}</td>
+                            <td>{this.state.data3?.Tele_Cube_Low_Max}</td>
+                            <td>{this.state.data4?.Tele_Cube_Low_Average}</td>
+                            <td>{this.state.data4?.Tele_Cube_Low_Max}</td>
+                            <td>{this.state.data5?.Tele_Cube_Low_Average}</td>
+                            <td>{this.state.data5?.Tele_Cube_Low_Max}</td>
+                            <td>{this.state.data6?.Tele_Cube_Low_Average}</td>
+                            <td>{this.state.data6?.Tele_Cube_Low_Max}</td>
                         </tr>
                         <tr>
                             <td colspan="2">Total Cones Scored</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{this.state.data1?.Tele_Cone_Total_Average}</td>
+                            <td>{this.state.data1?.Tele_Cone_Total_Max}</td>
+                            <td>{this.state.data2?.Tele_Cone_Total_Average}</td>
+                            <td>{this.state.data2?.Tele_Cone_Total_Max}</td>
+                            <td>{this.state.data3?.Tele_Cone_Total_Average}</td>
+                            <td>{this.state.data3?.Tele_Cone_Total_Max}</td>
+                            <td>{this.state.data4?.Tele_Cone_Total_Average}</td>
+                            <td>{this.state.data4?.Tele_Cone_Total_Max}</td>
+                            <td>{this.state.data5?.Tele_Cone_Total_Average}</td>
+                            <td>{this.state.data5?.Tele_Cone_Total_Max}</td>
+                            <td>{this.state.data6?.Tele_Cone_Total_Average}</td>
+                            <td>{this.state.data6?.Tele_Cone_Total_Max}</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>Cone High</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td ></td>
+                            <td>{this.state.data1?.Tele_Cone_High_Average}</td>
+                            <td>{this.state.data1?.Tele_Cone_High_Max}</td>
+                            <td>{this.state.data2?.Tele_Cone_High_Average}</td>
+                            <td>{this.state.data2?.Tele_Cone_High_Max}</td>
+                            <td>{this.state.data3?.Tele_Cone_High_Average}</td>
+                            <td>{this.state.data3?.Tele_Cone_High_Max}</td>
+                            <td>{this.state.data4?.Tele_Cone_High_Average}</td>
+                            <td>{this.state.data4?.Tele_Cone_High_Max}</td>
+                            <td>{this.state.data5?.Tele_Cone_High_Average}</td>
+                            <td>{this.state.data5?.Tele_Cone_High_Max}</td>
+                            <td>{this.state.data6?.Tele_Cone_High_Average}</td>
+                            <td>{this.state.data6?.Tele_Cone_High_Max}</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>Cone Mid</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{this.state.data1?.Tele_Cone_Mid_Average}</td>
+                            <td>{this.state.data1?.Tele_Cone_Mid_Max}</td>
+                            <td>{this.state.data2?.Tele_Cone_Mid_Average}</td>
+                            <td>{this.state.data2?.Tele_Cone_Mid_Max}</td>
+                            <td>{this.state.data3?.Tele_Cone_Mid_Average}</td>
+                            <td>{this.state.data3?.Tele_Cone_Mid_Max}</td>
+                            <td>{this.state.data4?.Tele_Cone_Mid_Average}</td>
+                            <td>{this.state.data4?.Tele_Cone_Mid_Max}</td>
+                            <td>{this.state.data5?.Tele_Cone_Mid_Average}</td>
+                            <td>{this.state.data5?.Tele_Cone_Mid_Max}</td>
+                            <td>{this.state.data6?.Tele_Cone_Mid_Average}</td>
+                            <td>{this.state.data6?.Tele_Cone_Mid_Max}</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>Cone Low</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td ></td>
+                            <td>{this.state.data1?.Tele_Cone_Low_Average}</td>
+                            <td>{this.state.data1?.Tele_Cone_Low_Max}</td>
+                            <td>{this.state.data2?.Tele_Cone_Low_Average}</td>
+                            <td>{this.state.data2?.Tele_Cone_Low_Max}</td>
+                            <td>{this.state.data3?.Tele_Cone_Low_Average}</td>
+                            <td>{this.state.data3?.Tele_Cone_Low_Max}</td>
+                            <td>{this.state.data4?.Tele_Cone_Low_Average}</td>
+                            <td>{this.state.data4?.Tele_Cone_Low_Max}</td>
+                            <td>{this.state.data5?.Tele_Cone_Low_Average}</td>
+                            <td>{this.state.data5?.Tele_Cone_Low_Max}</td>
+                            <td>{this.state.data6?.Tele_Cone_Low_Average}</td>
+                            <td>{this.state.data6?.Tele_Cone_Low_Max}</td>
                         </tr>
-
                         <tr>
                             <td rowspan="2">Endgame</td>
                             <td colspan="2">% Docked</td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
+                            <td colspan="2">{this.state.data1?.End_Dock_Frequency}</td>
+                            <td colspan="2">{this.state.data2?.End_Dock_Frequency}</td>
+                            <td colspan="2">{this.state.data3?.End_Dock_Frequency}</td>
+                            <td colspan="2">{this.state.data4?.End_Dock_Frequency}</td>
+                            <td colspan="2">{this.state.data5?.End_Dock_Frequency}</td>
+                            <td colspan="2">{this.state.data6?.End_Dock_Frequency}</td>
+
                         </tr>
                         <tr>
                             <td colspan="2">% Balanced</td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                            <td colspan="2"></td>
-                        </tr>
+                            <td colspan="2">{this.state.data1?.End_Balance_Frequency}</td>
+                            <td colspan="2">{this.state.data2?.End_Balance_Frequency}</td>
+                            <td colspan="2">{this.state.data3?.End_Balance_Frequency}</td>
+                            <td colspan="2">{this.state.data4?.End_Balance_Frequency}</td>
+                            <td colspan="2">{this.state.data5?.End_Balance_Frequency}</td>
+                            <td colspan="2">{this.state.data6?.End_Balance_Frequency}</td>
+
+                        </tr>   
 
                     </table>
 
