@@ -1,7 +1,8 @@
 import os
+import sys
 
 # Docker container name
-CONTAINER_NAME = 'crazy_agnesi'
+CONTAINER_NAME = sys.argv[1]
 
 # MySQL database credentials
 DB_USER = 'root'
@@ -9,7 +10,7 @@ DB_PASSWORD = 'my-secret-pw'
 DB_NAME = 'rawData'
 
 # Backup file path
-BACKUP_FILE_PATH = '/run/media/team4201/FFEF-EE8A/backup.sql'
+BACKUP_FILE_PATH = sys.argv[2]
 BACKUP_FILE_CONTAINER = '/backup.sql'
 # Copy the backup file into the container
 command = f'docker cp {BACKUP_FILE_PATH} {CONTAINER_NAME}:{BACKUP_FILE_CONTAINER}'

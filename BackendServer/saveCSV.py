@@ -1,9 +1,15 @@
 import sys
+import os
 import time
 import mysql.connector
 import csv
 
-SAVE_DIR = '/run/media/team4201/FFEF-EE8A/'
+continuous = False
+if '-d' in sys.argv:
+    sys.argv.remove('-d')
+    continuous = True
+
+SAVE_DIR = sys.argv[1]
 TABLES = ('matchData', 'dataAnalysis', 'pitData', 'superScout','fouls')
 
 def saveCSVs():
@@ -24,14 +30,14 @@ def saveCSVs():
         mycursor.execute(f'SELECT * FROM {table}')
         rows = mycursor.fetchall()
 
-        with open(SAVE_DIR + table + '.csv', 'w') as csvfile:
+        with open(os.path.join(SAVE_DIR, table + '.csv'), 'w') as csvfile:
             csvwriter = csv.writer(csvfile)
             csvwriter.writerow(headers)
             csvwriter.writerows(rows)
     
     print('CSVs successfully saved')
 
-if '-d' in sys.argv:
+if continuous:
     while True:
         saveCSVs()
         time.sleep(1200)

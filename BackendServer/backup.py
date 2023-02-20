@@ -3,8 +3,13 @@ import time
 from datetime import datetime
 import sys
 
+continuous = False
+if '-d' in sys.argv:
+    sys.argv.remove('-d')
+    continuous = True
+
 # Docker container name
-CONTAINER_NAME = 'crazy_agnesi'
+CONTAINER_NAME = sys.argv[1]
 
 # MySQL database credentials
 DB_USER = 'root'
@@ -12,7 +17,7 @@ DB_PASSWORD = 'my-secret-pw'
 DB_NAME = 'rawData'
 
 # Backup file path
-BACKUP_DIR = '/run/media/team4201/FFEF-EE8A/'
+BACKUP_DIR = sys.argv[2]
 
 # Function to create a backup of the MySQL database
 def backup_database():
@@ -21,7 +26,9 @@ def backup_database():
     os.system(command)
     print('Backup succesfully saved')
 
-if '-d' in sys.argv:
+print(continuous)
+
+if continuous:
     # Run the backup function every 20 minutes
     while True:
         backup_database()
