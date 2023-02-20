@@ -7,7 +7,7 @@
  }
 
  html {
-   background-color: #085f00;
+   background-color: white;
  }
 
  .page-title {
@@ -25,7 +25,7 @@
  }
 
  .section-label {
-   color: white;
+   color: black;
    font-size: 30px;
    font-weight: bold;
    margin: 20px;
