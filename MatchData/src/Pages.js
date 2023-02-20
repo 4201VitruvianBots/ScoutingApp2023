@@ -36,7 +36,7 @@ export default function PopupGfg(props) {
 
 
 const options = [
-    { value: "0", label: 'Select...' },
+    { value: null, label: 'Select...' },
     { value: "4", label: '4' },
     { value: "294", label: '294' },
     { value: "498", label: '498' },
