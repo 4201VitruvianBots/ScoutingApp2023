@@ -149,6 +149,17 @@ class App extends React.Component {
     }
 
     render() {
+        const DataRow = props => {
+            const cells = [];
+
+            for (let i = 1; i <= 6; i++) {
+                for (let j of ['Average', 'Max']) {
+                    cells.push(<td key={j+i}>{(this.state['data' + i])?.[props.stat + '_' + j]}</td>);
+                }
+            }
+
+            return (<tr>{props.children}{cells}</tr>);
+        }
 
         return (
             <main>
@@ -163,25 +174,25 @@ class App extends React.Component {
                     {/* <SearchBar setSelectedOption={this.setSelectedOption5} selectedOption={this.state.selectedOption5} /> */}
                     {/* <SearchBar setSelectedOption={this.setSelectedOption6} selectedOption={this.state.selectedOption6} /> */}
 
-                    <table className="test">
+                    <table className="test"><tbody>
                         <tr>
-                            <td rowspan="2" colspan="3">Match Data Table</td>
-                            <td className="test" colspan="2">
+                            <td rowSpan="2" colSpan="3">Match Data Table</td>
+                            <td className="test" colSpan="2">
                                 <SearchBar setSelectedOption={this.setSelectedOption1} selectedOption={this.state.selectedOption1} />
                             </td>
-                            <td colspan="2">
+                            <td colSpan="2">
                                 <SearchBar setSelectedOption={this.setSelectedOption2} selectedOption={this.state.selectedOption2} />
                             </td>
-                            <td colspan="2">
+                            <td colSpan="2">
                                 <SearchBar setSelectedOption={this.setSelectedOption3} selectedOption={this.state.selectedOption3} />
                             </td>
-                            <td colspan="2">
+                            <td colSpan="2">
                                 <SearchBar setSelectedOption={this.setSelectedOption4} selectedOption={this.state.selectedOption4} />
                             </td>
-                            <td colspan="2">
+                            <td colSpan="2">
                                 <SearchBar setSelectedOption={this.setSelectedOption5} selectedOption={this.state.selectedOption5} />
                             </td>
-                            <td colspan="2">
+                            <td colSpan="2">
                                 <SearchBar setSelectedOption={this.setSelectedOption6} selectedOption={this.state.selectedOption6} />
                             </td>
                         </tr>
@@ -201,7 +212,7 @@ class App extends React.Component {
                             <td>MAX</td>
                         </tr>
                         <tr>
-                            <td className="test" colspan="3">Pin Fouls</td>
+                            <td className="test" colSpan="3">Pin Fouls</td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -217,7 +228,7 @@ class App extends React.Component {
 
                         </tr>
                         <tr>
-                            <td colspan="3">G204 Fouls</td>
+                            <td colSpan="3">G204 Fouls</td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -231,296 +242,100 @@ class App extends React.Component {
                             <td></td>
                             <td ></td>
                         </tr>
-                        <tr>
-                            <td rowspan="5">Auto</td>
-                            <td colspan="2">Total Game Pieces</td>
-                            <td>{this.state.data1?.Auto_Total_Average}</td>
-                            <td>{this.state.data1?.Auto_Total_Max}</td>
-                            <td>{this.state.data2?.Auto_Total_Average}</td>
-                            <td>{this.state.data2?.Auto_Total_Max}</td>
-                            <td>{this.state.data3?.Auto_Total_Average}</td>
-                            <td>{this.state.data3?.Auto_Total_Max}</td>
-                            <td>{this.state.data4?.Auto_Total_Average}</td>
-                            <td>{this.state.data4?.Auto_Total_Max}</td>
-                            <td>{this.state.data5?.Auto_Total_Average}</td>
-                            <td>{this.state.data5?.Auto_Total_Max}</td>
-                            <td>{this.state.data6?.Auto_Total_Average}</td>
-                            <td>{this.state.data6?.Auto_Total_Max}</td>
-
-                        </tr>
-                        <tr>
-
+                        <DataRow stat="Auto_Total">
+                            <td rowSpan="5">Auto</td>
+                            <td colSpan="2">Total Game Pieces</td>
+                        </DataRow>
+                        <DataRow stat='Auto_High'>
                             <td></td>
                             <td>Game Pieces High</td>
-                            <td>{this.state.data1?.Auto_High_Average}</td>
-                            <td>{this.state.data1?.Auto_High_Max}</td>
-                            <td>{this.state.data2?.Auto_High_Average}</td>
-                            <td>{this.state.data2?.Auto_High_Max}</td>
-                            <td>{this.state.data3?.Auto_High_Average}</td>
-                            <td>{this.state.data3?.Auto_High_Max}</td>
-                            <td>{this.state.data4?.Auto_High_Average}</td>
-                            <td>{this.state.data4?.Auto_High_Max}</td>
-                            <td>{this.state.data5?.Auto_High_Average}</td>
-                            <td>{this.state.data5?.Auto_High_Max}</td>
-                            <td>{this.state.data6?.Auto_High_Average}</td>
-                            <td>{this.state.data6?.Auto_High_Max}</td>
-
-                        </tr>
-                        <tr>
+                        </DataRow>
+                        <DataRow stat="Auto_Mid">
                             <td></td>
                             <td>Game Pieces Mid</td>
-                            <td>{this.state.data1?.Auto_Mid_Average}</td>
-                            <td>{this.state.data1?.Auto_Mid_Max}</td>
-                            <td>{this.state.data2?.Auto_Mid_Average}</td>
-                            <td>{this.state.data2?.Auto_Mid_Max}</td>
-                            <td>{this.state.data3?.Auto_Mid_Average}</td>
-                            <td>{this.state.data3?.Auto_Mid_Max}</td>
-                            <td>{this.state.data4?.Auto_Mid_Average}</td>
-                            <td>{this.state.data4?.Auto_Mid_Max}</td>
-                            <td>{this.state.data5?.Auto_Mid_Average}</td>
-                            <td>{this.state.data5?.Auto_Mid_Max}</td>
-                            <td>{this.state.data6?.Auto_Mid_Average}</td>
-                            <td>{this.state.data6?.Auto_Mid_Max}</td>
-                        </tr>
-                        <tr>
+                        </DataRow>
+                        <DataRow stat='Auto_Low'>
                             <td></td>
                             <td>Game Pieces Low</td>
-                            <td>{this.state.data1?.Auto_Low_Average}</td>
-                            <td>{this.state.data1?.Auto_Low_Max}</td>
-                            <td>{this.state.data2?.Auto_Low_Average}</td>
-                            <td>{this.state.data2?.Auto_Low_Max}</td>
-                            <td>{this.state.data3?.Auto_Low_Average}</td>
-                            <td>{this.state.data3?.Auto_Low_Max}</td>
-                            <td>{this.state.data4?.Auto_Low_Average}</td>
-                            <td>{this.state.data4?.Auto_Low_Max}</td>
-                            <td>{this.state.data5?.Auto_Low_Average}</td>
-                            <td>{this.state.data5?.Auto_Low_Max}</td>
-                            <td>{this.state.data6?.Auto_Low_Average}</td>
-                            <td>{this.state.data6?.Auto_Low_Max}</td>
-                        </tr>
+                        </DataRow>
                         <tr>
-
-                            <td colspan="2">% Balanced / Docked</td>
-                            <td colspan="2">{this.state.data1?.Auto_Balance_Frequency}</td>
-                            <td colspan="2">{this.state.data2?.Auto_Balance_Frequency}</td>
-                            <td colspan="2">{this.state.data3?.Auto_Balance_Frequency}</td>
-                            <td colspan="2">{this.state.data4?.Auto_Balance_Frequency}</td>
-                            <td colspan="2">{this.state.data5?.Auto_Balance_Frequency}</td>
-                            <td colspan="2">{this.state.data6?.Auto_Balance_Frequency}</td>
+                            <td colSpan="2">% Balanced / Docked</td>
+                            <td colSpan="2">{this.state.data1?.Auto_Balance_Frequency}</td>
+                            <td colSpan="2">{this.state.data2?.Auto_Balance_Frequency}</td>
+                            <td colSpan="2">{this.state.data3?.Auto_Balance_Frequency}</td>
+                            <td colSpan="2">{this.state.data4?.Auto_Balance_Frequency}</td>
+                            <td colSpan="2">{this.state.data5?.Auto_Balance_Frequency}</td>
+                            <td colSpan="2">{this.state.data6?.Auto_Balance_Frequency}</td>
                         </tr>
-                        <tr>
-                            <td rowspan="12">Tele-Op</td>
-                            <td colspan="2">Total Game Pieces</td>
-                            <td>{this.state.data1?.Tele_Pieces_Total_Average}</td>
-                            <td>{this.state.data1?.Tele_Pieces_Total_Max}</td>
-                            <td>{this.state.data2?.Tele_Pieces_Total_Average}</td>
-                            <td>{this.state.data2?.Tele_Pieces_Total_Max}</td>
-                            <td>{this.state.data3?.Tele_Pieces_Total_Average}</td>
-                            <td>{this.state.data3?.Tele_Pieces_Total_Max}</td>
-                            <td>{this.state.data4?.Tele_Pieces_Total_Average}</td>
-                            <td>{this.state.data4?.Tele_Pieces_Total_Max}</td>
-                            <td>{this.state.data5?.Tele_Pieces_Total_Average}</td>
-                            <td>{this.state.data5?.Tele_Pieces_Total_Max}</td>
-                            <td>{this.state.data6?.Tele_Pieces_Total_Average}</td>
-                            <td>{this.state.data6?.Tele_Pieces_Total_Max}</td>
-                        </tr>
-                        <tr>
+                        <DataRow stat="Tele_Pieces_Total">
+                            <td rowSpan="12">Tele-Op</td>
+                            <td colSpan="2">Total Game Pieces</td>
+                        </DataRow>
+                        <DataRow stat="Tele_Pieces_High">
                             <td></td>
                             <td>Game Pieces High</td>
-                            <td>{this.state.data1?.Tele_Pieces_High_Average}</td>
-                            <td>{this.state.data1?.Tele_Pieces_High_Max}</td>
-                            <td>{this.state.data2?.Tele_Pieces_High_Average}</td>
-                            <td>{this.state.data2?.Tele_Pieces_High_Max}</td>
-                            <td>{this.state.data3?.Tele_Pieces_High_Average}</td>
-                            <td>{this.state.data3?.Tele_Pieces_High_Max}</td>
-                            <td>{this.state.data4?.Tele_Pieces_High_Average}</td>
-                            <td>{this.state.data4?.Tele_Pieces_High_Max}</td>
-                            <td>{this.state.data5?.Tele_Pieces_High_Average}</td>
-                            <td>{this.state.data5?.Tele_Pieces_High_Max}</td>
-                            <td>{this.state.data6?.Tele_Pieces_High_Average}</td>
-                            <td>{this.state.data6?.Tele_Pieces_High_Max}</td>
-                        </tr>
-                        <tr>
+                        </DataRow>
+                        <DataRow stat="Tele_Pieces_Mid">
                             <td></td>
                             <td>Game Pieces Mid</td>
-                            <td>{this.state.data1?.Tele_Pieces_Mid_Average}</td>
-                            <td>{this.state.data1?.Tele_Pieces_Mid_Max}</td>
-                            <td>{this.state.data2?.Tele_Pieces_Mid_Average}</td>
-                            <td>{this.state.data2?.Tele_Pieces_Mid_Max}</td>
-                            <td>{this.state.data3?.Tele_Pieces_Mid_Average}</td>
-                            <td>{this.state.data3?.Tele_Pieces_Mid_Max}</td>
-                            <td>{this.state.data4?.Tele_Pieces_Mid_Average}</td>
-                            <td>{this.state.data4?.Tele_Pieces_Mid_Max}</td>
-                            <td>{this.state.data5?.Tele_Pieces_Mid_Average}</td>
-                            <td>{this.state.data5?.Tele_Pieces_Mid_Max}</td>
-                            <td>{this.state.data6?.Tele_Pieces_Mid_Average}</td>
-                            <td>{this.state.data6?.Tele_Pieces_Mid_Max}</td>
-                        </tr>
-                        <tr>
+                        </DataRow>
+                        <DataRow stat="Tele_Pieces">
                             <td></td>
                             <td>Game Pieces Low</td>
-                            <td>{this.state.data1?.Tele_Pieces_Low_Average}</td>
-                            <td>{this.state.data1?.Tele_Pieces_Low_Max}</td>
-                            <td>{this.state.data2?.Tele_Pieces_Low_Average}</td>
-                            <td>{this.state.data2?.Tele_Pieces_Low_Max}</td>
-                            <td>{this.state.data3?.Tele_Pieces_Low_Average}</td>
-                            <td>{this.state.data3?.Tele_Pieces_Low_Max}</td>
-                            <td>{this.state.data4?.Tele_Pieces_Low_Average}</td>
-                            <td>{this.state.data4?.Tele_Pieces_Low_Max}</td>
-                            <td>{this.state.data5?.Tele_Pieces_Low_Average}</td>
-                            <td>{this.state.data5?.Tele_Pieces_Low_Max}</td>
-                            <td>{this.state.data6?.Tele_Pieces_Low_Average}</td>
-                            <td>{this.state.data6?.Tele_Pieces_Low_Max}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">Total Cubes Scored</td>
-                            <td>{this.state.data1?.Tele_Cube_Total_Average}</td>
-                            <td>{this.state.data1?.Tele_Cube_Total_Max}</td>
-                            <td>{this.state.data2?.Tele_Cube_Total_Average}</td>
-                            <td>{this.state.data2?.Tele_Cube_Total_Max}</td>
-                            <td>{this.state.data3?.Tele_Cube_Total_Average}</td>
-                            <td>{this.state.data3?.Tele_Cube_Total_Max}</td>
-                            <td>{this.state.data4?.Tele_Cube_Total_Average}</td>
-                            <td>{this.state.data4?.Tele_Cube_Total_Max}</td>
-                            <td>{this.state.data5?.Tele_Cube_Total_Average}</td>
-                            <td>{this.state.data5?.Tele_Cube_Total_Max}</td>
-                            <td>{this.state.data6?.Tele_Cube_Total_Average}</td>
-                            <td>{this.state.data6?.Tele_Cube_Total_Max}</td>
-                        </tr>
-                        <tr>
+                        </DataRow>
+                        <DataRow stat="Tele_Cube_Total">
+                            <td colSpan="2">Total Cubes Scored</td>
+                        </DataRow>
+                        <DataRow stat="Tele_Cube_High">
                             <td></td>
                             <td>Cube High</td>
-                            <td>{this.state.data1?.Tele_Cube_High_Average}</td>
-                            <td>{this.state.data1?.Tele_Cube_High_Max}</td>
-                            <td>{this.state.data2?.Tele_Cube_High_Average}</td>
-                            <td>{this.state.data2?.Tele_Cube_High_Max}</td>
-                            <td>{this.state.data3?.Tele_Cube_High_Average}</td>
-                            <td>{this.state.data3?.Tele_Cube_High_Max}</td>
-                            <td>{this.state.data4?.Tele_Cube_High_Average}</td>
-                            <td>{this.state.data4?.Tele_Cube_High_Max}</td>
-                            <td>{this.state.data5?.Tele_Cube_High_Average}</td>
-                            <td>{this.state.data5?.Tele_Cube_High_Max}</td>
-                            <td>{this.state.data6?.Tele_Cube_High_Average}</td>
-                            <td>{this.state.data6?.Tele_Cube_High_Max}</td>
-                        </tr>
-                        <tr>
+                        </DataRow>
+                        <DataRow stat="Tele_Cube_Mid">
                             <td></td>
                             <td>Cube Mid</td>
-                            <td>{this.state.data1?.Tele_Cube_Mid_Average}</td>
-                            <td>{this.state.data1?.Tele_Cube_Mid_Max}</td>
-                            <td>{this.state.data2?.Tele_Cube_Mid_Average}</td>
-                            <td>{this.state.data2?.Tele_Cube_Mid_Max}</td>
-                            <td>{this.state.data3?.Tele_Cube_Mid_Average}</td>
-                            <td>{this.state.data3?.Tele_Cube_Mid_Max}</td>
-                            <td>{this.state.data4?.Tele_Cube_Mid_Average}</td>
-                            <td>{this.state.data4?.Tele_Cube_Mid_Max}</td>
-                            <td>{this.state.data5?.Tele_Cube_Mid_Average}</td>
-                            <td>{this.state.data5?.Tele_Cube_Mid_Max}</td>
-                            <td>{this.state.data6?.Tele_Cube_Mid_Average}</td>
-                            <td>{this.state.data6?.Tele_Cube_Mid_Max}</td>
-                        </tr>
-                        <tr>
+                        </DataRow>
+                        <DataRow stat="Tele_Cube_Low">
                             <td></td>
                             <td>Cube Low</td>
-                            <td>{this.state.data1?.Tele_Cube_Low_Average}</td>
-                            <td>{this.state.data1?.Tele_Cube_Low_Max}</td>
-                            <td>{this.state.data2?.Tele_Cube_Low_Average}</td>
-                            <td>{this.state.data2?.Tele_Cube_Low_Max}</td>
-                            <td>{this.state.data3?.Tele_Cube_Low_Average}</td>
-                            <td>{this.state.data3?.Tele_Cube_Low_Max}</td>
-                            <td>{this.state.data4?.Tele_Cube_Low_Average}</td>
-                            <td>{this.state.data4?.Tele_Cube_Low_Max}</td>
-                            <td>{this.state.data5?.Tele_Cube_Low_Average}</td>
-                            <td>{this.state.data5?.Tele_Cube_Low_Max}</td>
-                            <td>{this.state.data6?.Tele_Cube_Low_Average}</td>
-                            <td>{this.state.data6?.Tele_Cube_Low_Max}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">Total Cones Scored</td>
-                            <td>{this.state.data1?.Tele_Cone_Total_Average}</td>
-                            <td>{this.state.data1?.Tele_Cone_Total_Max}</td>
-                            <td>{this.state.data2?.Tele_Cone_Total_Average}</td>
-                            <td>{this.state.data2?.Tele_Cone_Total_Max}</td>
-                            <td>{this.state.data3?.Tele_Cone_Total_Average}</td>
-                            <td>{this.state.data3?.Tele_Cone_Total_Max}</td>
-                            <td>{this.state.data4?.Tele_Cone_Total_Average}</td>
-                            <td>{this.state.data4?.Tele_Cone_Total_Max}</td>
-                            <td>{this.state.data5?.Tele_Cone_Total_Average}</td>
-                            <td>{this.state.data5?.Tele_Cone_Total_Max}</td>
-                            <td>{this.state.data6?.Tele_Cone_Total_Average}</td>
-                            <td>{this.state.data6?.Tele_Cone_Total_Max}</td>
-                        </tr>
-                        <tr>
+                        </DataRow>
+                        <DataRow stat="Tele_Cone_Total">
+                            <td colSpan="2">Total Cones Scored</td>
+                        </DataRow>
+                        <DataRow stat="Tele_Cone_High">
                             <td></td>
                             <td>Cone High</td>
-                            <td>{this.state.data1?.Tele_Cone_High_Average}</td>
-                            <td>{this.state.data1?.Tele_Cone_High_Max}</td>
-                            <td>{this.state.data2?.Tele_Cone_High_Average}</td>
-                            <td>{this.state.data2?.Tele_Cone_High_Max}</td>
-                            <td>{this.state.data3?.Tele_Cone_High_Average}</td>
-                            <td>{this.state.data3?.Tele_Cone_High_Max}</td>
-                            <td>{this.state.data4?.Tele_Cone_High_Average}</td>
-                            <td>{this.state.data4?.Tele_Cone_High_Max}</td>
-                            <td>{this.state.data5?.Tele_Cone_High_Average}</td>
-                            <td>{this.state.data5?.Tele_Cone_High_Max}</td>
-                            <td>{this.state.data6?.Tele_Cone_High_Average}</td>
-                            <td>{this.state.data6?.Tele_Cone_High_Max}</td>
-                        </tr>
-                        <tr>
+                        </DataRow>
+                        <DataRow stat="Tele_Cone_Mid">
                             <td></td>
                             <td>Cone Mid</td>
-                            <td>{this.state.data1?.Tele_Cone_Mid_Average}</td>
-                            <td>{this.state.data1?.Tele_Cone_Mid_Max}</td>
-                            <td>{this.state.data2?.Tele_Cone_Mid_Average}</td>
-                            <td>{this.state.data2?.Tele_Cone_Mid_Max}</td>
-                            <td>{this.state.data3?.Tele_Cone_Mid_Average}</td>
-                            <td>{this.state.data3?.Tele_Cone_Mid_Max}</td>
-                            <td>{this.state.data4?.Tele_Cone_Mid_Average}</td>
-                            <td>{this.state.data4?.Tele_Cone_Mid_Max}</td>
-                            <td>{this.state.data5?.Tele_Cone_Mid_Average}</td>
-                            <td>{this.state.data5?.Tele_Cone_Mid_Max}</td>
-                            <td>{this.state.data6?.Tele_Cone_Mid_Average}</td>
-                            <td>{this.state.data6?.Tele_Cone_Mid_Max}</td>
-                        </tr>
-                        <tr>
+                        </DataRow>
+                        <DataRow stat="Tele_Cone_Low">
                             <td></td>
                             <td>Cone Low</td>
-                            <td>{this.state.data1?.Tele_Cone_Low_Average}</td>
-                            <td>{this.state.data1?.Tele_Cone_Low_Max}</td>
-                            <td>{this.state.data2?.Tele_Cone_Low_Average}</td>
-                            <td>{this.state.data2?.Tele_Cone_Low_Max}</td>
-                            <td>{this.state.data3?.Tele_Cone_Low_Average}</td>
-                            <td>{this.state.data3?.Tele_Cone_Low_Max}</td>
-                            <td>{this.state.data4?.Tele_Cone_Low_Average}</td>
-                            <td>{this.state.data4?.Tele_Cone_Low_Max}</td>
-                            <td>{this.state.data5?.Tele_Cone_Low_Average}</td>
-                            <td>{this.state.data5?.Tele_Cone_Low_Max}</td>
-                            <td>{this.state.data6?.Tele_Cone_Low_Average}</td>
-                            <td>{this.state.data6?.Tele_Cone_Low_Max}</td>
-                        </tr>
+                        </DataRow>
                         <tr>
-                            <td rowspan="2">Endgame</td>
-                            <td colspan="2">% Docked</td>
-                            <td colspan="2">{this.state.data1?.End_Dock_Frequency}</td>
-                            <td colspan="2">{this.state.data2?.End_Dock_Frequency}</td>
-                            <td colspan="2">{this.state.data3?.End_Dock_Frequency}</td>
-                            <td colspan="2">{this.state.data4?.End_Dock_Frequency}</td>
-                            <td colspan="2">{this.state.data5?.End_Dock_Frequency}</td>
-                            <td colspan="2">{this.state.data6?.End_Dock_Frequency}</td>
+                            <td rowSpan="2">Endgame</td>
+                            <td colSpan="2">% Docked</td>
+                            <td colSpan="2">{this.state.data1?.End_Dock_Frequency}</td>
+                            <td colSpan="2">{this.state.data2?.End_Dock_Frequency}</td>
+                            <td colSpan="2">{this.state.data3?.End_Dock_Frequency}</td>
+                            <td colSpan="2">{this.state.data4?.End_Dock_Frequency}</td>
+                            <td colSpan="2">{this.state.data5?.End_Dock_Frequency}</td>
+                            <td colSpan="2">{this.state.data6?.End_Dock_Frequency}</td>
 
                         </tr>
                         <tr>
-                            <td colspan="2">% Balanced</td>
-                            <td colspan="2">{this.state.data1?.End_Balance_Frequency}</td>
-                            <td colspan="2">{this.state.data2?.End_Balance_Frequency}</td>
-                            <td colspan="2">{this.state.data3?.End_Balance_Frequency}</td>
-                            <td colspan="2">{this.state.data4?.End_Balance_Frequency}</td>
-                            <td colspan="2">{this.state.data5?.End_Balance_Frequency}</td>
-                            <td colspan="2">{this.state.data6?.End_Balance_Frequency}</td>
+                            <td colSpan="2">% Balanced</td>
+                            <td colSpan="2">{this.state.data1?.End_Balance_Frequency}</td>
+                            <td colSpan="2">{this.state.data2?.End_Balance_Frequency}</td>
+                            <td colSpan="2">{this.state.data3?.End_Balance_Frequency}</td>
+                            <td colSpan="2">{this.state.data4?.End_Balance_Frequency}</td>
+                            <td colSpan="2">{this.state.data5?.End_Balance_Frequency}</td>
+                            <td colSpan="2">{this.state.data6?.End_Balance_Frequency}</td>
 
-                        </tr>   
+                        </tr>
 
-                    </table>
+                    </tbody></table>
 
                     {/* <General selected={this.state.selected === 'general'} /> */}
 
