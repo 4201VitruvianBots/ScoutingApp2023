@@ -168,8 +168,9 @@ def handle_post6():
     ), [format_data(formData[key], key) for key in superScoutColumns])
 
     mydb.commit()
-    # for num in ('1','2','3'):
-    #     updateFoulAnalysis(formData.get('Team_' + num))
+    for num in ('1','2','3'):
+        updateFoulAnalysis(formData.get('Team_' + num))
+        
     #for i in variable:
        # print(i)
     # Do something with the data
@@ -227,6 +228,9 @@ def updateAnalysis(Team_Number):
 def updateFoulAnalysis(Team_Number):
     mycursor.execute('INSERT IGNORE INTO dataAnalysis(Team_Number) VALUES (%s)', (Team_Number,))
     mycursor.execute("UPDATE dataAnalysis SET Average_Fouls = (SELECT COUNT(*) FROM fouls WHERE Team_Number = %s) / (SELECT COUNT(*) FROM superScout WHERE Team_1 = %s OR TEAM_2 = %s OR TEAM_3 = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number,Team_Number,Team_Number))
+    for index, name in (1, 'Pin'), (2, 'Disabled'), (3, 'Overextension'), (4, 'Inside_Robot'):
+        mycursor.execute(f"UPDATE dataAnalysis SET Total_{name}_Fouls = (SELECT COUNT(*) FROM fouls WHERE Team_Number = %s AND CAUSE = %s) WHERE Team_Number = %s", (Team_Number, index, Team_Number))
+
     mydb.commit()
 
 def getdataAnalysis(**kwargs):
