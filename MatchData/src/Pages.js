@@ -7,6 +7,7 @@ import 'reactjs-popup/dist/index.css';
 export default function PopupGfg(props) {
     return (
         <div>
+
             {/* <table className="test">
                 <tr>
                     <td rowspan="2">&nbsp;</td>
@@ -92,7 +93,7 @@ class SearchBar extends React.Component {
     render() {
         // console.log(this.props.selectedOption)
         return (
-            <div>
+            <div className="testtest">
                 <Select
                     options={options}
                     value={this.props.selectedOption}

@@ -1,5 +1,5 @@
 import './App.css';
-import { SearchBar, Title, options } from "./Pages";
+import { SearchBar, Title, PopupGfg, options } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 
@@ -163,364 +163,366 @@ class App extends React.Component {
                     {/* <SearchBar setSelectedOption={this.setSelectedOption5} selectedOption={this.state.selectedOption5} /> */}
                     {/* <SearchBar setSelectedOption={this.setSelectedOption6} selectedOption={this.state.selectedOption6} /> */}
 
-                    <table className="test">
+                    <table >
                         <tr>
-                            <td rowspan="2" colspan="3">Match Data Table</td>
-                            <td className="test" colspan="2">
+                            <td rowspan="2" colspan="3" className="colorbg1">Match Data Table</td>
+                            <td colspan="2" className="colorbg1">
                                 <SearchBar setSelectedOption={this.setSelectedOption1} selectedOption={this.state.selectedOption1} />
                             </td>
-                            <td colspan="2">
+                            <td colspan="2" className="colorbg1">
                                 <SearchBar setSelectedOption={this.setSelectedOption2} selectedOption={this.state.selectedOption2} />
                             </td>
-                            <td colspan="2">
+                            <td colspan="2" className="colorbg1">
                                 <SearchBar setSelectedOption={this.setSelectedOption3} selectedOption={this.state.selectedOption3} />
                             </td>
-                            <td colspan="2">
+                            <td colspan="2" className="colorbg1">
                                 <SearchBar setSelectedOption={this.setSelectedOption4} selectedOption={this.state.selectedOption4} />
                             </td>
-                            <td colspan="2">
+                            <td colspan="2" className="colorbg1">
                                 <SearchBar setSelectedOption={this.setSelectedOption5} selectedOption={this.state.selectedOption5} />
                             </td>
-                            <td colspan="2">
+                            <td colspan="2" className="colorbg1">
                                 <SearchBar setSelectedOption={this.setSelectedOption6} selectedOption={this.state.selectedOption6} />
                             </td>
                         </tr>
 
                         <tr>
-                            <td className="test">AVG</td>
-                            <td>MAX</td>
-                            <td>AVG</td>
-                            <td>MAX</td>
-                            <td>AVG</td>
-                            <td>MAX</td>
-                            <td>AVG</td>
-                            <td>MAX</td>
-                            <td>AVG</td>
-                            <td>MAX</td>
-                            <td>AVG</td>
-                            <td>MAX</td>
+                            <td className="colorbg">AVG</td>
+                            <td className="colorbg">MAX</td>
+                            <td className="colorbg">AVG</td>
+                            <td className="colorbg">MAX</td>
+                            <td className="colorbg">AVG</td>
+                            <td className="colorbg">MAX</td>
+                            <td className="colorbg">AVG</td>
+                            <td className="colorbg">MAX</td>
+                            <td className="colorbg">AVG</td>
+                            <td className="colorbg">MAX</td>
+                            <td className="colorbg">AVG</td>
+                            <td className="colorbg">MAX</td>
                         </tr>
                         <tr>
-                            <td className="test" colspan="3">Pin Fouls</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td colspan="3" className="colorbg1">Pin Fouls</td>
+                            <td className="test2"></td>
+                            <td className="test"></td>
+                            <td className="test2"></td>
+                            <td className="test"></td>
+                            <td className="test2"></td>
+                            <td className="test"></td>
+                            <td className="test2"></td>
+                            <td className="test"></td>
+                            <td className="test2"></td>
+                            <td className="test"></td>
+                            <td className="test2"></td>
+                            <td className="test"></td>
 
                         </tr>
                         <tr>
-                            <td colspan="3">G204 Fouls</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td ></td>
+                            <td colspan="3" className="colorbg1" >G204 Fouls</td>
+                            <td className="test2"></td>
+                            <td className="test"></td>
+                            <td className="test2"></td>
+                            <td className="test"></td>
+                            <td className="test2"></td>
+                            <td className="test"></td>
+                            <td className="test2"></td>
+                            <td className="test"></td>
+                            <td className="test2"></td>
+                            <td className="test"></td>
+                            <td className="test2"></td>
+                            <td className="test"></td>
                         </tr>
                         <tr>
-                            <td rowspan="5">Auto</td>
-                            <td colspan="2">Total Game Pieces</td>
-                            <td>{this.state.data1?.Auto_Total_Average}</td>
-                            <td>{this.state.data1?.Auto_Total_Max}</td>
-                            <td>{this.state.data2?.Auto_Total_Average}</td>
-                            <td>{this.state.data2?.Auto_Total_Max}</td>
-                            <td>{this.state.data3?.Auto_Total_Average}</td>
-                            <td>{this.state.data3?.Auto_Total_Max}</td>
-                            <td>{this.state.data4?.Auto_Total_Average}</td>
-                            <td>{this.state.data4?.Auto_Total_Max}</td>
-                            <td>{this.state.data5?.Auto_Total_Average}</td>
-                            <td>{this.state.data5?.Auto_Total_Max}</td>
-                            <td>{this.state.data6?.Auto_Total_Average}</td>
-                            <td>{this.state.data6?.Auto_Total_Max}</td>
+                            <td rowspan="5" className="colorbg1">Auto</td>
+                            <td colspan="2" className="colorbg">Total Game Pieces</td>
+                            <td className="nobgcolor">{this.state.data1?.Auto_Total_Average}</td>
+                            <td className="test">{this.state.data1?.Auto_Total_Max}</td>
+                            <td className="nobgcolor">{this.state.data2?.Auto_Total_Average}</td>
+                            <td className="test">{this.state.data2?.Auto_Total_Max}</td>
+                            <td className="nobgcolor">{this.state.data3?.Auto_Total_Average}</td>
+                            <td className="test">{this.state.data3?.Auto_Total_Max}</td>
+                            <td className="nobgcolor">{this.state.data4?.Auto_Total_Average}</td>
+                            <td className="test">{this.state.data4?.Auto_Total_Max}</td>
+                            <td className="nobgcolor">{this.state.data5?.Auto_Total_Average}</td>
+                            <td className="test">{this.state.data5?.Auto_Total_Max}</td>
+                            <td className="nobgcolor">{this.state.data6?.Auto_Total_Average}</td>
+                            <td className="test">{this.state.data6?.Auto_Total_Max}</td>
 
                         </tr>
                         <tr>
 
-                            <td></td>
-                            <td>Game Pieces High</td>
-                            <td>{this.state.data1?.Auto_High_Average}</td>
-                            <td>{this.state.data1?.Auto_High_Max}</td>
-                            <td>{this.state.data2?.Auto_High_Average}</td>
-                            <td>{this.state.data2?.Auto_High_Max}</td>
-                            <td>{this.state.data3?.Auto_High_Average}</td>
-                            <td>{this.state.data3?.Auto_High_Max}</td>
-                            <td>{this.state.data4?.Auto_High_Average}</td>
-                            <td>{this.state.data4?.Auto_High_Max}</td>
-                            <td>{this.state.data5?.Auto_High_Average}</td>
-                            <td>{this.state.data5?.Auto_High_Max}</td>
-                            <td>{this.state.data6?.Auto_High_Average}</td>
-                            <td>{this.state.data6?.Auto_High_Max}</td>
+                            <td className="colorbg"></td>
+                            <td className="colorbg">Game Pieces High</td>
+                            <td className="nobgcolor">{this.state.data1?.Auto_High_Average}</td>
+                            <td className="test">{this.state.data1?.Auto_High_Max}</td>
+                            <td className="nobgcolor">{this.state.data2?.Auto_High_Average}</td>
+                            <td className="test">{this.state.data2?.Auto_High_Max}</td>
+                            <td className="nobgcolor">{this.state.data3?.Auto_High_Average}</td>
+                            <td className="test">{this.state.data3?.Auto_High_Max}</td>
+                            <td className="nobgcolor">{this.state.data4?.Auto_High_Average}</td>
+                            <td className="test">{this.state.data4?.Auto_High_Max}</td>
+                            <td className="nobgcolor">{this.state.data5?.Auto_High_Average}</td>
+                            <td className="test">{this.state.data5?.Auto_High_Max}</td>
+                            <td className="nobgcolor">{this.state.data6?.Auto_High_Average}</td>
+                            <td className="test">{this.state.data6?.Auto_High_Max}</td>
 
                         </tr>
                         <tr>
-                            <td></td>
-                            <td>Game Pieces Mid</td>
-                            <td>{this.state.data1?.Auto_Mid_Average}</td>
-                            <td>{this.state.data1?.Auto_Mid_Max}</td>
-                            <td>{this.state.data2?.Auto_Mid_Average}</td>
-                            <td>{this.state.data2?.Auto_Mid_Max}</td>
-                            <td>{this.state.data3?.Auto_Mid_Average}</td>
-                            <td>{this.state.data3?.Auto_Mid_Max}</td>
-                            <td>{this.state.data4?.Auto_Mid_Average}</td>
-                            <td>{this.state.data4?.Auto_Mid_Max}</td>
-                            <td>{this.state.data5?.Auto_Mid_Average}</td>
-                            <td>{this.state.data5?.Auto_Mid_Max}</td>
-                            <td>{this.state.data6?.Auto_Mid_Average}</td>
-                            <td>{this.state.data6?.Auto_Mid_Max}</td>
+                            <td className="colorbg"></td>
+                            <td className="colorbg">Game Pieces Mid</td>
+                            <td className="nobgcolor">{this.state.data1?.Auto_Mid_Average}</td>
+                            <td className="test">{this.state.data1?.Auto_Mid_Max}</td>
+                            <td className="nobgcolor">{this.state.data2?.Auto_Mid_Average}</td>
+                            <td className="test">{this.state.data2?.Auto_Mid_Max}</td>
+                            <td className="nobgcolor">{this.state.data3?.Auto_Mid_Average}</td>
+                            <td className="test">{this.state.data3?.Auto_Mid_Max}</td>
+                            <td className="nobgcolor">{this.state.data4?.Auto_Mid_Average}</td>
+                            <td className="test">{this.state.data4?.Auto_Mid_Max}</td>
+                            <td className="nobgcolor">{this.state.data5?.Auto_Mid_Average}</td>
+                            <td className="test">{this.state.data5?.Auto_Mid_Max}</td>
+                            <td className="nobgcolor">{this.state.data6?.Auto_Mid_Average}</td>
+                            <td className="test">{this.state.data6?.Auto_Mid_Max}</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td>Game Pieces Low</td>
-                            <td>{this.state.data1?.Auto_Low_Average}</td>
-                            <td>{this.state.data1?.Auto_Low_Max}</td>
-                            <td>{this.state.data2?.Auto_Low_Average}</td>
-                            <td>{this.state.data2?.Auto_Low_Max}</td>
-                            <td>{this.state.data3?.Auto_Low_Average}</td>
-                            <td>{this.state.data3?.Auto_Low_Max}</td>
-                            <td>{this.state.data4?.Auto_Low_Average}</td>
-                            <td>{this.state.data4?.Auto_Low_Max}</td>
-                            <td>{this.state.data5?.Auto_Low_Average}</td>
-                            <td>{this.state.data5?.Auto_Low_Max}</td>
-                            <td>{this.state.data6?.Auto_Low_Average}</td>
-                            <td>{this.state.data6?.Auto_Low_Max}</td>
+                            <td className="colorbg"></td>
+                            <td className="colorbg">Game Pieces Low</td>
+                            <td className="nobgcolor">{this.state.data1?.Auto_Low_Average}</td>
+                            <td className="test">{this.state.data1?.Auto_Low_Max}</td>
+                            <td className="nobgcolor">{this.state.data2?.Auto_Low_Average}</td>
+                            <td className="test">{this.state.data2?.Auto_Low_Max}</td>
+                            <td className="nobgcolor">{this.state.data3?.Auto_Low_Average}</td>
+                            <td className="test">{this.state.data3?.Auto_Low_Max}</td>
+                            <td className="nobgcolor">{this.state.data4?.Auto_Low_Average}</td>
+                            <td className="test">{this.state.data4?.Auto_Low_Max}</td>
+                            <td className="nobgcolor">{this.state.data5?.Auto_Low_Average}</td>
+                            <td className="test">{this.state.data5?.Auto_Low_Max}</td>
+                            <td className="nobgcolor">{this.state.data6?.Auto_Low_Average}</td>
+                            <td className="test">{this.state.data6?.Auto_Low_Max}</td>
                         </tr>
                         <tr>
 
-                            <td colspan="2">% Balanced / Docked</td>
-                            <td colspan="2">{this.state.data1?.Auto_Balance_Frequency}</td>
-                            <td colspan="2">{this.state.data2?.Auto_Balance_Frequency}</td>
-                            <td colspan="2">{this.state.data3?.Auto_Balance_Frequency}</td>
-                            <td colspan="2">{this.state.data4?.Auto_Balance_Frequency}</td>
-                            <td colspan="2">{this.state.data5?.Auto_Balance_Frequency}</td>
-                            <td colspan="2">{this.state.data6?.Auto_Balance_Frequency}</td>
+                            <td colspan="2" className="colorbg">% Balanced / Docked</td>
+                            <td colspan="2" className="colorbg2">{this.state.data1?.Auto_Balance_Frequency}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data2?.Auto_Balance_Frequency}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data3?.Auto_Balance_Frequency}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data4?.Auto_Balance_Frequency}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data5?.Auto_Balance_Frequency}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data6?.Auto_Balance_Frequency}</td>
                         </tr>
                         <tr>
-                            <td rowspan="12">Tele-Op</td>
-                            <td colspan="2">Total Game Pieces</td>
-                            <td>{this.state.data1?.Tele_Pieces_Total_Average}</td>
-                            <td>{this.state.data1?.Tele_Pieces_Total_Max}</td>
-                            <td>{this.state.data2?.Tele_Pieces_Total_Average}</td>
-                            <td>{this.state.data2?.Tele_Pieces_Total_Max}</td>
-                            <td>{this.state.data3?.Tele_Pieces_Total_Average}</td>
-                            <td>{this.state.data3?.Tele_Pieces_Total_Max}</td>
-                            <td>{this.state.data4?.Tele_Pieces_Total_Average}</td>
-                            <td>{this.state.data4?.Tele_Pieces_Total_Max}</td>
-                            <td>{this.state.data5?.Tele_Pieces_Total_Average}</td>
-                            <td>{this.state.data5?.Tele_Pieces_Total_Max}</td>
-                            <td>{this.state.data6?.Tele_Pieces_Total_Average}</td>
-                            <td>{this.state.data6?.Tele_Pieces_Total_Max}</td>
+                            <td rowspan="12" className="colorbg1">Tele-Op</td>
+                            <td colspan="2" className="colorbg">Total Game Pieces</td>
+                            <td className="nobgcolor">{this.state.data1?.Tele_Pieces_Total_Average}</td>
+                            <td className="test">{this.state.data1?.Tele_Pieces_Total_Max}</td>
+                            <td className="nobgcolor">{this.state.data2?.Tele_Pieces_Total_Average}</td>
+                            <td className="test">{this.state.data2?.Tele_Pieces_Total_Max}</td>
+                            <td className="nobgcolor">{this.state.data3?.Tele_Pieces_Total_Average}</td>
+                            <td className="test">{this.state.data3?.Tele_Pieces_Total_Max}</td>
+                            <td className="nobgcolor">{this.state.data4?.Tele_Pieces_Total_Average}</td>
+                            <td className="test">{this.state.data4?.Tele_Pieces_Total_Max}</td>
+                            <td className="nobgcolor">{this.state.data5?.Tele_Pieces_Total_Average}</td>
+                            <td className="test">{this.state.data5?.Tele_Pieces_Total_Max}</td>
+                            <td className="nobgcolor">{this.state.data6?.Tele_Pieces_Total_Average}</td>
+                            <td className="test">{this.state.data6?.Tele_Pieces_Total_Max}</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td>Game Pieces High</td>
-                            <td>{this.state.data1?.Tele_Pieces_High_Average}</td>
-                            <td>{this.state.data1?.Tele_Pieces_High_Max}</td>
-                            <td>{this.state.data2?.Tele_Pieces_High_Average}</td>
-                            <td>{this.state.data2?.Tele_Pieces_High_Max}</td>
-                            <td>{this.state.data3?.Tele_Pieces_High_Average}</td>
-                            <td>{this.state.data3?.Tele_Pieces_High_Max}</td>
-                            <td>{this.state.data4?.Tele_Pieces_High_Average}</td>
-                            <td>{this.state.data4?.Tele_Pieces_High_Max}</td>
-                            <td>{this.state.data5?.Tele_Pieces_High_Average}</td>
-                            <td>{this.state.data5?.Tele_Pieces_High_Max}</td>
-                            <td>{this.state.data6?.Tele_Pieces_High_Average}</td>
-                            <td>{this.state.data6?.Tele_Pieces_High_Max}</td>
+                            <td className="colorbg"></td>
+                            <td className="colorbg">Game Pieces High</td>
+                            <td className="nobgcolor">{this.state.data1?.Tele_Pieces_High_Average}</td>
+                            <td className="test">{this.state.data1?.Tele_Pieces_High_Max}</td>
+                            <td className="nobgcolor">{this.state.data2?.Tele_Pieces_High_Average}</td>
+                            <td className="test">{this.state.data2?.Tele_Pieces_High_Max}</td>
+                            <td className="nobgcolor">{this.state.data3?.Tele_Pieces_High_Average}</td>
+                            <td className="test">{this.state.data3?.Tele_Pieces_High_Max}</td>
+                            <td className="nobgcolor">{this.state.data4?.Tele_Pieces_High_Average}</td>
+                            <td className="test">{this.state.data4?.Tele_Pieces_High_Max}</td>
+                            <td className="nobgcolor">{this.state.data5?.Tele_Pieces_High_Average}</td>
+                            <td className="test">{this.state.data5?.Tele_Pieces_High_Max}</td>
+                            <td className="nobgcolor">{this.state.data6?.Tele_Pieces_High_Average}</td>
+                            <td className="test">{this.state.data6?.Tele_Pieces_High_Max}</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td>Game Pieces Mid</td>
-                            <td>{this.state.data1?.Tele_Pieces_Mid_Average}</td>
-                            <td>{this.state.data1?.Tele_Pieces_Mid_Max}</td>
-                            <td>{this.state.data2?.Tele_Pieces_Mid_Average}</td>
-                            <td>{this.state.data2?.Tele_Pieces_Mid_Max}</td>
-                            <td>{this.state.data3?.Tele_Pieces_Mid_Average}</td>
-                            <td>{this.state.data3?.Tele_Pieces_Mid_Max}</td>
-                            <td>{this.state.data4?.Tele_Pieces_Mid_Average}</td>
-                            <td>{this.state.data4?.Tele_Pieces_Mid_Max}</td>
-                            <td>{this.state.data5?.Tele_Pieces_Mid_Average}</td>
-                            <td>{this.state.data5?.Tele_Pieces_Mid_Max}</td>
-                            <td>{this.state.data6?.Tele_Pieces_Mid_Average}</td>
-                            <td>{this.state.data6?.Tele_Pieces_Mid_Max}</td>
+                            <td className="colorbg"></td>
+                            <td className="colorbg">Game Pieces Mid</td>
+                            <td className="nobgcolor">{this.state.data1?.Tele_Pieces_Mid_Average}</td>
+                            <td className="test">{this.state.data1?.Tele_Pieces_Mid_Max}</td>
+                            <td className="nobgcolor">{this.state.data2?.Tele_Pieces_Mid_Average}</td>
+                            <td className="test">{this.state.data2?.Tele_Pieces_Mid_Max}</td>
+                            <td className="nobgcolor">{this.state.data3?.Tele_Pieces_Mid_Average}</td>
+                            <td className="test">{this.state.data3?.Tele_Pieces_Mid_Max}</td>
+                            <td className="nobgcolor">{this.state.data4?.Tele_Pieces_Mid_Average}</td>
+                            <td className="test">{this.state.data4?.Tele_Pieces_Mid_Max}</td>
+                            <td className="nobgcolor">{this.state.data5?.Tele_Pieces_Mid_Average}</td>
+                            <td className="test">{this.state.data5?.Tele_Pieces_Mid_Max}</td>
+                            <td className="nobgcolor">{this.state.data6?.Tele_Pieces_Mid_Average}</td>
+                            <td className="test">{this.state.data6?.Tele_Pieces_Mid_Max}</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td>Game Pieces Low</td>
-                            <td>{this.state.data1?.Tele_Pieces_Low_Average}</td>
-                            <td>{this.state.data1?.Tele_Pieces_Low_Max}</td>
-                            <td>{this.state.data2?.Tele_Pieces_Low_Average}</td>
-                            <td>{this.state.data2?.Tele_Pieces_Low_Max}</td>
-                            <td>{this.state.data3?.Tele_Pieces_Low_Average}</td>
-                            <td>{this.state.data3?.Tele_Pieces_Low_Max}</td>
-                            <td>{this.state.data4?.Tele_Pieces_Low_Average}</td>
-                            <td>{this.state.data4?.Tele_Pieces_Low_Max}</td>
-                            <td>{this.state.data5?.Tele_Pieces_Low_Average}</td>
-                            <td>{this.state.data5?.Tele_Pieces_Low_Max}</td>
-                            <td>{this.state.data6?.Tele_Pieces_Low_Average}</td>
-                            <td>{this.state.data6?.Tele_Pieces_Low_Max}</td>
+                            <td className="colorbg"></td>
+                            <td className="colorbg">Game Pieces Low</td>
+                            <td className="nobgcolor">{this.state.data1?.Tele_Pieces_Low_Average}</td>
+                            <td className="test">{this.state.data1?.Tele_Pieces_Low_Max}</td>
+                            <td className="nobgcolor">{this.state.data2?.Tele_Pieces_Low_Average}</td>
+                            <td className="test">{this.state.data2?.Tele_Pieces_Low_Max}</td>
+                            <td className="nobgcolor">{this.state.data3?.Tele_Pieces_Low_Average}</td>
+                            <td className="test">{this.state.data3?.Tele_Pieces_Low_Max}</td>
+                            <td className="nobgcolor">{this.state.data4?.Tele_Pieces_Low_Average}</td>
+                            <td className="test">{this.state.data4?.Tele_Pieces_Low_Max}</td>
+                            <td className="nobgcolor">{this.state.data5?.Tele_Pieces_Low_Average}</td>
+                            <td className="test">{this.state.data5?.Tele_Pieces_Low_Max}</td>
+                            <td className="nobgcolor">{this.state.data6?.Tele_Pieces_Low_Average}</td>
+                            <td className="test">{this.state.data6?.Tele_Pieces_Low_Max}</td>
                         </tr>
                         <tr>
-                            <td colspan="2">Total Cubes Scored</td>
-                            <td>{this.state.data1?.Tele_Cube_Total_Average}</td>
-                            <td>{this.state.data1?.Tele_Cube_Total_Max}</td>
-                            <td>{this.state.data2?.Tele_Cube_Total_Average}</td>
-                            <td>{this.state.data2?.Tele_Cube_Total_Max}</td>
-                            <td>{this.state.data3?.Tele_Cube_Total_Average}</td>
-                            <td>{this.state.data3?.Tele_Cube_Total_Max}</td>
-                            <td>{this.state.data4?.Tele_Cube_Total_Average}</td>
-                            <td>{this.state.data4?.Tele_Cube_Total_Max}</td>
-                            <td>{this.state.data5?.Tele_Cube_Total_Average}</td>
-                            <td>{this.state.data5?.Tele_Cube_Total_Max}</td>
-                            <td>{this.state.data6?.Tele_Cube_Total_Average}</td>
-                            <td>{this.state.data6?.Tele_Cube_Total_Max}</td>
+                            <td colspan="2" className="colorbg">Total Cubes Scored</td>
+                            <td className="nobgcolor">{this.state.data1?.Tele_Cube_Total_Average}</td>
+                            <td className="test">{this.state.data1?.Tele_Cube_Total_Max}</td>
+                            <td className="nobgcolor">{this.state.data2?.Tele_Cube_Total_Average}</td>
+                            <td className="test">{this.state.data2?.Tele_Cube_Total_Max}</td>
+                            <td className="nobgcolor">{this.state.data3?.Tele_Cube_Total_Average}</td>
+                            <td className="test">{this.state.data3?.Tele_Cube_Total_Max}</td>
+                            <td className="nobgcolor">{this.state.data4?.Tele_Cube_Total_Average}</td>
+                            <td className="test">{this.state.data4?.Tele_Cube_Total_Max}</td>
+                            <td className="nobgcolor">{this.state.data5?.Tele_Cube_Total_Average}</td>
+                            <td className="test">{this.state.data5?.Tele_Cube_Total_Max}</td>
+                            <td className="nobgcolor">{this.state.data6?.Tele_Cube_Total_Average}</td>
+                            <td className="test">{this.state.data6?.Tele_Cube_Total_Max}</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td>Cube High</td>
-                            <td>{this.state.data1?.Tele_Cube_High_Average}</td>
-                            <td>{this.state.data1?.Tele_Cube_High_Max}</td>
-                            <td>{this.state.data2?.Tele_Cube_High_Average}</td>
-                            <td>{this.state.data2?.Tele_Cube_High_Max}</td>
-                            <td>{this.state.data3?.Tele_Cube_High_Average}</td>
-                            <td>{this.state.data3?.Tele_Cube_High_Max}</td>
-                            <td>{this.state.data4?.Tele_Cube_High_Average}</td>
-                            <td>{this.state.data4?.Tele_Cube_High_Max}</td>
-                            <td>{this.state.data5?.Tele_Cube_High_Average}</td>
-                            <td>{this.state.data5?.Tele_Cube_High_Max}</td>
-                            <td>{this.state.data6?.Tele_Cube_High_Average}</td>
-                            <td>{this.state.data6?.Tele_Cube_High_Max}</td>
+                            <td className="colorbg"></td>
+                            <td className="colorbg">Cube High</td>
+                            <td className="nobgcolor">{this.state.data1?.Tele_Cube_High_Average}</td>
+                            <td className="test">{this.state.data1?.Tele_Cube_High_Max}</td>
+                            <td className="nobgcolor">{this.state.data2?.Tele_Cube_High_Average}</td>
+                            <td className="test">{this.state.data2?.Tele_Cube_High_Max}</td>
+                            <td className="nobgcolor">{this.state.data3?.Tele_Cube_High_Average}</td>
+                            <td className="test">{this.state.data3?.Tele_Cube_High_Max}</td>
+                            <td className="nobgcolor">{this.state.data4?.Tele_Cube_High_Average}</td>
+                            <td className="test">{this.state.data4?.Tele_Cube_High_Max}</td>
+                            <td className="nobgcolor">{this.state.data5?.Tele_Cube_High_Average}</td>
+                            <td className="test">{this.state.data5?.Tele_Cube_High_Max}</td>
+                            <td className="nobgcolor">{this.state.data6?.Tele_Cube_High_Average}</td>
+                            <td className="test">{this.state.data6?.Tele_Cube_High_Max}</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td>Cube Mid</td>
-                            <td>{this.state.data1?.Tele_Cube_Mid_Average}</td>
-                            <td>{this.state.data1?.Tele_Cube_Mid_Max}</td>
-                            <td>{this.state.data2?.Tele_Cube_Mid_Average}</td>
-                            <td>{this.state.data2?.Tele_Cube_Mid_Max}</td>
-                            <td>{this.state.data3?.Tele_Cube_Mid_Average}</td>
-                            <td>{this.state.data3?.Tele_Cube_Mid_Max}</td>
-                            <td>{this.state.data4?.Tele_Cube_Mid_Average}</td>
-                            <td>{this.state.data4?.Tele_Cube_Mid_Max}</td>
-                            <td>{this.state.data5?.Tele_Cube_Mid_Average}</td>
-                            <td>{this.state.data5?.Tele_Cube_Mid_Max}</td>
-                            <td>{this.state.data6?.Tele_Cube_Mid_Average}</td>
-                            <td>{this.state.data6?.Tele_Cube_Mid_Max}</td>
+                            <td className="colorbg"></td>
+                            <td className="colorbg">Cube Mid</td>
+                            <td className="nobgcolor">{this.state.data1?.Tele_Cube_Mid_Average}</td>
+                            <td className="test">{this.state.data1?.Tele_Cube_Mid_Max}</td>
+                            <td className="nobgcolor">{this.state.data2?.Tele_Cube_Mid_Average}</td>
+                            <td className="test">{this.state.data2?.Tele_Cube_Mid_Max}</td>
+                            <td className="nobgcolor">{this.state.data3?.Tele_Cube_Mid_Average}</td>
+                            <td className="test">{this.state.data3?.Tele_Cube_Mid_Max}</td>
+                            <td className="nobgcolor">{this.state.data4?.Tele_Cube_Mid_Average}</td>
+                            <td className="test">{this.state.data4?.Tele_Cube_Mid_Max}</td>
+                            <td className="nobgcolor">{this.state.data5?.Tele_Cube_Mid_Average}</td>
+                            <td className="test">{this.state.data5?.Tele_Cube_Mid_Max}</td>
+                            <td className="nobgcolor">{this.state.data6?.Tele_Cube_Mid_Average}</td>
+                            <td className="test">{this.state.data6?.Tele_Cube_Mid_Max}</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td>Cube Low</td>
-                            <td>{this.state.data1?.Tele_Cube_Low_Average}</td>
-                            <td>{this.state.data1?.Tele_Cube_Low_Max}</td>
-                            <td>{this.state.data2?.Tele_Cube_Low_Average}</td>
-                            <td>{this.state.data2?.Tele_Cube_Low_Max}</td>
-                            <td>{this.state.data3?.Tele_Cube_Low_Average}</td>
-                            <td>{this.state.data3?.Tele_Cube_Low_Max}</td>
-                            <td>{this.state.data4?.Tele_Cube_Low_Average}</td>
-                            <td>{this.state.data4?.Tele_Cube_Low_Max}</td>
-                            <td>{this.state.data5?.Tele_Cube_Low_Average}</td>
-                            <td>{this.state.data5?.Tele_Cube_Low_Max}</td>
-                            <td>{this.state.data6?.Tele_Cube_Low_Average}</td>
-                            <td>{this.state.data6?.Tele_Cube_Low_Max}</td>
+                            <td className="colorbg"></td>
+                            <td className="colorbg">Cube Low</td>
+                            <td className="nobgcolor">{this.state.data1?.Tele_Cube_Low_Average}</td>
+                            <td className="test">{this.state.data1?.Tele_Cube_Low_Max}</td>
+                            <td className="nobgcolor">{this.state.data2?.Tele_Cube_Low_Average}</td>
+                            <td className="test">{this.state.data2?.Tele_Cube_Low_Max}</td>
+                            <td className="nobgcolor">{this.state.data3?.Tele_Cube_Low_Average}</td>
+                            <td className="test">{this.state.data3?.Tele_Cube_Low_Max}</td>
+                            <td className="nobgcolor">{this.state.data4?.Tele_Cube_Low_Average}</td>
+                            <td className="test">{this.state.data4?.Tele_Cube_Low_Max}</td>
+                            <td className="nobgcolor">{this.state.data5?.Tele_Cube_Low_Average}</td>
+                            <td className="test">{this.state.data5?.Tele_Cube_Low_Max}</td>
+                            <td className="nobgcolor">{this.state.data6?.Tele_Cube_Low_Average}</td>
+                            <td className="test">{this.state.data6?.Tele_Cube_Low_Max}</td>
                         </tr>
                         <tr>
-                            <td colspan="2">Total Cones Scored</td>
-                            <td>{this.state.data1?.Tele_Cone_Total_Average}</td>
-                            <td>{this.state.data1?.Tele_Cone_Total_Max}</td>
-                            <td>{this.state.data2?.Tele_Cone_Total_Average}</td>
-                            <td>{this.state.data2?.Tele_Cone_Total_Max}</td>
-                            <td>{this.state.data3?.Tele_Cone_Total_Average}</td>
-                            <td>{this.state.data3?.Tele_Cone_Total_Max}</td>
-                            <td>{this.state.data4?.Tele_Cone_Total_Average}</td>
-                            <td>{this.state.data4?.Tele_Cone_Total_Max}</td>
-                            <td>{this.state.data5?.Tele_Cone_Total_Average}</td>
-                            <td>{this.state.data5?.Tele_Cone_Total_Max}</td>
-                            <td>{this.state.data6?.Tele_Cone_Total_Average}</td>
-                            <td>{this.state.data6?.Tele_Cone_Total_Max}</td>
+                            <td colspan="2" className="colorbg">Total Cones Scored</td>
+                            <td className="nobgcolor">{this.state.data1?.Tele_Cone_Total_Average}</td>
+                            <td className="test">{this.state.data1?.Tele_Cone_Total_Max}</td>
+                            <td className="nobgcolor">{this.state.data2?.Tele_Cone_Total_Average}</td>
+                            <td className="test">{this.state.data2?.Tele_Cone_Total_Max}</td>
+                            <td className="nobgcolor">{this.state.data3?.Tele_Cone_Total_Average}</td>
+                            <td className="test">{this.state.data3?.Tele_Cone_Total_Max}</td>
+                            <td className="nobgcolor">{this.state.data4?.Tele_Cone_Total_Average}</td>
+                            <td className="test">{this.state.data4?.Tele_Cone_Total_Max}</td>
+                            <td className="nobgcolor">{this.state.data5?.Tele_Cone_Total_Average}</td>
+                            <td className="test">{this.state.data5?.Tele_Cone_Total_Max}</td>
+                            <td className="nobgcolor">{this.state.data6?.Tele_Cone_Total_Average}</td>
+                            <td className="test">{this.state.data6?.Tele_Cone_Total_Max}</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td>Cone High</td>
-                            <td>{this.state.data1?.Tele_Cone_High_Average}</td>
-                            <td>{this.state.data1?.Tele_Cone_High_Max}</td>
-                            <td>{this.state.data2?.Tele_Cone_High_Average}</td>
-                            <td>{this.state.data2?.Tele_Cone_High_Max}</td>
-                            <td>{this.state.data3?.Tele_Cone_High_Average}</td>
-                            <td>{this.state.data3?.Tele_Cone_High_Max}</td>
-                            <td>{this.state.data4?.Tele_Cone_High_Average}</td>
-                            <td>{this.state.data4?.Tele_Cone_High_Max}</td>
-                            <td>{this.state.data5?.Tele_Cone_High_Average}</td>
-                            <td>{this.state.data5?.Tele_Cone_High_Max}</td>
-                            <td>{this.state.data6?.Tele_Cone_High_Average}</td>
-                            <td>{this.state.data6?.Tele_Cone_High_Max}</td>
+                            <td className="colorbg"></td>
+                            <td className="colorbg">Cone High</td>
+                            <td className="nobgcolor">{this.state.data1?.Tele_Cone_High_Average}</td>
+                            <td className="test">{this.state.data1?.Tele_Cone_High_Max}</td>
+                            <td className="nobgcolor">{this.state.data2?.Tele_Cone_High_Average}</td>
+                            <td className="test">{this.state.data2?.Tele_Cone_High_Max}</td>
+                            <td className="nobgcolor">{this.state.data3?.Tele_Cone_High_Average}</td>
+                            <td className="test">{this.state.data3?.Tele_Cone_High_Max}</td>
+                            <td className="nobgcolor">{this.state.data4?.Tele_Cone_High_Average}</td>
+                            <td className="test">{this.state.data4?.Tele_Cone_High_Max}</td>
+                            <td className="nobgcolor">{this.state.data5?.Tele_Cone_High_Average}</td>
+                            <td className="test">{this.state.data5?.Tele_Cone_High_Max}</td>
+                            <td className="nobgcolor">{this.state.data6?.Tele_Cone_High_Average}</td>
+                            <td className="test">{this.state.data6?.Tele_Cone_High_Max}</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td>Cone Mid</td>
-                            <td>{this.state.data1?.Tele_Cone_Mid_Average}</td>
-                            <td>{this.state.data1?.Tele_Cone_Mid_Max}</td>
-                            <td>{this.state.data2?.Tele_Cone_Mid_Average}</td>
-                            <td>{this.state.data2?.Tele_Cone_Mid_Max}</td>
-                            <td>{this.state.data3?.Tele_Cone_Mid_Average}</td>
-                            <td>{this.state.data3?.Tele_Cone_Mid_Max}</td>
-                            <td>{this.state.data4?.Tele_Cone_Mid_Average}</td>
-                            <td>{this.state.data4?.Tele_Cone_Mid_Max}</td>
-                            <td>{this.state.data5?.Tele_Cone_Mid_Average}</td>
-                            <td>{this.state.data5?.Tele_Cone_Mid_Max}</td>
-                            <td>{this.state.data6?.Tele_Cone_Mid_Average}</td>
-                            <td>{this.state.data6?.Tele_Cone_Mid_Max}</td>
+                            <td className="colorbg"></td>
+                            <td className="colorbg">Cone Mid</td>
+                            <td className="nobgcolor">{this.state.data1?.Tele_Cone_Mid_Average}</td>
+                            <td className="test">{this.state.data1?.Tele_Cone_Mid_Max}</td>
+                            <td className="nobgcolor">{this.state.data2?.Tele_Cone_Mid_Average}</td>
+                            <td className="test">{this.state.data2?.Tele_Cone_Mid_Max}</td>
+                            <td className="nobgcolor">{this.state.data3?.Tele_Cone_Mid_Average}</td>
+                            <td className="test">{this.state.data3?.Tele_Cone_Mid_Max}</td>
+                            <td className="nobgcolor">{this.state.data4?.Tele_Cone_Mid_Average}</td>
+                            <td className="test">{this.state.data4?.Tele_Cone_Mid_Max}</td>
+                            <td className="nobgcolor">{this.state.data5?.Tele_Cone_Mid_Average}</td>
+                            <td className="test">{this.state.data5?.Tele_Cone_Mid_Max}</td>
+                            <td className="nobgcolor">{this.state.data6?.Tele_Cone_Mid_Average}</td>
+                            <td className="test">{this.state.data6?.Tele_Cone_Mid_Max}</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td>Cone Low</td>
-                            <td>{this.state.data1?.Tele_Cone_Low_Average}</td>
-                            <td>{this.state.data1?.Tele_Cone_Low_Max}</td>
-                            <td>{this.state.data2?.Tele_Cone_Low_Average}</td>
-                            <td>{this.state.data2?.Tele_Cone_Low_Max}</td>
-                            <td>{this.state.data3?.Tele_Cone_Low_Average}</td>
-                            <td>{this.state.data3?.Tele_Cone_Low_Max}</td>
-                            <td>{this.state.data4?.Tele_Cone_Low_Average}</td>
-                            <td>{this.state.data4?.Tele_Cone_Low_Max}</td>
-                            <td>{this.state.data5?.Tele_Cone_Low_Average}</td>
-                            <td>{this.state.data5?.Tele_Cone_Low_Max}</td>
-                            <td>{this.state.data6?.Tele_Cone_Low_Average}</td>
-                            <td>{this.state.data6?.Tele_Cone_Low_Max}</td>
+                            <td className="colorbg"></td>
+                            <td className="colorbg">Cone Low</td>
+                            <td className="conelow">{this.state.data1?.Tele_Cone_Low_Average}</td>
+                            <td className="colorbg2">{this.state.data1?.Tele_Cone_Low_Max}</td>
+                            <td className="conelow">{this.state.data2?.Tele_Cone_Low_Average}</td>
+                            <td className="colorbg2">{this.state.data2?.Tele_Cone_Low_Max}</td>
+                            <td className="conelow">{this.state.data3?.Tele_Cone_Low_Average}</td>
+                            <td className="colorbg2">{this.state.data3?.Tele_Cone_Low_Max}</td>
+                            <td className="conelow">{this.state.data4?.Tele_Cone_Low_Average}</td>
+                            <td className="colorbg2">{this.state.data4?.Tele_Cone_Low_Max}</td>
+                            <td className="conelow">{this.state.data5?.Tele_Cone_Low_Average}</td>
+                            <td className="colorbg2">{this.state.data5?.Tele_Cone_Low_Max}</td>
+                            <td className="conelow">{this.state.data6?.Tele_Cone_Low_Average}</td>
+                            <td className="colorbg2">{this.state.data6?.Tele_Cone_Low_Max}</td>
                         </tr>
                         <tr>
-                            <td rowspan="2">Endgame</td>
-                            <td colspan="2">% Docked</td>
-                            <td colspan="2">{this.state.data1?.End_Dock_Frequency}</td>
-                            <td colspan="2">{this.state.data2?.End_Dock_Frequency}</td>
-                            <td colspan="2">{this.state.data3?.End_Dock_Frequency}</td>
-                            <td colspan="2">{this.state.data4?.End_Dock_Frequency}</td>
-                            <td colspan="2">{this.state.data5?.End_Dock_Frequency}</td>
-                            <td colspan="2">{this.state.data6?.End_Dock_Frequency}</td>
+                            <td rowspan="2" className="colorbg1">Endgame</td>
+                            <td colspan="2" className="colorbg">% Docked</td>
+                            <td className="test" colspan="2">{this.state.data1?.End_Dock_Frequency}</td>
+                            <td className="test" colspan="2">{this.state.data2?.End_Dock_Frequency}</td>
+                            <td className="test" colspan="2">{this.state.data3?.End_Dock_Frequency}</td>
+                            <td className="test" colspan="2">{this.state.data4?.End_Dock_Frequency}</td>
+                            <td className="test" colspan="2">{this.state.data5?.End_Dock_Frequency}</td>
+                            <td className="test" colspan="2">{this.state.data6?.End_Dock_Frequency}</td>
 
                         </tr>
                         <tr>
-                            <td colspan="2">% Balanced</td>
-                            <td colspan="2">{this.state.data1?.End_Balance_Frequency}</td>
-                            <td colspan="2">{this.state.data2?.End_Balance_Frequency}</td>
-                            <td colspan="2">{this.state.data3?.End_Balance_Frequency}</td>
-                            <td colspan="2">{this.state.data4?.End_Balance_Frequency}</td>
-                            <td colspan="2">{this.state.data5?.End_Balance_Frequency}</td>
-                            <td colspan="2">{this.state.data6?.End_Balance_Frequency}</td>
+                            <td colspan="2" className="colorbg">% Balanced</td>
+                            <td colspan="2" className="colorbg2">{this.state.data1?.End_Balance_Frequency}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data2?.End_Balance_Frequency}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data3?.End_Balance_Frequency}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data4?.End_Balance_Frequency}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data5?.End_Balance_Frequency}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data6?.End_Balance_Frequency}</td>
 
-                        </tr>   
+                        </tr>
 
                     </table>
+
+                    <PopupGfg data={this.state.data} />
 
                     {/* <General selected={this.state.selected === 'general'} /> */}
 
