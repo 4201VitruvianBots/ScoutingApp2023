@@ -1,5 +1,5 @@
 import './App.css';
-import { PopupGfg, SearchBar, Title, options } from "./Pages";
+import { SearchBar, Title, options } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 
@@ -15,7 +15,12 @@ class App extends React.Component {
             selectedOption4: options[0],
             selectedOption5: options[0],
             selectedOption6: options[0],
-            data: null
+            data1: null,
+            data2: null,
+            data3: null,
+            data4: null,
+            data5: null,
+            data6: null
         };
         this.setSelectedOption1 = this.setSelectedOption1.bind(this);
         this.setSelectedOption2 = this.setSelectedOption2.bind(this);
@@ -50,16 +55,39 @@ class App extends React.Component {
         this.setState({ selectedOption6: e });
     }
 
-    async componentDidMount() {
-        await this.componentDidUpdate({ selectedOption: { value: null } });
-    }
+    // async componentDidMount() {
+    //     await this.componentDidUpdate({ selectedOption1: { value: null }, selectedOption2: { value: null }, selectedOption3: { value: null }, selectedOption4: { value: null }, selectedOption5: { value: null }, selectedOption6: { value: null } });
+    // }
 
     // Replace all props with state
     async componentDidUpdate(prevProps, prevState) {
-        if (prevState.selectedOption.value === this.state.selectedOption.value) return;
+        if (prevState.selectedOption1.value !== this.state.selectedOption1.value) {
+            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/analysis/team/` + this.state.selectedOption1.value, { crossDomain: true, method: 'GET' });
+            const testData = await response.json();
+            this.setState({ data1: testData });
+        }
+        else if (prevState.selectedOption2.value !== this.state.selectedOption2.value) {
+            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/analysis/team/` + this.state.selectedOption2.value, { crossDomain: true, method: 'GET' });
+            const testData = await response.json();
+            this.setState({ data2: testData });
+        }
+        else if (prevState.selectedOption3.value !== this.state.selectedOption3.value) {
+            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/analysis/team/` + this.state.selectedOption3.value, { crossDomain: true, method: 'GET' });
+            this.setState({ data3: await response.json() });
+        }
+        else if (prevState.selectedOption4.value !== this.state.selectedOption4.value) {
+            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/analysis/team/` + this.state.selectedOption4.value, { crossDomain: true, method: 'GET' });
+            this.setState({ data4: await response.json() });
+        }
+        else if (prevState.selectedOption5.value !== this.state.selectedOption5.value) {
+            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/analysis/team/` + this.state.selectedOption5.value, { crossDomain: true, method: 'GET' });
+            this.setState({ data5: await response.json() });
+        }
+        else if (prevState.selectedOption6.value !== this.state.selectedOption6.value) {
+            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/analysis/team/` + this.state.selectedOption6.value, { crossDomain: true, method: 'GET' });
+            this.setState({ data6: await response.json() });
+        }
         // GET request using fetch with async/await
-        const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/analysis/team/` + this.state.selectedOption.value, { crossDomain: true, method: 'GET' });
-        this.setState({ data: await response.json() });
     }
 
     SignInHandler(e) {
@@ -124,7 +152,7 @@ class App extends React.Component {
                                 <SearchBar setSelectedOption={this.setSelectedOption3} selectedOption={this.state.selectedOption3} />
                             </td>
                             <td colspan="2">
-                                <SearchBar setSelectedOption={this.setSelectedOption3} selectedOption={this.state.selectedOption3} />
+                                <SearchBar setSelectedOption={this.setSelectedOption4} selectedOption={this.state.selectedOption4} />
                             </td>
                             <td colspan="2">
                                 <SearchBar setSelectedOption={this.setSelectedOption5} selectedOption={this.state.selectedOption5} />
@@ -200,51 +228,51 @@ class App extends React.Component {
 
                             <td></td>
                             <td>Game Pieces High</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{this.state.data1?.Auto_High_Average}</td>
+                            <td>{this.state.data1?.Auto_High_Max}</td>
+                            <td>{this.state.data2?.Auto_High_Average}</td>
+                            <td>{this.state.data2?.Auto_High_Max}</td>
+                            <td>{this.state.data3?.Auto_High_Average}</td>
+                            <td>{this.state.data3?.Auto_High_Max}</td>
+                            <td>{this.state.data4?.Auto_High_Average}</td>
+                            <td>{this.state.data4?.Auto_High_Max}</td>
+                            <td>{this.state.data5?.Auto_High_Average}</td>
+                            <td>{this.state.data5?.Auto_High_Max}</td>
+                            <td>{this.state.data6?.Auto_High_Average}</td>
+                            <td>{this.state.data6?.Auto_High_Max}</td>
 
                         </tr>
                         <tr>
                             <td></td>
                             <td>Game Pieces Mid</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{this.state.data1?.Auto_Mid_Average}</td>
+                            <td>{this.state.data1?.Auto_Mid_Max}</td>
+                            <td>{this.state.data2?.Auto_Mid_Average}</td>
+                            <td>{this.state.data2?.Auto_Mid_Max}</td>
+                            <td>{this.state.data3?.Auto_Mid_Average}</td>
+                            <td>{this.state.data3?.Auto_Mid_Max}</td>
+                            <td>{this.state.data4?.Auto_Mid_Average}</td>
+                            <td>{this.state.data4?.Auto_Mid_Max}</td>
+                            <td>{this.state.data5?.Auto_Mid_Average}</td>
+                            <td>{this.state.data5?.Auto_Mid_Max}</td>
+                            <td>{this.state.data6?.Auto_Mid_Average}</td>
+                            <td>{this.state.data6?.Auto_Mid_Max}</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>Game Pieces Low</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td ></td>
+                            <td>{this.state.data1?.Auto_Low_Average}</td>
+                            <td>{this.state.data1?.Auto_low_Max}</td>
+                            <td>{this.state.data2?.Auto_Low_Average}</td>
+                            <td>{this.state.data2?.Auto_low_Max}</td>
+                            <td>{this.state.data3?.Auto_Low_Average}</td>
+                            <td>{this.state.data3?.Auto_low_Max}</td>
+                            <td>{this.state.data4?.Auto_Low_Average}</td>
+                            <td>{this.state.data4?.Auto_low_Max}</td>
+                            <td>{this.state.data5?.Auto_Low_Average}</td>
+                            <td>{this.state.data5?.Auto_low_Max}</td>
+                            <td>{this.state.data6?.Auto_Low_Average}</td>
+                            <td>{this.state.data6?.Auto_low_Max}</td>
                         </tr>
                         <tr>
 
@@ -281,50 +309,50 @@ class App extends React.Component {
                         <tr>
                             <td></td>
                             <td>Game Pieces High</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{this.state.data1?.Tele_High_Average}</td>
+                            <td>{this.state.data1?.Tele_High_Max}</td>
+                            <td>{this.state.data2?.Tele_High_Average}</td>
+                            <td>{this.state.data2?.Tele_High_Max}</td>
+                            <td>{this.state.data3?.Tele_High_Average}</td>
+                            <td>{this.state.data3?.Tele_High_Max}</td>
+                            <td>{this.state.data4?.Tele_High_Average}</td>
+                            <td>{this.state.data4?.Tele_High_Max}</td>
+                            <td>{this.state.data5?.Tele_High_Average}</td>
+                            <td>{this.state.data5?.Tele_High_Max}</td>
+                            <td>{this.state.data6?.Tele_High_Average}</td>
+                            <td>{this.state.data6?.Tele_High_Max}</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>Game Pieces Mid</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td ></td>
+                            <td>{this.state.data1?.Tele_Mid_Average}</td>
+                            <td>{this.state.data1?.Tele_Mid_Max}</td>
+                            <td>{this.state.data2?.Tele_Mid_Average}</td>
+                            <td>{this.state.data2?.Tele_Mid_Max}</td>
+                            <td>{this.state.data3?.Tele_Mid_Average}</td>
+                            <td>{this.state.data3?.Tele_Mid_Max}</td>
+                            <td>{this.state.data4?.Tele_Mid_Average}</td>
+                            <td>{this.state.data4?.Tele_Mid_Max}</td>
+                            <td>{this.state.data5?.Tele_Mid_Average}</td>
+                            <td>{this.state.data5?.Tele_Mid_Max}</td>
+                            <td>{this.state.data6?.Tele_Mid_Average}</td>
+                            <td>{this.state.data6?.Tele_Mid_Max}</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>Game Pieces Low</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{this.state.data1?.Tele_Low_Average}</td>
+                            <td>{this.state.data1?.Tele_Low_Max}</td>
+                            <td>{this.state.data2?.Tele_Low_Average}</td>
+                            <td>{this.state.data2?.Tele_Low_Max}</td>
+                            <td>{this.state.data3?.Tele_Low_Average}</td>
+                            <td>{this.state.data3?.Tele_Low_Max}</td>
+                            <td>{this.state.data4?.Tele_Low_Average}</td>
+                            <td>{this.state.data4?.Tele_Low_Max}</td>
+                            <td>{this.state.data5?.Tele_Low_Average}</td>
+                            <td>{this.state.data5?.Tele_Low_Max}</td>
+                            <td>{this.state.data6?.Tele_Low_Average}</td>
+                            <td>{this.state.data6?.Tele_Low_Max}</td>
                         </tr>
                         <tr>
                             <td colspan="2">Total Cubes Scored</td>
@@ -487,8 +515,6 @@ class App extends React.Component {
                         </tr>
 
                     </table>
-
-                    <PopupGfg data={this.state.data} />
 
                     {/* <General selected={this.state.selected === 'general'} /> */}
 
