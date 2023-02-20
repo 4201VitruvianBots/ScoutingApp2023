@@ -64,7 +64,7 @@ class App extends React.Component {
         if (prevState.selectedOption1.value !== this.state.selectedOption1.value) {
             const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/analysis/team/` + this.state.selectedOption1.value, { crossDomain: true, method: 'GET' });
             if (response.status === 404) {
-                this.setState({ data1: null });     
+                this.setState({ data1: null });
             } else {
                 const testData = await response.json();
                 this.setState({ data1: testData });
@@ -73,42 +73,42 @@ class App extends React.Component {
         else if (prevState.selectedOption2.value !== this.state.selectedOption2.value) {
             const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/analysis/team/` + this.state.selectedOption2.value, { crossDomain: true, method: 'GET' });
             if (response.status === 404) {
-                this.setState({ data2: null });     
+                this.setState({ data2: null });
             } else {
-            const testData = await response.json();
-            this.setState({ data2: testData });
+                const testData = await response.json();
+                this.setState({ data2: testData });
             }
         }
         else if (prevState.selectedOption3.value !== this.state.selectedOption3.value) {
             const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/analysis/team/` + this.state.selectedOption3.value, { crossDomain: true, method: 'GET' });
             if (response.status === 404) {
-                this.setState({ data3: null });     
+                this.setState({ data3: null });
             } else {
-            this.setState({ data3: await response.json() });
+                this.setState({ data3: await response.json() });
             }
         }
         else if (prevState.selectedOption4.value !== this.state.selectedOption4.value) {
             const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/analysis/team/` + this.state.selectedOption4.value, { crossDomain: true, method: 'GET' });
             if (response.status === 404) {
-                this.setState({ data4: null });     
+                this.setState({ data4: null });
             } else {
-            this.setState({ data4: await response.json() });
+                this.setState({ data4: await response.json() });
             }
         }
         else if (prevState.selectedOption5.value !== this.state.selectedOption5.value) {
             const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/analysis/team/` + this.state.selectedOption5.value, { crossDomain: true, method: 'GET' });
             if (response.status === 404) {
-                this.setState({ data5: null });     
+                this.setState({ data5: null });
             } else {
-            this.setState({ data5: await response.json() });
+                this.setState({ data5: await response.json() });
             }
         }
         else if (prevState.selectedOption6.value !== this.state.selectedOption6.value) {
             const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/analysis/team/` + this.state.selectedOption6.value, { crossDomain: true, method: 'GET' });
             if (response.status === 404) {
-                this.setState({ data6: null });     
+                this.setState({ data6: null });
             } else {
-            this.setState({ data6: await response.json() });
+                this.setState({ data6: await response.json() });
             }
         }
         // GET request using fetch with async/await
@@ -301,18 +301,17 @@ class App extends React.Component {
                         <tr>
 
                             <td colspan="2">% Balanced / Docked</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td ></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+
+
+
+
+
                         </tr>
                         <tr>
                             <td rowspan="12">Tele-Op</td>
@@ -509,33 +508,21 @@ class App extends React.Component {
                         <tr>
                             <td rowspan="2">Endgame</td>
                             <td colspan="2">% Docked</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td ></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
                         </tr>
                         <tr>
                             <td colspan="2">% Balanced</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
                         </tr>
 
                     </table>
