@@ -1,0 +1,307 @@
+ :root {
+   --accent-4: #003800;
+   --background-1: f3f3f3ff;
+   --accent-default: var(--accent-3);
+   --bg-color: var(--background-1);
+   text-align: center;
+ }
+
+ .page-title {
+   color: black;
+   font-size: 25px;
+   font-style: italic;
+   font-weight: 300;
+ }
+
+ ::placeholder {
+   color: gray;
+   font-size: 20px;
+   font-style: italic;
+   text-align: center;
+ }
+
+ .section-label {
+   color: black;
+   font-size: 30px;
+   font-weight: bold;
+   margin: 20px;
+
+ }
+
+ .item-label,
+ .item-label2 {
+   color: black;
+   font-size: 20px;
+
+   display: inline-block;
+ }
+
+ .item-label2 {
+   margin-bottom: 20px;
+   margin-top: 10px;
+ }
+
+ .dropdown {
+   border-color: #085f00;
+   border-width: 50px;
+ }
+
+ .textInput {
+   border-color: #085f00;
+   border-width: 50px;
+ }
+
+ .numberInput {
+   border-color: #085f00;
+   border-width: 50px;
+   margin: 10px;
+ }
+
+ .textArea {
+   background-color: #b6d7a8ff;
+   min-width: 300px;
+   min-height: 100px;
+   padding: 25px;
+   margin: 0px 100px;
+ }
+
+ body {
+   margin: 0;
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   font-weight: 100;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   background-color: var(--bg-color);
+   color: var(--accent-1);
+ }
+
+ select {
+   border-color: var(--accent-3);
+   background-color: var(--accent-1);
+   display: block;
+   width: 200px;
+   height: 40px;
+   font-size: 25px;
+   margin: 0 auto;
+ }
+
+ input[type="text"] {
+   border-color: #003800;
+   color: black;
+   display: block;
+   height: 30px;
+   font-size: 20px;
+   margin: 0 auto;
+   margin-bottom: 20px;
+ }
+
+ .chonk {
+   height: auto;
+   font-size: 25px !important;
+   width: 268px;
+   font-size: 30px;
+   padding: 15px;
+   margin: 10px;
+   background-color: #83c183;
+ }
+
+ .chonk:active {
+   background-color: #b6d7a8ff;
+ }
+
+ input[type=button].chonk {
+   background-color: #cad3c8;
+   border-width: 2px;
+   border-color: #83c183;
+ }
+
+ input[type="checkbox"] {
+   border-color: var(--accent-3);
+   background-color: var(--accent-1);
+   width: 10%;
+   height: 20px;
+   font-size: 15px;
+   display: inline;
+ }
+
+ input[type="radio"] {
+   border-color: var(--accent-3);
+   background-color: var(--accent-1);
+   width: 50px;
+   height: 20px;
+   display: inline;
+
+ }
+
+ input[type="number"] {
+   display: inline !important;
+   background-color: var(--accent-1);
+   width: 50px !important;
+   height: 32.5px !important;
+   font-size: 25px;
+   text-align: center;
+   border-color: teal;
+ }
+
+ .SAVE,
+ .CLEAR {
+   display: inline-block;
+   width: 300px;
+   height: 35px;
+   font-size: 20px;
+   margin: 15px;
+ }
+
+ .SAVE {
+   background-color: #83c183;
+   margin-top: 30px;
+   margin-bottom: 10px;
+
+ }
+
+ .CLEAR {
+   border-color: var(--accent-3);
+   background-color: red;
+ }
+
+ .savept2 {
+   display: inline-block;
+   width: 250px !important;
+   height: 35px;
+   font-size: 25px;
+   border-color: var(--accent-3);
+   background-color: var(--accent-2);
+ }
+
+ .radioButtons {
+   display: inline-block;
+   text-align: left;
+ }
+
+ .gallery {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+   gap: 30px;
+   margin: 0 auto;
+   padding: 10px 0;
+ }
+
+ .green-block,
+ .motors,
+ .batteries,
+ .motorType,
+ .autos,
+ .workingOn {
+   background-color: var(--background-1);
+   border: 2px solid #58a16383;
+   box-sizing: border-box;
+   padding: 5px;
+   width: 15%;
+ }
+
+ .motors,
+ .batteries {
+   padding: 10px;
+ }
+
+ .motorType,
+ .autos,
+ .workingOn {
+   padding: 10px;
+   width: (15% + 100px);
+ }
+
+ .generalLabel {
+   font-size: 20px;
+   color: black;
+   font-weight: 500;
+ }
+
+ .generalButton {
+   width: fit-content;
+   height: 20%;
+   font-size: 20px;
+   margin: 0 auto;
+   margin-bottom: 10px;
+   display: block;
+   padding: 10px;
+   display: inline-flex;
+   border: 3px solid #6aa84fff;
+ }
+
+ .submit-button {
+   width: 500px;
+   font-size: 50px;
+   margin: 20px;
+ }
+
+
+ .buttons {
+   width: 200px;
+   height: auto;
+
+ }
+
+ .css-b62m3t-container {
+   width: 150px;
+
+   display: inline-block;
+ }
+
+ .popupbutton {
+   height: auto;
+   font-size: 25px !important;
+   width: 235px;
+   font-size: 30px;
+   padding: 15px;
+   margin: 10px;
+   background-color: #83c183;
+   border: #085f00
+ }
+
+ .popuplocation {
+   text-align: left;
+   padding-left: 10px;
+ }
+
+
+ .pitscout {
+   height: auto;
+   font-size: 15px !important;
+   width: 150px;
+   font-size: 30px;
+   padding: 15px;
+   margin: 10px;
+   background-color: #b6d7a8ff;
+   display: inline-block;
+ }
+
+ .pitscoutinfo {
+   height: auto;
+   font-size: 15px !important;
+   width: auto;
+   font-size: 30px;
+   padding: auto;
+   margin: auto;
+   background-color: #dbe9d3ff;
+   border: #085f00
+ }
+
+ .popup-overlay .popup-content {
+   width: auto;
+ }
+
+ table,
+ th,
+ td {
+   /* background-color: whit; */
+   border: 2px solid;
+ }
+
+ table {
+   border-collapse: collapse;
+   margin: auto;
+ }
