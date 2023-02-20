@@ -202,34 +202,22 @@ class App extends React.Component {
                         </tr>
                         <tr>
                             <td colspan="3" className="colorbg1">Pin Fouls</td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
+                            <td colspan="2" className="colorbg2">{this.state.data1?.Total_Pin_Fouls}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data2?.Total_Pin_Fouls}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data3?.Total_Pin_Fouls}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data4?.Total_Pin_Fouls}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data5?.Total_Pin_Fouls}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data6?.Total_Pin_Fouls}</td>
 
                         </tr>
                         <tr>
                             <td colspan="3" className="colorbg1" >G204 Fouls</td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
+                            <td colspan="2" className="colorbg2">{this.state.data1?.Total_Inside_Robot_Fouls}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data2?.Total_Inside_Robot_Fouls}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data3?.Total_Inside_Robot_Fouls}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data4?.Total_Inside_Robot_Fouls}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data5?.Total_Inside_Robot_Fouls}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data6?.Total_Inside_Robot_Fouls}</td>
                         </tr>
                         <tr>
                             <td rowspan="5" className="colorbg1">Auto</td>
