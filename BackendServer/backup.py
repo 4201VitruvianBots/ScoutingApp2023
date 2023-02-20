@@ -2,7 +2,7 @@ import os
 import time
 
 # Docker container name
-CONTAINER_NAME = 'serene_hamilton'
+CONTAINER_NAME = 'crazy_agnesi'
 
 # MySQL database credentials
 DB_USER = 'root'
