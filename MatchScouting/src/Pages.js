@@ -217,4 +217,4 @@ function SavePage(props) {
 
 
 
-export { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation, options };
+export { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation };
