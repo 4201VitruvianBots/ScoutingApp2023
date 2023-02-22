@@ -375,3 +375,11 @@ iframe {
 .align-radio .number-off {
   width: 150px;
 }
+
+.teamSearch {
+  width: 50%;
+  margin: 0 auto;
+  font-size: 20px;
+  font-weight: 600;
+  color: black;
+}

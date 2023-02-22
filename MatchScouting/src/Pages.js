@@ -1,5 +1,6 @@
-import { NumberInput, ButtonInput, MultiButton } from "./Form";
+import { NumberInput, ButtonInput, MultiButton, SearchBar, options } from "./Form";
 import './App.css';
+import { useState } from "react";
 
 function Page(props) {
     return (
@@ -43,6 +44,16 @@ function SignIn(props) {
 }
 
 function PreGame(props) {
+
+    const [teamOption, setTeamOption] = useState(options[0]); //state
+
+    const setSelectedOption = (newOption) => {
+
+        setTeamOption(newOption);
+
+        //functions (setting a function to a variable)
+    }
+
     return (
         <Page selected={props.selected} className="page" id="pre-game">
             <p className="section-label" id="Pre">Pre-Game</p>
@@ -53,7 +64,9 @@ function PreGame(props) {
                 <input type="number" id="Match_Number" name="Match_Number" className="textInput" />
 
                 <p className="itemLabel" htmlFor="Match_Number">TEAM NUMBER</p>
-                <input type="number" id="Team_Number" name="Team_Number" className="textInput" />
+                {/* <input type="number" id="Team_Number" name="Team_Number" className="textInput" /> */}
+
+                <SearchBar setSelectedOption={setSelectedOption} selectedOption={teamOption} name="Team_Number" className="teamSearch" />
 
 
                 <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
@@ -75,6 +88,8 @@ function PreGame(props) {
 
     );
 }
+
+
 
 
 function Auto(props) {
@@ -200,4 +215,6 @@ function SavePage(props) {
     );
 }
 
-export { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation };
+
+
+export { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation, options };
