@@ -104,11 +104,11 @@ function Auto(props) {
                 <div className="gallery">
 
                     <div className="test">
-                        <h2>H</h2>
+                        <h2>High</h2>
                         <br></br>
-                        <h2>M</h2>
+                        <h2>Mid</h2>
                         <br></br>
-                        <h2>L</h2>
+                        <h2>Low</h2>
                     </div>
 
                     <div>
@@ -139,11 +139,11 @@ function TeleOp(props) {
                 <div className="gallery">
 
                     <div className="test">
-                        <h2>H</h2>
+                        <h2>High</h2>
                         <br></br>
-                        <h2>M</h2>
+                        <h2>Mid</h2>
                         <br></br>
-                        <h2>L</h2>
+                        <h2>Low</h2>
                     </div>
 
                     <div>
