@@ -213,9 +213,9 @@ def updateAnalysis(Team_Number):
                     (Team_Number,Team_Number)
                 )
 
-    mycursor.execute("UPDATE dataAnalysis SET End_Balance_Frequency = (SELECT COUNT(*) FROM matchData WHERE Tele_Station = 1 AND Team_Number = %s) / (SELECT COUNT(*) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
-    mycursor.execute("UPDATE dataAnalysis SET End_Dock_Frequency = (SELECT COUNT(*) FROM matchData WHERE (Tele_Station = 0 OR Tele_Station = 1) AND Team_Number = %s) / (SELECT COUNT(*) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
-    mycursor.execute("UPDATE dataAnalysis SET Auto_Balance_Frequency = (SELECT COUNT(*) FROM matchData WHERE Auto_Station = 1 AND Team_Number = %s) / (SELECT COUNT(*) FROM matchData WHERE (Auto_Station = 0 OR Auto_Station = 1) AND Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
+    mycursor.execute("UPDATE dataAnalysis SET End_Balance_Frequency = (SELECT COUNT(*) FROM matchData WHERE Tele_Station = 1 AND Team_Number = %s) / NULLIF((SELECT COUNT(*) FROM matchData WHERE Team_Number = %s), 0) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
+    mycursor.execute("UPDATE dataAnalysis SET End_Dock_Frequency = (SELECT COUNT(*) FROM matchData WHERE (Tele_Station = 0 OR Tele_Station = 1) AND Team_Number = %s) / NULLIF((SELECT COUNT(*) FROM matchData WHERE Team_Number = %s), 0) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
+    mycursor.execute("UPDATE dataAnalysis SET Auto_Balance_Frequency = (SELECT COUNT(*) FROM matchData WHERE Auto_Station = 1 AND Team_Number = %s) / NULLIF((SELECT COUNT(*) FROM matchData WHERE (Auto_Station = 0 OR Auto_Station = 1) AND Team_Number = %s), 0) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
     # mycursor.execute("UPDATE dataAnalysis SET Average_Cubes = (SELECT AVG(Auto_Cube_Low + Auto_Cube_Mid + Auto_Cube_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_Cube_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
     # mycursor.execute("UPDATE dataAnalysis SET Average_Cones = (SELECT AVG(Auto_Cone_Low + Auto_Cone_Mid + Auto_Cone_High + Tele_Cone_Low + Tele_Cone_Mid + Tele_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
     # mycursor.execute("UPDATE dataAnalysis SET Average_Pieces = (SELECT AVG(Auto_Cone_Low + Auto_Cone_Mid + Auto_Cone_High + Tele_Cone_Low + Tele_Cone_Mid + Tele_Cone_High + Auto_Cube_Low + Auto_Cube_Mid + Auto_Cube_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_Cube_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
@@ -257,9 +257,9 @@ def getdataAnalysis(**kwargs):
 
 # Convert data to proper format
 def format_data(string, name):
-    print("formatting data")
-    print(string)
-    print(name)
+    # print("formatting data")
+    # print(string)
+    # print(name)
     if name[-3] == '[' and name[-1] == ']':
         name = name[:-3]
 
@@ -270,10 +270,10 @@ def format_data(string, name):
 
     len(string)
     if len(string)==0:
-        print(f"string='{string}',with no spaces is empty")
+        # print(f"string='{string}',with no spaces is empty")
         return (0)
-    else:
-        print(f"string='{string}',with no spaces is not empty")
+    # else:
+        # print(f"string='{string}',with no spaces is not empty")
     return int(string)
 
 # Close connections before exit

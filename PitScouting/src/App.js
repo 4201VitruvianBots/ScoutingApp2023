@@ -62,7 +62,7 @@ class App extends React.Component {
                 <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
             </div>
       */}
-                <form action={`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/pits`} method="POST" target="frame" id="myForm" onSubmit={clearForm}>
+                <form action={`http://${process.env.REACT_APP_BACKEND_IP}/data/pits`} method="POST" target="frame" id="myForm" onSubmit={clearForm}>
                     <input type='hidden' value={this.state.EventName} name='Competition' />
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
 
