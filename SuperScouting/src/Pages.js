@@ -1,4 +1,4 @@
-import { MultiButton, FoulCards } from "./Form";
+import { MultiButton, FoulCards, SearchBar, options } from "./Form";
 import './App.css';
 import React, { useState } from "react";
 import Popup from 'reactjs-popup';
@@ -13,8 +13,6 @@ function Page(props) {
     );
 }
 
-
-
 function SignIn(props) {
 
     return (
@@ -25,7 +23,7 @@ function SignIn(props) {
                 <div className="textArea">
                     <input type="text" id="Sname" name="Scouter_Name" placeholder="SCOUTER NAME" className="name" />
                     <br />
-                    
+
                     <select name="Competition" id="Ename" defaultValue="Choose">
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
                         <option value="Port Hueneme">Port Hueneme</option>
@@ -34,11 +32,7 @@ function SignIn(props) {
                     <div className="allianceSelect">
                         <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} id="Team_Alliance" />
                     </div>
-                    {/* <div className="loginButtons">
-                        <input type="text" placeholder="TEAM 1" className="login" />
-                        <input type="text" placeholder="TEAM 2" className="login" />
-                        <input type="text" placeholder="TEAM 3" className="login" />
-                    </div> */}
+
 
                     {/* {showCheck && <div class="check"></div>} */}
 
@@ -60,29 +54,27 @@ function General(props) {
 
     const [fouls, setFouls] = useState([]);
 
-    const [teamInput, setTeamInput] = useState('');
+    const [teamOption1, setTeamOption1] = useState(options[0]); //state
+    const [teamOption2, setTeamOption2] = useState(options[0]); //state
+    const [teamOption3, setTeamOption3] = useState(options[0]); //state
 
-
-    const handleInputChange = (teamInput) => {
-        let one = document.getElementById("team1").value;
-        let two = document.getElementById("team2").value;
-        let three = document.getElementById("team3").value;
-        setTeamInput([one, two, three]);
-    }
+    //functions (setting a function to a variable)
 
 
     return (
+
         <Page selected={props.selected} id="general" className="page">
             <p className="section-label">Fouls</p>
             <div className="textArea">
                 <br />
-                <input type="text" id="Sname" name="Match_Number" placeholder="MATCH NUMBER" className="name" />
+                <input type="number" id="Sname" name="Match_Number" placeholder="MATCH NUMBER" className="name" />
                 <br />
                 <br />
                 <div className="boxes">
                     <div className="team1">
 
-                        <input type="text" placeholder="TEAM 1" className="login" id="team1" name="Team_1" onChange={handleInputChange} />
+                        {/* <input type="text" placeholder="TEAM 1" className="login" id="team1" name="Team_1" onChange={handleInputChange} /> */}
+                        <SearchBar setSelectedOption={setTeamOption1} name="Team_Number" className="teamSearch" />
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
@@ -90,7 +82,7 @@ function General(props) {
                                 close => (
                                     <div className='modal'>
                                         <div className='content'>
-                                            <label className="label-title">{teamInput[0]}</label>
+                                            <label className="label-title">{teamOption1.label}</label>
                                             <br />
                                             <br />
                                             <select name="Competition" id="selector" defaultValue="Choose" >
@@ -110,15 +102,16 @@ function General(props) {
                                             <button onClick={() => {
                                                 // setFouls = [document.getElementById("popupSelect"), document.getElementById("selector"), document.getElementById("note")];
 
+                                                // let teams = document.getElementById("teamSearch");
+                                                // let currentTeam = teams.options[teams.selectedIndex].value;
                                                 let selector = document.getElementById("selector");
                                                 let text = selector.options[selector.selectedIndex].text; //then save let text as index 1?
                                                 let content = document.getElementById("note").value;
-                                                setFouls([...fouls, [teamInput[0], text, content, selector.selectedIndex]]);
+
+                                                setFouls([...fouls, [teamOption1.value, text, content]]);
 
                                                 close();
-                                            }
-
-                                            }>
+                                            }}>
                                                 Enter foul
                                             </button>
                                             <br />
@@ -134,7 +127,7 @@ function General(props) {
                     </div>
                     <div className="team2">
 
-                        <input type="text" placeholder="TEAM 2" className="login" id="team2" name="Team_2" onChange={handleInputChange} />
+                        <SearchBar setSelectedOption={setTeamOption2} name="Team_Number" className="teamSearch" />
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
@@ -142,7 +135,7 @@ function General(props) {
                                 close => (
                                     <div className='modal'>
                                         <div className='content'>
-                                            <label className="label-title">{teamInput[1]}</label>
+                                            <label className="label-title">{teamOption2.label}</label>
 
                                             <br />
                                             <br />
@@ -161,11 +154,10 @@ function General(props) {
 
                                             <button onClick={() => {
                                                 // setFouls = [document.getElementById("popupSelect"), document.getElementById("selector"), document.getElementById("note")];
-
                                                 let selector = document.getElementById("selector");
                                                 let text = selector.options[selector.selectedIndex].text; //then save let text as index 1?
                                                 let content = document.getElementById("note").value;
-                                                setFouls([...fouls, [teamInput[1], text, content, selector.selectedIndex]]);
+                                                setFouls([...fouls, [teamOption2.value, text, content, selector.selectedIndex]]);
 
                                                 close();
                                             }
@@ -186,7 +178,7 @@ function General(props) {
 
                     <div className="team3">
 
-                        <input type="text" placeholder="TEAM 3" className="login" id="team3" name="Team_3" onChange={handleInputChange} />
+                        <SearchBar setSelectedOption={setTeamOption3} name="Team_Number" className="teamSearch" />
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
@@ -194,7 +186,7 @@ function General(props) {
                                 close => (
                                     <div className='modal'>
                                         <div className='content'>
-                                            <label className="label-title">{teamInput[2]}</label>
+                                            <label className="label-title">{teamOption3.label}</label>
                                             <br />
                                             <br />
                                             <select name="Competition" id="selector" defaultValue="Choose" >
@@ -216,7 +208,7 @@ function General(props) {
                                                 let selector = document.getElementById("selector");
                                                 let text = selector.options[selector.selectedIndex].text; //then save let text as index 1?
                                                 let content = document.getElementById("note").value;
-                                                setFouls([...fouls, [teamInput[2], text, content, selector.selectedIndex]]);
+                                                setFouls([...fouls, [teamOption3.value, text, content, selector.selectedIndex]]);
 
                                                 close();
                                             }
@@ -242,7 +234,7 @@ function General(props) {
                     <FoulCards fouls={fouls}></FoulCards>
                 </div>
 
-                {fouls.map((e,i) => (<React.Fragment key={i}>
+                {fouls.map((e, i) => (<React.Fragment key={i}>
                     <input type="hidden" name={`Team_Number[${i}]`} value={e[0]} />
                     <input type="hidden" name={`Comments[${i}]`} value={e[2]} />
                     <input type="hidden" name={`Cause[${i}]`} value={e[3]} />
