@@ -5,7 +5,7 @@ import React from "react";
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { signedIn: false, ScouterName: "", EventName: "" };
+        this.state = { signedIn: false, ScouterName: "", EventName: "", serverUp: false };
         this.setSelected = this.setSelected.bind(this);
         this.SignInHandler = this.SignInHandler.bind(this)
     }
@@ -20,6 +20,14 @@ class App extends React.Component {
         const answers = e.target.elements;
         this.setState({ signedIn: true, ScouterName: answers.Scouter_Name.value, EventName: answers.Competition.value, QRCode: null });
         return false;
+    }
+
+    componentDidMount() {
+        setInterval(() => {
+            ping(process.env.REACT_APP_BACKEND_IP, (up) => {
+                this.setState({ serverUp: up });
+            })
+        }, 60000) // Once per minute
     }
 
     render() {
@@ -49,12 +57,35 @@ class App extends React.Component {
                     <TeleOp selected={this.state.selected === 'tele-op'} />
 
                     <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
+                    {
+                        this.state.serverUp ?
+                            <p>Up</p> :
+                            <p>Down</p>
+                    }
                     {/* <input type="submit" className="submit-button"></input> */}
                 </form>
                 <iframe name="frame" title="frame"></iframe>
 
             </main>
         );
+    }
+
+}
+
+function ping(host, callback) {
+    let http = new XMLHttpRequest();
+
+    http.open("GET", "http://" + host, /*async*/true);
+    http.onreadystatechange = function () {
+        if (http.readyState === 4) {
+            callback(true);
+        }
+    };
+    try {
+        http.send(null);
+    } catch (exception) {
+        // this is expected
+        callback(false);
     }
 
 }
