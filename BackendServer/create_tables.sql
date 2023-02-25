@@ -100,5 +100,9 @@ CREATE TABLE dataAnalysis(
 	End_Dock_Frequency FLOAT,
 	End_Balance_Frequency FLOAT,
 	Average_Fouls FLOAT,
+	Total_Pin_Fouls INT,
+	Total_Disabled_Fouls INT,
+	Total_Overextension_Fouls INT,
+	Total_Inside_Robot_Fouls INT,
 	PRIMARY KEY(Team_Number)
 );

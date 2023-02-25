@@ -62,7 +62,7 @@ class App extends React.Component {
     // Replace all props with state
     async componentDidUpdate(prevProps, prevState) {
         if (prevState.selectedOption1.value !== this.state.selectedOption1.value) {
-            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/analysis/team/` + this.state.selectedOption1.value, { crossDomain: true, method: 'GET' });
+            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption1.value, { crossDomain: true, method: 'GET' });
             if (response.status === 404) {
                 this.setState({ data1: null });
             } else {
@@ -71,7 +71,7 @@ class App extends React.Component {
             }
         }
         else if (prevState.selectedOption2.value !== this.state.selectedOption2.value) {
-            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/analysis/team/` + this.state.selectedOption2.value, { crossDomain: true, method: 'GET' });
+            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption2.value, { crossDomain: true, method: 'GET' });
             if (response.status === 404) {
                 this.setState({ data2: null });
             } else {
@@ -80,7 +80,7 @@ class App extends React.Component {
             }
         }
         else if (prevState.selectedOption3.value !== this.state.selectedOption3.value) {
-            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/analysis/team/` + this.state.selectedOption3.value, { crossDomain: true, method: 'GET' });
+            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption3.value, { crossDomain: true, method: 'GET' });
             if (response.status === 404) {
                 this.setState({ data3: null });
             } else {
@@ -88,7 +88,7 @@ class App extends React.Component {
             }
         }
         else if (prevState.selectedOption4.value !== this.state.selectedOption4.value) {
-            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/analysis/team/` + this.state.selectedOption4.value, { crossDomain: true, method: 'GET' });
+            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption4.value, { crossDomain: true, method: 'GET' });
             if (response.status === 404) {
                 this.setState({ data4: null });
             } else {
@@ -96,7 +96,7 @@ class App extends React.Component {
             }
         }
         else if (prevState.selectedOption5.value !== this.state.selectedOption5.value) {
-            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/analysis/team/` + this.state.selectedOption5.value, { crossDomain: true, method: 'GET' });
+            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption5.value, { crossDomain: true, method: 'GET' });
             if (response.status === 404) {
                 this.setState({ data5: null });
             } else {
@@ -104,7 +104,7 @@ class App extends React.Component {
             }
         }
         else if (prevState.selectedOption6.value !== this.state.selectedOption6.value) {
-            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/analysis/team/` + this.state.selectedOption6.value, { crossDomain: true, method: 'GET' });
+            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption6.value, { crossDomain: true, method: 'GET' });
             if (response.status === 404) {
                 this.setState({ data6: null });
             } else {
@@ -202,34 +202,22 @@ class App extends React.Component {
                         </tr>
                         <tr>
                             <td colspan="3" className="colorbg1">Pin Fouls</td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
+                            <td colspan="2" className="colorbg2">{this.state.data1?.Total_Pin_Fouls}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data2?.Total_Pin_Fouls}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data3?.Total_Pin_Fouls}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data4?.Total_Pin_Fouls}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data5?.Total_Pin_Fouls}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data6?.Total_Pin_Fouls}</td>
 
                         </tr>
                         <tr>
                             <td colspan="3" className="colorbg1" >G204 Fouls</td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
-                            <td className="test2"></td>
-                            <td className="test"></td>
+                            <td colspan="2" className="colorbg2">{this.state.data1?.Total_Inside_Robot_Fouls}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data2?.Total_Inside_Robot_Fouls}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data3?.Total_Inside_Robot_Fouls}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data4?.Total_Inside_Robot_Fouls}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data5?.Total_Inside_Robot_Fouls}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data6?.Total_Inside_Robot_Fouls}</td>
                         </tr>
                         <tr>
                             <td rowspan="5" className="colorbg1">Auto</td>

@@ -168,8 +168,9 @@ def handle_post6():
     ), [format_data(formData[key], key) for key in superScoutColumns])
 
     mydb.commit()
-    # for num in ('1','2','3'):
-    #     updateFoulAnalysis(formData.get('Team_' + num))
+    for num in ('1','2','3'):
+        updateFoulAnalysis(formData.get('Team_' + num))
+        
     #for i in variable:
        # print(i)
     # Do something with the data
@@ -212,9 +213,9 @@ def updateAnalysis(Team_Number):
                     (Team_Number,Team_Number)
                 )
 
-    mycursor.execute("UPDATE dataAnalysis SET End_Balance_Frequency = (SELECT COUNT(*) FROM matchData WHERE Tele_Station = 1 AND Team_Number = %s) / (SELECT COUNT(*) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
-    mycursor.execute("UPDATE dataAnalysis SET End_Dock_Frequency = (SELECT COUNT(*) FROM matchData WHERE (Tele_Station = 0 OR Tele_Station = 1) AND Team_Number = %s) / (SELECT COUNT(*) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
-    mycursor.execute("UPDATE dataAnalysis SET Auto_Balance_Frequency = (SELECT COUNT(*) FROM matchData WHERE Auto_Station = 1 AND Team_Number = %s) / (SELECT COUNT(*) FROM matchData WHERE (Auto_Station = 0 OR Auto_Station = 1) AND Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
+    mycursor.execute("UPDATE dataAnalysis SET End_Balance_Frequency = (SELECT COUNT(*) FROM matchData WHERE Tele_Station = 1 AND Team_Number = %s) / NULLIF((SELECT COUNT(*) FROM matchData WHERE Team_Number = %s), 0) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
+    mycursor.execute("UPDATE dataAnalysis SET End_Dock_Frequency = (SELECT COUNT(*) FROM matchData WHERE (Tele_Station = 0 OR Tele_Station = 1) AND Team_Number = %s) / NULLIF((SELECT COUNT(*) FROM matchData WHERE Team_Number = %s), 0) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
+    mycursor.execute("UPDATE dataAnalysis SET Auto_Balance_Frequency = (SELECT COUNT(*) FROM matchData WHERE Auto_Station = 1 AND Team_Number = %s) / NULLIF((SELECT COUNT(*) FROM matchData WHERE (Auto_Station = 0 OR Auto_Station = 1) AND Team_Number = %s), 0) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
     # mycursor.execute("UPDATE dataAnalysis SET Average_Cubes = (SELECT AVG(Auto_Cube_Low + Auto_Cube_Mid + Auto_Cube_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_Cube_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
     # mycursor.execute("UPDATE dataAnalysis SET Average_Cones = (SELECT AVG(Auto_Cone_Low + Auto_Cone_Mid + Auto_Cone_High + Tele_Cone_Low + Tele_Cone_Mid + Tele_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
     # mycursor.execute("UPDATE dataAnalysis SET Average_Pieces = (SELECT AVG(Auto_Cone_Low + Auto_Cone_Mid + Auto_Cone_High + Tele_Cone_Low + Tele_Cone_Mid + Tele_Cone_High + Auto_Cube_Low + Auto_Cube_Mid + Auto_Cube_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_Cube_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
@@ -227,6 +228,9 @@ def updateAnalysis(Team_Number):
 def updateFoulAnalysis(Team_Number):
     mycursor.execute('INSERT IGNORE INTO dataAnalysis(Team_Number) VALUES (%s)', (Team_Number,))
     mycursor.execute("UPDATE dataAnalysis SET Average_Fouls = (SELECT COUNT(*) FROM fouls WHERE Team_Number = %s) / (SELECT COUNT(*) FROM superScout WHERE Team_1 = %s OR TEAM_2 = %s OR TEAM_3 = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number,Team_Number,Team_Number))
+    for index, name in (1, 'Pin'), (2, 'Disabled'), (3, 'Overextension'), (4, 'Inside_Robot'):
+        mycursor.execute(f"UPDATE dataAnalysis SET Total_{name}_Fouls = (SELECT COUNT(*) FROM fouls WHERE Team_Number = %s AND CAUSE = %s) WHERE Team_Number = %s", (Team_Number, index, Team_Number))
+
     mydb.commit()
 
 def getdataAnalysis(**kwargs):
@@ -253,9 +257,9 @@ def getdataAnalysis(**kwargs):
 
 # Convert data to proper format
 def format_data(string, name):
-    print("formatting data")
-    print(string)
-    print(name)
+    # print("formatting data")
+    # print(string)
+    # print(name)
     if name[-3] == '[' and name[-1] == ']':
         name = name[:-3]
 
@@ -266,10 +270,10 @@ def format_data(string, name):
 
     len(string)
     if len(string)==0:
-        print(f"string='{string}',with no spaces is empty")
+        # print(f"string='{string}',with no spaces is empty")
         return (0)
-    else:
-        print(f"string='{string}',with no spaces is not empty")
+    # else:
+        # print(f"string='{string}',with no spaces is not empty")
     return int(string)
 
 # Close connections before exit
