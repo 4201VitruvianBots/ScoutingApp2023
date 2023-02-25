@@ -71,7 +71,7 @@ class App extends React.Component {
                 break;
             case 'general':
 
-                selectedPage = (<form action={`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/superScout`} method="POST" target="frame" id="myForm" onSubmit={this.clearForm}>
+                selectedPage = (<form action={`http://${process.env.REACT_APP_BACKEND_IP}/data/superScout`} method="POST" target="frame" id="myForm" onSubmit={this.clearForm}>
 
                     <input type='hidden' value={this.state.EventName} name='Competition' />
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
@@ -101,11 +101,11 @@ class App extends React.Component {
 
     clearForm() {
         document.getElementById("myForm").submit();
+        const emptyFouls = () => {this.setFouls([]);}
         setTimeout(function () {
             document.getElementById("myForm").reset();
-
+            emptyFouls();
         }, 0)
-        this.setFouls([]);
 
 
     }

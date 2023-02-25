@@ -82,7 +82,7 @@ function General(props) {
                     <div className="team1">
 
                         {/* <input type="text" placeholder="TEAM 1" className="login" id="team1" name="Team_1" onChange={handleInputChange} /> */}
-                        <SearchBar setSelectedOption={setTeamOption1} name="Team_Number" className="teamSearch" />
+                        <SearchBar setSelectedOption={setTeamOption1} name="Team_1" className="teamSearch" />
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
@@ -118,7 +118,7 @@ function General(props) {
                                                 let text = selector.options[selector.selectedIndex].text; //then save let text as index 1?
                                                 let content = document.getElementById("note").value;
 
-                                                props.setFouls([...props.fouls, [teamOption1.value, text, content]]);
+                                                props.setFouls([...props.fouls, [teamOption1.value, text, content, selector.selectedIndex]]);
 
                                                 close();
                                             }}>
@@ -137,7 +137,7 @@ function General(props) {
                     </div>
                     <div className="team2">
 
-                        <SearchBar setSelectedOption={setTeamOption2} name="Team_Number" className="teamSearch" />
+                        <SearchBar setSelectedOption={setTeamOption2} name="Team_2" className="teamSearch" />
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
@@ -190,7 +190,7 @@ function General(props) {
 
                     <div className="team3">
 
-                        <SearchBar setSelectedOption={setTeamOption3} name="Team_Number" className="teamSearch" />
+                        <SearchBar setSelectedOption={setTeamOption3} name="Team_3" className="teamSearch" />
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
