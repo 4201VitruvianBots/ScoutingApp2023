@@ -14,12 +14,19 @@ function Page(props) {
 }
 
 function SignIn(props) {
+    const [showCheck, setshowCheck] = useState(false);
+
+    const handleSubmit = (event) => {
+        setshowCheck(true);
+        props.onSubmit(event);
+        setTimeout(() => { setshowCheck(false) }, 5000);
+    }
 
     return (
         <div>
             <p className="section-label">Super Scouting</p>
             {/* <p className="topNote">If the robot has an "other" drivetrain, specify it in the notes at the bottom!</p> */}
-            <form action="#" onSubmit={props.onSubmit}>
+            <form action="#" onSubmit={handleSubmit}>
                 <div className="textArea">
                     <input type="text" id="Sname" name="Scouter_Name" placeholder="SCOUTER NAME" className="name" />
                     <br />
@@ -34,7 +41,7 @@ function SignIn(props) {
                     </div>
 
 
-                    {/* {showCheck && <div class="check"></div>} */}
+                    {showCheck && <div class="check"></div>}
 
                     <input type="submit" className="SAVE" value="Sign In" />
 

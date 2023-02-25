@@ -24,22 +24,38 @@ function Navigation(props) {
     );
 }
 
-function SignIn(props) {
-    return (
-        <Page selected={props.selected} className="page" id="sign-in">
-            <form onSubmit={props.onSubmit} >
-                <p className="section-label" id="SignIn">Energized</p>
 
+function SignIn(props) {
+    const [showCheck, setshowCheck] = useState(false);
+
+    const handleSubmit = (event) => {
+        setshowCheck(true);
+        props.onSubmit(event);
+        setTimeout(() => { setshowCheck(false) }, 5000);
+    }
+
+    return (
+        <div>
+            <p className="section-label">Match Scouting</p>
+
+            <form onSubmit={handleSubmit} action="#">
                 <div className="textArea">
-                    <input type="text" id="Scouter_Name" name="Scouter_Name" placeholder="Scouter Name" className="textInput" />
-                    <select name="Competition" id="Competition" defaultValue="Choose">
+                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" />
+                    <br />
+                    <select name="Competition" id="Ename" defaultValue="Choose">
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
-                        <option value="Hueneme">Port Hueneme</option>
+                        <option value="Port Hueneme">Port Hueneme</option>
                     </select>
-                    <input type="submit" className="save-button" value="Sign In" />
+                    <br />
+                    {showCheck && <div class="check"></div>}
+                    <input type="submit" className="SAVE" value="Sign In" />
+
+                    {/* when submitted 
+                        <>checkmark image</> */}
+
                 </div>
             </form>
-        </Page>
+        </div>
     );
 }
 
@@ -199,7 +215,7 @@ function SavePage(props) {
                 </div>
                 <br /> */}
 
-                <input type="text" id="Comments" name="Comments" placeholder="Comment here" className="textInput" />
+                <input type="textarea" id="Comments" name="Comments" placeholder="Comment here" className="textInput" />
                 {/* <label className="item-label" htmlFor="clear">QR code and clear</label>
                 <input type="submit" className="SAVE" value="Generate QR code"></input>
                 <br />
