@@ -1,4 +1,5 @@
-import { NumberInput, ButtonInput, MultiButton, SearchBar, options } from "./Form";
+import { NumberInput, ButtonInput, MultiButton, SearchBar } from "./Form";
+import { options } from "./ScrimmageTeamList";
 import './App.css';
 import { useState } from "react";
 
