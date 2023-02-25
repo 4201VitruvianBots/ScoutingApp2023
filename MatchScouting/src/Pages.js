@@ -186,10 +186,7 @@ function SavePage(props) {
     return (
 
         <Page selected={props.selected} id="save-page">
-
-
-            <p className="section-label" id="Save">Submit</p>
-            <div className="textArea">
+            
                 {/* <label htmlFor="notes" className="item-label">Notes</label> */}
                 {/* <h1>Some things you could comment are:</h1>
                 <div className="bullet-points">
@@ -202,8 +199,6 @@ function SavePage(props) {
                     <li className="questions">Does it?</li>
                 </div>
                 <br /> */}
-
-                <input type="text" id="Comments" name="Comments" placeholder="Comment here" className="textInput" />
                 {/* <label className="item-label" htmlFor="clear">QR code and clear</label>
                 <input type="submit" className="SAVE" value="Generate QR code"></input>
                 <br />
@@ -213,7 +208,6 @@ function SavePage(props) {
                 {/* <input type="reset" className="CLEAR" value="Clear Form" /> */}
                 {/* <div id="QRCode">{props.QRCode}</div> */}
 
-            </div>
 
         </Page>
     );
