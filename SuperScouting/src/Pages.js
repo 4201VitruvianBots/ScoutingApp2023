@@ -52,7 +52,8 @@ function SignIn(props) {
 
 function General(props) {
 
-    const [fouls, setFouls] = useState([]);
+
+    // const [fouls, setFouls] = useState([]);
 
     const [teamOption1, setTeamOption1] = useState(options[0]); //state
     const [teamOption2, setTeamOption2] = useState(options[0]); //state
@@ -91,6 +92,8 @@ function General(props) {
                                                 <option value="Disabled">Disabled</option>
                                                 <option value="Overextension">Overextension</option>
                                                 <option value="InsideOtherRobot">Inside other robot</option>
+                                                <option value="MultipleGameObjects">Holding multiple game pieces</option>
+                                                <option value="InsideProtectedZone">Inside protected zone</option>
                                             </select>
                                             <br />
                                             <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
@@ -108,7 +111,7 @@ function General(props) {
                                                 let text = selector.options[selector.selectedIndex].text; //then save let text as index 1?
                                                 let content = document.getElementById("note").value;
 
-                                                setFouls([...fouls, [teamOption1.value, text, content]]);
+                                                props.setFouls([...props.fouls, [teamOption1.value, text, content]]);
 
                                                 close();
                                             }}>
@@ -145,6 +148,8 @@ function General(props) {
                                                 <option value="Disabled">Disabled</option>
                                                 <option value="Overextension">Overextension</option>
                                                 <option value="InsideOtherRobot">Inside other robot</option>
+                                                <option value="MultipleGameObjects">Holding multiple game pieces</option>
+                                                <option value="InsideProtectedZone">Inside protected zone</option>
                                             </select>
                                             <br />
                                             <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
@@ -157,7 +162,7 @@ function General(props) {
                                                 let selector = document.getElementById("selector");
                                                 let text = selector.options[selector.selectedIndex].text; //then save let text as index 1?
                                                 let content = document.getElementById("note").value;
-                                                setFouls([...fouls, [teamOption2.value, text, content, selector.selectedIndex]]);
+                                                props.setFouls([...props.fouls, [teamOption2.value, text, content, selector.selectedIndex]]);
 
                                                 close();
                                             }
@@ -195,6 +200,10 @@ function General(props) {
                                                 <option value="Disabled">Disabled</option>
                                                 <option value="Overextension">Overextension</option>
                                                 <option value="InsideOtherRobot">Inside other robot</option>
+                                                <option value="MultipleGameObjects">Holding multiple game pieces</option>
+                                                <option value="InsideProtectedZone">Inside protected zone</option>
+
+
                                             </select>
                                             <br />
                                             <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
@@ -208,7 +217,7 @@ function General(props) {
                                                 let selector = document.getElementById("selector");
                                                 let text = selector.options[selector.selectedIndex].text; //then save let text as index 1?
                                                 let content = document.getElementById("note").value;
-                                                setFouls([...fouls, [teamOption3.value, text, content, selector.selectedIndex]]);
+                                                props.setFouls([...props.fouls, [teamOption3.value, text, content, selector.selectedIndex]]);
 
                                                 close();
                                             }
@@ -231,16 +240,16 @@ function General(props) {
                 <br />
 
                 <div className="test2">
-                    <FoulCards fouls={fouls}></FoulCards>
+                    <FoulCards fouls={props.fouls}></FoulCards>
                 </div>
 
-                {fouls.map((e, i) => (<React.Fragment key={i}>
+                {props.fouls.map((e, i) => (<React.Fragment key={i}>
                     <input type="hidden" name={`Team_Number[${i}]`} value={e[0]} />
                     <input type="hidden" name={`Comments[${i}]`} value={e[2]} />
                     <input type="hidden" name={`Cause[${i}]`} value={e[3]} />
                 </React.Fragment>))}
 
-                <input type="hidden" name="length" value={fouls.length} />
+                <input type="hidden" name="length" value={props.fouls.length} />
 
                 <div className="textArea">
                     <p className="generalLabel">Notes</p>

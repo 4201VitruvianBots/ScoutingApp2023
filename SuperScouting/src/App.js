@@ -6,10 +6,12 @@ import QRCode from 'react-qr-code';
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { signedIn: false, ScouterName: "", EventName: "", selected: 'sign-in' };
+        this.state = { signedIn: false, ScouterName: "", EventName: "", selected: 'sign-in', fouls: [] };
         this.SignInHandler = this.SignInHandler.bind(this)
         this.SubmitHandler = this.SubmitHandler.bind(this)
         this.test2 = this.test2.bind(this)
+        this.setFouls = this.setFouls.bind(this)
+        this.clearForm = this.clearForm.bind(this);
     }
 
     SignInHandler(e) {
@@ -23,6 +25,10 @@ class App extends React.Component {
             QRCode: null
         });
         return false;
+    }
+
+    setFouls(newFouls) {
+        this.setState({ fouls: newFouls });
     }
 
     SubmitHandler(e) {
@@ -64,11 +70,12 @@ class App extends React.Component {
 
                 break;
             case 'general':
-                selectedPage = (<form action={`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/superScout`} method="POST" target="frame" id="myForm" onSubmit={clearForm}>
+                selectedPage = (<form action={`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/superScout`} method="POST" target="frame" id="myForm" onSubmit={this.clearForm}>
                     <input type='hidden' value={this.state.EventName} name='Competition' />
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
                     <input type='hidden' value={this.state.Alliance} name="Team_Alliance" />
-                    <General />
+
+                    <General fouls={this.state.fouls} setFouls={this.setFouls} />
 
 
                 </form>);
@@ -84,19 +91,25 @@ class App extends React.Component {
                 <input type="button" onClick={() => this.test2('general')} value="Fouls" className="nav" />
                 {selectedPage}
 
-                <iframe name="frame" title="frame"></iframe>
+                <iframe className="frame" name="frame" title="frame"></iframe>
 
             </main>
         );
     }
+
+    clearForm() {
+        document.getElementById("myForm").submit();
+        setTimeout(function () {
+            document.getElementById("myForm").reset();
+
+        }, 0)
+        this.setFouls([]);
+
+
+    }
 }
 
-function clearForm() {
-    document.getElementById("myForm").submit();
-    setTimeout(function () {
-        document.getElementById("myForm").reset();
-    }, 0)
-}
+
 
 // function TabButton(props) {
 //     return <button onClick={() => props.onClick(props.tabId)}>{props.children}</button>;

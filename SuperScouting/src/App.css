@@ -525,7 +525,7 @@
    flex-flow: row wrap;
    align-items: stretch;
    box-sizing: border-box;
-   padding: 5px;
+   padding: 10px;
    width: 175px;
    border-radius: 10px;
    display: inline-block;
@@ -580,3 +580,7 @@
  /* .name {
    width: 50% !important
  } */
+
+ .frame {
+   display: none;
+ }
