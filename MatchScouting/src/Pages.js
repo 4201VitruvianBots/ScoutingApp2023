@@ -36,7 +36,7 @@ function SignIn(props) {
 
     return (
         <div>
-            <p className="section-label">Match Scouting</p>
+            <p className="section-label" id="SignIn">Match Scouting</p>
 
             <form onSubmit={handleSubmit} action="#">
                 <div className="textArea">
@@ -216,7 +216,7 @@ function TeleOp(props) {
 function SavePage(props) {
     return (
 
-        <Page selected={props.selected} id="save-page">
+        <Page selected={props.selected} id="Save">
             
                 {/* <label htmlFor="notes" className="item-label">Notes</label> */}
                 {/* <h1>Some things you could comment are:</h1>
