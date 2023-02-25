@@ -70,7 +70,9 @@ class App extends React.Component {
 
                 break;
             case 'general':
+
                 selectedPage = (<form action={`http://${process.env.REACT_APP_BACKEND_IP}:5000/data/superScout`} method="POST" target="frame" id="myForm" onSubmit={this.clearForm}>
+
                     <input type='hidden' value={this.state.EventName} name='Competition' />
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
                     <input type='hidden' value={this.state.Alliance} name="Team_Alliance" />
