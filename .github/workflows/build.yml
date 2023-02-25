@@ -15,7 +15,7 @@ jobs:
           - MatchScouting
           - PitScouting
           - SuperScouting
-          - ReconSearch
+          - MatchData
       fail-fast: false
 
     defaults:
