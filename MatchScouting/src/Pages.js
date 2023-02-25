@@ -1,5 +1,6 @@
-import { NumberInput, ButtonInput, MultiButton } from "./Form";
+import { NumberInput, ButtonInput, MultiButton, SearchBar, options } from "./Form";
 import './App.css';
+import { useState } from "react";
 
 function Page(props) {
     return (
@@ -23,26 +24,52 @@ function Navigation(props) {
     );
 }
 
-function SignIn(props) {
-    return (
-        <Page selected={props.selected} className="page" id="sign-in">
-            <form onSubmit={props.onSubmit} >
-                <p className="section-label" id="SignIn">Energized</p>
 
+function SignIn(props) {
+    const [showCheck, setshowCheck] = useState(false);
+
+    const handleSubmit = (event) => {
+        setshowCheck(true);
+        props.onSubmit(event);
+        setTimeout(() => { setshowCheck(false) }, 5000);
+    }
+
+    return (
+        <div>
+            <p className="section-label">Match Scouting</p>
+
+            <form onSubmit={handleSubmit} action="#">
                 <div className="textArea">
-                    <input type="text" id="Scouter_Name" name="Scouter_Name" placeholder="Scouter Name" className="textInput" />
-                    <select name="Competition" id="Competition" defaultValue="Choose">
+                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" />
+                    <br />
+                    <select name="Competition" id="Ename" defaultValue="Choose">
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
-                        <option value="Hueneme">Port Hueneme</option>
+                        <option value="Port Hueneme">Port Hueneme</option>
                     </select>
-                    <input type="submit" className="save-button" value="Sign In" />
+                    <br />
+                    {showCheck && <div class="check"></div>}
+                    <input type="submit" className="SAVE" value="Sign In" />
+
+                    {/* when submitted 
+                        <>checkmark image</> */}
+
                 </div>
             </form>
-        </Page>
+        </div>
     );
 }
 
 function PreGame(props) {
+
+    const [teamOption, setTeamOption] = useState(options[0]); //state
+
+    const setSelectedOption = (newOption) => {
+
+        setTeamOption(newOption);
+
+        //functions (setting a function to a variable)
+    }
+
     return (
         <Page selected={props.selected} className="page" id="pre-game">
             <p className="section-label" id="Pre">Pre-Game</p>
@@ -53,7 +80,9 @@ function PreGame(props) {
                 <input type="number" id="Match_Number" name="Match_Number" className="textInput" />
 
                 <p className="itemLabel" htmlFor="Match_Number">TEAM NUMBER</p>
-                <input type="number" id="Team_Number" name="Team_Number" className="textInput" />
+                {/* <input type="number" id="Team_Number" name="Team_Number" className="textInput" /> */}
+
+                <SearchBar setSelectedOption={setSelectedOption} selectedOption={teamOption} name="Team_Number" className="teamSearch" />
 
 
                 <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
@@ -75,6 +104,8 @@ function PreGame(props) {
 
     );
 }
+
+
 
 
 function Auto(props) {
@@ -186,10 +217,7 @@ function SavePage(props) {
     return (
 
         <Page selected={props.selected} id="save-page">
-
-
-            <p className="section-label" id="Save">Submit</p>
-            <div className="textArea">
+            
                 {/* <label htmlFor="notes" className="item-label">Notes</label> */}
                 {/* <h1>Some things you could comment are:</h1>
                 <div className="bullet-points">
@@ -203,7 +231,8 @@ function SavePage(props) {
                 </div>
                 <br /> */}
 
-                <input type="text" id="Comments" name="Comments" placeholder="Comment here" className="textInput" />
+                <input type="textarea" id="Comments" name="Comments" placeholder="Comment here" className="textInput" />
+
                 {/* <label className="item-label" htmlFor="clear">QR code and clear</label>
                 <input type="submit" className="SAVE" value="Generate QR code"></input>
                 <br />
@@ -213,10 +242,11 @@ function SavePage(props) {
                 {/* <input type="reset" className="CLEAR" value="Clear Form" /> */}
                 {/* <div id="QRCode">{props.QRCode}</div> */}
 
-            </div>
 
         </Page>
     );
 }
+
+
 
 export { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation };

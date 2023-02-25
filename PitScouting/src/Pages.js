@@ -1,4 +1,4 @@
-import { NumberInput, ButtonInput, MultiButton, Upload } from "./Form";
+import { NumberInput, ButtonInput, MultiButton, Upload, SearchBar, options } from "./Form";
 import './App.css';
 import { useState } from "react";
 
@@ -47,6 +47,14 @@ function SignIn(props) {
 
 
 function General(props) {
+    const [teamOption, setTeamOption] = useState(options[0]); //state
+
+    const setSelectedOption = (newOption) => {
+
+        setTeamOption(newOption);
+
+        //functions (setting a function to a variable)
+    }
     return (
         <Page selected={props.selected} id="general">
             <p className="section-label">General</p>
@@ -54,7 +62,8 @@ function General(props) {
                 <div className="test2">
 
                     <div className="team">
-                        <input className="text-input" type="text" id="Num" name="Team_Number" placeholder="Team NUMBER" />
+                        <p className="generalLabel">Team Number</p>
+                        <SearchBar setSelectedOption={setSelectedOption} selectedOption={teamOption} name="Team_Number" className="teamSearch" />
                     </div>
 
                     <div className="drivetrain">

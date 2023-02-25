@@ -1,4 +1,4 @@
-import { MultiButton, FoulCards } from "./Form";
+import { MultiButton, FoulCards, SearchBar, options } from "./Form";
 import './App.css';
 import React, { useState } from "react";
 import Popup from 'reactjs-popup';
@@ -13,19 +13,24 @@ function Page(props) {
     );
 }
 
-
-
 function SignIn(props) {
+    const [showCheck, setshowCheck] = useState(false);
+
+    const handleSubmit = (event) => {
+        setshowCheck(true);
+        props.onSubmit(event);
+        setTimeout(() => { setshowCheck(false) }, 5000);
+    }
 
     return (
         <div>
             <p className="section-label">Super Scouting</p>
             {/* <p className="topNote">If the robot has an "other" drivetrain, specify it in the notes at the bottom!</p> */}
-            <form action="#" onSubmit={props.onSubmit}>
+            <form action="#" onSubmit={handleSubmit}>
                 <div className="textArea">
                     <input type="text" id="Sname" name="Scouter_Name" placeholder="SCOUTER NAME" className="name" />
                     <br />
-                    
+
                     <select name="Competition" id="Ename" defaultValue="Choose">
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
                         <option value="Port Hueneme">Port Hueneme</option>
@@ -34,13 +39,9 @@ function SignIn(props) {
                     <div className="allianceSelect">
                         <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} id="Team_Alliance" />
                     </div>
-                    {/* <div className="loginButtons">
-                        <input type="text" placeholder="TEAM 1" className="login" />
-                        <input type="text" placeholder="TEAM 2" className="login" />
-                        <input type="text" placeholder="TEAM 3" className="login" />
-                    </div> */}
 
-                    {/* {showCheck && <div class="check"></div>} */}
+
+                    {showCheck && <div class="check"></div>}
 
                     <input type="submit" className="SAVE" value="Sign In" />
 
@@ -58,31 +59,30 @@ function SignIn(props) {
 
 function General(props) {
 
-    const [fouls, setFouls] = useState([]);
 
-    const [teamInput, setTeamInput] = useState('');
+    // const [fouls, setFouls] = useState([]);
 
+    const [teamOption1, setTeamOption1] = useState(options[0]); //state
+    const [teamOption2, setTeamOption2] = useState(options[0]); //state
+    const [teamOption3, setTeamOption3] = useState(options[0]); //state
 
-    const handleInputChange = (teamInput) => {
-        let one = document.getElementById("team1").value;
-        let two = document.getElementById("team2").value;
-        let three = document.getElementById("team3").value;
-        setTeamInput([one, two, three]);
-    }
+    //functions (setting a function to a variable)
 
 
     return (
+
         <Page selected={props.selected} id="general" className="page">
             <p className="section-label">Fouls</p>
             <div className="textArea">
                 <br />
-                <input type="text" id="Sname" name="Match_Number" placeholder="MATCH NUMBER" className="name" />
+                <input type="number" id="Sname" name="Match_Number" placeholder="MATCH NUMBER" className="name" />
                 <br />
                 <br />
                 <div className="boxes">
                     <div className="team1">
 
-                        <input type="text" placeholder="TEAM 1" className="login" id="team1" name="Team_1" onChange={handleInputChange} />
+                        {/* <input type="text" placeholder="TEAM 1" className="login" id="team1" name="Team_1" onChange={handleInputChange} /> */}
+                        <SearchBar setSelectedOption={setTeamOption1} name="Team_Number" className="teamSearch" />
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
@@ -90,7 +90,7 @@ function General(props) {
                                 close => (
                                     <div className='modal'>
                                         <div className='content'>
-                                            <label className="label-title">{teamInput[0]}</label>
+                                            <label className="label-title">{teamOption1.label}</label>
                                             <br />
                                             <br />
                                             <select name="Competition" id="selector" defaultValue="Choose" >
@@ -99,6 +99,8 @@ function General(props) {
                                                 <option value="Disabled">Disabled</option>
                                                 <option value="Overextension">Overextension</option>
                                                 <option value="InsideOtherRobot">Inside other robot</option>
+                                                <option value="MultipleGameObjects">Holding multiple game pieces</option>
+                                                <option value="InsideProtectedZone">Inside protected zone</option>
                                             </select>
                                             <br />
                                             <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
@@ -110,15 +112,16 @@ function General(props) {
                                             <button onClick={() => {
                                                 // setFouls = [document.getElementById("popupSelect"), document.getElementById("selector"), document.getElementById("note")];
 
+                                                // let teams = document.getElementById("teamSearch");
+                                                // let currentTeam = teams.options[teams.selectedIndex].value;
                                                 let selector = document.getElementById("selector");
                                                 let text = selector.options[selector.selectedIndex].text; //then save let text as index 1?
                                                 let content = document.getElementById("note").value;
-                                                setFouls([...fouls, [teamInput[0], text, content, selector.selectedIndex]]);
+
+                                                props.setFouls([...props.fouls, [teamOption1.value, text, content]]);
 
                                                 close();
-                                            }
-
-                                            }>
+                                            }}>
                                                 Enter foul
                                             </button>
                                             <br />
@@ -134,7 +137,7 @@ function General(props) {
                     </div>
                     <div className="team2">
 
-                        <input type="text" placeholder="TEAM 2" className="login" id="team2" name="Team_2" onChange={handleInputChange} />
+                        <SearchBar setSelectedOption={setTeamOption2} name="Team_Number" className="teamSearch" />
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
@@ -142,7 +145,7 @@ function General(props) {
                                 close => (
                                     <div className='modal'>
                                         <div className='content'>
-                                            <label className="label-title">{teamInput[1]}</label>
+                                            <label className="label-title">{teamOption2.label}</label>
 
                                             <br />
                                             <br />
@@ -152,6 +155,8 @@ function General(props) {
                                                 <option value="Disabled">Disabled</option>
                                                 <option value="Overextension">Overextension</option>
                                                 <option value="InsideOtherRobot">Inside other robot</option>
+                                                <option value="MultipleGameObjects">Holding multiple game pieces</option>
+                                                <option value="InsideProtectedZone">Inside protected zone</option>
                                             </select>
                                             <br />
                                             <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
@@ -161,11 +166,10 @@ function General(props) {
 
                                             <button onClick={() => {
                                                 // setFouls = [document.getElementById("popupSelect"), document.getElementById("selector"), document.getElementById("note")];
-
                                                 let selector = document.getElementById("selector");
                                                 let text = selector.options[selector.selectedIndex].text; //then save let text as index 1?
                                                 let content = document.getElementById("note").value;
-                                                setFouls([...fouls, [teamInput[1], text, content, selector.selectedIndex]]);
+                                                props.setFouls([...props.fouls, [teamOption2.value, text, content, selector.selectedIndex]]);
 
                                                 close();
                                             }
@@ -186,7 +190,7 @@ function General(props) {
 
                     <div className="team3">
 
-                        <input type="text" placeholder="TEAM 3" className="login" id="team3" name="Team_3" onChange={handleInputChange} />
+                        <SearchBar setSelectedOption={setTeamOption3} name="Team_Number" className="teamSearch" />
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
@@ -194,7 +198,7 @@ function General(props) {
                                 close => (
                                     <div className='modal'>
                                         <div className='content'>
-                                            <label className="label-title">{teamInput[2]}</label>
+                                            <label className="label-title">{teamOption3.label}</label>
                                             <br />
                                             <br />
                                             <select name="Competition" id="selector" defaultValue="Choose" >
@@ -203,6 +207,10 @@ function General(props) {
                                                 <option value="Disabled">Disabled</option>
                                                 <option value="Overextension">Overextension</option>
                                                 <option value="InsideOtherRobot">Inside other robot</option>
+                                                <option value="MultipleGameObjects">Holding multiple game pieces</option>
+                                                <option value="InsideProtectedZone">Inside protected zone</option>
+
+
                                             </select>
                                             <br />
                                             <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
@@ -216,7 +224,7 @@ function General(props) {
                                                 let selector = document.getElementById("selector");
                                                 let text = selector.options[selector.selectedIndex].text; //then save let text as index 1?
                                                 let content = document.getElementById("note").value;
-                                                setFouls([...fouls, [teamInput[2], text, content, selector.selectedIndex]]);
+                                                props.setFouls([...props.fouls, [teamOption3.value, text, content, selector.selectedIndex]]);
 
                                                 close();
                                             }
@@ -239,16 +247,16 @@ function General(props) {
                 <br />
 
                 <div className="test2">
-                    <FoulCards fouls={fouls}></FoulCards>
+                    <FoulCards fouls={props.fouls}></FoulCards>
                 </div>
 
-                {fouls.map((e,i) => (<React.Fragment key={i}>
+                {props.fouls.map((e, i) => (<React.Fragment key={i}>
                     <input type="hidden" name={`Team_Number[${i}]`} value={e[0]} />
                     <input type="hidden" name={`Comments[${i}]`} value={e[2]} />
                     <input type="hidden" name={`Cause[${i}]`} value={e[3]} />
                 </React.Fragment>))}
 
-                <input type="hidden" name="length" value={fouls.length} />
+                <input type="hidden" name="length" value={props.fouls.length} />
 
                 <div className="textArea">
                     <p className="generalLabel">Notes</p>
