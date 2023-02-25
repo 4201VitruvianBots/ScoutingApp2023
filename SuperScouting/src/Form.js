@@ -1,5 +1,6 @@
 import React from "react";
 import './App.css';
+import Select from 'react-select';
 
 // Radio Buttons
 function RadioButtons(props) {
@@ -256,9 +257,6 @@ class FoulCards extends React.Component {
         this.generateDiv = this.generateDiv.bind(this);
     }
 
-    // importing all 3 into the component like we did before
-    // thissetstsate ?
-
     generateDiv() {
         let output = [];
 
@@ -266,7 +264,7 @@ class FoulCards extends React.Component {
 
             output.push(
                 <div className="foul" key={index}>
-                    <p className="label4">FOUL</p>
+                    {/* <p className="label4">FOUL</p> */}
                     <p className="label-number" key={1}>{this.props.fouls[index][0]}</p>
                     <p className="label-cause" key={2}>{this.props.fouls[index][1]}</p>
                     <p className="label-notes" key={3}>{this.props.fouls[index][2]}</p>
@@ -311,5 +309,72 @@ class Upload extends React.Component {
     }
 }
 
+class SearchBar extends React.Component {
 
-export { RadioButtons, NumberInput, ButtonInput, MultiButton, PageSelector, Upload, FoulCards };
+    render() {
+
+        return (
+            <div className="testtest">
+                <Select className="teamSearch"
+                    options={options}
+                    value={this.props.selectedOption}
+                    onChange={this.props.setSelectedOption}
+                    name={this.props.name}
+                />
+            </div>
+        );
+    }
+}
+
+
+const options = [
+    { value: null, label: 'Select...' },
+    { value: "4", label: '4' },
+    { value: "294", label: '294' },
+    { value: "498", label: '498' },
+    { value: "589", label: '589' },
+    { value: "687", label: '687' },
+    { value: "691", label: '691' },
+    { value: "696", label: '696' },
+    { value: "972", label: '972' },
+    { value: "973", label: '973' },
+    { value: "1159", label: '1159' },
+    { value: "1266", label: '1266' },
+    { value: "1452", label: '1452' },
+    { value: "1515", label: '1515' },
+    { value: "1572", label: '1572' },
+    { value: "1661", label: '1661' },
+    { value: "1678", label: '1678' },
+    { value: "2102", label: '2102' },
+    { value: "2429", label: '2429' },
+    { value: "2465", label: '2465' },
+    { value: "2486", label: '2486' },
+    { value: "2543", label: '2543' },
+    { value: "2584", label: '2584' },
+    { value: "3008", label: '3008' },
+    { value: "3128", label: '3128' },
+    { value: "3255", label: '3255' },
+    { value: "3328", label: '3328' },
+    { value: "3354", label: '3354' },
+    { value: "3473", label: '3473' },
+    { value: "3647", label: '3647' },
+    { value: "3859", label: '3859' },
+    { value: "3863", label: '3863' },
+    { value: "3881", label: '3881' },
+    { value: "4201", label: '4201' },
+    { value: "4414", label: '4414' },
+    { value: "4481", label: '4481' },
+    { value: "4711", label: '4711' },
+    { value: "4731", label: '4731' },
+    { value: "5012", label: '5012' },
+    { value: "5089", label: '5089' },
+    { value: "6036", label: '6036' },
+    { value: "6059", label: '6059' },
+    { value: "6479", label: '6479' },
+    { value: "6658", label: '6658' },
+    { value: "7424", label: '7424' },
+    { value: "8891", label: '8891' }
+];
+
+
+export { RadioButtons, NumberInput, ButtonInput, MultiButton, PageSelector, Upload, FoulCards, SearchBar, options };

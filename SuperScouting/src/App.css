@@ -53,7 +53,6 @@
  }
 
 
-
  body {
    margin: 0;
    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -164,12 +163,18 @@
  input[type="number"] {
    display: inline !important;
    background-color: var(--accent-1);
-   width: 50px !important;
-   height: 32.5px !important;
+   width: 30%;
    font-size: 25px;
+   font-weight: 600;
    text-align: center;
-   border-color: teal;
+   border: black 1.5px solid;
+   border-radius: 3.5px;
+   color: black;
+   margin: 0 auto;
+   height: 35px;
+   text-align: center;
  }
+
 
  .SAVE,
  .CLEAR {
@@ -290,15 +295,16 @@
    /* border: #005f00 2px solid; */
    color: white;
    box-sizing: border-box;
-   padding: 5px;
+   padding: 10px;
    min-width: fit-content;
-   width: 150px;
+   width: 200px;
    border-radius: 10px;
    display: inline-block;
    margin: 15px;
    flex-grow: 1;
    inline-size: 130px;
    overflow-wrap: break-word;
+
  }
 
  .fouls {
@@ -519,7 +525,7 @@
    flex-flow: row wrap;
    align-items: stretch;
    box-sizing: border-box;
-   padding: 5px;
+   padding: 10px;
    width: 175px;
    border-radius: 10px;
    display: inline-block;
@@ -546,6 +552,39 @@
    color: #085f00;
 
  }
+
+ .check {
+   width: 50px;
+   height: 20px;
+   border-left: 10px solid green;
+   border-bottom: 10px solid green;
+   transform: rotate(-45deg);
+   margin-left: 70%;
+   margin-bottom: 50%;
+   position: absolute;
+
+ }
+
+ .testest .teamSearch {
+   font-weight: 600;
+   font-size: 15px;
+   background-color: orange;
+ }
+
+ .css-b62m3t-container {
+   color: darkgreen;
+   font-weight: 700;
+   font-size: 18px;
+ }
+
+ /* .name {
+   width: 50% !important
+ } */
+
+ .frame {
+   display: none;
+ }
+
 
  .check {
    width: 50px;
