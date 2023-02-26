@@ -104,5 +104,7 @@ CREATE TABLE dataAnalysis(
 	Total_Disabled_Fouls INT,
 	Total_Overextension_Fouls INT,
 	Total_Inside_Robot_Fouls INT,
+	Total_Multiple_Pieces_Fouls INT,
+	Total_Inside_Protected_Fouls INT,
 	PRIMARY KEY(Team_Number)
 );
