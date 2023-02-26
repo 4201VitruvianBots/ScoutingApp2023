@@ -52,7 +52,8 @@ class App extends React.Component {
         this.state = { signedIn: false, ScouterName: "", EventName: "" };
         this.SignInHandler = this.SignInHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
+        this.downloadCSV = this.downloadCSV.bind(this);
+        this.clearData = this.clearData.bind(this);
     }
 
     SignInHandler(e) {
@@ -67,8 +68,18 @@ class App extends React.Component {
         const answers = event.target.elements;
         const data = fields.map(e => answers[e]?.value);
         const csv = csvStringify([data]);
-        download(csv, answers.Team_Number.value + '_Pit_Scout.csv');
+        localStorage.setItem('saved', localStorage.getItem('saved') + csv)
         event.target.reset();
+    }
+
+    downloadCSV() {
+        download(csvStringify([fields]) + localStorage.getItem('saved'), 'Pit_Scout.csv');
+    }
+
+    clearData() {
+        if (window.confirm('Are you sure you want to clear all saved data?')) {
+            localStorage.setItem('saved', '');
+        }
     }
 
     render() {
@@ -92,7 +103,7 @@ class App extends React.Component {
 
                     <General selected={this.state.selected === 'general'} />
                     <Photos selected={this.state.selected === 'photos'} />
-                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
+                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} downloadCSV={this.downloadCSV} clearData={this.clearData} />
 
                 </form>
 

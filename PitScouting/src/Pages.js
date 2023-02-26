@@ -147,7 +147,9 @@ function SavePage(props) {
             <div className="textArea">
                 <p className="generalLabel">Notes</p>
                 <textarea rows="5" cols="20" id="notes" name="Comments" />
-                <input type="submit" className="submit-button" />
+                <input type="submit" className="submit-button" value="Save Team" />
+                <input type="button" className="submit-button" value="Download Data" onClick={props.downloadCSV} />
+                <input type="button" className="submit-button" value="Clear Data" onClick={props.clearData} />
             </div>
         </Page>
     );
