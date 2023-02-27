@@ -1,6 +1,7 @@
 import './App.css';
 import { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation } from "./Pages";
 import React from "react";
+import { ConnectionIndicator } from './Form';
 
 class App extends React.Component {
     constructor(props) {
@@ -40,6 +41,9 @@ class App extends React.Component {
                 <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
             </div>
       */}
+
+
+                <ConnectionIndicator/>
 
                 <form action={`http://${process.env.REACT_APP_BACKEND_IP}/data/matches`} method="POST" target="frame" id="myForm" onSubmit={clearForm}>
                     <input type='hidden' value={this.state.EventName} name='Competition' />

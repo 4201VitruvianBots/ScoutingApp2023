@@ -1,6 +1,6 @@
-import React from "react";
 import './App.css';
 import Select from 'react-select';
+import React, {useState, useEffect} from 'react';
 
 // Radio Buttons
 function RadioButtons(props) {
@@ -261,4 +261,48 @@ class SearchBar extends React.Component {
     }
 }
 
-export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, SearchBar, options };
+function ConnectionIndicator(props) {
+    const [connected, setConnected] = useState(false);
+    
+    useEffect(() => {
+        const url = "http://127.0.0.1:5000/data/status";
+    
+        const fetchData = async () => {
+          try {
+            const response = await fetch(url);
+            const ok = response.ok;
+            setConnected(ok);
+          } catch (error) {
+            console.log("error", error);
+            setConnected(false);
+          }
+        };
+        
+        const interval = setInterval(function() {
+            fetchData();
+          }, 5000);
+         
+        return function cleanup() {
+            clearInterval(interval);
+          };
+      
+
+    }, []);
+
+    if (connected) {
+      return(
+        <div>
+            'connected'
+        </div>
+      )
+    } else {
+      return(
+        <div>
+            'not connected'
+        </div>
+        )
+    }
+
+}
+
+export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, SearchBar, options, ConnectionIndicator };
