@@ -242,6 +242,8 @@ function SavePage(props) {
                  */}
                 <br />
                 <input type="submit" className="submit-button"></input>
+                <input type="button" className="submit-button" value="Download Data" onClick={props.downloadCSV} />
+                <input type="button" className="submit-button" value="Clear Data" onClick={props.clearData} />
                 {/* <input type="reset" className="CLEAR" value="Clear Form" /> */}
                 {/* <div id="QRCode">{props.QRCode}</div> */}
             </div>
