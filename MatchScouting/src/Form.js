@@ -265,7 +265,7 @@ function ConnectionIndicator(props) {
     const [connected, setConnected] = useState(false);
     
     useEffect(() => {
-        const url = "http://127.0.0.1:5000/data/status";
+        const url = `http://${process.env.REACT_APP_BACKEND_IP}/data/status`;
     
         const fetchData = async () => {
           try {
