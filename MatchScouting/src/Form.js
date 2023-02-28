@@ -131,6 +131,9 @@ class MultiButton extends React.Component {
         this.state = { items: props.items, id: props.id, label: props.label, value: 0, selected: 0 };
         this.test1 = this.test1.bind(this);
         this.generateButtons = this.generateButtons.bind(this);
+        // eslint-disable-next-line no-restricted-globals
+        addEventListener('reset', () => { this.setState({ selected: 0 }) })
+
     }
 
     test1(id) {
@@ -192,7 +195,7 @@ class Upload extends React.Component {
 }
 
 const options = [
-    { value: null, label: 'Select...' },
+    { value: null, label: '' },
     { value: "4", label: '4' },
     { value: "294", label: '294' },
     { value: "498", label: '498' },
@@ -242,9 +245,17 @@ const options = [
 
 
 class SearchBar extends React.Component {
+    constructor(props) {
+        super(props)
+        this.handleChange = this.handleChange.bind(this);
+        // eslint-disable-next-line no-restricted-globals
+        addEventListener('reset', () => { this.setState({ value: null }) })
+    }
+
     handleChange = (selectedOption) => {
         this.props.setSelectedOption(selectedOption)
     }
+
 
     render() {
         // console.log(this.props.selectedOption)
