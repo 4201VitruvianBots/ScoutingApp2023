@@ -27,7 +27,7 @@ function SignIn(props) {
             <p className="topNote">If the robot has an "other" drivetrain, specify it in the notes at the bottom!</p>
             <form onSubmit={handleSubmit} action="#">
                 <div className="textArea">
-                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" className="name" />
+                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" className="name" required/>
                     <br />
                     <select name="Competition" id="Ename" defaultValue="Choose">
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
@@ -99,15 +99,15 @@ function General(props) {
                     </div>
 
                     <div className="motorType">
-                        <textarea rows="4" cols="15" placeholder="Drivetrain Motor Types" name="DriveTrain_Motor_Type" ></textarea>
+                        <textarea rows="4" cols="15" placeholder="Drivetrain Motor Types" name="DriveTrain_Motor_Type" required></textarea>
                     </div>
 
                     <div className="autos">
-                        <textarea rows="4" cols="15" placeholder="Autos (# and type)" name="Autos"></textarea>
+                        <textarea rows="4" cols="15" placeholder="Autos (# and type)" name="Autos" required></textarea>
                     </div>
 
                     <div className="workingOn">
-                        <textarea rows="5" cols="40" placeholder="They're working on..." name="Working_On" ></textarea>
+                        <textarea rows="5" cols="40" placeholder="They're working on..." name="Working_On" required></textarea>
                     </div>
 
                 </div>
