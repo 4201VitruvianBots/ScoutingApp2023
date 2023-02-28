@@ -28,6 +28,11 @@ pitColumns = get_columns('pitData')
 superScoutColumns = get_columns('superScout')
 foulColumns = get_columns('fouls')
 
+@app.route('/data/status', methods=['GET'])
+def handle_status():
+
+    return 'OK'
+
 @app.route('/data/matches', methods=['GET'])
 def handle_get():
     # Handle GET request
