@@ -1,4 +1,4 @@
-import { NumberInput, ButtonInput, MultiButton, SearchBar, options } from "./Form";
+import { NumberInput, ButtonInput, MultiButton, SearchBar, options, ConnectionIndicator } from "./Form";
 import './App.css';
 import { useState } from "react";
 
@@ -18,8 +18,12 @@ function Navigation(props) {
                 <li><a href="#Pre">Pre-Game</a></li>
                 <li><a href="#Auto">Auto</a></li>
                 <li><a href="#Tele">Tele-Op</a></li>
-                <li><a href="#Save">Submit</a></li> {/*change the rest of the code to 'submit' as well? does it matter?*/}
-            </ul>
+                <li><a href="#save-page">Submit</a></li> {/*change the rest of the code to 'submit' as well? does it matter?*/}
+                <br/>
+                <br/>
+                </ul>
+                
+            
         </Page>
     );
 }
@@ -238,6 +242,10 @@ function SavePage(props) {
                 <br /> */}
 
                 <input type="textarea" id="Comments" name="Comments" placeholder="Comment here" className="textInput" />
+                <br/>
+       <br/>
+
+                <ConnectionIndicator />
 
                 {/* <label className="item-label" htmlFor="clear">QR code and clear</label>
                 <input type="submit" className="SAVE" value="Generate QR code"></input>
@@ -245,7 +253,7 @@ function SavePage(props) {
                 <label className="item-label" htmlFor="continue">Save and continue</label>
                  */}
                 <br />
-                <input type="submit" className="submit-button"></input>
+                
                 {/* <input type="reset" className="CLEAR" value="Clear Form" /> */}
                 {/* <div id="QRCode">{props.QRCode}</div> */}
             </div>

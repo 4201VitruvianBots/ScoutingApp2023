@@ -1,4 +1,4 @@
-import { MultiButton, FoulCards, SearchBar, options } from "./Form";
+import { MultiButton, FoulCards, SearchBar, options, ConnectionIndicator } from "./Form";
 import './App.css';
 import React, { useState } from "react";
 import Popup from 'reactjs-popup';
@@ -261,7 +261,9 @@ function General(props) {
                 <div className="textArea">
                     <p className="generalLabel">Notes</p>
                     <textarea rows="5" cols="20" id="notes" name="Comments" />
-                    <input type="submit" className="submit-button" />
+<br/>
+                    <ConnectionIndicator/>
+                    {/* <input type="submit" className="submit-button" /> */}
                 </div>
 
             </div>

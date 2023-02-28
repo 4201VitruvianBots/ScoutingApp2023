@@ -43,7 +43,7 @@ class App extends React.Component {
       */}
 
 
-                <ConnectionIndicator/>
+                
 
                 <form action={`http://${process.env.REACT_APP_BACKEND_IP}/data/matches`} method="POST" target="frame" id="myForm" onSubmit={clearForm}>
                     <input type='hidden' value={this.state.EventName} name='Competition' />

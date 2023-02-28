@@ -1,6 +1,7 @@
 import './App.css';
-import { SignIn, General } from "./Pages";
+import { SignIn, General} from "./Pages";
 import React from "react";
+import { ConnectionIndicator } from './Form';
 import QRCode from 'react-qr-code';
 
 class App extends React.Component {
@@ -72,6 +73,7 @@ class App extends React.Component {
             case 'general':
 
                 selectedPage = (<form action={`http://${process.env.REACT_APP_BACKEND_IP}/data/superScout`} method="POST" target="frame" id="myForm" onSubmit={this.clearForm}>
+                    
 
                     <input type='hidden' value={this.state.EventName} name='Competition' />
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
@@ -89,8 +91,10 @@ class App extends React.Component {
         return (
             <main>
                 <p className="page-title">Welcome to Vitruvian Scouting</p>
+                
                 <input type="button" onClick={() => this.test2('sign-in')} value="Sign In" className="nav" />
                 <input type="button" onClick={() => this.test2('general')} value="Fouls" className="nav" />
+               
                 {selectedPage}
 
                 <iframe className="frame" name="frame" title="frame"></iframe>
