@@ -262,8 +262,13 @@ function General(props) {
                     <p className="generalLabel">Notes</p>
                     <textarea rows="5" cols="20" id="notes" name="Comments" />
                     <input type="submit" className="submit-button" />
-                    <input type="button" className="submit-button" value="Download Data" onClick={props.downloadCSV} />
-                    <input type="button" className="submit-button" value="Clear Data" onClick={props.clearData} />
+                    <br/>
+                    <br/>
+                    <div className="nonSubmit">
+                    <p className="reminder">DO NOT use this section unless instructed</p>
+                    <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
+                    <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
+                    </div>
                 </div>
 
             </div>
