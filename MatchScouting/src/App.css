@@ -94,8 +94,8 @@ input[type="number"] {
 }
 
 .download-button, .clear-button {
- background-color:#003800;
- color: white;
+
+ color: black;
  font-size: 15px !important;
  font-weight: 700;
  display: inline !important;
@@ -105,6 +105,15 @@ input[type="number"] {
  border-radius: 30px;
  margin: 15px;
 
+}
+
+
+.download-button {
+  background-color: rgba(0, 183, 255, 0.637);
+}
+
+.clear-button{
+  background-color: rgba(255, 0, 0, 0.637);
 }
 
 .nonSubmit{

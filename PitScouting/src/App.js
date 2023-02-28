@@ -77,7 +77,7 @@ class App extends React.Component {
     }
 
     clearData() {
-        if (window.confirm('Are you sure you want to clear all saved data?')) {
+        if (window.confirm('STOP!!! Are you sure you want to clear ALL saved data from this tablet? (This includes ALL previously saved matches)')) {
             localStorage.setItem('saved', '');
         }
     }
