@@ -42,6 +42,7 @@ class NumberInput extends React.Component {
     }
 
     increaseValue() {
+        if (this.state.value < 10)
         this.setState({ value: this.state.value + 1 });
     }
 
@@ -60,7 +61,7 @@ class NumberInput extends React.Component {
                 </div>
                 <div className="buttonright">
                     <input type="button" className="chonk" value="-" onClick={this.decreaseValue} />
-                    <input type="number" value={this.state.value} onChange={this.handleChange} name={this.state.id} min="0" />
+                    <input type="number" value={this.state.value} onChange={this.handleChange} name={this.state.id} min="0" max="10"/>
                     <input type="button" className="chonk" value="+" onClick={this.increaseValue} />
                 </div>
             </div>
