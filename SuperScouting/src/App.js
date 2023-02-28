@@ -82,7 +82,7 @@ class App extends React.Component {
     }
 
     clearData() {
-        if (window.confirm('STOP!!! Are you sure you want to clear ALL saved data from this tablet? (This includes ALL previously saved matches)')) {
+        if (window.confirm('STOP!!! Ask a scouting coordinator before pressing "ok" :)')) {
             localStorage.setItem('saved', '');
         }
     }
