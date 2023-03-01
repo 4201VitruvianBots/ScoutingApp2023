@@ -14,16 +14,16 @@ function Navigation(props) {
     return (
         <Page selected={props.selected} className="page" id="navigation">
             <ul>
-                <li><a href="#SignIn">Sign-In</a></li>
+                <li><a href="#sign-in">Sign-In</a></li>
                 <li><a href="#Pre">Pre-Game</a></li>
                 <li><a href="#Auto">Auto</a></li>
                 <li><a href="#Tele">Tele-Op</a></li>
                 <li><a href="#save-page">Submit</a></li> {/*change the rest of the code to 'submit' as well? does it matter?*/}
-                <br/>
-                <br/>
-                </ul>
-                
-            
+                <br />
+                <br />
+            </ul>
+
+
         </Page>
     );
 }
@@ -40,13 +40,13 @@ function SignIn(props) {
 
     return (
         <div>
-            <p className="section-label">Match Scouting</p>
+            <p className="section-label" id="SignIn">Match Scouting</p>
 
             <form onSubmit={handleSubmit} action="#">
                 <div className="textArea">
-                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" />
+                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" required />
                     <br />
-                    <select name="Competition" id="Ename" defaultValue="Choose">
+                    <select name="Competition" id="Ename" defaultValue="Choose" >
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
                         <option value="Port Hueneme">Port Hueneme</option>
                     </select>
@@ -80,13 +80,13 @@ function PreGame(props) {
 
             <div className="textArea">
 
-                <p className="itemLabel" htmlFor="Match_Number">MATCH NUMBER</p>
-                <input type="number" id="Match_Number" name="Match_Number" className="textInput" />
+                <p className="itemLabel" htmlFor="Match_Number" required>MATCH NUMBER</p>
+                <input type="number" id="Match_Number" name="Match_Number" className="textInput" required min="1" />
 
                 <p className="itemLabel" htmlFor="Match_Number">TEAM NUMBER</p>
                 {/* <input type="number" id="Team_Number" name="Team_Number" className="textInput" /> */}
 
-                <SearchBar setSelectedOption={setSelectedOption} selectedOption={teamOption} name="Team_Number" className="teamSearch" />
+                <SearchBar setSelectedOption={setSelectedOption} selectedOption={teamOption} name="Team_Number" className="teamSearch" required />
 
 
                 <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
@@ -133,7 +133,7 @@ function Auto(props) {
                 <br />
                 <p className="itemLabel">CHARGING STATION</p>
                 <div className="align-radio">
-                
+
                     <MultiButton items={[['NO POINTS', 'No points'], ['DOCKED', 'Docked'], ['ENGAGED', 'Engaged']]} id="Auto_Station" />
 
                 </div>
@@ -224,7 +224,7 @@ function TeleOp(props) {
 function SavePage(props) {
     return (
 
-        <Page selected={props.selected} id="save-page">
+        <Page selected={props.selected} id="Save">
             <p className="section-label">Submit</p>
             <div className="textArea">
 
@@ -242,8 +242,8 @@ function SavePage(props) {
                 <br /> */}
 
                 <input type="textarea" id="Comments" name="Comments" placeholder="Comment here" className="textInput" />
-                <br/>
-       <br/>
+                <br />
+                <br />
 
                 <ConnectionIndicator />
 
@@ -253,7 +253,14 @@ function SavePage(props) {
                 <label className="item-label" htmlFor="continue">Save and continue</label>
                  */}
                 <br />
-                
+
+                <br />
+                <br />
+                <div className="nonSubmit">
+                    <p className="reminder">DO NOT use this section unless instructed</p>
+                    <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
+                    <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
+                </div>
                 {/* <input type="reset" className="CLEAR" value="Clear Form" /> */}
                 {/* <div id="QRCode">{props.QRCode}</div> */}
             </div>

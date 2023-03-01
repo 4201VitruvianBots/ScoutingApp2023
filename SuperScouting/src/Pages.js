@@ -28,10 +28,10 @@ function SignIn(props) {
             {/* <p className="topNote">If the robot has an "other" drivetrain, specify it in the notes at the bottom!</p> */}
             <form action="#" onSubmit={handleSubmit}>
                 <div className="textArea">
-                    <input type="text" id="Sname" name="Scouter_Name" placeholder="SCOUTER NAME" className="name" />
+                    <input type="text" id="Sname" name="Scouter_Name" placeholder="SCOUTER NAME" className="name" required />
                     <br />
 
-                    <select name="Competition" id="Ename" defaultValue="Choose">
+                    <select name="Competition" id="Ename" defaultValue="Choose" >
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
                         <option value="Port Hueneme">Port Hueneme</option>
                     </select>
@@ -75,7 +75,7 @@ function General(props) {
             <p className="section-label">Fouls</p>
             <div className="textArea">
                 <br />
-                <input type="number" id="Sname" name="Match_Number" placeholder="MATCH NUMBER" className="name" />
+                <input type="number" id="Sname" name="Match_Number" placeholder="MATCH NUMBER" className="name" required min="1" />
                 <br />
                 <br />
                 <div className="boxes">
@@ -261,9 +261,16 @@ function General(props) {
                 <div className="textArea">
                     <p className="generalLabel">Notes</p>
                     <textarea rows="5" cols="20" id="notes" name="Comments" />
-<br/>
-                    <ConnectionIndicator/>
+                    <br />
+                    <ConnectionIndicator />
                     {/* <input type="submit" className="submit-button" /> */}
+                    <br />
+                    <br />
+                    <div className="nonSubmit">
+                        <p className="reminder">DO NOT use this section unless instructed</p>
+                        <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
+                        <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
+                    </div>
                 </div>
 
             </div>

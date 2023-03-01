@@ -344,53 +344,52 @@
 
  .submit-button {
    background-color: #83c183;
-  width: 400px;
-  height: 40px;
-  font-size: 25px;
-  margin: 25px;
-  border-radius: 30px;
-  font-family: system-ui;
-  
+   width: 400px;
+   height: 40px;
+   font-size: 25px;
+   margin: 25px;
+   border-radius: 30px;
+   font-family: system-ui;
+
  }
 
- .download-button, .clear-button {
+ .download-button,
+ .clear-button {
 
-  color: black;
-  font-size: 15px !important;
-  font-weight: 700;
-  display: inline !important;
-  width: 170px;
-  height: 40px !important;
-  border: none;
-  border-radius: 30px;
-  margin: 15px;
+   color: black;
+   font-size: 15px !important;
+   font-weight: 700;
+   display: inline !important;
+   width: 170px;
+   height: 40px !important;
+   border: none;
+   border-radius: 30px;
+   margin: 15px;
 
-}
+ }
 
-.download-button {
-  background-color: rgba(0, 183, 255, 0.637);
-}
+ .download-button {
+   background-color: rgba(0, 183, 255, 0.637);
+ }
 
-.clear-button{
-  background-color: rgba(255, 0, 0, 0.637);
-}
+ .clear-button {
+   background-color: rgba(255, 0, 0, 0.637);
+ }
 
+ .nonSubmit {
+   background-color: gray;
+   border-radius: 30px;
+   width: 90%;
+   margin: 0 auto;
+   padding: 5px;
+ }
 
-
-.nonSubmit{
-  background-color:gray;
-  border-radius: 30px;
-  width: 90%;
-  margin: 0 auto;
-  padding: 5px;
-}
-
-.reminder{
-  font-size: 15px;
-  color: white;
-  font-weight: 600;
-  padding: 1px;
-}
+ .reminder {
+   font-size: 15px;
+   color: white;
+   font-weight: 600;
+   padding: 1px;
+ }
 
  .workingOn input[type="text"] {
    width: 600px;
@@ -634,16 +633,16 @@
 
  }
 
- .noSubmissionAllowed{
-  background-color: red;
-  height:60px;
-  width: 30%;
-  margin: 0 auto;
-  font-weight: 600;
-  font-size: 20px;
-  color: white;
-  border-radius: 15px;
-  padding: 5px;
-  min-width: 50%;
-  max-width: 60%;
-}
+ .noSubmissionAllowed {
+   background-color: red;
+   height: 60px;
+   width: 30%;
+   margin: 0 auto;
+   font-weight: 600;
+   font-size: 20px;
+   color: white;
+   border-radius: 15px;
+   padding: 5px;
+   min-width: 50%;
+   max-width: 60%;
+ }
