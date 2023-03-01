@@ -36,7 +36,7 @@ function SignIn(props) {
 
     return (
         <div>
-            <p className="section-label">Match Scouting</p>
+            <p className="section-label" id="SignIn">Match Scouting</p>
 
             <form onSubmit={handleSubmit} action="#">
                 <div className="textArea">
@@ -87,7 +87,7 @@ function PreGame(props) {
 
                 <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
                 <div className="allianceSelect">
-                    <MultiButton items={[['Blue 1', 'BLUE 1'], ['Blue 2', 'BLUE 2'], ['Blue 3', 'BLUE 3'], ['Red 1', 'RED 1'], ['Red 2', 'RED 2'], ['Red 3', 'RED 3']]} id="Team_Alliance" />
+                    <MultiButton items={[['BLUE 1', 'Blue 1'], ['BLUE 2', 'Blue 2'], ['BLUE 3', 'Blue 3'], ['RED 1', 'Red 1'], ['RED 2', 'Red 2'], ['RED 3', 'Red 3']]} id="Team_Alliance" />
 
                 </div>
                 {/* Off value at index 0, ON value at index 1 */}
@@ -114,7 +114,7 @@ function Auto(props) {
             <p className="section-label" id="Auto">Auto</p>
             <div className="textArea">
 
-                <ButtonInput on_label='Mobility' off_label='Mobility' id="Mobility" />
+                <ButtonInput on_label='MOBILITY' off_label='Mobility' id="Mobility" />
                 {/* <button type="button">Mobility?</button> */}
 
                 {/* <h2>Mobility</h2> */}
@@ -129,7 +129,9 @@ function Auto(props) {
                 <br />
                 <p className="itemLabel">CHARGING STATION</p>
                 <div className="align-radio">
-                    <MultiButton items={[['Docked', 'DOCKED'], ['Engaged', 'ENGAGED'], ['No points', 'NO POINTS']]} id="Auto_Station" />
+
+                    <MultiButton items={[['NO POINTS', 'No points'], ['DOCKED', 'Docked'], ['ENGAGED', 'Engaged']]} id="Auto_Station" />
+
                 </div>
 
                 <div className="gallery">
@@ -204,7 +206,9 @@ function TeleOp(props) {
             <div className="textArea">
                 <h1>Charging Station</h1>
                 <div className="align-radio">
-                    <MultiButton items={[['Docked', 'DOCKED'], ['Engaged', 'ENGAGED'], ['No points', 'NO POINTS'], ['Parked', 'PARKED']]} id="Tele_Station" />
+
+                    <MultiButton items={[['NO POINTS', 'No points'], ['PARKED', 'Parked'], ['DOCKED', 'Docked'], ['ENGAGED', 'Engaged']]} id="Tele_Station" />
+
                 </div>
 
             </div>
@@ -216,7 +220,7 @@ function TeleOp(props) {
 function SavePage(props) {
     return (
 
-        <Page selected={props.selected} id="save-page">
+        <Page selected={props.selected} id="Save">
             <p className="section-label">Submit</p>
             <div className="textArea">
 

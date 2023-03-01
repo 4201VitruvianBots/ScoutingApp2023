@@ -403,6 +403,10 @@ iframe {
   border-radius: 7px;
 }
 
+.ToggleButton .number-on, .ToggleButton .number-off{
+  width: 150px;
+}
+
 
 .align-radio .number-on,
 .align-radio .number-off {

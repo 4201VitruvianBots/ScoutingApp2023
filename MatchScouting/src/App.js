@@ -1,6 +1,7 @@
 import './App.css';
 import { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation } from "./Pages";
 import React from "react";
+import { ConnectionIndicator } from './Form';
 
 const fields = [
     'Match_Number',
@@ -67,17 +68,25 @@ class App extends React.Component {
         return false;
     }
 
-    handleSubmit(event) {
-        const answers = event.target.elements;
-        const data = fields.map(e => answers[e]?.value);
-        const csv = csvStringify([data]);
-        localStorage.setItem('saved', localStorage.getItem('saved') + csv)
-        event.target.submit();
-        setTimeout(function () {
-            event.target.reset();
-            window.location.href = "#SignIn"
-        }, 0)
-    }
+    handleSubmit = (event) => {
+        event.preventDefault();
+        const answer = window.confirm("Would you like to submit the form?");
+        if (answer) {
+            // Save it!
+            const answers = event.target.elements;
+            const data = fields.map(e => answers[e]?.value);
+            const csv = csvStringify([data]);
+            localStorage.setItem('saved', localStorage.getItem('saved') + csv)
+            event.target.submit();
+            setTimeout(function () {
+                event.target.reset();
+                window.location.href = "#SignIn"
+            }, 0);
+        } else {
+            // Do nothing!
+            console.log("Thing was not saved to the database.");
+        }
+    };
 
     downloadCSV() {
         download(csvStringify([fields]) + localStorage.getItem('saved'), 'Match_Scout.csv');
@@ -107,6 +116,9 @@ class App extends React.Component {
                 <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
             </div>
       */}
+
+
+                <ConnectionIndicator />
 
                 <form action={`http://${process.env.REACT_APP_BACKEND_IP}/data/matches`} method="POST" target="frame" id="myForm" onSubmit={this.handleSubmit}>
                     <input type='hidden' value={this.state.EventName} name='Competition' />
