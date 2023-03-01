@@ -1,7 +1,6 @@
 import './App.css';
 import { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation } from "./Pages";
 import React from "react";
-import { ConnectionIndicator } from './Form';
 
 const fields = [
     'Match_Number',
@@ -117,8 +116,6 @@ class App extends React.Component {
             </div>
       */}
 
-
-                <ConnectionIndicator />
 
                 <form action={`http://${process.env.REACT_APP_BACKEND_IP}/data/matches`} method="POST" target="frame" id="myForm" onSubmit={this.handleSubmit}>
                     <input type='hidden' value={this.state.EventName} name='Competition' />

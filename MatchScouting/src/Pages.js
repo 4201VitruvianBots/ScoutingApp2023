@@ -52,7 +52,7 @@ function SignIn(props) {
                     </select>
                     <br />
                     {showCheck && <div class="check"></div>}
-                    <input type="submit" className="SAVE" value="Sign In" />
+                    <input type="submit" className="submit-button" value="Sign In" />
 
                     {/* when submitted 
                         <>checkmark image</> */}
