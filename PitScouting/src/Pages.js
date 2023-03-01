@@ -1,4 +1,4 @@
-import { NumberInput, ButtonInput, MultiButton, Upload, SearchBar, options } from "./Form";
+import { NumberInput, ButtonInput, MultiButton, SearchBar, options } from "./Form";
 import './App.css';
 import { useState } from "react";
 
@@ -27,7 +27,7 @@ function SignIn(props) {
             <p className="topNote">If the robot has an "other" drivetrain, specify it in the notes at the bottom!</p>
             <form onSubmit={handleSubmit} action="#">
                 <div className="textArea">
-                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" className="name" required/>
+                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" className="name" required />
                     <br />
                     <select name="Competition" id="Ename" defaultValue="Choose">
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
@@ -120,21 +120,36 @@ function General(props) {
 
 
 function Photos(props) {
+
+
     return (
         <Page selected={props.selected} id="photos">
             <p className="section-label">Photos</p>
             <div className="textArea">
-                <p className="smallLabel">DRIVETRAIN</p>
-                <Upload name="Drivetrain_Photo"></Upload>
-                <p className="smallLabel">INTAKE</p>
-                <Upload name="Intake_Photo"></Upload>
-                <p className="smallLabel">UPTAKE</p>
-                <Upload name="Uptake_Photo"></Upload>
-                <p className="smallLabel">OUTTAKE</p>
-                <Upload name="Outtake_Photo"></Upload>
-                <p className="smallLabel">EXTRAS</p>
-                <Upload name="Extras_Photo"></Upload>
-                {/* <input type="file" multiple accept="image/*" /> */}
+                <div className="checkboxBOX">
+                    <div className="box">
+                        <input type="checkbox" required></input>
+                        <label className="smallLabel"> Drivetrain</label>
+                    </div>
+                    <div className="box">
+                        <input type="checkbox" required></input>
+                        <label className="smallLabel"> Intake</label>
+                    </div>
+                    <div className="box">
+                        <input type="checkbox" required></input>
+                        <label className="smallLabel"> Uptake</label>
+                    </div>
+                    <div className="box">
+                        <input type="checkbox" required></input>
+                        <label className="smallLabel"> Outtake</label>
+                    </div>
+                    <div className="box">
+                        <input type="checkbox" required></input>
+                        <label className="smallLabel"> Extras</label>
+
+                    </div>
+                    {/* <input type="file" multiple accept="image/*" /> */}
+                </div>
             </div>
         </Page>
     );
@@ -148,13 +163,13 @@ function SavePage(props) {
                 <p className="generalLabel">Notes</p>
                 <textarea rows="5" cols="20" id="notes" name="Comments" />
                 <input type="submit" className="submit-button" value="Save" />
-                <br/>
-                    <br/>
-                    <div className="nonSubmit">
+                <br />
+                <br />
+                <div className="nonSubmit">
                     <p className="reminder">DO NOT use this section unless instructed</p>
-                <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
-                <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
-            </div>
+                    <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
+                    <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
+                </div>
             </div>
         </Page>
     );

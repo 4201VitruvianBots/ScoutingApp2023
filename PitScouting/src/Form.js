@@ -351,12 +351,14 @@ const options = [
     { value: "8891", label: '8891' }
 ];
 
+
+
 // module.exports = Upload
 
 //something is making it think it's html...?
 
 
-export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, SearchBar, options };
+export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, SearchBar, options};
 
 
 // RadioButtons
