@@ -147,7 +147,7 @@ function SavePage(props) {
             <div className="textArea">
                 <p className="generalLabel">Notes</p>
                 <textarea rows="5" cols="20" id="notes" name="Comments" />
-                <input type="submit" className="submit-button" value="Submit" />
+                <input type="submit" className="submit-button" value="Save" />
                 <br/>
                     <br/>
                     <div className="nonSubmit">

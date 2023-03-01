@@ -407,21 +407,39 @@ function ConnectionIndicator(props) {
 
     if (connected) {
       return(
+
         <div >
-            <input type="submit" className="submit-button"></input>
-        </div>
+<input type="submit" className="submit-button"></input>
+</div>
+        
       )
     } else {
       return(
+
         <div className='noSubmissionAllowed'>
 
                 <p>Tablet not connected</p>
            </div>
+        
+
+
         
         )
     }
 
 }
 
+function CheckDecimal(props){
+    const inputField = document.getElementById("Match_Number");
 
-export { RadioButtons, NumberInput, ButtonInput, MultiButton, PageSelector, Upload, FoulCards, SearchBar, options, ConnectionIndicator };
+inputField.addEventListener('input', function() {
+  if (inputField.value.includes(".")) {
+    inputField.setCustomValidity("Please enter an integer.");
+  } else {
+    inputField.setCustomValidity("");
+  }
+});
+}
+
+
+export { RadioButtons, NumberInput, ButtonInput, MultiButton, PageSelector, Upload, FoulCards, SearchBar, options, ConnectionIndicator, CheckDecimal };

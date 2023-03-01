@@ -306,18 +306,32 @@ function ConnectionIndicator(props) {
         
       return(
         <div >
-
             <input type="submit" className="submit-button"></input>
         </div>
+        
+        
       )
     } else {
       return(  
-           <div className='noSubmissionAllowed'>
-                <p className='message'>Tablet not connected</p>
-           </div>
+        <div className='noSubmissionAllowed'>
+            <p className='message'>Tablet not connected</p>
+        </div>
+
         )
     }
 
 }
 
-export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, SearchBar, options, ConnectionIndicator };
+function CheckDecimal(props){
+    const inputField = document.getElementById("Match_Number");
+
+inputField.addEventListener('input', function() {
+  if (inputField.value.includes(".")) {
+    inputField.setCustomValidity("Please enter an integer.");
+  } else {
+    inputField.setCustomValidity("");
+  }
+});
+}
+
+export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, SearchBar, options, ConnectionIndicator, CheckDecimal };
