@@ -275,7 +275,7 @@ class SearchBar extends React.Component {
 
 function ConnectionIndicator(props) {
     const [connected, setConnected] = useState(false);
-    const [showCheck, setshowCheck] = useState(false);
+    
     
     useEffect(() => {
         const url = `http://${process.env.REACT_APP_BACKEND_IP}/data/status`;

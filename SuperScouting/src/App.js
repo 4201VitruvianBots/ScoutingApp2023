@@ -1,7 +1,6 @@
 import './App.css';
 import { SignIn, General} from "./Pages";
 import React from "react";
-import { ConnectionIndicator } from './Form';
 import QRCode from 'react-qr-code';
 
 class App extends React.Component {

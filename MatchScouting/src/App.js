@@ -1,7 +1,6 @@
 import './App.css';
 import { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation } from "./Pages";
 import React from "react";
-import { ConnectionIndicator } from './Form';
 
 class App extends React.Component {
     constructor(props) {
