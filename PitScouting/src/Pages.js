@@ -81,9 +81,9 @@ function General(props) {
 
                     <div className="scoringLocation">
                         <p className="generalLabel">Scoring Location Capability</p>
-                        <ButtonInput on_label='LOW' off_label='Low' id='1' />
-                        <ButtonInput on_label='MID' off_label='Mid' id='2' />
-                        <ButtonInput on_label='HIGH' off_label='High' id='3' />
+                        <ButtonInput on_label='LOW' off_label='Low' id='Low' />
+                        <ButtonInput on_label='MID' off_label='Mid' id='Mid' />
+                        <ButtonInput on_label='HIGH' off_label='High' id='High' />
 
 
                     </div>
@@ -125,15 +125,15 @@ function Photos(props) {
             <p className="section-label">Photos</p>
             <div className="textArea">
                 <p className="smallLabel">DRIVETRAIN</p>
-                <Upload></Upload>
+                <Upload name="Drivetrain_Photo"></Upload>
                 <p className="smallLabel">INTAKE</p>
-                <Upload></Upload>
+                <Upload name="Intake_Photo"></Upload>
                 <p className="smallLabel">UPTAKE</p>
-                <Upload></Upload>
+                <Upload name="Uptake_Photo"></Upload>
                 <p className="smallLabel">OUTTAKE</p>
-                <Upload></Upload>
+                <Upload name="Outtake_Photo"></Upload>
                 <p className="smallLabel">EXTRAS</p>
-                <Upload></Upload>
+                <Upload name="Extras_Photo"></Upload>
                 {/* <input type="file" multiple accept="image/*" /> */}
             </div>
         </Page>
@@ -147,7 +147,14 @@ function SavePage(props) {
             <div className="textArea">
                 <p className="generalLabel">Notes</p>
                 <textarea rows="5" cols="20" id="notes" name="Comments" />
-                <input type="submit" className="submit-button" />
+                <input type="submit" className="submit-button" value="Submit" />
+                <br/>
+                    <br/>
+                    <div className="nonSubmit">
+                    <p className="reminder">DO NOT use this section unless instructed</p>
+                <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
+                <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
+            </div>
             </div>
         </Page>
     );
