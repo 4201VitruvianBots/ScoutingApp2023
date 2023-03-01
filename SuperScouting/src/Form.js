@@ -415,10 +415,8 @@ function ConnectionIndicator(props) {
       return(
         <div className='noSubmissionAllowed'>
 
-                <p className='message'>NO SUBMISSION ALLOWED (Tablet not connected)</p>
+                <p>Tablet not connected</p>
            </div>
-
-
         
         )
     }

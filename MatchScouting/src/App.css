@@ -381,15 +381,15 @@ iframe {
 .noSubmissionAllowed{
   background-color: red;
   height:60px;
-  width: 40%;
+  width: 30%;
   margin: 0 auto;
   font-weight: 600;
   font-size: 20px;
   color: white;
   border-radius: 15px;
   padding: 5px;
-  
-
+  min-width: 50%;
+  max-width: 60%;
 
 }
 
