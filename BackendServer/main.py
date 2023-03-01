@@ -28,6 +28,11 @@ pitColumns = get_columns('pitData')
 superScoutColumns = get_columns('superScout')
 foulColumns = get_columns('fouls')
 
+@app.route('/data/status', methods=['GET'])
+def handle_status():
+
+    return 'OK'
+
 @app.route('/data/matches', methods=['GET'])
 def handle_get():
     # Handle GET request
@@ -126,7 +131,7 @@ def getRawFoulData(**kwargs):
     rows = mycursor.fetchall()
 
     # Format with column names
-    return [dict(zip(superScoutColumns, row)) for row in rows]                                                                                                                                                                                                        
+    return [dict(zip(foulColumns, row)) for row in rows]                                                                                                                                                                                                        
 
 @app.route('/data/matches', methods=['POST'])
 def handle_post():
@@ -228,7 +233,7 @@ def updateAnalysis(Team_Number):
 def updateFoulAnalysis(Team_Number):
     mycursor.execute('INSERT IGNORE INTO dataAnalysis(Team_Number) VALUES (%s)', (Team_Number,))
     mycursor.execute("UPDATE dataAnalysis SET Average_Fouls = (SELECT COUNT(*) FROM fouls WHERE Team_Number = %s) / (SELECT COUNT(*) FROM superScout WHERE Team_1 = %s OR TEAM_2 = %s OR TEAM_3 = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number,Team_Number,Team_Number))
-    for index, name in (1, 'Pin'), (2, 'Disabled'), (3, 'Overextension'), (4, 'Inside_Robot'):
+    for index, name in (1, 'Pin'), (2, 'Disabled'), (3, 'Overextension'), (4, 'Inside_Robot'), (5, 'Multiple_Pieces'), (6, 'Inside_Protected'):
         mycursor.execute(f"UPDATE dataAnalysis SET Total_{name}_Fouls = (SELECT COUNT(*) FROM fouls WHERE Team_Number = %s AND CAUSE = %s) WHERE Team_Number = %s", (Team_Number, index, Team_Number))
 
     mydb.commit()

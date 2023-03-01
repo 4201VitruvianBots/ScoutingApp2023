@@ -1,6 +1,7 @@
 import './App.css';
 import { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation } from "./Pages";
 import React from "react";
+import { ConnectionIndicator } from './Form';
 
 class App extends React.Component {
     constructor(props) {
@@ -26,17 +27,17 @@ class App extends React.Component {
         e.preventDefault();
         const answer = window.confirm("Would you like to submit the form?");
         if (answer) {
-          // Save it!
-          document.getElementById("myForm").submit();
-          setTimeout(function () {
-              document.getElementById("myForm").reset();
-              window.location.href = "#SignIn"
-          }, 0)
+            // Save it!
+            document.getElementById("myForm").submit();
+            setTimeout(function () {
+                document.getElementById("myForm").reset();
+                window.location.href = "#SignIn"
+            }, 0)
         } else {
-          // Do nothing!
-          console.log("Thing was not saved to the database.");
+            // Do nothing!
+            console.log("Thing was not saved to the database.");
         }
-      };
+    };
 
     render() {
         return (
@@ -56,6 +57,9 @@ class App extends React.Component {
                 <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
             </div>
       */}
+
+
+                <ConnectionIndicator />
 
                 <form action={`http://${process.env.REACT_APP_BACKEND_IP}/data/matches`} method="POST" target="frame" id="myForm" onSubmit={this.handleSubmit}>
                     <input type='hidden' value={this.state.EventName} name='Competition' />

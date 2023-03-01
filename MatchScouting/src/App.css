@@ -87,7 +87,7 @@ input[type="submit"],
   background-color: #83c183;
   margin-top: 30px;
   margin-bottom: 10px;
-  display: inline-block;
+  /* display: inline-block; */
   width: 300px;
   height: 35px;
   font-size: 20px;
@@ -375,6 +375,10 @@ iframe {
   border-radius: 7px;
 }
 
+.ToggleButton .number-on, .ToggleButton .number-off{
+  width: 150px;
+}
+
 
 .align-radio .number-on,
 .align-radio .number-off {
@@ -399,4 +403,8 @@ iframe {
   margin-bottom: 50%;
   position: absolute;
 
+}
+
+.test {
+  padding-top: 90px;
 }
