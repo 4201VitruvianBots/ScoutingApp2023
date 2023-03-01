@@ -23,6 +23,22 @@ class App extends React.Component {
         return false;
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const answer = window.confirm("Would you like to submit the form?");
+        if (answer) {
+            // Save it!
+            document.getElementById("myForm").submit();
+            setTimeout(function () {
+                document.getElementById("myForm").reset();
+                window.location.href = "#SignIn"
+            }, 0)
+        } else {
+            // Do nothing!
+            console.log("Thing was not saved to the database.");
+        }
+    };
+
     render() {
         return (
             <main>
@@ -43,9 +59,9 @@ class App extends React.Component {
       */}
 
 
-                <ConnectionIndicator/>
+                <ConnectionIndicator />
 
-                <form action={`http://${process.env.REACT_APP_BACKEND_IP}/data/matches`} method="POST" target="frame" id="myForm" onSubmit={clearForm}>
+                <form action={`http://${process.env.REACT_APP_BACKEND_IP}/data/matches`} method="POST" target="frame" id="myForm" onSubmit={this.handleSubmit}>
                     <input type='hidden' value={this.state.EventName} name='Competition' />
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
                     <PreGame selected={this.state.selected === 'pre-game'} />
@@ -61,15 +77,6 @@ class App extends React.Component {
         );
     }
 
-}
-
-// Test on slower connection in the future vvv
-function clearForm() {
-    document.getElementById("myForm").submit();
-    setTimeout(function () {
-        document.getElementById("myForm").reset();
-        window.location.href = "#SignIn"
-    }, 0)
 }
 
 export default App;

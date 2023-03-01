@@ -36,7 +36,7 @@ function SignIn(props) {
 
     return (
         <div>
-            <p className="section-label">Match Scouting</p>
+            <p className="section-label" id="SignIn">Match Scouting</p>
 
             <form onSubmit={handleSubmit} action="#">
                 <div className="textArea">
@@ -129,7 +129,7 @@ function Auto(props) {
                 <br />
                 <p className="itemLabel">CHARGING STATION</p>
                 <div className="align-radio">
-                
+
                     <MultiButton items={[['NO POINTS', 'No points'], ['DOCKED', 'Docked'], ['ENGAGED', 'Engaged']]} id="Auto_Station" />
 
                 </div>
@@ -220,7 +220,7 @@ function TeleOp(props) {
 function SavePage(props) {
     return (
 
-        <Page selected={props.selected} id="save-page">
+        <Page selected={props.selected} id="Save">
             <p className="section-label">Submit</p>
             <div className="textArea">
 
