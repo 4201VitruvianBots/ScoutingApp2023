@@ -28,3 +28,4 @@
 -  3x Robot Battery
 -  1x Battery Beak
 -  2x 10 port USB charging hub
+-  1x UPS power hub
