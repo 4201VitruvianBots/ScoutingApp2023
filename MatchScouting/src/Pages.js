@@ -14,11 +14,11 @@ function Navigation(props) {
     return (
         <Page selected={props.selected} className="page" id="navigation">
             <ul>
-                <li><a href="#SignIn">Sign-In</a></li>
+                <li><a href="#sign-in">Sign-In</a></li>
                 <li><a href="#Pre">Pre-Game</a></li>
                 <li><a href="#Auto">Auto</a></li>
                 <li><a href="#Tele">Tele-Op</a></li>
-                <li><a href="#Save">Submit</a></li> {/*change the rest of the code to 'submit' as well? does it matter?*/}
+                <li><a href="#save-page">Submit</a></li> {/*change the rest of the code to 'submit' as well? does it matter?*/}
             </ul>
         </Page>
     );
@@ -40,9 +40,9 @@ function SignIn(props) {
 
             <form onSubmit={handleSubmit} action="#">
                 <div className="textArea">
-                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" />
+                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" required/>
                     <br />
-                    <select name="Competition" id="Ename" defaultValue="Choose">
+                    <select name="Competition" id="Ename" defaultValue="Choose" >
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
                         <option value="Port Hueneme">Port Hueneme</option>
                     </select>
@@ -76,13 +76,13 @@ function PreGame(props) {
 
             <div className="textArea">
 
-                <p className="itemLabel" htmlFor="Match_Number">MATCH NUMBER</p>
-                <input type="number" id="Match_Number" name="Match_Number" className="textInput" />
+                <p className="itemLabel" htmlFor="Match_Number" required>MATCH NUMBER</p>
+                <input type="number" id="Match_Number" name="Match_Number" className="textInput" required min="1"/>
 
                 <p className="itemLabel" htmlFor="Match_Number">TEAM NUMBER</p>
                 {/* <input type="number" id="Team_Number" name="Team_Number" className="textInput" /> */}
 
-                <SearchBar setSelectedOption={setSelectedOption} selectedOption={teamOption} name="Team_Number" className="teamSearch" />
+                <SearchBar setSelectedOption={setSelectedOption} selectedOption={teamOption} name="Team_Number" className="teamSearch" required/>
 
 
                 <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
