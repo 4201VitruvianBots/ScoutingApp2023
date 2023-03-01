@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import Select from 'react-select';
+
 
 // Radio Buttons
 function RadioButtons(props) {
@@ -376,5 +377,51 @@ const options = [
     { value: "8891", label: '8891' }
 ];
 
+function ConnectionIndicator(props) {
+    const [connected, setConnected] = useState(false);
+    
+    useEffect(() => {
+        const url = `http://${process.env.REACT_APP_BACKEND_IP}/data/status`;
+    
+        const fetchData = async () => {
+          try {
+            const response = await fetch(url);
+            const ok = response.ok;
+            setConnected(ok);
+          } catch (error) {
+            console.log("error", error);
+            setConnected(false);
+          }
+        };
+        
+        const interval = setInterval(function() {
+            fetchData();
+          }, 5000);
+         
+        return function cleanup() {
+            clearInterval(interval);
+          };
+      
 
-export { RadioButtons, NumberInput, ButtonInput, MultiButton, PageSelector, Upload, FoulCards, SearchBar, options };
+    }, []);
+
+    if (connected) {
+      return(
+        <div >
+            <input type="submit" className="submit-button"></input>
+        </div>
+      )
+    } else {
+      return(
+        <div className='noSubmissionAllowed'>
+
+                <p>Tablet not connected</p>
+           </div>
+        
+        )
+    }
+
+}
+
+
+export { RadioButtons, NumberInput, ButtonInput, MultiButton, PageSelector, Upload, FoulCards, SearchBar, options, ConnectionIndicator };

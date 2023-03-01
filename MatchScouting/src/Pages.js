@@ -1,4 +1,4 @@
-import { NumberInput, ButtonInput, MultiButton, SearchBar, options } from "./Form";
+import { NumberInput, ButtonInput, MultiButton, SearchBar, options, ConnectionIndicator } from "./Form";
 import './App.css';
 import { useState } from "react";
 
@@ -19,7 +19,11 @@ function Navigation(props) {
                 <li><a href="#Auto">Auto</a></li>
                 <li><a href="#Tele">Tele-Op</a></li>
                 <li><a href="#save-page">Submit</a></li> {/*change the rest of the code to 'submit' as well? does it matter?*/}
+                <br />
+                <br />
             </ul>
+
+
         </Page>
     );
 }
@@ -40,7 +44,7 @@ function SignIn(props) {
 
             <form onSubmit={handleSubmit} action="#">
                 <div className="textArea">
-                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" required/>
+                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" required />
                     <br />
                     <select name="Competition" id="Ename" defaultValue="Choose" >
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
@@ -77,12 +81,12 @@ function PreGame(props) {
             <div className="textArea">
 
                 <p className="itemLabel" htmlFor="Match_Number" required>MATCH NUMBER</p>
-                <input type="number" id="Match_Number" name="Match_Number" className="textInput" required min="1"/>
+                <input type="number" id="Match_Number" name="Match_Number" className="textInput" required min="1" />
 
                 <p className="itemLabel" htmlFor="Match_Number">TEAM NUMBER</p>
                 {/* <input type="number" id="Team_Number" name="Team_Number" className="textInput" /> */}
 
-                <SearchBar setSelectedOption={setSelectedOption} selectedOption={teamOption} name="Team_Number" className="teamSearch" required/>
+                <SearchBar setSelectedOption={setSelectedOption} selectedOption={teamOption} name="Team_Number" className="teamSearch" required />
 
 
                 <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
@@ -238,6 +242,10 @@ function SavePage(props) {
                 <br /> */}
 
                 <input type="textarea" id="Comments" name="Comments" placeholder="Comment here" className="textInput" />
+                <br />
+                <br />
+
+                <ConnectionIndicator />
 
                 {/* <label className="item-label" htmlFor="clear">QR code and clear</label>
                 <input type="submit" className="SAVE" value="Generate QR code"></input>
@@ -245,13 +253,13 @@ function SavePage(props) {
                 <label className="item-label" htmlFor="continue">Save and continue</label>
                  */}
                 <br />
-                <input type="submit" className="submit-button"></input>
-                <br/>
-                <br/>
+
+                <br />
+                <br />
                 <div className="nonSubmit">
-                <p className="reminder">DO NOT use this section unless instructed</p>
-                <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
-                <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
+                    <p className="reminder">DO NOT use this section unless instructed</p>
+                    <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
+                    <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
                 </div>
                 {/* <input type="reset" className="CLEAR" value="Clear Form" /> */}
                 {/* <div id="QRCode">{props.QRCode}</div> */}

@@ -276,6 +276,7 @@ class SearchBar extends React.Component {
 function ConnectionIndicator(props) {
     const [connected, setConnected] = useState(false);
     
+    
     useEffect(() => {
         const url = `http://${process.env.REACT_APP_BACKEND_IP}/data/status`;
     
@@ -302,16 +303,18 @@ function ConnectionIndicator(props) {
     }, []);
 
     if (connected) {
+        
       return(
-        <div>
-            'connected'
+        <div >
+
+            <input type="submit" className="submit-button"></input>
         </div>
       )
     } else {
-      return(
-        <div>
-            'not connected'
-        </div>
+      return(  
+           <div className='noSubmissionAllowed'>
+                <p className='message'>Tablet not connected</p>
+           </div>
         )
     }
 

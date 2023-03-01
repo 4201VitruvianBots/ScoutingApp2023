@@ -106,6 +106,7 @@ class App extends React.Component {
 
                 selectedPage = (<form action={`http://${process.env.REACT_APP_BACKEND_IP}/data/superScout`} method="POST" target="frame" id="myForm" onSubmit={this.handleSubmit}>
 
+
                     <input type='hidden' value={this.state.EventName} name='Competition' />
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
                     <input type='hidden' value={this.state.Alliance} name="Team_Alliance" />
@@ -121,8 +122,10 @@ class App extends React.Component {
         return (
             <main>
                 <p className="page-title">Welcome to Vitruvian Scouting</p>
+
                 <input type="button" onClick={() => this.test2('sign-in')} value="Sign In" className="nav" />
                 <input type="button" onClick={() => this.test2('general')} value="Fouls" className="nav" />
+
                 {selectedPage}
 
                 <iframe className="frame" name="frame" title="frame"></iframe>

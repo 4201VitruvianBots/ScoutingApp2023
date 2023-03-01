@@ -84,26 +84,27 @@ input[type="number"] {
 
 .submit-button {
   background-color: #83c183;
- width: 400px;
- height: 40px;
- font-size: 25px;
- margin: 25px;
- border-radius: 30px;
- font-family: system-ui;
+  width: 400px;
+  height: 40px;
+  font-size: 25px;
+  margin: 25px;
+  border-radius: 30px;
+  font-family: system-ui;
 
 }
 
-.download-button, .clear-button {
+.download-button,
+.clear-button {
 
- color: black;
- font-size: 15px !important;
- font-weight: 700;
- display: inline !important;
- width: 170px;
- height: 40px !important;
- border: none;
- border-radius: 30px;
- margin: 15px;
+  color: black;
+  font-size: 15px !important;
+  font-weight: 700;
+  display: inline !important;
+  width: 170px;
+  height: 40px !important;
+  border: none;
+  border-radius: 30px;
+  margin: 15px;
 
 }
 
@@ -112,23 +113,23 @@ input[type="number"] {
   background-color: rgba(0, 183, 255, 0.637);
 }
 
-.clear-button{
+.clear-button {
   background-color: rgba(255, 0, 0, 0.637);
 }
 
-.nonSubmit{
- background-color:gray;
- border-radius: 30px;
- width: 90%;
- margin: 0 auto;
- padding: 5px;
+.nonSubmit {
+  background-color: gray;
+  border-radius: 30px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 5px;
 }
 
-.reminder{
- font-size: 15px;
- color: white;
- font-weight: 600;
- padding: 1px;
+.reminder {
+  font-size: 15px;
+  color: white;
+  font-weight: 600;
+  padding: 1px;
 }
 
 
@@ -325,7 +326,6 @@ input[type="button"] {
 
 
 
-
 ul {
   list-style-type: none;
   margin: 0;
@@ -350,14 +350,82 @@ li a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  height: 25px;
 }
 
 li a:hover {
   background-color: #111;
 }
 
+.connectionIndicator {
+
+  font-weight: 700;
+  font-size: 15px;
+  color: black;
+  width: 120px;
+  height: 110px;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  margin: 0 auto;
+  padding-top: 15px;
+  border-radius: 15px;
+
+}
+
+/* .connectionIndicator .check2 {
+  background-color:rgb(0, 255, 0);
+}
+
+.connectionIndicator .x2 {
+  background-color:rgb(255, 0, 0);
+} */
+
+.check2 {
+  width: 50px;
+  height: 20px;
+  border-left: 10px solid lightgreen;
+  border-bottom: 10px solid lightgreen;
+  transform: rotate(-45deg);
+  margin-left: 30%;
+  margin-top: 30%;
+  position: absolute;
+}
+
+
+.x2:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "\274c";
+  font-size: 50px;
+  color: #FFF;
+  line-height: 100px;
+  text-align: center;
+  margin-top: 150%;
+  margin-left: 5%;
+}
+
 iframe {
   display: none;
+}
+
+.noSubmissionAllowed {
+  background-color: red;
+  height: 60px;
+  width: 30%;
+  margin: 0 auto;
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
+  border-radius: 15px;
+  padding: 5px;
+  min-width: 50%;
+  max-width: 60%;
+
 }
 
 
@@ -403,7 +471,8 @@ iframe {
   border-radius: 7px;
 }
 
-.ToggleButton .number-on, .ToggleButton .number-off{
+.ToggleButton .number-on,
+.ToggleButton .number-off {
   width: 150px;
 }
 
@@ -430,8 +499,9 @@ iframe {
   margin-left: 70%;
   margin-bottom: 50%;
   position: absolute;
-
 }
+
+
 
 .test {
   padding-top: 90px;
