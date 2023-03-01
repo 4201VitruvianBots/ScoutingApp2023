@@ -3,6 +3,51 @@ import { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation } from "./Pages";
 import React from "react";
 import { ConnectionIndicator } from './Form';
 
+const fields = [
+    'Match_Number',
+    'Team_Number',
+    'Scouter_Name',
+    'Team_Alliance',
+    'Competition',
+    'Mobility',
+    'Auto_Cube_Low',
+    'Auto_Cube_Mid',
+    'Auto_Cube_High',
+    'Auto_Cone_Low',
+    'Auto_Cone_Mid',
+    'Auto_Cone_High',
+    'Auto_Station',
+    'Tele_Cube_Low',
+    'Tele_Cube_Mid',
+    'Tele_Cube_High',
+    'Tele_Cone_Low',
+    'Tele_Cone_Mid',
+    'Tele_Cone_High',
+    'Tele_Station',
+    'Comments'
+];
+
+function download(data, title) {
+    const blob = new Blob([data], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.download = title;
+    link.href = url;
+    link.click();
+}
+
+function csvStringify(data) {
+    console.log(data);
+    return data.map(e => (
+        e.map(e2 => {
+            if (e2.includes('"') || e2.includes('\n') || e2.includes('\r') || e2.includes(',')) {
+                return '"' + e2.replaceAll('"', '""') + '"';
+            }
+            return e2;
+        }).join(',') + '\r\n'
+    )).join('');
+}
+
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -23,21 +68,35 @@ class App extends React.Component {
         return false;
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
+    handleSubmit = (event) => {
+        event.preventDefault();
         const answer = window.confirm("Would you like to submit the form?");
         if (answer) {
             // Save it!
-            document.getElementById("myForm").submit();
+            const answers = event.target.elements;
+            const data = fields.map(e => answers[e]?.value);
+            const csv = csvStringify([data]);
+            localStorage.setItem('saved', localStorage.getItem('saved') + csv)
+            event.target.submit();
             setTimeout(function () {
-                document.getElementById("myForm").reset();
+                event.target.reset();
                 window.location.href = "#SignIn"
-            }, 0)
+            }, 0);
         } else {
             // Do nothing!
             console.log("Thing was not saved to the database.");
         }
     };
+
+    downloadCSV() {
+        download(csvStringify([fields]) + localStorage.getItem('saved'), 'Match_Scout.csv');
+    }
+
+    clearData() {
+        if (window.confirm('STOP!!! Ask a scouting coordinator before pressing "ok" :)')) {
+            localStorage.setItem('saved', '');
+        }
+    }
 
     render() {
         return (
@@ -68,7 +127,7 @@ class App extends React.Component {
                     <Auto selected={this.state.selected === 'auto'} />
                     <TeleOp selected={this.state.selected === 'tele-op'} />
 
-                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
+                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} downloadCSV={this.downloadCSV} clearData={this.clearData} />
                     {/* <input type="submit" className="submit-button"></input> */}
                 </form>
                 <iframe name="frame" title="frame"></iframe>
