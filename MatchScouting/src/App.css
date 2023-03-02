@@ -336,14 +336,17 @@ ul {
   font-weight: 300;
   position: fixed;
   top: 0;
-  width: fit-content;
+  width: 100%;
   margin: 0 auto;
   z-index: 5000;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
-li {
-  float: left;
-}
 
 li a {
   display: block;
@@ -352,6 +355,7 @@ li a {
   padding: 14px 16px;
   text-decoration: none;
   height: 25px;
+  font-weight: 500;
 }
 
 li a:hover {
@@ -497,8 +501,8 @@ iframe {
   border-left: 10px solid green;
   border-bottom: 10px solid green;
   transform: rotate(-45deg);
-  margin-left: 70%;
-  margin-bottom: 50%;
+  margin-left: 80%;
+  margin-bottom: 40%;
   position: absolute;
 }
 

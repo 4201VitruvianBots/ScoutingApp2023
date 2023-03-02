@@ -13,16 +13,17 @@ function Page(props) {
 function Navigation(props) {
     return (
         <Page selected={props.selected} className="page" id="navigation">
+            <div>
             <ul>
-                <li><a href="#sign-in">Sign-In</a></li>
+                <li><a href="#SignIn">Sign-In</a></li>
                 <li><a href="#Pre">Pre-Game</a></li>
                 <li><a href="#Auto">Auto</a></li>
                 <li><a href="#Tele">Tele-Op</a></li>
-                <li><a href="#save-page">Submit</a></li> {/*change the rest of the code to 'submit' as well? does it matter?*/}
+                <li><a href="#Save">Submit</a></li> {/*change the rest of the code to 'submit' as well? does it matter?*/}
                 <br />
                 <br />
             </ul>
-
+            </div>
 
         </Page>
     );
@@ -118,7 +119,7 @@ function Auto(props) {
             <p className="section-label" id="Auto">Auto</p>
             <div className="textArea">
 
-                <ButtonInput on_label='MOBILITY' off_label='Mobility' id="Mobility" />
+                <ButtonInput on_label='MOBILITY' off_label='No Mobility' id="Mobility" />
                 {/* <button type="button">Mobility?</button> */}
 
                 {/* <h2>Mobility</h2> */}
