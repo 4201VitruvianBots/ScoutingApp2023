@@ -65,11 +65,20 @@ class App extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const answers = event.target.elements;
-        const data = fields.map(e => answers[e]?.value);
-        const csv = csvStringify([data]);
-        localStorage.setItem('saved', localStorage.getItem('saved') + csv)
-        event.target.reset();
+
+        const answer = window.confirm("Would you like to submit the form?");
+        if (answer) {
+            const answers = event.target.elements;
+            const data = fields.map(e => answers[e]?.value);
+            const csv = csvStringify([data]);
+            localStorage.setItem('saved', localStorage.getItem('saved') + csv)
+            event.target.reset();
+            // Save it!
+
+        } else {
+            // Do nothing!
+            console.log("Thing was not saved to the database.");
+        }
     }
 
     downloadCSV() {

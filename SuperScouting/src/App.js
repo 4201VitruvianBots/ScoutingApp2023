@@ -64,17 +64,24 @@ class App extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const answers = event.target.elements;
-        const data = fields.map(e => answers[e]?.value);
-        const foulsList = this.state.fouls.map(e => [e[0], e[1], e[2]]).flat(0);
-        const csv = csvStringify([data.concat(foulsList)]);
-        localStorage.setItem('saved', localStorage.getItem('saved') + csv)
-        event.target.submit();
-        setTimeout(() => {
-            event.target.reset();
-            this.setFouls([]);
-        }, 0)
+        const answer = window.confirm("Would you like to submit the form?");
+        if (answer) {
+            const answers = event.target.elements;
+            const data = fields.map(e => answers[e]?.value);
+            const foulsList = this.state.fouls.map(e => [e[0], e[1], e[2]]).flat(0);
+            const csv = csvStringify([data.concat(foulsList)]);
+            localStorage.setItem('saved', localStorage.getItem('saved') + csv)
+            event.target.submit();
+            setTimeout(() => {
+                event.target.reset();
+                this.setFouls([]);
+            }, 0)
+            // Save it!
 
+        } else {
+            // Do nothing!
+            console.log("Thing was not saved to the database.");
+        }
     }
 
     downloadCSV() {
