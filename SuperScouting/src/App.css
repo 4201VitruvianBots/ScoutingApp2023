@@ -353,6 +353,7 @@
 
  }
 
+ .save-button,
  .download-button,
  .clear-button {
 
@@ -366,6 +367,10 @@
    border-radius: 30px;
    margin: 15px;
 
+ }
+
+ .save-button {
+   background-color: #83c183;
  }
 
  .download-button {
