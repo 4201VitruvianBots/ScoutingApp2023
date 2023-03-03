@@ -246,22 +246,13 @@ function SavePage(props) {
                 <br />
                 <br />
 
-                <ConnectionIndicator />
+                <ConnectionIndicator downloadCSV={props.downloadCSV} clearData={props.clearData} />
 
                 {/* <label className="item-label" htmlFor="clear">QR code and clear</label>
                 <input type="submit" className="SAVE" value="Generate QR code"></input>
                 <br />
                 <label className="item-label" htmlFor="continue">Save and continue</label>
                  */}
-                <br />
-
-                <br />
-                <br />
-                <div className="nonSubmit">
-                    <p className="reminder">DO NOT use this section unless instructed</p>
-                    <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
-                    <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
-                </div>
                 {/* <input type="reset" className="CLEAR" value="Clear Form" /> */}
                 {/* <div id="QRCode">{props.QRCode}</div> */}
             </div>
