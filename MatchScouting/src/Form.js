@@ -1,6 +1,6 @@
 import './App.css';
 import Select from 'react-select';
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Radio Buttons
 function RadioButtons(props) {
@@ -43,7 +43,7 @@ class NumberInput extends React.Component {
 
     increaseValue() {
         if (this.state.value < 10)
-        this.setState({ value: this.state.value + 1 });
+            this.setState({ value: this.state.value + 1 });
     }
 
     decreaseValue() {
@@ -61,7 +61,7 @@ class NumberInput extends React.Component {
                 </div>
                 <div className="buttonright">
                     <input type="button" className="chonk" value="-" onClick={this.decreaseValue} />
-                    <input type="number" value={this.state.value} onChange={this.handleChange} name={this.state.id} min="0" max="10" step="1"/>
+                    <input type="number" value={this.state.value} onChange={this.handleChange} name={this.state.id} min="0" max="10" step="1" />
                     <input type="button" className="chonk" value="+" onClick={this.increaseValue} />
                 </div>
             </div>
@@ -275,63 +275,62 @@ class SearchBar extends React.Component {
 
 function ConnectionIndicator(props) {
     const [connected, setConnected] = useState(false);
-    
-    
+
+
     useEffect(() => {
         const url = `http://${process.env.REACT_APP_BACKEND_IP}/data/status`;
-    
+
         const fetchData = async () => {
-          try {
-            const response = await fetch(url);
-            const ok = response.ok;
-            setConnected(ok);
-          } catch (error) {
-            console.log("error", error);
-            setConnected(false);
-          }
+            try {
+                const response = await fetch(url);
+                const ok = response.ok;
+                setConnected(ok);
+            } catch (error) {
+                console.log("error", error);
+                setConnected(false);
+            }
         };
-        
-        const interval = setInterval(function() {
+
+        const interval = setInterval(function () {
             fetchData();
-          }, 5000);
-         
+        }, 5000);
+
         return function cleanup() {
             clearInterval(interval);
-          };
-      
+        };
+
 
     }, []);
 
     if (connected) {
-        
-      return(
-        <div >
-            <input type="submit" className="submit-button"></input>
-        </div>
-        
-        
-      )
-    } else {
-      return(  
-        <div className='noSubmissionAllowed'>
-            <p className='message'>Tablet not connected</p>
-        </div>
 
+        return (
+            <div >
+
+                <input type="submit" className="submit-button" value="Submit & Clear"></input>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+                <p className='connerror'>Tablet not connected</p>
+                <input type="submit" className="submit-button" value="Save & Clear"></input>
+            </div>
         )
     }
 
 }
 
-function CheckDecimal(props){
+function CheckDecimal(props) {
     const inputField = document.getElementById("Match_Number");
 
-inputField.addEventListener('input', function() {
-  if (inputField.value.includes(".")) {
-    inputField.setCustomValidity("Please enter an integer.");
-  } else {
-    inputField.setCustomValidity("");
-  }
-});
+    inputField.addEventListener('input', function () {
+        if (inputField.value.includes(".")) {
+            inputField.setCustomValidity("Please enter an integer.");
+        } else {
+            inputField.setCustomValidity("");
+        }
+    });
 }
 
 export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, SearchBar, options, ConnectionIndicator, CheckDecimal };
