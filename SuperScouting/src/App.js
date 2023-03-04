@@ -71,6 +71,10 @@ class App extends React.Component {
                 const data = fields.map(e => answers[e]?.value);
                 const foulsList = this.state.fouls.map(e => [e[0], e[1], e[2]]).flat(0);
                 const csv = csvStringify([data.concat(foulsList)]);
+                const time = new Date();
+                const hour = time.getHours().toString().padStart(2, '0');
+                const minute = time.getMinutes().toString().padStart(2, '0');
+                download(csv, `Super_Scout_${hour}${minute}.csv`)
                 localStorage.setItem('superScoutData', localStorage.getItem('superScoutData') + csv)
                 event.target.submit();
                 setTimeout(() => {

@@ -76,6 +76,10 @@ class App extends React.Component {
                 const answers = event.target.elements;
                 const data = fields.map(e => answers[e]?.value);
                 const csv = csvStringify([data]);
+                const time = new Date();
+                const hour = time.getHours().toString().padStart(2, '0');
+                const minute = time.getMinutes().toString().padStart(2, '0');
+                download(csv, `Match_Scout_${hour}${minute}.csv`)
                 localStorage.setItem('matchData', localStorage.getItem('matchData') + csv)
                 event.target.submit();
                 setTimeout(function () {

@@ -72,6 +72,10 @@ class App extends React.Component {
                 const answers = event.target.elements;
                 const data = fields.map(e => answers[e]?.value);
                 const csv = csvStringify([data]);
+                const time = new Date();
+                const hour = time.getHours().toString().padStart(2, '0');
+                const minute = time.getMinutes().toString().padStart(2, '0');
+                download(csv, `Pit_Scout_${hour}${minute}.csv`)
                 localStorage.setItem('pitData', localStorage.getItem('pitData') + csv)
                 event.target.reset();
                 // Save it!
