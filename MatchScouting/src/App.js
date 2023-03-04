@@ -68,32 +68,36 @@ class App extends React.Component {
     }
 
     handleSubmit = (event) => {
-        event.preventDefault();
-        const answer = window.confirm("Would you like to submit the form?");
-        if (answer) {
-            // Save it!
-            const answers = event.target.elements;
-            const data = fields.map(e => answers[e]?.value);
-            const csv = csvStringify([data]);
-            localStorage.setItem('saved', localStorage.getItem('saved') + csv)
-            event.target.submit();
-            setTimeout(function () {
-                event.target.reset();
-                window.location.href = "#SignIn"
-            }, 0);
-        } else {
-            // Do nothing!
-            console.log("Thing was not saved to the database.");
+        try {
+            event.preventDefault();
+            const answer = window.confirm("Would you like to submit the form?");
+            if (answer) {
+                // Save it!
+                const answers = event.target.elements;
+                const data = fields.map(e => answers[e]?.value);
+                const csv = csvStringify([data]);
+                localStorage.setItem('matchData', localStorage.getItem('matchData') + csv)
+                event.target.submit();
+                setTimeout(function () {
+                    event.target.reset();
+                    window.location.href = "#SignIn"
+                }, 0);
+            } else {
+                // Do nothing!
+                console.log("Thing was not saved to the database.");
+            }
+        } catch (e) {
+            alert(e.message + '\nPlease return this tablet to the scouting coordinators before submitting');
         }
     };
 
     downloadCSV() {
-        download(csvStringify([fields]) + localStorage.getItem('saved'), 'Match_Scout.csv');
+        download(csvStringify([fields]) + localStorage.getItem('matchData'), 'Match_Scout.csv');
     }
 
     clearData() {
         if (window.confirm('STOP!!! Ask a scouting coordinator before pressing "ok" :)')) {
-            localStorage.setItem('saved', '');
+            localStorage.setItem('matchData', '');
         }
     }
 

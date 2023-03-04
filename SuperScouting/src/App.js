@@ -63,34 +63,38 @@ class App extends React.Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault();
-        const answer = window.confirm("Would you like to submit the form?");
-        if (answer) {
-            const answers = event.target.elements;
-            const data = fields.map(e => answers[e]?.value);
-            const foulsList = this.state.fouls.map(e => [e[0], e[1], e[2]]).flat(0);
-            const csv = csvStringify([data.concat(foulsList)]);
-            localStorage.setItem('saved', localStorage.getItem('saved') + csv)
-            event.target.submit();
-            setTimeout(() => {
-                event.target.reset();
-                this.setFouls([]);
-            }, 0)
-            // Save it!
+        try {
+            event.preventDefault();
+            const answer = window.confirm("Would you like to submit the form?");
+            if (answer) {
+                const answers = event.target.elements;
+                const data = fields.map(e => answers[e]?.value);
+                const foulsList = this.state.fouls.map(e => [e[0], e[1], e[2]]).flat(0);
+                const csv = csvStringify([data.concat(foulsList)]);
+                localStorage.setItem('superScoutData', localStorage.getItem('superScoutData') + csv)
+                event.target.submit();
+                setTimeout(() => {
+                    event.target.reset();
+                    this.setFouls([]);
+                }, 0)
+                // Save it!
 
-        } else {
-            // Do nothing!
-            console.log("Thing was not saved to the database.");
+            } else {
+                // Do nothing!
+                console.log("Thing was not saved to the database.");
+            }
+        } catch (e) {
+            alert(e.message + '\nPlease return this tablet to the scouting coordinators before submitting');
         }
     }
 
     downloadCSV() {
-        download(csvStringify([fields]) + localStorage.getItem('saved'), 'Super_Scout.csv');
+        download(csvStringify([fields]) + localStorage.getItem('superScoutData'), 'Super_Scout.csv');
     }
 
     clearData() {
         if (window.confirm('STOP!!! Ask a scouting coordinator before pressing "ok" :)')) {
-            localStorage.setItem('saved', '');
+            localStorage.setItem('superScoutData', '');
         }
     }
 

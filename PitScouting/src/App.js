@@ -64,30 +64,34 @@ class App extends React.Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault();
+        try {
+            event.preventDefault();
 
-        const answer = window.confirm("Would you like to submit the form?");
-        if (answer) {
-            const answers = event.target.elements;
-            const data = fields.map(e => answers[e]?.value);
-            const csv = csvStringify([data]);
-            localStorage.setItem('saved', localStorage.getItem('saved') + csv)
-            event.target.reset();
-            // Save it!
+            const answer = window.confirm("Would you like to submit the form?");
+            if (answer) {
+                const answers = event.target.elements;
+                const data = fields.map(e => answers[e]?.value);
+                const csv = csvStringify([data]);
+                localStorage.setItem('pitData', localStorage.getItem('pitData') + csv)
+                event.target.reset();
+                // Save it!
 
-        } else {
-            // Do nothing!
-            console.log("Thing was not saved to the database.");
+            } else {
+                // Do nothing!
+                console.log("Thing was not saved to the database.");
+            }
+        } catch (e) {
+            alert(e.message + '\nPlease return this tablet to the scouting coordinators before submitting');
         }
     }
 
     downloadCSV() {
-        download(csvStringify([fields]) + localStorage.getItem('saved'), 'Pit_Scout.csv');
+        download(csvStringify([fields]) + localStorage.getItem('pitData'), 'Pit_Scout.csv');
     }
 
     clearData() {
         if (window.confirm('STOP!!! Ask a scouting coordinator before pressing "ok" :)')) {
-            localStorage.setItem('saved', '');
+            localStorage.setItem('pitData', '');
         }
     }
 
