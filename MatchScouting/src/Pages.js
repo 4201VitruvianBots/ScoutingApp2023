@@ -119,7 +119,7 @@ function Auto(props) {
             <p className="section-label" id="Auto">Auto</p>
             <div className="textArea">
 
-                <ButtonInput on_label='MOBILITY' off_label='No Mobility' id="Mobility" />
+                <ButtonInput on_label="Activated!" off_label='Mobility?' id="Mobility" />
                 {/* <button type="button">Mobility?</button> */}
 
                 {/* <h2>Mobility</h2> */}
