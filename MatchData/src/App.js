@@ -289,12 +289,12 @@ class App extends React.Component {
                         <tr>
 
                             <td colspan="2" className="colorbg">% Balanced / Docked</td>
-                            <td colspan="2" className="colorbg2">{this.state.data1?.Auto_Balance_Frequency}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data2?.Auto_Balance_Frequency}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data3?.Auto_Balance_Frequency}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data4?.Auto_Balance_Frequency}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data5?.Auto_Balance_Frequency}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data6?.Auto_Balance_Frequency}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data1?.Auto_Balance_Frequency * 100}%</td>
+                            <td colspan="2" className="colorbg2">{this.state.data2?.Auto_Balance_Frequency * 100}%</td>
+                            <td colspan="2" className="colorbg2">{this.state.data3?.Auto_Balance_Frequency * 100}%</td>
+                            <td colspan="2" className="colorbg2">{this.state.data4?.Auto_Balance_Frequency * 100}%</td>
+                            <td colspan="2" className="colorbg2">{this.state.data5?.Auto_Balance_Frequency * 100}%</td>
+                            <td colspan="2" className="colorbg2">{this.state.data6?.Auto_Balance_Frequency * 100}%</td>
                         </tr>
                         <tr>
                             <td rowspan="12" className="colorbg1">Tele-Op</td>
@@ -489,22 +489,22 @@ class App extends React.Component {
                         <tr>
                             <td rowspan="2" className="colorbg1">Endgame</td>
                             <td colspan="2" className="colorbg">% Docked</td>
-                            <td className="test" colspan="2">{this.state.data1?.End_Dock_Frequency}</td>
-                            <td className="test" colspan="2">{this.state.data2?.End_Dock_Frequency}</td>
-                            <td className="test" colspan="2">{this.state.data3?.End_Dock_Frequency}</td>
-                            <td className="test" colspan="2">{this.state.data4?.End_Dock_Frequency}</td>
-                            <td className="test" colspan="2">{this.state.data5?.End_Dock_Frequency}</td>
-                            <td className="test" colspan="2">{this.state.data6?.End_Dock_Frequency}</td>
+                            <td className="test" colspan="2">{this.state.data1?.End_Dock_Frequency * 100}%</td>
+                            <td className="test" colspan="2">{this.state.data2?.End_Dock_Frequency * 100}%</td>
+                            <td className="test" colspan="2">{this.state.data3?.End_Dock_Frequency * 100}%</td>
+                            <td className="test" colspan="2">{this.state.data4?.End_Dock_Frequency * 100}%</td>
+                            <td className="test" colspan="2">{this.state.data5?.End_Dock_Frequency * 100}%</td>
+                            <td className="test" colspan="2">{this.state.data6?.End_Dock_Frequency * 100}%</td>
 
                         </tr>
                         <tr>
                             <td colspan="2" className="colorbg">% Balanced</td>
-                            <td colspan="2" className="colorbg2">{this.state.data1?.End_Balance_Frequency}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data2?.End_Balance_Frequency}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data3?.End_Balance_Frequency}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data4?.End_Balance_Frequency}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data5?.End_Balance_Frequency}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data6?.End_Balance_Frequency}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data1?.End_Balance_Frequency * 100}%</td>
+                            <td colspan="2" className="colorbg2">{this.state.data2?.End_Balance_Frequency * 100}%</td>
+                            <td colspan="2" className="colorbg2">{this.state.data3?.End_Balance_Frequency * 100}%</td>
+                            <td colspan="2" className="colorbg2">{this.state.data4?.End_Balance_Frequency * 100}%</td>
+                            <td colspan="2" className="colorbg2">{this.state.data5?.End_Balance_Frequency * 100}%</td>
+                            <td colspan="2" className="colorbg2">{this.state.data6?.End_Balance_Frequency * 100}%</td>
 
                         </tr>
 
