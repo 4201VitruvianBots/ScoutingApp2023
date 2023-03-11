@@ -87,8 +87,10 @@ class App extends React.Component {
                 download(csv, `Match_Scout_${hour}${minute}.csv`)
                 localStorage.setItem('matchData', localStorage.getItem('matchData') + csv)
                 event.target.submit();
+                const setTeamOption = this.setTeamOption;
                 setTimeout(function () {
                     event.target.reset();
+                    setTeamOption({ value: null })
                     window.location.href = "#SignIn"
                 }, 0);
             } else {

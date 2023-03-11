@@ -249,8 +249,6 @@ class SearchBar extends React.Component {
     constructor(props) {
         super(props)
         this.handleChange = this.handleChange.bind(this);
-        // eslint-disable-next-line no-restricted-globals
-        addEventListener('reset', () => { this.setState({ value: null }) })
     }
 
     handleChange = (selectedOption) => {
