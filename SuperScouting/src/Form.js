@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Select from 'react-select';
 
@@ -56,7 +56,7 @@ class NumberInput extends React.Component {
             <div>
                 <div className="labelleft"><label htmlFor={this.state.id}>{this.state.label}</label></div>
                 <div className="buttonright"><input type="button" className="chonk" value="-" onClick={this.decreaseValue} />
-                    <input type="number" value={this.state.value} onChange={this.handleChange} name={this.state.id} min="0" step="1"/>
+                    <input type="number" value={this.state.value} onChange={this.handleChange} name={this.state.id} min="0" step="1" />
                     <input type="button" className="chonk" value="+" onClick={this.increaseValue} /></div>
             </div>
 
@@ -379,66 +379,59 @@ const options = [
 
 function ConnectionIndicator(props) {
     const [connected, setConnected] = useState(false);
-    
+
     useEffect(() => {
         const url = `http://${process.env.REACT_APP_BACKEND_IP}/data/status`;
-    
+
         const fetchData = async () => {
-          try {
-            const response = await fetch(url);
-            const ok = response.ok;
-            setConnected(ok);
-          } catch (error) {
-            console.log("error", error);
-            setConnected(false);
-          }
+            try {
+                const response = await fetch(url);
+                const ok = response.ok;
+                setConnected(ok);
+            } catch (error) {
+                console.log("error", error);
+                setConnected(false);
+            }
         };
-        
-        const interval = setInterval(function() {
+
+        const interval = setInterval(function () {
             fetchData();
-          }, 5000);
-         
+        }, 5000);
+
         return function cleanup() {
             clearInterval(interval);
-          };
-      
+        };
+
 
     }, []);
 
-    if (connected) {
-      return(
-
-        <div >
-<input type="submit" className="submit-button"></input>
-</div>
-        
-      )
-    } else {
-      return(
-
-        <div className='noSubmissionAllowed'>
-
-                <p>Tablet not connected</p>
-           </div>
-        
-
-
-        
-        )
-    }
+    return (<div>
+        {connected
+            ? <input type="submit" className="submit-button" value="Submit & Clear"></input>
+            : <p className='connerror'>Tablet not connected</p>
+        }
+        <br />
+        <br />
+        <div className="nonSubmit">
+            <p className="reminder">DO NOT use this section unless instructed</p>
+            {connected ? null : <input type="submit" className="save-button" value="Save Data & Clear" />}
+            <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
+            <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
+        </div>
+    </div>);
 
 }
 
-function CheckDecimal(props){
+function CheckDecimal(props) {
     const inputField = document.getElementById("Match_Number");
 
-inputField.addEventListener('input', function() {
-  if (inputField.value.includes(".")) {
-    inputField.setCustomValidity("Please enter an integer.");
-  } else {
-    inputField.setCustomValidity("");
-  }
-});
+    inputField.addEventListener('input', function () {
+        if (inputField.value.includes(".")) {
+            inputField.setCustomValidity("Please enter an integer.");
+        } else {
+            inputField.setCustomValidity("");
+        }
+    });
 }
 
 

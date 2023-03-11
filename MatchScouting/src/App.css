@@ -93,6 +93,7 @@ input[type="number"] {
 
 }
 
+.save-button,
 .download-button,
 .clear-button {
 
@@ -108,6 +109,9 @@ input[type="number"] {
 
 }
 
+.save-button {
+  background-color: #83c183;
+}
 
 .download-button {
   background-color: rgba(0, 183, 255, 0.637);
@@ -418,21 +422,12 @@ iframe {
   display: none;
 }
 
-.noSubmissionAllowed {
-  background-color: red;
-  height: 60px;
-  width: 30%;
-  margin: 0 auto;
-  font-weight: 600;
-  font-size: 20px;
-  color: white;
-  border-radius: 15px;
-  padding: 5px;
-  min-width: 50%;
-  max-width: 60%;
-
+.connerror {
+  color: red;
+  font-weight: bold;
+  margin: 0;
+  font-size: 1.5em;
 }
-
 
 .gallery {
   display: flex;
