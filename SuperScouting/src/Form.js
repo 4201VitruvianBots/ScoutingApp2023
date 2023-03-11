@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Select from 'react-select';
+import { Button } from 'bootstrap';
 
 
 // Radio Buttons
@@ -256,19 +257,39 @@ class FoulCards extends React.Component {
         super(props);
         this.state = { fouls: props.fouls, items: props.items, id: props.id, label: props.label, value: 0, selected: 0 };
         this.generateDiv = this.generateDiv.bind(this);
+        // this.setFouls = this.setFouls.bind(this);
+       
+      
+        // this.setFouls = this.setFouls(this);
     }
 
     generateDiv() {
         let output = [];
 
+
         for (let index in this.props.fouls) {
 
             output.push(
                 <div className="foul" key={index}>
+
                     {/* <p className="label4">FOUL</p> */}
                     <p className="label-number" key={1}>{this.props.fouls[index][0]}</p>
                     <p className="label-cause" key={2}>{this.props.fouls[index][1]}</p>
                     <p className="label-notes" key={3}>{this.props.fouls[index][2]}</p>
+
+                    <div className="deleteButton">
+                        <input type="button" value="Delete" onClick={() => {
+                            // event.preventDefault();
+                            let updatedFouls = [...this.props.fouls];
+                            updatedFouls.splice(index, 1);
+                            this.props.setFouls(updatedFouls);
+                        }
+                        
+                        }/>
+                    </div>
+                    
+
+                  
                 </div>
             )
         }
@@ -280,6 +301,8 @@ class FoulCards extends React.Component {
         return (
             <div className="fouls">
                 <this.generateDiv></this.generateDiv>
+
+
             </div>
         )
 
