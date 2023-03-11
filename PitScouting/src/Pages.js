@@ -1,6 +1,7 @@
 import { NumberInput, ButtonInput, MultiButton, SearchBar, options } from "./Form";
 import './App.css';
 import { useState } from "react";
+import { Upload } from "./Form";
 
 
 function Page(props) {
@@ -128,23 +129,28 @@ function Photos(props) {
             <div className="textArea">
                 <div className="checkboxBOX">
                     <div className="box">
-                        <input type="checkbox" required></input>
+                        {/* <input type="checkbox" required></input> */}
+                        <Upload></Upload>
                         <label className="smallLabel"> Drivetrain</label>
                     </div>
                     <div className="box">
-                        <input type="checkbox" required></input>
+                        {/* <input type="checkbox" required></input> */}
+                        <Upload></Upload>
                         <label className="smallLabel"> Intake</label>
                     </div>
                     <div className="box">
-                        <input type="checkbox" required></input>
+                        {/* <input type="checkbox" required></input> */}
+                        <Upload></Upload>
                         <label className="smallLabel"> Uptake</label>
                     </div>
                     <div className="box">
-                        <input type="checkbox" required></input>
+                        {/* <input type="checkbox" required></input> */}
+                        <Upload></Upload>
                         <label className="smallLabel"> Outtake</label>
                     </div>
                     <div className="box">
-                        <input type="checkbox" required></input>
+                        {/* <input type="checkbox" required></input> */}
+                        <Upload></Upload>
                         <label className="smallLabel"> Extras</label>
 
                     </div>

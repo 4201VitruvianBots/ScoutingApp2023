@@ -111,7 +111,7 @@
    border-color: #83c183;
  }
 
- 
+
 
  input[type="radio"] {
    border-color: var(--accent-3);
@@ -303,53 +303,54 @@
  }
 
  .submit-button {
-  background-color: #83c183;
- width: 400px;
- height: 40px;
- font-size: 25px;
- margin: 25px;
- border-radius: 30px;
- font-family: system-ui;
+   background-color: #83c183;
+   width: 400px;
+   height: 40px;
+   font-size: 25px;
+   margin: 25px;
+   border-radius: 30px;
+   font-family: system-ui;
 
-}
+ }
 
-.download-button, .clear-button {
+ .download-button,
+ .clear-button {
 
- color: black;
- font-size: 15px !important;
- font-weight: 700;
- display: inline !important;
- width: 170px;
- height: 40px !important;
- border: none;
- border-radius: 30px;
- margin: 15px;
+   color: black;
+   font-size: 15px !important;
+   font-weight: 700;
+   display: inline !important;
+   width: 170px;
+   height: 40px !important;
+   border: none;
+   border-radius: 30px;
+   margin: 15px;
 
-}
+ }
 
 
-.download-button {
-  background-color: rgba(0, 183, 255, 0.637);
-}
+ .download-button {
+   background-color: rgba(0, 183, 255, 0.637);
+ }
 
-.clear-button{
-  background-color: rgba(255, 0, 0, 0.637);
-}
+ .clear-button {
+   background-color: rgba(255, 0, 0, 0.637);
+ }
 
-.nonSubmit{
- background-color:gray;
- border-radius: 30px;
- width: 90%;
- margin: 0 auto;
- padding: 5px;
-}
+ .nonSubmit {
+   background-color: gray;
+   border-radius: 30px;
+   width: 90%;
+   margin: 0 auto;
+   padding: 5px;
+ }
 
-.reminder{
- font-size: 15px;
- color: white;
- font-weight: 600;
- padding: 1px;
-}
+ .reminder {
+   font-size: 15px;
+   color: white;
+   font-weight: 600;
+   padding: 1px;
+ }
 
  .workingOn input[type="text"] {
    width: 600px;
@@ -423,32 +424,33 @@
    color: black;
  }
 
- .checkboxBOX{
+ .checkboxBOX {
 
-  border-radius: 15px;
-  text-align: left;
-  /* padding:10px; */
-  width: fit-content;
-  margin: 0 auto;
- 
-  
+   border-radius: 15px;
+   text-align: left;
+   /* padding:10px; */
+   width: fit-content;
+   margin: 0 auto;
+
+
  }
 
  .box {
-  margin: 20px;
+   margin: 20px;
+   color: black;
  }
 
- input [type=checkbox]{
-  vertical-align: middle;
-  position: relative;
-  bottom: 1px;
+ input [type=checkbox] {
+   vertical-align: middle;
+   position: relative;
+   bottom: 1px;
  }
 
 
  input[type="checkbox"] {
 
-  width: 50px;
-  height: 20px;
-  font-size: 15px;
+   width: 50px;
+   height: 20px;
+   font-size: 15px;
 
-}
+ }

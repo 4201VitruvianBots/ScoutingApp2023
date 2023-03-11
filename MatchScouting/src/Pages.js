@@ -77,7 +77,7 @@ function PreGame(props) {
             <div className="textArea">
 
                 <p className="itemLabel" htmlFor="Match_Number" required>MATCH NUMBER</p>
-                <input type="number" id="Match_Number" name="Match_Number" className="textInput" required min="1" />
+                <input type="number" id="Match_Number" name="Match_Number" className="textInput" required min="1" max="100" />
 
                 <p className="itemLabel" htmlFor="Match_Number">TEAM NUMBER</p>
                 {/* <input type="number" id="Team_Number" name="Team_Number" className="textInput" /> */}
@@ -114,7 +114,7 @@ function Auto(props) {
             <p className="section-label" id="Auto">Auto</p>
             <div className="textArea">
 
-                <ButtonInput on_label='MOBILITY' off_label='No Mobility' id="Mobility" />
+                <ButtonInput on_label="Activated!" off_label='Mobility?' id="Mobility" />
                 {/* <button type="button">Mobility?</button> */}
 
                 {/* <h2>Mobility</h2> */}
@@ -263,6 +263,9 @@ function SavePage(props) {
                  */}
                 {/* <input type="reset" className="CLEAR" value="Clear Form" /> */}
                 {/* <div id="QRCode">{props.QRCode}</div> */}
+            </div>
+            <div>
+                <p className="version">Version 0</p>
             </div>
 
 

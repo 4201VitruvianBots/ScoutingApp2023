@@ -501,8 +501,10 @@ iframe {
   position: absolute;
 }
 
-
-
 .test {
   padding-top: 90px;
+}
+
+.version {
+  color: #ccc
 }
