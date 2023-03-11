@@ -4,6 +4,7 @@ import mysql.connector
 import atexit
 import time
 import json
+import threading
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -30,7 +31,7 @@ pitColumns = get_columns('pitData')
 superScoutColumns = get_columns('superScout')
 foulColumns = get_columns('fouls')
 
-scoutersStatus = {}
+scoutersStatus = {str(i): {'Scouter_Name': '', 'Team_Number': '', 'Battery_Level': '', 'Last_Update': 0, 'Online': False} for i in range(8)}
 
 # Position:
 # 0 Red 1
@@ -45,23 +46,26 @@ scoutersStatus = {}
 @app.route('/data/status', methods=['POST'])
 def handle_status():
     data = request.get_json()
-    if (data.get('Position') != None):
+    if (data.get('Position') != ''):
         scoutersStatus[data.get('Position')] = {
             'Scouter_Name': data.get('Scouter_Name'),
             'Team_Number': data.get('Team_Number'),
             'Battery_Level': data.get('Battery_Level'),
-            'Last_Update': time.time()
+            'Last_Update': time.time(),
+            'Online': True
         }    
     return 'OK', 200
 
 @app.route('/data/status', methods=['GET'])
 def get_status():
-    output = dict(scoutersStatus)
-    print(scoutersStatus)
-    for i in output:
-        output[i]['Online'] = (float(output[i]['Last_Update']) + 10 > time.time())
+    return scoutersStatus
 
-    return json.dumps(output)
+def checker_thread():
+    while True:
+        for i in scoutersStatus:
+            if scoutersStatus[i]['Last_Update'] + 6 < time.time():
+                scoutersStatus[i]['Online'] = False
+        time.sleep(1)
 
 @app.route('/data/matches', methods=['GET'])
 def handle_get():
@@ -319,4 +323,6 @@ def exit_handler():
 atexit.register(exit_handler)
 
 if __name__ == '__main__':
+    x = threading.Thread(target=checker_thread, daemon=True)
+    x.start()
     app.run(debug=True)
