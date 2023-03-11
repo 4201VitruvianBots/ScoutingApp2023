@@ -109,6 +109,55 @@ class App extends React.Component {
         console.log('I\'ve been called ' + (id));
     }
 
+    componentDidMount() {
+        const url = `http://${process.env.REACT_APP_BACKEND_IP}/data/status`;
+
+        const fetchData = async () => {
+            let position;
+            switch (this.state.Alliance) {
+                case '0': position = 6; break;
+                case '1': position = 7; break;
+                default: position = null; break;
+            }
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        Scouter_Name: this.state.ScouterName,
+                        Battery_Level: this.state.BatteryLevel,
+                        Position: position
+                    })
+                });
+                const ok = response.ok;
+                this.setState({ connected: ok });
+            } catch (error) {
+                console.log("error", error);
+                this.setState({ connected: false });
+            }
+        };
+
+        const interval = setInterval(fetchData, 5000);
+
+        if (navigator.getBattery !== null) {
+            navigator.getBattery().then(batteryManager => {
+                const updateBatteryLevel = (event) => {
+                    this.setState({ BatteryLevel: batteryManager.level })
+                };
+
+                batteryManager.onlevelchange = updateBatteryLevel;
+                updateBatteryLevel();
+            });
+        }
+
+        return function cleanup() {
+            clearInterval(interval);
+        };
+    }
+
     render() {
         let selectedPage;
 
@@ -126,7 +175,7 @@ class App extends React.Component {
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
                     <input type='hidden' value={this.state.Alliance} name="Team_Alliance" />
 
-                    <General fouls={this.state.fouls} setFouls={this.setFouls} downloadCSV={this.downloadCSV} clearData={this.clearData} />
+                    <General fouls={this.state.fouls} setFouls={this.setFouls} downloadCSV={this.downloadCSV} clearData={this.clearData} connected={this.state.connected} />
 
                 </form>);
                 break;

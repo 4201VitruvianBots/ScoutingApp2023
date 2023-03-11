@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask_cors import CORS
 import mysql.connector
 import atexit
+import time
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -28,10 +29,28 @@ pitColumns = get_columns('pitData')
 superScoutColumns = get_columns('superScout')
 foulColumns = get_columns('fouls')
 
-@app.route('/data/status', methods=['GET'])
-def handle_status():
+scoutersStatus = {}
 
-    return 'OK'
+# Position:
+# 0 Red 1
+# 1 Red 2
+# 2 Red 3
+# 3 Blue 1
+# 4 Blue 2
+# 5 Blue 3
+# 6 Red SS
+# 7 Blue SS
+
+@app.route('/data/status', methods=['POST'])
+def handle_status():
+    data = request.get_json()
+    scoutersStatus[data.get('Position')] = {
+        'Scouter_Name': data.get('Scouter_Name'),
+        'Team_Number': data.get('Team_Number'),
+        'Battery_Level': data.get('Battery_Level'),
+        'Last_Update': time.time()
+    }
+    return 'OK', 200
 
 @app.route('/data/matches', methods=['GET'])
 def handle_get():
