@@ -3,6 +3,7 @@ from flask_cors import CORS
 import mysql.connector
 import atexit
 import time
+import json
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -44,13 +45,23 @@ scoutersStatus = {}
 @app.route('/data/status', methods=['POST'])
 def handle_status():
     data = request.get_json()
-    scoutersStatus[data.get('Position')] = {
-        'Scouter_Name': data.get('Scouter_Name'),
-        'Team_Number': data.get('Team_Number'),
-        'Battery_Level': data.get('Battery_Level'),
-        'Last_Update': time.time()
-    }
+    if (data.get('Position') != None):
+        scoutersStatus[data.get('Position')] = {
+            'Scouter_Name': data.get('Scouter_Name'),
+            'Team_Number': data.get('Team_Number'),
+            'Battery_Level': data.get('Battery_Level'),
+            'Last_Update': time.time()
+        }    
     return 'OK', 200
+
+@app.route('/data/status', methods=['GET'])
+def get_status():
+    output = dict(scoutersStatus)
+    print(scoutersStatus)
+    for i in output:
+        output[i]['Online'] = (float(output[i]['Last_Update']) + 10 > time.time())
+
+    return json.dumps(output)
 
 @app.route('/data/matches', methods=['GET'])
 def handle_get():
