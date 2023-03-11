@@ -2,6 +2,9 @@ from flask import Flask, request
 from flask_cors import CORS
 import mysql.connector
 import atexit
+import time
+import json
+import threading
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -28,10 +31,46 @@ pitColumns = get_columns('pitData')
 superScoutColumns = get_columns('superScout')
 foulColumns = get_columns('fouls')
 
-@app.route('/data/status', methods=['GET'])
-def handle_status():
+scoutersStatus = {str(i): {'Scouter_Name': '', 'Team_Number': '', 'Battery_Level': '', 'Last_Update': 0, 'Online': False} for i in range(8)}
 
-    return 'OK'
+# Position:
+# 0 Red 1
+# 1 Red 2
+# 2 Red 3
+# 3 Blue 1
+# 4 Blue 2
+# 5 Blue 3
+# 6 Red SS
+# 7 Blue SS
+
+@app.route('/data/status', methods=['POST'])
+def handle_status():
+    data = request.get_json()
+    if (data.get('Position') != ''):
+        scoutersStatus[data.get('Position')] = {
+            'Scouter_Name': data.get('Scouter_Name'),
+            'Team_Number': data.get('Team_Number'),
+            'Battery_Level': data.get('Battery_Level'),
+            'Last_Update': time.time(),
+            'Online': True
+        }    
+    return 'OK', 200
+
+@app.route('/data/status', methods=['GET'])
+def get_status():
+    return scoutersStatus
+
+def checker_thread():
+    while True:
+        for i in scoutersStatus:
+            if scoutersStatus[i]['Last_Update'] + 6 < time.time():
+                scoutersStatus[i]['Online'] = False
+        time.sleep(1)
+
+@app.before_first_request
+def start_thread():
+    x = threading.Thread(target=checker_thread, daemon=True)
+    x.start()
 
 @app.route('/data/matches', methods=['GET'])
 def handle_get():

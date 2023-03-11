@@ -50,14 +50,19 @@ function csvStringify(data) {
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { signedIn: false, ScouterName: "", EventName: "" };
+        this.state = { signedIn: false, ScouterName: "", EventName: "", connected: false, teamOption: null, BatteryLevel: null };
         this.setSelected = this.setSelected.bind(this);
+        this.setTeamOption = this.setTeamOption.bind(this);
         this.SignInHandler = this.SignInHandler.bind(this)
     }
 
 
     setSelected(id) {
         this.setState({ selected: id });
+    }
+
+    setTeamOption(teamOption) {
+        this.setState({ teamOption: teamOption });
     }
 
     SignInHandler(e) {
@@ -105,6 +110,50 @@ class App extends React.Component {
         }
     }
 
+    componentDidMount() {
+        const url = `http://${process.env.REACT_APP_BACKEND_IP}/data/status`;
+
+        const fetchData = async () => {
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        Scouter_Name: this.state.ScouterName,
+                        Battery_Level: this.state.BatteryLevel,
+                        Team_Number: this.state.teamOption.value,
+                        Position: document.getElementById('myForm').elements.Team_Alliance.value
+                    })
+                });
+                const ok = response.ok;
+                this.setState({ connected: ok });
+            } catch (error) {
+                console.log("error", error);
+                this.setState({ connected: false });
+            }
+        };
+
+        const interval = setInterval(fetchData, 5000);
+
+        if (navigator.getBattery !== null) {
+            navigator.getBattery().then(batteryManager => {
+                const updateBatteryLevel = (event) => {
+                    this.setState({ BatteryLevel: batteryManager.level })
+                };
+
+                batteryManager.onlevelchange = updateBatteryLevel;
+                updateBatteryLevel();
+            });
+        }
+
+        return function cleanup() {
+            clearInterval(interval);
+        };
+    }
+
+
     render() {
         return (
             <main>
@@ -128,11 +177,11 @@ class App extends React.Component {
                 <form action={`http://${process.env.REACT_APP_BACKEND_IP}/data/matches`} method="POST" target="frame" id="myForm" onSubmit={this.handleSubmit}>
                     <input type='hidden' value={this.state.EventName} name='Competition' />
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
-                    <PreGame selected={this.state.selected === 'pre-game'} />
+                    <PreGame selected={this.state.selected === 'pre-game'} teamOption={this.state.teamOption} setTeamOption={this.setTeamOption} />
                     <Auto selected={this.state.selected === 'auto'} />
                     <TeleOp selected={this.state.selected === 'tele-op'} />
 
-                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} downloadCSV={this.downloadCSV} clearData={this.clearData} />
+                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} downloadCSV={this.downloadCSV} clearData={this.clearData} connected={this.state.connected} />
                     {/* <input type="submit" className="submit-button"></input> */}
                 </form>
                 <iframe name="frame" title="frame"></iframe>
