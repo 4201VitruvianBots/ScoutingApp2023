@@ -1,4 +1,4 @@
-import { MultiButton, FoulCards, SearchBar, options, ConnectionIndicator } from "./Form";
+import { MultiButton, FoulCards, SearchBar, options } from "./Form";
 import './App.css';
 import React, { useState } from "react";
 import Popup from 'reactjs-popup';
@@ -26,7 +26,7 @@ function SignIn(props) {
         <div>
             <p className="section-label">Super Scouting</p>
             {/* <p className="topNote">If the robot has an "other" drivetrain, specify it in the notes at the bottom!</p> */}
-            <form action="#" onSubmit={handleSubmit}>
+            <form action="#" onSubmit={handleSubmit} id="signin">
                 <div className="textArea">
                     <input type="text" id="Sname" name="Scouter_Name" placeholder="SCOUTER NAME" className="name" required />
                     <br />
@@ -262,7 +262,20 @@ function General(props) {
                     <p className="generalLabel">Notes</p>
                     <textarea rows="5" cols="20" id="notes" name="Comments" />
                     <br />
-                    <ConnectionIndicator downloadCSV={props.downloadCSV} clearData={props.clearData} />
+                    <div>
+                        {props.connected
+                            ? <input type="submit" className="submit-button" value="Submit & Clear"></input>
+                            : <p className='connerror'>Tablet not connected</p>
+                        }
+                        <br />
+                        <br />
+                        <div className="nonSubmit">
+                            <p className="reminder">DO NOT use this section unless instructed</p>
+                            {props.connected ? null : <input type="submit" className="save-button" value="Save Data & Clear" />}
+                            <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
+                            <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
+                        </div>
+                    </div>
                     {/* <input type="submit" className="submit-button" /> */}
                 </div>
 
