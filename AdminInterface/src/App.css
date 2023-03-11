@@ -1,0 +1,51 @@
+.status-card {
+    padding: 1em;
+    flex-basis: 0;
+    flex-grow: 1;
+    text-align: center;
+    border-radius: 0.5em;
+}
+
+.status {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.status-red,
+.status-blue {
+    display: flex;
+    width: 50em;
+    gap: 1em;
+}
+
+.status-red .status-card {
+    background-color: #d82323;
+}
+
+.status-blue .status-card {
+    background-color: #2352d8;
+}
+
+.status-line {
+    margin: 0.5em;
+}
+
+.status-line::before {
+    content: "\200b";
+}
+
+.team-number {
+    margin: 0.25em;
+    padding: 0.5em;
+    background-color: #0000002f;
+    border-radius: 0.5em;
+}
+
+.scouter-name {
+    font-weight: bold;
+}
+
+.battery.noconnect {
+    color: yellow;
+}
