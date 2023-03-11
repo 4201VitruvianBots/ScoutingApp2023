@@ -82,7 +82,7 @@ function PreGame(props) {
             <div className="textArea">
 
                 <p className="itemLabel" htmlFor="Match_Number" required>MATCH NUMBER</p>
-                <input type="number" id="Match_Number" name="Match_Number" className="textInput" required min="1" />
+                <input type="number" id="Match_Number" name="Match_Number" className="textInput" required min="1" max="100" />
 
                 <p className="itemLabel" htmlFor="Match_Number">TEAM NUMBER</p>
                 {/* <input type="number" id="Team_Number" name="Team_Number" className="textInput" /> */}
