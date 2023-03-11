@@ -234,6 +234,10 @@ function General(props) {
                                             </button>
                                             <br />
                                         </div>
+                                        
+
+                                        
+
                                         <br />
                                     </div>
                                 )
@@ -247,7 +251,7 @@ function General(props) {
                 <br />
 
                 <div className="test2">
-                    <FoulCards fouls={props.fouls}></FoulCards>
+                    <FoulCards fouls={props.fouls} setFouls={props.setFouls}></FoulCards>
                 </div>
 
                 {props.fouls.map((e, i) => (<React.Fragment key={i}>
