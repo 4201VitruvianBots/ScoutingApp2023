@@ -50,8 +50,8 @@ function TabletStatusDisplay({ allTabletStatus }: { allTabletStatus?: AllTabletS
             <div className="status-line team-number">{Team_Number}</div>
             <div className="status-line scouter-name">{Scouter_Name}</div>
             {Online
-                ? <div className="status-line battery">
-                    <span className="material-symbols-outlined">battery_{battery === 7 ? 'full' : battery + '_bar'}</span>
+                ? <div className={'status-line battery' + (Battery_Level < 0.3 ? ' low' : Battery_Level < 0.1 ? 'alert' : ' verylow')}>
+                    <span className="material-symbols-outlined">battery_{Battery_Level < 0.1 ? 'alert' : battery === 7 ? 'full' : battery + '_bar'}</span>
                     {Math.round(Battery_Level * 100)}%
                 </div>
                 : <div className="status-line battery noconnect">

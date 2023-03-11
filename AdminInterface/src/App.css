@@ -4,6 +4,10 @@
     flex-grow: 1;
     text-align: center;
     border-radius: 0.5em;
+    border: 2px solid;
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
 }
 
 .status {
@@ -20,34 +24,43 @@
 }
 
 .status-red .status-card {
-    background-color: #d82323;
+    background-color: #d823233f;
+    border-color: #d82323;
 }
 
 .status-blue .status-card {
-    background-color: #2352d8;
+    background-color: #2352d83f;
+    border-color: #2352d8;
 }
 
+/* 
 .status-line {
-    margin: 0.5em;
-}
+    margin: 1em 0;
+} */
 
 .status-line::before {
     content: "\200b";
 }
 
 .team-number {
-    margin: 0.25em;
+    /* margin: 0.25em; */
     padding: 0.5em;
     background-color: #0000002f;
     border-radius: 0.5em;
+    font-size: 1.25em;
 }
 
 .scouter-name {
     font-weight: bold;
 }
 
-.battery.noconnect {
+.battery.low {
     color: yellow;
+}
+
+.battery.noconnect,
+.batery.verylow {
+    color: red;
 }
 
 .material-symbols-outlined {
