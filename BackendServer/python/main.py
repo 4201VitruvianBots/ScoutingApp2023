@@ -67,6 +67,11 @@ def checker_thread():
                 scoutersStatus[i]['Online'] = False
         time.sleep(1)
 
+@app.before_first_request
+def start_thread():
+    x = threading.Thread(target=checker_thread, daemon=True)
+    x.start()
+
 @app.route('/data/matches', methods=['GET'])
 def handle_get():
     # Handle GET request
@@ -323,6 +328,4 @@ def exit_handler():
 atexit.register(exit_handler)
 
 if __name__ == '__main__':
-    x = threading.Thread(target=checker_thread, daemon=True)
-    x.start()
     app.run(debug=True)
