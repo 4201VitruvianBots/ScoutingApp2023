@@ -14,15 +14,15 @@ function Navigation(props) {
     return (
         <Page selected={props.selected} className="page" id="navigation">
             <div>
-            <ul>
-                <li><a href="#SignIn">Sign-In</a></li>
-                <li><a href="#Pre">Pre-Game</a></li>
-                <li><a href="#Auto">Auto</a></li>
-                <li><a href="#Tele">Tele-Op</a></li>
-                <li><a href="#Save">Submit</a></li> {/*change the rest of the code to 'submit' as well? does it matter?*/}
-                <br />
-                <br />
-            </ul>
+                <ul>
+                    <li><a href="#SignIn">Sign-In</a></li>
+                    <li><a href="#Pre">Pre-Game</a></li>
+                    <li><a href="#Auto">Auto</a></li>
+                    <li><a href="#Tele">Tele-Op</a></li>
+                    <li><a href="#Save">Submit</a></li> {/*change the rest of the code to 'submit' as well? does it matter?*/}
+                    <br />
+                    <br />
+                </ul>
             </div>
 
         </Page>
@@ -255,6 +255,9 @@ function SavePage(props) {
                  */}
                 {/* <input type="reset" className="CLEAR" value="Clear Form" /> */}
                 {/* <div id="QRCode">{props.QRCode}</div> */}
+            </div>
+            <div>
+                <p className="version">Version 0</p>
             </div>
 
 
