@@ -314,6 +314,9 @@ function ConnectionIndicator(props) {
             {connected ? null : <input type="submit" className="save-button" value="Save Data & Clear" />}
             <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
             <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
+            <ButtonInput on_label="Clicked!" className="noshow" off_label='No Show Robot?' value="noshow" />
+            {/* <input type="button" value="Robot No-Show" className="noshow" /> */}
+
         </div>
     </div>);
 
@@ -329,6 +332,7 @@ function CheckDecimal(props) {
             inputField.setCustomValidity("");
         }
     });
+
 }
 
 export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, SearchBar, options, ConnectionIndicator, CheckDecimal };
