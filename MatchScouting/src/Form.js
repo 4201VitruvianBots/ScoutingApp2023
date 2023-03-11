@@ -284,6 +284,7 @@ function CheckDecimal(props) {
             inputField.setCustomValidity("");
         }
     });
+
 }
 
 export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, SearchBar, options, SubmitButtons, CheckDecimal };
