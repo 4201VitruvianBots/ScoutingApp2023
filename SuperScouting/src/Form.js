@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import Select from 'react-select';
-import { Button } from 'bootstrap';
 
 
 // Radio Buttons
