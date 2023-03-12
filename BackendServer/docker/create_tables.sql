@@ -21,6 +21,7 @@ CREATE TABLE matchData(
 	Tele_Cone_Mid INT NULL,
 	Tele_Cone_High INT NULL,
 	Tele_Station INT NULL,
+	No_Show_Robot BOOLEAN,
 	Comments TEXT NULL
 );
 
