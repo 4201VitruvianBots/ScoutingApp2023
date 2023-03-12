@@ -1,4 +1,4 @@
-import { NumberInput, ButtonInput, MultiButton, SearchBar, options, ConnectionIndicator } from "./Form";
+import { NumberInput, MultiButton, SearchBar, options, ConnectionIndicator } from "./Form";
 import './App.css';
 import { useState } from "react";
 
@@ -112,14 +112,16 @@ function PreGame(props) {
 
 
 
-
 function Auto(props) {
     return (
         <Page selected={props.selected} id="auto">
             <p className="section-label" id="Auto">Auto</p>
             <div className="textArea">
 
-                <ButtonInput on_label="Activated!" off_label='Mobility?' id="Mobility" />
+                {/* <ButtonInput on_label="Activated!" off_label='Mobility?' id="Mobility" /> */}
+                <div className="mobility">
+                    <MultiButton items={[['ACTIVATED!', 'Mobility'], ['ACTIVATED!', 'No Mobility']]} id="Mobility" />
+                </div>
                 {/* <button type="button">Mobility?</button> */}
 
                 {/* <h2>Mobility</h2> */}
