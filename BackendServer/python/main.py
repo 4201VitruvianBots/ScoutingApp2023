@@ -74,7 +74,10 @@ def start_thread():
 
 @app.route('/schedule.json', methods=['GET'])
 def handle_get_schedule():
-    return send_file('schedule.json')
+    try:
+        return send_file('schedule.json')
+    except:
+        return 'File not found', 404
 
 @app.route('/data/matches', methods=['GET'])
 def handle_get():
