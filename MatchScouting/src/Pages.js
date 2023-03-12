@@ -110,14 +110,16 @@ function PreGame(props) {
 
 
 
-
 function Auto(props) {
     return (
         <Page selected={props.selected} id="auto">
             <p className="section-label" id="Auto">Auto</p>
             <div className="textArea">
 
-                <ButtonInput on_label="Activated!" off_label='Mobility?' id="Mobility" />
+                {/* <ButtonInput on_label="Activated!" off_label='Mobility?' id="Mobility" /> */}
+                <div className="mobility">
+                    <MultiButton items={[['ACTIVATED!', 'Mobility'], ['ACTIVATED!', 'No Mobility']]} id="Mobility" />
+                </div>
                 {/* <button type="button">Mobility?</button> */}
 
                 {/* <h2>Mobility</h2> */}
@@ -255,6 +257,7 @@ function SavePage(props) {
                         {props.connected ? null : <input type="submit" className="save-button" value="Save Data & Clear" />}
                         <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
                         <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
+                        <ButtonInput on_label="Clicked!" className="noshow" off_label='No Show Robot?' value="noshow" id="No_Show_Robot" />
                     </div>
                 </div>
 
