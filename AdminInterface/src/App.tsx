@@ -29,7 +29,7 @@ function App() {
             setTabletStatus(await response.json() as AllTabletStatus);
         }
 
-        setInterval(updateData, 50000);
+        setInterval(updateData, 5000);
         updateData();
     }, [])
 
@@ -55,7 +55,7 @@ function TabletStatusDisplay({ allTabletStatus }: { allTabletStatus?: AllTabletS
                     {Math.round(Battery_Level * 100)}%
                 </div>
                 : <div className="status-line battery noconnect">
-                    <span className="material-symbols-outlined"> signal_disconnected</span>
+                    <span className="material-symbols-outlined">wifi_off</span>
                     Not Connected
                 </div>
             }

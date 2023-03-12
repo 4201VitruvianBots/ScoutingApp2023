@@ -115,8 +115,8 @@ class App extends React.Component {
         const fetchData = async () => {
             let position;
             switch (this.state.Alliance) {
-                case '0': position = 6; break;
-                case '1': position = 7; break;
+                case '0': position = '6'; break;
+                case '1': position = '7'; break;
                 default: position = null; break;
             }
 
@@ -142,7 +142,7 @@ class App extends React.Component {
 
         const interval = setInterval(fetchData, 5000);
 
-        if (navigator.getBattery !== null) {
+        if (navigator.getBattery !== undefined) {
             navigator.getBattery().then(batteryManager => {
                 const updateBatteryLevel = (event) => {
                     this.setState({ BatteryLevel: batteryManager.level })
