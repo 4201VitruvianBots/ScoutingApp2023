@@ -1,6 +1,7 @@
-import { NumberInput, ButtonInput, MultiButton, SearchBar, options } from "./Form";
+import { NumberInput, ButtonInput, MultiButton, SearchBar } from "./Form";
 import './App.css';
 import { useState } from "react";
+import { Upload } from "./Form";
 
 
 function Page(props) {
@@ -22,7 +23,7 @@ function SignIn(props) {
     }
 
     return (
-        <div>
+        <div id="SignIn">
             <p className="section-label">Pit Scouting</p>
             <p className="topNote">If the robot has an "other" drivetrain, specify it in the notes at the bottom!</p>
             <form onSubmit={handleSubmit} action="#">
@@ -47,14 +48,6 @@ function SignIn(props) {
 
 
 function General(props) {
-    const [teamOption, setTeamOption] = useState(options[0]); //state
-
-    const setSelectedOption = (newOption) => {
-
-        setTeamOption(newOption);
-
-        //functions (setting a function to a variable)
-    }
     return (
         <Page selected={props.selected} id="general">
             <p className="section-label">General</p>
@@ -63,7 +56,7 @@ function General(props) {
 
                     <div className="team">
                         <p className="generalLabel">Team Number</p>
-                        <SearchBar setSelectedOption={setSelectedOption} selectedOption={teamOption} name="Team_Number" className="teamSearch" />
+                        <SearchBar setSelectedOption={props.setTeamOption} selectedOption={props.teamOption} name="Team_Number" className="teamSearch" />
                     </div>
 
                     <div className="drivetrain">
@@ -128,23 +121,28 @@ function Photos(props) {
             <div className="textArea">
                 <div className="checkboxBOX">
                     <div className="box">
-                        <input type="checkbox" required></input>
+                        {/* <input type="checkbox" required></input> */}
+                        <Upload></Upload>
                         <label className="smallLabel"> Drivetrain</label>
                     </div>
                     <div className="box">
-                        <input type="checkbox" required></input>
+                        {/* <input type="checkbox" required></input> */}
+                        <Upload></Upload>
                         <label className="smallLabel"> Intake</label>
                     </div>
                     <div className="box">
-                        <input type="checkbox" required></input>
+                        {/* <input type="checkbox" required></input> */}
+                        <Upload></Upload>
                         <label className="smallLabel"> Uptake</label>
                     </div>
                     <div className="box">
-                        <input type="checkbox" required></input>
+                        {/* <input type="checkbox" required></input> */}
+                        <Upload></Upload>
                         <label className="smallLabel"> Outtake</label>
                     </div>
                     <div className="box">
-                        <input type="checkbox" required></input>
+                        {/* <input type="checkbox" required></input> */}
+                        <Upload></Upload>
                         <label className="smallLabel"> Extras</label>
 
                     </div>

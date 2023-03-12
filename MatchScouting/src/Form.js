@@ -249,8 +249,6 @@ class SearchBar extends React.Component {
     constructor(props) {
         super(props)
         this.handleChange = this.handleChange.bind(this);
-        // eslint-disable-next-line no-restricted-globals
-        addEventListener('reset', () => { this.setState({ value: null }) })
     }
 
     handleChange = (selectedOption) => {
@@ -286,6 +284,7 @@ function CheckDecimal(props) {
             inputField.setCustomValidity("");
         }
     });
+
 }
 
 export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, SearchBar, options, SubmitButtons, CheckDecimal };

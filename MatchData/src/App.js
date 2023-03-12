@@ -222,289 +222,289 @@ class App extends React.Component {
                         <tr>
                             <td rowspan="5" className="colorbg1">Auto</td>
                             <td colspan="2" className="colorbg">Total Game Pieces</td>
-                            <td className="nobgcolor">{this.state.data1?.Auto_Total_Average}</td>
-                            <td className="test">{this.state.data1?.Auto_Total_Max}</td>
-                            <td className="nobgcolor">{this.state.data2?.Auto_Total_Average}</td>
-                            <td className="test">{this.state.data2?.Auto_Total_Max}</td>
-                            <td className="nobgcolor">{this.state.data3?.Auto_Total_Average}</td>
-                            <td className="test">{this.state.data3?.Auto_Total_Max}</td>
-                            <td className="nobgcolor">{this.state.data4?.Auto_Total_Average}</td>
-                            <td className="test">{this.state.data4?.Auto_Total_Max}</td>
-                            <td className="nobgcolor">{this.state.data5?.Auto_Total_Average}</td>
-                            <td className="test">{this.state.data5?.Auto_Total_Max}</td>
-                            <td className="nobgcolor">{this.state.data6?.Auto_Total_Average}</td>
-                            <td className="test">{this.state.data6?.Auto_Total_Max}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data1?.Auto_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data1?.Auto_Total_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data2?.Auto_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data2?.Auto_Total_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data3?.Auto_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data3?.Auto_Total_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data4?.Auto_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data4?.Auto_Total_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data5?.Auto_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data5?.Auto_Total_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data6?.Auto_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data6?.Auto_Total_Max * 100) / 100}</td>
 
                         </tr>
                         <tr>
 
                             <td className="colorbg"></td>
                             <td className="colorbg">Game Pieces High</td>
-                            <td className="nobgcolor">{this.state.data1?.Auto_High_Average}</td>
-                            <td className="test">{this.state.data1?.Auto_High_Max}</td>
-                            <td className="nobgcolor">{this.state.data2?.Auto_High_Average}</td>
-                            <td className="test">{this.state.data2?.Auto_High_Max}</td>
-                            <td className="nobgcolor">{this.state.data3?.Auto_High_Average}</td>
-                            <td className="test">{this.state.data3?.Auto_High_Max}</td>
-                            <td className="nobgcolor">{this.state.data4?.Auto_High_Average}</td>
-                            <td className="test">{this.state.data4?.Auto_High_Max}</td>
-                            <td className="nobgcolor">{this.state.data5?.Auto_High_Average}</td>
-                            <td className="test">{this.state.data5?.Auto_High_Max}</td>
-                            <td className="nobgcolor">{this.state.data6?.Auto_High_Average}</td>
-                            <td className="test">{this.state.data6?.Auto_High_Max}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data1?.Auto_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data1?.Auto_High_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data2?.Auto_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data2?.Auto_High_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data3?.Auto_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data3?.Auto_High_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data4?.Auto_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data4?.Auto_High_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data5?.Auto_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data5?.Auto_High_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data6?.Auto_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data6?.Auto_High_Max * 100) / 100}</td>
 
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Game Pieces Mid</td>
-                            <td className="nobgcolor">{this.state.data1?.Auto_Mid_Average}</td>
-                            <td className="test">{this.state.data1?.Auto_Mid_Max}</td>
-                            <td className="nobgcolor">{this.state.data2?.Auto_Mid_Average}</td>
-                            <td className="test">{this.state.data2?.Auto_Mid_Max}</td>
-                            <td className="nobgcolor">{this.state.data3?.Auto_Mid_Average}</td>
-                            <td className="test">{this.state.data3?.Auto_Mid_Max}</td>
-                            <td className="nobgcolor">{this.state.data4?.Auto_Mid_Average}</td>
-                            <td className="test">{this.state.data4?.Auto_Mid_Max}</td>
-                            <td className="nobgcolor">{this.state.data5?.Auto_Mid_Average}</td>
-                            <td className="test">{this.state.data5?.Auto_Mid_Max}</td>
-                            <td className="nobgcolor">{this.state.data6?.Auto_Mid_Average}</td>
-                            <td className="test">{this.state.data6?.Auto_Mid_Max}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data1?.Auto_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data1?.Auto_Mid_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data2?.Auto_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data2?.Auto_Mid_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data3?.Auto_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data3?.Auto_Mid_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data4?.Auto_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data4?.Auto_Mid_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data5?.Auto_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data5?.Auto_Mid_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data6?.Auto_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data6?.Auto_Mid_Max * 100) / 100}</td>
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Game Pieces Low</td>
-                            <td className="nobgcolor">{this.state.data1?.Auto_Low_Average}</td>
-                            <td className="test">{this.state.data1?.Auto_Low_Max}</td>
-                            <td className="nobgcolor">{this.state.data2?.Auto_Low_Average}</td>
-                            <td className="test">{this.state.data2?.Auto_Low_Max}</td>
-                            <td className="nobgcolor">{this.state.data3?.Auto_Low_Average}</td>
-                            <td className="test">{this.state.data3?.Auto_Low_Max}</td>
-                            <td className="nobgcolor">{this.state.data4?.Auto_Low_Average}</td>
-                            <td className="test">{this.state.data4?.Auto_Low_Max}</td>
-                            <td className="nobgcolor">{this.state.data5?.Auto_Low_Average}</td>
-                            <td className="test">{this.state.data5?.Auto_Low_Max}</td>
-                            <td className="nobgcolor">{this.state.data6?.Auto_Low_Average}</td>
-                            <td className="test">{this.state.data6?.Auto_Low_Max}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data1?.Auto_Low_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data1?.Auto_Low_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data2?.Auto_Low_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data2?.Auto_Low_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data3?.Auto_Low_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data3?.Auto_Low_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data4?.Auto_Low_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data4?.Auto_Low_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data5?.Auto_Low_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data5?.Auto_Low_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data6?.Auto_Low_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data6?.Auto_Low_Max * 100) / 100}</td>
                         </tr>
                         <tr>
 
                             <td colspan="2" className="colorbg">% Balanced / Docked</td>
-                            <td colspan="2" className="colorbg2">{this.state.data1?.Auto_Balance_Frequency}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data2?.Auto_Balance_Frequency}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data3?.Auto_Balance_Frequency}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data4?.Auto_Balance_Frequency}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data5?.Auto_Balance_Frequency}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data6?.Auto_Balance_Frequency}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data1?.Auto_Balance_Frequency * 100}%</td>
+                            <td colspan="2" className="colorbg2">{this.state.data2?.Auto_Balance_Frequency * 100}%</td>
+                            <td colspan="2" className="colorbg2">{this.state.data3?.Auto_Balance_Frequency * 100}%</td>
+                            <td colspan="2" className="colorbg2">{this.state.data4?.Auto_Balance_Frequency * 100}%</td>
+                            <td colspan="2" className="colorbg2">{this.state.data5?.Auto_Balance_Frequency * 100}%</td>
+                            <td colspan="2" className="colorbg2">{this.state.data6?.Auto_Balance_Frequency * 100}%</td>
                         </tr>
                         <tr>
                             <td rowspan="12" className="colorbg1">Tele-Op</td>
                             <td colspan="2" className="colorbg">Total Game Pieces</td>
-                            <td className="nobgcolor">{this.state.data1?.Tele_Pieces_Total_Average}</td>
-                            <td className="test">{this.state.data1?.Tele_Pieces_Total_Max}</td>
-                            <td className="nobgcolor">{this.state.data2?.Tele_Pieces_Total_Average}</td>
-                            <td className="test">{this.state.data2?.Tele_Pieces_Total_Max}</td>
-                            <td className="nobgcolor">{this.state.data3?.Tele_Pieces_Total_Average}</td>
-                            <td className="test">{this.state.data3?.Tele_Pieces_Total_Max}</td>
-                            <td className="nobgcolor">{this.state.data4?.Tele_Pieces_Total_Average}</td>
-                            <td className="test">{this.state.data4?.Tele_Pieces_Total_Max}</td>
-                            <td className="nobgcolor">{this.state.data5?.Tele_Pieces_Total_Average}</td>
-                            <td className="test">{this.state.data5?.Tele_Pieces_Total_Max}</td>
-                            <td className="nobgcolor">{this.state.data6?.Tele_Pieces_Total_Average}</td>
-                            <td className="test">{this.state.data6?.Tele_Pieces_Total_Max}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Pieces_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data1?.Tele_Pieces_Total_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Pieces_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data2?.Tele_Pieces_Total_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Pieces_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data3?.Tele_Pieces_Total_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Pieces_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data4?.Tele_Pieces_Total_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Pieces_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data5?.Tele_Pieces_Total_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Pieces_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data6?.Tele_Pieces_Total_Max * 100) / 100}</td>
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Game Pieces High</td>
-                            <td className="nobgcolor">{this.state.data1?.Tele_Pieces_High_Average}</td>
-                            <td className="test">{this.state.data1?.Tele_Pieces_High_Max}</td>
-                            <td className="nobgcolor">{this.state.data2?.Tele_Pieces_High_Average}</td>
-                            <td className="test">{this.state.data2?.Tele_Pieces_High_Max}</td>
-                            <td className="nobgcolor">{this.state.data3?.Tele_Pieces_High_Average}</td>
-                            <td className="test">{this.state.data3?.Tele_Pieces_High_Max}</td>
-                            <td className="nobgcolor">{this.state.data4?.Tele_Pieces_High_Average}</td>
-                            <td className="test">{this.state.data4?.Tele_Pieces_High_Max}</td>
-                            <td className="nobgcolor">{this.state.data5?.Tele_Pieces_High_Average}</td>
-                            <td className="test">{this.state.data5?.Tele_Pieces_High_Max}</td>
-                            <td className="nobgcolor">{this.state.data6?.Tele_Pieces_High_Average}</td>
-                            <td className="test">{this.state.data6?.Tele_Pieces_High_Max}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Pieces_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data1?.Tele_Pieces_High_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Pieces_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data2?.Tele_Pieces_High_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Pieces_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data3?.Tele_Pieces_High_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Pieces_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data4?.Tele_Pieces_High_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Pieces_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data5?.Tele_Pieces_High_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Pieces_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data6?.Tele_Pieces_High_Max * 100) / 100}</td>
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Game Pieces Mid</td>
-                            <td className="nobgcolor">{this.state.data1?.Tele_Pieces_Mid_Average}</td>
-                            <td className="test">{this.state.data1?.Tele_Pieces_Mid_Max}</td>
-                            <td className="nobgcolor">{this.state.data2?.Tele_Pieces_Mid_Average}</td>
-                            <td className="test">{this.state.data2?.Tele_Pieces_Mid_Max}</td>
-                            <td className="nobgcolor">{this.state.data3?.Tele_Pieces_Mid_Average}</td>
-                            <td className="test">{this.state.data3?.Tele_Pieces_Mid_Max}</td>
-                            <td className="nobgcolor">{this.state.data4?.Tele_Pieces_Mid_Average}</td>
-                            <td className="test">{this.state.data4?.Tele_Pieces_Mid_Max}</td>
-                            <td className="nobgcolor">{this.state.data5?.Tele_Pieces_Mid_Average}</td>
-                            <td className="test">{this.state.data5?.Tele_Pieces_Mid_Max}</td>
-                            <td className="nobgcolor">{this.state.data6?.Tele_Pieces_Mid_Average}</td>
-                            <td className="test">{this.state.data6?.Tele_Pieces_Mid_Max}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Pieces_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data1?.Tele_Pieces_Mid_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Pieces_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data2?.Tele_Pieces_Mid_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Pieces_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data3?.Tele_Pieces_Mid_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Pieces_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data4?.Tele_Pieces_Mid_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Pieces_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data5?.Tele_Pieces_Mid_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Pieces_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data6?.Tele_Pieces_Mid_Max * 100) / 100}</td>
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Game Pieces Low</td>
-                            <td className="nobgcolor">{this.state.data1?.Tele_Pieces_Low_Average}</td>
-                            <td className="test">{this.state.data1?.Tele_Pieces_Low_Max}</td>
-                            <td className="nobgcolor">{this.state.data2?.Tele_Pieces_Low_Average}</td>
-                            <td className="test">{this.state.data2?.Tele_Pieces_Low_Max}</td>
-                            <td className="nobgcolor">{this.state.data3?.Tele_Pieces_Low_Average}</td>
-                            <td className="test">{this.state.data3?.Tele_Pieces_Low_Max}</td>
-                            <td className="nobgcolor">{this.state.data4?.Tele_Pieces_Low_Average}</td>
-                            <td className="test">{this.state.data4?.Tele_Pieces_Low_Max}</td>
-                            <td className="nobgcolor">{this.state.data5?.Tele_Pieces_Low_Average}</td>
-                            <td className="test">{this.state.data5?.Tele_Pieces_Low_Max}</td>
-                            <td className="nobgcolor">{this.state.data6?.Tele_Pieces_Low_Average}</td>
-                            <td className="test">{this.state.data6?.Tele_Pieces_Low_Max}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Pieces_Low_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data1?.Tele_Pieces_Low_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Pieces_Low_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data2?.Tele_Pieces_Low_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Pieces_Low_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data3?.Tele_Pieces_Low_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Pieces_Low_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data4?.Tele_Pieces_Low_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Pieces_Low_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data5?.Tele_Pieces_Low_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Pieces_Low_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data6?.Tele_Pieces_Low_Max * 100) / 100}</td>
                         </tr>
                         <tr>
                             <td colspan="2" className="colorbg">Total Cubes Scored</td>
-                            <td className="nobgcolor">{this.state.data1?.Tele_Cube_Total_Average}</td>
-                            <td className="test">{this.state.data1?.Tele_Cube_Total_Max}</td>
-                            <td className="nobgcolor">{this.state.data2?.Tele_Cube_Total_Average}</td>
-                            <td className="test">{this.state.data2?.Tele_Cube_Total_Max}</td>
-                            <td className="nobgcolor">{this.state.data3?.Tele_Cube_Total_Average}</td>
-                            <td className="test">{this.state.data3?.Tele_Cube_Total_Max}</td>
-                            <td className="nobgcolor">{this.state.data4?.Tele_Cube_Total_Average}</td>
-                            <td className="test">{this.state.data4?.Tele_Cube_Total_Max}</td>
-                            <td className="nobgcolor">{this.state.data5?.Tele_Cube_Total_Average}</td>
-                            <td className="test">{this.state.data5?.Tele_Cube_Total_Max}</td>
-                            <td className="nobgcolor">{this.state.data6?.Tele_Cube_Total_Average}</td>
-                            <td className="test">{this.state.data6?.Tele_Cube_Total_Max}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Cube_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data1?.Tele_Cube_Total_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Cube_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data2?.Tele_Cube_Total_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Cube_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data3?.Tele_Cube_Total_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Cube_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data4?.Tele_Cube_Total_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Cube_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data5?.Tele_Cube_Total_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Cube_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data6?.Tele_Cube_Total_Max * 100) / 100}</td>
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Cube High</td>
-                            <td className="nobgcolor">{this.state.data1?.Tele_Cube_High_Average}</td>
-                            <td className="test">{this.state.data1?.Tele_Cube_High_Max}</td>
-                            <td className="nobgcolor">{this.state.data2?.Tele_Cube_High_Average}</td>
-                            <td className="test">{this.state.data2?.Tele_Cube_High_Max}</td>
-                            <td className="nobgcolor">{this.state.data3?.Tele_Cube_High_Average}</td>
-                            <td className="test">{this.state.data3?.Tele_Cube_High_Max}</td>
-                            <td className="nobgcolor">{this.state.data4?.Tele_Cube_High_Average}</td>
-                            <td className="test">{this.state.data4?.Tele_Cube_High_Max}</td>
-                            <td className="nobgcolor">{this.state.data5?.Tele_Cube_High_Average}</td>
-                            <td className="test">{this.state.data5?.Tele_Cube_High_Max}</td>
-                            <td className="nobgcolor">{this.state.data6?.Tele_Cube_High_Average}</td>
-                            <td className="test">{this.state.data6?.Tele_Cube_High_Max}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Cube_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data1?.Tele_Cube_High_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Cube_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data2?.Tele_Cube_High_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Cube_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data3?.Tele_Cube_High_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Cube_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data4?.Tele_Cube_High_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Cube_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data5?.Tele_Cube_High_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Cube_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data6?.Tele_Cube_High_Max * 100) / 100}</td>
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Cube Mid</td>
-                            <td className="nobgcolor">{this.state.data1?.Tele_Cube_Mid_Average}</td>
-                            <td className="test">{this.state.data1?.Tele_Cube_Mid_Max}</td>
-                            <td className="nobgcolor">{this.state.data2?.Tele_Cube_Mid_Average}</td>
-                            <td className="test">{this.state.data2?.Tele_Cube_Mid_Max}</td>
-                            <td className="nobgcolor">{this.state.data3?.Tele_Cube_Mid_Average}</td>
-                            <td className="test">{this.state.data3?.Tele_Cube_Mid_Max}</td>
-                            <td className="nobgcolor">{this.state.data4?.Tele_Cube_Mid_Average}</td>
-                            <td className="test">{this.state.data4?.Tele_Cube_Mid_Max}</td>
-                            <td className="nobgcolor">{this.state.data5?.Tele_Cube_Mid_Average}</td>
-                            <td className="test">{this.state.data5?.Tele_Cube_Mid_Max}</td>
-                            <td className="nobgcolor">{this.state.data6?.Tele_Cube_Mid_Average}</td>
-                            <td className="test">{this.state.data6?.Tele_Cube_Mid_Max}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Cube_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data1?.Tele_Cube_Mid_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Cube_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data2?.Tele_Cube_Mid_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Cube_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data3?.Tele_Cube_Mid_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Cube_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data4?.Tele_Cube_Mid_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Cube_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data5?.Tele_Cube_Mid_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Cube_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data6?.Tele_Cube_Mid_Max * 100) / 100}</td>
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Cube Low</td>
-                            <td className="nobgcolor">{this.state.data1?.Tele_Cube_Low_Average}</td>
-                            <td className="test">{this.state.data1?.Tele_Cube_Low_Max}</td>
-                            <td className="nobgcolor">{this.state.data2?.Tele_Cube_Low_Average}</td>
-                            <td className="test">{this.state.data2?.Tele_Cube_Low_Max}</td>
-                            <td className="nobgcolor">{this.state.data3?.Tele_Cube_Low_Average}</td>
-                            <td className="test">{this.state.data3?.Tele_Cube_Low_Max}</td>
-                            <td className="nobgcolor">{this.state.data4?.Tele_Cube_Low_Average}</td>
-                            <td className="test">{this.state.data4?.Tele_Cube_Low_Max}</td>
-                            <td className="nobgcolor">{this.state.data5?.Tele_Cube_Low_Average}</td>
-                            <td className="test">{this.state.data5?.Tele_Cube_Low_Max}</td>
-                            <td className="nobgcolor">{this.state.data6?.Tele_Cube_Low_Average}</td>
-                            <td className="test">{this.state.data6?.Tele_Cube_Low_Max}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Cube_Low_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data1?.Tele_Cube_Low_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Cube_Low_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data2?.Tele_Cube_Low_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Cube_Low_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data3?.Tele_Cube_Low_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Cube_Low_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data4?.Tele_Cube_Low_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Cube_Low_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data5?.Tele_Cube_Low_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Cube_Low_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data6?.Tele_Cube_Low_Max * 100) / 100}</td>
                         </tr>
                         <tr>
                             <td colspan="2" className="colorbg">Total Cones Scored</td>
-                            <td className="nobgcolor">{this.state.data1?.Tele_Cone_Total_Average}</td>
-                            <td className="test">{this.state.data1?.Tele_Cone_Total_Max}</td>
-                            <td className="nobgcolor">{this.state.data2?.Tele_Cone_Total_Average}</td>
-                            <td className="test">{this.state.data2?.Tele_Cone_Total_Max}</td>
-                            <td className="nobgcolor">{this.state.data3?.Tele_Cone_Total_Average}</td>
-                            <td className="test">{this.state.data3?.Tele_Cone_Total_Max}</td>
-                            <td className="nobgcolor">{this.state.data4?.Tele_Cone_Total_Average}</td>
-                            <td className="test">{this.state.data4?.Tele_Cone_Total_Max}</td>
-                            <td className="nobgcolor">{this.state.data5?.Tele_Cone_Total_Average}</td>
-                            <td className="test">{this.state.data5?.Tele_Cone_Total_Max}</td>
-                            <td className="nobgcolor">{this.state.data6?.Tele_Cone_Total_Average}</td>
-                            <td className="test">{this.state.data6?.Tele_Cone_Total_Max}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Cone_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data1?.Tele_Cone_Total_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Cone_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data2?.Tele_Cone_Total_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Cone_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data3?.Tele_Cone_Total_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Cone_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data4?.Tele_Cone_Total_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Cone_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data5?.Tele_Cone_Total_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Cone_Total_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data6?.Tele_Cone_Total_Max * 100) / 100}</td>
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Cone High</td>
-                            <td className="nobgcolor">{this.state.data1?.Tele_Cone_High_Average}</td>
-                            <td className="test">{this.state.data1?.Tele_Cone_High_Max}</td>
-                            <td className="nobgcolor">{this.state.data2?.Tele_Cone_High_Average}</td>
-                            <td className="test">{this.state.data2?.Tele_Cone_High_Max}</td>
-                            <td className="nobgcolor">{this.state.data3?.Tele_Cone_High_Average}</td>
-                            <td className="test">{this.state.data3?.Tele_Cone_High_Max}</td>
-                            <td className="nobgcolor">{this.state.data4?.Tele_Cone_High_Average}</td>
-                            <td className="test">{this.state.data4?.Tele_Cone_High_Max}</td>
-                            <td className="nobgcolor">{this.state.data5?.Tele_Cone_High_Average}</td>
-                            <td className="test">{this.state.data5?.Tele_Cone_High_Max}</td>
-                            <td className="nobgcolor">{this.state.data6?.Tele_Cone_High_Average}</td>
-                            <td className="test">{this.state.data6?.Tele_Cone_High_Max}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Cone_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data1?.Tele_Cone_High_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Cone_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data2?.Tele_Cone_High_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Cone_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data3?.Tele_Cone_High_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Cone_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data4?.Tele_Cone_High_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Cone_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data5?.Tele_Cone_High_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Cone_High_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data6?.Tele_Cone_High_Max * 100) / 100}</td>
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Cone Mid</td>
-                            <td className="nobgcolor">{this.state.data1?.Tele_Cone_Mid_Average}</td>
-                            <td className="test">{this.state.data1?.Tele_Cone_Mid_Max}</td>
-                            <td className="nobgcolor">{this.state.data2?.Tele_Cone_Mid_Average}</td>
-                            <td className="test">{this.state.data2?.Tele_Cone_Mid_Max}</td>
-                            <td className="nobgcolor">{this.state.data3?.Tele_Cone_Mid_Average}</td>
-                            <td className="test">{this.state.data3?.Tele_Cone_Mid_Max}</td>
-                            <td className="nobgcolor">{this.state.data4?.Tele_Cone_Mid_Average}</td>
-                            <td className="test">{this.state.data4?.Tele_Cone_Mid_Max}</td>
-                            <td className="nobgcolor">{this.state.data5?.Tele_Cone_Mid_Average}</td>
-                            <td className="test">{this.state.data5?.Tele_Cone_Mid_Max}</td>
-                            <td className="nobgcolor">{this.state.data6?.Tele_Cone_Mid_Average}</td>
-                            <td className="test">{this.state.data6?.Tele_Cone_Mid_Max}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Cone_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data1?.Tele_Cone_Mid_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Cone_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data2?.Tele_Cone_Mid_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Cone_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data3?.Tele_Cone_Mid_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Cone_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data4?.Tele_Cone_Mid_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Cone_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data5?.Tele_Cone_Mid_Max * 100) / 100}</td>
+                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Cone_Mid_Average * 100) / 100}</td>
+                            <td className="test">{Math.round(this.state.data6?.Tele_Cone_Mid_Max * 100) / 100}</td>
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Cone Low</td>
-                            <td className="conelow">{this.state.data1?.Tele_Cone_Low_Average}</td>
-                            <td className="colorbg2">{this.state.data1?.Tele_Cone_Low_Max}</td>
-                            <td className="conelow">{this.state.data2?.Tele_Cone_Low_Average}</td>
-                            <td className="colorbg2">{this.state.data2?.Tele_Cone_Low_Max}</td>
-                            <td className="conelow">{this.state.data3?.Tele_Cone_Low_Average}</td>
-                            <td className="colorbg2">{this.state.data3?.Tele_Cone_Low_Max}</td>
-                            <td className="conelow">{this.state.data4?.Tele_Cone_Low_Average}</td>
-                            <td className="colorbg2">{this.state.data4?.Tele_Cone_Low_Max}</td>
-                            <td className="conelow">{this.state.data5?.Tele_Cone_Low_Average}</td>
-                            <td className="colorbg2">{this.state.data5?.Tele_Cone_Low_Max}</td>
-                            <td className="conelow">{this.state.data6?.Tele_Cone_Low_Average}</td>
-                            <td className="colorbg2">{this.state.data6?.Tele_Cone_Low_Max}</td>
+                            <td className="conelow">{Math.round(this.state.data1?.Tele_Cone_Low_Average * 100) / 100}</td>
+                            <td className="colorbg2">{Math.round(this.state.data1?.Tele_Cone_Low_Max * 100) / 100}</td>
+                            <td className="conelow">{Math.round(this.state.data2?.Tele_Cone_Low_Average * 100) / 100}</td>
+                            <td className="colorbg2">{Math.round(this.state.data2?.Tele_Cone_Low_Max * 100) / 100}</td>
+                            <td className="conelow">{Math.round(this.state.data3?.Tele_Cone_Low_Average * 100) / 100}</td>
+                            <td className="colorbg2">{Math.round(this.state.data3?.Tele_Cone_Low_Max * 100) / 100}</td>
+                            <td className="conelow">{Math.round(this.state.data4?.Tele_Cone_Low_Average * 100) / 100}</td>
+                            <td className="colorbg2">{Math.round(this.state.data4?.Tele_Cone_Low_Max * 100) / 100}</td>
+                            <td className="conelow">{Math.round(this.state.data5?.Tele_Cone_Low_Average * 100) / 100}</td>
+                            <td className="colorbg2">{Math.round(this.state.data5?.Tele_Cone_Low_Max * 100) / 100}</td>
+                            <td className="conelow">{Math.round(this.state.data6?.Tele_Cone_Low_Average * 100) / 100}</td>
+                            <td className="colorbg2">{Math.round(this.state.data6?.Tele_Cone_Low_Max * 100) / 100}</td>
                         </tr>
                         <tr>
                             <td rowspan="2" className="colorbg1">Endgame</td>
                             <td colspan="2" className="colorbg">% Docked</td>
-                            <td className="test" colspan="2">{this.state.data1?.End_Dock_Frequency}</td>
-                            <td className="test" colspan="2">{this.state.data2?.End_Dock_Frequency}</td>
-                            <td className="test" colspan="2">{this.state.data3?.End_Dock_Frequency}</td>
-                            <td className="test" colspan="2">{this.state.data4?.End_Dock_Frequency}</td>
-                            <td className="test" colspan="2">{this.state.data5?.End_Dock_Frequency}</td>
-                            <td className="test" colspan="2">{this.state.data6?.End_Dock_Frequency}</td>
+                            <td className="test" colspan="2">{this.state.data1?.End_Dock_Frequency * 100}%</td>
+                            <td className="test" colspan="2">{this.state.data2?.End_Dock_Frequency * 100}%</td>
+                            <td className="test" colspan="2">{this.state.data3?.End_Dock_Frequency * 100}%</td>
+                            <td className="test" colspan="2">{this.state.data4?.End_Dock_Frequency * 100}%</td>
+                            <td className="test" colspan="2">{this.state.data5?.End_Dock_Frequency * 100}%</td>
+                            <td className="test" colspan="2">{this.state.data6?.End_Dock_Frequency * 100}%</td>
 
                         </tr>
                         <tr>
                             <td colspan="2" className="colorbg">% Balanced</td>
-                            <td colspan="2" className="colorbg2">{this.state.data1?.End_Balance_Frequency}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data2?.End_Balance_Frequency}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data3?.End_Balance_Frequency}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data4?.End_Balance_Frequency}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data5?.End_Balance_Frequency}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data6?.End_Balance_Frequency}</td>
+                            <td colspan="2" className="colorbg2">{this.state.data1?.End_Balance_Frequency * 100}%</td>
+                            <td colspan="2" className="colorbg2">{this.state.data2?.End_Balance_Frequency * 100}%</td>
+                            <td colspan="2" className="colorbg2">{this.state.data3?.End_Balance_Frequency * 100}%</td>
+                            <td colspan="2" className="colorbg2">{this.state.data4?.End_Balance_Frequency * 100}%</td>
+                            <td colspan="2" className="colorbg2">{this.state.data5?.End_Balance_Frequency * 100}%</td>
+                            <td colspan="2" className="colorbg2">{this.state.data6?.End_Balance_Frequency * 100}%</td>
 
                         </tr>
 

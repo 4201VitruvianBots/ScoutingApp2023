@@ -1,4 +1,4 @@
-import { MultiButton, FoulCards, SearchBar, options } from "./Form";
+import { MultiButton, FoulCards, SearchBar } from "./Form";
 import './App.css';
 import React, { useState } from "react";
 import Popup from 'reactjs-popup';
@@ -59,15 +59,9 @@ function SignIn(props) {
 
 function General(props) {
 
-
-    // const [fouls, setFouls] = useState([]);
-
-    const [teamOption1, setTeamOption1] = useState(options[0]); //state
-    const [teamOption2, setTeamOption2] = useState(options[0]); //state
-    const [teamOption3, setTeamOption3] = useState(options[0]); //state
-
-    //functions (setting a function to a variable)
-
+    const handleMatchChange = (event) => {
+        props.onMatchUpdate(event.target.value);
+    }
 
     return (
 
@@ -75,14 +69,14 @@ function General(props) {
             <p className="section-label">Fouls</p>
             <div className="textArea">
                 <br />
-                <input type="number" id="Sname" name="Match_Number" placeholder="MATCH NUMBER" className="name" required min="1" />
+                <input type="number" id="Sname" name="Match_Number" placeholder="MATCH NUMBER" className="name" required min="1" onChange={handleMatchChange} />
                 <br />
                 <br />
                 <div className="boxes">
                     <div className="team1">
 
                         {/* <input type="text" placeholder="TEAM 1" className="login" id="team1" name="Team_1" onChange={handleInputChange} /> */}
-                        <SearchBar setSelectedOption={setTeamOption1} name="Team_1" className="teamSearch" />
+                        <SearchBar selectedOption={props.teamOption1} setSelectedOption={props.setTeamOption1} name="Team_1" className="teamSearch" />
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
@@ -90,7 +84,7 @@ function General(props) {
                                 close => (
                                     <div className='modal'>
                                         <div className='content'>
-                                            <label className="label-title">{teamOption1.label}</label>
+                                            <label className="label-title">{props.teamOption1.label}</label>
                                             <br />
                                             <br />
                                             <select name="Competition" id="selector" defaultValue="Choose" >
@@ -118,7 +112,7 @@ function General(props) {
                                                 let text = selector.options[selector.selectedIndex].text; //then save let text as index 1?
                                                 let content = document.getElementById("note").value;
 
-                                                props.setFouls([...props.fouls, [teamOption1.value, text, content, selector.selectedIndex]]);
+                                                props.setFouls([...props.fouls, [props.teamOption1.value, text, content, selector.selectedIndex]]);
 
                                                 close();
                                             }}>
@@ -137,7 +131,7 @@ function General(props) {
                     </div>
                     <div className="team2">
 
-                        <SearchBar setSelectedOption={setTeamOption2} name="Team_2" className="teamSearch" />
+                        <SearchBar selectedOption={props.teamOption2} setSelectedOption={props.setTeamOption2} name="Team_2" className="teamSearch" />
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
@@ -145,7 +139,7 @@ function General(props) {
                                 close => (
                                     <div className='modal'>
                                         <div className='content'>
-                                            <label className="label-title">{teamOption2.label}</label>
+                                            <label className="label-title">{props.teamOption2.label}</label>
 
                                             <br />
                                             <br />
@@ -169,7 +163,7 @@ function General(props) {
                                                 let selector = document.getElementById("selector");
                                                 let text = selector.options[selector.selectedIndex].text; //then save let text as index 1?
                                                 let content = document.getElementById("note").value;
-                                                props.setFouls([...props.fouls, [teamOption2.value, text, content, selector.selectedIndex]]);
+                                                props.setFouls([...props.fouls, [props.teamOption2.value, text, content, selector.selectedIndex]]);
 
                                                 close();
                                             }
@@ -190,7 +184,7 @@ function General(props) {
 
                     <div className="team3">
 
-                        <SearchBar setSelectedOption={setTeamOption3} name="Team_3" className="teamSearch" />
+                        <SearchBar selectedOption={props.teamOption3} setSelectedOption={props.setTeamOption3} name="Team_3" className="teamSearch" />
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
@@ -198,7 +192,7 @@ function General(props) {
                                 close => (
                                     <div className='modal'>
                                         <div className='content'>
-                                            <label className="label-title">{teamOption3.label}</label>
+                                            <label className="label-title">{props.teamOption3.label}</label>
                                             <br />
                                             <br />
                                             <select name="Competition" id="selector" defaultValue="Choose" >
@@ -224,7 +218,7 @@ function General(props) {
                                                 let selector = document.getElementById("selector");
                                                 let text = selector.options[selector.selectedIndex].text; //then save let text as index 1?
                                                 let content = document.getElementById("note").value;
-                                                props.setFouls([...props.fouls, [teamOption3.value, text, content, selector.selectedIndex]]);
+                                                props.setFouls([...props.fouls, [props.teamOption3.value, text, content, selector.selectedIndex]]);
 
                                                 close();
                                             }
@@ -234,6 +228,10 @@ function General(props) {
                                             </button>
                                             <br />
                                         </div>
+
+
+
+
                                         <br />
                                     </div>
                                 )
@@ -247,7 +245,7 @@ function General(props) {
                 <br />
 
                 <div className="test2">
-                    <FoulCards fouls={props.fouls}></FoulCards>
+                    <FoulCards fouls={props.fouls} setFouls={props.setFouls}></FoulCards>
                 </div>
 
                 {props.fouls.map((e, i) => (<React.Fragment key={i}>

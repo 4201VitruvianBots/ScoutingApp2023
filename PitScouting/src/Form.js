@@ -30,6 +30,8 @@ class NumberInput extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.increaseValue = this.increaseValue.bind(this);
         this.decreaseValue = this.decreaseValue.bind(this);
+        // eslint-disable-next-line no-restricted-globals
+        addEventListener('reset', () => { this.setState({ value: 0 }) })
     }
 
     setValue(value) {
@@ -55,7 +57,7 @@ class NumberInput extends React.Component {
             <div>
                 <div className="labelleft"><label htmlFor={this.state.id}>{this.state.label}</label></div>
                 <div className="buttonright"><input type="button" className="chonk" value="-" onClick={this.decreaseValue} />
-                    <input type="number" value={this.state.value} onChange={this.handleChange} name={this.state.id} min="0" step="1"/>
+                    <input type="number" value={this.state.value} onChange={this.handleChange} name={this.state.id} min="0" step="1" />
                     <input type="button" className="chonk" value="+" onClick={this.increaseValue} /></div>
             </div>
 
@@ -74,6 +76,8 @@ class ButtonInput extends React.Component {
         this.increaseValue = this.increaseValue.bind(this);
         this.decreaseValue = this.decreaseValue.bind(this);
         this.setValueFinal = this.setValueFinal.bind(this);
+        // eslint-disable-next-line no-restricted-globals
+        addEventListener('reset', () => { this.setState({ value: 0 }) })
 
     }
 
@@ -160,6 +164,9 @@ class MultiButton extends React.Component {
         (state of MultiButton)
         declarative - as you create them, they get altered, you're not changing them
         */
+
+        // eslint-disable-next-line no-restricted-globals
+        addEventListener('reset', () => { this.setState({ selected: 0 }) })
     }
 
     test1(id) {
@@ -283,6 +290,12 @@ class Upload extends React.Component {
 }
 
 class SearchBar extends React.Component {
+    constructor(props) {
+        super(props)
+        this.handleChange = this.handleChange.bind(this);
+        
+    }
+
     handleChange = (selectedOption) => {
         this.props.setSelectedOption(selectedOption)
     }
@@ -303,7 +316,7 @@ class SearchBar extends React.Component {
 }
 
 const options = [
-    { value: null, label: 'Select...' },
+    { value: null, label: '' },
     { value: "4", label: '4' },
     { value: "294", label: '294' },
     { value: "498", label: '498' },
@@ -358,7 +371,7 @@ const options = [
 //something is making it think it's html...?
 
 
-export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, SearchBar, options};
+export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, SearchBar, options };
 
 
 // RadioButtons
