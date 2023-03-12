@@ -98,6 +98,9 @@ input[type="number"] {
 .clear-button,
 .noshow,
 .nonSubmit .number-on,
+.nonSubmit .number-off,
+.noshow,
+.nonSubmit .number-on,
 .nonSubmit .number-off {
 
   color: black;
@@ -468,7 +471,7 @@ iframe {
 .number-off {
   display: inline !important;
   width: 100px;
-  font-size: 50px;
+  font-size: 40px;
   text-align: center;
   border-radius: 7px;
 }
@@ -521,3 +524,31 @@ iframe {
   color: #111;
   background-color: #ddd;
 }
+
+.mobility .number-on {
+  background-color: green;
+  color: black;
+  font-weight: 900;
+  border: 3px black solid;
+  width: 180px;
+}
+
+.mobility .number-off {
+  background-color: #83c183;
+  width: 180px;
+  color: white;
+}
+
+.ToggleButton .number-on,
+.ToggleButton .number-off {
+  width: 3000px;
+}
+
+/* input[type="button"] .mobility {
+  background-color: fuchsia;
+} */
+
+
+/* input[type=Multibutton] {
+  background-color: red;
+} */
