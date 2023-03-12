@@ -51,6 +51,13 @@ function SignIn(props) {
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
                         <option value="Port Hueneme">Port Hueneme</option>
                     </select>
+                    <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
+                    <div className="allianceSelect">
+                        <MultiButton items={[['RED 1', 'Red 1'], ['RED 2', 'Red 2'], ['RED 3', 'Red 3'], ['BLUE 1', 'Blue 1'], ['BLUE 2', 'Blue 2'], ['BLUE 3', 'Blue 3']]} id="Team_Alliance" />
+
+                    </div>
+                    {/* Off value at index 0, ON value at index 1 */}
+
                     <br />
                     {showCheck && <div class="check"></div>}
                     <input type="submit" className="submit-button" value="Sign In" />
@@ -70,6 +77,10 @@ function PreGame(props) {
 
     useEffect(() => setTeamOption(options[0]), []); // eslint-disable-line react-hooks/exhaustive-deps
 
+    const handleMatchChange = (event) => {
+        props.onMatchUpdate(event.target.value);
+    }
+
     return (
         <Page selected={props.selected} className="page" id="pre-game">
             <p className="section-label" id="Pre">Pre-Game</p>
@@ -77,20 +88,12 @@ function PreGame(props) {
             <div className="textArea">
 
                 <p className="itemLabel" htmlFor="Match_Number" required>MATCH NUMBER</p>
-                <input type="number" id="Match_Number" name="Match_Number" className="textInput" required min="1" max="100" />
+                <input type="number" id="Match_Number" name="Match_Number" className="textInput" required min="1" max="100" onChange={handleMatchChange} />
 
                 <p className="itemLabel" htmlFor="Match_Number">TEAM NUMBER</p>
                 {/* <input type="number" id="Team_Number" name="Team_Number" className="textInput" /> */}
 
                 <SearchBar setSelectedOption={setTeamOption} selectedOption={props.teamOption} name="Team_Number" className="teamSearch" required />
-
-
-                <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
-                <div className="allianceSelect">
-                    <MultiButton items={[['RED 1', 'Red 1'], ['RED 2', 'Red 2'], ['RED 3', 'Red 3'], ['BLUE 1', 'Blue 1'], ['BLUE 2', 'Blue 2'], ['BLUE 3', 'Blue 3']]} id="Team_Alliance" />
-
-                </div>
-                {/* Off value at index 0, ON value at index 1 */}
 
 
                 {/* <h1><strong>No show robot?</strong></h1>
