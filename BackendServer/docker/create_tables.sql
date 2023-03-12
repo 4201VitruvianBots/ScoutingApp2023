@@ -106,5 +106,7 @@ CREATE TABLE dataAnalysis(
 	Total_Inside_Robot_Fouls INT,
 	Total_Multiple_Pieces_Fouls INT,
 	Total_Inside_Protected_Fouls INT,
+	Average_Teleop_Points FLOAT,
+	Average_Auto_Points FLOAT,
 	PRIMARY KEY(Team_Number)
 );
