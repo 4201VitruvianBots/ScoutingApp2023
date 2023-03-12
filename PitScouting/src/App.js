@@ -1,5 +1,6 @@
 import './App.css';
 import { SignIn, General, Photos, SavePage } from "./Pages";
+import { options } from "./Form";
 import React from "react";
 
 const fields = [
@@ -49,11 +50,16 @@ function csvStringify(data) {
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { signedIn: false, ScouterName: "", EventName: "" };
+        this.state = { signedIn: false, ScouterName: "", EventName: "", teamOption: options[0] };
         this.SignInHandler = this.SignInHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.downloadCSV = this.downloadCSV.bind(this);
+        this.setTeamOption = this.setTeamOption.bind(this);
         this.clearData = this.clearData.bind(this);
+    }
+
+    setTeamOption(teamOption) {
+        this.setState({ teamOption: teamOption });
     }
 
     SignInHandler(e) {
@@ -78,6 +84,8 @@ class App extends React.Component {
                 download(csv, `Pit_Scout_${hour}${minute}.csv`)
                 localStorage.setItem('pitData', localStorage.getItem('pitData') + csv)
                 event.target.reset();
+                this.setTeamOption({value: null});
+                window.location.href = "#SignIn"
                 // Save it!
 
             } else {
@@ -118,7 +126,7 @@ class App extends React.Component {
                     <input type='hidden' value={this.state.EventName} name='Competition' />
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
 
-                    <General selected={this.state.selected === 'general'} />
+                    <General selected={this.state.selected === 'general' } teamOption={this.state.teamOption} setTeamOption={this.setTeamOption}/>
                     <Photos selected={this.state.selected === 'photos'} />
                     <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} downloadCSV={this.downloadCSV} clearData={this.clearData} />
 
