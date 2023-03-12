@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, send_file
 from flask_cors import CORS
 import mysql.connector
 import atexit
@@ -71,6 +71,10 @@ def checker_thread():
 def start_thread():
     x = threading.Thread(target=checker_thread, daemon=True)
     x.start()
+
+@app.route('/schedule.json', methods=['GET'])
+def handle_get_schedule():
+    return send_file('schedule.json')
 
 @app.route('/data/matches', methods=['GET'])
 def handle_get():
