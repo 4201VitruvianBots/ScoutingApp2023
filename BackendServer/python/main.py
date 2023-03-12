@@ -238,6 +238,7 @@ def handle_post3():
     # Do something with the data
     return 'Data received'
 
+
 def updateAnalysis(Team_Number):
     mycursor.execute('INSERT IGNORE INTO dataAnalysis(Team_Number) VALUES (%s)', (Team_Number,))
 
@@ -249,7 +250,7 @@ def updateAnalysis(Team_Number):
             included_columns = [f"{prefix}_{suffix}" for prefix in prefixes for suffix in suffixes ]
 
             for stat, func in ('Average', 'AVG'), ('Max', 'MAX'):
-                request = f"UPDATE dataAnalysis SET {type_phase}_{level}_{stat} = (SELECT {func}({' + '.join(included_columns)}) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s"
+                request = f"UPDATE dataAnalysis SET {type_phase}_{level}_{stat} = (SELECT {func}({' + '.join(included_columns)}) FROM matchData WHERE Team_Number = %s AND No_Show_Robot = FALSE) WHERE Team_Number = %s"
                 print(request)
 
                 mycursor.execute(
@@ -257,9 +258,9 @@ def updateAnalysis(Team_Number):
                     (Team_Number,Team_Number)
                 )
 
-    mycursor.execute("UPDATE dataAnalysis SET End_Balance_Frequency = (SELECT COUNT(*) FROM matchData WHERE Tele_Station = 3 AND Team_Number = %s) / NULLIF((SELECT COUNT(*) FROM matchData WHERE Team_Number = %s), 0) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
-    mycursor.execute("UPDATE dataAnalysis SET End_Dock_Frequency = (SELECT COUNT(*) FROM matchData WHERE (Tele_Station = 2 OR Tele_Station = 3) AND Team_Number = %s) / NULLIF((SELECT COUNT(*) FROM matchData WHERE Team_Number = %s), 0) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
-    mycursor.execute("UPDATE dataAnalysis SET Auto_Balance_Frequency = (SELECT COUNT(*) FROM matchData WHERE Auto_Station = 2 AND Team_Number = %s) / NULLIF((SELECT COUNT(*) FROM matchData WHERE (Auto_Station = 1 OR Auto_Station = 2) AND Team_Number = %s), 0) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
+    mycursor.execute("UPDATE dataAnalysis SET End_Balance_Frequency = (SELECT COUNT(*) FROM matchData WHERE Tele_Station = 3 AND Team_Number = %s AND No_Show_Robot = FALSE) / NULLIF((SELECT COUNT(*) FROM matchData WHERE Team_Number = %s AND No_Show_Robot = FALSE), 0) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
+    mycursor.execute("UPDATE dataAnalysis SET End_Dock_Frequency = (SELECT COUNT(*) FROM matchData WHERE (Tele_Station = 2 OR Tele_Station = 3) AND Team_Number = %s AND No_Show_Robot = FALSE) / NULLIF((SELECT COUNT(*) FROM matchData WHERE Team_Number = %s AND No_Show_Robot = FALSE), 0) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
+    mycursor.execute("UPDATE dataAnalysis SET Auto_Balance_Frequency = (SELECT COUNT(*) FROM matchData WHERE Auto_Station = 2 AND Team_Number = %s AND No_Show_Robot = FALSE) / NULLIF((SELECT COUNT(*) FROM matchData WHERE (Auto_Station = 1 OR Auto_Station = 2) AND Team_Number = %s AND No_Show_Robot = FALSE), 0) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
     mycursor.execute("UPDATE dataAnalysis SET Average_Teleop_Points = (SELECT ((Tele_Pieces_Low_Average * 2) + (Tele_Pieces_Mid_Average * 3) + (Tele_Pieces_High_Average * 5))) WHERE Team_Number = %s", (Team_Number, ))
     mycursor.execute("UPDATE dataAnalysis SET Average_Auto_Points = (SELECT ((Auto_Low_Average * 3) + (Auto_Mid_Average * 4) + (Auto_High_Average * 6))) WHERE Team_Number = %s", (Team_Number, ))
     # mycursor.execute("UPDATE dataAnalysis SET Average_Cubes = (SELECT AVG(Auto_Cube_Low + Auto_Cube_Mid + Auto_Cube_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_Cube_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
@@ -319,7 +320,7 @@ def format_data(string, name):
 
     if name in ('Scouter_Name', 'Competition', 'Team_Name', 'Comments','DriveTrain_Motor_Type', 'Working_On', 'Autos'):
         return string
-    if name in ('Mobility', 'Show_Time', 'Can_Hold_Cone', 'Can_Hold_Cube'):
+    if name in ('Mobility', 'Show_Time', 'Can_Hold_Cone', 'Can_Hold_Cube', 'No_Show_Robot'):
         return bool(string)
 
     len(string)
