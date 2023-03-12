@@ -15,7 +15,7 @@ x = requests.get(
 
 if x.status_code == 200:
     teamKeys = [i['alliances']['red']['team_keys'] + i['alliances']['blue']['team_keys'] for i in x.json()]
-    teamNumbers = [[int(j[3:]) for j in i] for i in teamKeys]
+    teamNumbers = {index + 1: [int(j[3:]) for j in match] for index, match in enumerate(teamKeys)}
     out = open('schedule.json', 'w')
     out.write(json.dumps({'matches': teamNumbers}))
     out.close()
