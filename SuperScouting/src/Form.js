@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import Select from 'react-select';
 
@@ -145,7 +145,7 @@ class ButtonInput extends React.Component {
 class MultiButton extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { items: props.items, id: props.id, label: props.label, value: 0, selected: 0, onChange: props.onChange };
+        this.state = { items: props.items, id: props.id, label: props.label, value: 0, selected: null, onChange: props.onChange };
         this.test1 = this.test1.bind(this);
         this.generateButtons = this.generateButtons.bind(this);
     }
@@ -256,19 +256,39 @@ class FoulCards extends React.Component {
         super(props);
         this.state = { fouls: props.fouls, items: props.items, id: props.id, label: props.label, value: 0, selected: 0 };
         this.generateDiv = this.generateDiv.bind(this);
+        // this.setFouls = this.setFouls.bind(this);
+       
+      
+        // this.setFouls = this.setFouls(this);
     }
 
     generateDiv() {
         let output = [];
 
+
         for (let index in this.props.fouls) {
 
             output.push(
                 <div className="foul" key={index}>
+
                     {/* <p className="label4">FOUL</p> */}
                     <p className="label-number" key={1}>{this.props.fouls[index][0]}</p>
                     <p className="label-cause" key={2}>{this.props.fouls[index][1]}</p>
                     <p className="label-notes" key={3}>{this.props.fouls[index][2]}</p>
+
+                    <div className="deleteButton">
+                        <input type="button" value="Delete" onClick={() => {
+                            // event.preventDefault();
+                            let updatedFouls = [...this.props.fouls];
+                            updatedFouls.splice(index, 1);
+                            this.props.setFouls(updatedFouls);
+                        }
+                        
+                        }/>
+                    </div>
+                    
+
+                  
                 </div>
             )
         }
@@ -280,6 +300,8 @@ class FoulCards extends React.Component {
         return (
             <div className="fouls">
                 <this.generateDiv></this.generateDiv>
+
+
             </div>
         )
 
@@ -377,51 +399,6 @@ const options = [
     { value: "8891", label: '8891' }
 ];
 
-function ConnectionIndicator(props) {
-    const [connected, setConnected] = useState(false);
-
-    useEffect(() => {
-        const url = `http://${process.env.REACT_APP_BACKEND_IP}/data/status`;
-
-        const fetchData = async () => {
-            try {
-                const response = await fetch(url);
-                const ok = response.ok;
-                setConnected(ok);
-            } catch (error) {
-                console.log("error", error);
-                setConnected(false);
-            }
-        };
-
-        const interval = setInterval(function () {
-            fetchData();
-        }, 5000);
-
-        return function cleanup() {
-            clearInterval(interval);
-        };
-
-
-    }, []);
-
-    return (<div>
-        {connected
-            ? <input type="submit" className="submit-button" value="Submit & Clear"></input>
-            : <p className='connerror'>Tablet not connected</p>
-        }
-        <br />
-        <br />
-        <div className="nonSubmit">
-            <p className="reminder">DO NOT use this section unless instructed</p>
-            {connected ? null : <input type="submit" className="save-button" value="Save Data & Clear" />}
-            <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
-            <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
-        </div>
-    </div>);
-
-}
-
 function CheckDecimal(props) {
     const inputField = document.getElementById("Match_Number");
 
@@ -435,4 +412,4 @@ function CheckDecimal(props) {
 }
 
 
-export { RadioButtons, NumberInput, ButtonInput, MultiButton, PageSelector, Upload, FoulCards, SearchBar, options, ConnectionIndicator, CheckDecimal };
+export { RadioButtons, NumberInput, ButtonInput, MultiButton, PageSelector, Upload, FoulCards, SearchBar, options, CheckDecimal };
