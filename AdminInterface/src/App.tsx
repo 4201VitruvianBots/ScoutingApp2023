@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './App.css';
 import 'material-symbols/outlined.css'
 
@@ -100,18 +100,23 @@ function TabletStatusDisplay({ allTabletStatus }: { allTabletStatus?: AllTabletS
     );
 }
 
+const SelectedTeamsContext = React.createContext<string[] | null>(null);
+
 function MatchesDisplay({ allMatches = {} }: {allMatches?: AllMatches}) {
     const [selectedmatch, setSelectedMatch] = useState<string>();
 
     const MatchStatus = ({match: {submitted, submittedTeamNumber, scheduledTeamNumber}}: {match: MatchStatus}) => {
+        const displayNumber = scheduledTeamNumber || submittedTeamNumber || '';
         return (
-            <td className={'match-status' + submitted ? ' submitted' : ''}>
-                {scheduledTeamNumber || submittedTeamNumber || ''}
+            <td className={classList('match-status', ['submitted', submitted], ['required', (useContext(SelectedTeamsContext) ?? []).includes(displayNumber)])}>
+                {displayNumber}
             </td>
         );
     };
 
-    return (
+    const selectedTeams = selectedmatch === undefined ? null : allMatches[selectedmatch].map(e => e.scheduledTeamNumber || e.submittedTeamNumber || '');
+
+    return (<SelectedTeamsContext.Provider value={selectedTeams}>
         <table>
             <thead><tr>
                     <th></th>
@@ -136,7 +141,7 @@ function MatchesDisplay({ allMatches = {} }: {allMatches?: AllMatches}) {
                 </tr>)}
             </tbody>
         </table>
-    )
+    </SelectedTeamsContext.Provider>);
 }
 
 export default App;
