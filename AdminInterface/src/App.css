@@ -69,3 +69,7 @@
     vertical-align: bottom;
     margin: 0 0.2em;
 }
+
+.selected td {
+    background-color: yellow;
+}

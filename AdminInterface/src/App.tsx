@@ -20,13 +20,32 @@ type AllTabletStatus = {
     7: TabletStatus,
 }
 
+interface MatchStatus {
+    submitted: boolean,
+    scheduledTeamNumber?: string,
+    submittedTeamNumber?: string
+}
+
+type Match = [MatchStatus, MatchStatus, MatchStatus, MatchStatus, MatchStatus, MatchStatus];
+type AllMatches = Record<string, Match>;
+
+function classList(...classes: (string | [className: string, condition: boolean])[]): string {
+    return classes
+        .map(e => typeof e === 'string' ? e : e[1] ? e[0] : null)
+        .filter(e => e !== null)
+        .join(' ');
+}
+
 function App() {
     const [tabletStatus, setTabletStatus] = useState<AllTabletStatus>();
+    const [matches, setMatches] = useState<AllMatches>();
 
     useEffect(() => {
         const updateData = async () => {
             const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/status`, { method: 'GET' });
-            setTabletStatus(await response.json() as AllTabletStatus);
+            const status = await response.json() as {tablets: AllTabletStatus, matches: AllMatches};
+            setTabletStatus(status.tablets);
+            setMatches(status.matches);
         }
 
         setInterval(updateData, 5000);
@@ -35,6 +54,7 @@ function App() {
 
     return (<main>
         <TabletStatusDisplay allTabletStatus={tabletStatus} />
+        <MatchesDisplay allMatches={matches} />
     </main>)
 }
 
@@ -80,6 +100,43 @@ function TabletStatusDisplay({ allTabletStatus }: { allTabletStatus?: AllTabletS
     );
 }
 
-// function MatchDisplay({ allMatches }: {allMatches?: })
+function MatchesDisplay({ allMatches = {} }: {allMatches?: AllMatches}) {
+    const [selectedmatch, setSelectedMatch] = useState<string>();
+
+    const MatchStatus = ({match: {submitted, submittedTeamNumber, scheduledTeamNumber}}: {match: MatchStatus}) => {
+        return (
+            <td className={'match-status' + submitted ? ' submitted' : ''}>
+                {scheduledTeamNumber || submittedTeamNumber || ''}
+            </td>
+        );
+    };
+
+    return (
+        <table>
+            <thead><tr>
+                    <th></th>
+                    <th>Match</th>
+                    <th>Red 1</th>
+                    <th>Red 2</th>
+                    <th>Red 3</th>
+                    <th>Blue 1</th>
+                    <th>Blue 2</th>
+                    <th>Blue 3</th>
+            </tr></thead>
+            <tbody>
+                {Object.entries(allMatches).map(([matchNumber, status]) => <tr className={matchNumber === selectedmatch ? 'selected' : ''} >
+                    <td><button onClick={() => setSelectedMatch(matchNumber)}>S</button></td>
+                    <td>{matchNumber}</td>
+                    <MatchStatus match={status[0]} />
+                    <MatchStatus match={status[1]} />
+                    <MatchStatus match={status[2]} />
+                    <MatchStatus match={status[3]} />
+                    <MatchStatus match={status[4]} />
+                    <MatchStatus match={status[5]} />
+                </tr>)}
+            </tbody>
+        </table>
+    )
+}
 
 export default App;
