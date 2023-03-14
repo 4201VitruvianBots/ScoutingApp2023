@@ -301,7 +301,7 @@ class FoulCards extends React.Component {
                     <div className="editButton">
                         <Popup trigger=
                             {<input type="button" value="Edit" ></input>}
-                            modal nested onOpen={this.setState({teamOption:this.props.fouls[index][0]})}>
+                            modal nested >
                             {
                                 close => (
                                     <div className='modal'>
@@ -316,8 +316,13 @@ class FoulCards extends React.Component {
                                             setSelectedOption={this.props.fouls[index][0]} 
                                             
                                             */}
-                                            <SearchBar alternateList={this.props.alternateList} setSelectedOption={(option) => this.setState({teamOption: option})} id="team" className="teamSearch" />
+                                            {/* <SearchBar alternateList={this.props.alternateList} id="team" className="teamSearch" /> */}
 
+                                            <br />
+                                            <label className="label-title">{this.props.fouls[index][0]}</label> 
+
+                                            {/* why does ".text" after [index][0] break it? */}
+                                            <br />
                                             <br />
                                             <select name="Competition" id="selector" defaultValue="Choose" >
                                                 <option value="Choose" className="Placeholder" disabled>{this.props.fouls[index][1]}</option>
@@ -327,13 +332,14 @@ class FoulCards extends React.Component {
                                                 <option value="InsideOtherRobot">Inside other robot</option>
                                                 <option value="MultipleGameObjects">Holding multiple game pieces</option>
                                                 <option value="InsideProtectedZone">Inside protected zone</option>
+                                                <option value="InsideProtectedZone">Other (specify)</option>
                                             </select>
                                             <br />
                                             <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
                                             <br />
                                         </div>
 
-                                        <div className="editSubmit">
+                                        <div className="subButton">
 
                                             <button onClick={() => {
 
@@ -349,7 +355,7 @@ class FoulCards extends React.Component {
                                                 //Current index is stored in index variable
                                                 //team # (same as OG)
                                             
-                                                this.props.fouls[index][0] = this.state.teamOption.value;
+                                            
                                                 this.props.fouls[index][1] = text;
                                                 this.props.fouls[index][2] = content; 
                                                 this.props.fouls[index][3] = selector.selectedIndex;
@@ -360,7 +366,7 @@ class FoulCards extends React.Component {
                                             }
 
                                             }>
-                                                Enter foul
+                                                Edit foul
                                             </button>
 
                                             <br />

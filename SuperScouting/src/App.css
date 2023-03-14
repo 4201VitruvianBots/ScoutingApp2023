@@ -646,12 +646,25 @@
    font-size: 1.5em;
  }
 
- .deleteButton input[type="button"] {
-  font-size: 14px;
+ .deleteButton, .editButton {
+  display: inline;
+}
 
+ .deleteButton input[type="button"], 
+ .editButton input[type="button"] {
+  font-size: 14px;
   background-color: rgba(255, 0, 0, 0.717);
-  border: px black solid;
+  border: 0px black solid;
   border-radius: 3px;
-  padding: 5px;
+  padding: 4px;
+  display: inline;
+  margin: 2px;
+  width: 50px;
+  height: 30px;
+  font-weight: 500;
  }
 
+ .editButton input[type="button"] {
+  background-color: rgba(247, 0, 255, 0.717);
+  /* background-color: rgba(255, 128, 0, 0.717); */
+ }

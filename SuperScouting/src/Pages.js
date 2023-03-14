@@ -101,6 +101,8 @@ function General(props) {
                                                 <option value="InsideOtherRobot">Inside other robot</option>
                                                 <option value="MultipleGameObjects">Holding multiple game pieces</option>
                                                 <option value="InsideProtectedZone">Inside protected zone</option>
+                                                <option value="InsideProtectedZone">Other (specify)</option>
+                                                
                                             </select>
                                             <br />
                                             <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
@@ -157,6 +159,7 @@ function General(props) {
                                                 <option value="InsideOtherRobot">Inside other robot</option>
                                                 <option value="MultipleGameObjects">Holding multiple game pieces</option>
                                                 <option value="InsideProtectedZone">Inside protected zone</option>
+                                                <option value="InsideProtectedZone">Other (specify)</option>
                                             </select>
                                             <br />
                                             <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
@@ -209,6 +212,7 @@ function General(props) {
                                                 <option value="InsideOtherRobot">Inside other robot</option>
                                                 <option value="MultipleGameObjects">Holding multiple game pieces</option>
                                                 <option value="InsideProtectedZone">Inside protected zone</option>
+                                                <option value="InsideProtectedZone">Other (specify)</option>
                                             </select>
                                             <br />
                                             <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
