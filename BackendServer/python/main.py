@@ -52,7 +52,7 @@ scoutersStatus = {str(i): {'Scouter_Name': '', 'Team_Number': '', 'Battery_Level
 @app.route('/data/status', methods=['POST'])
 def handle_status():
     data = request.get_json()
-    if (data.get('Position') != ''):
+    if (data.get('Position') != None):
         scoutersStatus[data.get('Position')] = {
             'Scouter_Name': data.get('Scouter_Name'),
             'Team_Number': data.get('Team_Number'),
