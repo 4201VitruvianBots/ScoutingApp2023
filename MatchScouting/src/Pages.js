@@ -1,4 +1,4 @@
-import { NumberInput, MultiButton, SearchBar, options, ConnectionIndicator } from "./Form";
+import { NumberInput, MultiButton, SearchBar, options, ConnectionIndicator, ButtonInput } from "./Form";
 import './App.css';
 import { useState } from "react";
 
@@ -118,10 +118,10 @@ function Auto(props) {
             <p className="section-label" id="Auto">Auto</p>
             <div className="textArea">
 
-                {/* <ButtonInput on_label="Activated!" off_label='Mobility?' id="Mobility" /> */}
-                <div className="mobility">
+                <ButtonInput on_label="Activated!" off_label='Mobility?' id="Mobility" />
+                {/* <div className="mobility">
                     <MultiButton items={[['ACTIVATED!', 'Mobility'], ['ACTIVATED!', 'No Mobility']]} id="Mobility" />
-                </div>
+                </div> */}
                 {/* <button type="button">Mobility?</button> */}
 
                 {/* <h2>Mobility</h2> */}
