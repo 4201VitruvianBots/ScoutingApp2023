@@ -50,10 +50,11 @@ function csvStringify(data) {
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { signedIn: false, ScouterName: "", EventName: "", connected: false, teamOption: null, BatteryLevel: null };
+        this.state = { signedIn: false, ScouterName: "", EventName: "", TeamAlliance: "", connected: false, teamOption: null, BatteryLevel: null, matchSchedule: null };
         this.setSelected = this.setSelected.bind(this);
         this.setTeamOption = this.setTeamOption.bind(this);
-        this.SignInHandler = this.SignInHandler.bind(this)
+        this.SignInHandler = this.SignInHandler.bind(this);
+        this.handleMatchUpdate = this.handleMatchUpdate.bind(this);
     }
 
 
@@ -68,8 +69,15 @@ class App extends React.Component {
     SignInHandler(e) {
         e.preventDefault();
         const answers = e.target.elements;
-        this.setState({ signedIn: true, ScouterName: answers.Scouter_Name.value, EventName: answers.Competition.value, QRCode: null });
+        this.setState({ signedIn: true, ScouterName: answers.Scouter_Name.value, EventName: answers.Competition.value, TeamAlliance: answers.Team_Alliance.value, QRCode: null });
         return false;
+    }
+
+    handleMatchUpdate(matchNumber) {
+        const team = this.state.matchSchedule?.[matchNumber]?.[this.state.TeamAlliance]?.toString();
+        if (team !== undefined) {
+            this.setTeamOption({ label: team, value: team });
+        }
     }
 
     handleSubmit = (event) => {
@@ -87,11 +95,13 @@ class App extends React.Component {
                 download(csv, `Match_Scout_${hour}${minute}.csv`)
                 localStorage.setItem('matchData', localStorage.getItem('matchData') + csv)
                 event.target.submit();
-                const setTeamOption = this.setTeamOption;
-                setTimeout(function () {
+                const prevMatch = parseInt(answers.Match_Number.value);
+                setTimeout(() => {
                     event.target.reset();
-                    setTeamOption({ value: null })
-                    window.location.href = "#SignIn"
+                    // setTeamOption({ value: null });
+                    answers.Match_Number.value = prevMatch + 1;
+                    this.handleMatchUpdate(prevMatch + 1);
+                    window.location.href = "#SignIn";
                 }, 0);
             } else {
                 // Do nothing!
@@ -113,9 +123,8 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        const url = `http://${process.env.REACT_APP_BACKEND_IP}/data/status`;
-
         const fetchData = async () => {
+            const url = `http://${process.env.REACT_APP_BACKEND_IP}/data/status`;
             try {
                 const response = await fetch(url, {
                     method: 'POST',
@@ -139,7 +148,7 @@ class App extends React.Component {
 
         const interval = setInterval(fetchData, 5000);
 
-        if (navigator.getBattery !== null) {
+        if (navigator.getBattery !== undefined) {
             navigator.getBattery().then(batteryManager => {
                 const updateBatteryLevel = (event) => {
                     this.setState({ BatteryLevel: batteryManager.level })
@@ -150,8 +159,26 @@ class App extends React.Component {
             });
         }
 
+        let scheduleInterval;
+
+        const fetchSchedule = async () => {
+            const url = `http://${process.env.REACT_APP_BACKEND_IP}/schedule.json`;
+            try {
+                const response = await fetch(url);
+                if (response.ok) {
+                    const data = await response.json();
+                    this.setState({ matchSchedule: data });
+                }
+                clearInterval(scheduleInterval);
+            } catch (error) {
+            }
+        }
+
+        scheduleInterval = setInterval(fetchSchedule, 10000);
+
         return function cleanup() {
             clearInterval(interval);
+            clearInterval(scheduleInterval);
         };
     }
 
@@ -179,7 +206,8 @@ class App extends React.Component {
                 <form action={`http://${process.env.REACT_APP_BACKEND_IP}/data/matches`} method="POST" target="frame" id="myForm" onSubmit={this.handleSubmit}>
                     <input type='hidden' value={this.state.EventName} name='Competition' />
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
-                    <PreGame selected={this.state.selected === 'pre-game'} teamOption={this.state.teamOption} setTeamOption={this.setTeamOption} />
+                    <input type='hidden' value={this.state.TeamAlliance} name='Team_Alliance' />
+                    <PreGame selected={this.state.selected === 'pre-game'} teamOption={this.state.teamOption} setTeamOption={this.setTeamOption} onMatchUpdate={this.handleMatchUpdate} />
                     <Auto selected={this.state.selected === 'auto'} />
                     <TeleOp selected={this.state.selected === 'tele-op'} />
 
