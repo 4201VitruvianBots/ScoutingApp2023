@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import './App.css';
 import 'material-symbols/outlined.css'
 
+const selfTeamNumber = '4201';
+
 interface TabletStatus {
     Scouter_Name: string,
     Team_Number: string,
@@ -26,7 +28,7 @@ interface MatchStatus {
     submittedTeamNumber?: string
 }
 
-type Match = [MatchStatus, MatchStatus, MatchStatus, MatchStatus, MatchStatus, MatchStatus];
+type Match = [MatchStatus, MatchStatus, MatchStatus, MatchStatus, MatchStatus, MatchStatus, MatchStatus, MatchStatus];
 type AllMatches = Record<string, Match>;
 
 function classList(...classes: (string | [className: string, condition: boolean])[]): string {
@@ -83,7 +85,7 @@ function TabletStatusDisplay({ allTabletStatus }: { allTabletStatus?: AllTabletS
     }
 
     return (
-        <div className="status">
+        <div className="tablet-status">
             <div className="status-red">
                 <StatusCard status={allTabletStatus?.[0]} />
                 <StatusCard status={allTabletStatus?.[1]} />
@@ -100,44 +102,55 @@ function TabletStatusDisplay({ allTabletStatus }: { allTabletStatus?: AllTabletS
     );
 }
 
-const SelectedTeamsContext = React.createContext<string[] | null>(null);
+const SelectedTeamsContext = React.createContext<(string | null)[] | null>(null);
 
 function MatchesDisplay({ allMatches = {} }: {allMatches?: AllMatches}) {
     const [selectedmatch, setSelectedMatch] = useState<string>();
 
-    const MatchStatus = ({match: {submitted, submittedTeamNumber, scheduledTeamNumber}}: {match: MatchStatus}) => {
+    const MatchStatus = ({match: {submitted, submittedTeamNumber, scheduledTeamNumber}, colorClass}: {match: MatchStatus, colorClass: string}) => {
         const displayNumber = scheduledTeamNumber || submittedTeamNumber || '';
         return (
-            <td className={classList('match-status', ['submitted', submitted], ['required', (useContext(SelectedTeamsContext) ?? []).includes(displayNumber)])}>
+            <td className={classList(
+                'match-status',
+                colorClass,
+                ['submitted', submitted],
+                ['required', (useContext(SelectedTeamsContext) ?? []).includes(displayNumber)],
+                ['self', displayNumber === selfTeamNumber],
+                ['conflict', submittedTeamNumber !== scheduledTeamNumber && submittedTeamNumber !== undefined && scheduledTeamNumber !== undefined]
+            )}>
                 {displayNumber}
             </td>
         );
     };
 
-    const selectedTeams = selectedmatch === undefined ? null : allMatches[selectedmatch].map(e => e.scheduledTeamNumber || e.submittedTeamNumber || '');
+    const selectedTeams = selectedmatch === undefined ? null : allMatches[selectedmatch].map(e => e.scheduledTeamNumber || e.submittedTeamNumber || null);
 
     return (<SelectedTeamsContext.Provider value={selectedTeams}>
-        <table>
+        <table className="match-status">
             <thead><tr>
                     <th></th>
                     <th>Match</th>
                     <th>Red 1</th>
                     <th>Red 2</th>
                     <th>Red 3</th>
+                    <th>Red SS</th>
                     <th>Blue 1</th>
                     <th>Blue 2</th>
                     <th>Blue 3</th>
+                    <th>Blue SS</th>
             </tr></thead>
             <tbody>
-                {Object.entries(allMatches).map(([matchNumber, status]) => <tr className={matchNumber === selectedmatch ? 'selected' : ''} >
+                {Object.entries(allMatches).map(([matchNumber, status], i) => <tr className={matchNumber === selectedmatch ? 'selected' : ''} key={i} >
                     <td><button onClick={() => setSelectedMatch(matchNumber)}>S</button></td>
                     <td>{matchNumber}</td>
-                    <MatchStatus match={status[0]} />
-                    <MatchStatus match={status[1]} />
-                    <MatchStatus match={status[2]} />
-                    <MatchStatus match={status[3]} />
-                    <MatchStatus match={status[4]} />
-                    <MatchStatus match={status[5]} />
+                    <MatchStatus match={status[0]} colorClass={'status-red'} />
+                    <MatchStatus match={status[1]} colorClass={'status-red'} />
+                    <MatchStatus match={status[2]} colorClass={'status-red'} />
+                    <MatchStatus match={status[6]} colorClass={'status-red'} />
+                    <MatchStatus match={status[3]} colorClass={'status-blue'} />
+                    <MatchStatus match={status[4]} colorClass={'status-blue'} />
+                    <MatchStatus match={status[5]} colorClass={'status-blue'} />
+                    <MatchStatus match={status[7]} colorClass={'status-blue'} />
                 </tr>)}
             </tbody>
         </table>

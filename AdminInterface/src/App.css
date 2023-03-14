@@ -10,14 +10,14 @@
     flex-direction: column;
 }
 
-.status {
+.tablet-status {
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
 
-.status-red,
-.status-blue {
+.tablet-status .status-red,
+.tablet-status .status-blue {
     display: flex;
     width: 50em;
     gap: 1em;
@@ -70,6 +70,52 @@
     margin: 0 0.2em;
 }
 
-.selected td {
-    background-color: yellow;
+.match-status {
+    width: 40em;
 }
+
+.match-status td {
+    text-align: center;
+    /* --fg-color:  */
+}
+
+.match-status .status-red {
+    background-color: #7f0000;
+}
+
+.match-status .status-blue {
+    background-color: #00007f;
+}
+
+.match-status .status-red.submitted {
+    background-color: #ff0000;
+}
+
+.match-status .status-blue.submitted {
+    background-color: #0000ff;
+}
+
+.match-status .required {
+    background-color: orange;
+}
+
+.match-status .status-red.required {
+    color: red;
+}
+
+.match-status .status-blue.required {
+    color: blue;
+}
+
+.match-status .self {
+    background-color: green;
+}
+
+.match-status .selected td {
+    background-color: #7f7f00;
+}
+
+
+/* .conflict {
+
+} */

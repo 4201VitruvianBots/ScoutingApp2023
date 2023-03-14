@@ -89,6 +89,9 @@ def handle_get_matches():
     request = 'SELECT Match_Number, Team_Alliance, Team_Number FROM matchData'
     mycursor.execute(request)
     dbMatches = mycursor.fetchall()
+    request = 'SELECT Match_Number, Team_Alliance FROM superScout'
+    mycursor.execute(request)
+    dbSScout = mycursor.fetchall()
 
     # request = 'SELECT Match_Number, Team_Number FROM superScout'
     # mycursor.execute(request)
@@ -97,18 +100,24 @@ def handle_get_matches():
     if schedule == None:
         matches = {}
     else:
-        matches = {match: [{'scheduledTeamNumber': i, 'submitted': False} for i in teamNumbers] for match, teamNumbers in schedule.items()}
+        matches = {match: [{'scheduledTeamNumber': i, 'submitted': False} for i in teamNumbers] + [{'submitted': False}, {'submitted': False}] for match, teamNumbers in schedule.items()}
 
     for i in dbMatches:
         entry = {'submittedTeamNumber': str(i[2]), 'submitted': True}
         match_num = str(i[0])
 
         if not match_num in matches:
-            matches[match_num] = [{'submitted': False} for i in range(6)]
+            matches[match_num] = [{'submitted': False} for i in range(8)]
 
         matches[match_num][i[1]].update(entry)
     
-    matches.update(submittedMatches)
+    for i in dbSScout:
+        match_num = str(i[0])
+        
+        if not match_num in matches:
+            matches[match_num] = [{'submitted': False} for i in range(8)]
+        
+        matches[match_num][i[1] + 6]['submitted'] = True
     
     return matches
 
