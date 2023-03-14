@@ -209,8 +209,6 @@ function General(props) {
                                                 <option value="InsideOtherRobot">Inside other robot</option>
                                                 <option value="MultipleGameObjects">Holding multiple game pieces</option>
                                                 <option value="InsideProtectedZone">Inside protected zone</option>
-
-
                                             </select>
                                             <br />
                                             <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
@@ -219,12 +217,12 @@ function General(props) {
                                         <div className="subButton">
 
                                             <button onClick={() => {
-                                                // setFouls = [document.getElementById("popupSelect"), document.getElementById("selector"), document.getElementById("note")];
-
                                                 let selector = document.getElementById("selector");
                                                 let text = selector.options[selector.selectedIndex].text; //then save let text as index 1?
                                                 let content = document.getElementById("note").value;
-                                                props.setFouls([...props.fouls, [teamOption3.value, text, content, selector.selectedIndex]]);
+                                                props.setFouls([...props.fouls, [teamOption3.value, text, content]]);
+
+                                                
 
                                                 close();
                                             }
@@ -247,11 +245,13 @@ function General(props) {
                     </div>
                 </div>
 
+                {/* use what's already here to set a default for the dropdowns? */}
+
                 <br />
                 <br />
 
                 <div className="test2">
-                    <FoulCards fouls={props.fouls} setFouls={props.setFouls}></FoulCards>
+                    <FoulCards fouls={props.fouls} setFouls={props.setFouls} alternateList={[teamOption1, teamOption2, teamOption3]} ></FoulCards>
                 </div>
 
                 {props.fouls.map((e, i) => (<React.Fragment key={i}>

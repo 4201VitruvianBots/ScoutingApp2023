@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Select from 'react-select';
+import Popup from 'reactjs-popup';
 
 
 // Radio Buttons
@@ -254,19 +255,29 @@ class PageSelector extends React.Component {
 class FoulCards extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { fouls: props.fouls, items: props.items, id: props.id, label: props.label, value: 0, selected: 0 };
+        this.state = { fouls: props.fouls, items: props.items, id: props.id, label: props.label, value: 0, selected: 0, teamOption: null  };
         this.generateDiv = this.generateDiv.bind(this);
+
+        // const [teamOption, setTeamOption] = useState(options[0]); //state
+
+        
+        // alternateList = [this.props.teamOption1, this.props.teamOption2, this.props.teamOption3];
+
         // this.setFouls = this.setFouls.bind(this);
-       
-      
+
         // this.setFouls = this.setFouls(this);
     }
+    
 
     generateDiv() {
         let output = [];
 
+        
 
+        
         for (let index in this.props.fouls) {
+
+            
 
             output.push(
                 <div className="foul" key={index}>
@@ -283,12 +294,94 @@ class FoulCards extends React.Component {
                             updatedFouls.splice(index, 1);
                             this.props.setFouls(updatedFouls);
                         }
-                        
-                        }/>
-                    </div>
-                    
 
-                  
+                    } />
+                    </div>
+
+                    <div className="editButton">
+                        <Popup trigger=
+                            {<input type="button" value="Edit" ></input>}
+                            modal nested onOpen={this.setState({teamOption:this.props.fouls[index][0]})}>
+                            {
+                                close => (
+                                    <div className='modal'>
+                                        <div className='content'>
+
+                                            {/* <input type="text" className="label-title" id="number" placeholder={this.props.fouls[index][0]} />
+
+                                            <label className="label-title">{teamOption1.label}</label> 
+                                            
+                                            setSelectedOption={this.props.setTeamOption}
+                                            
+                                            setSelectedOption={this.props.fouls[index][0]} 
+                                            
+                                            */}
+                                            <SearchBar alternateList={this.props.alternateList} setSelectedOption={(option) => this.setState({teamOption: option})} id="team" className="teamSearch" />
+
+                                            <br />
+                                            <select name="Competition" id="selector" defaultValue="Choose" >
+                                                <option value="Choose" className="Placeholder" disabled>{this.props.fouls[index][1]}</option>
+                                                <option value="Pinning">Pinning</option>
+                                                <option value="Disabled">Disabled</option>
+                                                <option value="Overextension">Overextension</option>
+                                                <option value="InsideOtherRobot">Inside other robot</option>
+                                                <option value="MultipleGameObjects">Holding multiple game pieces</option>
+                                                <option value="InsideProtectedZone">Inside protected zone</option>
+                                            </select>
+                                            <br />
+                                            <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
+                                            <br />
+                                        </div>
+
+                                        <div className="editSubmit">
+
+                                            <button onClick={() => {
+
+                                                // let teamSelect = document.getElementById("team");
+                                                // let teamSelector = teamSelect.options[teamSelect.selectedIndex].text; 
+                                                
+                                                // let teamNumber = number.options[number.selectedIndex].text; 
+
+                                                let selector = document.getElementById("selector");
+                                                let text = selector.options[selector.selectedIndex].text; 
+
+                                                let content = document.getElementById("note").value;
+                                                //Current index is stored in index variable
+                                                //team # (same as OG)
+                                            
+                                                this.props.fouls[index][0] = this.state.teamOption.value;
+                                                this.props.fouls[index][1] = text;
+                                                this.props.fouls[index][2] = content; 
+                                                this.props.fouls[index][3] = selector.selectedIndex;
+
+                                                this.props.setFouls(this.props.fouls);
+
+                                                close();
+                                            }
+
+                                            }>
+                                                Enter foul
+                                            </button>
+
+                                            <br />
+                                        </div>
+
+
+
+
+                                        <br />
+                                    </div>
+                                )
+                            }
+                        </Popup>
+
+
+
+
+                    </div>
+
+
+
                 </div>
             )
         }
@@ -334,15 +427,30 @@ class Upload extends React.Component {
 
 class SearchBar extends React.Component {
 
+    // alternateList() {
+    //     let setList;
+
+    //     if (this.alternateList) {
+    //         setList = [this.props.teamOption1, this.props.teamOption2, this.props.teamOption3];
+    //     } else {
+    //         setList = options;
+    //     }
+
+    //     console.log('I\'ve been called ' + (setList));
+
+    // }
+
+
     render() {
 
         return (
             <div className="testtest">
                 <Select className="teamSearch"
-                    options={options}
+                    options={this.props.alternateList ?? options}
                     value={this.props.selectedOption}
                     onChange={this.props.setSelectedOption}
                     name={this.props.name}
+
                 />
             </div>
         );
@@ -351,7 +459,7 @@ class SearchBar extends React.Component {
 
 
 const options = [
-    { value: null, label: 'Select...' },
+    { value: "", label: 'Select...' },
     { value: "4", label: '4' },
     { value: "294", label: '294' },
     { value: "498", label: '498' },
