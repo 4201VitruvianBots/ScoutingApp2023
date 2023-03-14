@@ -220,8 +220,6 @@ function General(props) {
                                                 let content = document.getElementById("note").value;
                                                 props.setFouls([...props.fouls, [props.teamOption3.value, text, content]]);
 
-
-
                                                 close();
                                             }
 
@@ -249,7 +247,7 @@ function General(props) {
                 <br />
 
                 <div className="test2">
-                    <FoulCards fouls={props.fouls} setFouls={props.setFouls} alternateList={[teamOption1, teamOption2, teamOption3]} ></FoulCards>
+                    <FoulCards fouls={props.fouls} setFouls={props.setFouls} alternateList={[props.teamOption1, props.teamOption2, props.teamOption3]} ></FoulCards>
                 </div>
 
                 {props.fouls.map((e, i) => (<React.Fragment key={i}>
