@@ -31,6 +31,12 @@ pitColumns = get_columns('pitData')
 superScoutColumns = get_columns('superScout')
 foulColumns = get_columns('fouls')
 
+try:
+    with open('schedule.json') as schedule_file:
+        schedule = json.loads(schedule_file.read())
+except:
+    schedule = None
+
 scoutersStatus = {str(i): {'Scouter_Name': '', 'Team_Number': '', 'Battery_Level': '', 'Last_Update': 0, 'Online': False} for i in range(8)}
 
 # Position:
@@ -46,18 +52,18 @@ scoutersStatus = {str(i): {'Scouter_Name': '', 'Team_Number': '', 'Battery_Level
 @app.route('/data/status', methods=['POST'])
 def handle_status():
     data = request.get_json()
-    if (data.get('Position') != ''):
+    if (data.get('Position') != None):
         scoutersStatus[data.get('Position')] = {
             'Scouter_Name': data.get('Scouter_Name'),
             'Team_Number': data.get('Team_Number'),
             'Battery_Level': data.get('Battery_Level'),
             'Last_Update': time.time(),
             'Online': True
-        }    
+        }
     return 'OK', 200
 
-@app.route('/data/status', methods=['GET'])
-def get_status():
+@app.route('/data/status/tablets', methods=['GET'])
+def handle_get_tablets():
     return scoutersStatus
 
 def checker_thread():
@@ -73,8 +79,51 @@ def start_thread():
     x.start()
 
 @app.route('/schedule.json', methods=['GET'])
-def handle_get_schedule():
-    return send_file('schedule.json')
+def handle_get_schedule_json():
+    if schedule == None:
+        return 'File not found', 404
+    return schedule
+
+@app.route('/data/status/matches', methods=['GET'])
+def handle_get_matches():
+    request = 'SELECT Match_Number, Team_Alliance, Team_Number FROM matchData'
+    mycursor.execute(request)
+    dbMatches = mycursor.fetchall()
+    request = 'SELECT Match_Number, Team_Alliance FROM superScout'
+    mycursor.execute(request)
+    dbSScout = mycursor.fetchall()
+
+    # request = 'SELECT Match_Number, Team_Number FROM superScout'
+    # mycursor.execute(request)
+    # superScoutMatches = mycursor.fetchall()
+    
+    if schedule == None:
+        matches = {}
+    else:
+        matches = {match: [{'scheduledTeamNumber': i, 'submitted': False} for i in teamNumbers] + [{'submitted': False}, {'submitted': False}] for match, teamNumbers in schedule.items()}
+
+    for i in dbMatches:
+        entry = {'submittedTeamNumber': str(i[2]), 'submitted': True}
+        match_num = str(i[0])
+
+        if not match_num in matches:
+            matches[match_num] = [{'submitted': False} for i in range(8)]
+
+        matches[match_num][i[1]].update(entry)
+    
+    for i in dbSScout:
+        match_num = str(i[0])
+        
+        if not match_num in matches:
+            matches[match_num] = [{'submitted': False} for i in range(8)]
+        
+        matches[match_num][i[1] + 6]['submitted'] = True
+    
+    return matches
+
+@app.route('/data/status', methods=['GET'])
+def handle_get_status():
+    return {'tablets': handle_get_tablets(), 'matches': handle_get_matches()}
 
 @app.route('/data/matches', methods=['GET'])
 def handle_get():
@@ -255,7 +304,6 @@ def updateAnalysis(Team_Number):
 
             for stat, func in ('Average', 'AVG'), ('Max', 'MAX'):
                 request = f"UPDATE dataAnalysis SET {type_phase}_{level}_{stat} = (SELECT {func}({' + '.join(included_columns)}) FROM matchData WHERE Team_Number = %s AND No_Show_Robot = FALSE) WHERE Team_Number = %s"
-                print(request)
 
                 mycursor.execute(
                     request,
@@ -327,7 +375,7 @@ def format_data(string, name):
     if name in ('Mobility', 'Show_Time', 'Can_Hold_Cone', 'Can_Hold_Cube', 'No_Show_Robot'):
         return bool(string)
 
-    len(string)
+    # len(string)
     if len(string)==0:
         # print(f"string='{string}',with no spaces is empty")
         return (0)
