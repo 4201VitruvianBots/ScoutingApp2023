@@ -169,6 +169,11 @@ function SavePage(props) {
                     <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
                 </div>
             </div>
+
+            <div>
+                <p className="version">Version LAR.0</p>
+            </div>
+
         </Page>
     );
 }

@@ -288,12 +288,22 @@ class FoulCards extends React.Component {
                     <p className="label-notes" key={3}>{this.props.fouls[index][2]}</p>
 
                     <div className="deleteButton">
-                        <input type="button" value="Delete" onClick={() => {
+                        <input type="button" value="Delete"  onClick={() => {
                             // event.preventDefault();
-                            let updatedFouls = [...this.props.fouls];
+                            
+
+                            if (window.confirm('Are you sure you want to delete this foul?')) {
+                                let updatedFouls = [...this.props.fouls];
                             updatedFouls.splice(index, 1);
                             this.props.setFouls(updatedFouls);
-                        }
+                            }
+                          
+                            
+
+                            
+                            
+                            
+                        } 
 
                     } />
                     </div>

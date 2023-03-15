@@ -281,6 +281,10 @@ function General(props) {
 
             </div>
 
+            <div>
+                <p className="version">Version LAR.0</p>
+            </div>
+
         </Page >
     );
 }
