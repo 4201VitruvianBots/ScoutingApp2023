@@ -1,7 +1,6 @@
 import { NumberInput, ButtonInput, MultiButton, SearchBar } from "./Form";
 import './App.css';
 import { useState } from "react";
-import { Upload } from "./Form";
 
 
 function Page(props) {

@@ -1,4 +1,4 @@
-import { MultiButton, FoulCards, SearchBar, Slider } from "./Form";
+import { MultiButton, FoulCards, SearchBar } from "./Form";
 import './App.css';
 import React, { useState } from "react";
 import Popup from 'reactjs-popup';
@@ -33,7 +33,7 @@ function SignIn(props) {
 
                     <select name="Competition" id="Ename" defaultValue="Choose" >
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
-                        
+
                         <option value="Port Hueneme">Port Hueneme</option>
                     </select>
                     <br />
@@ -87,7 +87,7 @@ function General(props) {
                         <div className="driverSkill">Defense Rating
 
 
-                      
+
 
                             <MultiButton items={[['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5']]} id="teamOneDefense" />
 
@@ -154,7 +154,7 @@ function General(props) {
                         <div className="driverSkill">Defense Rating
 
 
-                     
+
 
                             <MultiButton items={[['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5']]} id="teamTwoDefense" />
 
@@ -217,7 +217,7 @@ function General(props) {
                         <div className="driverSkill">Defense Rating
 
 
-                    
+
 
                             <MultiButton items={[['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5']]} id="teamThreeDefense" />
 
