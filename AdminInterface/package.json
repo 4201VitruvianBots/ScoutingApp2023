@@ -7,7 +7,6 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.14",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "material-symbols": "^0.5.0",
@@ -22,7 +21,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build-tablet": "npm run build && sed -i \"s/=\\\"\\//=\\\"/g\" build/index.html"
+    "build-tablet": "npm run build && sed -i \"s/=\\\"\\//=\\\"/g\" build/index.html && sed -i 's/url(\\//url(..\\/..\\//g' build/static/css/main.21b9a152.css"
   },
   "eslintConfig": {
     "extends": [
@@ -41,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.3"
   }
 }

@@ -373,7 +373,7 @@ def format_data(string, name):
     if name in ('Scouter_Name', 'Competition', 'Team_Name', 'Comments','DriveTrain_Motor_Type', 'Working_On', 'Autos'):
         return string
     if name in ('Mobility', 'Show_Time', 'Can_Hold_Cone', 'Can_Hold_Cube', 'No_Show_Robot'):
-        return bool(string)
+        return string == 'true'
 
     # len(string)
     if len(string)==0:
