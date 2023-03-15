@@ -32,9 +32,9 @@ function SignIn(props) {
                     <br />
 
                     <select name="Competition" id="Ename" defaultValue="Choose" >
-                        <option value="Choose" className="Placeholder" disabled>Choose Event</option>
+                        
 
-                        <option value="Port Hueneme">Port Hueneme</option>
+                        <option value="LAR">LAR</option>
                     </select>
                     <br />
                     <div className="allianceSelect">
@@ -217,9 +217,6 @@ function General(props) {
                         <SearchBar selectedOption={props.teamOption3} setSelectedOption={props.setTeamOption3} name="Team_3" className="teamSearch" />
                         
                         <div className="driverSkill">Defense Rating
-
-
-
 
                            
                             <MultiButton items={[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4']]} id="teamThreeDefense" />

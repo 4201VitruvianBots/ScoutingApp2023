@@ -30,8 +30,7 @@ function SignIn(props) {
                     <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" className="name" required />
                     <br />
                     <select name="Competition" id="Ename" defaultValue="Choose">
-                        <option value="Choose" className="Placeholder" disabled>Choose Event</option>
-                        <option value="Port Hueneme">Port Hueneme</option>
+                    <option value="LAR">LAR</option>
                     </select>
                     {showCheck && <div class="check"></div>}
                     <input type="submit" className="SAVE" value="Sign In" />

@@ -48,8 +48,8 @@ function SignIn(props) {
                     <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" required />
                     <br />
                     <select name="Competition" id="Ename" defaultValue="Choose" >
-                        <option value="Choose" className="Placeholder" disabled>Choose Event</option>
-                        <option value="Port Hueneme">Port Hueneme</option>
+                       
+                        <option value="LAR">LAR</option>
                     </select>
                     <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
                     <div className="allianceSelect">
