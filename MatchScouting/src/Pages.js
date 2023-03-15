@@ -116,21 +116,13 @@ function Auto(props) {
             <p className="section-label" id="Auto">Auto</p>
             <div className="textArea">
 
-                {/* <ButtonInput on_label="Activated!" off_label='Mobility?' id="Mobility" /> */}
-                <div className="mobility">
-                    <MultiButton items={[['ACTIVATED!', 'Mobility'], ['ACTIVATED!', 'No Mobility']]} id="Mobility" />
-                </div>
-                {/* <button type="button">Mobility?</button> */}
+            <div className="align-radio">
+            
 
-                {/* <h2>Mobility</h2> */}
-                {/* <div className="container">
-                    <div className="center">
-                        <button>Mobility</button>
-                    </div>
-                </div> 
-                <br></br>
-                <input type="checkbox" name="mobility"></input>
-                <label htmlFor="mobility" className="label-size">Mobility</label> */}
+                <MultiButton items={[['MOBILITY', 'Mobility'], ['NO MOBILITY', 'No Mobility']]} id="Mobility" />
+
+                </div>
+                
                 <br />
                 <p className="itemLabel">CHARGING STATION</p>
                 <div className="align-radio">
