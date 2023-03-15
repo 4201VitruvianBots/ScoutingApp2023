@@ -89,7 +89,7 @@ function General(props) {
 
 
 
-                            <MultiButton items={[['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5']]} id="teamOneDefense" />
+                            <MultiButton items={[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4']]} id="teamOneDefense" />
 
 
                         </div>
@@ -156,7 +156,8 @@ function General(props) {
 
 
 
-                            <MultiButton items={[['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5']]} id="teamTwoDefense" />
+                            
+                            <MultiButton items={[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4']]} id="teamTwoDefense" />
 
 
                         </div>
@@ -214,12 +215,14 @@ function General(props) {
                     <div className="team3">
 
                         <SearchBar selectedOption={props.teamOption3} setSelectedOption={props.setTeamOption3} name="Team_3" className="teamSearch" />
+                        
                         <div className="driverSkill">Defense Rating
 
 
 
 
-                            <MultiButton items={[['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5']]} id="teamThreeDefense" />
+                           
+                            <MultiButton items={[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4']]} id="teamThreeDefense" />
 
 
                         </div>
