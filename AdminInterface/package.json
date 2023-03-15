@@ -21,7 +21,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build-tablet": "npm run build && sed -i \"s/=\\\"\\//=\\\"/g\" build/index.html"
+    "build-tablet": "npm run build && sed -i \"s/=\\\"\\//=\\\"/g\" build/index.html && sed -i 's/url(\\//url(..\\/..\\//g' build/static/css/main.21b9a152.css"
   },
   "eslintConfig": {
     "extends": [
