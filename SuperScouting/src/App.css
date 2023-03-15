@@ -567,7 +567,7 @@
    align-items: stretch;
    box-sizing: border-box;
    padding: 10px;
-   width: 175px;
+   width: 250px;
    border-radius: 10px;
    display: inline-block;
    max-height: fit-content;
@@ -664,7 +664,33 @@
   font-weight: 500;
  }
 
- .editButton input[type="button"] {
-  background-color: rgba(247, 0, 255, 0.717);
-  /* background-color: rgba(255, 128, 0, 0.717); */
- }
+.driverSkill{
+  background-color:#4a6fa1;
+ margin-top: 10px;
+ padding: 10px;
+ font-weight: 400;
+ border-radius: 7px;
+ margin-bottom: 5px;
+
+}
+
+.driverSkill .number-on,
+.driverSkill .number-off{
+  font-size: 20px;
+  
+  /* transition: 0.2s; */
+  
+
+
+  background-color: gray;
+  color: darkblue;
+  width: 30px;
+  height: 30px;
+  border: none;
+}
+
+.driverSkill .number-on {
+  background-color: darkblue;
+  color: lightgray;
+  
+}

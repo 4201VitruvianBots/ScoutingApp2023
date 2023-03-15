@@ -1,8 +1,9 @@
-import { MultiButton, FoulCards, SearchBar } from "./Form";
+import { MultiButton, FoulCards, SearchBar, Slider } from "./Form";
 import './App.css';
 import React, { useState } from "react";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import ReactSlider from "react-slider";
 
 
 function Page(props) {
@@ -33,6 +34,7 @@ function SignIn(props) {
 
                     <select name="Competition" id="Ename" defaultValue="Choose" >
                         <option value="Choose" className="Placeholder" disabled>Choose Event</option>
+                        
                         <option value="Port Hueneme">Port Hueneme</option>
                     </select>
                     <br />
@@ -67,16 +69,32 @@ function General(props) {
 
         <Page selected={props.selected} id="general" className="page">
             <p className="section-label">Fouls</p>
+
             <div className="textArea">
                 <br />
                 <input type="number" id="Sname" name="Match_Number" placeholder="MATCH NUMBER" className="name" required min="1" onChange={handleMatchChange} />
                 <br />
                 <br />
+                {/* <div className="driverSkill">Driver skill</div> */}
+
+
                 <div className="boxes">
+
+
                     <div className="team1">
 
                         {/* <input type="text" placeholder="TEAM 1" className="login" id="team1" name="Team_1" onChange={handleInputChange} /> */}
                         <SearchBar selectedOption={props.teamOption1} setSelectedOption={props.setTeamOption1} name="Team_1" className="teamSearch" />
+                        <div className="driverSkill">Defense Rating
+
+
+                      
+
+                            <MultiButton items={[['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5']]} id="teamOneDefense" />
+
+
+                        </div>
+
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
@@ -134,6 +152,15 @@ function General(props) {
                     <div className="team2">
 
                         <SearchBar selectedOption={props.teamOption2} setSelectedOption={props.setTeamOption2} name="Team_2" className="teamSearch" />
+                        <div className="driverSkill">Defense Rating
+
+
+                     
+
+                            <MultiButton items={[['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5']]} id="teamTwoDefense" />
+
+
+                        </div>
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
@@ -188,6 +215,15 @@ function General(props) {
                     <div className="team3">
 
                         <SearchBar selectedOption={props.teamOption3} setSelectedOption={props.setTeamOption3} name="Team_3" className="teamSearch" />
+                        <div className="driverSkill">Defense Rating
+
+
+                    
+
+                            <MultiButton items={[['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5']]} id="teamThreeDefense" />
+
+
+                        </div>
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>

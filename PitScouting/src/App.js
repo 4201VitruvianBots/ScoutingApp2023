@@ -127,7 +127,7 @@ class App extends React.Component {
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
 
                     <General selected={this.state.selected === 'general' } teamOption={this.state.teamOption} setTeamOption={this.setTeamOption}/>
-                    <Photos selected={this.state.selected === 'photos'} />
+                   
                     <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} downloadCSV={this.downloadCSV} clearData={this.clearData} />
 
                 </form>

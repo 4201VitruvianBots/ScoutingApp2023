@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Select from 'react-select';
 import Popup from 'reactjs-popup';
+import ReactSlider from "react-slider";
 
 
 // Radio Buttons
@@ -255,29 +256,29 @@ class PageSelector extends React.Component {
 class FoulCards extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { fouls: props.fouls, items: props.items, id: props.id, label: props.label, value: 0, selected: 0, teamOption: null  };
+        this.state = { fouls: props.fouls, items: props.items, id: props.id, label: props.label, value: 0, selected: 0, teamOption: null };
         this.generateDiv = this.generateDiv.bind(this);
 
         // const [teamOption, setTeamOption] = useState(options[0]); //state
 
-        
+
         // alternateList = [this.props.teamOption1, this.props.teamOption2, this.props.teamOption3];
 
         // this.setFouls = this.setFouls.bind(this);
 
         // this.setFouls = this.setFouls(this);
     }
-    
+
 
     generateDiv() {
         let output = [];
 
-        
 
-        
+
+
         for (let index in this.props.fouls) {
 
-            
+
 
             output.push(
                 <div className="foul" key={index}>
@@ -288,24 +289,17 @@ class FoulCards extends React.Component {
                     <p className="label-notes" key={3}>{this.props.fouls[index][2]}</p>
 
                     <div className="deleteButton">
-                        <input type="button" value="Delete"  onClick={() => {
+                        <input type="button" value="Delete" onClick={() => {
                             // event.preventDefault();
-                            
+
 
                             if (window.confirm('Are you sure you want to delete this foul?')) {
                                 let updatedFouls = [...this.props.fouls];
-                            updatedFouls.splice(index, 1);
-                            this.props.setFouls(updatedFouls);
+                                updatedFouls.splice(index, 1);
+                                this.props.setFouls(updatedFouls);
                             }
-                          
-                            
-
-                            
-                            
-                            
-                        } 
-
-                    } />
+                        }
+                        }/>
                     </div>
 
                     <div className="editButton">
@@ -329,7 +323,7 @@ class FoulCards extends React.Component {
                                             {/* <SearchBar alternateList={this.props.alternateList} id="team" className="teamSearch" /> */}
 
                                             <br />
-                                            <label className="label-title">{this.props.fouls[index][0]}</label> 
+                                            <label className="label-title">{this.props.fouls[index][0]}</label>
 
                                             {/* why does ".text" after [index][0] break it? */}
                                             <br />
@@ -355,19 +349,19 @@ class FoulCards extends React.Component {
 
                                                 // let teamSelect = document.getElementById("team");
                                                 // let teamSelector = teamSelect.options[teamSelect.selectedIndex].text; 
-                                                
+
                                                 // let teamNumber = number.options[number.selectedIndex].text; 
 
                                                 let selector = document.getElementById("selector");
-                                                let text = selector.options[selector.selectedIndex].text; 
+                                                let text = selector.options[selector.selectedIndex].text;
 
                                                 let content = document.getElementById("note").value;
                                                 //Current index is stored in index variable
                                                 //team # (same as OG)
-                                            
-                                            
+
+
                                                 this.props.fouls[index][1] = text;
-                                                this.props.fouls[index][2] = content; 
+                                                this.props.fouls[index][2] = content;
                                                 this.props.fouls[index][3] = selector.selectedIndex;
 
                                                 this.props.setFouls(this.props.fouls);
@@ -535,5 +529,13 @@ function CheckDecimal(props) {
     });
 }
 
+function Slider() {
+    return (
+        <ReactSlider />
+    );
+};
 
-export { RadioButtons, NumberInput, ButtonInput, MultiButton, PageSelector, Upload, FoulCards, SearchBar, options, CheckDecimal };
+export default Slider;
+
+
+export { RadioButtons, NumberInput, ButtonInput, MultiButton, PageSelector, Upload, FoulCards, SearchBar, options, CheckDecimal, Slider };
