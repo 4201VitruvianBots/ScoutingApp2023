@@ -653,7 +653,7 @@
  .deleteButton input[type="button"], 
  .editButton input[type="button"] {
   font-size: 14px;
-  background-color: rgba(255, 0, 0, 0.717);
+
   border: 0px black solid;
   border-radius: 3px;
   padding: 4px;
@@ -664,13 +664,21 @@
   font-weight: 500;
  }
 
+ .editButton input[type="button"] {
+  background-color: rgba(255, 0, 191, 0.562);
+ }
+
+ .deleteButton input[type="button"] {
+  background-color: rgba(255, 0, 0, 0.717);
+ }
+
 .driverSkill{
   background-color:#4a6fa1;
  margin-top: 10px;
  padding: 10px;
  font-weight: 400;
  border-radius: 7px;
- margin-bottom: 5px;
+ margin-bottom: px;
 
 }
 
