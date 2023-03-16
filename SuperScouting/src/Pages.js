@@ -28,9 +28,9 @@ function SignIn(props) {
     function gameTime() {
         let nameInput = document.getElementById("Sname").value;
         setName(nameInput);
-        console.log(nameInput);
+        console.log(name);
 
-        if (nameInput == 'Natalie') {
+        if (nameInput === 'Natalie') {
             setGreeting(
                 <div className="natalie">
                     <p>GOOD MORNING!</p>
