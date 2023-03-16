@@ -700,3 +700,31 @@
   color: lightgray;
   
 }
+
+.natalie {
+  background-color: teal;
+  color: black;
+  font-size: 50px;
+  font-weight: 600;
+}
+
+.josiah {
+  background-color: fuchsia;
+  font: black;
+  font-weight: 900;
+  font-size: 100px;
+  border-radius: 50%;
+}
+
+.kyle {
+  background-color: orange;
+  font: black;
+  font-weight: 900;
+  width: 500px;
+  margin: 0 auto;
+  height: 100px;
+  padding: 100px;
+  margin-top: 15px;
+
+
+}

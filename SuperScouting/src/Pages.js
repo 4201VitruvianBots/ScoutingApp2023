@@ -5,6 +5,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
 
+
 function Page(props) {
     return (
         <div className={props.selected ? 'page selected' : 'page'} id={props.id}>
@@ -15,11 +16,56 @@ function Page(props) {
 
 function SignIn(props) {
     const [showCheck, setshowCheck] = useState(false);
+    const [name, setName] = useState(false);
+    const [greeting, setGreeting] = useState(null);
 
     const handleSubmit = (event) => {
         setshowCheck(true);
         props.onSubmit(event);
         setTimeout(() => { setshowCheck(false) }, 5000);
+    }
+
+    function gameTime() {
+        let nameInput = document.getElementById("Sname").value;
+        setName(nameInput);
+        console.log(nameInput);
+
+        if (nameInput == 'Natalie') {
+            setGreeting(
+                <div className="natalie">
+                    <p>GOOD MORNING!</p>
+                </div>,
+                setTimeout(() => { setGreeting(false) }, 3000)
+            );
+        } else if (nameInput.includes('Josiah')) {
+            setGreeting(
+                <div className="josiah">
+                    <p>did it</p>
+                </div>,
+                setTimeout(() => { setGreeting(false) }, 1000)
+            );
+        } else if (nameInput.includes('Kyle')) {
+            setGreeting(
+                <div className="kyle">
+                    <input type="button" value="Hmmmm, wonder what this does..." onClick={() => {
+                        if (window.confirm('Are you sure you bought enough Girl Scout cookies yet today?')) {
+                            setGreeting(
+                                <div className="kyle">
+                                    <p>No, you haven't. Go get more.</p>
+                                </div>
+
+                            )
+                        }
+                    }
+                    } />
+                </div>,
+            );
+        }
+
+        else {
+            setGreeting(null);
+        }
+
     }
 
     return (
@@ -28,7 +74,8 @@ function SignIn(props) {
             {/* <p className="topNote">If the robot has an "other" drivetrain, specify it in the notes at the bottom!</p> */}
             <form action="#" onSubmit={handleSubmit} id="signin">
                 <div className="textArea">
-                    <input type="text" id="Sname" name="Scouter_Name" placeholder="SCOUTER NAME" className="name" required />
+                    <input type="text" id="Sname" name="Scouter_Name" placeholder="SCOUTER NAME" className="name" onChange={gameTime} required />
+                    {greeting}
                     <br />
 
                     <select name="Competition" id="Ename" defaultValue="Choose" >
