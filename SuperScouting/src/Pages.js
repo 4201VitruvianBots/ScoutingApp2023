@@ -32,7 +32,7 @@ function SignIn(props) {
                     <br />
 
                     <select name="Competition" id="Ename" defaultValue="Choose" >
-                        
+
 
                         <option value="LAR">LAR</option>
                     </select>
@@ -89,7 +89,7 @@ function General(props) {
 
 
 
-                            <MultiButton items={[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4']]} id="teamOneDefense" />
+                            <MultiButton items={[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4']]} id="Team_1_Defense" />
 
 
                         </div>
@@ -156,8 +156,8 @@ function General(props) {
 
 
 
-                            
-                            <MultiButton items={[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4']]} id="teamTwoDefense" />
+
+                            <MultiButton items={[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4']]} id="Team_2_Defense" />
 
 
                         </div>
@@ -215,11 +215,11 @@ function General(props) {
                     <div className="team3">
 
                         <SearchBar selectedOption={props.teamOption3} setSelectedOption={props.setTeamOption3} name="Team_3" className="teamSearch" />
-                        
+
                         <div className="driverSkill">Defense Rating
 
-                           
-                            <MultiButton items={[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4']]} id="teamThreeDefense" />
+
+                            <MultiButton items={[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4']]} id="Team_3_Defense" />
 
 
                         </div>

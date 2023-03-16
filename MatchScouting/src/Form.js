@@ -197,6 +197,14 @@ class Upload extends React.Component {
 
 const options = [
     { value: null, label: 'Select...' },
+    { value: '207', label: '207' },
+    { value: '294', label: '294' },
+    { value: '597', label: '597' },
+    { value: '606', label: '606' },
+    { value: '687', label: '687' },
+    { value: '702', label: '702' },
+    { value: '846', label: '846' },
+    { value: '980', label: '980' },
     { value: '1148', label: '1148' },
     { value: '1159', label: '1159' },
     { value: '1197', label: '1197' },
@@ -204,10 +212,8 @@ const options = [
     { value: '1515', label: '1515' },
     { value: '1661', label: '1661' },
     { value: '1759', label: '1759' },
-    { value: '207', label: '207' },
     { value: '2584', label: '2584' },
     { value: '2710', label: '2710' },
-    { value: '294', label: '294' },
     { value: '3408', label: '3408' },
     { value: '3473', label: '3473' },
     { value: '3863', label: '3863' },
@@ -224,25 +230,18 @@ const options = [
     { value: '5500', label: '5500' },
     { value: '5669', label: '5669' },
     { value: '5857', label: '5857' },
-    { value: '597', label: '597' },
     { value: '6000', label: '6000' },
-    { value: '606', label: '606' },
     { value: '6658', label: '6658' },
     { value: '6833', label: '6833' },
-    { value: '687', label: '687' },
     { value: '6904', label: '6904' },
-    { value: '702', label: '702' },
     { value: '7185', label: '7185' },
     { value: '7230', label: '7230' },
     { value: '7611', label: '7611' },
     { value: '8020', label: '8020' },
-    { value: '846', label: '846' },
     { value: '8600', label: '8600' },
     { value: '8898', label: '8898' },
     { value: '9172', label: '9172' },
-    { value: '980', label: '980' },
 ];
-
 
 class SearchBar extends React.Component {
     constructor(props) {

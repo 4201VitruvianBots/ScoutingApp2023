@@ -5,8 +5,8 @@ import os
 
 load_dotenv('.env.local')
 
-EVENT_KEY = '2023caph'
-# EVENT_KEY = '2023cala'
+# EVENT_KEY = '2023caph'
+EVENT_KEY = '2023cala'
 
 x = requests.get(
     f'https://www.thebluealliance.com/api/v3/event/{EVENT_KEY}/matches/simple',
