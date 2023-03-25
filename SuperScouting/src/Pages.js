@@ -101,6 +101,7 @@ function General(props) {
                                                 <option value="InsideOtherRobot">Inside other robot</option>
                                                 <option value="MultipleGameObjects">Holding multiple game pieces</option>
                                                 <option value="InsideProtectedZone">Inside protected zone</option>
+                                                <option value="Unknown">Unknown</option>
                                             </select>
                                             <br />
                                             <label className="checkboxcss"><input type="checkbox"></input>Tech Foul?</label>
@@ -134,7 +135,7 @@ function General(props) {
                         </Popup>
                         <div className="pleasecenter">
                             <p className="commentlabel">Team 1 Notes</p>
-                            <textarea rows="5" cols="20" id="notes" name="Team 1 Comments" />
+                            <textarea rows="5" cols="18" id="notes" name="Team 1 Comments" />
                         </div>
 
                     </div>
@@ -160,6 +161,7 @@ function General(props) {
                                                 <option value="InsideOtherRobot">Inside other robot</option>
                                                 <option value="MultipleGameObjects">Holding multiple game pieces</option>
                                                 <option value="InsideProtectedZone">Inside protected zone</option>
+                                                <option value="Unknown">Unknown</option>
                                             </select>
                                             <br />
                                             <label className="checkboxcss"><input type="checkbox"></input>Tech Foul?</label>
@@ -190,7 +192,7 @@ function General(props) {
                         </Popup>
                         <div>
                             <p className="commentlabel">Team 2 Notes</p>
-                            <textarea rows="5" cols="20" id="notes" name="Team 2 Comments" />
+                            <textarea rows="5" cols="18" id="notes" name="Team 2 Comments" />
                         </div>
 
                     </div>
@@ -218,6 +220,7 @@ function General(props) {
                                                 <option value="InsideOtherRobot">Inside other robot</option>
                                                 <option value="MultipleGameObjects">Holding multiple game pieces</option>
                                                 <option value="InsideProtectedZone">Inside protected zone</option>
+                                                <option value="Unknown">Unknown</option>
 
 
                                             </select>
@@ -251,7 +254,7 @@ function General(props) {
                         </Popup>
                         <div>
                             <p className="commentlabel">Team 3 Notes</p>
-                            <textarea rows="5" cols="20" id="notes" name="Team 3 Comments" />
+                            <textarea rows="5" cols="18" id="notes" name="Team 3 Comments" />
                         </div>
                     </div>
                 </div>
