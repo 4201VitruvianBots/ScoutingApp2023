@@ -108,8 +108,44 @@ function General(props) {
     );
 }
 
+function Photos(props) {
 
-function SavePage(props) {
+
+    return (
+        <Page selected={props.selected} id="photos">
+            <p className="section-label">Photos</p>
+            <div className="textArea">
+                <div className="checkboxBOX">
+                    <div className="box">
+                        <input type="checkbox" required></input>
+                        <label className="smallLabel"> Drivetrain</label>
+                    </div>
+                    <div className="box">
+                        <input type="checkbox" required></input>
+                        <label className="smallLabel"> Intake</label>
+                    </div>
+                    <div className="box">
+                        <input type="checkbox" required></input>
+                        <label className="smallLabel"> Uptake</label>
+                    </div>
+                    <div className="box">
+                        <input type="checkbox" required></input>
+                        <label className="smallLabel"> Outtake</label>
+                    </div>
+                    <div className="box">
+                        <input type="checkbox" required></input>
+                        <label className="smallLabel"> Extras</label>
+
+                    </div>
+                    {/* <input type="file" multiple accept="image/*" /> */}
+                </div>
+            </div>
+        </Page>
+    )
+
+}
+
+    function SavePage(props) {
     return (
         <Page selected={props.selected} id="save-page">
             <p className="section-label">Save Page</p>
@@ -127,11 +163,11 @@ function SavePage(props) {
             </div>
 
             <div>
-                <p className="version">Version LAR.0</p>
+                <p className="version">Version LAR.1 (WIP)</p>
             </div>
 
         </Page>
     );
 }
 
-export { SignIn, General, SavePage };
+export { SignIn, General, Photos, SavePage };
