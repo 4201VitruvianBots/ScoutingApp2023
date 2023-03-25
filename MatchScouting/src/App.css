@@ -549,3 +549,15 @@ iframe {
 /* input[type=Multibutton] {
   background-color: red;
 } */
+
+.cubes {
+  background-color: rgb(180, 81, 251);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.cones {
+  background-color: rgb(253, 210, 39);
+  padding: 20px;
+  border-radius: 10px;
+}

@@ -151,13 +151,13 @@ function Auto(props) {
                         <h2>Low</h2>
                     </div>
 
-                    <div>
-                        <h1>Cones</h1>
+                    <div className="cones">
+                        <h1 >Cones</h1>
                         <NumberInput id="Auto_Cone_High" />
                         <NumberInput id="Auto_Cone_Mid" />
                         <NumberInput id="Auto_Cone_Low" />
                     </div>
-                    <div>
+                    <div className="cubes">
                         <h1>Cubes</h1>
                         <NumberInput id="Auto_Cube_High" />
                         <NumberInput id="Auto_Cube_Mid" />
