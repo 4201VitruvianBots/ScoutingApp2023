@@ -259,6 +259,14 @@ def handle_post6():
             [format_data(formData[key], key) for key in ['Scouter_Name', 'Competition', 'Match_Number', 'Team_Alliance', f"Team_Number[{i}]", f"Cause[{i}]", f"Comments[{i}]"]]
         )
 
+    entries = [1,2,3]
+
+    for team in entries:
+        mycursor.execute(
+            'INSERT INTO superScout(Scouter_Name, Competition, Match_Number, Team_Alliance, Team, Defense, Comments) VALUES(%s, %s, %s,%s, %s, %s, %s)',
+            [format_data(formData[key], key) for key in ['Scouter_Name', 'Competition', 'Match_Number', 'Team_Alliance', f'Team_{team}', f'Team_{team}_Defense', 'Comments']]
+        )
+
     mycursor.execute('INSERT INTO superScout({}) VALUES ({})'.format(
         ', '.join(superScoutColumns),
         ', '.join(['%s'] * len(superScoutColumns))
