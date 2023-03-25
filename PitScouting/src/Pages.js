@@ -1,4 +1,4 @@
-import { NumberInput, ButtonInput, MultiButton, SearchBar } from "./Form";
+import { NumberInput, ButtonInput, MultiButton, SearchBar, Upload } from "./Form";
 import './App.css';
 import { useState } from "react";
 
@@ -30,7 +30,7 @@ function SignIn(props) {
                     <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" className="name" required />
                     <br />
                     <select name="Competition" id="Ename" defaultValue="Choose">
-                    <option value="LAR">LAR</option>
+                        <option value="LAR">LAR</option>
                     </select>
                     {showCheck && <div class="check"></div>}
                     <input type="submit" className="SAVE" value="Sign In" />
@@ -109,43 +109,28 @@ function General(props) {
 }
 
 function Photos(props) {
-
-
     return (
         <Page selected={props.selected} id="photos">
             <p className="section-label">Photos</p>
             <div className="textArea">
-                <div className="checkboxBOX">
-                    <div className="box">
-                        <input type="checkbox" required></input>
-                        <label className="smallLabel"> Drivetrain</label>
-                    </div>
-                    <div className="box">
-                        <input type="checkbox" required></input>
-                        <label className="smallLabel"> Intake</label>
-                    </div>
-                    <div className="box">
-                        <input type="checkbox" required></input>
-                        <label className="smallLabel"> Uptake</label>
-                    </div>
-                    <div className="box">
-                        <input type="checkbox" required></input>
-                        <label className="smallLabel"> Outtake</label>
-                    </div>
-                    <div className="box">
-                        <input type="checkbox" required></input>
-                        <label className="smallLabel"> Extras</label>
-
-                    </div>
-                    {/* <input type="file" multiple accept="image/*" /> */}
-                </div>
+                <p className="smallLabel">DRIVETRAIN</p>
+                <Upload name="Drivetrain_Photo"></Upload>
+                <p className="smallLabel">INTAKE</p>
+                <Upload name="Intake_Photo"></Upload>
+                <p className="smallLabel">UPTAKE</p>
+                <Upload name="Uptake_Photo"></Upload>
+                <p className="smallLabel">OUTTAKE</p>
+                <Upload name="Outtake_Photo"></Upload>
+                <p className="smallLabel">EXTRAS</p>
+                <Upload name="Extras_Photo"></Upload>
+                {/* <input type="file" multiple accept="image/*" /> */}
             </div>
         </Page>
-    )
-
+    );
 }
 
-    function SavePage(props) {
+
+function SavePage(props) {
     return (
         <Page selected={props.selected} id="save-page">
             <p className="section-label">Save Page</p>
