@@ -18,11 +18,11 @@ const fields = [
     'DriveTrain_Motor_Type',
     'Autos',
     'Working_On',
-    // 'Drivetrain_Photo',
-    // 'Intake_Photo',
-    // 'Uptake_Photo',
-    // 'Outtake_Photo',
-    // 'Extras_Photo',
+    'Drivetrain_Photo',
+    'Intake_Photo',
+    'Uptake_Photo',
+    'Outtake_Photo',
+    'Extras_Photo',
     'Comments'
 ];
 
@@ -53,9 +53,7 @@ class App extends React.Component {
         this.state = { signedIn: false, ScouterName: "", EventName: "", teamOption: options[0] };
         this.SignInHandler = this.SignInHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.downloadCSV = this.downloadCSV.bind(this);
         this.setTeamOption = this.setTeamOption.bind(this);
-        this.clearData = this.clearData.bind(this);
     }
 
     setTeamOption(teamOption) {
@@ -82,7 +80,6 @@ class App extends React.Component {
                 const hour = time.getHours().toString().padStart(2, '0');
                 const minute = time.getMinutes().toString().padStart(2, '0');
                 download(csv, `Pit_Scout_${hour}${minute}.csv`)
-                localStorage.setItem('pitData', localStorage.getItem('pitData') + csv)
                 event.target.reset();
                 this.setTeamOption({ value: null });
                 window.location.href = "#SignIn"
@@ -94,16 +91,6 @@ class App extends React.Component {
             }
         } catch (e) {
             alert(e.message + '\nPlease return this tablet to the scouting coordinators before submitting');
-        }
-    }
-
-    downloadCSV() {
-        download(csvStringify([fields]) + localStorage.getItem('pitData'), 'Pit_Scout.csv');
-    }
-
-    clearData() {
-        if (window.confirm('STOP!!! Ask a scouting coordinator before pressing "ok" :)')) {
-            localStorage.setItem('pitData', '');
         }
     }
 
@@ -128,7 +115,7 @@ class App extends React.Component {
 
                     <General selected={this.state.selected === 'general'} teamOption={this.state.teamOption} setTeamOption={this.setTeamOption} />
                     <Photos selected={this.state.selected === 'photos'} />
-                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} downloadCSV={this.downloadCSV} clearData={this.clearData} />
+                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
 
                 </form>
 

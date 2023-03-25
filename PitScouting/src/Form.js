@@ -272,6 +272,15 @@ class Upload extends React.Component {
         this.state = { file: null, base64data: '' }
         this.handleChange = this.handleChange.bind(this)
     }
+
+    componentDidMount() {
+        const reset = () => {
+            this.setState({ file: null, base64data: '' });
+        };
+        window.addEventListener('reset', reset);
+        return () => window.removeEventListener('reset', reset);
+    }
+
     handleChange(event) {
         const reader = new FileReader();
         reader.readAsDataURL(event.target.files[0]);

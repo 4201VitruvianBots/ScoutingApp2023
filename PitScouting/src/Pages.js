@@ -140,11 +140,9 @@ function SavePage(props) {
                 <input type="submit" className="submit-button" value="Save" />
                 <br />
                 <br />
-                <div className="nonSubmit">
+                {/* <div className="nonSubmit">
                     <p className="reminder">DO NOT use this section unless instructed</p>
-                    <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
-                    <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
-                </div>
+                </div> */}
             </div>
 
             <div>
