@@ -161,11 +161,11 @@ class App extends React.Component {
     }
 }
 
-function alliancecolor() {
-    return (
-        <div className='app'></div>
-    )
-}
+// function alliancecolor() {
+//     return (
+//         <div className='app'></div>
+//     )
+// }
 
 // function TabButton(props) {
 //     return <button onClick={() => props.onClick(props.tabId)}>{props.children}</button>;

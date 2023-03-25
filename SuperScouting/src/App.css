@@ -149,6 +149,9 @@
    height: 20px;
    font-size: 15px;
    display: inline;
+   color: black;
+   vertical-align: middle;
+
  }
 
  input[type="radio"] {
@@ -249,6 +252,7 @@
    font-weight: 300;
    padding: 0px;
    margin: 10px auto;
+   display: inline-block;
  }
 
  .generalButton {
@@ -643,4 +647,35 @@
    font-weight: bold;
    margin: 0;
    font-size: 1.5em;
+ }
+
+ textarea {
+   resize: none;
+   box-sizing: border-box;
+ }
+
+ .comments {
+   background-color: #ecf2eb;
+   min-width: 300px;
+   min-height: 100px;
+   padding: 20px;
+   margin: 20px;
+   border-radius: 10px;
+ }
+
+ .commentlabel {
+   font-size: 20px;
+   color: white;
+   font-weight: 400;
+   padding: 0px;
+   margin: 10px auto;
+   display: inline-block;
+ }
+
+ .checkboxcss {
+   color: black;
+   /* vertical-align: -2px;
+   vertical-align: middle;
+   position: relative;
+   bottom: 1px; */
  }

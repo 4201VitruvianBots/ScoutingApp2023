@@ -22,6 +22,8 @@ function Navigation(props) {
                     <li><a href="#Save">Submit</a></li> {/*change the rest of the code to 'submit' as well? does it matter?*/}
                     <br />
                     <br />
+                    <li className="showalliance">Team ????</li>
+                    <li>1/2/3</li>
                 </ul>
             </div>
 

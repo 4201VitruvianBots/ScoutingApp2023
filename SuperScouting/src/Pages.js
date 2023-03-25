@@ -103,8 +103,8 @@ function General(props) {
                                                 <option value="InsideProtectedZone">Inside protected zone</option>
                                             </select>
                                             <br />
+                                            <label className="checkboxcss"><input type="checkbox"></input>Tech Foul?</label>
                                             <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
-
                                         </div>
 
                                         <div className="subButton">
@@ -132,7 +132,10 @@ function General(props) {
                                 )
                             }
                         </Popup>
-
+                        <div className="pleasecenter">
+                            <p className="commentlabel">Team 1 Notes</p>
+                            <textarea rows="5" cols="20" id="notes" name="Team 1 Comments" />
+                        </div>
 
                     </div>
                     <div className="team2">
@@ -159,6 +162,7 @@ function General(props) {
                                                 <option value="InsideProtectedZone">Inside protected zone</option>
                                             </select>
                                             <br />
+                                            <label className="checkboxcss"><input type="checkbox"></input>Tech Foul?</label>
                                             <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
                                             <br />
                                         </div>
@@ -184,7 +188,10 @@ function General(props) {
                                 )
                             }
                         </Popup>
-
+                        <div>
+                            <p className="commentlabel">Team 2 Notes</p>
+                            <textarea rows="5" cols="20" id="notes" name="Team 2 Comments" />
+                        </div>
 
                     </div>
 
@@ -194,6 +201,8 @@ function General(props) {
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
+
+
                             {
                                 close => (
                                     <div className='modal'>
@@ -213,6 +222,7 @@ function General(props) {
 
                                             </select>
                                             <br />
+                                            <label className="checkboxcss"><input type="checkbox"></input>Tech Foul?</label>
                                             <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
                                             <br />
                                         </div>
@@ -239,7 +249,10 @@ function General(props) {
                                 )
                             }
                         </Popup>
-
+                        <div>
+                            <p className="commentlabel">Team 3 Notes</p>
+                            <textarea rows="5" cols="20" id="notes" name="Team 3 Comments" />
+                        </div>
                     </div>
                 </div>
 
@@ -258,14 +271,21 @@ function General(props) {
 
                 <input type="hidden" name="length" value={props.fouls.length} />
 
-                <div className="textArea">
-                    <p className="generalLabel">Notes</p>
-                    <textarea rows="5" cols="20" id="notes" name="Comments" />
-                    <br />
+                {/* <div className="comments">
+                    <p className="generalLabel">Team 1 Notes</p>
+                    <textarea rows="5" cols="20" id="notes" name="Team 1 Comments" />
+
+                    <p className="generalLabel">Team 2 Notes</p>
+                    <textarea rows="5" cols="20" id="notes" name="Team 2 Comments" />
+
+                    <p className="generalLabel">Team 3 Notes</p>
+                    <textarea rows="5" cols="20" id="notes" name="Team 3 Comments" />
+
+                </div> */}
+                <div>
                     <ConnectionIndicator downloadCSV={props.downloadCSV} clearData={props.clearData} />
                     {/* <input type="submit" className="submit-button" /> */}
                 </div>
-
             </div>
 
         </Page >
