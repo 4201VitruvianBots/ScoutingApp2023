@@ -100,14 +100,15 @@ def handle_get_matches():
     if schedule == None:
         matches = {}
     else:
-        matches = {match: [{'scheduledTeamNumber': i, 'submitted': False} for i in teamNumbers] + [{'submitted': False}, {'submitted': False}] for match, teamNumbers in schedule.items()}
+        matches = {match: [{'teamNumber': i, 'submitted': 0} for i in teamNumbers] + [{'submitted': 0}, {'submitted': 0}] for match, teamNumbers in schedule.items()}
 
     for i in dbMatches:
-        entry = {'submittedTeamNumber': str(i[2]), 'submitted': True}
         match_num = str(i[0])
 
         if not match_num in matches:
-            matches[match_num] = [{'submitted': False} for i in range(8)]
+            matches[match_num] = [{'submitted': 0} for i in range(8)]
+
+        entry = {'teamNumber': str(i[2]), 'submitted': matches[match_num][i[1]]['submitted'] + 1}
 
         matches[match_num][i[1]].update(entry)
     
@@ -115,9 +116,9 @@ def handle_get_matches():
         match_num = str(i[0])
         
         if not match_num in matches:
-            matches[match_num] = [{'submitted': False} for i in range(8)]
+            matches[match_num] = [{'submitted': 0} for i in range(8)]
         
-        matches[match_num][i[1] + 6]['submitted'] = True
+        matches[match_num][i[1] + 6]['submitted'] += 1
     
     return matches
 

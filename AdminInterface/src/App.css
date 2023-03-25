@@ -91,8 +91,7 @@ thead {
 
 .match-status {
     width: 50em;
-    gap: 0.25em;
-    border-spacing: 0.25em;
+    border-spacing: 0 0.5em;
     border-collapse: separate;
 }
 
@@ -107,13 +106,25 @@ thead {
     text-align: center;
     --bg-color: #5f5f5f7f;
     --fg-color: #5f5f5f;
-    border-radius: 0.5em;
+    /* border-radius: 0.5em; */
+    color: #afafaf;
     background-color: var(--bg-color);
-    border: 0px solid var(--fg-color);
+    border-top: 2px solid var(--fg-color);
+    border-bottom: 2px solid var(--fg-color);
 }
 
-.match-status tbody tr {
-    border-radius: 0.5em;
+.match-status td:first-child,
+.match-status th:first-child {
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+    border-left: 2px solid var(--fg-color);
+}
+
+.match-status td:last-child,
+.match-status th:last-child {
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    border-right: 2px solid var(--fg-color);
 }
 
 .match-status tbody tr:hover {
@@ -131,22 +142,34 @@ thead {
     --fg-color: #2352d8;
 }
 
-.match-status.submitted,
-.match-status th {
-    border-width: 2px;
+.match-status .required {
+    --bg-color: #7423d83f;
+    --fg-color: #7423d8;
 }
 
-.submitted.status-red {
+.match-status .submitted,
+.match-status td:first-child,
+.match-status th {
+    color: #eee;
+}
+
+/* .match-status.submitted, */
+/* .match-status th {
+    border-width: 2px;
+} */
+
+.submitted.status-red,
+.match-status th.status-red {
     --bg-color: #d823237f;
 }
 
-.submitted.status-blue {
+.submitted.status-blue,
+.match-status th.status-blue {
     --bg-color: #2352d87f;
 }
 
-.match-status .required {
+.match-status .submitted.required {
     --bg-color: #7423d87f;
-    --fg-color: #7423d8;
 }
 
 /* .match-status .status-red.required {
@@ -157,12 +180,14 @@ thead {
     color: blue;
 } */
 
-.match-status .selected td {
+.match-status .selected,
+.match-status .selected.required {
     --bg-color: #d8d8237f;
     --fg-color: #d8d823;
 }
 
-.match-status td.self {
+.match-status .self,
+.match-status .self.required {
     --bg-color: #2c9c2c7f;
     --fg-color: #2c9c2c;
 }
@@ -170,3 +195,9 @@ thead {
 /* .conflict {
 
 } */
+
+.warning {
+    color: yellow;
+    transform: scale(150%);
+    margin-right: 0.5em;
+}

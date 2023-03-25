@@ -23,9 +23,8 @@ type AllTabletStatus = {
 }
 
 interface MatchStatus {
-    submitted: boolean,
-    scheduledTeamNumber?: string,
-    submittedTeamNumber?: string
+    submitted: number,
+    teamNumber?: string
 }
 
 type Match = [MatchStatus, MatchStatus, MatchStatus, MatchStatus, MatchStatus, MatchStatus, MatchStatus, MatchStatus];
@@ -114,23 +113,24 @@ const SelectedTeamsContext = React.createContext<(string | null)[] | null>(null)
 function MatchesDisplay({ allMatches = {} }: { allMatches?: AllMatches }) {
     const [selectedmatch, setSelectedMatch] = useState<string>();
 
-    const MatchStatus = ({ match: { submitted, submittedTeamNumber, scheduledTeamNumber }, colorClass }: { match: MatchStatus, colorClass: string }) => {
-        const displayNumber = scheduledTeamNumber || submittedTeamNumber || '';
+    const MatchStatus = ({ match: { submitted, teamNumber = '' }, colorClass, selected }: { match: MatchStatus, colorClass: string, selected: boolean }) => {
         return (
             <td className={classList(
                 'match-status',
                 colorClass,
-                ['submitted', submitted],
-                ['required', (useContext(SelectedTeamsContext) ?? []).includes(displayNumber)],
-                ['self', displayNumber === selfTeamNumber],
-                ['conflict', submittedTeamNumber !== scheduledTeamNumber && submittedTeamNumber !== undefined && scheduledTeamNumber !== undefined]
+                ['submitted', submitted > 0],
+                ['required', (useContext(SelectedTeamsContext) ?? []).includes(teamNumber)],
+                ['selected', selected],
+                ['self', teamNumber === selfTeamNumber]
+                // ['conflict', submitted > 1]
             )}>
-                {displayNumber || (submitted ? <span className="material-symbols-outlined">done</span> : '')}
+                {submitted > 1 && <span className="material-symbols-outlined warning" title="Multiple submissions for this robot">warning</span>}
+                {teamNumber || (submitted > 0 ? <span className="material-symbols-outlined">done</span> : '')}
             </td>
         );
     };
 
-    const selectedTeams = selectedmatch === undefined ? null : allMatches[selectedmatch].map(e => e.scheduledTeamNumber || e.submittedTeamNumber || null);
+    const selectedTeams = selectedmatch === undefined ? null : allMatches[selectedmatch].map(e => e.teamNumber ?? null);
 
     return (<SelectedTeamsContext.Provider value={selectedTeams}>
         <table className="match-status">
@@ -146,17 +146,20 @@ function MatchesDisplay({ allMatches = {} }: { allMatches?: AllMatches }) {
                 <th className="status-blue">Blue SS</th>
             </tr></thead>
             <tbody>
-                {Object.entries(allMatches).map(([matchNumber, status], i) => <tr className={matchNumber === selectedmatch ? 'selected' : ''} onClick={() => setSelectedMatch(matchNumber)} key={i} >
-                    <td>{matchNumber}</td>
-                    <MatchStatus match={status[0]} colorClass="status-red" />
-                    <MatchStatus match={status[1]} colorClass="status-red" />
-                    <MatchStatus match={status[2]} colorClass="status-red" />
-                    <MatchStatus match={status[6]} colorClass="status-red" />
-                    <MatchStatus match={status[3]} colorClass="status-blue" />
-                    <MatchStatus match={status[4]} colorClass="status-blue" />
-                    <MatchStatus match={status[5]} colorClass="status-blue" />
-                    <MatchStatus match={status[7]} colorClass="status-blue" />
-                </tr>)}
+                {Object.entries(allMatches).map(([matchNumber, status], i) => {
+                    const selected = matchNumber === selectedmatch;
+                    return (<tr onClick={() => setSelectedMatch(matchNumber)} key={i} >
+                        <td className={selected ? 'selected' : ''}>{matchNumber}</td>
+                        <MatchStatus match={status[1]} colorClass="status-red" selected={selected} />
+                        <MatchStatus match={status[0]} colorClass="status-red" selected={selected} />
+                        <MatchStatus match={status[2]} colorClass="status-red" selected={selected} />
+                        <MatchStatus match={status[6]} colorClass="status-red" selected={selected} />
+                        <MatchStatus match={status[3]} colorClass="status-blue" selected={selected} />
+                        <MatchStatus match={status[4]} colorClass="status-blue" selected={selected} />
+                        <MatchStatus match={status[5]} colorClass="status-blue" selected={selected} />
+                        <MatchStatus match={status[7]} colorClass="status-blue" selected={selected} />
+                    </tr>);
+                })}
             </tbody>
         </table>
     </SelectedTeamsContext.Provider>);
