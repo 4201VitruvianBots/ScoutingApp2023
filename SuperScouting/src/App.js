@@ -75,7 +75,7 @@ class App extends React.Component {
                 const hour = time.getHours().toString().padStart(2, '0');
                 const minute = time.getMinutes().toString().padStart(2, '0');
                 download(csv, `Super_Scout_${hour}${minute}.csv`)
-                localStorage.setItem('superScoutData', localStorage.getItem('superScoutData') + csv)
+                // localStorage.setItem('superScoutData', localStorage.getItem('superScoutData') + csv)
                 event.target.submit();
                 setTimeout(() => {
                     event.target.reset();
@@ -92,15 +92,15 @@ class App extends React.Component {
         }
     }
 
-    downloadCSV() {
-        download(csvStringify([fields]) + localStorage.getItem('superScoutData'), 'Super_Scout.csv');
-    }
+    // downloadCSV() {
+    //     download(csvStringify([fields]) + localStorage.getItem('superScoutData'), 'Super_Scout.csv');
+    // }
 
-    clearData() {
-        if (window.confirm('STOP!!! Ask a scouting coordinator before pressing "ok" :)')) {
-            localStorage.setItem('superScoutData', '');
-        }
-    }
+    // clearData() {
+    //     if (window.confirm('STOP!!! Ask a scouting coordinator before pressing "ok" :)')) {
+    //         localStorage.setItem('superScoutData', '');
+    //     }
+    // }
 
     test2(id) {
         this.setState({
@@ -126,7 +126,7 @@ class App extends React.Component {
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
                     <input type='hidden' value={this.state.Alliance} name="Team_Alliance" />
 
-                    <General fouls={this.state.fouls} setFouls={this.setFouls} downloadCSV={this.downloadCSV} clearData={this.clearData} />
+                    <General fouls={this.state.fouls} setFouls={this.setFouls} />
 
                 </form>);
                 break;
@@ -161,7 +161,11 @@ class App extends React.Component {
     }
 }
 
-
+function alliancecolor() {
+    return (
+        <div className='app'></div>
+    )
+}
 
 // function TabButton(props) {
 //     return <button onClick={() => props.onClick(props.tabId)}>{props.children}</button>;

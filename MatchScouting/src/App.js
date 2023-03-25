@@ -80,7 +80,7 @@ class App extends React.Component {
                 const hour = time.getHours().toString().padStart(2, '0');
                 const minute = time.getMinutes().toString().padStart(2, '0');
                 download(csv, `Match_Scout_${hour}${minute}.csv`)
-                localStorage.setItem('matchData', localStorage.getItem('matchData') + csv)
+                // localStorage.setItem('matchData', localStorage.getItem('matchData') + csv)
                 event.target.submit();
                 setTimeout(function () {
                     event.target.reset();
@@ -95,15 +95,15 @@ class App extends React.Component {
         }
     };
 
-    downloadCSV() {
-        download(csvStringify([fields]) + localStorage.getItem('matchData'), 'Match_Scout.csv');
-    }
+    // downloadCSV() {
+    //     download(csvStringify([fields]) + localStorage.getItem('matchData'), 'Match_Scout.csv');
+    // }
 
-    clearData() {
-        if (window.confirm('STOP!!! Ask a scouting coordinator before pressing "ok" :)')) {
-            localStorage.setItem('matchData', '');
-        }
-    }
+    // clearData() {
+    //     if (window.confirm('STOP!!! Ask a scouting coordinator before pressing "ok" :)')) {
+    //         localStorage.setItem('matchData', '');
+    //     }
+    // }
 
     render() {
         return (
@@ -132,7 +132,7 @@ class App extends React.Component {
                     <Auto selected={this.state.selected === 'auto'} />
                     <TeleOp selected={this.state.selected === 'tele-op'} />
 
-                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} downloadCSV={this.downloadCSV} clearData={this.clearData} />
+                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
                     {/* <input type="submit" className="submit-button"></input> */}
                 </form>
                 <iframe name="frame" title="frame"></iframe>
