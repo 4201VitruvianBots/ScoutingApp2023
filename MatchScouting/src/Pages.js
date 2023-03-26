@@ -188,15 +188,15 @@ function TeleOp(props) {
                         <h2>Low</h2>
                     </div>
 
-                    <div>
+                    <div className="cones">
 
-                        <h1>Cones</h1>
+                        <h1 className="conecube"><div class="triangle-up"></div>Cones</h1>
                         <NumberInput id="Tele_Cone_High" />
                         <NumberInput id="Tele_Cone_Mid" />
                         <NumberInput id="Tele_Cone_Low" />
                     </div>
-                    <div>
-                        <h1>Cubes</h1>
+                    <div className="cubes">
+                        <h1 className="conecube"><div class="square"></div>Cubes</h1>
                         <NumberInput id="Tele_Cube_High" />
                         <NumberInput id="Tele_Cube_Mid" />
                         <NumberInput id="Tele_Cube_Low" />
