@@ -1,7 +1,12 @@
 import './App.css';
+import {scaleLinear} from 'd3-scale';
 import { SearchBar, Title, PopupGfg, options } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
+ 
+var colorScale0 = scaleLinear().domain([0, 50, 100]).range(['red', 'yellow','lime'])
+var colorScale1 = scaleLinear().domain([0, 0.5, 1, 1.01]).range(['red', 'yellow', 'lime', 'fuchsia']);
+
 
 class App extends React.Component {
     constructor(props) {
@@ -198,7 +203,7 @@ class App extends React.Component {
                             <td colspan="2" className="colorbg">Total Game Pieces</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
-                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Auto_Total_Average * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{backgroundColor: colorScale1(Math.round(this.state[`data${i}`]?.Auto_Total_Average * 100) / 100),}}>{Math.round(this.state[`data${i}`]?.Auto_Total_Average * 100) / 100}</td>
                                     <td className="test">{Math.round(this.state[`data${i}`]?.Auto_Total_Max * 100) / 100}</td>
                                 </React.Fragment>
                             ))}
@@ -236,7 +241,7 @@ class App extends React.Component {
                         <tr>
                             <td colSpan="2" className="colorbg">% Balanced / Docked</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <td colSpan="2" className="colorbg2">{`${(this.state[`data${i}`]?.Auto_Balance_Frequency || 0) * 100}%`}</td>
+                                <td colSpan="2" className="colorbg2" style={{backgroundColor: colorScale0((this.state[`data${i}`]?.Auto_Balance_Frequency) * 100)}}>{`${(this.state[`data${i}`]?.Auto_Balance_Frequency) * 100}%`}</td>
                             ))}
                         </tr>
                         <tr>
@@ -361,13 +366,13 @@ class App extends React.Component {
                             <td rowspan="2" className="colorbg1">Endgame</td>
                             <td colspan="2" className="colorbg">% Docked</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <td className="test" colspan="2" key={i}>{this.state[`data${i}`]?.End_Dock_Frequency * 100}%</td>
+                                <td className="test" colspan="2" key={i} style={{backgroundColor: colorScale0(Math.round(this.state[`data${i}`]?.End_Dock_Frequency * 10000) / 100),}}>{Math.round(this.state[`data${i}`]?.End_Dock_Frequency * 10000) / 100}%</td>
                             ))}
                         </tr>
                         <tr>
                             <td colspan="2" className="colorbg">% Balanced</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <td className="test" colspan="2" key={i}>{this.state[`data${i}`]?.End_Balance_Frequency * 100}%</td>
+                                <td className="test" colspan="2" key={i}>{Math.round(this.state[`data${i}`]?.End_Balance_Frequency * 10000) / 100}%</td>
                             ))}
                         </tr>
                     </table>
