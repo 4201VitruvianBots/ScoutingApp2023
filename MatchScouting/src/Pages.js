@@ -97,15 +97,6 @@ function PreGame(props) {
                     <MultiButton items={[['BLUE 1', 'Blue 1'], ['BLUE 2', 'Blue 2'], ['BLUE 3', 'Blue 3'], ['RED 1', 'Red 1'], ['RED 2', 'Red 2'], ['RED 3', 'Red 3']]} id="Team_Alliance" />
 
                 </div>
-                {/* Off value at index 0, ON value at index 1 */}
-
-
-                {/* <h1><strong>No show robot?</strong></h1>
-                 <ButtonInput id="Show_Time" on_label="Robot did not show" off_label="Robot showed" />
-                <div className="one">
-                    <MultiButton items={[['Showed up', 'Didn\'t show up']]} name="noShow" />
-                </div> */}
-                <div></div>
             </div>
         </Page>
 
@@ -121,20 +112,6 @@ function Auto(props) {
             <div className="textArea">
 
                 <ButtonInput on_label="Activated!" off_label='Mobility?' id="Mobility" />
-                {/* <div className="mobility">
-                    <MultiButton items={[['ACTIVATED!', 'Mobility'], ['ACTIVATED!', 'No Mobility']]} id="Mobility" />
-                </div> */}
-                {/* <button type="button">Mobility?</button> */}
-
-                {/* <h2>Mobility</h2> */}
-                {/* <div className="container">
-                    <div className="center">
-                        <button>Mobility</button>
-                    </div>
-                </div> 
-                <br></br>
-                <input type="checkbox" name="mobility"></input>
-                <label htmlFor="mobility" className="label-size">Mobility</label> */}
                 <br />
                 <p className="itemLabel">CHARGING STATION</p>
                 <div className="align-radio">
@@ -203,12 +180,6 @@ function TeleOp(props) {
                     </div>
                 </div>
 
-                {/* <h1>Cones</h1>
-                <h2>High</h2>
-                <NumberInput items={['1']} />
-                <h2>Mid</h2>
-                {/* <br></br> */}
-
             </div>
 
 
@@ -233,32 +204,10 @@ function SavePage(props) {
             <p className="section-label">Submit</p>
             <div className="textArea">
 
-                {/* <label htmlFor="notes" className="item-label">Notes</label> */}
-                {/* <h1>Some things you could comment are:</h1>
-                <div className="bullet-points">
-
-                    <li className="questions">Placeholder Questions?</li>
-                    <li className="questions">Is it successful?</li>
-                    <li className="questions">Does it move?</li>
-                    <li className="questions">Conesistent?</li>
-                    <li className="questions">Can the robot?</li>
-                    <li className="questions">Does it?</li>
-                </div>
-                <br /> */}
-
                 <input type="textarea" id="Comments" name="Comments" placeholder="Comment here" className="textInput" />
                 <br />
                 <br />
-
                 <ConnectionIndicator downloadCSV={props.downloadCSV} clearData={props.clearData} />
-
-                {/* <label className="item-label" htmlFor="clear">QR code and clear</label>
-                <input type="submit" className="SAVE" value="Generate QR code"></input>
-                <br />
-                <label className="item-label" htmlFor="continue">Save and continue</label>
-                 */}
-                {/* <input type="reset" className="CLEAR" value="Clear Form" /> */}
-                {/* <div id="QRCode">{props.QRCode}</div> */}
             </div>
             <div>
                 <p className="version">Version 0</p>

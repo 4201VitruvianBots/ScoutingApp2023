@@ -114,15 +114,6 @@ class App extends React.Component {
                 <Navigation selected={this.state.selected === 'navigation'} />
                 {/* <SignIn selected={this.state.selected === 'sign-in'} /> */}
                 <SignIn onSubmit={this.SignInHandler} />
-                {/*
-            <div >
-                <TabButton headerButtonsonClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>
-                <TabButton onClick={this.setSelected} tabId="auto">Auto</TabButton>
-                <TabButton onClick={this.setSelected} tabId="tele-op">Teleop</TabButton>
-                <TabButton onClick={this.setSelected} tabId="endgame">Endgame</TabButton>
-                <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
-            </div>
-      */}
 
 
                 <form action={`http://${process.env.REACT_APP_BACKEND_IP}/data/matches`} method="POST" target="frame" id="myForm" onSubmit={this.handleSubmit}>
