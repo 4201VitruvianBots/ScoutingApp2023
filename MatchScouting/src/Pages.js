@@ -139,7 +139,7 @@ function Auto(props) {
                 <p className="itemLabel">CHARGING STATION</p>
                 <div className="align-radio">
 
-                    <MultiButton items={[['NO POINTS', 'No points'], ['FAILED DOCK', 'Failed Dock'], ['DOCKED', 'Docked'], ['ENGAGED', 'Engaged']]} id="Auto_Station" />
+                    <MultiButton items={[['NO POINTS', 'No points'], ['FAILED BALANCE', 'Failed Balance'], ['DOCKED', 'Docked'], ['ENGAGED', 'Engaged']]} id="Auto_Station" />
 
                 </div>
 
@@ -216,7 +216,7 @@ function TeleOp(props) {
                 <h1>Charging Station</h1>
                 <div className="align-radio">
 
-                    <MultiButton items={[['NO POINTS', 'No points'], ['PARKED', 'Parked'], ['FAILED DOCK', 'Failed Dock'], ['DOCKED', 'Docked'], ['ENGAGED', 'Engaged']]} id="Tele_Station" />
+                    <MultiButton items={[['NO POINTS', 'No points'], ['PARKED', 'Parked'], ['FAILED BALANCE', 'Failed Balance'], ['DOCKED', 'Docked'], ['ENGAGED', 'Engaged']]} id="Tele_Station" />
 
                 </div>
 
