@@ -121,40 +121,31 @@ function General(props) {
 
 
 function Photos(props) {
-
-
     return (
         <Page selected={props.selected} id="photos">
             <p className="section-label">Photos</p>
             <div className="textArea">
                 <div className="checkboxBOX">
                     <div className="box">
-                        {/* <input type="checkbox" required></input> */}
                         <Upload></Upload>
                         <label className="smallLabel"> Drivetrain</label>
                     </div>
                     <div className="box">
-                        {/* <input type="checkbox" required></input> */}
                         <Upload></Upload>
                         <label className="smallLabel"> Intake</label>
                     </div>
                     <div className="box">
-                        {/* <input type="checkbox" required></input> */}
                         <Upload></Upload>
                         <label className="smallLabel"> Uptake</label>
                     </div>
                     <div className="box">
-                        {/* <input type="checkbox" required></input> */}
                         <Upload></Upload>
                         <label className="smallLabel"> Outtake</label>
                     </div>
                     <div className="box">
-                        {/* <input type="checkbox" required></input> */}
                         <Upload></Upload>
                         <label className="smallLabel"> Extras</label>
-
                     </div>
-                    {/* <input type="file" multiple accept="image/*" /> */}
                 </div>
             </div>
         </Page>

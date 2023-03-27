@@ -32,7 +32,6 @@
    font-size: 30px;
    font-weight: bold;
    margin: 20px;
-
  }
 
  ::placeholder {
@@ -47,14 +46,11 @@
    border-width: 50px;
  }
 
-
  .numberInput {
    border-color: #085f00;
    border-width: 50px;
    margin: 10px;
  }
-
-
 
  body {
    margin: 0;
@@ -84,7 +80,6 @@
    display: block;
    font-size: 15px;
    margin: 0 auto;
-   /* margin-bottom: 20px; */
    overflow-wrap: break-word;
    font-family: system-ui;
    text-align: center;
@@ -95,14 +90,12 @@
    text-align: center;
  }
 
-
  .chonk {
    display: inline !important;
    width: 50px !important;
    height: 32.5px !important;
    font-size: 25px !important;
    background-color: #003800;
-
  }
 
  input[type=button].chonk {
@@ -111,15 +104,12 @@
    border-color: #83c183;
  }
 
-
-
  input[type="radio"] {
    border-color: var(--accent-3);
    background-color: var(--accent-1);
    width: 50px;
    height: 20px;
    display: inline;
-
  }
 
  input[type="number"] {
@@ -146,7 +136,6 @@
    background-color: #83c183;
    margin-top: 30px;
    margin-bottom: 10px;
-
  }
 
  .CLEAR {
@@ -179,7 +168,6 @@
    margin: 0 auto;
    padding: 10px 0;
  }
-
 
  .drivetrain,
  .gamepieces,
@@ -236,8 +224,6 @@
    font-size: 15px;
    font-weight: 550;
    margin: 0 auto;
-   /* margin-bottom: 10px; */
-   /* border: 2px solid darkgreen; */
    display: block;
  }
 
@@ -251,16 +237,9 @@
  }
 
  .photoInput {
-
    max-height: 300px;
    max-width: 300px;
  }
-
- /* .img {
-   height: 100px;
-   width: 100px;
-   border-color: orange;
- } */
 
  .test2 {
    display: flex;
@@ -268,7 +247,6 @@
    align-items: stretch;
    align-content: stretch;
  }
-
 
  .allianceSelect .number-off,
  .gamepieces .ToggleButton .number-off,
@@ -282,12 +260,10 @@
  .allianceSelect .number-on,
  .gamepieces .ToggleButton .number-on,
  .scoringLocation .ToggleButton .number-on {
-   /* background-color: rgb(242, 255, 0); */
    background-color: rgb(5, 255, 5);
    color: black;
    font-weight: 600;
    border: 1.5px rgba(16, 127, 16, 0.61) solid;
-
  }
 
  .number-on,
@@ -310,12 +286,10 @@
    margin: 25px;
    border-radius: 30px;
    font-family: system-ui;
-
  }
 
  .download-button,
  .clear-button {
-
    color: black;
    font-size: 15px !important;
    font-weight: 700;
@@ -325,9 +299,7 @@
    border: none;
    border-radius: 30px;
    margin: 15px;
-
  }
-
 
  .download-button {
    background-color: rgba(0, 183, 255, 0.637);
@@ -390,8 +362,6 @@
    font-weight: 400;
  }
 
-
-
  .test2 .team input[type="text"] {
    font-weight: 900;
    color: rgb(0, 0, 0);
@@ -413,7 +383,6 @@
    margin-left: 70%;
    margin-bottom: 50%;
    position: absolute;
-
  }
 
  .teamSearch {
@@ -425,14 +394,10 @@
  }
 
  .checkboxBOX {
-
    border-radius: 15px;
    text-align: left;
-   /* padding:10px; */
    width: fit-content;
    margin: 0 auto;
-
-
  }
 
  .box {
@@ -446,9 +411,7 @@
    bottom: 1px;
  }
 
-
  input[type="checkbox"] {
-
    width: 50px;
    height: 20px;
    font-size: 15px;
