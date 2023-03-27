@@ -45,11 +45,6 @@ function SignIn(props) {
 
                     <input type="submit" className="SAVE" value="Sign In" />
 
-
-                    {/* when submitted 
-                        <>checkmark image</> */}
-                    {/* onSubmit={handleSubmit} */}
-
                 </div>
             </form>
         </div>
@@ -81,7 +76,7 @@ function General(props) {
                 <div className="boxes">
                     <div className="team1">
 
-                        {/* <input type="text" placeholder="TEAM 1" className="login" id="team1" name="Team_1" onChange={handleInputChange} /> */}
+
                         <SearchBar setSelectedOption={setTeamOption1} name="Team_1" className="teamSearch" />
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
@@ -273,21 +268,8 @@ function General(props) {
                 </React.Fragment>))}
 
                 <input type="hidden" name="length" value={props.fouls.length} />
-
-                {/* <div className="comments">
-                    <p className="generalLabel">Team 1 Notes</p>
-                    <textarea rows="5" cols="20" id="notes" name="Team 1 Comments" />
-
-                    <p className="generalLabel">Team 2 Notes</p>
-                    <textarea rows="5" cols="20" id="notes" name="Team 2 Comments" />
-
-                    <p className="generalLabel">Team 3 Notes</p>
-                    <textarea rows="5" cols="20" id="notes" name="Team 3 Comments" />
-
-                </div> */}
                 <div>
                     <ConnectionIndicator downloadCSV={props.downloadCSV} clearData={props.clearData} />
-                    {/* <input type="submit" className="submit-button" /> */}
                 </div>
             </div>
 

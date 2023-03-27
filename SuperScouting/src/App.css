@@ -31,7 +31,6 @@
    font-size: 30px;
    font-weight: bold;
    margin: 20px;
-
  }
 
  ::placeholder {
@@ -51,7 +50,6 @@
    border-width: 50px;
    margin: 10px;
  }
-
 
  body {
    margin: 0;
@@ -81,7 +79,6 @@
    display: block;
    font-size: 15px;
    margin: 0 auto;
-   /* margin-bottom: 20px; */
    overflow-wrap: break-word;
    font-family: system-ui;
    text-align: center;
@@ -92,14 +89,12 @@
    text-align: center;
  }
 
-
  .chonk {
    display: inline !important;
    width: 50px !important;
    height: 32.5px !important;
    font-size: 25px !important;
    background-color: #003800;
-
  }
 
  input[type=button].chonk {
@@ -151,7 +146,6 @@
    display: inline;
    color: black;
    vertical-align: middle;
-
  }
 
  input[type="radio"] {
@@ -160,7 +154,6 @@
    width: 50px;
    height: 20px;
    display: inline;
-
  }
 
  input[type="number"] {
@@ -177,7 +170,6 @@
    height: 35px;
    text-align: center;
  }
-
 
  .SAVE,
  .CLEAR {
@@ -226,10 +218,8 @@
    padding: 10px 0;
  }
 
-
  .team {
    height: fit-content;
-
  }
 
  .motors,
@@ -261,8 +251,6 @@
    font-size: 15px;
    font-weight: 550;
    margin: 0 auto;
-   /* margin-bottom: 10px; */
-   /* border: 2px solid darkgreen; */
    display: block;
  }
 
@@ -271,21 +259,10 @@
    font-size: 60px;
  }
 
- /* p {
-   color: black;
- } */
-
  .photoInput {
-
    max-height: 300px;
    max-width: 300px;
  }
-
- /* .img {
-   height: 100px;
-   width: 100px;
-   border-color: orange;
- } */
 
  .test2 {
    display: flex;
@@ -296,7 +273,6 @@
 
  .foul {
    background-color: #b2daa1;
-   /* border: #005f00 2px solid; */
    color: white;
    box-sizing: border-box;
    padding: 10px;
@@ -308,14 +284,12 @@
    flex-grow: 1;
    inline-size: 130px;
    overflow-wrap: break-word;
-
  }
 
  .fouls {
    margin: 0 auto;
    width: 75%;
  }
-
 
  .allianceSelect .number-off,
  .content .number-off {
@@ -331,7 +305,6 @@
    color: black;
    font-weight: 600;
    border: 1.5px black solid;
-
  }
 
  .number-on,
@@ -354,13 +327,11 @@
    margin: 25px;
    border-radius: 30px;
    font-family: system-ui;
-
  }
 
  .save-button,
  .download-button,
  .clear-button {
-
    color: black;
    font-size: 15px !important;
    font-weight: 700;
@@ -370,7 +341,6 @@
    border: none;
    border-radius: 30px;
    margin: 15px;
-
  }
 
  .save-button {
@@ -438,7 +408,6 @@
    font-weight: 400;
  }
 
-
  .test2 .team input[type="text"] {
    font-weight: 900;
    color: rgb(0, 0, 0);
@@ -460,7 +429,6 @@
    margin-left: 70%;
    margin-bottom: 50%;
    position: absolute;
-
  }
 
  .popup-overlay .popup-content {
@@ -496,15 +464,11 @@
    padding: 10px;
    border: #085f00 3px solid;
    color: white;
-
  }
-
 
  select {
    font-size: 20px;
  }
-
-
 
  .label-size {
    font-size: 15px;
@@ -515,8 +479,6 @@
    margin-bottom: 5px;
  }
 
-
-
  .nav {
    background-color: green;
    font-family: system-ui;
@@ -525,7 +487,6 @@
    padding: 7px;
    border: 2px solid green;
    margin: 5px;
-
  }
 
  .nav:focus {
@@ -536,29 +497,19 @@
  .login {
    width: 70px;
    display: inline-block;
-   /* padding: 10px; */
    display: inline-block !important;
    padding: 5px;
    margin: 10px !important;
-
  }
 
  .loginButtons {
-   /* background-color: orange; */
    width: 500px;
    margin: 0 auto;
    padding: 10px;
-
  }
 
  .login,
  .popupButton {
-   /* min-width: fit-content;
-   border-radius: 10px;
-   display: inline-block;
-   margin: 15px;
-   flex-grow: 1;
-   max-height: fit-content; */
    display: block;
  }
 
@@ -576,7 +527,6 @@
    max-height: fit-content;
    background-color: #255025;
    margin: 0 auto;
-
  }
 
  .boxes {
@@ -594,7 +544,6 @@
    font-size: 35px;
    font-weight: 500;
    color: #085f00;
-
  }
 
  .check {
@@ -606,7 +555,6 @@
    margin-left: 70%;
    margin-bottom: 50%;
    position: absolute;
-
  }
 
  .testest .teamSearch {
@@ -621,14 +569,9 @@
    font-size: 18px;
  }
 
- /* .name {
-   width: 50% !important
- } */
-
  .frame {
    display: none;
  }
-
 
  .check {
    width: 50px;
@@ -639,7 +582,6 @@
    margin-left: 70%;
    margin-bottom: 50%;
    position: absolute;
-
  }
 
  .connerror {
@@ -674,8 +616,4 @@
 
  .checkboxcss {
    color: black;
-   /* vertical-align: -2px;
-   vertical-align: middle;
-   position: relative;
-   bottom: 1px; */
  }
