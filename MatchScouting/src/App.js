@@ -50,9 +50,11 @@ function csvStringify(data) {
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { signedIn: false, ScouterName: "", EventName: "" };
+        this.state = { signedIn: false, ScouterName: "", EventName: "", TeamAlliance: "", connected: false, teamOption: null, BatteryLevel: null, matchSchedule: null };
         this.setSelected = this.setSelected.bind(this);
-        this.SignInHandler = this.SignInHandler.bind(this)
+        this.setTeamOption = this.setTeamOption.bind(this);
+        this.SignInHandler = this.SignInHandler.bind(this);
+        this.handleMatchUpdate = this.handleMatchUpdate.bind(this);
     }
 
 
@@ -60,11 +62,22 @@ class App extends React.Component {
         this.setState({ selected: id });
     }
 
+    setTeamOption(teamOption) {
+        this.setState({ teamOption: teamOption });
+    }
+
     SignInHandler(e) {
         e.preventDefault();
         const answers = e.target.elements;
-        this.setState({ signedIn: true, ScouterName: answers.Scouter_Name.value, EventName: answers.Competition.value, QRCode: null });
+        this.setState({ signedIn: true, ScouterName: answers.Scouter_Name.value, EventName: answers.Competition.value, TeamAlliance: answers.Team_Alliance.value, QRCode: null });
         return false;
+    }
+
+    handleMatchUpdate(matchNumber) {
+        const team = this.state.matchSchedule?.[matchNumber]?.[this.state.TeamAlliance]?.toString();
+        if (team !== undefined) {
+            this.setTeamOption({ label: team, value: team });
+        }
     }
 
     handleSubmit = (event) => {
@@ -82,9 +95,13 @@ class App extends React.Component {
                 download(csv, `Match_Scout_${hour}${minute}.csv`)
                 // localStorage.setItem('matchData', localStorage.getItem('matchData') + csv)
                 event.target.submit();
-                setTimeout(function () {
+                const prevMatch = parseInt(answers.Match_Number.value);
+                setTimeout(() => {
                     event.target.reset();
-                    window.location.href = "#SignIn"
+                    // setTeamOption({ value: null });
+                    answers.Match_Number.value = prevMatch + 1;
+                    this.handleMatchUpdate(prevMatch + 1);
+                    window.location.href = "#SignIn";
                 }, 0);
             } else {
                 // Do nothing!
@@ -105,6 +122,67 @@ class App extends React.Component {
     //     }
     // }
 
+    componentDidMount() {
+        const fetchData = async () => {
+            const url = `http://${process.env.REACT_APP_BACKEND_IP}/data/status`;
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        Scouter_Name: this.state.ScouterName,
+                        Battery_Level: this.state.BatteryLevel,
+                        Team_Number: this.state.teamOption.value,
+                        Position: document.getElementById('myForm').elements.Team_Alliance.value
+                    })
+                });
+                const ok = response.ok;
+                this.setState({ connected: ok });
+            } catch (error) {
+                console.log("error", error);
+                this.setState({ connected: false });
+            }
+        };
+
+        const interval = setInterval(fetchData, 5000);
+
+        if (navigator.getBattery !== undefined) {
+            navigator.getBattery().then(batteryManager => {
+                const updateBatteryLevel = (event) => {
+                    this.setState({ BatteryLevel: batteryManager.level })
+                };
+
+                batteryManager.onlevelchange = updateBatteryLevel;
+                updateBatteryLevel();
+            });
+        }
+
+        let scheduleInterval;
+
+        const fetchSchedule = async () => {
+            const url = `http://${process.env.REACT_APP_BACKEND_IP}/schedule.json`;
+            try {
+                const response = await fetch(url);
+                if (response.ok) {
+                    const data = await response.json();
+                    this.setState({ matchSchedule: data });
+                }
+                clearInterval(scheduleInterval);
+            } catch (error) {
+            }
+        }
+
+        scheduleInterval = setInterval(fetchSchedule, 10000);
+
+        return function cleanup() {
+            clearInterval(interval);
+            clearInterval(scheduleInterval);
+        };
+    }
+
+
     render() {
         return (
             <main>
@@ -119,7 +197,8 @@ class App extends React.Component {
                 <form action={`http://${process.env.REACT_APP_BACKEND_IP}/data/matches`} method="POST" target="frame" id="myForm" onSubmit={this.handleSubmit}>
                     <input type='hidden' value={this.state.EventName} name='Competition' />
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
-                    <PreGame selected={this.state.selected === 'pre-game'} />
+                    <input type='hidden' value={this.state.TeamAlliance} name='Team_Alliance' />
+                    <PreGame selected={this.state.selected === 'pre-game'} teamOption={this.state.teamOption} setTeamOption={this.setTeamOption} onMatchUpdate={this.handleMatchUpdate} />
                     <Auto selected={this.state.selected === 'auto'} />
                     <TeleOp selected={this.state.selected === 'tele-op'} />
 

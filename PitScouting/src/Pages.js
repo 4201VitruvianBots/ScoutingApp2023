@@ -1,7 +1,6 @@
-import { NumberInput, ButtonInput, MultiButton, SearchBar, options } from "./Form";
+import { NumberInput, ButtonInput, MultiButton, SearchBar } from "./Form";
 import './App.css';
 import { useState } from "react";
-import { Upload } from "./Form";
 
 
 function Page(props) {
@@ -23,7 +22,7 @@ function SignIn(props) {
     }
 
     return (
-        <div>
+        <div id="SignIn">
             <p className="section-label">Pit Scouting</p>
             <p className="topNote">If the robot has an "other" drivetrain, specify it in the notes at the bottom!</p>
             <form onSubmit={handleSubmit} action="#">
@@ -31,8 +30,7 @@ function SignIn(props) {
                     <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" className="name" required />
                     <br />
                     <select name="Competition" id="Ename" defaultValue="Choose">
-                        <option value="Choose" className="Placeholder" disabled>Choose Event</option>
-                        <option value="Port Hueneme">Port Hueneme</option>
+                    <option value="LAR">LAR</option>
                     </select>
                     {showCheck && <div class="check"></div>}
                     <input type="submit" className="SAVE" value="Sign In" />
@@ -48,14 +46,6 @@ function SignIn(props) {
 
 
 function General(props) {
-    const [teamOption, setTeamOption] = useState(options[0]); //state
-
-    const setSelectedOption = (newOption) => {
-
-        setTeamOption(newOption);
-
-        //functions (setting a function to a variable)
-    }
     return (
         <Page selected={props.selected} id="general">
             <p className="section-label">General</p>
@@ -64,7 +54,7 @@ function General(props) {
 
                     <div className="team">
                         <p className="generalLabel">Team Number</p>
-                        <SearchBar setSelectedOption={setSelectedOption} selectedOption={teamOption} name="Team_Number" className="teamSearch" />
+                        <SearchBar setSelectedOption={props.setTeamOption} selectedOption={props.teamOption} name="Team_Number" className="teamSearch" />
                     </div>
 
                     <div className="drivetrain">
@@ -168,8 +158,13 @@ function SavePage(props) {
                     <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
                 </div>
             </div>
+
+            <div>
+                <p className="version">Version LAR.0.1</p>
+            </div>
+
         </Page>
     );
 }
 
-export { SignIn, General, Photos, SavePage };
+export { SignIn, General, SavePage };

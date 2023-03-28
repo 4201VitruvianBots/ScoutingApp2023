@@ -105,7 +105,8 @@
 
  .label-number {
    font-weight: 900;
-   font-size: 20px;
+   font-size: 17px;
+   color: black;
  }
 
  .label-cause {
@@ -521,7 +522,7 @@
    align-items: stretch;
    box-sizing: border-box;
    padding: 10px;
-   width: 175px;
+   width: 200px;
    border-radius: 10px;
    display: inline-block;
    max-height: fit-content;
@@ -617,3 +618,85 @@
  .checkboxcss {
    color: black;
  }
+ .deleteButton, .editButton {
+  display: inline;
+}
+
+ .deleteButton input[type="button"], 
+ .editButton input[type="button"] {
+  font-size: 14px;
+
+  border: 0px black solid;
+  border-radius: 3px;
+  padding: 4px;
+  display: inline;
+  margin: 2px;
+  width: 50px;
+  height: 30px;
+  font-weight: 500;
+ }
+
+ .editButton input[type="button"] {
+  background-color: rgba(255, 0, 191, 0.562);
+ }
+
+ .deleteButton input[type="button"] {
+  background-color: rgba(255, 0, 0, 0.717);
+ }
+
+.driverSkill{
+  background-color:#4a6fa1;
+ margin-top: 10px;
+ padding: 10px;
+ font-weight: 400;
+ border-radius: 7px;
+
+
+}
+
+.driverSkill .number-on,
+.driverSkill .number-off{
+  font-size: 15px;
+  
+  /* transition: 0.2s; */
+
+  background-color: gray;
+  color: darkblue;
+  width: 22px;
+  height: 30px;
+  border: none;
+}
+
+.driverSkill .number-on {
+  background-color: darkblue;
+  color: lightgray;
+  
+}
+
+.natalie {
+  background-color: teal;
+  color: black;
+  font-size: 50px;
+  font-weight: 600;
+}
+
+.josiah {
+  background-color: fuchsia;
+  font: black;
+  font-weight: 900;
+  font-size: 100px;
+  border-radius: 50%;
+}
+
+.kyle {
+  background-color: orange;
+  font: black;
+  font-weight: 900;
+  width: 500px;
+  margin: 0 auto;
+  height: 100px;
+  padding: 100px;
+  margin-top: 15px;
+
+
+}

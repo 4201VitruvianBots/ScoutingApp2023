@@ -98,6 +98,9 @@ input[type="number"] {
 .clear-button,
 .noshow,
 .nonSubmit .number-on,
+.nonSubmit .number-off,
+.noshow,
+.nonSubmit .number-on,
 .nonSubmit .number-off {
 
   color: black;

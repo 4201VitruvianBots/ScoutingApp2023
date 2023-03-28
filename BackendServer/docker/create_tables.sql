@@ -21,6 +21,7 @@ CREATE TABLE matchData(
 	Tele_Cone_Mid INT NULL,
 	Tele_Cone_High INT NULL,
 	Tele_Station INT NULL,
+	No_Show_Robot BOOLEAN,
 	Comments TEXT NULL
 );
 
@@ -49,6 +50,9 @@ CREATE TABLE superScout(
 	Team_1 INT NULL,
 	Team_2 INT NULL,
 	Team_3 INT NULL,
+	Team_1_Defense INT NULL,
+	Team_2_Defense INT NULL,
+	Team_3_Defense INT NULL,
 	Comments TEXT NULL
 );
 
@@ -106,5 +110,7 @@ CREATE TABLE dataAnalysis(
 	Total_Inside_Robot_Fouls INT,
 	Total_Multiple_Pieces_Fouls INT,
 	Total_Inside_Protected_Fouls INT,
+	Average_Teleop_Points FLOAT,
+	Average_Auto_Points FLOAT,
 	PRIMARY KEY(Team_Number)
 );

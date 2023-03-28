@@ -1,5 +1,6 @@
 import './App.css';
 import { SignIn, General } from "./Pages";
+import { options } from './Form'
 import React from "react";
 
 const fields = [
@@ -37,12 +38,37 @@ function csvStringify(data) {
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { signedIn: false, ScouterName: "", EventName: "", selected: 'sign-in', fouls: [] };
+        this.state = { signedIn: false, ScouterName: "", EventName: "", selected: 'sign-in', fouls: [], matchSchedule: null, team1: options[0], team2: options[0], team3: options[0] };
         this.SignInHandler = this.SignInHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.test2 = this.test2.bind(this)
         this.setFouls = this.setFouls.bind(this)
         this.clearForm = this.clearForm.bind(this);
+        this.setTeamOption1 = this.setTeamOption1.bind(this);
+        this.setTeamOption2 = this.setTeamOption2.bind(this);
+        this.setTeamOption3 = this.setTeamOption3.bind(this);
+        this.handleMatchUpdate = this.handleMatchUpdate.bind(this);
+    }
+
+    setTeamOption1(option) {
+        this.setState({ team1: option });
+    }
+
+    setTeamOption2(option) {
+        this.setState({ team2: option });
+    }
+
+    setTeamOption3(option) {
+        this.setState({ team3: option });
+    }
+
+    handleMatchUpdate(matchNumber) {
+        const team1 = this.state.matchSchedule?.[matchNumber]?.[3 * parseInt(this.state.Alliance) + 0]?.toString();
+        const team2 = this.state.matchSchedule?.[matchNumber]?.[3 * parseInt(this.state.Alliance) + 1]?.toString();
+        const team3 = this.state.matchSchedule?.[matchNumber]?.[3 * parseInt(this.state.Alliance) + 2]?.toString();
+        if (team1 !== undefined) this.setTeamOption1({ label: team1, value: team1 });
+        if (team2 !== undefined) this.setTeamOption2({ label: team2, value: team2 });
+        if (team3 !== undefined) this.setTeamOption3({ label: team3, value: team3 });
     }
 
     SignInHandler(e) {
@@ -62,7 +88,7 @@ class App extends React.Component {
         this.setState({ fouls: newFouls });
     }
 
-    handleSubmit(event) {
+    handleSubmit(event, handleMatchUpdate) {
         try {
             event.preventDefault();
             const answer = window.confirm("Would you like to submit the form?");
@@ -77,8 +103,11 @@ class App extends React.Component {
                 download(csv, `Super_Scout_${hour}${minute}.csv`)
                 // localStorage.setItem('superScoutData', localStorage.getItem('superScoutData') + csv)
                 event.target.submit();
+                const prevMatch = parseInt(answers.Match_Number.value);
                 setTimeout(() => {
                     event.target.reset();
+                    answers.Match_Number.value = prevMatch + 1;
+                    this.handleMatchUpdate(prevMatch + 1);
                     this.setFouls([]);
                 }, 0)
                 // Save it!
@@ -102,11 +131,80 @@ class App extends React.Component {
     //     }
     // }
 
+   
+
     test2(id) {
         this.setState({
             selected: id
         })
         console.log('I\'ve been called ' + (id));
+    }
+
+    componentDidMount() {
+        const url = `http://${process.env.REACT_APP_BACKEND_IP}/data/status`;
+
+        const fetchData = async () => {
+            let position;
+            switch (this.state.Alliance) {
+                case '0': position = '6'; break;
+                case '1': position = '7'; break;
+                default: position = null; break;
+            }
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        Scouter_Name: this.state.ScouterName,
+                        Battery_Level: this.state.BatteryLevel,
+                        Position: position
+                    })
+                });
+                const ok = response.ok;
+                this.setState({ connected: ok });
+            } catch (error) {
+                console.log("error", error);
+                this.setState({ connected: false });
+            }
+        };
+
+        const interval = setInterval(fetchData, 5000);
+
+        if (navigator.getBattery !== undefined) {
+            navigator.getBattery().then(batteryManager => {
+                const updateBatteryLevel = (event) => {
+                    this.setState({ BatteryLevel: batteryManager.level })
+                };
+
+                batteryManager.onlevelchange = updateBatteryLevel;
+                updateBatteryLevel();
+            });
+        }
+
+        let scheduleInterval;
+
+        const fetchSchedule = async () => {
+            const url = `http://${process.env.REACT_APP_BACKEND_IP}/schedule.json`;
+            try {
+                const response = await fetch(url);
+                if (response.ok) {
+                    const data = await response.json();
+                    this.setState({ matchSchedule: data });
+                }
+                clearInterval(scheduleInterval);
+            } catch (error) {
+            }
+        }
+
+        scheduleInterval = setInterval(fetchSchedule, 10000);
+
+        return function cleanup() {
+            clearInterval(interval);
+            clearInterval(scheduleInterval);
+        };
     }
 
     render() {
@@ -126,7 +224,15 @@ class App extends React.Component {
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
                     <input type='hidden' value={this.state.Alliance} name="Team_Alliance" />
 
-                    <General fouls={this.state.fouls} setFouls={this.setFouls} />
+                    <General
+                        fouls={this.state.fouls} setFouls={this.setFouls}
+                        downloadCSV={this.downloadCSV} clearData={this.clearData}
+                        connected={this.state.connected}
+                        teamOption1={this.state.team1} setTeamOption1={this.setTeamOption1}
+                        teamOption2={this.state.team2} setTeamOption2={this.setTeamOption2}
+                        teamOption3={this.state.team3} setTeamOption3={this.setTeamOption3}
+                        onMatchUpdate={this.handleMatchUpdate}
+                    />
 
                 </form>);
                 break;

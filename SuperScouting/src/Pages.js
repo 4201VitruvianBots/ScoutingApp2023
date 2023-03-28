@@ -1,8 +1,9 @@
-import { MultiButton, FoulCards, SearchBar, options, ConnectionIndicator } from "./Form";
+import { MultiButton, FoulCards, SearchBar } from "./Form";
 import './App.css';
 import React, { useState } from "react";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+
 
 
 function Page(props) {
@@ -15,6 +16,8 @@ function Page(props) {
 
 function SignIn(props) {
     const [showCheck, setshowCheck] = useState(false);
+    const [name, setName] = useState(false);
+    const [greeting, setGreeting] = useState(null);
 
     const handleSubmit = (event) => {
         setshowCheck(true);
@@ -22,18 +25,63 @@ function SignIn(props) {
         setTimeout(() => { setshowCheck(false) }, 5000);
     }
 
+    function gameTime() {
+        let nameInput = document.getElementById("Sname").value;
+        setName(nameInput);
+        console.log(name);
+
+        if (nameInput === 'Natalie') {
+            setGreeting(
+                <div className="natalie">
+                    <p>GOOD MORNING!</p>
+                </div>,
+                setTimeout(() => { setGreeting(false) }, 3000)
+            );
+        } else if (nameInput.includes('Josiah')) {
+            setGreeting(
+                <div className="josiah">
+                    <p>did it</p>
+                </div>,
+                setTimeout(() => { setGreeting(false) }, 1000)
+            );
+        } else if (nameInput.includes('Kyle')) {
+            setGreeting(
+                <div className="kyle">
+                    <input type="button" value="Hmmmm, wonder what this does..." onClick={() => {
+                        if (window.confirm('Are you sure you bought enough Girl Scout cookies yet today?')) {
+                            setGreeting(
+                                <div className="kyle">
+                                    <p>No, you haven't. Go get more.</p>
+                                </div>
+
+                            )
+                        }
+                    }
+                    } />
+                </div>,
+            );
+        }
+
+        else {
+            setGreeting(null);
+        }
+
+    }
+
     return (
         <div>
             <p className="section-label">Super Scouting</p>
             {/* <p className="topNote">If the robot has an "other" drivetrain, specify it in the notes at the bottom!</p> */}
-            <form action="#" onSubmit={handleSubmit}>
+            <form action="#" onSubmit={handleSubmit} id="signin">
                 <div className="textArea">
-                    <input type="text" id="Sname" name="Scouter_Name" placeholder="SCOUTER NAME" className="name" required />
+                    <input type="text" id="Sname" name="Scouter_Name" placeholder="SCOUTER NAME" className="name" onChange={gameTime} required />
+                    {greeting}
                     <br />
 
                     <select name="Competition" id="Ename" defaultValue="Choose" >
-                        <option value="Choose" className="Placeholder" disabled>Choose Event</option>
-                        <option value="Port Hueneme">Port Hueneme</option>
+
+
+                        <option value="LAR">LAR</option>
                     </select>
                     <br />
                     <div className="allianceSelect">
@@ -54,30 +102,40 @@ function SignIn(props) {
 
 function General(props) {
 
-
-    // const [fouls, setFouls] = useState([]);
-
-    const [teamOption1, setTeamOption1] = useState(options[0]); //state
-    const [teamOption2, setTeamOption2] = useState(options[0]); //state
-    const [teamOption3, setTeamOption3] = useState(options[0]); //state
-
-    //functions (setting a function to a variable)
-
+    const handleMatchChange = (event) => {
+        props.onMatchUpdate(event.target.value);
+    }
 
     return (
 
         <Page selected={props.selected} id="general" className="page">
             <p className="section-label">Fouls</p>
+
             <div className="textArea">
                 <br />
-                <input type="number" id="Sname" name="Match_Number" placeholder="MATCH NUMBER" className="name" required min="1" />
+                <input type="number" id="Sname" name="Match_Number" placeholder="MATCH NUMBER" className="name" required min="1" onChange={handleMatchChange} />
                 <br />
                 <br />
+                {/* <div className="driverSkill">Driver skill</div> */}
+
+
                 <div className="boxes">
+
+
                     <div className="team1">
 
+                        {/* <input type="text" placeholder="TEAM 1" className="login" id="team1" name="Team_1" onChange={handleInputChange} /> */}
+                        <SearchBar selectedOption={props.teamOption1} setSelectedOption={props.setTeamOption1} name="Team_1" className="teamSearch" />
+                        <div className="driverSkill">Defense Rating
 
-                        <SearchBar setSelectedOption={setTeamOption1} name="Team_1" className="teamSearch" />
+
+
+
+                            <MultiButton items={[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4']]} id="Team_1_Defense" />
+
+
+                        </div>
+
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
@@ -85,7 +143,7 @@ function General(props) {
                                 close => (
                                     <div className='modal'>
                                         <div className='content'>
-                                            <label className="label-title">{teamOption1.label}</label>
+                                            <label className="label-title">{props.teamOption1.label}</label>
                                             <br />
                                             <br />
                                             <select name="Competition" id="selector" defaultValue="Choose" >
@@ -97,6 +155,8 @@ function General(props) {
                                                 <option value="MultipleGameObjects">Holding multiple game pieces</option>
                                                 <option value="InsideProtectedZone">Inside protected zone</option>
                                                 <option value="Unknown">Unknown</option>
+                                                <option value="InsideProtectedZone">Other (specify)</option>
+
                                             </select>
                                             <br />
                                             <label className="checkboxcss"><input type="checkbox"></input>Tech Foul?</label>
@@ -114,7 +174,7 @@ function General(props) {
                                                 let text = selector.options[selector.selectedIndex].text; //then save let text as index 1?
                                                 let content = document.getElementById("note").value;
 
-                                                props.setFouls([...props.fouls, [teamOption1.value, text, content, selector.selectedIndex]]);
+                                                props.setFouls([...props.fouls, [props.teamOption1.value, text, content, selector.selectedIndex]]);
 
                                                 close();
                                             }}>
@@ -136,7 +196,17 @@ function General(props) {
                     </div>
                     <div className="team2">
 
-                        <SearchBar setSelectedOption={setTeamOption2} name="Team_2" className="teamSearch" />
+                        <SearchBar selectedOption={props.teamOption2} setSelectedOption={props.setTeamOption2} name="Team_2" className="teamSearch" />
+                        <div className="driverSkill">Defense Rating
+
+
+
+
+
+                            <MultiButton items={[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4']]} id="Team_2_Defense" />
+
+
+                        </div>
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
@@ -144,7 +214,7 @@ function General(props) {
                                 close => (
                                     <div className='modal'>
                                         <div className='content'>
-                                            <label className="label-title">{teamOption2.label}</label>
+                                            <label className="label-title">{props.teamOption2.label}</label>
 
                                             <br />
                                             <br />
@@ -156,6 +226,7 @@ function General(props) {
                                                 <option value="InsideOtherRobot">Inside other robot</option>
                                                 <option value="MultipleGameObjects">Holding multiple game pieces</option>
                                                 <option value="InsideProtectedZone">Inside protected zone</option>
+                                                <option value="InsideProtectedZone">Other (specify)</option>
                                                 <option value="Unknown">Unknown</option>
                                             </select>
                                             <br />
@@ -170,7 +241,7 @@ function General(props) {
                                                 let selector = document.getElementById("selector");
                                                 let text = selector.options[selector.selectedIndex].text; //then save let text as index 1?
                                                 let content = document.getElementById("note").value;
-                                                props.setFouls([...props.fouls, [teamOption2.value, text, content, selector.selectedIndex]]);
+                                                props.setFouls([...props.fouls, [props.teamOption2.value, text, content, selector.selectedIndex]]);
 
                                                 close();
                                             }
@@ -194,7 +265,15 @@ function General(props) {
 
                     <div className="team3">
 
-                        <SearchBar setSelectedOption={setTeamOption3} name="Team_3" className="teamSearch" />
+                        <SearchBar selectedOption={props.teamOption3} setSelectedOption={props.setTeamOption3} name="Team_3" className="teamSearch" />
+
+                        <div className="driverSkill">Defense Rating
+
+
+                            <MultiButton items={[['0', '0'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4']]} id="Team_3_Defense" />
+
+
+                        </div>
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
@@ -204,7 +283,7 @@ function General(props) {
                                 close => (
                                     <div className='modal'>
                                         <div className='content'>
-                                            <label className="label-title">{teamOption3.label}</label>
+                                            <label className="label-title">{props.teamOption3.label}</label>
                                             <br />
                                             <br />
                                             <select name="Competition" id="selector" defaultValue="Choose" >
@@ -215,6 +294,7 @@ function General(props) {
                                                 <option value="InsideOtherRobot">Inside other robot</option>
                                                 <option value="MultipleGameObjects">Holding multiple game pieces</option>
                                                 <option value="InsideProtectedZone">Inside protected zone</option>
+                                                <option value="InsideProtectedZone">Other (specify)</option>
                                                 <option value="Unknown">Unknown</option>
 
 
@@ -227,12 +307,10 @@ function General(props) {
                                         <div className="subButton">
 
                                             <button onClick={() => {
-                                                // setFouls = [document.getElementById("popupSelect"), document.getElementById("selector"), document.getElementById("note")];
-
                                                 let selector = document.getElementById("selector");
                                                 let text = selector.options[selector.selectedIndex].text; //then save let text as index 1?
                                                 let content = document.getElementById("note").value;
-                                                props.setFouls([...props.fouls, [teamOption3.value, text, content, selector.selectedIndex]]);
+                                                props.setFouls([...props.fouls, [props.teamOption3.value, text, content]]);
 
                                                 close();
                                             }
@@ -242,6 +320,10 @@ function General(props) {
                                             </button>
                                             <br />
                                         </div>
+
+
+
+
                                         <br />
                                     </div>
                                 )
@@ -254,11 +336,13 @@ function General(props) {
                     </div>
                 </div>
 
+                {/* use what's already here to set a default for the dropdowns? */}
+
                 <br />
                 <br />
 
                 <div className="test2">
-                    <FoulCards fouls={props.fouls}></FoulCards>
+                    <FoulCards fouls={props.fouls} setFouls={props.setFouls} alternateList={[props.teamOption1, props.teamOption2, props.teamOption3]} ></FoulCards>
                 </div>
 
                 {props.fouls.map((e, i) => (<React.Fragment key={i}>
@@ -268,9 +352,31 @@ function General(props) {
                 </React.Fragment>))}
 
                 <input type="hidden" name="length" value={props.fouls.length} />
-                <div>
-                    <ConnectionIndicator downloadCSV={props.downloadCSV} clearData={props.clearData} />
+
+                <div className="textArea">
+                    <p className="generalLabel">Notes</p>
+                    <textarea rows="5" cols="20" id="notes" name="Comments" />
+                    <br />
+                    <div>
+                        {props.connected
+                            ? <input type="submit" className="submit-button" value="Submit & Clear"></input>
+                            : <p className='connerror'>Tablet not connected</p>
+                        }
+                        <br />
+                        <br />
+                        <div className="nonSubmit">
+                            <p className="reminder">DO NOT use this section unless instructed</p>
+                            {props.connected ? null : <input type="submit" className="save-button" value="Save Data & Clear" />}
+                            <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
+                            <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
+                        </div>
+                    </div>
+                    {/* <input type="submit" className="submit-button" /> */}
                 </div>
+            </div>
+
+            <div>
+                <p className="version">Version LAR.0.1</p>
             </div>
 
         </Page >

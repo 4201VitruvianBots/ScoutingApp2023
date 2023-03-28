@@ -1,6 +1,6 @@
-import { NumberInput, MultiButton, SearchBar, options, ConnectionIndicator, ButtonInput } from "./Form";
+import { NumberInput, ButtonInput, MultiButton, SearchBar, options } from "./Form";
 import './App.css';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Page(props) {
     return (
@@ -50,9 +50,16 @@ function SignIn(props) {
                     <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" required />
                     <br />
                     <select name="Competition" id="Ename" defaultValue="Choose" >
-                        <option value="Choose" className="Placeholder" disabled>Choose Event</option>
-                        <option value="Port Hueneme">Port Hueneme</option>
+                       
+                        <option value="LAR">LAR</option>
                     </select>
+                    <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
+                    <div className="allianceSelect">
+                        <MultiButton items={[['RED 1', 'Red 1'], ['RED 2', 'Red 2'], ['RED 3', 'Red 3'], ['BLUE 1', 'Blue 1'], ['BLUE 2', 'Blue 2'], ['BLUE 3', 'Blue 3']]} id="Team_Alliance" />
+
+                    </div>
+                    {/* Off value at index 0, ON value at index 1 */}
+
                     <br />
                     {showCheck && <div class="check"></div>}
                     <input type="submit" className="submit-button" value="Sign In" />
@@ -68,13 +75,12 @@ function SignIn(props) {
 
 function PreGame(props) {
 
-    const [teamOption, setTeamOption] = useState(options[0]); //state
+    const setTeamOption = props.setTeamOption;
 
-    const setSelectedOption = (newOption) => {
+    useEffect(() => setTeamOption(options[0]), []); // eslint-disable-line react-hooks/exhaustive-deps
 
-        setTeamOption(newOption);
-
-        //functions (setting a function to a variable)
+    const handleMatchChange = (event) => {
+        props.onMatchUpdate(event.target.value);
     }
 
     return (
@@ -84,12 +90,12 @@ function PreGame(props) {
             <div className="textArea">
 
                 <p className="itemLabel" htmlFor="Match_Number" required>MATCH NUMBER</p>
-                <input type="number" id="Match_Number" name="Match_Number" className="textInput" required min="1" max="100" />
+                <input type="number" id="Match_Number" name="Match_Number" className="textInput" required min="1" max="100" onChange={handleMatchChange} />
 
                 <p className="itemLabel" htmlFor="Match_Number">TEAM NUMBER</p>
                 {/* <input type="number" id="Team_Number" name="Team_Number" className="textInput" /> */}
 
-                <SearchBar setSelectedOption={setSelectedOption} selectedOption={teamOption} name="Team_Number" className="teamSearch" required />
+                <SearchBar setSelectedOption={setTeamOption} selectedOption={props.teamOption} name="Team_Number" className="teamSearch" required />
 
 
                 <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
@@ -111,7 +117,13 @@ function Auto(props) {
             <p className="section-label" id="Auto">Auto</p>
             <div className="textArea">
 
-                <ButtonInput on_label="Activated!" off_label='Mobility?' id="Mobility" />
+            <div className="align-radio">
+            
+
+                <MultiButton items={[['MOBILITY', 'Mobility'], ['NO MOBILITY', 'No Mobility']]} id="Mobility" />
+
+                </div>
+                
                 <br />
                 <p className="itemLabel">CHARGING STATION</p>
                 <div className="align-radio">
@@ -207,10 +219,33 @@ function SavePage(props) {
                 <input type="textarea" id="Comments" name="Comments" placeholder="Comment here" className="textInput" />
                 <br />
                 <br />
-                <ConnectionIndicator downloadCSV={props.downloadCSV} clearData={props.clearData} />
+                <div>
+                    {props.connected
+                        ? <input type="submit" className="submit-button" value="Submit & Clear"></input>
+                        : <p className='connerror'>Tablet not connected</p>
+                    }
+                    <br />
+                    <br />
+                    <div className="nonSubmit">
+                        <p className="reminder">DO NOT use this section unless instructed</p>
+                        {props.connected ? null : <input type="submit" className="save-button" value="Save Data & Clear" />}
+                        <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
+                        <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
+                        <ButtonInput on_label="Clicked!" className="noshow" off_label='No Show Robot?' value="noshow" id="No_Show_Robot" />
+                    </div>
+                </div>
+
+
+                {/* <label className="item-label" htmlFor="clear">QR code and clear</label>
+                <input type="submit" className="SAVE" value="Generate QR code"></input>
+                <br />
+                <label className="item-label" htmlFor="continue">Save and continue</label>
+                 */}
+                {/* <input type="reset" className="CLEAR" value="Clear Form" /> */}
+                {/* <div id="QRCode">{props.QRCode}</div> */}
             </div>
             <div>
-                <p className="version">Version 0</p>
+                <p className="version">Version LAR.0.1</p>
             </div>
 
 
