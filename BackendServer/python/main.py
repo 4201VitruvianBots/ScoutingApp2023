@@ -158,6 +158,14 @@ def handle_get_team2(number):
         return "robot not found :3", 404
     return rows[0]
 
+@app.route('/data/analysis/min', methods=['GET'])
+def handle_get6():
+    return getdataAnalysis(Min = True)[0]
+
+@app.route('/data/analysis/max', methods=['GET'])
+def handle_get7():
+    return getdataAnalysis(Max = True)[0]
+
 @app.route('/data/analysis/sortby/<column>')
 def handle_get3(column):
     return getdataAnalysis(sortBy=column)
@@ -343,6 +351,14 @@ def updateFoulAnalysis(Team_Number):
 def getdataAnalysis(**kwargs):
     request = "SELECT * FROM dataAnalysis"
     requestInput = []
+    # if min, elif max, else request
+    if 'Min' in kwargs:
+        request = "SELECT " + ", ".join([f"MIN({column})" for column in analysisColumns]) + " FROM dataAnalysis"
+    elif 'Max' in kwargs:
+        request = "SELECT " + ", ".join([f"MAX({column})" for column in analysisColumns]) + " FROM dataAnalysis"
+    else:
+        request = "SELECT * FROM dataAnalysis"
+
     if 'teamNumber' in kwargs:
         request += " WHERE Team_Number=%s"
         requestInput.append(kwargs['teamNumber'])
