@@ -1,10 +1,10 @@
 import './App.css';
-import {scaleLinear} from 'd3-scale';
+import { scaleLinear } from 'd3-scale';
 import { SearchBar, Title, PopupGfg, options } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
- 
-var colorScale0 = scaleLinear().domain([0, 50, 100]).range(['red', 'yellow','lime'])
+
+var colorScale0 = scaleLinear().domain([0, 50, 100]).range(['red', 'yellow', 'lime'])
 var colorScale1 = scaleLinear().domain([0, 0.5, 1, 1.01]).range(['red', 'yellow', 'lime', 'fuchsia']);
 
 
@@ -13,6 +13,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             signedIn: false, ScouterName: "",
+            matchSchedule: null,
             EventName: "",
             selectedOption1: options[0],
             selectedOption2: options[0],
@@ -36,10 +37,12 @@ class App extends React.Component {
         this.setSelectedOption6 = this.setSelectedOption6.bind(this);
 
         this.setSelected = this.setSelected.bind(this);
-        this.SignInHandler = this.SignInHandler.bind(this)
-        this.SubmitHandler = this.SubmitHandler.bind(this)
+        this.SignInHandler = this.SignInHandler.bind(this);
+        this.SubmitHandler = this.SubmitHandler.bind(this);
+        this.handleMatchUpdate = this.handleMatchUpdate.bind(this);   
 
     }
+
 
     setSelectedOption1(e) {
         this.setState({ selectedOption1: e });
@@ -60,6 +63,48 @@ class App extends React.Component {
         this.setState({ selectedOption6: e });
     }
 
+    handleMatchUpdate(event) {
+        const matchNumber = event.target.value;
+        const team = this.state.matchSchedule[matchNumber][0].toString();
+        const team2 = this.state.matchSchedule[matchNumber][1].toString();
+        const team3 = this.state.matchSchedule[matchNumber][2]?.toString();
+        const team4 = this.state.matchSchedule[matchNumber][3]?.toString();
+        const team5 = this.state.matchSchedule[matchNumber][4]?.toString();
+        const team6 = this.state.matchSchedule[matchNumber][5]?.toString();
+        if (team !== undefined) {
+            this.setSelectedOption1({ label: team, value: team })
+            this.setSelectedOption2({ label: team2, value: team2 })
+            this.setSelectedOption3({ label: team3, value: team3 })
+            this.setSelectedOption4({ label: team4, value: team4 })
+            this.setSelectedOption5({ label: team5, value: team5 })
+            this.setSelectedOption6({ label: team6, value: team6 })
+        }
+    }
+
+    componentDidMount() {
+        let scheduleInterval;
+
+        const fetchSchedule = async () => {
+            const url = `http://${process.env.REACT_APP_BACKEND_IP}/schedule.json`;
+            try {
+                const response = await fetch(url);
+                if (response.ok) {
+                    const data = await response.json();
+                    this.setState({ matchSchedule: data });
+                }
+                clearInterval(scheduleInterval);
+            } catch (error) {
+            }
+        }
+
+        fetchSchedule();
+
+        scheduleInterval = setInterval(fetchSchedule, 10000);
+
+        return function cleanup() {
+            clearInterval(scheduleInterval);
+        };
+    }
     // async componentDidMount() {
     //     await this.componentDidUpdate({ selectedOption1: { value: null }, selectedOption2: { value: null }, selectedOption3: { value: null }, selectedOption4: { value: null }, selectedOption5: { value: null }, selectedOption6: { value: null } });
     // }
@@ -153,6 +198,7 @@ class App extends React.Component {
         this.setState({ selected: id });
     }
 
+
     render() {
 
         return (
@@ -161,7 +207,7 @@ class App extends React.Component {
                     <Title selected={this.state.selected === 'title'} />
                     <table >
                         <tr>
-                            <td rowspan="2" colspan="3" className="colorbg1">Match Data Table</td>
+                            <td rowspan="2" colspan="3" className="colorbg1">Match Number<br /><input type="number" min="1" max="100" onChange={this.handleMatchUpdate} required></input></td>
                             <td colspan="2" className="colorbg1">
                                 <SearchBar setSelectedOption={this.setSelectedOption1} selectedOption={this.state.selectedOption1} />
                             </td>
@@ -203,7 +249,7 @@ class App extends React.Component {
                             <td colspan="2" className="colorbg">Total Game Pieces</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
-                                    <td className="nobgcolor" style={{backgroundColor: colorScale1(Math.round(this.state[`data${i}`]?.Auto_Total_Average * 100) / 100),}}>{Math.round(this.state[`data${i}`]?.Auto_Total_Average * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{ backgroundColor: colorScale1(Math.round(this.state[`data${i}`]?.Auto_Total_Average * 100) / 100), }}>{Math.round(this.state[`data${i}`]?.Auto_Total_Average * 100) / 100}</td>
                                     <td className="test">{Math.round(this.state[`data${i}`]?.Auto_Total_Max * 100) / 100}</td>
                                 </React.Fragment>
                             ))}
@@ -241,7 +287,7 @@ class App extends React.Component {
                         <tr>
                             <td colSpan="2" className="colorbg">% Balanced / Docked</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <td colSpan="2" className="colorbg2" style={{backgroundColor: colorScale0((this.state[`data${i}`]?.Auto_Balance_Frequency) * 100)}}>{`${(this.state[`data${i}`]?.Auto_Balance_Frequency) * 100}%`}</td>
+                                <td colSpan="2" className="colorbg2" style={{ backgroundColor: colorScale0((this.state[`data${i}`]?.Auto_Balance_Frequency) * 100) }}>{`${(this.state[`data${i}`]?.Auto_Balance_Frequency) * 100}%`}</td>
                             ))}
                         </tr>
                         <tr>
@@ -366,7 +412,7 @@ class App extends React.Component {
                             <td rowspan="2" className="colorbg1">Endgame</td>
                             <td colspan="2" className="colorbg">% Docked</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <td className="test" colspan="2" key={i} style={{backgroundColor: colorScale0(Math.round(this.state[`data${i}`]?.End_Dock_Frequency * 10000) / 100),}}>{Math.round(this.state[`data${i}`]?.End_Dock_Frequency * 10000) / 100}%</td>
+                                <td className="test" colspan="2" key={i} style={{ backgroundColor: colorScale0(Math.round(this.state[`data${i}`]?.End_Dock_Frequency * 10000) / 100), }}>{Math.round(this.state[`data${i}`]?.End_Dock_Frequency * 10000) / 100}%</td>
                             ))}
                         </tr>
                         <tr>
