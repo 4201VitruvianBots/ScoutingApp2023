@@ -1,20 +1,71 @@
-import Table from 'react-bootstrap/Table';
+class BlankTableData {
+    /** @type {string} */
+    name;
+    /** @type {string[]} */
+    entries;
+
+    /**
+     * 
+     * @param {string} name 
+     * @param {string[]} entries 
+     */
+    constructor(name, entries) {
+        this.name = name;
+        this.entries = entries;
+    }
+}
+
+class SimpleTableData extends BlankTableData {
+    /** @type {string} */
+    statistic;
+    /** @type {boolean} */
+    descending;
+
+    /**
+     * 
+     * @param {string} name 
+     * @param {string[]} entries 
+     * @param {string} statistic 
+     * @param {boolean} descending 
+     */
+    constructor(name, entries, statistic, descending = true) {
+        super(name, entries);
+        this.statistic = statistic;
+        this.descending = descending;
+    }
+}
+
+class WeightedTableData extends BlankTableData {
+    /** @type {{id: string, weight: number}[]} */
+    statistics;
+
+    /**
+     * 
+     * @param {string} name 
+     * @param {string[]} entries 
+     * @param {{id: string, weight: number}[]} statistics 
+     */
+    constructor(name, entries, statistics) {
+        super(name, entries);
+        this.statistics = statistics;
+    }
+}
 
 function SimpleTable() {
 
     return (
-        <table> 
+        <table>
             <thead>
                 <tr>
                     <th colSpan={2}>Average Auto Grid</th>
                 </tr>
-            </thead> 
+            </thead>
             <tbody>
                 <tr>
                     <td>4201</td>
                     <td>3.8</td>
                 </tr>
-                <tr> 
+                <tr>
                     <td>3476</td>
                     <td>6.2</td>
                 </tr>
@@ -37,5 +88,5 @@ function BlankTable() {
 function FinalTable() {
 
 }
-export { SimpleTable, WeightedTable, BlankTable, FinalTable };
 
+export { SimpleTableData, WeightedTableData, BlankTableData, SimpleTable, WeightedTable, BlankTable, FinalTable };

@@ -1,10 +1,9 @@
 import './App.css';
 import Popup from 'reactjs-popup';
 import { SimplePopup, PopupButton } from './Popup.js';
-import { SimpleTable } from './Table.js';
+import { BlankTableData, SimpleTableData, WeightedTableData, SimpleTable } from './Table.js';
 import { useState } from 'react';
 import { mutableObject } from './Util';
-import { BlankTableData, SimpleTableData, WeightedTableData } from './Data';
 
 function App() {
   /** @type {(BlankTableData | SimpleTableData | WeightedTableData )[]} */
