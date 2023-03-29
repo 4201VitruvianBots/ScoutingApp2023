@@ -1,0 +1,38 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+table {
+  background-color: orange;
+  border: 5px black solid;
+  border-collapse: collapse;
+}
+
+table,
+ th,
+ td {
+   
+   border: 2px solid;
+ }
+
+ .popup {
+  background-color: teal;
+  margin: 0 auto;
+  width: 500px;
+  height: 500px;
+ }
+
+ .close {
+  font-size: 50px;
+ }

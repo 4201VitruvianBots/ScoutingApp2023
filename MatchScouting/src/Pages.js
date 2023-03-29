@@ -39,6 +39,33 @@ function SignIn(props) {
         setTimeout(() => { setshowCheck(false) }, 5000);
     }
 
+    function changePage(){
+
+        // let /*index of selected button*/ = colorInput;
+        let colorInput = document.getElementById("Team_Alliance").current.value;
+
+        
+        if (colorInput <= 2){
+            /*reder page red*/
+            console.log('red');
+           
+        } else {
+            /*reder page blue*/
+            console.log('blue');
+        }
+
+        //need to 
+
+
+        
+        // console.log(colorInput);
+
+        // if selected value is 0-2, turn the page red; if 3-5, turn the page blue
+
+        
+    }
+
+
     return (
         <div>
             <p className="section-label" id="SignIn">Match Scouting</p>
@@ -53,10 +80,10 @@ function SignIn(props) {
                     </select>
                     <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
                     <div className="allianceSelect">
-                        <MultiButton items={[['RED 1', 'Red 1'], ['RED 2', 'Red 2'], ['RED 3', 'Red 3'], ['BLUE 1', 'Blue 1'], ['BLUE 2', 'Blue 2'], ['BLUE 3', 'Blue 3']]} id="Team_Alliance" />
-
+                        <MultiButton items={[['RED 1', 'Red 1'], ['RED 2', 'Red 2'], ['RED 3', 'Red 3'], ['BLUE 1', 'Blue 1'], ['BLUE 2', 'Blue 2'], ['BLUE 3', 'Blue 3']]} id="Team_Alliance" onChange={changePage}/>
+                        {/* Off value at index 0, ON value at index 1 */}
                     </div>
-                    {/* Off value at index 0, ON value at index 1 */}
+                    
 
                     <br />
                     {showCheck && <div class="check"></div>}

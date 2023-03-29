@@ -163,6 +163,7 @@ class MultiButton extends React.Component {
             }
 
             output.push(component)
+        
 
 
         }
@@ -175,7 +176,7 @@ class MultiButton extends React.Component {
         return (
             <div className="[className]">
                 <this.generateButtons />
-                <input type='hidden' name={this.state.id} value={this.state.selected} />
+                <input type='hidden' name={this.state.id} value={this.state.selected}/>
             </div>
         )
 
