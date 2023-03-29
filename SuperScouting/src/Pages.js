@@ -364,7 +364,7 @@ function General(props) {
             </div>
 
             <div>
-                <p className="version">Version LAR.0</p>
+                <p className="version">Version LAR.0.1</p>
             </div>
 
         </Page >
