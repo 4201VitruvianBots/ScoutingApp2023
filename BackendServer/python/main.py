@@ -259,10 +259,13 @@ def handle_post6():
             [format_data(formData[key], key) for key in ['Scouter_Name', 'Competition', 'Match_Number', 'Team_Alliance', f"Team_Number[{i}]", f"Cause[{i}]", f"Comments[{i}]"]]
         )
 
-    mycursor.execute('INSERT INTO superScout({}) VALUES ({})'.format(
-        ', '.join(superScoutColumns),
-        ', '.join(['%s'] * len(superScoutColumns))
-    ), [format_data(formData[key], key) for key in superScoutColumns])
+    entries = [1,2,3]
+
+    for team in entries:
+        mycursor.execute(
+            'INSERT INTO superScout(Scouter_Name, Competition, Match_Number, Team_Alliance, Team, Defense, Comments) VALUES(%s, %s, %s,%s, %s, %s, %s)',
+            [format_data(formData[key], key) for key in ['Scouter_Name', 'Competition', 'Match_Number', 'Team_Alliance', f'Team_{team}', f'Team_{team}_Defense', 'Comments']]
+         )
 
     mydb.commit()
     for num in ('1','2','3'):
@@ -334,7 +337,7 @@ def updateAnalysis(Team_Number):
 
 def updateFoulAnalysis(Team_Number):
     mycursor.execute('INSERT IGNORE INTO dataAnalysis(Team_Number) VALUES (%s)', (Team_Number,))
-    mycursor.execute("UPDATE dataAnalysis SET Average_Fouls = (SELECT COUNT(*) FROM fouls WHERE Team_Number = %s) / (SELECT COUNT(*) FROM superScout WHERE Team_1 = %s OR TEAM_2 = %s OR TEAM_3 = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number,Team_Number,Team_Number))
+    mycursor.execute("UPDATE dataAnalysis SET Average_Fouls = (SELECT COUNT(*) FROM fouls WHERE Team_Number = %s) / (SELECT COUNT(*) FROM superScout WHERE Team = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
     for index, name in (1, 'Pin'), (2, 'Disabled'), (3, 'Overextension'), (4, 'Inside_Robot'), (5, 'Multiple_Pieces'), (6, 'Inside_Protected'):
         mycursor.execute(f"UPDATE dataAnalysis SET Total_{name}_Fouls = (SELECT COUNT(*) FROM fouls WHERE Team_Number = %s AND CAUSE = %s) WHERE Team_Number = %s", (Team_Number, index, Team_Number))
 
