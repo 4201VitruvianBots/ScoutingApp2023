@@ -38,6 +38,8 @@ function App() {
 
   return (
     <div className="App">
+      {/* File upload to import CSV */}
+
       <h3 className="pagetitle">Vitruvian Statistical Analysis</h3>
       {/* <div>
        <SimplePopup></SimplePopup> 

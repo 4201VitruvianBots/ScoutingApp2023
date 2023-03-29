@@ -2,7 +2,7 @@ import { useState } from "react";
 import Popup from 'reactjs-popup';
 
 
-function SimplePopup({ close }) {
+function SimplePopup({ data, close }) {
     return (
         <div className="popup">
             <h4>Simple statistic</h4>
@@ -31,11 +31,11 @@ function SimplePopup({ close }) {
 
 }
 
-function WeightedPopup() {
+function WeightedPopup({ data, close }) {
 
 }
 
-function BlankPopup() {
+function BlankPopup({ data, close }) {
 
 }
 function PopupButton() {
@@ -66,6 +66,7 @@ function PopupButton() {
 
             {showDropdown && (
                 <div className='hiddenDropdown'>
+                    {/* Three buttons instead of dropdown */}
                     <select>
                         <option onSelect={() => assign("Simple")}>Simple</option>
                         <option onSelect={() => assign("Weighted")}>Weighted</option>
@@ -99,4 +100,3 @@ function PopupButton() {
 }
 
 export { SimplePopup, WeightedPopup, BlankPopup, PopupButton };
-

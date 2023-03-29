@@ -51,7 +51,7 @@ class WeightedTableData extends BlankTableData {
     }
 }
 
-function SimpleTable() {
+function SimpleTable({ data }) {
 
     return (
         <table>
@@ -76,16 +76,19 @@ function SimpleTable() {
 
 }
 
-function WeightedTable() {
+function WeightedTable({ data }) {
 
 }
 
-function BlankTable() {
+function BlankTable({ data }) {
 
 }
 
+function DNPList({ entries, setEntries }) {
 
-function FinalTable() {
+}
+
+function FinalTable({ entries, setEntries }) {
 
 }
 
