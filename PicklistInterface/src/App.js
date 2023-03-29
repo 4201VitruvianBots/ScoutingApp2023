@@ -2,12 +2,13 @@ import './App.css';
 import Popup from 'reactjs-popup';
 import { SimplePopup, PopupButton } from './Popup.js';
 import { SimpleTable } from './Table.js';
-import Table from 'react-bootstrap/Table';
 import { useState } from 'react';
-// import {SimpleTable, WeightedTable, BlankTable, FinalTable} from './Table.js';
+import { mutableObject } from './Util';
+import { BlankTableData, SimpleTableData, WeightedTableData } from './Data';
 
 function App() {
-  const [tables, setTables] = useState([]);
+  /** @type {(BlankTableData | SimpleTableData | WeightedTableData )[]} */
+  const tables = mutableObject(useState([]));
   /*
     {
       type: 'simple',
@@ -31,6 +32,7 @@ function App() {
     }
 
    */
+
   const [finalPicklist, setFinalPicklist] = useState([]);
   const [DNPList, setDNPList] = useState([]);
   const [robotData, setRobotData] = useState();
@@ -38,35 +40,23 @@ function App() {
   return (
     <div className="App">
       <h3 className="pagetitle">Vitruvian Statistical Analysis</h3>
-
-
-
       {/* <div>
        <SimplePopup></SimplePopup> 
       </div> */}
       <SimpleTable></SimpleTable>
 
-      <PopupButton/>
+      <PopupButton />
 
-      {/* <Popup trigger=
+      <Popup trigger=
         {<input type="button" className="popupButton" value="Add foul"></input>}
         modal nested >
-        {close => (<SimplePopup close={close}/>)}
-      </Popup> */}
-
-
-
-
-
-
+        {close => (<SimplePopup close={close} />)}
+      </Popup>
     </div>
   );
 }
 
-
 export default App;
-
-
 
 /*
  - Combine CSV files from Match, Pit, and Super scouting into one Mega-CSV file
