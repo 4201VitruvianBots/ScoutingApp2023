@@ -35,17 +35,17 @@ function download(data, title) {
     link.click();
 }
 
-function csvStringify(data) {
-    console.log(data);
-    return data.map(e => (
-        e.map(e2 => {
-            if (e2.includes('"') || e2.includes('\n') || e2.includes('\r') || e2.includes(',')) {
-                return '"' + e2.replaceAll('"', '""') + '"';
-            }
-            return e2;
-        }).join(',') + '\r\n'
-    )).join('');
-}
+// function csvStringify(data) {
+//     console.log(data);
+//     return data.map(e => (
+//         e.map(e2 => {
+//             if (e2.includes('"') || e2.includes('\n') || e2.includes('\r') || e2.includes(',')) {
+//                 return '"' + e2.replaceAll('"', '""') + '"';
+//             }
+//             return e2;
+//         }).join(',') + '\r\n'
+//     )).join('');
+// }
 
 class App extends React.Component {
     constructor(props) {
@@ -74,12 +74,12 @@ class App extends React.Component {
             const answer = window.confirm("Would you like to submit the form?");
             if (answer) {
                 const answers = event.target.elements;
-                const data = fields.map(e => answers[e]?.value);
-                const csv = csvStringify([data]);
+                const data = fields.map(e => [e, answers[e]?.value]);
+                const dataObject = Object.fromEntries(data);
                 const time = new Date();
                 const hour = time.getHours().toString().padStart(2, '0');
                 const minute = time.getMinutes().toString().padStart(2, '0');
-                download(csv, `Pit_Scout_${hour}${minute}.csv`)
+                download(JSON.stringify(dataObject), `Pit_Scout_${hour}${minute}.json`)
                 event.target.reset();
                 this.setTeamOption({ value: null });
                 window.location.href = "#SignIn"
