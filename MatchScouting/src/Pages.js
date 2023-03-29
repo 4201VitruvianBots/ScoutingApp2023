@@ -50,7 +50,7 @@ function SignIn(props) {
                     <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" required />
                     <br />
                     <select name="Competition" id="Ename" defaultValue="Choose" >
-                       
+
                         <option value="LAR">LAR</option>
                     </select>
                     <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
@@ -97,12 +97,6 @@ function PreGame(props) {
 
                 <SearchBar setSelectedOption={setTeamOption} selectedOption={props.teamOption} name="Team_Number" className="teamSearch" required />
 
-
-                <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
-                <div className="allianceSelect">
-                    <MultiButton items={[['BLUE 1', 'Blue 1'], ['BLUE 2', 'Blue 2'], ['BLUE 3', 'Blue 3'], ['RED 1', 'Red 1'], ['RED 2', 'Red 2'], ['RED 3', 'Red 3']]} id="Team_Alliance" />
-
-                </div>
             </div>
         </Page>
 
@@ -117,13 +111,13 @@ function Auto(props) {
             <p className="section-label" id="Auto">Auto</p>
             <div className="textArea">
 
-            <div className="align-radio">
-            
+                <div className="align-radio">
 
-                <MultiButton items={[['MOBILITY', 'Mobility'], ['NO MOBILITY', 'No Mobility']]} id="Mobility" />
+
+                    <MultiButton items={[['MOBILITY', 'Mobility'], ['NO MOBILITY', 'No Mobility']]} id="Mobility" />
 
                 </div>
-                
+
                 <br />
                 <p className="itemLabel">CHARGING STATION</p>
                 <div className="align-radio">
@@ -229,8 +223,8 @@ function SavePage(props) {
                     <div className="nonSubmit">
                         <p className="reminder">DO NOT use this section unless instructed</p>
                         {props.connected ? null : <input type="submit" className="save-button" value="Save Data & Clear" />}
-                        <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
-                        <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
+                        {/* <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
+                        <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} /> */}
                         <ButtonInput on_label="Clicked!" className="noshow" off_label='No Show Robot?' value="noshow" id="No_Show_Robot" />
                     </div>
                 </div>

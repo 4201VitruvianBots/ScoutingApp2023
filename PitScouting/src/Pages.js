@@ -1,4 +1,4 @@
-import { NumberInput, ButtonInput, MultiButton, SearchBar } from "./Form";
+import { NumberInput, ButtonInput, MultiButton, SearchBar, Upload } from "./Form";
 import './App.css';
 import { useState } from "react";
 
@@ -30,7 +30,7 @@ function SignIn(props) {
                     <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" className="name" required />
                     <br />
                     <select name="Competition" id="Ename" defaultValue="Choose">
-                    <option value="LAR">LAR</option>
+                        <option value="LAR">LAR</option>
                     </select>
                     {showCheck && <div class="check"></div>}
                     <input type="submit" className="SAVE" value="Sign In" />
@@ -152,11 +152,11 @@ function SavePage(props) {
                 <input type="submit" className="submit-button" value="Save" />
                 <br />
                 <br />
-                <div className="nonSubmit">
+                {/* <div className="nonSubmit">
                     <p className="reminder">DO NOT use this section unless instructed</p>
                     <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
                     <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
-                </div>
+                </div> */}
             </div>
 
             <div>

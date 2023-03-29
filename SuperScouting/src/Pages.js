@@ -367,8 +367,8 @@ function General(props) {
                         <div className="nonSubmit">
                             <p className="reminder">DO NOT use this section unless instructed</p>
                             {props.connected ? null : <input type="submit" className="save-button" value="Save Data & Clear" />}
-                            <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
-                            <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
+                            {/* <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
+                            <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} /> */}
                         </div>
                     </div>
                     {/* <input type="submit" className="submit-button" /> */}
