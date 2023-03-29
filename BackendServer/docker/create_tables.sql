@@ -47,11 +47,12 @@ CREATE TABLE pitData(
 CREATE TABLE superScout(
 	Scouter_Name TEXT NULL,
 	Competition TEXT NULL,
-	Match_Number INT NULL,
-	Team_Alliance INT NULL,
+	Match_Number INT NOT NULL,
+	Team_Alliance INT NOT NULL,
 	Team INT NULL,
 	Defense INT NULL,
-	Comments TEXT NULL
+	Comments TEXT NULL,
+	PRIMARY KEY (Match_Number, Team_Alliance)
 );
 
 CREATE TABLE fouls(
