@@ -1,13 +1,19 @@
 import './App.css';
+import { scaleLinear } from 'd3-scale';
 import { SearchBar, Title, PopupGfg, options } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
+
+var colorScale0 = scaleLinear().domain([0, 50, 100]).range(['red', 'yellow', 'lime'])
+var colorScale1 = scaleLinear().domain([0, 0.5, 1, 1.01]).range(['red', 'yellow', 'lime', 'fuchsia']);
+
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             signedIn: false, ScouterName: "",
+            matchSchedule: null,
             EventName: "",
             selectedOption1: options[0],
             selectedOption2: options[0],
@@ -31,10 +37,12 @@ class App extends React.Component {
         this.setSelectedOption6 = this.setSelectedOption6.bind(this);
 
         this.setSelected = this.setSelected.bind(this);
-        this.SignInHandler = this.SignInHandler.bind(this)
-        this.SubmitHandler = this.SubmitHandler.bind(this)
+        this.SignInHandler = this.SignInHandler.bind(this);
+        this.SubmitHandler = this.SubmitHandler.bind(this);
+        this.handleMatchUpdate = this.handleMatchUpdate.bind(this);   
 
     }
+
 
     setSelectedOption1(e) {
         this.setState({ selectedOption1: e });
@@ -55,6 +63,48 @@ class App extends React.Component {
         this.setState({ selectedOption6: e });
     }
 
+    handleMatchUpdate(event) {
+        const matchNumber = event.target.value;
+        const team = this.state.matchSchedule[matchNumber][0].toString();
+        const team2 = this.state.matchSchedule[matchNumber][1].toString();
+        const team3 = this.state.matchSchedule[matchNumber][2]?.toString();
+        const team4 = this.state.matchSchedule[matchNumber][3]?.toString();
+        const team5 = this.state.matchSchedule[matchNumber][4]?.toString();
+        const team6 = this.state.matchSchedule[matchNumber][5]?.toString();
+        if (team !== undefined) {
+            this.setSelectedOption1({ label: team, value: team })
+            this.setSelectedOption2({ label: team2, value: team2 })
+            this.setSelectedOption3({ label: team3, value: team3 })
+            this.setSelectedOption4({ label: team4, value: team4 })
+            this.setSelectedOption5({ label: team5, value: team5 })
+            this.setSelectedOption6({ label: team6, value: team6 })
+        }
+    }
+
+    componentDidMount() {
+        let scheduleInterval;
+
+        const fetchSchedule = async () => {
+            const url = `http://${process.env.REACT_APP_BACKEND_IP}/schedule.json`;
+            try {
+                const response = await fetch(url);
+                if (response.ok) {
+                    const data = await response.json();
+                    this.setState({ matchSchedule: data });
+                }
+                clearInterval(scheduleInterval);
+            } catch (error) {
+            }
+        }
+
+        fetchSchedule();
+
+        scheduleInterval = setInterval(fetchSchedule, 10000);
+
+        return function cleanup() {
+            clearInterval(scheduleInterval);
+        };
+    }
     // async componentDidMount() {
     //     await this.componentDidUpdate({ selectedOption1: { value: null }, selectedOption2: { value: null }, selectedOption3: { value: null }, selectedOption4: { value: null }, selectedOption5: { value: null }, selectedOption6: { value: null } });
     // }
@@ -148,24 +198,16 @@ class App extends React.Component {
         this.setState({ selected: id });
     }
 
+
     render() {
 
         return (
             <main>
                 <form onSubmit={this.SubmitHandler} action="#">
                     <Title selected={this.state.selected === 'title'} />
-
-                    {/* <SearchBar setSelectedOption={this.setSelectedOption1} selectedOption={this.state.selectedOption1} /> */}
-                    {/* <SearchBar setSelectedOption={this.setSelectedOption2} selectedOption={this.state.selectedOption2} /> */}
-                    {/* <SearchBar setSelectedOption={this.setSelectedOption3} selectedOption={this.state.selectedOption3} /> */}
-
-                    {/* <SearchBar setSelectedOption={this.setSelectedOption3} selectedOption={this.state.selectedOption3} /> */}
-                    {/* <SearchBar setSelectedOption={this.setSelectedOption5} selectedOption={this.state.selectedOption5} /> */}
-                    {/* <SearchBar setSelectedOption={this.setSelectedOption6} selectedOption={this.state.selectedOption6} /> */}
-
                     <table >
                         <tr>
-                            <td rowspan="2" colspan="3" className="colorbg1">Match Data Table</td>
+                            <td rowspan="2" colspan="3" className="colorbg1">Match Number<br /><input type="number" min="1" max="100" onChange={this.handleMatchUpdate} required></input></td>
                             <td colspan="2" className="colorbg1">
                                 <SearchBar setSelectedOption={this.setSelectedOption1} selectedOption={this.state.selectedOption1} />
                             </td>
@@ -185,331 +227,201 @@ class App extends React.Component {
                                 <SearchBar setSelectedOption={this.setSelectedOption6} selectedOption={this.state.selectedOption6} />
                             </td>
                         </tr>
-
                         <tr>
-                            <td className="colorbg">AVG</td>
-                            <td className="colorbg">MAX</td>
-                            <td className="colorbg">AVG</td>
-                            <td className="colorbg">MAX</td>
-                            <td className="colorbg">AVG</td>
-                            <td className="colorbg">MAX</td>
-                            <td className="colorbg">AVG</td>
-                            <td className="colorbg">MAX</td>
-                            <td className="colorbg">AVG</td>
-                            <td className="colorbg">MAX</td>
-                            <td className="colorbg">AVG</td>
-                            <td className="colorbg">MAX</td>
+                            {[...Array(12)].map((_, i) => (
+                                <td key={i} className="colorbg">{i % 2 === 0 ? "AVG" : "MAX"}</td>
+                            ))}
                         </tr>
                         <tr>
                             <td colspan="3" className="colorbg1">Pin Fouls</td>
-                            <td colspan="2" className="colorbg2">{this.state.data1?.Total_Pin_Fouls}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data2?.Total_Pin_Fouls}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data3?.Total_Pin_Fouls}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data4?.Total_Pin_Fouls}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data5?.Total_Pin_Fouls}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data6?.Total_Pin_Fouls}</td>
-
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <td key={i} colspan="2" className="colorbg2">{this.state[`data${i}`]?.Total_Pin_Fouls}</td>
+                            ))}
                         </tr>
                         <tr>
-                            <td colspan="3" className="colorbg1" >G204 Fouls</td>
-                            <td colspan="2" className="colorbg2">{this.state.data1?.Total_Inside_Robot_Fouls}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data2?.Total_Inside_Robot_Fouls}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data3?.Total_Inside_Robot_Fouls}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data4?.Total_Inside_Robot_Fouls}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data5?.Total_Inside_Robot_Fouls}</td>
-                            <td colspan="2" className="colorbg2">{this.state.data6?.Total_Inside_Robot_Fouls}</td>
+                            <td colspan="3" className="colorbg1">G204 Fouls</td>
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <td key={i} colspan="2" className="colorbg2">{this.state[`data${i}`]?.Total_Inside_Robot_Fouls}</td>
+                            ))}
                         </tr>
                         <tr>
                             <td rowspan="5" className="colorbg1">Auto</td>
                             <td colspan="2" className="colorbg">Total Game Pieces</td>
-                            <td className="nobgcolor">{Math.round(this.state.data1?.Auto_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data1?.Auto_Total_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data2?.Auto_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data2?.Auto_Total_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data3?.Auto_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data3?.Auto_Total_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data4?.Auto_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data4?.Auto_Total_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data5?.Auto_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data5?.Auto_Total_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data6?.Auto_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data6?.Auto_Total_Max * 100) / 100}</td>
-
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <React.Fragment key={i}>
+                                    <td className="nobgcolor" style={{ backgroundColor: colorScale1(Math.round(this.state[`data${i}`]?.Auto_Total_Average * 100) / 100), }}>{Math.round(this.state[`data${i}`]?.Auto_Total_Average * 100) / 100}</td>
+                                    <td className="test">{Math.round(this.state[`data${i}`]?.Auto_Total_Max * 100) / 100}</td>
+                                </React.Fragment>
+                            ))}
                         </tr>
                         <tr>
-
                             <td className="colorbg"></td>
                             <td className="colorbg">Game Pieces High</td>
-                            <td className="nobgcolor">{Math.round(this.state.data1?.Auto_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data1?.Auto_High_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data2?.Auto_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data2?.Auto_High_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data3?.Auto_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data3?.Auto_High_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data4?.Auto_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data4?.Auto_High_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data5?.Auto_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data5?.Auto_High_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data6?.Auto_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data6?.Auto_High_Max * 100) / 100}</td>
-
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <React.Fragment key={i}>
+                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Auto_High_Average * 100) / 100}</td>
+                                    <td className="test">{Math.round(this.state[`data${i}`]?.Auto_High_Max * 100) / 100}</td>
+                                </React.Fragment>
+                            ))}
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Game Pieces Mid</td>
-                            <td className="nobgcolor">{Math.round(this.state.data1?.Auto_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data1?.Auto_Mid_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data2?.Auto_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data2?.Auto_Mid_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data3?.Auto_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data3?.Auto_Mid_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data4?.Auto_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data4?.Auto_Mid_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data5?.Auto_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data5?.Auto_Mid_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data6?.Auto_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data6?.Auto_Mid_Max * 100) / 100}</td>
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <>
+                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Auto_Mid_Average * 100) / 100}</td>
+                                    <td className="test">{Math.round(this.state[`data${i}`]?.Auto_Mid_Max * 100) / 100}</td>
+                                </>
+                            ))}
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Game Pieces Low</td>
-                            <td className="nobgcolor">{Math.round(this.state.data1?.Auto_Low_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data1?.Auto_Low_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data2?.Auto_Low_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data2?.Auto_Low_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data3?.Auto_Low_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data3?.Auto_Low_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data4?.Auto_Low_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data4?.Auto_Low_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data5?.Auto_Low_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data5?.Auto_Low_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data6?.Auto_Low_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data6?.Auto_Low_Max * 100) / 100}</td>
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <>
+                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Auto_Low_Average * 100) / 100}</td>
+                                    <td className="test">{Math.round(this.state[`data${i}`]?.Auto_Low_Max * 100) / 100}</td>
+                                </>
+                            ))}
                         </tr>
                         <tr>
-
-                            <td colspan="2" className="colorbg">% Balanced / Docked</td>
-                            <td colspan="2" className="colorbg2">{this.state.data1?.Auto_Balance_Frequency * 100}%</td>
-                            <td colspan="2" className="colorbg2">{this.state.data2?.Auto_Balance_Frequency * 100}%</td>
-                            <td colspan="2" className="colorbg2">{this.state.data3?.Auto_Balance_Frequency * 100}%</td>
-                            <td colspan="2" className="colorbg2">{this.state.data4?.Auto_Balance_Frequency * 100}%</td>
-                            <td colspan="2" className="colorbg2">{this.state.data5?.Auto_Balance_Frequency * 100}%</td>
-                            <td colspan="2" className="colorbg2">{this.state.data6?.Auto_Balance_Frequency * 100}%</td>
+                            <td colSpan="2" className="colorbg">% Balanced / Docked</td>
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <td colSpan="2" className="colorbg2" style={{ backgroundColor: colorScale0((this.state[`data${i}`]?.Auto_Balance_Frequency) * 100) }}>{`${(this.state[`data${i}`]?.Auto_Balance_Frequency) * 100}%`}</td>
+                            ))}
                         </tr>
                         <tr>
                             <td rowspan="12" className="colorbg1">Tele-Op</td>
                             <td colspan="2" className="colorbg">Total Game Pieces</td>
-                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Pieces_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data1?.Tele_Pieces_Total_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Pieces_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data2?.Tele_Pieces_Total_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Pieces_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data3?.Tele_Pieces_Total_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Pieces_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data4?.Tele_Pieces_Total_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Pieces_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data5?.Tele_Pieces_Total_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Pieces_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data6?.Tele_Pieces_Total_Max * 100) / 100}</td>
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <React.Fragment key={i}>
+                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Pieces_Total_Average * 100) / 100}</td>
+                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Pieces_Total_Max * 100) / 100}</td>
+                                </React.Fragment>
+                            ))}
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Game Pieces High</td>
-                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Pieces_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data1?.Tele_Pieces_High_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Pieces_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data2?.Tele_Pieces_High_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Pieces_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data3?.Tele_Pieces_High_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Pieces_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data4?.Tele_Pieces_High_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Pieces_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data5?.Tele_Pieces_High_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Pieces_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data6?.Tele_Pieces_High_Max * 100) / 100}</td>
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <React.Fragment key={i}>
+                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Pieces_High_Average * 100) / 100}</td>
+                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Pieces_High_Max * 100) / 100}</td>
+                                </React.Fragment>
+                            ))}
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Game Pieces Mid</td>
-                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Pieces_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data1?.Tele_Pieces_Mid_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Pieces_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data2?.Tele_Pieces_Mid_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Pieces_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data3?.Tele_Pieces_Mid_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Pieces_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data4?.Tele_Pieces_Mid_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Pieces_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data5?.Tele_Pieces_Mid_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Pieces_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data6?.Tele_Pieces_Mid_Max * 100) / 100}</td>
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <React.Fragment key={i}>
+                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Pieces_Mid_Average * 100) / 100}</td>
+                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Pieces_Mid_Max * 100) / 100}</td>
+                                </React.Fragment>
+                            ))}
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Game Pieces Low</td>
-                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Pieces_Low_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data1?.Tele_Pieces_Low_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Pieces_Low_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data2?.Tele_Pieces_Low_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Pieces_Low_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data3?.Tele_Pieces_Low_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Pieces_Low_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data4?.Tele_Pieces_Low_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Pieces_Low_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data5?.Tele_Pieces_Low_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Pieces_Low_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data6?.Tele_Pieces_Low_Max * 100) / 100}</td>
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <React.Fragment key={i}>
+                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Pieces_Low_Average * 100) / 100}</td>
+                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Pieces_Low_Max * 100) / 100}</td>
+                                </React.Fragment>
+                            ))}
                         </tr>
                         <tr>
                             <td colspan="2" className="colorbg">Total Cubes Scored</td>
-                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Cube_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data1?.Tele_Cube_Total_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Cube_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data2?.Tele_Cube_Total_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Cube_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data3?.Tele_Cube_Total_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Cube_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data4?.Tele_Cube_Total_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Cube_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data5?.Tele_Cube_Total_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Cube_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data6?.Tele_Cube_Total_Max * 100) / 100}</td>
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <React.Fragment key={i}>
+                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Cube_Total_Average * 100) / 100}</td>
+                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Cube_Total_Max * 100) / 100}</td>
+                                </React.Fragment>
+                            ))}
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Cube High</td>
-                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Cube_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data1?.Tele_Cube_High_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Cube_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data2?.Tele_Cube_High_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Cube_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data3?.Tele_Cube_High_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Cube_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data4?.Tele_Cube_High_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Cube_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data5?.Tele_Cube_High_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Cube_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data6?.Tele_Cube_High_Max * 100) / 100}</td>
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <React.Fragment key={i}>
+                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Cube_High_Average * 100) / 100}</td>
+                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Cube_High_Max * 100) / 100}</td>
+                                </React.Fragment>
+                            ))}
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Cube Mid</td>
-                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Cube_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data1?.Tele_Cube_Mid_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Cube_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data2?.Tele_Cube_Mid_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Cube_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data3?.Tele_Cube_Mid_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Cube_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data4?.Tele_Cube_Mid_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Cube_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data5?.Tele_Cube_Mid_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Cube_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data6?.Tele_Cube_Mid_Max * 100) / 100}</td>
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <React.Fragment key={i}>
+                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Cube_Mid_Average * 100) / 100}</td>
+                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Cube_Mid_Max * 100) / 100}</td>
+                                </React.Fragment>
+                            ))}
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Cube Low</td>
-                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Cube_Low_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data1?.Tele_Cube_Low_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Cube_Low_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data2?.Tele_Cube_Low_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Cube_Low_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data3?.Tele_Cube_Low_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Cube_Low_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data4?.Tele_Cube_Low_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Cube_Low_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data5?.Tele_Cube_Low_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Cube_Low_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data6?.Tele_Cube_Low_Max * 100) / 100}</td>
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <React.Fragment key={i}>
+                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Cube_Low_Average * 100) / 100}</td>
+                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Cube_Low_Max * 100) / 100}</td>
+                                </React.Fragment>
+                            ))}
                         </tr>
                         <tr>
                             <td colspan="2" className="colorbg">Total Cones Scored</td>
-                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Cone_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data1?.Tele_Cone_Total_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Cone_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data2?.Tele_Cone_Total_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Cone_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data3?.Tele_Cone_Total_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Cone_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data4?.Tele_Cone_Total_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Cone_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data5?.Tele_Cone_Total_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Cone_Total_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data6?.Tele_Cone_Total_Max * 100) / 100}</td>
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <React.Fragment key={i}>
+                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Cone_Total_Average * 100) / 100}</td>
+                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Cone_Total_Max * 100) / 100}</td>
+                                </React.Fragment>
+                            ))}
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Cone High</td>
-                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Cone_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data1?.Tele_Cone_High_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Cone_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data2?.Tele_Cone_High_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Cone_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data3?.Tele_Cone_High_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Cone_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data4?.Tele_Cone_High_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Cone_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data5?.Tele_Cone_High_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Cone_High_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data6?.Tele_Cone_High_Max * 100) / 100}</td>
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <React.Fragment key={i}>
+                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Cone_High_Average * 100) / 100}</td>
+                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Cone_High_Max * 100) / 100}</td>
+                                </React.Fragment>
+                            ))}
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Cone Mid</td>
-                            <td className="nobgcolor">{Math.round(this.state.data1?.Tele_Cone_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data1?.Tele_Cone_Mid_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data2?.Tele_Cone_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data2?.Tele_Cone_Mid_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data3?.Tele_Cone_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data3?.Tele_Cone_Mid_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data4?.Tele_Cone_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data4?.Tele_Cone_Mid_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data5?.Tele_Cone_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data5?.Tele_Cone_Mid_Max * 100) / 100}</td>
-                            <td className="nobgcolor">{Math.round(this.state.data6?.Tele_Cone_Mid_Average * 100) / 100}</td>
-                            <td className="test">{Math.round(this.state.data6?.Tele_Cone_Mid_Max * 100) / 100}</td>
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <React.Fragment key={i}>
+                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Cone_Mid_Average * 100) / 100}</td>
+                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Cone_Mid_Max * 100) / 100}</td>
+                                </React.Fragment>
+                            ))}
                         </tr>
                         <tr>
                             <td className="colorbg"></td>
                             <td className="colorbg">Cone Low</td>
-                            <td className="conelow">{Math.round(this.state.data1?.Tele_Cone_Low_Average * 100) / 100}</td>
-                            <td className="colorbg2">{Math.round(this.state.data1?.Tele_Cone_Low_Max * 100) / 100}</td>
-                            <td className="conelow">{Math.round(this.state.data2?.Tele_Cone_Low_Average * 100) / 100}</td>
-                            <td className="colorbg2">{Math.round(this.state.data2?.Tele_Cone_Low_Max * 100) / 100}</td>
-                            <td className="conelow">{Math.round(this.state.data3?.Tele_Cone_Low_Average * 100) / 100}</td>
-                            <td className="colorbg2">{Math.round(this.state.data3?.Tele_Cone_Low_Max * 100) / 100}</td>
-                            <td className="conelow">{Math.round(this.state.data4?.Tele_Cone_Low_Average * 100) / 100}</td>
-                            <td className="colorbg2">{Math.round(this.state.data4?.Tele_Cone_Low_Max * 100) / 100}</td>
-                            <td className="conelow">{Math.round(this.state.data5?.Tele_Cone_Low_Average * 100) / 100}</td>
-                            <td className="colorbg2">{Math.round(this.state.data5?.Tele_Cone_Low_Max * 100) / 100}</td>
-                            <td className="conelow">{Math.round(this.state.data6?.Tele_Cone_Low_Average * 100) / 100}</td>
-                            <td className="colorbg2">{Math.round(this.state.data6?.Tele_Cone_Low_Max * 100) / 100}</td>
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <React.Fragment key={i}>
+                                    <td className="conelow">{Math.round(this.state[`data${i}`]?.Tele_Cone_Low_Average * 100) / 100}</td>
+                                    <td className="colorbg2">{Math.round(this.state[`data${i}`]?.Tele_Cone_Low_Max * 100) / 100}</td>
+                                </React.Fragment>
+                            ))}
                         </tr>
                         <tr>
                             <td rowspan="2" className="colorbg1">Endgame</td>
                             <td colspan="2" className="colorbg">% Docked</td>
-                            <td className="test" colspan="2">{this.state.data1?.End_Dock_Frequency * 100}%</td>
-                            <td className="test" colspan="2">{this.state.data2?.End_Dock_Frequency * 100}%</td>
-                            <td className="test" colspan="2">{this.state.data3?.End_Dock_Frequency * 100}%</td>
-                            <td className="test" colspan="2">{this.state.data4?.End_Dock_Frequency * 100}%</td>
-                            <td className="test" colspan="2">{this.state.data5?.End_Dock_Frequency * 100}%</td>
-                            <td className="test" colspan="2">{this.state.data6?.End_Dock_Frequency * 100}%</td>
-
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <td className="test" colspan="2" key={i} style={{ backgroundColor: colorScale0(Math.round(this.state[`data${i}`]?.End_Dock_Frequency * 10000) / 100), }}>{Math.round(this.state[`data${i}`]?.End_Dock_Frequency * 10000) / 100}%</td>
+                            ))}
                         </tr>
                         <tr>
                             <td colspan="2" className="colorbg">% Balanced</td>
-                            <td colspan="2" className="colorbg2">{this.state.data1?.End_Balance_Frequency * 100}%</td>
-                            <td colspan="2" className="colorbg2">{this.state.data2?.End_Balance_Frequency * 100}%</td>
-                            <td colspan="2" className="colorbg2">{this.state.data3?.End_Balance_Frequency * 100}%</td>
-                            <td colspan="2" className="colorbg2">{this.state.data4?.End_Balance_Frequency * 100}%</td>
-                            <td colspan="2" className="colorbg2">{this.state.data5?.End_Balance_Frequency * 100}%</td>
-                            <td colspan="2" className="colorbg2">{this.state.data6?.End_Balance_Frequency * 100}%</td>
-
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <td className="test" colspan="2" key={i}>{Math.round(this.state[`data${i}`]?.End_Balance_Frequency * 10000) / 100}%</td>
+                            ))}
                         </tr>
-
                     </table>
-
                     <PopupGfg data={this.state.data} />
 
                     {/* <General selected={this.state.selected === 'general'} /> */}
