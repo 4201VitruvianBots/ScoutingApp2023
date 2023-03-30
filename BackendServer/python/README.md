@@ -4,7 +4,7 @@
 python -m venv venv
 
 # For Linux/Mac:
-source <venv>/bin/activate
+source venv/bin/activate
 # For Windows:
 venv/Scripts/Activate.ps1
 

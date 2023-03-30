@@ -108,39 +108,27 @@ function General(props) {
     );
 }
 
-
-
 function Photos(props) {
     return (
         <Page selected={props.selected} id="photos">
             <p className="section-label">Photos</p>
             <div className="textArea">
-                <div className="checkboxBOX">
-                    <div className="box">
-                        <Upload></Upload>
-                        <label className="smallLabel"> Drivetrain</label>
-                    </div>
-                    <div className="box">
-                        <Upload></Upload>
-                        <label className="smallLabel"> Intake</label>
-                    </div>
-                    <div className="box">
-                        <Upload></Upload>
-                        <label className="smallLabel"> Uptake</label>
-                    </div>
-                    <div className="box">
-                        <Upload></Upload>
-                        <label className="smallLabel"> Outtake</label>
-                    </div>
-                    <div className="box">
-                        <Upload></Upload>
-                        <label className="smallLabel"> Extras</label>
-                    </div>
-                </div>
+                <p className="smallLabel">DRIVETRAIN</p>
+                <Upload name="Drivetrain_Photo"></Upload>
+                <p className="smallLabel">INTAKE</p>
+                <Upload name="Intake_Photo"></Upload>
+                <p className="smallLabel">UPTAKE</p>
+                <Upload name="Uptake_Photo"></Upload>
+                <p className="smallLabel">OUTTAKE</p>
+                <Upload name="Outtake_Photo"></Upload>
+                <p className="smallLabel">EXTRAS</p>
+                <Upload name="Extras_Photo"></Upload>
+                {/* <input type="file" multiple accept="image/*" /> */}
             </div>
         </Page>
     );
 }
+
 
 function SavePage(props) {
     return (
@@ -167,4 +155,4 @@ function SavePage(props) {
     );
 }
 
-export { SignIn, General, SavePage };
+export { SignIn, General, Photos, SavePage };
