@@ -1,6 +1,6 @@
 import './App.css';
 import Popup from 'reactjs-popup';
-import { SimplePopup } from './Popup.js';
+import { SimplePopup, PopupButton } from './Popup.js';
 import { SimpleTable } from './Table.js';
 import Table from 'react-bootstrap/Table';
 import { useState } from 'react';
@@ -46,11 +46,13 @@ function App() {
       </div> */}
       <SimpleTable></SimpleTable>
 
-      <Popup trigger=
+      <PopupButton/>
+
+      {/* <Popup trigger=
         {<input type="button" className="popupButton" value="Add foul"></input>}
         modal nested >
         {close => (<SimplePopup close={close}/>)}
-      </Popup>
+      </Popup> */}
 
 
 

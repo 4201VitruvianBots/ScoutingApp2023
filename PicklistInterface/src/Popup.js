@@ -1,6 +1,8 @@
 import { useState } from "react";
+import Popup from 'reactjs-popup';
 
-function SimplePopup({close}) {
+
+function SimplePopup({ close }) {
     return (
         <div className="popup">
             <h4>Simple statistic</h4>
@@ -16,11 +18,11 @@ function SimplePopup({close}) {
                 <option value="average_total_teleop_points">Avg Total Teleop Points</option>
             </select>
             <br />
-            <label for="title">Descending?</label>
+            <label>Descending?</label>
             <input type="checkbox"></input>
 
             <button className="close" onClick={close}>Okay</button>
-                
+
 
 
         </div>
@@ -36,24 +38,65 @@ function WeightedPopup() {
 function BlankPopup() {
 
 }
-function PopupButton(){
+function PopupButton() {
+
+    const [showDropdown, setShowDropdown] = useState(false);
 
     const [option, setOption] = useState();
 
-    return(
+
+    // function handleHover() {
+
+    // }
+
+    function dropdown() {
+        setShowDropdown(true);
+    }
+
+    function assign(selectedOption) {
+        console.log('pointZ');
+        setOption(selectedOption);
+        console.log(option);
+    }
+
+
+    return (
         <div>
-        <input type="button" className="popupButton" value="Add foul" ></input>
-        <select>
-            <option>Simple</option>
-            <option>Weighted</option>
-            <option>Blank</option>
-        </select>
-        {/* // conditional formatting, hiding it until clicked
+            <input type="button" className="popupButton" value="Add table" onMouseEnter={dropdown}></input>
+
+            {showDropdown && (
+                <div className='hiddenDropdown'>
+                    <select>
+                        <option onSelect={() => assign("Simple")}>Simple</option>
+                        <option onSelect={() => assign("Weighted")}>Weighted</option>
+                        <option onSelect={() => assign("Blank")}>Blank</option>
+                    </select>
+                    <br />
+
+
+                    <Popup trigger=
+                        {<input type="button" className="popupButton" value="ok"></input>}
+                        modal nested >
+                        {close => (<SimplePopup close={close} />)}
+                    </Popup>
+                </div>
+            )
+            }
+
+
+            {/* {dropdown()} */}
+
+
+            {/* store what the mouse is hovering on in a state variable
+        onMouseEnter=
+
+        // conditional formatting, hiding it until clicked
         //hidden until clicked
-    //option clicked gets set to state, which is psassed into the popups as the title */}
+    //option clicked gets set to state, which is psassed into the popups as the title 
+    onClick={dropdown}*/}
         </div>
     )
 }
 
-export { SimplePopup, WeightedPopup, BlankPopup };
+export { SimplePopup, WeightedPopup, BlankPopup, PopupButton };
 

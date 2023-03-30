@@ -36,3 +36,11 @@ table,
  .close {
   font-size: 50px;
  }
+
+ .hiddenDropdown{
+  background-color: lightgreen;
+  border-radius: 15px;
+  width: 200px;
+  height:fit-content;
+  margin: 0 auto;
+ }
