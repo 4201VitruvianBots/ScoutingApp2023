@@ -22,6 +22,8 @@ function Navigation(props) {
                     <li><a href="#Save">Submit</a></li> {/*change the rest of the code to 'submit' as well? does it matter?*/}
                     <br />
                     <br />
+                    <li className="showalliance">Team ????</li>
+                    <li>1/2/3</li>
                 </ul>
             </div>
 
@@ -48,7 +50,7 @@ function SignIn(props) {
                     <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" required />
                     <br />
                     <select name="Competition" id="Ename" defaultValue="Choose" >
-                       
+
                         <option value="LAR">LAR</option>
                     </select>
                     <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
@@ -95,13 +97,6 @@ function PreGame(props) {
 
                 <SearchBar setSelectedOption={setTeamOption} selectedOption={props.teamOption} name="Team_Number" className="teamSearch" required />
 
-
-                {/* <h1><strong>No show robot?</strong></h1>
-                 <ButtonInput id="Show_Time" on_label="Robot did not show" off_label="Robot showed" />
-                <div className="one">
-                    <MultiButton items={[['Showed up', 'Didn\'t show up']]} name="noShow" />
-                </div> */}
-                <div></div>
             </div>
         </Page>
 
@@ -116,18 +111,18 @@ function Auto(props) {
             <p className="section-label" id="Auto">Auto</p>
             <div className="textArea">
 
-            <div className="align-radio">
-            
+                <div className="align-radio">
 
-                <MultiButton items={[['MOBILITY', 'Mobility'], ['NO MOBILITY', 'No Mobility']]} id="Mobility" />
+
+                    <MultiButton items={[['MOBILITY', 'Mobility'], ['NO MOBILITY', 'No Mobility']]} id="Mobility" />
 
                 </div>
-                
+
                 <br />
                 <p className="itemLabel">CHARGING STATION</p>
                 <div className="align-radio">
 
-                    <MultiButton items={[['NO POINTS', 'No points'], ['DOCKED', 'Docked'], ['ENGAGED', 'Engaged']]} id="Auto_Station" />
+                    <MultiButton items={[['NO POINTS', 'No points'], ['FAILED BALANCE', 'Failed Balance'], ['DOCKED', 'Docked'], ['ENGAGED', 'Engaged']]} id="Auto_Station" />
 
                 </div>
 
@@ -141,14 +136,14 @@ function Auto(props) {
                         <h2>Low</h2>
                     </div>
 
-                    <div>
-                        <h1>Cones</h1>
+                    <div className="cones">
+                        <h1 className="conecube"><div class="triangle-up"></div>Cones</h1>
                         <NumberInput id="Auto_Cone_High" />
                         <NumberInput id="Auto_Cone_Mid" />
                         <NumberInput id="Auto_Cone_Low" />
                     </div>
-                    <div>
-                        <h1>Cubes</h1>
+                    <div className="cubes">
+                        <h1 className="conecube"><div class="square"></div>Cubes</h1>
                         <NumberInput id="Auto_Cube_High" />
                         <NumberInput id="Auto_Cube_Mid" />
                         <NumberInput id="Auto_Cube_Low" />
@@ -176,26 +171,20 @@ function TeleOp(props) {
                         <h2>Low</h2>
                     </div>
 
-                    <div>
+                    <div className="cones">
 
-                        <h1>Cones</h1>
+                        <h1 className="conecube"><div class="triangle-up"></div>Cones</h1>
                         <NumberInput id="Tele_Cone_High" />
                         <NumberInput id="Tele_Cone_Mid" />
                         <NumberInput id="Tele_Cone_Low" />
                     </div>
-                    <div>
-                        <h1>Cubes</h1>
+                    <div className="cubes">
+                        <h1 className="conecube"><div class="square"></div>Cubes</h1>
                         <NumberInput id="Tele_Cube_High" />
                         <NumberInput id="Tele_Cube_Mid" />
                         <NumberInput id="Tele_Cube_Low" />
                     </div>
                 </div>
-
-                {/* <h1>Cones</h1>
-                <h2>High</h2>
-                <NumberInput items={['1']} />
-                <h2>Mid</h2>
-                {/* <br></br> */}
 
             </div>
 
@@ -204,7 +193,7 @@ function TeleOp(props) {
                 <h1>Charging Station</h1>
                 <div className="align-radio">
 
-                    <MultiButton items={[['NO POINTS', 'No points'], ['PARKED', 'Parked'], ['DOCKED', 'Docked'], ['ENGAGED', 'Engaged']]} id="Tele_Station" />
+                    <MultiButton items={[['NO POINTS', 'No points'], ['PARKED', 'Parked'], ['FAILED BALANCE', 'Failed Balance'], ['DOCKED', 'Docked'], ['ENGAGED', 'Engaged']]} id="Tele_Station" />
 
                 </div>
 
@@ -221,19 +210,6 @@ function SavePage(props) {
             <p className="section-label">Submit</p>
             <div className="textArea">
 
-                {/* <label htmlFor="notes" className="item-label">Notes</label> */}
-                {/* <h1>Some things you could comment are:</h1>
-                <div className="bullet-points">
-
-                    <li className="questions">Placeholder Questions?</li>
-                    <li className="questions">Is it successful?</li>
-                    <li className="questions">Does it move?</li>
-                    <li className="questions">Conesistent?</li>
-                    <li className="questions">Can the robot?</li>
-                    <li className="questions">Does it?</li>
-                </div>
-                <br /> */}
-
                 <input type="textarea" id="Comments" name="Comments" placeholder="Comment here" className="textInput" />
                 <br />
                 <br />
@@ -247,8 +223,8 @@ function SavePage(props) {
                     <div className="nonSubmit">
                         <p className="reminder">DO NOT use this section unless instructed</p>
                         {props.connected ? null : <input type="submit" className="save-button" value="Save Data & Clear" />}
-                        <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
-                        <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
+                        {/* <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
+                        <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} /> */}
                         <ButtonInput on_label="Clicked!" className="noshow" off_label='No Show Robot?' value="noshow" id="No_Show_Robot" />
                     </div>
                 </div>

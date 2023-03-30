@@ -100,15 +100,7 @@ class App extends React.Component {
                 <p className="page-title">Welcome to Vitruvian Scouting</p>
                 {<SignIn onSubmit={this.SignInHandler} />}
 
-                {/*
-            <div >
-                <TabButton headerButtonsonClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>
-                <TabButton onClick={this.setSelected} tabId="General">General</TabButton>
-                <TabButton onClick={this.setSelected} tabId="tele-op">Photos</TabButton>
-                <TabButton onClick={this.setSelected} tabId="endgame">Endgame</TabButton>
-                <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
-            </div>
-      */}
+
                 <form action={`http://${process.env.REACT_APP_BACKEND_IP}/data/pits`} method="POST" id="myForm" onSubmit={this.handleSubmit}>
                     <input type='hidden' value={this.state.EventName} name='Competition' />
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
@@ -125,9 +117,7 @@ class App extends React.Component {
     }
 }
 
-// function TabButton(props) {
-//     return <button onClick={() => props.onClick(props.tabId)}>{props.children}</button>;
-// }
+
 
 
 

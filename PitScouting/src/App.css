@@ -1,185 +1,173 @@
 :root {
-    --accent-1: white;
-    --accent-4: #003800;
-    --background-1: #59aa59;
-    --accent-default: var(--accent-3);
-    --bg-color: var(--background-1);
-    text-align: center;
-    font-family: system-ui;
+  --accent-1: white;
+  --accent-4: #003800;
+  --background-1: #59aa59;
+  --accent-default: var(--accent-3);
+  --bg-color: var(--background-1);
+  text-align: center;
+  font-family: system-ui;
 
 }
 
 .textArea {
-    background-color: #ecf2eb;
-    min-width: 300px;
-    min-height: 100px;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 10px;
+  background-color: #ecf2eb;
+  min-width: 300px;
+  min-height: 100px;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
 }
 
 /* Titles, Headers, & Labels */
 
 .page-title {
-    color: white;
-    font-size: 25px;
-    font-style: italic;
-    font-weight: 300;
+  color: white;
+  font-size: 25px;
+  font-style: italic;
+  font-weight: 300;
 }
 
 .section-label {
-    color: black;
-    font-size: 30px;
-    font-weight: bold;
-    margin: 20px;
-
+  color: black;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 20px;
 }
 
 ::placeholder {
-    color: gray;
-    font-size: 15px;
-    font-style: italic;
-    text-align: center;
+  color: gray;
+  font-size: 15px;
+  font-style: italic;
+  text-align: center;
 }
 
 .dropdown {
-    border-color: #085f00;
-    border-width: 50px;
+  border-color: #085f00;
+  border-width: 50px;
 }
-
 
 .numberInput {
-    border-color: #085f00;
-    border-width: 50px;
-    margin: 10px;
+  border-color: #085f00;
+  border-width: 50px;
+  margin: 10px;
 }
 
-
-
 body {
-    margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 100;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: var(--bg-color);
-    color: var(--accent-1);
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 100;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-color);
+  color: var(--accent-1);
 }
 
 select {
-    border-color: var(--accent-3);
-    background-color: var(--accent-1);
-    display: block;
-    width: 200px;
-    height: 40px;
-    font-size: 25px;
-    margin: 0 auto;
+  border-color: var(--accent-3);
+  background-color: var(--accent-1);
+  display: block;
+  width: 200px;
+  height: 40px;
+  font-size: 25px;
+  margin: 0 auto;
 }
 
 input[type="text"],
 textarea {
-    border: black 1.5px solid;
-    border-radius: 3.5px;
-    color: black;
-    display: block;
-    font-size: 15px;
-    margin: 0 auto;
-    /* margin-bottom: 20px; */
-    overflow-wrap: break-word;
-    font-family: system-ui;
-    text-align: center;
+  border: black 1.5px solid;
+  border-radius: 3.5px;
+  color: black;
+  display: block;
+  font-size: 15px;
+  margin: 0 auto;
+  overflow-wrap: break-word;
+  font-family: system-ui;
+  text-align: center;
 }
 
 input[type="text"] {
-    height: 30px;
-    text-align: center;
+  height: 30px;
+  text-align: center;
 }
 
-
 .chonk {
-    display: inline !important;
-    width: 50px !important;
-    height: 32.5px !important;
-    font-size: 25px !important;
-    background-color: #003800;
-
+  display: inline !important;
+  width: 50px !important;
+  height: 32.5px !important;
+  font-size: 25px !important;
+  background-color: #003800;
 }
 
 input[type=button].chonk {
-    background-color: #cad3c8;
-    border-width: 2px;
-    border-color: #83c183;
+  background-color: #cad3c8;
+  border-width: 2px;
+  border-color: #83c183;
 }
 
-
-
 input[type="radio"] {
-    border-color: var(--accent-3);
-    background-color: var(--accent-1);
-    width: 50px;
-    height: 20px;
-    display: inline;
-
+  border-color: var(--accent-3);
+  background-color: var(--accent-1);
+  width: 50px;
+  height: 20px;
+  display: inline;
 }
 
 input[type="number"] {
-    display: inline !important;
-    background-color: var(--accent-1);
-    width: 50px !important;
-    height: 32.5px !important;
-    font-size: 25px;
-    text-align: center;
-    border-color: teal;
+  display: inline !important;
+  background-color: var(--accent-1);
+  width: 50px !important;
+  height: 32.5px !important;
+  font-size: 25px;
+  text-align: center;
+  border-color: teal;
 }
 
 .SAVE,
 .CLEAR {
-    display: inline-block;
-    width: 300px;
-    height: 35px;
-    font-size: 20px;
-    margin: 15px;
-    border-radius: 30px;
+  display: inline-block;
+  width: 300px;
+  height: 35px;
+  font-size: 20px;
+  margin: 15px;
+  border-radius: 30px;
 }
 
 .SAVE {
-    background-color: #83c183;
-    margin-top: 30px;
-    margin-bottom: 10px;
-
+  background-color: #83c183;
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
 
 .CLEAR {
-    border-color: var(--accent-3);
-    background-color: red;
-    /*Make this color better*/
+  border-color: var(--accent-3);
+  background-color: red;
+  /*Make this color better*/
 }
 
 .savept2 {
-    display: inline-block;
-    width: 250px !important;
-    height: 35px;
-    font-size: 25px;
-    border-color: var(--accent-3);
-    background-color: var(--accent-2);
+  display: inline-block;
+  width: 250px !important;
+  height: 35px;
+  font-size: 25px;
+  border-color: var(--accent-3);
+  background-color: var(--accent-2);
 }
 
 .radioButtons {
-    display: inline-block;
-    text-align: left;
+  display: inline-block;
+  text-align: left;
 }
 
 .gallery {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    margin: 0 auto;
-    padding: 10px 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin: 0 auto;
+  padding: 10px 0;
 }
-
 
 .drivetrain,
 .gamepieces,
@@ -190,70 +178,68 @@ input[type="number"] {
 .autos,
 .workingOn,
 .team {
-    background-color: var(--background-1);
-    border: 2px solid rgba(13, 125, 13, 0.585);
-    box-sizing: border-box;
-    padding: 5px;
-    width: 10%;
-    min-width: fit-content;
-    border-radius: 10px;
-    display: inline-block;
-    margin: 15px;
-    flex-grow: 1;
-    max-height: fit-content;
+  background-color: var(--background-1);
+  border: 2px solid rgba(13, 125, 13, 0.585);
+  box-sizing: border-box;
+  padding: 5px;
+  width: 10%;
+  min-width: fit-content;
+  border-radius: 10px;
+  display: inline-block;
+  margin: 15px;
+  flex-grow: 1;
+  max-height: fit-content;
 }
 
 .team {
-    height: fit-content;
+  height: fit-content;
 
 }
 
 .motors,
 .batteries {
-    padding: 10px;
-    min-width: 190px;
+  padding: 10px;
+  min-width: 190px;
 }
 
 .motorType,
 .autos,
 .workingOn {
-    padding: 10px;
-    min-width: fit-content;
-    font: 15px;
+  padding: 10px;
+  min-width: fit-content;
+  font: 15px;
 }
 
 .generalLabel {
-    font-size: 20px;
-    color: black;
-    font-weight: 300;
-    padding: 0px;
-    margin: 10px auto;
+  font-size: 20px;
+  color: black;
+  font-weight: 300;
+  padding: 0px;
+  margin: 10px auto;
 }
 
 .generalButton {
-    width: fit-content;
-    height: 20%;
-    font-size: 15px;
-    font-weight: 550;
-    margin: 0 auto;
-    /* margin-bottom: 10px; */
-    /* border: 2px solid darkgreen; */
-    display: block;
+  width: fit-content;
+  height: 20%;
+  font-size: 15px;
+  font-weight: 550;
+  margin: 0 auto;
+  display: block;
 }
 
 .photoSelect {
-    color: black;
-    font-size: 60px;
+  color: black;
+  font-size: 60px;
 }
 
 p {
-    color: black;
+  color: black;
 }
 
 .photoInput {
 
-    max-height: 300px;
-    max-width: 300px;
+  max-height: 300px;
+  max-width: 300px;
 }
 
 /* .img {
@@ -263,218 +249,206 @@ p {
 } */
 
 .test2 {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: stretch;
-    align-content: stretch;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  align-content: stretch;
 }
-
 
 .allianceSelect .number-off,
 .gamepieces .ToggleButton .number-off,
 .scoringLocation .ToggleButton .number-off {
-    background-color: #87bd87;
-    color: white;
-    font-weight: 600;
-    border: 1.5px darkgreen solid;
+  background-color: #87bd87;
+  color: white;
+  font-weight: 600;
+  border: 1.5px darkgreen solid;
 }
 
 .allianceSelect .number-on,
 .gamepieces .ToggleButton .number-on,
 .scoringLocation .ToggleButton .number-on {
-    /* background-color: rgb(242, 255, 0); */
-    background-color: rgb(5, 255, 5);
-    color: black;
-    font-weight: 600;
-    border: 1.5px rgba(16, 127, 16, 0.61) solid;
-
+  background-color: rgb(5, 255, 5);
+  color: black;
+  font-weight: 600;
+  border: 1.5px rgba(16, 127, 16, 0.61) solid;
 }
 
 .number-on,
 .number-off {
-    display: inline !important;
-    width: 100px;
-    font-size: 15px;
-    text-align: center;
-    border-radius: 7px;
-    font-weight: 600;
-    padding: 5px;
-    margin: 5px;
+  display: inline !important;
+  width: 100px;
+  font-size: 15px;
+  text-align: center;
+  border-radius: 7px;
+  font-weight: 600;
+  padding: 5px;
+  margin: 5px;
 }
 
 .submit-button {
-    background-color: #83c183;
-    width: 400px;
-    height: 40px;
-    font-size: 25px;
-    margin: 25px;
-    border-radius: 30px;
-    font-family: system-ui;
-
+  background-color: #83c183;
+  width: 400px;
+  height: 40px;
+  font-size: 25px;
+  margin: 25px;
+  border-radius: 30px;
+  font-family: system-ui;
 }
 
 .download-button,
 .clear-button {
-
-    color: black;
-    font-size: 15px !important;
-    font-weight: 700;
-    display: inline !important;
-    width: 170px;
-    height: 40px !important;
-    border: none;
-    border-radius: 30px;
-    margin: 15px;
-
+  color: black;
+  font-size: 15px !important;
+  font-weight: 700;
+  display: inline !important;
+  width: 170px;
+  height: 40px !important;
+  border: none;
+  border-radius: 30px;
+  margin: 15px;
 }
 
-
 .download-button {
-    background-color: rgba(0, 183, 255, 0.637);
+  background-color: rgba(0, 183, 255, 0.637);
 }
 
 .clear-button {
-    background-color: rgba(255, 0, 0, 0.637);
+  background-color: rgba(255, 0, 0, 0.637);
 }
 
 .nonSubmit {
-    background-color: gray;
-    border-radius: 30px;
-    width: 90%;
-    margin: 0 auto;
-    padding: 5px;
+  background-color: gray;
+  border-radius: 30px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 5px;
 }
 
 .reminder {
-    font-size: 15px;
-    color: white;
-    font-weight: 600;
-    padding: 1px;
+  font-size: 15px;
+  color: white;
+  font-weight: 600;
+  padding: 1px;
 }
 
 .workingOn input[type="text"] {
-    width: 600px;
-    height: 50px;
+  width: 600px;
+  height: 50px;
 }
 
 .autos input[type="text"],
 .motorType input[type="text"] {
-    width: 200px;
-    height: 50px;
+  width: 200px;
+  height: 50px;
 }
 
 .smallLabel {
-    color: black;
-    font-weight: 500;
-    font-size: 20px;
+  color: black;
+  font-weight: 500;
+  font-size: 20px;
 }
 
 .topNote {
-    font-weight: 500;
-    font-style: italic;
-    color: darkgreen;
+  font-weight: 500;
+  font-style: italic;
+  color: darkgreen;
 }
 
 .team input[type="number"] {
-    width: 150px !important;
+  width: 150px !important;
 }
 
 .textArea input[type="text"] {
-    font-size: 20px;
-    font-weight: 700;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .motorType textarea,
 .autos textarea {
-    font-size: 20px;
-    font-weight: 400;
+  font-size: 20px;
+  font-weight: 400;
 }
 
-
-
 .test2 .team input[type="text"] {
-    font-weight: 900;
-    color: rgb(0, 0, 0);
-    text-align: center;
-    font-size: 30px;
-    width: 45%;
+  font-weight: 900;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-size: 30px;
+  width: 45%;
 }
 
 .textArea input[type="submit"]:active {
-    background-color: darkgreen;
+  background-color: darkgreen;
 }
 
 .check {
-    width: 50px;
-    height: 20px;
-    border-left: 10px solid green;
-    border-bottom: 10px solid green;
-    transform: rotate(-45deg);
-    margin-left: 70%;
-    margin-bottom: 50%;
-    position: absolute;
-
+  width: 50px;
+  height: 20px;
+  border-left: 10px solid green;
+  border-bottom: 10px solid green;
+  transform: rotate(-45deg);
+  margin-left: 70%;
+  margin-bottom: 50%;
+  position: absolute;
 }
 
 .teamSearch {
-    width: 50%;
-    margin: 0 auto;
-    font-size: 20px;
-    font-weight: 600;
-    color: black;
+  width: 50%;
+  margin: 0 auto;
+  font-size: 20px;
+  font-weight: 600;
+  color: black;
 }
 
 .checkboxBOX {
-
-    border-radius: 15px;
-    text-align: left;
-    /* padding:10px; */
-    width: fit-content;
-    margin: 0 auto;
-
-
+  border-radius: 15px;
+  text-align: left;
+  width: fit-content;
+  margin: 0 auto;
 }
 
 .box {
-    margin: 20px;
-    color: black;
+  margin: 20px;
+  color: black;
 }
 
 input [type=checkbox] {
-    vertical-align: middle;
-    position: relative;
-    bottom: 1px;
+  vertical-align: middle;
+  position: relative;
+  bottom: 1px;
 }
-
 
 input[type="checkbox"] {
-
-    width: 50px;
-    height: 20px;
-    font-size: 15px;
-
+  width: 50px;
+  height: 20px;
+  font-size: 15px;
 }
 
+textarea {
+  resize: none;
+}
+
+
 .smallLabel {
-    color: black;
-    font-weight: 500;
-    font-size: 20px;
+  color: black;
+  font-weight: 500;
+  font-size: 20px;
 }
 
 .upload {
-    background-color: lightgray;
-    min-width: 300px;
-    min-height: 200px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  background-color: lightgray;
+  min-width: 300px;
+  min-height: 200px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .upload input {
-    display: none;
+  display: none;
 }
 
 .upload img {
-    color: black;
-    max-width: 500px;
+  color: black;
+  max-width: 500px;
 }

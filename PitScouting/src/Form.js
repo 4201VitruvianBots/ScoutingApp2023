@@ -264,7 +264,7 @@ class MultiButton extends React.Component {
 
     }
 }
-// const React = require('react')
+
 
 class Upload extends React.Component {
     constructor(props) {

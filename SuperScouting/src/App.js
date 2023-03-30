@@ -101,7 +101,7 @@ class App extends React.Component {
                 const hour = time.getHours().toString().padStart(2, '0');
                 const minute = time.getMinutes().toString().padStart(2, '0');
                 download(csv, `Super_Scout_${hour}${minute}.csv`)
-                localStorage.setItem('superScoutData', localStorage.getItem('superScoutData') + csv)
+                // localStorage.setItem('superScoutData', localStorage.getItem('superScoutData') + csv)
                 event.target.submit();
                 const prevMatch = parseInt(answers.Match_Number.value);
                 setTimeout(() => {
@@ -121,15 +121,15 @@ class App extends React.Component {
         }
     }
 
-    downloadCSV() {
-        download(csvStringify([fields]) + localStorage.getItem('superScoutData'), 'Super_Scout.csv');
-    }
+    // downloadCSV() {
+    //     download(csvStringify([fields]) + localStorage.getItem('superScoutData'), 'Super_Scout.csv');
+    // }
 
-    clearData() {
-        if (window.confirm('STOP!!! Ask a scouting coordinator before pressing "ok" :)')) {
-            localStorage.setItem('superScoutData', '');
-        }
-    }
+    // clearData() {
+    //     if (window.confirm('STOP!!! Ask a scouting coordinator before pressing "ok" :)')) {
+    //         localStorage.setItem('superScoutData', '');
+    //     }
+    // }
 
    
 
@@ -267,7 +267,11 @@ class App extends React.Component {
     }
 }
 
-
+// function alliancecolor() {
+//     return (
+//         <div className='app'></div>
+//     )
+// }
 
 // function TabButton(props) {
 //     return <button onClick={() => props.onClick(props.tabId)}>{props.children}</button>;
