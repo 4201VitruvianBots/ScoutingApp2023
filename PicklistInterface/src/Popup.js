@@ -5,9 +5,14 @@ import Popup from 'reactjs-popup';
 function SimplePopup({ data, close }) {
 
     const [descending, setDescending] = useState(false);
+    const [tables, setTables] = useState();
+
+   
+    
 
     function listing() {
         setDescending(true)
+        
     }
 
     return (
@@ -16,13 +21,13 @@ function SimplePopup({ data, close }) {
 
             <div className="popupContent">
                 <label className="popupLabel" htmlFor="title">Title: </label>
-                <input type="text" id="title" className="popupInput"></input>
+                <input type="text" id="title" className="popupInput" onChange={setTables[0]}></input>
             </div>
 
 
             <div className="popupContent">
                 <label htmlFor="sortBy" className="popupLabel">Statistic: </label>
-                <select name="Competition" id="sortBy" defaultValue="Choose" className="popupInput">
+                <select name="Competition" id="sortBy" defaultValue="Choose" className="popupInput" onChange={setTables[1]}>
                     <option value="average_auto_grid_score">Avg Auto Grid Score</option>
                     <option value="average_auto_balance">Avg Auto Balance</option>
                     <option value="average_teleop_grid_score">Avg Teleop Grid Score</option>
@@ -34,28 +39,31 @@ function SimplePopup({ data, close }) {
 
             <div className="popupContent">
                 <label className="popupLabelLast" htmlFor="checkbox">Descending?</label>
-                <input type="checkbox" id="checkbox" className="popupInputLast" onClick={listing}></input>
+                <input type="checkbox" id="checkbox" className="popupInputLast" onClick={listing} onChange={setTables[2]}></input>
             </div>
 
-            
+
 
             <button className="popupClose" onClick={() => {
 
-                let name = document.getElementById("title").value;
-                let option = document.getElementById("sortBy");
-                let sort = option.options[option.selectedIndex].text;
+                // let name = document.getElementById("title").value;
+                // let option = document.getElementById("sortBy");
+                // let sort = option.options[option.selectedIndex].text;
 
-                { data = [name, sort, descending] };
-                console.log([data]);
+                // console.log([name, sort, descending]);
+
+
+                setTables(name, sort, descending);
+                console.log(tables);
 
                 close();
 
-               
+
 
             }}>
                 Create Table
             </button>
-            
+
         </div>
     )
 }
@@ -68,31 +76,10 @@ function WeightedPopup({ data, close }) {
         setDescending(true)
     }
 
-    function addStat(){
+    function addStat() {
 
-            <div>
-            <div className="popupContent-Stat">
-                <label htmlFor="sortBy" className="popupLabel">Statistic: </label>
-                <br/>
-                <select name="Competition" id="sortBy" defaultValue="Choose" className="popupInput">
-                    <option value="average_auto_grid_score">Avg Auto Grid Score</option>
-                    <option value="average_auto_balance">Avg Auto Balance</option>
-                    <option value="average_teleop_grid_score">Avg Teleop Grid Score</option>
-                    <option value="average_teleop_cycle_time">Avg Teleop Cycle Time</option>
-                    <option value="average_total_teleop_points">Avg Total Teleop Points</option>
-                </select>
 
-            </div>
 
-            <div className="popupContent-Weight">
-                <label htmlFor="weight" className="popupLabel">Weight: </label>
-                <br/>
-                <input type="number" id="weight" className="popupInput"></input>
-
-            </div>
-        </div>
-
-       
     }
 
     return (
@@ -101,61 +88,66 @@ function WeightedPopup({ data, close }) {
 
             <div className="gallery">
 
-            
-
-            <div className="popupContent">
-                <label className="popupLabel" htmlFor="title">Title: </label>
-                <input type="text" id="title" className="popupInput"></input>
-            </div>
 
 
-            <div className="popupContent-Stat">
-                <label htmlFor="sortBy" className="popupLabel">Statistic: </label>
-                <br/>
-                <select name="Competition" id="sortBy" defaultValue="Choose" className="popupInput">
-                    <option value="average_auto_grid_score">Avg Auto Grid Score</option>
-                    <option value="average_auto_balance">Avg Auto Balance</option>
-                    <option value="average_teleop_grid_score">Avg Teleop Grid Score</option>
-                    <option value="average_teleop_cycle_time">Avg Teleop Cycle Time</option>
-                    <option value="average_total_teleop_points">Avg Total Teleop Points</option>
-                </select>
+                <div className="popupContent">
+                    <label className="popupLabel" htmlFor="title">Title: </label>
+                    <input type="text" id="title" className="popupInput"></input>
+                </div>
 
-            </div>
 
-            <div className="popupContent-Weight">
-                <label htmlFor="weight" className="popupLabel">Weight: </label>
-                <br/>
-                <input type="number" id="weight" className="popupInput"></input>
+                <div className="popupContent-Stat">
+                    <label htmlFor="sortBy" className="popupLabel">Statistic: </label>
+                    <br />
+                    <select name="Competition" id="sortBy" defaultValue="Choose" className="popupInput">
+                        <option value="average_auto_grid_score">Avg Auto Grid Score</option>
+                        <option value="average_auto_balance">Avg Auto Balance</option>
+                        <option value="average_teleop_grid_score">Avg Teleop Grid Score</option>
+                        <option value="average_teleop_cycle_time">Avg Teleop Cycle Time</option>
+                        <option value="average_total_teleop_points">Avg Total Teleop Points</option>
+                    </select>
 
-            </div>
-            
-            <div className="addStatBox">
-                <button onClick={addStat} className="addStat">Add Statistic</button>
-               
-            </div>
-            
-        
-            <div className="popupContent">
-                <label className="popupLabelLast" htmlFor="checkbox">Descending?</label>
-                <input type="checkbox" id="checkbox" className="popupInputLast" onClick={listing}></input>
-            </div>
+                </div>
 
-            
+                <div className="popupContent-Weight">
+                    <label htmlFor="weight" className="popupLabel">Weight: </label>
+                    <br />
+                    <input type="number" id="weight" className="popupInput"></input>
 
-            <button className="popupClose" onClick={() => {
+                </div>
 
-                let name = document.getElementById("title").value;
-                let option = document.getElementById("sortBy");
-                let sort = option.options[option.selectedIndex].text;
+                <div className="addStatBox">
+                    <button onClick={addStat} className="addStat">Add Statistic</button>
+                    {/* --> NEED TO FINISH THIS!
+                        - Essentially, this Statistic/Weight selection is the same thing as our Foul cards
+                        in SuperScouting. We generate something interactive (buttons, dropdowns, etc), and
+                        then set its value to state. We then add each new item (in this case, each
+                        new Statisitc) to the exising state array. This allows us to create and delete items. 
+                        Use the Foulcards component code in SuperScouting as a reference. */}
+                </div>
 
-                { data = [name, sort, descending] };
-                console.log([data]);
 
-                close();
+                <div className="popupContent">
+                    <label className="popupLabelLast" htmlFor="checkbox">Descending?</label>
+                    <input type="checkbox" id="checkbox" className="popupInputLast" onClick={listing}></input>
+                </div>
 
-            }}>
-                Create Table
-            </button>
+
+
+                <button className="popupClose" onClick={() => {
+
+                    let name = document.getElementById("title").value;
+                    let option = document.getElementById("sortBy");
+                    let sort = option.options[option.selectedIndex].text;
+
+                    { data = [name, sort, descending] };
+                    console.log([data]);
+
+                    close();
+
+                }}>
+                    Create Table
+                </button>
 
             </div>
 
@@ -175,7 +167,7 @@ function BlankPopup({ data, close }) {
 
 }
 
-function PopupButton() {
+function PopupButton({tables, setTables}) {
 
     const [showDropdown, setShowDropdown] = useState(false);
     // const [openPopup, setOpenPopup] = useState(null);
@@ -222,7 +214,7 @@ function PopupButton() {
                         <Popup trigger=
                             {<input type="button" className="dropdownContinue" value="Continue - Simple" ></input>}
                             modal nested >
-                            {close => (<SimplePopup close={end} />)}
+                            {close => (<SimplePopup tables={tables} setTables={setTables} close={end} />)}
                         </Popup>
 
                     )}
