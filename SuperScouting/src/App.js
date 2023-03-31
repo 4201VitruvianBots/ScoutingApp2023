@@ -131,8 +131,6 @@ class App extends React.Component {
     //     }
     // }
 
-
-
     test2(id) {
         this.setState({
             selected: id
@@ -267,7 +265,11 @@ class App extends React.Component {
     }
 }
 
-
+// function alliancecolor() {
+//     return (
+//         <div className='app'></div>
+//     )
+// }
 
 // function TabButton(props) {
 //     return <button onClick={() => props.onClick(props.tabId)}>{props.children}</button>;

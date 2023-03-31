@@ -264,26 +264,43 @@ class MultiButton extends React.Component {
 
     }
 }
-// const React = require('react')
+
 
 class Upload extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { file: null }
+        this.state = { file: null, base64data: '' }
         this.handleChange = this.handleChange.bind(this)
     }
+
+    componentDidMount() {
+        const reset = () => {
+            this.setState({ file: null, base64data: '' });
+        };
+        window.addEventListener('reset', reset);
+        return () => window.removeEventListener('reset', reset);
+    }
+
     handleChange(event) {
-        this.setState({
-            file: URL.createObjectURL(event.target.files[0])
-        })
+        const reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]);
+        reader.onload = () => {
+            this.setState({
+                file: URL.createObjectURL(event.target.files[0]),
+                base64data: reader.result
+            });
+        };
     }
 
     render() {
         return (
-            <div>
-                <input type="file" onChange={this.handleChange} name={this.props.name} />
-                <img src={this.state.file} height="400px" width="300px" alt="Upload" />
-            </div>
+            <label>
+                <div class="upload">
+                    <input type="file" onChange={this.handleChange} />
+                    <input type="hidden" name={this.props.name} value={this.state.base64data} />
+                    <img src={this.state.file} alt="Upload" />
+                </div>
+            </label>
         );
 
     }
