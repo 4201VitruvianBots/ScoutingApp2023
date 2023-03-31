@@ -40,24 +40,24 @@ function App() {
     <div className="App">
       {/* File upload to import CSV */}
 
-      <h3 className="pagetitle">Vitruvian Statistical Analysis</h3>
-      {/* <div>
-       <SimplePopup></SimplePopup> 
-      </div> */}
+    
+     <p className="pagetitle">Vitruvian Statistical Analysis</p>
+      <PopupButton className="popupButton" />
+    
+
       <SimpleTable></SimpleTable>
 
-      <PopupButton />
+      
 
-      <Popup trigger=
-        {<input type="button" className="popupButton" value="Add foul"></input>}
-        modal nested >
-        {close => (<SimplePopup close={close} />)}
-      </Popup>
+      
     </div>
   );
 }
 
+
 export default App;
+
+
 
 /*
  - Combine CSV files from Match, Pit, and Super scouting into one Mega-CSV file

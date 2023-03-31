@@ -1,5 +1,27 @@
 .App {
   text-align: center;
+  --accent-1: white;
+  --accent-4: #003800;
+  --background-1: #255025;
+  --main-green: #085f00;
+  --light-green: #83c183;
+  --accent-default: var(--accent-3);
+  --bg-color: var(--background-1);
+  text-align: center;
+  font-family: system-ui;
+  background-color: #83c183;
+  height: 300em;
+}
+
+.pagetitle {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 auto;
+  width: 100%;
+  padding: 20px;
+  padding-bottom: 30px;
+
 }
 
 .App-header {
@@ -13,34 +35,213 @@
   color: white;
 }
 
+
+.popupButton {
+  font-size: 20px;
+  padding: 7px;
+  font-family: sans-serif;
+  font-weight: 400;
+  background-color: var(--main-green);
+  color: white;
+  height: 40px;
+  border: none;
+  margin: 0 auto;
+  border-radius: 15px;
+  margin-bottom: 25px;
+
+}
+
+.hiddenDropdown {
+  background-color: var(--main-green);
+  border-radius: 15px;
+  width: 300px;
+  height: 80px;
+  margin: -70px auto;
+  padding: 10px;
+  padding-top: 50px;
+  margin-bottom: -70px;
+}
+
+.dropdownButton {
+  font-size: 20px;
+  font-weight: 900;
+  display: inline;
+  margin: 0 5px;
+  color: #003800;
+  background-color: white;
+  border: 2px var(--main-green) solid;
+
+}
+
+.dropdownButton:hover {
+  background-color: gray;
+}
+
+.dropdownButton:active {
+  background-color: var(--accent-4);
+}
+
+/* .dropdownButton{
+    background-color: teal;
+  } */
+
+.dropdownContinue,
+.popupClose, 
+.addStat {
+  font-size: 15px;
+  display: block;
+  margin: 15px auto;
+  border: 0px;
+  border-radius: 15px;
+  width: 150px;
+
+
+}
+
+.addStat{
+  background-color:#255025;
+  color: white;
+  width: fit-content;
+  padding: 10px;
+  margin-bottom: 0px;
+  
+}
+
+.addStatBox{
+  width: 100%;
+}
+
+.dropdownContinue {
+  background-color: #83c183;
+  color: black;
+  font-weight: 600;
+  padding: 5px;
+  width: fit-content;
+}
+
+.dropdownContinue:active{
+  background-color: black;
+}
+
+.popupClose {
+  background-color: #085f00;
+  color: white;
+  width: 120px;
+  padding: 10px;
+
+}
+
+.popup {
+  /* background-color: #00ffff; */
+  background-color: black;
+  border-radius: 15px;
+  width: 300px;
+  height: fit-content;
+  margin: 0 auto;
+  display: block;
+  padding: 10px;
+  margin-top: -300px;
+}
+
+.popupContent {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.popupContent-Stat, .popupContent-Weight {
+  height: 45px;
+}
+
+.popupContent-Stat {
+  /* background-color: orange; */
+  position: relative;
+  width: 150px;
+}
+
+.popupContent-Stat .popupLabel {
+  margin-left: 28%;
+  width: 150px;
+}
+
+.popupContent-Stat .popupInput {
+  width: 130px;
+  height: 20px;
+  margin: 2px;
+  margin-left: 6%;
+}
+
+.popupContent-Weight {
+  /* background-color: purple; */
+  position: relative;
+  width: 100px;
+}
+
+.popupContent-Weight .popupLabel {
+  margin-left: 22.5%;
+  width: 100px;
+}
+
+.popupContent-Weight .popupInput {
+  width: 50px;
+
+  margin: 2px;
+  margin-left: 22.5%;
+  
+}
+
+
+.popupHeader {
+  /* color:#085f00; */
+  color: #83c183;
+  font-size: 25px;
+  font-weight: 650;
+  width: fit-content;
+  margin: 0px auto 10px;
+  padding: 5px;
+}
+
+.popupLabel,
+.popupLabelLast {
+  color: white;
+  font-weight: 500;
+}
+
+.popupInput,
+.popupInputLast {
+  color: black;
+}
+
+.popupLabel,
+.popupInput {
+  margin-bottom: 15px;
+}
+
+
+
+table,
+th,
+td {
+
+  border: 2px solid;
+}
+
 table {
   background-color: orange;
   border: 5px black solid;
   border-collapse: collapse;
 }
 
-table,
- th,
- td {
-   
-   border: 2px solid;
- }
+.test1{
+  background-color: purple;
+}
 
- .popup {
-  background-color: teal;
+.gallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
   margin: 0 auto;
-  width: 500px;
-  height: 500px;
- }
 
- .close {
-  font-size: 50px;
- }
-
- .hiddenDropdown{
-  background-color: lightgreen;
-  border-radius: 15px;
-  width: 200px;
-  height:fit-content;
-  margin: 0 auto;
- }
+}

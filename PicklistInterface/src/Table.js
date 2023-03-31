@@ -1,3 +1,5 @@
+
+
 class BlankTableData {
     /** @type {string} */
     name;
@@ -33,6 +35,7 @@ class SimpleTableData extends BlankTableData {
         this.statistic = statistic;
         this.descending = descending;
     }
+
 }
 
 class WeightedTableData extends BlankTableData {
