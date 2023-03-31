@@ -1,7 +1,34 @@
 import { NumberInput, ButtonInput, MultiButton, SearchBar, Upload } from "./Form";
 import './App.css';
 import { useState } from "react";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
+export default function PopupGfg(props) {
+    return (
+        <div className="textArea">
+            <Popup trigger=
+                {<button>TEST POPUP</button>}
+                modal nested>
+                {
+                    close => (
+                        <div>
+                            
+                            <div>
+                                <button onClick=
+                                    {() => close()}>
+                                    Close popup
+                                </button>
+                            </div>
+                        </div>
+                    )
+                }
+            </Popup>
+            <br></br>
+        </div>
+
+    )
+};
 
 function Page(props) {
     return (
@@ -155,4 +182,4 @@ function SavePage(props) {
     );
 }
 
-export { SignIn, General, Photos, SavePage };
+export { SignIn, General, Photos, SavePage, PopupGfg };
