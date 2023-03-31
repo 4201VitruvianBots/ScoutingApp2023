@@ -131,8 +131,6 @@ class App extends React.Component {
     //     }
     // }
 
-   
-
     test2(id) {
         this.setState({
             selected: id
@@ -226,7 +224,7 @@ class App extends React.Component {
 
                     <General
                         fouls={this.state.fouls} setFouls={this.setFouls}
-                        downloadCSV={this.downloadCSV} clearData={this.clearData}
+                        // downloadCSV={this.downloadCSV} clearData={this.clearData}
                         connected={this.state.connected}
                         teamOption1={this.state.team1} setTeamOption1={this.setTeamOption1}
                         teamOption2={this.state.team2} setTeamOption2={this.setTeamOption2}
