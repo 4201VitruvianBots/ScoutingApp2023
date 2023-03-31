@@ -1,10 +1,10 @@
 USE rawData;
 
 CREATE TABLE matchData(
-	Match_Number INT NULL,
+	Match_Number INT NOT NULL,
 	Team_Number INT NULL,
 	Scouter_Name TEXT NULL,
-	Team_Alliance INT NULL,
+	Team_Alliance INT NOT NULL,
 	Competition TEXT NULL,
 	Mobility BOOLEAN NULL,
 	Auto_Cube_Low INT NULL,
@@ -22,12 +22,13 @@ CREATE TABLE matchData(
 	Tele_Cone_High INT NULL,
 	Tele_Station INT NULL,
 	No_Show_Robot BOOLEAN,
-	Comments TEXT NULL
+	Comments TEXT NULL,
+	PRIMARY KEY (Match_Number, Team_Alliance)
 );
 
 CREATE TABLE pitData(
 	Scouter_Name TEXT NULL,
-	Team_Number INT NULL,
+	Team_Number INT NOT NULL,
 	Competition TEXT NULL,
 	Team_Name TEXT NULL,
 	DriveTrain INT NULL,
@@ -39,17 +40,19 @@ CREATE TABLE pitData(
 	DriveTrain_Motor_Type TEXT NULL,
 	Working_On TEXT NULL,
 	Autos TEXT NULL,
-	Comments TEXT NULL
+	Comments TEXT NULL,
+	PRIMARY KEY (Team_Number)
 );
 
 CREATE TABLE superScout(
 	Scouter_Name TEXT NULL,
 	Competition TEXT NULL,
-	Match_Number INT NULL,
-	Team_Alliance INT NULL,
+	Match_Number INT NOT NULL,
+	Team_Alliance INT NOT NULL,
 	Team INT NULL,
 	Defense INT NULL,
-	Comments TEXT NULL
+	Comments TEXT NULL,
+	PRIMARY KEY (Match_Number, Team_Alliance)
 );
 
 CREATE TABLE fouls(
