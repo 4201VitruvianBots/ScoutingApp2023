@@ -93,11 +93,6 @@ function SignIn(props) {
 
                     <input type="submit" className="SAVE" value="Sign In" />
 
-
-                    {/* when submitted 
-                        <>checkmark image</> */}
-                    {/* onSubmit={handleSubmit} */}
-
                 </div>
             </form>
         </div>
@@ -159,12 +154,13 @@ function General(props) {
                                                 <option value="InsideOtherRobot">Inside other robot</option>
                                                 <option value="MultipleGameObjects">Holding multiple game pieces</option>
                                                 <option value="InsideProtectedZone">Inside protected zone</option>
+                                                <option value="Unknown">Unknown</option>
                                                 <option value="InsideProtectedZone">Other (specify)</option>
 
                                             </select>
                                             <br />
+                                            <label className="checkboxcss"><input type="checkbox"></input>Tech Foul?</label>
                                             <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
-
                                         </div>
 
                                         <div className="subButton">
@@ -192,7 +188,10 @@ function General(props) {
                                 )
                             }
                         </Popup>
-
+                        <div className="pleasecenter">
+                            <p className="commentlabel">Team 1 Notes</p>
+                            <textarea rows="5" cols="18" id="notes" name="Team 1 Comments" />
+                        </div>
 
                     </div>
                     <div className="team2">
@@ -228,8 +227,10 @@ function General(props) {
                                                 <option value="MultipleGameObjects">Holding multiple game pieces</option>
                                                 <option value="InsideProtectedZone">Inside protected zone</option>
                                                 <option value="InsideProtectedZone">Other (specify)</option>
+                                                <option value="Unknown">Unknown</option>
                                             </select>
                                             <br />
+                                            <label className="checkboxcss"><input type="checkbox"></input>Tech Foul?</label>
                                             <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
                                             <br />
                                         </div>
@@ -255,7 +256,10 @@ function General(props) {
                                 )
                             }
                         </Popup>
-
+                        <div>
+                            <p className="commentlabel">Team 2 Notes</p>
+                            <textarea rows="5" cols="18" id="notes" name="Team 2 Comments" />
+                        </div>
 
                     </div>
 
@@ -273,6 +277,8 @@ function General(props) {
                         <Popup trigger=
                             {<input type="button" className="popupButton" value="Add foul"></input>}
                             modal nested>
+
+
                             {
                                 close => (
                                     <div className='modal'>
@@ -289,8 +295,12 @@ function General(props) {
                                                 <option value="MultipleGameObjects">Holding multiple game pieces</option>
                                                 <option value="InsideProtectedZone">Inside protected zone</option>
                                                 <option value="InsideProtectedZone">Other (specify)</option>
+                                                <option value="Unknown">Unknown</option>
+
+
                                             </select>
                                             <br />
+                                            <label className="checkboxcss"><input type="checkbox"></input>Tech Foul?</label>
                                             <textarea id="note" placeholder="Details" rows="4" cols="25" ></textarea>
                                             <br />
                                         </div>
@@ -319,7 +329,10 @@ function General(props) {
                                 )
                             }
                         </Popup>
-
+                        <div>
+                            <p className="commentlabel">Team 3 Notes</p>
+                            <textarea rows="5" cols="18" id="notes" name="Team 3 Comments" />
+                        </div>
                     </div>
                 </div>
 
@@ -354,13 +367,12 @@ function General(props) {
                         <div className="nonSubmit">
                             <p className="reminder">DO NOT use this section unless instructed</p>
                             {props.connected ? null : <input type="submit" className="save-button" value="Save Data & Clear" />}
-                            <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
-                            <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
+                            {/* <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
+                            <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} /> */}
                         </div>
                     </div>
                     {/* <input type="submit" className="submit-button" /> */}
                 </div>
-
             </div>
 
             <div>

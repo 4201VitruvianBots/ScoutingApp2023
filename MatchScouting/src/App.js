@@ -93,7 +93,7 @@ class App extends React.Component {
                 const hour = time.getHours().toString().padStart(2, '0');
                 const minute = time.getMinutes().toString().padStart(2, '0');
                 download(csv, `Match_Scout_${hour}${minute}.csv`)
-                localStorage.setItem('matchData', localStorage.getItem('matchData') + csv)
+                // localStorage.setItem('matchData', localStorage.getItem('matchData') + csv)
                 event.target.submit();
                 const prevMatch = parseInt(answers.Match_Number.value);
                 setTimeout(() => {
@@ -112,15 +112,15 @@ class App extends React.Component {
         }
     };
 
-    downloadCSV() {
-        download(csvStringify([fields]) + localStorage.getItem('matchData'), 'Match_Scout.csv');
-    }
+    // downloadCSV() {
+    //     download(csvStringify([fields]) + localStorage.getItem('matchData'), 'Match_Scout.csv');
+    // }
 
-    clearData() {
-        if (window.confirm('STOP!!! Ask a scouting coordinator before pressing "ok" :)')) {
-            localStorage.setItem('matchData', '');
-        }
-    }
+    // clearData() {
+    //     if (window.confirm('STOP!!! Ask a scouting coordinator before pressing "ok" :)')) {
+    //         localStorage.setItem('matchData', '');
+    //     }
+    // }
 
     componentDidMount() {
         const fetchData = async () => {
@@ -192,15 +192,6 @@ class App extends React.Component {
                 <Navigation selected={this.state.selected === 'navigation'} />
                 {/* <SignIn selected={this.state.selected === 'sign-in'} /> */}
                 <SignIn onSubmit={this.SignInHandler} />
-                {/*
-            <div >
-                <TabButton headerButtonsonClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>
-                <TabButton onClick={this.setSelected} tabId="auto">Auto</TabButton>
-                <TabButton onClick={this.setSelected} tabId="tele-op">Teleop</TabButton>
-                <TabButton onClick={this.setSelected} tabId="endgame">Endgame</TabButton>
-                <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
-            </div>
-      */}
 
 
                 <form action={`http://${process.env.REACT_APP_BACKEND_IP}/data/matches`} method="POST" target="frame" id="myForm" onSubmit={this.handleSubmit}>
@@ -211,7 +202,7 @@ class App extends React.Component {
                     <Auto selected={this.state.selected === 'auto'} />
                     <TeleOp selected={this.state.selected === 'tele-op'} />
 
-                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} downloadCSV={this.downloadCSV} clearData={this.clearData} connected={this.state.connected} />
+                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
                     {/* <input type="submit" className="submit-button"></input> */}
                 </form>
                 <iframe name="frame" title="frame"></iframe>

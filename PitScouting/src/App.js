@@ -1,5 +1,5 @@
 import './App.css';
-import { SignIn, General, SavePage } from "./Pages";
+import { SignIn, General, Photos, SavePage } from "./Pages";
 import { options } from "./Form";
 import React from "react";
 
@@ -18,11 +18,11 @@ const fields = [
     'DriveTrain_Motor_Type',
     'Autos',
     'Working_On',
-    // 'Drivetrain_Photo',
-    // 'Intake_Photo',
-    // 'Uptake_Photo',
-    // 'Outtake_Photo',
-    // 'Extras_Photo',
+    'Drivetrain_Photo',
+    'Intake_Photo',
+    'Uptake_Photo',
+    'Outtake_Photo',
+    'Extras_Photo',
     'Comments'
 ];
 
@@ -35,17 +35,17 @@ function download(data, title) {
     link.click();
 }
 
-function csvStringify(data) {
-    console.log(data);
-    return data.map(e => (
-        e.map(e2 => {
-            if (e2.includes('"') || e2.includes('\n') || e2.includes('\r') || e2.includes(',')) {
-                return '"' + e2.replaceAll('"', '""') + '"';
-            }
-            return e2;
-        }).join(',') + '\r\n'
-    )).join('');
-}
+// function csvStringify(data) {
+//     console.log(data);
+//     return data.map(e => (
+//         e.map(e2 => {
+//             if (e2.includes('"') || e2.includes('\n') || e2.includes('\r') || e2.includes(',')) {
+//                 return '"' + e2.replaceAll('"', '""') + '"';
+//             }
+//             return e2;
+//         }).join(',') + '\r\n'
+//     )).join('');
+// }
 
 class App extends React.Component {
     constructor(props) {
@@ -53,9 +53,7 @@ class App extends React.Component {
         this.state = { signedIn: false, ScouterName: "", EventName: "", teamOption: options[0] };
         this.SignInHandler = this.SignInHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.downloadCSV = this.downloadCSV.bind(this);
         this.setTeamOption = this.setTeamOption.bind(this);
-        this.clearData = this.clearData.bind(this);
     }
 
     setTeamOption(teamOption) {
@@ -76,13 +74,12 @@ class App extends React.Component {
             const answer = window.confirm("Would you like to submit the form?");
             if (answer) {
                 const answers = event.target.elements;
-                const data = fields.map(e => answers[e]?.value);
-                const csv = csvStringify([data]);
+                const data = fields.map(e => [e, answers[e]?.value]);
+                const dataObject = Object.fromEntries(data);
                 const time = new Date();
                 const hour = time.getHours().toString().padStart(2, '0');
                 const minute = time.getMinutes().toString().padStart(2, '0');
-                download(csv, `Pit_Scout_${hour}${minute}.csv`)
-                localStorage.setItem('pitData', localStorage.getItem('pitData') + csv)
+                download(JSON.stringify(dataObject), `Pit_Scout_${hour}${minute}.json`)
                 event.target.reset();
                 this.setTeamOption({ value: null });
                 window.location.href = "#SignIn"
@@ -97,38 +94,20 @@ class App extends React.Component {
         }
     }
 
-    downloadCSV() {
-        download(csvStringify([fields]) + localStorage.getItem('pitData'), 'Pit_Scout.csv');
-    }
-
-    clearData() {
-        if (window.confirm('STOP!!! Ask a scouting coordinator before pressing "ok" :)')) {
-            localStorage.setItem('pitData', '');
-        }
-    }
-
     render() {
         return (
             <main>
                 <p className="page-title">Welcome to Vitruvian Scouting</p>
                 {<SignIn onSubmit={this.SignInHandler} />}
 
-                {/*
-            <div >
-                <TabButton headerButtonsonClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>
-                <TabButton onClick={this.setSelected} tabId="General">General</TabButton>
-                <TabButton onClick={this.setSelected} tabId="tele-op">Photos</TabButton>
-                <TabButton onClick={this.setSelected} tabId="endgame">Endgame</TabButton>
-                <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
-            </div>
-      */}
+
                 <form action={`http://${process.env.REACT_APP_BACKEND_IP}/data/pits`} method="POST" id="myForm" onSubmit={this.handleSubmit}>
                     <input type='hidden' value={this.state.EventName} name='Competition' />
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
 
                     <General selected={this.state.selected === 'general'} teamOption={this.state.teamOption} setTeamOption={this.setTeamOption} />
-
-                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} downloadCSV={this.downloadCSV} clearData={this.clearData} />
+                    <Photos selected={this.state.selected === 'photos'} />
+                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
 
                 </form>
 
@@ -138,9 +117,7 @@ class App extends React.Component {
     }
 }
 
-// function TabButton(props) {
-//     return <button onClick={() => props.onClick(props.tabId)}>{props.children}</button>;
-// }
+
 
 
 
