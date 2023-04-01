@@ -22,6 +22,10 @@ CREATE TABLE matchData(
 	Tele_Cone_High INT NULL,
 	Tele_Station INT NULL,
 	No_Show_Robot BOOLEAN,
+	Parked BOOLEAN,
+	Failed_To_Dock BOOLEAN,
+	Docked BOOLEAN,
+	Engaged BOOLEAN,
 	Comments TEXT NULL
 );
 
@@ -97,6 +101,7 @@ CREATE TABLE dataAnalysis(
 	Tele_Cube_Mid_Max INT,
 	Tele_Cube_High_Average FLOAT,
 	Tele_Cube_High_Max INT,
+	Failed_To_Dock_Ratio FLOAT,
 	End_Dock_Frequency FLOAT,
 	End_Balance_Frequency FLOAT,
 	Average_Fouls FLOAT,

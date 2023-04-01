@@ -335,6 +335,12 @@ def updateAnalysis(Team_Number):
     mydb.commit()
     print('Update Analysis run')
 
+    def updateDockRatio(Team_Number):
+    mycursor.execute("UPDATE dataAnalysis SET Failed_To_Dock_Frequency = (SELECT (Failed_To_Dock/Docked) AS docking_ratio FROM matchData)")
+
+    mydb.commit()
+
+
 def updateFoulAnalysis(Team_Number):
     mycursor.execute('INSERT IGNORE INTO dataAnalysis(Team_Number) VALUES (%s)', (Team_Number,))
     mycursor.execute("UPDATE dataAnalysis SET Average_Fouls = (SELECT COUNT(*) FROM fouls WHERE Team_Number = %s) / (SELECT COUNT(*) FROM superScout WHERE Team = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
