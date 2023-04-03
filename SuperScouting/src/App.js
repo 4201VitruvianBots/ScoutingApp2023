@@ -1,7 +1,24 @@
 import './App.css';
+import { MultiButton } from './Form';
 import { SignIn, General } from "./Pages";
 import { options } from './Form'
 import React from "react";
+
+// const AllianceColor = () => {
+//     const RedorBlue = (color) => {
+//         alert(`Alliance Color is: ${color}!`);
+//     };
+
+//     return (
+//         <button
+//             onClick={() => {
+//                 RedorBlue("____");
+//             }}
+//         >
+//             Red or Blue
+//         </button>
+//     );
+// };
 
 const fields = [
     'Scouter_Name',
@@ -131,7 +148,7 @@ class App extends React.Component {
     //     }
     // }
 
-   
+
 
     test2(id) {
         this.setState({
@@ -208,6 +225,7 @@ class App extends React.Component {
     }
 
     render() {
+
         let selectedPage;
 
         switch (this.state.selected) {
@@ -226,7 +244,7 @@ class App extends React.Component {
 
                     <General
                         fouls={this.state.fouls} setFouls={this.setFouls}
-                        downloadCSV={this.downloadCSV} clearData={this.clearData}
+                        // downloadCSV={this.downloadCSV} clearData={this.clearData}
                         connected={this.state.connected}
                         teamOption1={this.state.team1} setTeamOption1={this.setTeamOption1}
                         teamOption2={this.state.team2} setTeamOption2={this.setTeamOption2}
@@ -246,6 +264,12 @@ class App extends React.Component {
 
                 <input type="button" onClick={() => this.test2('sign-in')} value="Sign In" className="nav" />
                 <input type="button" onClick={() => this.test2('general')} value="Fouls" className="nav" />
+                <form>
+                    <div className="allianceSelect">
+                        <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} shouldChangeColor={true} />
+                    </div>
+                </form>
+
 
                 {selectedPage}
 

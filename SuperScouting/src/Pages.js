@@ -85,7 +85,7 @@ function SignIn(props) {
                     </select>
                     <br />
                     <div className="allianceSelect">
-                        <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} id="Team_Alliance" />
+                        <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} shouldChangeColor={true} />
                     </div>
 
 
