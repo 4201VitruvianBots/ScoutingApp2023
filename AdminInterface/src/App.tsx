@@ -66,7 +66,7 @@ function TabletStatusDisplay({ allTabletStatus }: { allTabletStatus?: AllTabletS
     const StatusCard = (
         { status }: { status?: TabletStatus }
     ) => {
-        const { Scouter_Name = '', Team_Number = '', Match_Number = '', Battery_Level = 0, Online = false } = status ?? {};
+        const { Scouter_Name = '', /*Team_Number = '',*/ Match_Number = '', Battery_Level = 0, Online = false } = status ?? {};
 
         const battery = Math.round((Battery_Level ?? 0) * 7);
 

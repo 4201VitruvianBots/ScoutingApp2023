@@ -138,17 +138,17 @@ thead {
 
 .match-status .status-red {
     --bg-color: #d823234f;
-    --fg-color: #d82323;
+    --fg-color: #d823239f;
 }
 
 .match-status .status-blue {
     --bg-color: #2352d84f;
-    --fg-color: #2352d8;
+    --fg-color: #2352d89f;
 }
 
 .match-status .required {
     --bg-color: #7423d83f;
-    --fg-color: #7423d8;
+    --fg-color: #7423d89f;
 }
 
 .match-status .submitted,
@@ -165,15 +165,18 @@ thead {
 .submitted.status-red,
 .match-status th.status-red {
     --bg-color: #d823237f;
+    --fg-color: #d82323;
 }
 
 .submitted.status-blue,
 .match-status th.status-blue {
     --bg-color: #2352d87f;
+    --fg-color: #2352d8;
 }
 
 .match-status .submitted.required {
     --bg-color: #7423d87f;
+    --fg-color: #7423d8;
 }
 
 /* .match-status .status-red.required {

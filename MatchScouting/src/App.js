@@ -66,9 +66,9 @@ class App extends React.Component {
     setTeamOption(teamOption) {
         this.setState({ teamOption: teamOption });
     }
-    
+
     setMatchNumber(matchNumber) {
-        this.setState({matchNumber: matchNumber});
+        this.setState({ matchNumber: matchNumber });
         this.handleMatchUpdate(matchNumber);
     }
 
@@ -207,7 +207,7 @@ class App extends React.Component {
                     <Auto selected={this.state.selected === 'auto'} />
                     <TeleOp selected={this.state.selected === 'tele-op'} />
 
-                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
+                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} connected={this.state.connected} />
                     {/* <input type="submit" className="submit-button"></input> */}
                 </form>
                 <iframe name="frame" title="frame"></iframe>
