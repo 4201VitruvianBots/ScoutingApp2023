@@ -37,7 +37,8 @@ try:
 except:
     schedule = None
 
-scoutersStatus = {str(i): {'Scouter_Name': '', 'Team_Number': '', 'Battery_Level': '', 'Last_Update': 0, 'Online': False} for i in range(8)}
+scoutersStatus = {'registered': {str(i): {'Scouter_Name': '', 'Team_Number': '', 'Battery_Level': '', 'Last_Update': 0, 'Online': False} for i in range(8)}, 'unregistered': 0}
+unregisteredScouters = {}
 
 # Position:
 # 0 Red 1
@@ -52,8 +53,15 @@ scoutersStatus = {str(i): {'Scouter_Name': '', 'Team_Number': '', 'Battery_Level
 @app.route('/data/status', methods=['POST'])
 def handle_status():
     data = request.get_json()
-    if (data.get('Position') != None):
-        scoutersStatus[data.get('Position')] = {
+    address = request.remote_addr
+    if (data.get('Position') == None):
+        if not address in unregisteredScouters:
+            unregisteredScouters[address] = time.time()
+    else:
+        if address in unregisteredScouters:
+            del unregisteredScouters[address]
+
+        scoutersStatus['registered'][data.get('Position')] = {
             'Scouter_Name': data.get('Scouter_Name'),
             'Team_Number': data.get('Team_Number'),
             'Match_Number': data.get('Match_Number'),
@@ -61,6 +69,8 @@ def handle_status():
             'Last_Update': time.time(),
             'Online': True
         }
+    scoutersStatus['unregistered'] = len(unregisteredScouters)
+
     return 'OK', 200
 
 @app.route('/data/status/tablets', methods=['GET'])
@@ -69,9 +79,13 @@ def handle_get_tablets():
 
 def checker_thread():
     while True:
-        for i in scoutersStatus:
-            if scoutersStatus[i]['Last_Update'] + 6 < time.time():
-                scoutersStatus[i]['Online'] = False
+        for i in scoutersStatus['registered']:
+            if scoutersStatus['registered'][i]['Last_Update'] + 6 < time.time():
+                scoutersStatus['registered'][i]['Online'] = False
+        for i in unregisteredScouters:
+            if unregisteredScouters[i] + 6 < time.time():
+                del unregisteredScouters[i]
+        scoutersStatus['unregistered'] = len(unregisteredScouters)
         time.sleep(1)
 
 @app.before_first_request

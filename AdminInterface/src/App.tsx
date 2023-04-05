@@ -13,14 +13,17 @@ interface TabletStatus {
 }
 
 type AllTabletStatus = {
-    0: TabletStatus,
-    1: TabletStatus,
-    2: TabletStatus,
-    3: TabletStatus,
-    4: TabletStatus,
-    5: TabletStatus,
-    6: TabletStatus,
-    7: TabletStatus,
+    registered: {
+        0: TabletStatus,
+        1: TabletStatus,
+        2: TabletStatus,
+        3: TabletStatus,
+        4: TabletStatus,
+        5: TabletStatus,
+        6: TabletStatus,
+        7: TabletStatus
+    },
+    unregistered: number
 }
 
 interface MatchStatus {
@@ -95,17 +98,18 @@ function TabletStatusDisplay({ allTabletStatus }: { allTabletStatus?: AllTabletS
     return (
         <div className="tablet-status">
             <div className="status-red">
-                <StatusCard status={allTabletStatus?.[0]} />
-                <StatusCard status={allTabletStatus?.[1]} />
-                <StatusCard status={allTabletStatus?.[2]} />
-                <StatusCard status={allTabletStatus?.[6]} />
+                <StatusCard status={allTabletStatus?.registered[0]} />
+                <StatusCard status={allTabletStatus?.registered[1]} />
+                <StatusCard status={allTabletStatus?.registered[2]} />
+                <StatusCard status={allTabletStatus?.registered[6]} />
             </div>
             <div className="status-blue">
-                <StatusCard status={allTabletStatus?.[3]} />
-                <StatusCard status={allTabletStatus?.[4]} />
-                <StatusCard status={allTabletStatus?.[5]} />
-                <StatusCard status={allTabletStatus?.[7]} />
+                <StatusCard status={allTabletStatus?.registered[3]} />
+                <StatusCard status={allTabletStatus?.registered[4]} />
+                <StatusCard status={allTabletStatus?.registered[5]} />
+                <StatusCard status={allTabletStatus?.registered[7]} />
             </div>
+            <div className="unregistered-status"><span className="unregistered-number">{allTabletStatus?.unregistered}</span> unregistered tablets</div>
         </div>
     );
 }

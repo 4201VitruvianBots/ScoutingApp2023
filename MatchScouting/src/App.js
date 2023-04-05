@@ -50,7 +50,7 @@ function csvStringify(data) {
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { signedIn: false, ScouterName: "", EventName: "", TeamAlliance: "", connected: false, teamOption: null, matchNumber: null, BatteryLevel: null, matchSchedule: null };
+        this.state = { signedIn: false, ScouterName: "", EventName: "", TeamAlliance: null, connected: false, teamOption: null, matchNumber: null, BatteryLevel: null, matchSchedule: null };
         this.setSelected = this.setSelected.bind(this);
         this.setTeamOption = this.setTeamOption.bind(this);
         this.setMatchNumber = this.setMatchNumber.bind(this);
@@ -140,7 +140,7 @@ class App extends React.Component {
                         Battery_Level: this.state.BatteryLevel,
                         Team_Number: this.state.teamOption.value,
                         Match_Number: this.state.matchNumber,
-                        Position: document.getElementById('myForm').elements.Team_Alliance.value
+                        Position: this.state.TeamAlliance
                     })
                 });
                 const ok = response.ok;
