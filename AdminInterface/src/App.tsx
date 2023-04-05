@@ -7,6 +7,7 @@ const selfTeamNumber = '4201';
 interface TabletStatus {
     Scouter_Name: string,
     Team_Number: string,
+    Match_Number: number,
     Battery_Level: number | null,
     Online: boolean
 }
@@ -65,12 +66,13 @@ function TabletStatusDisplay({ allTabletStatus }: { allTabletStatus?: AllTabletS
     const StatusCard = (
         { status }: { status?: TabletStatus }
     ) => {
-        const { Scouter_Name = '', Team_Number = '', Battery_Level = 0, Online = false } = status ?? {};
+        const { Scouter_Name = '', Team_Number = '', Match_Number = '', Battery_Level = 0, Online = false } = status ?? {};
 
         const battery = Math.round((Battery_Level ?? 0) * 7);
 
         return (<div className="status-card">
-            <div className="status-line team-number">{Team_Number}</div>
+            <div className="status-line match-number">{Match_Number}</div>
+            {/* <div className="status-line team-number">{Team_Number}</div> */}
             <div className="status-line scouter-name">{Scouter_Name}</div>
             {Online
                 ? Battery_Level === null

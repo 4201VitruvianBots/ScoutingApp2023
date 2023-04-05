@@ -74,13 +74,10 @@ function SignIn(props) {
 }
 
 function PreGame(props) {
-
-    const setTeamOption = props.setTeamOption;
-
-    useEffect(() => setTeamOption(options[0]), []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => props.setTeamOption(options[0]), []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleMatchChange = (event) => {
-        props.onMatchUpdate(event.target.value);
+        props.setMatchNumber(parseInt(event.target.value));
     }
 
     return (
@@ -90,12 +87,12 @@ function PreGame(props) {
             <div className="textArea">
 
                 <p className="itemLabel" htmlFor="Match_Number" required>MATCH NUMBER</p>
-                <input type="number" id="Match_Number" name="Match_Number" className="textInput" required min="1" max="100" onChange={handleMatchChange} />
+                <input type="number" id="Match_Number" name="Match_Number" className="textInput" required min="1" max="100" value={props.matchNumber} onChange={handleMatchChange} />
 
                 <p className="itemLabel" htmlFor="Match_Number">TEAM NUMBER</p>
                 {/* <input type="number" id="Team_Number" name="Team_Number" className="textInput" /> */}
 
-                <SearchBar setSelectedOption={setTeamOption} selectedOption={props.teamOption} name="Team_Number" className="teamSearch" required />
+                <SearchBar setSelectedOption={props.setTeamOption} selectedOption={props.teamOption} name="Team_Number" className="teamSearch" required />
 
             </div>
         </Page>

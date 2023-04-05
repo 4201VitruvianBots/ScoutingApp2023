@@ -56,6 +56,7 @@ def handle_status():
         scoutersStatus[data.get('Position')] = {
             'Scouter_Name': data.get('Scouter_Name'),
             'Team_Number': data.get('Team_Number'),
+            'Match_Number': data.get('Match_Number'),
             'Battery_Level': data.get('Battery_Level'),
             'Last_Update': time.time(),
             'Online': True

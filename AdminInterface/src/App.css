@@ -51,11 +51,15 @@ main {
     content: "\200b";
 }
 
+.match-number,
 .team-number {
     /* margin: 0.25em; */
     padding: 0.5em;
     background-color: #0000002f;
     border-radius: 0.5em;
+}
+
+.match-number {
     font-size: 1.25em;
 }
 

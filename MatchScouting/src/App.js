@@ -50,9 +50,10 @@ function csvStringify(data) {
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { signedIn: false, ScouterName: "", EventName: "", TeamAlliance: "", connected: false, teamOption: null, BatteryLevel: null, matchSchedule: null };
+        this.state = { signedIn: false, ScouterName: "", EventName: "", TeamAlliance: "", connected: false, teamOption: null, matchNumber: null, BatteryLevel: null, matchSchedule: null };
         this.setSelected = this.setSelected.bind(this);
         this.setTeamOption = this.setTeamOption.bind(this);
+        this.setMatchNumber = this.setMatchNumber.bind(this);
         this.SignInHandler = this.SignInHandler.bind(this);
         this.handleMatchUpdate = this.handleMatchUpdate.bind(this);
     }
@@ -64,6 +65,11 @@ class App extends React.Component {
 
     setTeamOption(teamOption) {
         this.setState({ teamOption: teamOption });
+    }
+    
+    setMatchNumber(matchNumber) {
+        this.setState({matchNumber: matchNumber});
+        this.handleMatchUpdate(matchNumber);
     }
 
     SignInHandler(e) {
@@ -95,12 +101,10 @@ class App extends React.Component {
                 download(csv, `Match_Scout_${hour}${minute}.csv`)
                 // localStorage.setItem('matchData', localStorage.getItem('matchData') + csv)
                 event.target.submit();
-                const prevMatch = parseInt(answers.Match_Number.value);
+                this.setMatchNumber(this.state.matchNumber + 1)
                 setTimeout(() => {
                     event.target.reset();
-                    // setTeamOption({ value: null });
-                    answers.Match_Number.value = prevMatch + 1;
-                    this.handleMatchUpdate(prevMatch + 1);
+                    this.handleMatchUpdate(this.state.matchNumber + 1);
                     window.location.href = "#SignIn";
                 }, 0);
             } else {
@@ -135,6 +139,7 @@ class App extends React.Component {
                         Scouter_Name: this.state.ScouterName,
                         Battery_Level: this.state.BatteryLevel,
                         Team_Number: this.state.teamOption.value,
+                        Match_Number: this.state.matchNumber,
                         Position: document.getElementById('myForm').elements.Team_Alliance.value
                     })
                 });
@@ -198,7 +203,7 @@ class App extends React.Component {
                     <input type='hidden' value={this.state.EventName} name='Competition' />
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
                     <input type='hidden' value={this.state.TeamAlliance} name='Team_Alliance' />
-                    <PreGame selected={this.state.selected === 'pre-game'} teamOption={this.state.teamOption} setTeamOption={this.setTeamOption} onMatchUpdate={this.handleMatchUpdate} />
+                    <PreGame selected={this.state.selected === 'pre-game'} teamOption={this.state.teamOption} setTeamOption={this.setTeamOption} matchNumber={this.state.matchNumber} setMatchNumber={this.setMatchNumber} />
                     <Auto selected={this.state.selected === 'auto'} />
                     <TeleOp selected={this.state.selected === 'tele-op'} />
 
