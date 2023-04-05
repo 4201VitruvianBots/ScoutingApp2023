@@ -142,7 +142,7 @@ class App extends React.Component {
                 this.setState({ connected: ok });
             } catch (error) {
                 console.log("error", error);
-                this.setState({ connected: false });
+                this.setState({ connected: true });
             }
         };
 
@@ -202,7 +202,7 @@ class App extends React.Component {
                     <Auto selected={this.state.selected === 'auto'} />
                     <TeleOp selected={this.state.selected === 'tele-op'} />
 
-                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} />
+                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} downloadCSV={this.downloadCSV} clearData={this.clearData} connected={this.state.connected} />
                     {/* <input type="submit" className="submit-button"></input> */}
                 </form>
                 <iframe name="frame" title="frame"></iframe>

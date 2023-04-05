@@ -21,13 +21,24 @@ CREATE TABLE matchData(
 	Tele_Cone_Mid INT NULL,
 	Tele_Cone_High INT NULL,
 	Tele_Station INT NULL,
-	No_Show_Robot BOOLEAN,
-	Parked BOOLEAN,
-	Failed_To_Dock BOOLEAN,
-	Docked BOOLEAN,
-	Engaged BOOLEAN,
+	No_Show_Robot BOOLEAN NULL,
 	Comments TEXT NULL
 );
+
+CREATE TABLE chargeStation(
+	Team_Number INT NULL,
+	No_Points INT NULL,
+	/* if Tele_Station in matchData is euqal to 0, then add a point to No_Points*/
+	Parked INT NULL,
+	/* if Tele_Station in matchData is euqal to 1, then add a point to Parked*/
+	Failed_To_Dock INT NULL,
+	/* if Tele_Station in matchData is euqal to 2, then add a point to Failed_To_Dock*/
+	Docked INT NULL,
+	/* if Tele_Station in matchData is euqal to 3, then add a point to Docked*/
+	Engaged INT NULL
+	/* if Tele_Station in matchData is euqal to 4, then add a point to Engaged*/
+);
+
 
 CREATE TABLE pitData(
 	Scouter_Name TEXT NULL,
