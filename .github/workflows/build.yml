@@ -16,6 +16,7 @@ jobs:
           - PitScouting
           - SuperScouting
           - MatchData
+          - AdminInterface
       fail-fast: false
 
     defaults:
