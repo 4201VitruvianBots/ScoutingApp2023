@@ -46,8 +46,6 @@ function App() {
     const [matches, setMatches] = useState<AllMatches>();
 
     useEffect(() => {
-        Notification.requestPermission();
-
         const updateData = async () => {
             const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/status`, { method: 'GET' });
             const status = await response.json() as { tablets: AllTabletStatus, matches: AllMatches };
@@ -61,9 +59,7 @@ function App() {
 
     return (<main>
         <TabletStatusDisplay allTabletStatus={tabletStatus} />
-        <div className="table-container">
-            <MatchesDisplay allMatches={matches} />
-        </div>
+        <MatchesDisplay allMatches={matches} />
     </main>)
 }
 
@@ -120,6 +116,7 @@ const SelectedTeamsContext = React.createContext<(string | null)[] | null>(null)
 
 function MatchesDisplay({ allMatches = {} }: { allMatches?: AllMatches }) {
     const [selectedmatch, setSelectedMatch] = useState<string>();
+    const [notifAllowed, setNotifAllowed] = useState(Notification.permission)
 
     const MatchStatus = ({ match: { submitted, teamNumber = '' }, colorClass, selected }: { match: MatchStatus, colorClass: string, selected: boolean }) => {
         return (
@@ -137,6 +134,10 @@ function MatchesDisplay({ allMatches = {} }: { allMatches?: AllMatches }) {
             </td>
         );
     };
+
+    const requestNotifs = () => {
+        Notification.requestPermission().then(e => setNotifAllowed(e));
+    }
 
     const selectedTeams = selectedmatch === undefined ? null : allMatches[selectedmatch].map(e => e.teamNumber ?? null);
 
@@ -159,35 +160,43 @@ function MatchesDisplay({ allMatches = {} }: { allMatches?: AllMatches }) {
     }, [ready]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (<SelectedTeamsContext.Provider value={selectedTeams}>
-        <table className="match-status">
-            <thead><tr>
-                <th>Match</th>
-                <th className="status-red">Red 1</th>
-                <th className="status-red">Red 2</th>
-                <th className="status-red">Red 3</th>
-                <th className="status-red">Red SS</th>
-                <th className="status-blue">Blue 1</th>
-                <th className="status-blue">Blue 2</th>
-                <th className="status-blue">Blue 3</th>
-                <th className="status-blue">Blue SS</th>
-            </tr></thead>
-            <tbody>
-                {Object.entries(allMatches).map(([matchNumber, status], i) => {
-                    const selected = matchNumber === selectedmatch;
-                    return (<tr onClick={() => setSelectedMatch(matchNumber)} key={i} >
-                        <td className={selected ? 'selected' : ''}>{matchNumber}</td>
-                        <MatchStatus match={status[1]} colorClass="status-red" selected={selected} />
-                        <MatchStatus match={status[0]} colorClass="status-red" selected={selected} />
-                        <MatchStatus match={status[2]} colorClass="status-red" selected={selected} />
-                        <MatchStatus match={status[6]} colorClass="status-red" selected={selected} />
-                        <MatchStatus match={status[3]} colorClass="status-blue" selected={selected} />
-                        <MatchStatus match={status[4]} colorClass="status-blue" selected={selected} />
-                        <MatchStatus match={status[5]} colorClass="status-blue" selected={selected} />
-                        <MatchStatus match={status[7]} colorClass="status-blue" selected={selected} />
-                    </tr>);
-                })}
-            </tbody>
-        </table>
+        <div className="match-status-container">
+            <div className="table-container">
+                <table className="match-status">
+                    <thead><tr>
+                        <th>Match</th>
+                        <th className="status-red">Red 1</th>
+                        <th className="status-red">Red 2</th>
+                        <th className="status-red">Red 3</th>
+                        <th className="status-red">Red SS</th>
+                        <th className="status-blue">Blue 1</th>
+                        <th className="status-blue">Blue 2</th>
+                        <th className="status-blue">Blue 3</th>
+                        <th className="status-blue">Blue SS</th>
+                    </tr></thead>
+                    <tbody>
+                        {Object.entries(allMatches).map(([matchNumber, status], i) => {
+                            const selected = matchNumber === selectedmatch;
+                            return (<tr onClick={() => setSelectedMatch(matchNumber)} key={i} >
+                                <td className={selected ? 'selected' : ''}>{matchNumber}</td>
+                                <MatchStatus match={status[1]} colorClass="status-red" selected={selected} />
+                                <MatchStatus match={status[0]} colorClass="status-red" selected={selected} />
+                                <MatchStatus match={status[2]} colorClass="status-red" selected={selected} />
+                                <MatchStatus match={status[6]} colorClass="status-red" selected={selected} />
+                                <MatchStatus match={status[3]} colorClass="status-blue" selected={selected} />
+                                <MatchStatus match={status[4]} colorClass="status-blue" selected={selected} />
+                                <MatchStatus match={status[5]} colorClass="status-blue" selected={selected} />
+                                <MatchStatus match={status[7]} colorClass="status-blue" selected={selected} />
+                            </tr>);
+                        })}
+                    </tbody>
+                </table>
+            </div>
+            <div className="notif-message">
+                {notifAllowed === 'default' && <button className="notif-button" onClick={requestNotifs}>Enable Notifications</button>}
+                {notifAllowed === 'denied' && 'You must give permissions to enable notifications.'}
+            </div>
+        </div>
     </SelectedTeamsContext.Provider>);
 }
 
