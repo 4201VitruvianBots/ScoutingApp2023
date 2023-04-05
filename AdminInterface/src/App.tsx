@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import './App.css';
 import 'material-symbols/outlined.css'
 
@@ -46,6 +46,8 @@ function App() {
     const [matches, setMatches] = useState<AllMatches>();
 
     useEffect(() => {
+        Notification.requestPermission();
+
         const updateData = async () => {
             const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/status`, { method: 'GET' });
             const status = await response.json() as { tablets: AllTabletStatus, matches: AllMatches };
@@ -137,6 +139,24 @@ function MatchesDisplay({ allMatches = {} }: { allMatches?: AllMatches }) {
     };
 
     const selectedTeams = selectedmatch === undefined ? null : allMatches[selectedmatch].map(e => e.teamNumber ?? null);
+
+    const ready = useMemo(() => (
+        selectedmatch === undefined ? false :
+            Object.entries(allMatches!)
+                .filter(([match_number, match]) => parseInt(match_number) < parseInt(selectedmatch))
+                .map(([match_number, match]) => match)
+                .flat(1)
+                .every(matchStatus => (
+                    matchStatus.teamNumber === undefined ||
+                    !(selectedTeams!.includes(matchStatus.teamNumber)) ||
+                    matchStatus.submitted
+                ))
+    ), [allMatches, selectedmatch]); // eslint-disable-line react-hooks/exhaustive-deps
+
+    useEffect(() => {
+        if (ready)
+            new Notification('Admin Interface', { body: `Data for match ${selectedmatch} is ready` });
+    }, [ready]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (<SelectedTeamsContext.Provider value={selectedTeams}>
         <table className="match-status">
