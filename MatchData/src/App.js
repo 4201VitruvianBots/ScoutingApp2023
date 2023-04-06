@@ -1,16 +1,16 @@
-import './App.css';
-import { scaleLinear } from 'd3-scale';
-import { SearchBar, Title, PopupGfg, options } from "./Pages";
-import React from "react";
-import QRCode from 'react-qr-code';
+import './App.css'
+import { scaleLinear } from 'd3-scale'
+import { SearchBar, Title, PopupGfg, options } from "./Pages"
+import React from "react"
+import QRCode from 'react-qr-code'
 
 var colorScale0 = scaleLinear().domain([0, 50, 100]).range(['red', 'yellow', 'lime'])
-var colorScale1 = scaleLinear().domain([0, 0.5, 1, 1.01]).range(['red', 'yellow', 'lime', 'fuchsia']);
+var colorScale1 = scaleLinear().domain([0, 0.5, 1, 1.01]).range(['red', 'yellow', 'lime', 'fuchsia'])
 
 
 class App extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             signedIn: false, ScouterName: "",
             matchSchedule: null,
@@ -27,50 +27,50 @@ class App extends React.Component {
             data4: null,
             data5: null,
             data6: null
-        };
-        this.setSelectedOption1 = this.setSelectedOption1.bind(this);
-        this.setSelectedOption2 = this.setSelectedOption2.bind(this);
-        this.setSelectedOption3 = this.setSelectedOption3.bind(this);
+        }
+        this.setSelectedOption1 = this.setSelectedOption1.bind(this)
+        this.setSelectedOption2 = this.setSelectedOption2.bind(this)
+        this.setSelectedOption3 = this.setSelectedOption3.bind(this)
 
-        this.setSelectedOption4 = this.setSelectedOption4.bind(this);
-        this.setSelectedOption5 = this.setSelectedOption5.bind(this);
-        this.setSelectedOption6 = this.setSelectedOption6.bind(this);
+        this.setSelectedOption4 = this.setSelectedOption4.bind(this)
+        this.setSelectedOption5 = this.setSelectedOption5.bind(this)
+        this.setSelectedOption6 = this.setSelectedOption6.bind(this)
 
-        this.setSelected = this.setSelected.bind(this);
-        this.SignInHandler = this.SignInHandler.bind(this);
-        this.SubmitHandler = this.SubmitHandler.bind(this);
-        this.handleMatchUpdate = this.handleMatchUpdate.bind(this);   
+        this.setSelected = this.setSelected.bind(this)
+        this.SignInHandler = this.SignInHandler.bind(this)
+        this.SubmitHandler = this.SubmitHandler.bind(this)
+        this.handleMatchUpdate = this.handleMatchUpdate.bind(this)   
 
     }
 
 
     setSelectedOption1(e) {
-        this.setState({ selectedOption1: e });
+        this.setState({ selectedOption1: e })
     }
     setSelectedOption2(e) {
-        this.setState({ selectedOption2: e });
+        this.setState({ selectedOption2: e })
     }
     setSelectedOption3(e) {
-        this.setState({ selectedOption3: e });
+        this.setState({ selectedOption3: e })
     }
     setSelectedOption4(e) {
-        this.setState({ selectedOption4: e });
+        this.setState({ selectedOption4: e })
     }
     setSelectedOption5(e) {
-        this.setState({ selectedOption5: e });
+        this.setState({ selectedOption5: e })
     }
     setSelectedOption6(e) {
-        this.setState({ selectedOption6: e });
+        this.setState({ selectedOption6: e })
     }
 
     handleMatchUpdate(event) {
-        const matchNumber = event.target.value;
-        const team = this.state.matchSchedule[matchNumber][0].toString();
-        const team2 = this.state.matchSchedule[matchNumber][1].toString();
-        const team3 = this.state.matchSchedule[matchNumber][2]?.toString();
-        const team4 = this.state.matchSchedule[matchNumber][3]?.toString();
-        const team5 = this.state.matchSchedule[matchNumber][4]?.toString();
-        const team6 = this.state.matchSchedule[matchNumber][5]?.toString();
+        const matchNumber = event.target.value
+        const team = this.state.matchSchedule[matchNumber][0].toString()
+        const team2 = this.state.matchSchedule[matchNumber][1].toString()
+        const team3 = this.state.matchSchedule[matchNumber][2]?.toString()
+        const team4 = this.state.matchSchedule[matchNumber][3]?.toString()
+        const team5 = this.state.matchSchedule[matchNumber][4]?.toString()
+        const team6 = this.state.matchSchedule[matchNumber][5]?.toString()
         if (team !== undefined) {
             this.setSelectedOption1({ label: team, value: team })
             this.setSelectedOption2({ label: team2, value: team2 })
@@ -82,98 +82,98 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        let scheduleInterval;
+        let scheduleInterval
 
         const fetchSchedule = async () => {
-            const url = `http://${process.env.REACT_APP_BACKEND_IP}/schedule.json`;
+            const url = `http://${process.env.REACT_APP_BACKEND_IP}/schedule.json`
             try {
-                const response = await fetch(url);
+                const response = await fetch(url)
                 if (response.ok) {
-                    const data = await response.json();
-                    this.setState({ matchSchedule: data });
+                    const data = await response.json()
+                    this.setState({ matchSchedule: data })
                 }
-                clearInterval(scheduleInterval);
+                clearInterval(scheduleInterval)
             } catch (error) {
             }
         }
 
-        fetchSchedule();
+        fetchSchedule()
 
-        scheduleInterval = setInterval(fetchSchedule, 10000);
+        scheduleInterval = setInterval(fetchSchedule, 10000)
 
         return function cleanup() {
-            clearInterval(scheduleInterval);
-        };
+            clearInterval(scheduleInterval)
+        }
     }
     // async componentDidMount() {
-    //     await this.componentDidUpdate({ selectedOption1: { value: null }, selectedOption2: { value: null }, selectedOption3: { value: null }, selectedOption4: { value: null }, selectedOption5: { value: null }, selectedOption6: { value: null } });
+    //     await this.componentDidUpdate({ selectedOption1: { value: null }, selectedOption2: { value: null }, selectedOption3: { value: null }, selectedOption4: { value: null }, selectedOption5: { value: null }, selectedOption6: { value: null } })
     // }
 
     // Replace all props with state
     async componentDidUpdate(prevProps, prevState) {
         if (prevState.selectedOption1.value !== this.state.selectedOption1.value) {
-            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption1.value, { crossDomain: true, method: 'GET' });
+            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption1.value, { crossDomain: true, method: 'GET' })
             if (response.status === 404) {
-                this.setState({ data1: null });
+                this.setState({ data1: null })
             } else {
-                const testData = await response.json();
-                this.setState({ data1: testData });
+                const testData = await response.json()
+                this.setState({ data1: testData })
             }
         }
         else if (prevState.selectedOption2.value !== this.state.selectedOption2.value) {
-            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption2.value, { crossDomain: true, method: 'GET' });
+            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption2.value, { crossDomain: true, method: 'GET' })
             if (response.status === 404) {
-                this.setState({ data2: null });
+                this.setState({ data2: null })
             } else {
-                const testData = await response.json();
-                this.setState({ data2: testData });
+                const testData = await response.json()
+                this.setState({ data2: testData })
             }
         }
         else if (prevState.selectedOption3.value !== this.state.selectedOption3.value) {
-            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption3.value, { crossDomain: true, method: 'GET' });
+            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption3.value, { crossDomain: true, method: 'GET' })
             if (response.status === 404) {
-                this.setState({ data3: null });
+                this.setState({ data3: null })
             } else {
-                this.setState({ data3: await response.json() });
+                this.setState({ data3: await response.json() })
             }
         }
         else if (prevState.selectedOption4.value !== this.state.selectedOption4.value) {
-            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption4.value, { crossDomain: true, method: 'GET' });
+            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption4.value, { crossDomain: true, method: 'GET' })
             if (response.status === 404) {
-                this.setState({ data4: null });
+                this.setState({ data4: null })
             } else {
-                this.setState({ data4: await response.json() });
+                this.setState({ data4: await response.json() })
             }
         }
         else if (prevState.selectedOption5.value !== this.state.selectedOption5.value) {
-            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption5.value, { crossDomain: true, method: 'GET' });
+            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption5.value, { crossDomain: true, method: 'GET' })
             if (response.status === 404) {
-                this.setState({ data5: null });
+                this.setState({ data5: null })
             } else {
-                this.setState({ data5: await response.json() });
+                this.setState({ data5: await response.json() })
             }
         }
         else if (prevState.selectedOption6.value !== this.state.selectedOption6.value) {
-            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption6.value, { crossDomain: true, method: 'GET' });
+            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption6.value, { crossDomain: true, method: 'GET' })
             if (response.status === 404) {
-                this.setState({ data6: null });
+                this.setState({ data6: null })
             } else {
-                this.setState({ data6: await response.json() });
+                this.setState({ data6: await response.json() })
             }
         }
         // GET request using fetch with async/await
     }
 
     SignInHandler(e) {
-        e.preventDefault();
-        const answers = e.target.elements;
-        this.setState({ signedIn: true, ScouterName: answers.Sname.value, EventName: answers.Ename.value, QRCode: null });
-        return false;
+        e.preventDefault()
+        const answers = e.target.elements
+        this.setState({ signedIn: true, ScouterName: answers.Sname.value, EventName: answers.Ename.value, QRCode: null })
+        return false
     }
 
     SubmitHandler(e) {
-        e.preventDefault();
-        const answers = e.target.elements;
+        e.preventDefault()
+        const answers = e.target.elements
         this.setState({
             QRCode: <QRCode value={
                 `${this.state.ScouterName}\t` +
@@ -190,12 +190,12 @@ class App extends React.Component {
                 `${answers.climbType.value}\t` +
                 `${answers.notes.value}`
             } size={512} />
-        });
-        return false;
+        })
+        return false
     }
 
     setSelected(id) {
-        this.setState({ selected: id });
+        this.setState({ selected: id })
     }
 
 
@@ -429,9 +429,9 @@ class App extends React.Component {
                     {/* <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} /> */}
                 </form>
             </main>
-        );
+        )
     }
 
 }
 
-export default App;
+export default App

@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
-import './App.css';
+import React, { useContext, useEffect, useState } from 'react'
+import './App.css'
 import 'material-symbols/outlined.css'
 
-const selfTeamNumber = '4201';
+const selfTeamNumber = '4201'
 
 interface TabletStatus {
     Scouter_Name: string,
@@ -28,30 +28,30 @@ interface MatchStatus {
     submittedTeamNumber?: string
 }
 
-type Match = [MatchStatus, MatchStatus, MatchStatus, MatchStatus, MatchStatus, MatchStatus, MatchStatus, MatchStatus];
-type AllMatches = Record<string, Match>;
+type Match = [MatchStatus, MatchStatus, MatchStatus, MatchStatus, MatchStatus, MatchStatus, MatchStatus, MatchStatus]
+type AllMatches = Record<string, Match>
 
 function classList(...classes: (string | [className: string, condition: boolean])[]): string {
     return classes
         .map(e => typeof e === 'string' ? e : e[1] ? e[0] : null)
         .filter(e => e !== null)
-        .join(' ');
+        .join(' ')
 }
 
 function App() {
-    const [tabletStatus, setTabletStatus] = useState<AllTabletStatus>();
-    const [matches, setMatches] = useState<AllMatches>();
+    const [tabletStatus, setTabletStatus] = useState<AllTabletStatus>()
+    const [matches, setMatches] = useState<AllMatches>()
 
     useEffect(() => {
         const updateData = async () => {
-            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/status`, { method: 'GET' });
-            const status = await response.json() as { tablets: AllTabletStatus, matches: AllMatches };
-            setTabletStatus(status.tablets);
-            setMatches(status.matches);
+            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/status`, { method: 'GET' })
+            const status = await response.json() as { tablets: AllTabletStatus, matches: AllMatches }
+            setTabletStatus(status.tablets)
+            setMatches(status.matches)
         }
 
-        setInterval(updateData, 5000);
-        updateData();
+        setInterval(updateData, 5000)
+        updateData()
     }, [])
 
     return (<main>
@@ -66,9 +66,9 @@ function TabletStatusDisplay({ allTabletStatus }: { allTabletStatus?: AllTabletS
     const StatusCard = (
         { status }: { status?: TabletStatus }
     ) => {
-        const { Scouter_Name = '', Team_Number = '', Battery_Level = 0, Online = false } = status ?? {};
+        const { Scouter_Name = '', Team_Number = '', Battery_Level = 0, Online = false } = status ?? {}
 
-        const battery = Math.round((Battery_Level ?? 0) * 7);
+        const battery = Math.round((Battery_Level ?? 0) * 7)
 
         return (<div className="status-card">
             <div className="status-line team-number">{Team_Number}</div>
@@ -88,7 +88,7 @@ function TabletStatusDisplay({ allTabletStatus }: { allTabletStatus?: AllTabletS
                     Not Connected
                 </div>
             }
-        </div>);
+        </div>)
     }
 
     return (
@@ -106,16 +106,16 @@ function TabletStatusDisplay({ allTabletStatus }: { allTabletStatus?: AllTabletS
                 <StatusCard status={allTabletStatus?.[7]} />
             </div>
         </div>
-    );
+    )
 }
 
-const SelectedTeamsContext = React.createContext<(string | null)[] | null>(null);
+const SelectedTeamsContext = React.createContext<(string | null)[] | null>(null)
 
 function MatchesDisplay({ allMatches = {} }: { allMatches?: AllMatches }) {
-    const [selectedmatch, setSelectedMatch] = useState<string>();
+    const [selectedmatch, setSelectedMatch] = useState<string>()
 
     const MatchStatus = ({ match: { submitted, submittedTeamNumber, scheduledTeamNumber }, colorClass }: { match: MatchStatus, colorClass: string }) => {
-        const displayNumber = scheduledTeamNumber || submittedTeamNumber || '';
+        const displayNumber = scheduledTeamNumber || submittedTeamNumber || ''
         return (
             <td className={classList(
                 'match-status',
@@ -127,10 +127,10 @@ function MatchesDisplay({ allMatches = {} }: { allMatches?: AllMatches }) {
             )}>
                 {displayNumber || (submitted ? <span className="material-symbols-outlined">done</span> : '')}
             </td>
-        );
-    };
+        )
+    }
 
-    const selectedTeams = selectedmatch === undefined ? null : allMatches[selectedmatch].map(e => e.scheduledTeamNumber || e.submittedTeamNumber || null);
+    const selectedTeams = selectedmatch === undefined ? null : allMatches[selectedmatch].map(e => e.scheduledTeamNumber || e.submittedTeamNumber || null)
 
     return (<SelectedTeamsContext.Provider value={selectedTeams}>
         <table className="match-status">
@@ -159,7 +159,7 @@ function MatchesDisplay({ allMatches = {} }: { allMatches?: AllMatches }) {
                 </tr>)}
             </tbody>
         </table>
-    </SelectedTeamsContext.Provider>);
+    </SelectedTeamsContext.Provider>)
 }
 
-export default App;
+export default App

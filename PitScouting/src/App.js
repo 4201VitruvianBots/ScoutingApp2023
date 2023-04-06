@@ -1,7 +1,7 @@
-import './App.css';
-import { SignIn, General, Photos, SavePage } from "./Pages";
-import { options } from "./Form";
-import React from "react";
+import './App.css'
+import { SignIn, General, Photos, SavePage } from "./Pages"
+import { options } from "./Form"
+import React from "react"
 
 const fields = [
     'Scouter_Name',
@@ -24,73 +24,73 @@ const fields = [
     'Outtake_Photo',
     'Extras_Photo',
     'Comments'
-];
+]
 
 function download(data, title) {
-    const blob = new Blob([data], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.download = title;
-    link.href = url;
-    link.click();
+    const blob = new Blob([data], { type: "text/plain" })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement("a")
+    link.download = title
+    link.href = url
+    link.click()
 }
 
 // function csvStringify(data) {
-//     console.log(data);
+//     console.log(data)
 //     return data.map(e => (
 //         e.map(e2 => {
 //             if (e2.includes('"') || e2.includes('\n') || e2.includes('\r') || e2.includes(',')) {
-//                 return '"' + e2.replaceAll('"', '""') + '"';
+//                 return '"' + e2.replaceAll('"', '""') + '"'
 //             }
-//             return e2;
+//             return e2
 //         }).join(',') + '\r\n'
-//     )).join('');
+//     )).join('')
 // }
 
 class App extends React.Component {
     constructor(props) {
-        super(props);
-        this.state = { signedIn: false, ScouterName: "", EventName: "", teamOption: options[0] };
-        this.SignInHandler = this.SignInHandler.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.setTeamOption = this.setTeamOption.bind(this);
+        super(props)
+        this.state = { signedIn: false, ScouterName: "", EventName: "", teamOption: options[0] }
+        this.SignInHandler = this.SignInHandler.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.setTeamOption = this.setTeamOption.bind(this)
     }
 
     setTeamOption(teamOption) {
-        this.setState({ teamOption: teamOption });
+        this.setState({ teamOption: teamOption })
     }
 
     SignInHandler(e) {
-        e.preventDefault();
-        const answers = e.target.elements;
-        this.setState({ signedIn: true, ScouterName: answers.Scouter_Name.value, EventName: answers.Competition.value, QRCode: null });
-        return false;
+        e.preventDefault()
+        const answers = e.target.elements
+        this.setState({ signedIn: true, ScouterName: answers.Scouter_Name.value, EventName: answers.Competition.value, QRCode: null })
+        return false
     }
 
     handleSubmit(event) {
         try {
-            event.preventDefault();
+            event.preventDefault()
 
-            const answer = window.confirm("Would you like to submit the form?");
+            const answer = window.confirm("Would you like to submit the form?")
             if (answer) {
-                const answers = event.target.elements;
-                const data = fields.map(e => [e, answers[e]?.value]);
-                const dataObject = Object.fromEntries(data);
-                const time = new Date();
-                const hour = time.getHours().toString().padStart(2, '0');
-                const minute = time.getMinutes().toString().padStart(2, '0');
+                const answers = event.target.elements
+                const data = fields.map(e => [e, answers[e]?.value])
+                const dataObject = Object.fromEntries(data)
+                const time = new Date()
+                const hour = time.getHours().toString().padStart(2, '0')
+                const minute = time.getMinutes().toString().padStart(2, '0')
                 download(JSON.stringify(dataObject), `Pit_Scout_${hour}${minute}.json`)
-                event.target.reset();
-                this.setTeamOption({ value: null });
+                event.target.reset()
+                this.setTeamOption({ value: null })
                 window.location.href = "#SignIn"
                 // Save it!
 
             } else {
                 // Do nothing!
-                console.log("Thing was not saved to the database.");
+                console.log("Thing was not saved to the database.")
             }
         } catch (e) {
-            alert(e.message + '\nPlease return this tablet to the scouting coordinators before submitting');
+            alert(e.message + '\nPlease return this tablet to the scouting coordinators before submitting')
         }
     }
 
@@ -113,7 +113,7 @@ class App extends React.Component {
 
 
             </main>
-        );
+        )
     }
 }
 
@@ -121,4 +121,4 @@ class App extends React.Component {
 
 
 
-export default App;
+export default App

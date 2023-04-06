@@ -9,6 +9,6 @@ function timerComponent(props){
       </span>
       <p>TEST</p>
     </div>
-    );
+    )
 }
-export { timerComponent };
+export { timerComponent }

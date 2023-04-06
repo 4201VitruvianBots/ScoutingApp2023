@@ -1,13 +1,13 @@
-import { NumberInput, ButtonInput, MultiButton, SearchBar, options } from "./Form";
-import './App.css';
-import { useEffect, useState } from "react";
+import { NumberInput, ButtonInput, MultiButton, SearchBar, options } from "./Form"
+import './App.css'
+import { useEffect, useState } from "react"
 
 function Page(props) {
     return (
         <div className={props.selected ? 'page selected' : 'page'} id={props.id}>
             {props.children}
         </div>
-    );
+    )
 }
 
 function Navigation(props) {
@@ -28,17 +28,17 @@ function Navigation(props) {
             </div>
 
         </Page>
-    );
+    )
 }
 
 
 function SignIn(props) {
-    const [showCheck, setshowCheck] = useState(false);
+    const [showCheck, setshowCheck] = useState(false)
 
     const handleSubmit = (event) => {
-        setshowCheck(true);
-        props.onSubmit(event);
-        setTimeout(() => { setshowCheck(false) }, 5000);
+        setshowCheck(true)
+        props.onSubmit(event)
+        setTimeout(() => { setshowCheck(false) }, 5000)
     }
 
     return (
@@ -70,17 +70,17 @@ function SignIn(props) {
                 </div>
             </form>
         </div>
-    );
+    )
 }
 
 function PreGame(props) {
 
-    const setTeamOption = props.setTeamOption;
+    const setTeamOption = props.setTeamOption
 
-    useEffect(() => setTeamOption(options[0]), []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => setTeamOption(options[0]), []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleMatchChange = (event) => {
-        props.onMatchUpdate(event.target.value);
+        props.onMatchUpdate(event.target.value)
     }
 
     return (
@@ -100,7 +100,7 @@ function PreGame(props) {
             </div>
         </Page>
 
-    );
+    )
 }
 
 
@@ -150,7 +150,7 @@ function Auto(props) {
                 </div>
             </div>
         </Page>
-    );
+    )
 }
 
 function TeleOp(props) {
@@ -198,7 +198,7 @@ function TeleOp(props) {
 
             </div>
         </Page>
-    );
+    )
 }
 // charge station
 // button for mobility
@@ -243,9 +243,9 @@ function SavePage(props) {
 
 
         </Page>
-    );
+    )
 }
 
 
 
-export { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation };
+export { SignIn, PreGame, Auto, TeleOp, SavePage, Navigation }

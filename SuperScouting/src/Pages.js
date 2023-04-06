@@ -1,8 +1,8 @@
-import { MultiButton, FoulCards, SearchBar } from "./Form";
-import './App.css';
-import React, { useState } from "react";
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
+import { MultiButton, FoulCards, SearchBar } from "./Form"
+import './App.css'
+import React, { useState } from "react"
+import Popup from 'reactjs-popup'
+import 'reactjs-popup/dist/index.css'
 
 
 
@@ -11,24 +11,24 @@ function Page(props) {
         <div className={props.selected ? 'page selected' : 'page'} id={props.id}>
             {props.children}
         </div>
-    );
+    )
 }
 
 function SignIn(props) {
-    const [showCheck, setshowCheck] = useState(false);
-    const [name, setName] = useState(false);
-    const [greeting, setGreeting] = useState(null);
+    const [showCheck, setshowCheck] = useState(false)
+    const [name, setName] = useState(false)
+    const [greeting, setGreeting] = useState(null)
 
     const handleSubmit = (event) => {
-        setshowCheck(true);
-        props.onSubmit(event);
-        setTimeout(() => { setshowCheck(false) }, 5000);
+        setshowCheck(true)
+        props.onSubmit(event)
+        setTimeout(() => { setshowCheck(false) }, 5000)
     }
 
     function gameTime() {
-        let nameInput = document.getElementById("Sname").value;
-        setName(nameInput);
-        console.log(name);
+        let nameInput = document.getElementById("Sname").value
+        setName(nameInput)
+        console.log(name)
 
         if (nameInput === 'Natalie') {
             setGreeting(
@@ -36,14 +36,14 @@ function SignIn(props) {
                     <p>GOOD MORNING!</p>
                 </div>,
                 setTimeout(() => { setGreeting(false) }, 3000)
-            );
+            )
         } else if (nameInput.includes('Josiah')) {
             setGreeting(
                 <div className="josiah">
                     <p>did it</p>
                 </div>,
                 setTimeout(() => { setGreeting(false) }, 1000)
-            );
+            )
         } else if (nameInput.includes('Kyle')) {
             setGreeting(
                 <div className="kyle">
@@ -59,11 +59,11 @@ function SignIn(props) {
                     }
                     } />
                 </div>,
-            );
+            )
         }
 
         else {
-            setGreeting(null);
+            setGreeting(null)
         }
 
     }
@@ -96,14 +96,14 @@ function SignIn(props) {
                 </div>
             </form>
         </div>
-    );
+    )
 }
 
 
 function General(props) {
 
     const handleMatchChange = (event) => {
-        props.onMatchUpdate(event.target.value);
+        props.onMatchUpdate(event.target.value)
     }
 
     return (
@@ -166,17 +166,17 @@ function General(props) {
                                         <div className="subButton">
 
                                             <button onClick={() => {
-                                                // setFouls = [document.getElementById("popupSelect"), document.getElementById("selector"), document.getElementById("note")];
+                                                // setFouls = [document.getElementById("popupSelect"), document.getElementById("selector"), document.getElementById("note")]
 
-                                                // let teams = document.getElementById("teamSearch");
-                                                // let currentTeam = teams.options[teams.selectedIndex].value;
-                                                let selector = document.getElementById("selector");
-                                                let text = selector.options[selector.selectedIndex].text; //then save let text as index 1?
-                                                let content = document.getElementById("note").value;
+                                                // let teams = document.getElementById("teamSearch")
+                                                // let currentTeam = teams.options[teams.selectedIndex].value
+                                                let selector = document.getElementById("selector")
+                                                let text = selector.options[selector.selectedIndex].text //then save let text as index 1?
+                                                let content = document.getElementById("note").value
 
-                                                props.setFouls([...props.fouls, [props.teamOption1.value, text, content, selector.selectedIndex]]);
+                                                props.setFouls([...props.fouls, [props.teamOption1.value, text, content, selector.selectedIndex]])
 
-                                                close();
+                                                close()
                                             }}>
                                                 Enter foul
                                             </button>
@@ -237,13 +237,13 @@ function General(props) {
                                         <div className="subButton">
 
                                             <button onClick={() => {
-                                                // setFouls = [document.getElementById("popupSelect"), document.getElementById("selector"), document.getElementById("note")];
-                                                let selector = document.getElementById("selector");
-                                                let text = selector.options[selector.selectedIndex].text; //then save let text as index 1?
-                                                let content = document.getElementById("note").value;
-                                                props.setFouls([...props.fouls, [props.teamOption2.value, text, content, selector.selectedIndex]]);
+                                                // setFouls = [document.getElementById("popupSelect"), document.getElementById("selector"), document.getElementById("note")]
+                                                let selector = document.getElementById("selector")
+                                                let text = selector.options[selector.selectedIndex].text //then save let text as index 1?
+                                                let content = document.getElementById("note").value
+                                                props.setFouls([...props.fouls, [props.teamOption2.value, text, content, selector.selectedIndex]])
 
-                                                close();
+                                                close()
                                             }
 
                                             }>
@@ -307,12 +307,12 @@ function General(props) {
                                         <div className="subButton">
 
                                             <button onClick={() => {
-                                                let selector = document.getElementById("selector");
-                                                let text = selector.options[selector.selectedIndex].text; //then save let text as index 1?
-                                                let content = document.getElementById("note").value;
-                                                props.setFouls([...props.fouls, [props.teamOption3.value, text, content]]);
+                                                let selector = document.getElementById("selector")
+                                                let text = selector.options[selector.selectedIndex].text //then save let text as index 1?
+                                                let content = document.getElementById("note").value
+                                                props.setFouls([...props.fouls, [props.teamOption3.value, text, content]])
 
-                                                close();
+                                                close()
                                             }
 
                                             }>
@@ -380,9 +380,9 @@ function General(props) {
             </div>
 
         </Page >
-    );
+    )
 }
 
 
 
-export { SignIn, General };
+export { SignIn, General }

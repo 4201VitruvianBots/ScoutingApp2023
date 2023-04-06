@@ -1,6 +1,6 @@
-import { NumberInput, ButtonInput, MultiButton, SearchBar, Upload } from "./Form";
-import './App.css';
-import { useState } from "react";
+import { NumberInput, ButtonInput, MultiButton, SearchBar, Upload } from "./Form"
+import './App.css'
+import { useState } from "react"
 
 
 function Page(props) {
@@ -8,17 +8,17 @@ function Page(props) {
         <div className={props.selected ? 'page selected' : 'page'} id={props.id}>
             {props.children}
         </div>
-    );
+    )
 }
 
 
 function SignIn(props) {
-    const [showCheck, setshowCheck] = useState(false);
+    const [showCheck, setshowCheck] = useState(false)
 
     const handleSubmit = (event) => {
-        setshowCheck(true);
-        props.onSubmit(event);
-        setTimeout(() => { setshowCheck(false) }, 5000);
+        setshowCheck(true)
+        props.onSubmit(event)
+        setTimeout(() => { setshowCheck(false) }, 5000)
     }
 
     return (
@@ -41,7 +41,7 @@ function SignIn(props) {
                 </div>
             </form>
         </div>
-    );
+    )
 }
 
 
@@ -105,7 +105,7 @@ function General(props) {
 
             </div>
         </Page >
-    );
+    )
 }
 
 function Photos(props) {
@@ -126,7 +126,7 @@ function Photos(props) {
                 {/* <input type="file" multiple accept="image/*" /> */}
             </div>
         </Page>
-    );
+    )
 }
 
 
@@ -152,7 +152,7 @@ function SavePage(props) {
             </div>
 
         </Page>
-    );
+    )
 }
 
-export { SignIn, General, Photos, SavePage };
+export { SignIn, General, Photos, SavePage }

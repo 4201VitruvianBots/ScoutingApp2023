@@ -1,8 +1,8 @@
 import React from 'react'
 import Select from 'react-select'
-import './App.css';
+import './App.css'
 
-import 'reactjs-popup/dist/index.css';
+import 'reactjs-popup/dist/index.css'
 
 export default function PopupGfg(props) {
     return (
@@ -13,7 +13,7 @@ export default function PopupGfg(props) {
         </div>
 
     )
-};
+}
 
 
 
@@ -63,7 +63,7 @@ const options = [
     { value: '8600', label: '8600' },
     { value: '8898', label: '8898' },
     { value: '9172', label: '9172' },
-];
+]
 
 class SearchBar extends React.Component {
     handleChange = (selectedOption) => {
@@ -80,7 +80,7 @@ class SearchBar extends React.Component {
                     onChange={this.handleChange}
                 />
             </div>
-        );
+        )
     }
 }
 
@@ -91,7 +91,7 @@ function Page(props) {
         <div className={props.selected ? 'page selected' : 'page'} id={props.id}>
             {props.children}
         </div>
-    );
+    )
 }
 
 function Title(props) {
@@ -99,7 +99,7 @@ function Title(props) {
         <Page selected={props.selected} id="title">
             <p className="section-label">Recon Interface</p>
         </Page>
-    );
+    )
 }
 
 
@@ -110,11 +110,11 @@ function General(props) {
         <Page selected={props.selected} id="comments">
 
         </Page>
-    );
+    )
 }
 
 <br></br>
 
 
 
-export { General, Title, SearchBar, PopupGfg, options };
+export { General, Title, SearchBar, PopupGfg, options }

@@ -1,9 +1,9 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import './App.css'
 
 // Radio Buttons
 function RadioButtons(props) {
-    let output = [];
+    let output = []
     for (let item in props.items) {
         output.push(
             <p key={item}>
@@ -12,40 +12,40 @@ function RadioButtons(props) {
             </p>
         )
     }
-    return output;
+    return output
 
 }
 
 // Number input
 class NumberInput extends React.Component {
     constructor(props) {
-        super(props);
-        this.state = { id: props.id, label: props.label, value: 0 };
-        this.setValue = this.setValue.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.increaseValue = this.increaseValue.bind(this);
-        this.decreaseValue = this.decreaseValue.bind(this);
+        super(props)
+        this.state = { id: props.id, label: props.label, value: 0 }
+        this.setValue = this.setValue.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.increaseValue = this.increaseValue.bind(this)
+        this.decreaseValue = this.decreaseValue.bind(this)
     }
 
     setValue(value) {
-        this.setState({ value: Math.abs(parseInt(value)) });
+        this.setState({ value: Math.abs(parseInt(value)) })
     }
 
     handleChange(event) {
-        this.setValue(event.target.value);
+        this.setValue(event.target.value)
     }
 
     increaseValue() {
-        this.setState({ value: this.state.value + 1 });
+        this.setState({ value: this.state.value + 1 })
     }
 
     decreaseValue() {
         if (this.state.value > 0)
-            this.setState({ value: this.state.value - 1 });
+            this.setState({ value: this.state.value - 1 })
     }
 
     render() {
-        // props = {id: "teleopUp", label: "Upper Cargo"};
+        // props = {id: "teleopUp", label: "Upper Cargo"}
         return (
             <div>
                 <div className="labelleft"><label htmlFor={this.state.id}>{this.state.label}</label></div>
@@ -55,43 +55,43 @@ class NumberInput extends React.Component {
             </div>
 
 
-        );
+        )
     }
 }
 
 class ButtonInput extends React.Component {
     constructor(props) {
-        super(props);
-        this.state = { id: props.id, off_label: props.off_label, value: 0, on_label: props.on_label };
-        this.setValue = this.setValue.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.increaseValue = this.increaseValue.bind(this);
-        this.decreaseValue = this.decreaseValue.bind(this);
-        this.setValueFinal = this.setValueFinal.bind(this);
+        super(props)
+        this.state = { id: props.id, off_label: props.off_label, value: 0, on_label: props.on_label }
+        this.setValue = this.setValue.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.increaseValue = this.increaseValue.bind(this)
+        this.decreaseValue = this.decreaseValue.bind(this)
+        this.setValueFinal = this.setValueFinal.bind(this)
         // eslint-disable-next-line no-restricted-globals
         addEventListener('reset', () => { this.setState({ value: 0 }) })
     }
 
     setValue(value) {
-        this.setState({ value: Math.abs(parseInt(value)) });
+        this.setState({ value: Math.abs(parseInt(value)) })
     }
 
     handleChange(event) {
-        this.setValue(event.target.value);
+        this.setValue(event.target.value)
     }
 
     increaseValue() {
-        this.setState({ value: this.state.value + 1 });
+        this.setState({ value: this.state.value + 1 })
     }
 
     decreaseValue() {
-        this.setState({ value: this.state.value - 1 });
+        this.setState({ value: this.state.value - 1 })
     }
     setValueFinal() {
         if (this.state.value === 0) {
-            this.increaseValue();
+            this.increaseValue()
         } else if (this.state.value === 1) {
-            this.decreaseValue();
+            this.decreaseValue()
         }
     }
     render() {
@@ -104,14 +104,14 @@ class ButtonInput extends React.Component {
 
                     {/* </div> */}
                 </div>
-            );
+            )
         } else if (this.state.value === 1) {
             return (
                 <div className="ToggleButton">
                     <input type="hidden" value={true} name={this.state.id} />
                     <input type="button" className="number-on" value={this.state.on_label} onClick={this.setValueFinal} />
                 </div>
-            );
+            )
         }
     }
 }
@@ -133,8 +133,8 @@ class Upload extends React.Component {
                 <input type="file" onChange={this.handleChange} />
                 <img src={this.state.file} height="275px" width="225px" alt="Uploaded File" />
             </div>
-        );
+        )
     }
 }
 
-export { RadioButtons, NumberInput, ButtonInput, Upload };
+export { RadioButtons, NumberInput, ButtonInput, Upload }

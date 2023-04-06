@@ -1,10 +1,10 @@
-import './App.css';
-import Select from 'react-select';
-import React from 'react';
+import './App.css'
+import Select from 'react-select'
+import React from 'react'
 
 // Radio Buttons
 function RadioButtons(props) {
-    let output = [];
+    let output = []
     for (let item in props.items) {
         output.push(
             <p key={item}>
@@ -15,44 +15,44 @@ function RadioButtons(props) {
             </p>
         )
     }
-    return output;
+    return output
 
 }
 
 // Number input
 class NumberInput extends React.Component {
     constructor(props) {
-        super(props);
-        this.state = { id: props.id, label: props.label, value: 0 };
-        this.setValue = this.setValue.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.increaseValue = this.increaseValue.bind(this);
-        this.decreaseValue = this.decreaseValue.bind(this);
+        super(props)
+        this.state = { id: props.id, label: props.label, value: 0 }
+        this.setValue = this.setValue.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.increaseValue = this.increaseValue.bind(this)
+        this.decreaseValue = this.decreaseValue.bind(this)
         // eslint-disable-next-line no-restricted-globals
         addEventListener('reset', () => { this.setState({ value: 0 }) })
     }
 
 
     setValue(value) {
-        this.setState({ value: Math.abs(parseInt(value)) });
+        this.setState({ value: Math.abs(parseInt(value)) })
     }
 
     handleChange(event) {
-        this.setValue(event.target.value);
+        this.setValue(event.target.value)
     }
 
     increaseValue() {
         if (this.state.value < 10)
-            this.setState({ value: this.state.value + 1 });
+            this.setState({ value: this.state.value + 1 })
     }
 
     decreaseValue() {
         if (this.state.value > 0)
-            this.setState({ value: this.state.value - 1 });
+            this.setState({ value: this.state.value - 1 })
     }
 
     render() {
-        // props = {id: "teleopUp", label: "Upper Cargo"};
+        // props = {id: "teleopUp", label: "Upper Cargo"}
         return (
             <div>
 
@@ -67,43 +67,43 @@ class NumberInput extends React.Component {
             </div>
 
 
-        );
+        )
     }
 }
 
 class ButtonInput extends React.Component {
     constructor(props) {
-        super(props);
-        this.state = { id: props.id, off_label: props.off_label, value: 0, on_label: props.on_label };
-        this.setValue = this.setValue.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.increaseValue = this.increaseValue.bind(this);
-        this.decreaseValue = this.decreaseValue.bind(this);
-        this.setValueFinal = this.setValueFinal.bind(this);
+        super(props)
+        this.state = { id: props.id, off_label: props.off_label, value: 0, on_label: props.on_label }
+        this.setValue = this.setValue.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.increaseValue = this.increaseValue.bind(this)
+        this.decreaseValue = this.decreaseValue.bind(this)
+        this.setValueFinal = this.setValueFinal.bind(this)
         // eslint-disable-next-line no-restricted-globals
         addEventListener('reset', () => { this.setState({ value: 0 }) })
     }
 
     setValue(value) {
-        this.setState({ value: Math.abs(parseInt(value)) });
+        this.setState({ value: Math.abs(parseInt(value)) })
     }
 
     handleChange(event) {
-        this.setValue(event.target.value);
+        this.setValue(event.target.value)
     }
 
     increaseValue() {
-        this.setState({ value: this.state.value + 1 });
+        this.setState({ value: this.state.value + 1 })
     }
 
     decreaseValue() {
-        this.setState({ value: this.state.value - 1 });
+        this.setState({ value: this.state.value - 1 })
     }
     setValueFinal() {
         if (this.state.value === 0) {
-            this.increaseValue();
+            this.increaseValue()
         } else if (this.state.value === 1) {
-            this.decreaseValue();
+            this.decreaseValue()
         }
     }
     render() {
@@ -113,14 +113,14 @@ class ButtonInput extends React.Component {
                     <input type="hidden" value={false} name={this.state.id} />
                     <input type="button" className="number-off" value={this.state.off_label} onClick={this.setValueFinal} />
                 </div>
-            );
+            )
         } else if (this.state.value === 1) {
             return (
                 <div className="ToggleButton">
                     <input type="hidden" value={true} name={this.state.id} />
                     <input type="button" className="number-on" value={this.state.on_label} onClick={this.setValueFinal} />
                 </div>
-            );
+            )
         }
     }
 }
@@ -128,10 +128,10 @@ class ButtonInput extends React.Component {
 
 class MultiButton extends React.Component {
     constructor(props) {
-        super(props);
-        this.state = { items: props.items, id: props.id, label: props.label, value: 0, selected: null };
-        this.test1 = this.test1.bind(this);
-        this.generateButtons = this.generateButtons.bind(this);
+        super(props)
+        this.state = { items: props.items, id: props.id, label: props.label, value: 0, selected: null }
+        this.test1 = this.test1.bind(this)
+        this.generateButtons = this.generateButtons.bind(this)
         // eslint-disable-next-line no-restricted-globals
         addEventListener('reset', () => { this.setState({ selected: 0 }) })
 
@@ -141,32 +141,32 @@ class MultiButton extends React.Component {
         this.setState({
             selected: id
         })
-        console.log('I\'ve been called ' + (id));
+        console.log('I\'ve been called ' + (id))
     }
 
     generateButtons() {
-        let output = [];
+        let output = []
 
         for (let index in this.state.items) {
 
-            let component;
+            let component
 
             if (this.state.selected === index) {
                 component = <input key={index} type="button" className="number-on" value={this.state.items[index][0]} onClick={() => this.test1(index)} />
                 // component = <input type="button" value={1} on_label={(this.state.items[index][0])} off_label={(this.state.items[index][1])} id={index} test1={this.test1} />
-                console.log('Selected button generated');
+                console.log('Selected button generated')
 
             } else {
                 // component = <input type="button" value={0} on_label={(this.state.items[index][0])} off_label={(this.state.items[index][1])} id={index} test1={this.test1} />
                 component = <input key={index} type="button" className="number-off" value={this.state.items[index][1]} onClick={() => this.test1(index)} />
-                console.log('Not selected button generated');
+                console.log('Not selected button generated')
             }
 
             output.push(component)
 
 
         }
-        return output;
+        return output
     }
 
 
@@ -241,12 +241,12 @@ const options = [
     { value: '8600', label: '8600' },
     { value: '8898', label: '8898' },
     { value: '9172', label: '9172' },
-];
+]
 
 class SearchBar extends React.Component {
     constructor(props) {
         super(props)
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChange = this.handleChange.bind(this)
     }
 
     handleChange = (selectedOption) => {
@@ -265,7 +265,7 @@ class SearchBar extends React.Component {
                     name={this.props.name}
                 />
             </div>
-        );
+        )
     }
 }
 
@@ -273,16 +273,16 @@ function SubmitButtons(props) {
 }
 
 function CheckDecimal(props) {
-    const inputField = document.getElementById("Match_Number");
+    const inputField = document.getElementById("Match_Number")
 
     inputField.addEventListener('input', function () {
         if (inputField.value.includes(".")) {
-            inputField.setCustomValidity("Please enter an integer.");
+            inputField.setCustomValidity("Please enter an integer.")
         } else {
-            inputField.setCustomValidity("");
+            inputField.setCustomValidity("")
         }
-    });
+    })
 
 }
 
-export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, SearchBar, options, SubmitButtons, CheckDecimal };
+export { RadioButtons, NumberInput, ButtonInput, MultiButton, Upload, SearchBar, options, SubmitButtons, CheckDecimal }
