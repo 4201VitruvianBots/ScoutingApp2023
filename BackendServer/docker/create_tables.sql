@@ -1,6 +1,7 @@
 USE rawData;
 
 CREATE TABLE matchData(
+	id INT NOT NULL AUTO_INCREMENT,
 	Match_Number INT NOT NULL,
 	Team_Number INT NULL,
 	Scouter_Name TEXT NULL,
@@ -23,7 +24,7 @@ CREATE TABLE matchData(
 	Tele_Station INT NULL,
 	No_Show_Robot BOOLEAN,
 	Comments TEXT NULL,
-	PRIMARY KEY (Match_Number, Team_Alliance)
+	PRIMARY KEY (id)
 );
 
 CREATE TABLE pitData(
@@ -45,6 +46,7 @@ CREATE TABLE pitData(
 );
 
 CREATE TABLE superScout(
+	id INT NOT NULL AUTO_INCREMENT,
 	Scouter_Name TEXT NULL,
 	Competition TEXT NULL,
 	Match_Number INT NOT NULL,
@@ -52,17 +54,19 @@ CREATE TABLE superScout(
 	Team INT NULL,
 	Defense INT NULL,
 	Comments TEXT NULL,
-	PRIMARY KEY (Match_Number, Team_Alliance)
+	PRIMARY KEY (id)
 );
 
 CREATE TABLE fouls(
+	id INT NOT NULL AUTO_INCREMENT,
 	Scouter_Name TEXT NULL, 
 	Competition TEXT NULL,
 	Match_Number INT NULL,
 	Team_Alliance INT NULL,
 	Team_Number INT NULL,
 	Cause INT NULL,
-	Comments TEXT NULL
+	Comments TEXT NULL,
+	PRIMARY KEY (id)
 );
 
 CREATE TABLE dataAnalysis(
