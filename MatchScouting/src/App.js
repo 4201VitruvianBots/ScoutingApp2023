@@ -147,7 +147,7 @@ class App extends React.Component {
                 this.setState({ connected: ok });
             } catch (error) {
                 console.log("error", error);
-                this.setState({ connected: true });
+                this.setState({ connected: false });
             }
         };
 
