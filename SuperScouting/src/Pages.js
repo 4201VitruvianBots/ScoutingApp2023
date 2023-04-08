@@ -85,15 +85,27 @@ function SignIn(props) {
                     </select>
                     <br />
                     <div className="allianceSelect">
-                        <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} shouldChangeColor={true} />
+                        <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} />
                     </div>
 
 
                     {showCheck && <div class="check"></div>}
 
                     <input type="submit" className="SAVE" value="Sign In" />
-
+                    <br></br>
                 </div>
+                {/* <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br> */}
+
             </form>
         </div>
     );
@@ -378,6 +390,7 @@ function General(props) {
             <div>
                 <p className="version">Version LAR.0.1</p>
             </div>
+
 
         </Page >
     );

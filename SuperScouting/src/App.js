@@ -1,5 +1,5 @@
 import './App.css';
-import { MultiButton } from './Form';
+// import { MultiButton } from './Form';
 import { SignIn, General } from "./Pages";
 import { options } from './Form'
 import React from "react";
@@ -265,12 +265,18 @@ class App extends React.Component {
                 <input type="button" onClick={() => this.test2('sign-in')} value="Sign In" className="nav" />
                 <input type="button" onClick={() => this.test2('general')} value="Fouls" className="nav" />
                 <form>
-                    <div className="allianceSelect">
-                        <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} shouldChangeColor={true} />
+                    <div className="redindicator">
+                        <p>Your Alliance Color is Red</p>
                     </div>
+
+                    <div className="blueindicator">
+                        <p>Your Alliance Color is Blue</p>
+                    </div>
+
+                    {/* <div className="allianceSelect">
+                        <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} shouldChangeColor={true} />
+                    </div> */}
                 </form>
-
-
                 {selectedPage}
 
                 <iframe className="frame" name="frame" title="frame"></iframe>
