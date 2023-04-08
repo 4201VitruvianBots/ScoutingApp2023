@@ -85,7 +85,7 @@ function SignIn(props) {
                     </select>
                     <br />
                     <div className="allianceSelect">
-                        <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} />
+                        <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} onChange={props.onChange} />
                     </div>
 
 

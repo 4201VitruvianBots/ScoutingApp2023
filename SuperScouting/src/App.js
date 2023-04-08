@@ -55,7 +55,7 @@ function csvStringify(data) {
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { signedIn: false, ScouterName: "", EventName: "", selected: 'sign-in', fouls: [], matchSchedule: null, team1: options[0], team2: options[0], team3: options[0] };
+        this.state = { signedIn: false, ScouterName: "", EventName: "", selected: 'sign-in', fouls: [], matchSchedule: null, team1: options[0], team2: options[0], team3: options[0], scouterColor: null };
         this.SignInHandler = this.SignInHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.test2 = this.test2.bind(this)
@@ -64,6 +64,7 @@ class App extends React.Component {
         this.setTeamOption1 = this.setTeamOption1.bind(this);
         this.setTeamOption2 = this.setTeamOption2.bind(this);
         this.setTeamOption3 = this.setTeamOption3.bind(this);
+        this.setScouterColor = this.setScouterColor.bind(this);
         this.handleMatchUpdate = this.handleMatchUpdate.bind(this);
     }
 
@@ -77,6 +78,10 @@ class App extends React.Component {
 
     setTeamOption3(option) {
         this.setState({ team3: option });
+    }
+
+    setScouterColor(option) {
+        this.setState({ scouterColor: option });
     }
 
     handleMatchUpdate(matchNumber) {
@@ -230,7 +235,8 @@ class App extends React.Component {
 
         switch (this.state.selected) {
             case 'sign-in':
-                selectedPage = <SignIn onSubmit={this.SignInHandler} />;
+                selectedPage = <SignIn onSubmit={this.SignInHandler} onChange={this.setScouterColor} />;
+
 
                 break;
             case 'general':
@@ -257,6 +263,8 @@ class App extends React.Component {
             default:
         }
 
+        console.log(this.state.scouterColor)
+        var isRedScout = (this.state.scouterColor === "RED");
 
         return (
             <main>
@@ -265,13 +273,17 @@ class App extends React.Component {
                 <input type="button" onClick={() => this.test2('sign-in')} value="Sign In" className="nav" />
                 <input type="button" onClick={() => this.test2('general')} value="Fouls" className="nav" />
                 <form>
-                    <div className="redindicator">
-                        <p>Your Alliance Color is Red</p>
-                    </div>
+                    {isRedScout ? (
+                        <div className="redindicator">
+                            <p>Your Alliance Color is Red</p>
+                        </div>
+                    ) : (
+                        <div className="blueindicator">
+                            <p>Your Alliance Color is Blue</p>
+                        </div>
+                    )
+                    }
 
-                    <div className="blueindicator">
-                        <p>Your Alliance Color is Blue</p>
-                    </div>
 
                     {/* <div className="allianceSelect">
                         <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} shouldChangeColor={true} />
