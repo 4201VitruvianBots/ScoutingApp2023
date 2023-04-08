@@ -37,7 +37,8 @@ try:
 except:
     schedule = None
 
-scoutersStatus = {str(i): {'Scouter_Name': '', 'Team_Number': '', 'Battery_Level': '', 'Last_Update': 0, 'Online': False} for i in range(8)}
+scoutersStatus = {'registered': {str(i): {'Scouter_Name': '', 'Team_Number': '', 'Battery_Level': '', 'Last_Update': 0, 'Online': False} for i in range(8)}, 'unregistered': 0}
+unregisteredScouters = {}
 
 # Position:
 # 0 Red 1
@@ -52,14 +53,24 @@ scoutersStatus = {str(i): {'Scouter_Name': '', 'Team_Number': '', 'Battery_Level
 @app.route('/data/status', methods=['POST'])
 def handle_status():
     data = request.get_json()
-    if (data.get('Position') != None):
-        scoutersStatus[data.get('Position')] = {
+    address = request.remote_addr
+    if (data.get('Position') == None):
+        if not address in unregisteredScouters:
+            unregisteredScouters[address] = time.time()
+    else:
+        if address in unregisteredScouters:
+            del unregisteredScouters[address]
+
+        scoutersStatus['registered'][data.get('Position')] = {
             'Scouter_Name': data.get('Scouter_Name'),
             'Team_Number': data.get('Team_Number'),
+            'Match_Number': data.get('Match_Number'),
             'Battery_Level': data.get('Battery_Level'),
             'Last_Update': time.time(),
             'Online': True
         }
+    scoutersStatus['unregistered'] = len(unregisteredScouters)
+
     return 'OK', 200
 
 @app.route('/data/status/tablets', methods=['GET'])
@@ -68,9 +79,13 @@ def handle_get_tablets():
 
 def checker_thread():
     while True:
-        for i in scoutersStatus:
-            if scoutersStatus[i]['Last_Update'] + 6 < time.time():
-                scoutersStatus[i]['Online'] = False
+        for i in scoutersStatus['registered']:
+            if scoutersStatus['registered'][i]['Last_Update'] + 6 < time.time():
+                scoutersStatus['registered'][i]['Online'] = False
+        for i in unregisteredScouters:
+            if unregisteredScouters[i] + 6 < time.time():
+                del unregisteredScouters[i]
+        scoutersStatus['unregistered'] = len(unregisteredScouters)
         time.sleep(1)
 
 @app.before_first_request
@@ -100,14 +115,15 @@ def handle_get_matches():
     if schedule == None:
         matches = {}
     else:
-        matches = {match: [{'scheduledTeamNumber': i, 'submitted': False} for i in teamNumbers] + [{'submitted': False}, {'submitted': False}] for match, teamNumbers in schedule.items()}
+        matches = {match: [{'teamNumber': i, 'submitted': 0} for i in teamNumbers] + [{'submitted': 0}, {'submitted': 0}] for match, teamNumbers in schedule.items()}
 
     for i in dbMatches:
-        entry = {'submittedTeamNumber': str(i[2]), 'submitted': True}
         match_num = str(i[0])
 
         if not match_num in matches:
-            matches[match_num] = [{'submitted': False} for i in range(8)]
+            matches[match_num] = [{'submitted': 0} for i in range(8)]
+
+        entry = {'teamNumber': str(i[2]), 'submitted': matches[match_num][i[1]]['submitted'] + 1}
 
         matches[match_num][i[1]].update(entry)
     
@@ -115,9 +131,9 @@ def handle_get_matches():
         match_num = str(i[0])
         
         if not match_num in matches:
-            matches[match_num] = [{'submitted': False} for i in range(8)]
+            matches[match_num] = [{'submitted': 0} for i in range(8)]
         
-        matches[match_num][i[1] + 6]['submitted'] = True
+        matches[match_num][i[1] + 6]['submitted'] += 1
     
     return matches
 
