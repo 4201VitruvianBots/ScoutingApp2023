@@ -4,10 +4,6 @@ import { SearchBar, Title, PopupGfg, options } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 
-var colorScale0 = scaleLinear().domain([0, 50, 100]).range(['red', 'yellow', 'lime'])
-var colorScale1 = scaleLinear().domain([0, 0.5, 1, 1.01]).range(['red', 'yellow', 'lime', 'fuchsia']);
-
-
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -26,7 +22,9 @@ class App extends React.Component {
             data3: null,
             data4: null,
             data5: null,
-            data6: null
+            data6: null,
+            maxdata: null, //The thing holding all the max scoring team data numbers
+            mindata: null //The thing holding the lowest scoring team data numbers
         };
         this.setSelectedOption1 = this.setSelectedOption1.bind(this);
         this.setSelectedOption2 = this.setSelectedOption2.bind(this);
@@ -39,7 +37,7 @@ class App extends React.Component {
         this.setSelected = this.setSelected.bind(this);
         this.SignInHandler = this.SignInHandler.bind(this);
         this.SubmitHandler = this.SubmitHandler.bind(this);
-        this.handleMatchUpdate = this.handleMatchUpdate.bind(this);   
+        this.handleMatchUpdate = this.handleMatchUpdate.bind(this);
 
     }
 
@@ -81,9 +79,53 @@ class App extends React.Component {
         }
     }
 
+    async fetchData() {
+        const maxurl = `http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/max`;
+        const minurl = `http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/min`;
+        try {
+            const responseMax = await fetch(maxurl, { crossDomain: true, method: 'GET' });
+            if (responseMax.ok) {
+                const dataMax = await responseMax.json();
+                this.setState({ maxdata: dataMax })
+            }
+        } catch (error) {
+        }
+        try {
+            const responseMin = await fetch(minurl, { crossDomain: true, method: 'GET' });
+            if (responseMin.ok) {
+                const dataMin = await responseMin.json();
+                this.setState({ mindata: dataMin })
+            }
+        } catch (error) {
+        }
+    }
     componentDidMount() {
-        let scheduleInterval;
+        // const fetchData = async () => {
+        //     const maxurl = `http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/max`;
+        //     const minurl = `http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/min`;
+        //     try {
+        //         const responseMax = await fetch(maxurl, {crossDomain: true, method: 'GET'});
+        //         if (responseMax.ok) {
+        //             const dataMax = await responseMax.json();
+        //             this.setState({ maxdata: dataMax})
+        //         }
+        //     } catch (error) {
+        //     }
+        //     try {
+        //         const responseMin = await fetch(minurl, {crossDomain: true, method: 'GET'});
+        //         if (responseMin.ok) {
+        //             const dataMin = await responseMin.json();
+        //             this.setState({ mindata: dataMin})
+        //         }
+        //     } catch (error) {
+        //     }
+        // }
+        if (this.state.maxdata === null) {
+            this.fetchData()
+        }
+        const dataInterval = setInterval(this.fetchData, 180000);
 
+        let scheduleInterval;
         const fetchSchedule = async () => {
             const url = `http://${process.env.REACT_APP_BACKEND_IP}/schedule.json`;
             try {
@@ -96,13 +138,12 @@ class App extends React.Component {
             } catch (error) {
             }
         }
-
         fetchSchedule();
-
         scheduleInterval = setInterval(fetchSchedule, 10000);
 
         return function cleanup() {
             clearInterval(scheduleInterval);
+            clearInterval(dataInterval);
         };
     }
     // async componentDidMount() {
@@ -120,7 +161,7 @@ class App extends React.Component {
                 this.setState({ data1: testData });
             }
         }
-        else if (prevState.selectedOption2.value !== this.state.selectedOption2.value) {
+        if (prevState.selectedOption2.value !== this.state.selectedOption2.value) {
             const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption2.value, { crossDomain: true, method: 'GET' });
             if (response.status === 404) {
                 this.setState({ data2: null });
@@ -129,7 +170,7 @@ class App extends React.Component {
                 this.setState({ data2: testData });
             }
         }
-        else if (prevState.selectedOption3.value !== this.state.selectedOption3.value) {
+        if (prevState.selectedOption3.value !== this.state.selectedOption3.value) {
             const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption3.value, { crossDomain: true, method: 'GET' });
             if (response.status === 404) {
                 this.setState({ data3: null });
@@ -137,7 +178,7 @@ class App extends React.Component {
                 this.setState({ data3: await response.json() });
             }
         }
-        else if (prevState.selectedOption4.value !== this.state.selectedOption4.value) {
+        if (prevState.selectedOption4.value !== this.state.selectedOption4.value) {
             const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption4.value, { crossDomain: true, method: 'GET' });
             if (response.status === 404) {
                 this.setState({ data4: null });
@@ -145,7 +186,7 @@ class App extends React.Component {
                 this.setState({ data4: await response.json() });
             }
         }
-        else if (prevState.selectedOption5.value !== this.state.selectedOption5.value) {
+        if (prevState.selectedOption5.value !== this.state.selectedOption5.value) {
             const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption5.value, { crossDomain: true, method: 'GET' });
             if (response.status === 404) {
                 this.setState({ data5: null });
@@ -153,7 +194,7 @@ class App extends React.Component {
                 this.setState({ data5: await response.json() });
             }
         }
-        else if (prevState.selectedOption6.value !== this.state.selectedOption6.value) {
+        if (prevState.selectedOption6.value !== this.state.selectedOption6.value) {
             const response = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/data/analysis/team/` + this.state.selectedOption6.value, { crossDomain: true, method: 'GET' });
             if (response.status === 404) {
                 this.setState({ data6: null });
@@ -162,6 +203,7 @@ class App extends React.Component {
             }
         }
         // GET request using fetch with async/await
+
     }
 
     SignInHandler(e) {
@@ -198,9 +240,18 @@ class App extends React.Component {
         this.setState({ selected: id });
     }
 
-
     render() {
-
+        var max = this.state.maxdata
+        var min = this.state.mindata
+        var AutoAverageMax = max?.Auto_Total_Average
+        var AutoAverageMin = min?.Auto_Total_Average
+        var BalanceToDockMax = (max?.Auto_Balance_Frequency) * 100
+        var BalanceToDockMin = (min?.Auto_Balance_Frequency) * 100
+        var DockedPercentMax = (max?.End_Dock_Frequency) * 100
+        var DockedPercentMin = (min?.End_Dock_Frequency) * 100
+        var BalanceDockRatioColor = scaleLinear().domain([BalanceToDockMin, ((BalanceToDockMax + BalanceToDockMin) / 2), BalanceToDockMax]).range(['red', 'yellow', 'lime'])
+        var AutoTotalPieceAverageColor = scaleLinear().domain([AutoAverageMin, ((AutoAverageMax + AutoAverageMin) / 2), AutoAverageMax]).range(['red', 'yellow', 'lime']);
+        var DockedPercentColor = scaleLinear().domain([DockedPercentMin, ((DockedPercentMax + DockedPercentMin) / 2), DockedPercentMax]).range(['red', 'yellow', 'lime'])
         return (
             <main>
                 <form onSubmit={this.SubmitHandler} action="#">
@@ -249,7 +300,7 @@ class App extends React.Component {
                             <td colspan="2" className="colorbg">Total Game Pieces</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
-                                    <td className="nobgcolor" style={{ backgroundColor: colorScale1(Math.round(this.state[`data${i}`]?.Auto_Total_Average * 100) / 100), }}>{Math.round(this.state[`data${i}`]?.Auto_Total_Average * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{ backgroundColor: AutoTotalPieceAverageColor(Math.round(this.state[`data${i}`]?.Auto_Total_Average * 100) / 100), }}>{Math.round(this.state[`data${i}`]?.Auto_Total_Average * 100) / 100}</td>
                                     <td className="test">{Math.round(this.state[`data${i}`]?.Auto_Total_Max * 100) / 100}</td>
                                 </React.Fragment>
                             ))}
@@ -287,7 +338,7 @@ class App extends React.Component {
                         <tr>
                             <td colSpan="2" className="colorbg">% Balanced / Docked</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <td colSpan="2" className="colorbg2" style={{ backgroundColor: colorScale0((this.state[`data${i}`]?.Auto_Balance_Frequency) * 100) }}>{`${(this.state[`data${i}`]?.Auto_Balance_Frequency) * 100}%`}</td>
+                                <td colSpan="2" className="colorbg2" style={{ backgroundColor: BalanceDockRatioColor((this.state[`data${i}`]?.Auto_Balance_Frequency) * 100) }}>{`${(this.state[`data${i}`]?.Auto_Balance_Frequency) * 100}%`}</td>
                             ))}
                         </tr>
                         <tr>
@@ -412,7 +463,7 @@ class App extends React.Component {
                             <td rowspan="2" className="colorbg1">Endgame</td>
                             <td colspan="2" className="colorbg">% Docked</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <td className="test" colspan="2" key={i} style={{ backgroundColor: colorScale0(Math.round(this.state[`data${i}`]?.End_Dock_Frequency * 10000) / 100), }}>{Math.round(this.state[`data${i}`]?.End_Dock_Frequency * 10000) / 100}%</td>
+                                <td className="test" colspan="2" key={i} style={{ backgroundColor: DockedPercentColor(Math.round(this.state[`data${i}`]?.End_Dock_Frequency * 10000) / 100), }}>{Math.round(this.state[`data${i}`]?.End_Dock_Frequency * 10000) / 100}%</td>
                             ))}
                         </tr>
                         <tr>
