@@ -77,9 +77,11 @@ class App extends React.Component {
                 const data = fields.map(e => [e, answers[e]?.value]);
                 const dataObject = Object.fromEntries(data);
                 const time = new Date();
+                console.log(data);
                 const hour = time.getHours().toString().padStart(2, '0');
                 const minute = time.getMinutes().toString().padStart(2, '0');
-                download(JSON.stringify(dataObject), `Pit_Scout_${hour}${minute}.json`)
+                const teamNum = data[2][1];
+                download(JSON.stringify(dataObject), `Pit_Scout_${hour}${minute}_Team-Num-${teamNum}.json`)
                 event.target.reset();
                 this.setTeamOption({ value: null });
                 window.location.href = "#SignIn"

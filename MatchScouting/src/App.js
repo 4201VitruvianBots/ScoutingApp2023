@@ -98,7 +98,9 @@ class App extends React.Component {
                 const time = new Date();
                 const hour = time.getHours().toString().padStart(2, '0');
                 const minute = time.getMinutes().toString().padStart(2, '0');
-                download(csv, `Match_Scout_${hour}${minute}.csv`)
+                const matchNum =  data[0];
+                const teamNum = data[1];
+                download(csv, `Match_Scout_${hour}${minute}_Match-${matchNum}_Team-Num-${teamNum}.csv`)
                 // localStorage.setItem('matchData', localStorage.getItem('matchData') + csv)
                 event.target.submit();
                 this.setMatchNumber(this.state.matchNumber + 1)
