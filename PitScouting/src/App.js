@@ -33,6 +33,7 @@ function download(data, title) {
     link.download = title;
     link.href = url;
     link.click();
+    return blob;
 }
 
 // function csvStringify(data) {
@@ -81,7 +82,33 @@ class App extends React.Component {
                 const hour = time.getHours().toString().padStart(2, '0');
                 const minute = time.getMinutes().toString().padStart(2, '0');
                 const teamNum = data[2][1];
-                download(JSON.stringify(dataObject), `Pit_Scout_${hour}${minute}_Team-Num-${teamNum}.json`)
+                const saveData = JSON.stringify(dataObject);
+                var blob = download(saveData, `Pit_Scout_${hour}${minute}_Team-Num-${teamNum}.json`)
+
+                var file = new File([blob], `Pit_Scout_${hour}${minute}_Team-Num-${teamNum}.txt`, {type: 'text/plain'});
+                var filesArray = [file];
+
+                if(navigator.canShare && navigator.canShare({ files: filesArray })) {
+                navigator.share({
+                    files: filesArray,
+                    title: 'some_title',
+                }).then(() => console.log('Share was successful.'))
+                .catch((error) => console.log('Sharing failed', error));
+              } else {
+                console.log(`Your system doesn't support sharing files.`);
+                }
+
+                // if (navigator.canShare && navigator.canShare({ files: saveData })) {
+                //     navigator.share({
+                //       files: saveData,
+                //       title: 'PitScouting',
+                //       text: 'test',
+                //     })
+                //     .then(() => console.log('Share was successful.'))
+                //     .catch((error) => console.log('Sharing failed', error));
+                //   } else {
+                //     console.log(`Your system doesn't support sharing files.`);
+                //   }
                 event.target.reset();
                 this.setTeamOption({ value: null });
                 window.location.href = "#SignIn"
