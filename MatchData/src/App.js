@@ -243,15 +243,48 @@ class App extends React.Component {
     render() {
         var max = this.state.maxdata
         var min = this.state.mindata
+        var ColorRange = ['red', 'yellow', 'lime']
+
         var AutoAverageMax = max?.Auto_Total_Average
         var AutoAverageMin = min?.Auto_Total_Average
+        var AutoMaxMax = max?.Auto_Total_Max
+        var AutoMaxMin = min?.Auto_Total_Max
+        var AutoHighAverageMax = max?.Auto_High_Average
+        var AutoHighAverageMin = min?.Auto_High_Average
+        var AutoHighMaxMax = max?.Auto_High_Max
+        var AutoHighMaxMin = min?.Auto_High_Max
+        var AutoMidAverageMax = max?.Auto_Mid_Average
+        var AutoMidAverageMin = min?.Auto_Mid_Average
+        var AutoMidMaxMax = max?.Auto_Mid_Max
+        var AutoMidMaxMin = min?.Auto_Mid_Max
+        var AutoLowAverageMax = max?.Auto_Low_Average
+        var AutoLowAverageMin = min?.Auto_Low_Average
+        var AutoLowMaxMax = max?.Auto_Low_Max
+        var AutoLowMaxMin = min?.Auto_Low_Max
         var BalanceToDockMax = (max?.Auto_Balance_Frequency) * 100
         var BalanceToDockMin = (min?.Auto_Balance_Frequency) * 100
+        var TeleTotalAverageMax = max?.Tele_Pieces_Total_Average
+        var TeleTotalAverageMin = min?.Tele_Pieces_Total_Average
+        var TeleTotalMaxMax = max?.Tele_Pieces_Total_Max
+        var TeleTotalMaxMin = min?.Tele_Pieces_Total_Max
         var DockedPercentMax = (max?.End_Dock_Frequency) * 100
         var DockedPercentMin = (min?.End_Dock_Frequency) * 100
-        var BalanceDockRatioColor = scaleLinear().domain([BalanceToDockMin, ((BalanceToDockMax + BalanceToDockMin) / 2), BalanceToDockMax]).range(['red', 'yellow', 'lime'])
-        var AutoTotalPieceAverageColor = scaleLinear().domain([AutoAverageMin, ((AutoAverageMax + AutoAverageMin) / 2), AutoAverageMax]).range(['red', 'yellow', 'lime']);
-        var DockedPercentColor = scaleLinear().domain([DockedPercentMin, ((DockedPercentMax + DockedPercentMin) / 2), DockedPercentMax]).range(['red', 'yellow', 'lime'])
+        var BalancePercentMax = (max?.End_Balance_Frequency) * 100
+        var BalancePercentMin = (min?.End_Balance_Frequency) * 100
+
+        var AutoTotalPieceAverageColor = scaleLinear().domain([AutoAverageMin, ((AutoAverageMax + AutoAverageMin) / 2), AutoAverageMax]).range(ColorRange);
+        var AutoTotalPieceMaxColor = scaleLinear().domain([AutoMaxMin, ((AutoMaxMax + AutoMaxMin) / 2), AutoMaxMax]).range(ColorRange);
+        var AutoHighAverageColor = scaleLinear().domain([AutoHighAverageMin, ((AutoHighAverageMax + AutoHighAverageMin) / 2), AutoHighAverageMax]).range(ColorRange);
+        var AutoHighMaxColor = scaleLinear().domain([AutoHighMaxMin, ((AutoHighMaxMax + AutoHighMaxMin) / 2), AutoHighMaxMax]).range(ColorRange)
+        var AutoMidAverageColor = scaleLinear().domain([AutoMidAverageMin, ((AutoMidAverageMax + AutoMidAverageMin) / 2), AutoMidAverageMax]).range(ColorRange);
+        var AutoMidMaxColor = scaleLinear().domain([AutoMidMaxMin, ((AutoMidMaxMax + AutoMidMaxMin) / 2), AutoMidMaxMax]).range(ColorRange);
+        var AutoLowAverageColor = scaleLinear().domain([AutoLowAverageMin, ((AutoLowAverageMax + AutoLowAverageMin) / 2), AutoLowAverageMax]).range(ColorRange);
+        var AutoLowMaxColor = scaleLinear().domain([AutoLowMaxMin, ((AutoLowMaxMax + AutoLowMaxMin) / 2), AutoLowMaxMax]).range(ColorRange);
+        var BalanceDockRatioColor = scaleLinear().domain([BalanceToDockMin, ((BalanceToDockMax + BalanceToDockMin) / 2), BalanceToDockMax]).range(ColorRange);
+        var TeleTotalAverageColor = scaleLinear().domain([TeleTotalAverageMin, ((TeleTotalAverageMax + TeleTotalAverageMin) / 2), TeleTotalAverageMax]).range(ColorRange);
+        var TeleTotalMaxColor = scaleLinear().domain([TeleTotalMaxMin, ((TeleTotalMaxMax + TeleTotalMaxMin) / 2), TeleTotalMaxMax]).range(ColorRange);
+        var DockedPercentColor = scaleLinear().domain([DockedPercentMin, ((DockedPercentMax + DockedPercentMin) / 2), DockedPercentMax]).range(ColorRange);
+        var BalancedPercentColor = scaleLinear().domain([BalancePercentMin, ((BalancePercentMax + BalancePercentMin) / 2), BalancePercentMax]).range(ColorRange);
         return (
             <main>
                 <form onSubmit={this.SubmitHandler} action="#">
@@ -301,7 +334,7 @@ class App extends React.Component {
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
                                     <td className="nobgcolor" style={{ backgroundColor: AutoTotalPieceAverageColor(Math.round(this.state[`data${i}`]?.Auto_Total_Average * 100) / 100), }}>{Math.round(this.state[`data${i}`]?.Auto_Total_Average * 100) / 100}</td>
-                                    <td className="test">{Math.round(this.state[`data${i}`]?.Auto_Total_Max * 100) / 100}</td>
+                                    <td className="test" style={{ backgroundColor: AutoTotalPieceMaxColor(Math.round(this.state[`data${i}`]?.Auto_Total_Max * 100) / 100)}}>{Math.round(this.state[`data${i}`]?.Auto_Total_Max * 100) / 100}</td>
                                 </React.Fragment>
                             ))}
                         </tr>
@@ -310,8 +343,8 @@ class App extends React.Component {
                             <td className="colorbg">Game Pieces High</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
-                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Auto_High_Average * 100) / 100}</td>
-                                    <td className="test">{Math.round(this.state[`data${i}`]?.Auto_High_Max * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{backgroundColor: AutoHighAverageColor(Math.round(this.state[`data${i}`]?.Auto_High_Average * 100) / 100)}}>{Math.round(this.state[`data${i}`]?.Auto_High_Average * 100) / 100}</td>
+                                    <td className="test" style={{backgroundColor: AutoHighMaxColor(Math.round(this.state[`data${i}`]?.Auto_High_Max * 100) / 100)}}>{Math.round(this.state[`data${i}`]?.Auto_High_Max * 100) / 100}</td>
                                 </React.Fragment>
                             ))}
                         </tr>
@@ -320,8 +353,8 @@ class App extends React.Component {
                             <td className="colorbg">Game Pieces Mid</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <>
-                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Auto_Mid_Average * 100) / 100}</td>
-                                    <td className="test">{Math.round(this.state[`data${i}`]?.Auto_Mid_Max * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{backgroundColor: AutoMidAverageColor(Math.round(this.state[`data${i}`]?.Auto_Mid_Average * 100) / 100)}}>{Math.round(this.state[`data${i}`]?.Auto_Mid_Average * 100) / 100}</td>
+                                    <td className="test" style={{backgroundColor: AutoMidMaxColor(Math.round(this.state[`data${i}`]?.Auto_Mid_Max * 100) / 100)}}>{Math.round(this.state[`data${i}`]?.Auto_Mid_Max * 100) / 100}</td>
                                 </>
                             ))}
                         </tr>
@@ -330,8 +363,8 @@ class App extends React.Component {
                             <td className="colorbg">Game Pieces Low</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <>
-                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Auto_Low_Average * 100) / 100}</td>
-                                    <td className="test">{Math.round(this.state[`data${i}`]?.Auto_Low_Max * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{backgroundColor: AutoLowAverageColor(Math.round(this.state[`data${i}`]?.Auto_Low_Average * 100) / 100)}}>{Math.round(this.state[`data${i}`]?.Auto_Low_Average * 100) / 100}</td>
+                                    <td className="test" style={{backgroundColor: AutoLowMaxColor(Math.round(this.state[`data${i}`]?.Auto_Low_Max * 100) / 100)}}>{Math.round(this.state[`data${i}`]?.Auto_Low_Max * 100) / 100}</td>
                                 </>
                             ))}
                         </tr>
@@ -346,8 +379,8 @@ class App extends React.Component {
                             <td colspan="2" className="colorbg">Total Game Pieces</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
-                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Pieces_Total_Average * 100) / 100}</td>
-                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Pieces_Total_Max * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{backgroundColor: TeleTotalAverageColor(Math.round(this.state[`data${i}`]?.Tele_Pieces_Total_Average * 100) / 100)}}>{Math.round(this.state[`data${i}`]?.Tele_Pieces_Total_Average * 100) / 100}</td>
+                                    <td className="test" style={{backgroundColor: TeleTotalMaxColor(Math.round(this.state[`data${i}`]?.Tele_Pieces_Total_Max * 100) / 100)}}>{Math.round(this.state[`data${i}`]?.Tele_Pieces_Total_Max * 100) / 100}</td>
                                 </React.Fragment>
                             ))}
                         </tr>
@@ -469,7 +502,7 @@ class App extends React.Component {
                         <tr>
                             <td colspan="2" className="colorbg">% Balanced</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <td className="test" colspan="2" key={i}>{Math.round(this.state[`data${i}`]?.End_Balance_Frequency * 10000) / 100}%</td>
+                                <td className="test" colspan="2" key={i} style={{backgroundColor: BalancedPercentColor(Math.round(this.state[`data${i}`]?.End_Balance_Frequency * 10000) / 100), }}>{Math.round(this.state[`data${i}`]?.End_Balance_Frequency * 10000) / 100}%</td>
                             ))}
                         </tr>
                     </table>
