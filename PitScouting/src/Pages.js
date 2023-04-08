@@ -98,7 +98,7 @@ function General(props) {
                     </div>
 
                     <div className="workingOn">
-                        <textarea rows="5" cols="40" placeholder="They're working on..." name="Working_On" required></textarea>
+                        <textarea rows="4" cols="15" placeholder="They're working on..." name="Working_On" required></textarea>
                     </div>
 
                 </div>
