@@ -196,7 +196,7 @@ function TeleOp(props) {
             </div>
         </Page>
     );
-}
+    }
 // charge station
 // button for mobility
 function SavePage(props) {

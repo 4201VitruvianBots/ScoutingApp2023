@@ -206,8 +206,7 @@ class App extends React.Component {
                     <PreGame selected={this.state.selected === 'pre-game'} teamOption={this.state.teamOption} setTeamOption={this.setTeamOption} matchNumber={this.state.matchNumber} setMatchNumber={this.setMatchNumber} />
                     <Auto selected={this.state.selected === 'auto'} />
                     <TeleOp selected={this.state.selected === 'tele-op'} />
-
-                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} connected={this.state.connected} />
+                    <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} downloadCSV={this.downloadCSV} clearData={this.clearData} connected={this.state.connected} />
                     {/* <input type="submit" className="submit-button"></input> */}
                 </form>
                 <iframe name="frame" title="frame"></iframe>

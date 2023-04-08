@@ -256,6 +256,8 @@ def handle_post():
 
     mydb.commit()
     updateAnalysis(formData.get("Team_Number"))
+    defineChargePoints(formData.get("Team_Number"))
+    updateDockRatio(formData.get("Team_Number"))
     #for i in variable:
        # print(i)
     # Do something with the data
@@ -350,6 +352,37 @@ def updateAnalysis(Team_Number):
 
     mydb.commit()
     print('Update Analysis run')
+
+def defineChargePoints(Team_Number):
+    mycursor.execute('INSERT IGNORE INTO chargeStation(Team_Number) VALUES (%s)', (Team_Number,))
+
+    #no points
+    mycursor.execute("UPDATE chargeStation SET No_Points = (SELECT COUNT(*) FROM matchData WHERE Tele_Station = 0 AND Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
+    #parked
+    mycursor.execute("UPDATE chargeStation SET Parked = (SELECT COUNT(*) FROM matchData WHERE Tele_Station = 1 AND Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
+    #failed to balance
+    mycursor.execute("UPDATE chargeStation SET Failed_To_Dock = (SELECT COUNT(*) FROM matchData WHERE Tele_Station = 2 AND Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
+    #docked
+    mycursor.execute("UPDATE chargeStation SET Docked = (SELECT COUNT(*) FROM matchData WHERE Tele_Station = 3 AND Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
+    #engaged
+    mycursor.execute("UPDATE chargeStation SET Engaged = (SELECT COUNT(*) FROM matchData WHERE Tele_Station = 4 AND Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
+
+    
+    mydb.commit()
+    print('Update defineChargePoints run')
+
+        
+def updateDockRatio(Team_Number):
+    mycursor.execute("UPDATE dataAnalysis SET Failed_To_Dock_Ratio = (SELECT (Failed_To_Dock / (Parked + Docked + Engaged)) FROM chargeStation WHERE Team_Number = %s LIMIT 1)", (Team_Number,))
+    mydb.commit()
+    print('Update dock ratio run')
+
+# def updateDockRatio(Team_Number):
+#     mycursor.execute("UPDATE dataAnalysis SET Failed_To_Dock_Ratio = (SELECT (Failed_To_Dock / (Parked + Docked + Engaged)) FROM chargeStation WHERE Team_Number = %s)", (Team_Number, ))
+#     mydb.commit()
+#     print('Update dock ratio run')
+
+
 
 def updateFoulAnalysis(Team_Number):
     mycursor.execute('INSERT IGNORE INTO dataAnalysis(Team_Number) VALUES (%s)', (Team_Number,))
