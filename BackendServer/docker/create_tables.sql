@@ -66,7 +66,7 @@ CREATE TABLE superScout(
 	Competition TEXT NULL,
 	Match_Number INT NOT NULL,
 	Team_Alliance INT NOT NULL,
-	Team INT NULL,
+	Team_Number INT NULL,
 	Defense INT NULL,
 	Comments TEXT NULL,
 	PRIMARY KEY (id)
@@ -95,6 +95,7 @@ CREATE TABLE dataAnalysis(
 	Auto_High_Average FLOAT,
 	Auto_High_Max INT,
 	Auto_Balance_Frequency FLOAT,
+	Auto_Dock_Frequency FLOAT,
 	Tele_Pieces_Total_Average FLOAT,
 	Tele_Pieces_Total_Max INT,
 	Tele_Pieces_Low_Average FLOAT,
