@@ -85,7 +85,7 @@ function SignIn(props) {
                     </select>
                     <br />
                     <div className="allianceSelect">
-                        <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} onChange={props.onChange} />
+                        <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} id="Team_Alliance" onChange={props.onChange} />
                     </div>
 
 
@@ -94,17 +94,6 @@ function SignIn(props) {
                     <input type="submit" className="SAVE" value="Sign In" />
                     <br></br>
                 </div>
-                {/* <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br> */}
 
             </form>
         </div>

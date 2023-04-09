@@ -1,24 +1,7 @@
 import './App.css';
-// import { MultiButton } from './Form';
 import { SignIn, General } from "./Pages";
 import { options } from './Form'
 import React from "react";
-
-// const AllianceColor = () => {
-//     const RedorBlue = (color) => {
-//         alert(`Alliance Color is: ${color}!`);
-//     };
-
-//     return (
-//         <button
-//             onClick={() => {
-//                 RedorBlue("____");
-//             }}
-//         >
-//             Red or Blue
-//         </button>
-//     );
-// };
 
 const fields = [
     'Scouter_Name',
