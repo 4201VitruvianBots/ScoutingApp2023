@@ -83,10 +83,10 @@ class App extends React.Component {
                 const minute = time.getMinutes().toString().padStart(2, '0');
                 const teamNum = data[2][1];
                 const saveData = JSON.stringify(dataObject);
-                var blob = download(saveData, `Pit_Scout_${hour}${minute}_Team-Num-${teamNum}.json`)
+                let blob = download(saveData, `Pit_Scout_${hour}${minute}_Team-Num-${teamNum}.json`)
 
-                var file = new File([blob], `Pit_Scout_${hour}${minute}_Team-Num-${teamNum}.txt`, {type: 'text/plain'});
-                var filesArray = [file];
+                let file = new File([blob], `Pit_Scout_${hour}${minute}_Team-Num-${teamNum}.txt`, {type: 'text/plain'});
+                let filesArray = [file];
 
                 if(navigator.canShare && navigator.canShare({ files: filesArray })) {
                 navigator.share({
