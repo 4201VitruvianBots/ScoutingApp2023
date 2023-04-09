@@ -5,7 +5,7 @@ import atexit
 import time
 import json
 import threading
-from analysis import calculateMatchAnalysis, calculateSuperScoutAnalysis
+from analysis import calculate_match_analysis, calculate_super_scout_analysis
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -315,7 +315,7 @@ def handle_post3():
 def updateAnalysis(Team_Number):
     mycursor.execute('INSERT IGNORE INTO dataAnalysis(Team_Number) VALUES (%s)', (Team_Number,))
     
-    analyzedData = calculateMatchAnalysis(Team_Number, mydb)
+    analyzedData = calculate_match_analysis(Team_Number, mydb)
 
     request = 'UPDATE dataAnalysis SET ' + ', '.join([f'{field}=%s' for field, value in analyzedData.items()]) + ' WHERE Team_Number = %s'
     mycursor.execute(request, list(analyzedData.values()) + [Team_Number])
@@ -326,7 +326,7 @@ def updateAnalysis(Team_Number):
 def updateFoulAnalysis(Team_Number):
     mycursor.execute('INSERT IGNORE INTO dataAnalysis(Team_Number) VALUES (%s)', (Team_Number,))
 
-    analyzedData = calculateSuperScoutAnalysis(Team_Number, mydb)
+    analyzedData = calculate_super_scout_analysis(Team_Number, mydb)
 
     request = 'UPDATE dataAnalysis SET ' + ', '.join([f'{field}=%s' for field, value in analyzedData.items()]) + ' WHERE Team_Number = %s'
     mycursor.execute(request, list(analyzedData.values()) + [Team_Number])
