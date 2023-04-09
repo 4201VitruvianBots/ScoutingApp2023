@@ -287,10 +287,10 @@ p {
 
 .submit-button {
   background-color: #83c183;
-  width: 400px;
-  height: 40px;
-  font-size: 25px;
-  margin: 25px;
+  width: 300px;
+  height: 35px;
+  font-size: 20px;
+  margin: 15px;
   border-radius: 30px;
   font-family: system-ui;
 }
@@ -332,7 +332,7 @@ p {
 }
 
 .workingOn input[type="text"] {
-  width: 600px;
+  width: 200px;
   height: 50px;
 }
 
@@ -364,7 +364,8 @@ p {
 }
 
 .motorType textarea,
-.autos textarea {
+.autos textarea,
+.workingOn textarea {
   font-size: 20px;
   font-weight: 400;
 }
@@ -437,7 +438,7 @@ textarea {
 
 .upload {
   background-color: lightgray;
-  min-width: 300px;
+  min-width: 270px;
   min-height: 200px;
   display: inline-flex;
   align-items: center;

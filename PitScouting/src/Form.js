@@ -69,7 +69,6 @@ class NumberInput extends React.Component {
 class ButtonInput extends React.Component {
     constructor(props) {
         super(props);
-        console.log('hello');
         this.state = { id: props.id, off_label: props.off_label, value: props.value || 0, on_label: props.on_label, test1: props.test1 }; //this last prop looks to see if the instance has a value for test1.
         this.setValue = this.setValue.bind(this);
         this.handleChange = this.handleChange.bind(this);

@@ -1,6 +1,7 @@
 USE rawData;
 
 CREATE TABLE matchData(
+	id INT NOT NULL AUTO_INCREMENT,
 	Match_Number INT NOT NULL,
 	Team_Number INT NULL,
 	Scouter_Name TEXT NULL,
@@ -21,10 +22,25 @@ CREATE TABLE matchData(
 	Tele_Cone_Mid INT NULL,
 	Tele_Cone_High INT NULL,
 	Tele_Station INT NULL,
-	No_Show_Robot BOOLEAN,
+	No_Show_Robot BOOLEAN NULL,
 	Comments TEXT NULL,
-	PRIMARY KEY (Match_Number, Team_Alliance)
+	PRIMARY KEY (id)
 );
+
+CREATE TABLE chargeStation(
+	Team_Number INT NULL,
+	No_Points INT NULL,
+	/* if Tele_Station in matchData is euqal to 0, then add a point to No_Points*/
+	Parked INT NULL,
+	/* if Tele_Station in matchData is euqal to 1, then add a point to Parked*/
+	Failed_To_Dock INT NULL,
+	/* if Tele_Station in matchData is euqal to 2, then add a point to Failed_To_Dock*/
+	Docked INT NULL,
+	/* if Tele_Station in matchData is euqal to 3, then add a point to Docked*/
+	Engaged INT NULL
+	/* if Tele_Station in matchData is euqal to 4, then add a point to Engaged*/
+);
+
 
 CREATE TABLE pitData(
 	Scouter_Name TEXT NULL,
@@ -45,6 +61,7 @@ CREATE TABLE pitData(
 );
 
 CREATE TABLE superScout(
+	id INT NOT NULL AUTO_INCREMENT,
 	Scouter_Name TEXT NULL,
 	Competition TEXT NULL,
 	Match_Number INT NOT NULL,
@@ -52,17 +69,19 @@ CREATE TABLE superScout(
 	Team INT NULL,
 	Defense INT NULL,
 	Comments TEXT NULL,
-	PRIMARY KEY (Match_Number, Team_Alliance)
+	PRIMARY KEY (id)
 );
 
 CREATE TABLE fouls(
+	id INT NOT NULL AUTO_INCREMENT,
 	Scouter_Name TEXT NULL, 
 	Competition TEXT NULL,
 	Match_Number INT NULL,
 	Team_Alliance INT NULL,
 	Team_Number INT NULL,
 	Cause INT NULL,
-	Comments TEXT NULL
+	Comments TEXT NULL,
+	PRIMARY KEY (id)
 );
 
 CREATE TABLE dataAnalysis(
@@ -100,6 +119,7 @@ CREATE TABLE dataAnalysis(
 	Tele_Cube_Mid_Max INT,
 	Tele_Cube_High_Average FLOAT,
 	Tele_Cube_High_Max INT,
+	Failed_To_Dock_Ratio FLOAT,
 	End_Dock_Frequency FLOAT,
 	End_Balance_Frequency FLOAT,
 	Average_Fouls FLOAT,

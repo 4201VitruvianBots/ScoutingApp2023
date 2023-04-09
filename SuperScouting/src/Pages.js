@@ -115,7 +115,7 @@ function SignIn(props) {
 function General(props) {
 
     const handleMatchChange = (event) => {
-        props.onMatchUpdate(event.target.value);
+        props.setMatchNumber(parseInt(event.target.value));
     }
 
     return (
@@ -125,7 +125,7 @@ function General(props) {
 
             <div className="textArea">
                 <br />
-                <input type="number" id="Sname" name="Match_Number" placeholder="MATCH NUMBER" className="name" required min="1" onChange={handleMatchChange} />
+                <input type="number" id="Sname" name="Match_Number" placeholder="MATCH NUMBER" className="name" required min="1" value={props.matchNumber} onChange={handleMatchChange} />
                 <br />
                 <br />
                 {/* <div className="driverSkill">Driver skill</div> */}

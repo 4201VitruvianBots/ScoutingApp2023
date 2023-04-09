@@ -51,11 +51,15 @@ main {
     content: "\200b";
 }
 
+.match-number,
 .team-number {
     /* margin: 0.25em; */
     padding: 0.5em;
     background-color: #0000002f;
     border-radius: 0.5em;
+}
+
+.match-number {
     font-size: 1.25em;
 }
 
@@ -72,6 +76,17 @@ main {
     color: red;
 }
 
+.unregistered-status {
+    text-align: center;
+    font-size: 1.25em;
+}
+
+.unregistered-number {
+    padding: 0.3em;
+    background-color: #0000002f;
+    border-radius: 0.3em;
+}
+
 .material-symbols-outlined {
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 12;
     font-size: 1em !important;
@@ -79,9 +94,35 @@ main {
     margin: 0 0.2em;
 }
 
+.match-status-container {
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0.5em;
+}
+
+.notif-message {
+    align-self: center;
+}
+
+.notif-button {
+    border-radius: 0.5em;
+    padding: 0.5em;
+    box-sizing: border-box;
+    background-color: #5f5f5f7f;
+    border: 2px solid #5f5f5f;
+    color: #eee;
+    font-size: 1.1em;
+}
+
+.notif-button:hover {
+    cursor: pointer;
+    filter: brightness(1.25);
+}
+
 .table-container {
     overflow-y: auto;
-    max-height: 100%;
+    flex-grow: 1;
 }
 
 thead {
@@ -91,8 +132,7 @@ thead {
 
 .match-status {
     width: 50em;
-    gap: 0.25em;
-    border-spacing: 0.25em;
+    border-spacing: 0 0.5em;
     border-collapse: separate;
 }
 
@@ -107,44 +147,71 @@ thead {
     text-align: center;
     --bg-color: #5f5f5f7f;
     --fg-color: #5f5f5f;
-    border-radius: 0.5em;
+    /* border-radius: 0.5em; */
+    color: #afafaf;
     background-color: var(--bg-color);
-    border: 0px solid var(--fg-color);
+    border-top: 2px solid var(--fg-color);
+    border-bottom: 2px solid var(--fg-color);
 }
 
-.match-status tbody tr {
-    border-radius: 0.5em;
+.match-status td:first-child,
+.match-status th:first-child {
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+    border-left: 2px solid var(--fg-color);
+}
+
+.match-status td:last-child,
+.match-status th:last-child {
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    border-right: 2px solid var(--fg-color);
 }
 
 .match-status tbody tr:hover {
-    background-color: #ffffff20;
+    filter: brightness(1.25);
     cursor: pointer;
 }
 
 .match-status .status-red {
     --bg-color: #d823234f;
-    --fg-color: #d82323;
+    --fg-color: #d823239f;
 }
 
 .match-status .status-blue {
     --bg-color: #2352d84f;
-    --fg-color: #2352d8;
-}
-
-.match-status.submitted,
-.match-status th {
-    border-width: 2px;
-}
-
-.submitted.status-red {
-    --bg-color: #d823237f;
-}
-
-.submitted.status-blue {
-    --bg-color: #2352d87f;
+    --fg-color: #2352d89f;
 }
 
 .match-status .required {
+    --bg-color: #7423d83f;
+    --fg-color: #7423d89f;
+}
+
+.match-status .submitted,
+.match-status td:first-child,
+.match-status th {
+    color: #eee;
+}
+
+/* .match-status.submitted, */
+/* .match-status th {
+    border-width: 2px;
+} */
+
+.submitted.status-red,
+.match-status th.status-red {
+    --bg-color: #d823237f;
+    --fg-color: #d82323;
+}
+
+.submitted.status-blue,
+.match-status th.status-blue {
+    --bg-color: #2352d87f;
+    --fg-color: #2352d8;
+}
+
+.match-status .submitted.required {
     --bg-color: #7423d87f;
     --fg-color: #7423d8;
 }
@@ -157,12 +224,14 @@ thead {
     color: blue;
 } */
 
-.match-status .selected td {
+.match-status .selected,
+.match-status .selected.required {
     --bg-color: #d8d8237f;
     --fg-color: #d8d823;
 }
 
-.match-status td.self {
+.match-status .self,
+.match-status .self.required {
     --bg-color: #2c9c2c7f;
     --fg-color: #2c9c2c;
 }
@@ -170,3 +239,9 @@ thead {
 /* .conflict {
 
 } */
+
+.warning {
+    color: yellow;
+    transform: scale(150%);
+    margin-right: 0.5em;
+}
