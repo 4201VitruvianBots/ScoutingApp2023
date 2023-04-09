@@ -24,7 +24,6 @@ function download(data, title) {
 }
 
 function csvStringify(data) {
-    console.log(data);
     return data.map(e => (
         e.map(e2 => {
             if (e2.includes('"') || e2.includes('\n') || e2.includes('\r') || e2.includes(',')) {
@@ -106,7 +105,11 @@ class App extends React.Component {
                 const time = new Date();
                 const hour = time.getHours().toString().padStart(2, '0');
                 const minute = time.getMinutes().toString().padStart(2, '0');
-                download(csv, `Super_Scout_${hour}${minute}.csv`)
+                const matchNum =  data[2];
+                const teamNum1 = data[4];
+                const teamNum2 = data[5];
+                const teamNum3 = data[6];
+                download(csv, `Super_Scout_${hour}${minute}_Match-${matchNum}_Teams-${teamNum1}-${teamNum2}-${teamNum3}.csv`)
                 // localStorage.setItem('superScoutData', localStorage.getItem('superScoutData') + csv)
                 event.target.submit();
                 const prevMatch = parseInt(answers.Match_Number.value);
