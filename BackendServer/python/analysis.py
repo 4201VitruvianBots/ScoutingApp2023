@@ -18,11 +18,12 @@ class TeleStation(Enum):
     engaged = 4
 
 AUTO_ATTEMPTED_DOCK_STATES = (AutoStation.failed, AutoStation.docked, AutoStation.engaged)
-AUTO_SUCCESS_DOCK_STATES = (AutoStation.docked, AutoStation.engaged)
+AUTO_SUCCESSFUL_DOCK_STATES = (AutoStation.docked, AutoStation.engaged)
 
 TELE_ATTEMPTED_DOCK_STATES = (TeleStation.failed, TeleStation.docked, TeleStation.engaged)
-TELE_SUCCESS_DOCK_STATES = (TeleStation.docked, TeleStation.engaged)
+TELE_SUCCESSFUL_DOCK_STATES = (TeleStation.docked, TeleStation.engaged)
     
+# Safe division function to return None if division by zero so that it becomes NULL in the database
 def div(a, b):
     if b == 0:
         return None
@@ -76,27 +77,32 @@ def calculateMatchAnalysis(Team_Number, db_connection, *, appendTo = {}):
 
     # Calculate scoring aggregates
     for type_phase, prefixes in (
-        ('Auto', ('Auto_Cone', 'Auto_Cube')),
+        ('Auto',        ('Auto_Cone', 'Auto_Cube')),
         ('Tele_Pieces', ('Tele_Cone', 'Tele_Cube')),
-        ('Tele_Cone', ('Tele_Cone',)),
-        ('Tele_Cube', ('Tele_Cube',))
+        ('Tele_Cone',   ('Tele_Cone',)),
+        ('Tele_Cube',   ('Tele_Cube',))
     ):
-        for level in 'Total', 'Low', 'Mid', 'High':
-            suffixes = ('Low', 'Mid', 'High') if level == 'Total' else (level,)
-
+        for level, suffixes in (
+            ('Total', ('Low', 'Mid', 'High')),
+            ('Low',   ('Low')),
+            ('Mid',   ('Mid')),
+            ('High',  ('High'))
+        ):
+            # Get names of all the columns we want
             included_columns = [f"{prefix}_{suffix}" for prefix in prefixes for suffix in suffixes]
 
+            # Sum up all of the included columns, then find the mean or max of it
             analysis_output[f'{type_phase}_{level}_Average'] = matches_df[included_columns].sum(axis=1).mean()
             analysis_output[f'{type_phase}_{level}_Max'] =     matches_df[included_columns].sum(axis=1).max()
 
     # Calculate station frequencies
     tele_station_attempts = (matches_df['Tele_Station'].isin(TELE_ATTEMPTED_DOCK_STATES)).sum()
     analysis_output['End_Balance_Frequency'] = div((matches_df['Tele_Station'] == TeleStation.engaged).sum(), tele_station_attempts)
-    analysis_output['End_Dock_Frequency'] = div((matches_df['Tele_Station'].isin(TELE_SUCCESS_DOCK_STATES)).sum(), tele_station_attempts)
+    analysis_output['End_Dock_Frequency'] = div((matches_df['Tele_Station'].isin(TELE_SUCCESSFUL_DOCK_STATES)).sum(), tele_station_attempts)
 
     auto_station_attempts = (matches_df['Auto_Station'].isin(AUTO_ATTEMPTED_DOCK_STATES)).sum()
     analysis_output['Auto_Balance_Frequency'] = div((matches_df['Auto_Station'] == AutoStation.engaged).sum(), auto_station_attempts)
-    analysis_output['Auto_Dock_Frequency'] = div((matches_df['Auto_Station'].isin(AUTO_SUCCESS_DOCK_STATES)).sum(), auto_station_attempts)
+    analysis_output['Auto_Dock_Frequency'] = div((matches_df['Auto_Station'].isin(AUTO_SUCCESSFUL_DOCK_STATES)).sum(), auto_station_attempts)
 
     # Calculate average period points
     analysis_output['Average_Teleop_Points'] = matches_df['Total_Tele_Points'].mean()
@@ -150,5 +156,5 @@ if __name__ == '__main__':
       database="rawData"
     )
 
-    print(calculateMatchAnalysis(8898))
+    print(calculateMatchAnalysis(8600, mydb))
     mydb.close()
