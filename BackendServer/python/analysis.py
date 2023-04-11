@@ -84,9 +84,9 @@ def calculateMatchAnalysis(Team_Number, db_connection, *, appendTo = {}):
     ):
         for level, suffixes in (
             ('Total', ('Low', 'Mid', 'High')),
-            ('Low',   ('Low')),
-            ('Mid',   ('Mid')),
-            ('High',  ('High'))
+            ('Low',   ('Low',)),
+            ('Mid',   ('Mid',)),
+            ('High',  ('High',))
         ):
             # Get names of all the columns we want
             included_columns = [f"{prefix}_{suffix}" for prefix in prefixes for suffix in suffixes]
