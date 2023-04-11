@@ -7,7 +7,7 @@ import { mutableObject } from './Util';
 
 function App() {
   /** @type {(BlankTableData | SimpleTableData | WeightedTableData )[]} */
-  const tables = mutableObject(useState([]));
+  const [tables, setTables] = useState([]);
   /*
     {
       type: 'simple',
@@ -36,7 +36,15 @@ function App() {
   const [DNPList, setDNPList] = useState([]);
   const [robotData, setRobotData] = useState();
 
+  const updateTable = (index) => {
+    return (table) => {
+      setTables(tables.map((e, i) => i === index ? table : e));
+    }
+  }
   
+  const addTable = (table) => {
+    setTables([...tables, table]);
+  }
 
   return (
     <div className="App">
