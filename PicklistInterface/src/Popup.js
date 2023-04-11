@@ -73,7 +73,7 @@ function SimplePopup({ onSubmit, close }) {
 function WeightedPopup({ onSubmit, close }) {
 
     const [title, setTitle] = useState();
-    const [factors, setFactors] = useState([{statistic: null, weight: 1}]);
+    const [factors, setFactors] = useState([{ statistic: '', weight: 1 }]);
     const [descending, setDescending] = useState(false);
     
     // type factor = {statistic: x, weight: x}
@@ -83,28 +83,30 @@ function WeightedPopup({ onSubmit, close }) {
     // }
 
     const updateFactor = (index, updatedStatistic) => {
-        setFactors(factors.map((e, i) => i == index ? updatedStatistic : e));
-    }
+        setFactors(factors.map((e, i) => i === index ? updatedStatistic : e));
+    };
     
     const updateFactorStatistic = (index) => (
         (statistic) => {
             updateFactor(index, {statistic: statistic, weight: factors[index].weight});
         }
-    )
+    );
     
     const updateFactorWeight = (index) => (
         (weight) => {
             updateFactor(index, {statistic: factors[index].statistic, weight: weight});
         }
-    )
+    );
     
     const addFactor = () => {
         setFactors([...factors, {statistic: null, weight: 1}]);
-    }
+    };
     
-    const removeFactor = (index) => {
-        setFactors(factors.filter((e, i) => i !== index));
-    }
+    const removeFactor = (index) => (
+        () => {
+            setFactors(factors.filter((e, i) => i !== index));
+        }
+    );
 
 
     return (
