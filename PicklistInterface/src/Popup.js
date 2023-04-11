@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { inputSetterText } from './Util.js';
 import Popup from 'reactjs-popup';
-import {SimpleTableData, WeightedTableData} from './Table.js';
+import React from 'react';
+import { SimpleTableData, WeightedTableData } from './Table.js';
 
-function SimplePopup({onSubmit, close }) {
+function SimplePopup({ onSubmit, close }) {
 
     // <SimplePopup onSubmit={updateTable(5)} />
 
@@ -47,10 +48,10 @@ function SimplePopup({onSubmit, close }) {
 
 
             <button className="popupClose" onClick={() => {
-                
-                
+
+
                 onSubmit(new SimpleTableData())
-                
+
 
                 // console.log([name, sort, descending]);
 
@@ -72,93 +73,96 @@ function SimplePopup({onSubmit, close }) {
 function WeightedPopup({ onSubmit, close }) {
 
     const [title, setTitle] = useState();
-    const [statistic, setStatistic] = useState([]);
+    const [factors, setFactors] = useState([{statistic: null, weight: 1}]);
     const [descending, setDescending] = useState(false);
+    
+    // type factor = {statistic: x, weight: x}
 
-    function listing() {
-        setDescending(true)
+    // function listing() {
+    //     setDescending(true)
+    // }
+
+    const updateFactor = (index, updatedStatistic) => {
+        setFactors(factors.map((e, i) => i == index ? updatedStatistic : e));
+    }
+    
+    const updateFactorStatistic = (index) => (
+        (statistic) => {
+            updateFactor(index, {statistic: statistic, weight: factors[index].weight});
+        }
+    )
+    
+    const updateFactorWeight = (index) => (
+        (weight) => {
+            updateFactor(index, {statistic: factors[index].statistic, weight: weight});
+        }
+    )
+    
+    const addFactor = () => {
+        setFactors([...factors, {statistic: null, weight: 1}]);
+    }
+    
+    const removeFactor = (index) => {
+        setFactors(factors.filter((e, i) => i !== index));
     }
 
-    function addStat() {
-
-        console.log('stat');
-
-        // <div>
-        //     <div className="popupContent-Stat">
-        //             <label htmlFor="sortBy" className="popupLabel">Statistic: </label>
-        //             <br />
-        //             <select name="Competition" id="sortBy" defaultValue="Choose" className="popupInput" onChange={inputSetterText(setStatistic)}>
-        //                 <option value="average_auto_grid_score">Avg Auto Grid Score</option>
-        //                 <option value="average_auto_balance">Avg Auto Balance</option>
-        //                 <option value="average_teleop_grid_score">Avg Teleop Grid Score</option>
-        //                 <option value="average_teleop_cycle_time">Avg Teleop Cycle Time</option>
-        //                 <option value="average_total_teleop_points">Avg Total Teleop Points</option>
-        //             </select>
-
-        //         </div>
-
-        //         <div className="popupContent-Weight">
-        //             <label htmlFor="weight" className="popupLabel">Weight: </label>
-        //             <br />
-        //             <input type="number" id="weight" className="popupInput" onChange={inputSetterText(setStatistic[1])}></input>
-
-        //         </div>
-
-        // </div>
-
-    }
-
-    const handleWeightChange = (event) => {
-        setStatistic(event.target.value);
-    }
 
     return (
         <div className="popup">
             <p className="popupHeader">Weighted Statistic</p>
 
             <div className="gallery">
-
                 <div className="popupContent">
                     <label className="popupLabel" htmlFor="title" >Title: </label>
                     <input type="text" id="title" className="popupInput" onChange={inputSetterText(setTitle)}></input>
                 </div>
+                
+                {factors.map((e, i) => (
+                    <React.Fragment key={i}>
+                        <div className="popupContent-Stat">
+                            <label htmlFor="sortBy" className="popupLabel">Statistic: </label>
+                            <br />
+                            <select value={e.statistic} className="popupInput" onChange={updateFactorStatistic(i)}>
+                                <option value="average_auto_grid_score">Avg Auto Grid Score</option>
+                                <option value="average_auto_balance">Avg Auto Balance</option>
+                                <option value="average_teleop_grid_score">Avg Teleop Grid Score</option>
+                                <option value="average_teleop_cycle_time">Avg Teleop Cycle Time</option>
+                                <option value="average_total_teleop_points">Avg Total Teleop Points</option>
+                            </select>
 
+                        </div>
 
-                <div className="popupContent-Stat">
-                    <label htmlFor="sortBy" className="popupLabel">Statistic: </label>
-                    <br />
-                    <select name="Competition" id="sortBy" defaultValue="Choose" className="popupInput" onChange={inputSetterText(setStatistic)}>
-                        <option value="average_auto_grid_score">Avg Auto Grid Score</option>
-                        <option value="average_auto_balance">Avg Auto Balance</option>
-                        <option value="average_teleop_grid_score">Avg Teleop Grid Score</option>
-                        <option value="average_teleop_cycle_time">Avg Teleop Cycle Time</option>
-                        <option value="average_total_teleop_points">Avg Total Teleop Points</option>
-                    </select>
+                        <div className="popupContent-Weight">
+                            <label htmlFor="weight" className="popupLabel">Weight: </label>
+                            <br />
+                            <input type="number" id="weight" className="popupInput" value={e.weight} onChange={updateFactorWeight(i)}></input>
 
-                </div>
+                        </div>
 
-                <div className="popupContent-Weight">
-                    <label htmlFor="weight" className="popupLabel">Weight: </label>
-                    <br />
-                    <input type="number" id="weight" className="popupInput" onChange={handleWeightChange}></input>
+                        <input type="button" onClick={removeFactor(i)} value="X"/>
+                    </React.Fragment>
+                    
+                ))}
 
-                </div>
+                <input type="button" onClick={addFactor} value="+"/>
 
-                <div className="addStatBox">
-                    <button onClick={addStat} className="addStat">Add Statistic</button>
+                
+                {/* how does addStatistic() work with the following? */}
+                                
+
                     {/* --> NEED TO FINISH THIS!
                         - Essentially, this Statistic/Weight selection is the same thing as our Foul cards
                         in SuperScouting. We generate something interactive (buttons, dropdowns, etc), and
                         then set its value to state. We then add each new item (in this case, each
                         new Statisitc) to the exising state array. This allows us to create and delete items. 
                         Use the Foulcards component code in SuperScouting as a reference. */}
-                </div>
+                
 
 
-                <div className="popupContent">
+                {/* <div className="popupContent">
                     <label className="popupLabelLast" htmlFor="checkbox">Descending?</label>
                     <input type="checkbox" id="checkbox" className="popupInputLast" onClick={listing}></input>
-                </div>
+                </div> */}
 
 
 
@@ -175,22 +179,11 @@ function WeightedPopup({ onSubmit, close }) {
 
                     onSubmit(new WeightedTableData())
 
-                }}>
-                    Create Table
-                </button>
-
+                }}> Create Table </button>
             </div>
-
-
-
+    
         </div>
-
-
-
-    )
-
-
-
+    );
 }
 
 function BlankPopup({ data, close }) {
