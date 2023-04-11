@@ -27,8 +27,23 @@ function mutableObject([state, setState]) {
     };
 
     const stateProxy = createProxy(state);
-
+ 
     return stateProxy;
 }
 
-export { mutableObject };
+//this is a scary forest
+
+// const [title, setTitle] = useState();
+// setTitle("List 1")
+
+// <input onChange={foo} />
+// function foo(event) {
+//     setTitle(event.target.value);
+// }
+// event.target.value
+
+function inputSetterText(setter) {
+    return (event) => setter(event.target.value);
+}
+
+export { mutableObject, inputSetterText };

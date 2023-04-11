@@ -9,7 +9,8 @@
   --bg-color: var(--background-1);
   text-align: center;
   font-family: system-ui;
-  background-color: #83c183;
+  /* background-color: #83c183; */
+  background-color: #83b7c1;
   height: 300em;
 }
 
@@ -18,7 +19,7 @@
   font-size: 20px;
   font-weight: 600;
   margin: 0 auto;
-  width: 100%;
+  width: fit-content;
   padding: 20px;
   padding-bottom: 30px;
 
@@ -38,14 +39,15 @@
 
 .popupButton {
   font-size: 20px;
-  padding: 7px;
+  padding: 10px;
   font-family: sans-serif;
   font-weight: 400;
-  background-color: var(--main-green);
+  /* background-color: var(--main-green); */
+  background-color: #0042b4;
   color: white;
   height: 40px;
   border: none;
-  margin: 0 auto;
+ 
   border-radius: 15px;
   margin-bottom: 25px;
 

@@ -1,18 +1,18 @@
 import { useState } from "react";
+import { inputSetterText } from './Util.js';
 import Popup from 'reactjs-popup';
+import {SimpleTableData, WeightedTableData} from './Table.js';
 
+function SimplePopup({onSubmit, close }) {
 
-function SimplePopup({ data, close }) {
+    // <SimplePopup onSubmit={updateTable(5)} />
 
+    const [title, setTitle] = useState();
+    const [statistic, setStatistic] = useState();
     const [descending, setDescending] = useState(false);
-    const [tables, setTables] = useState();
 
-   
-    
-
-    function listing() {
-        setDescending(true)
-        
+    const handleCheckboxChange = (event) => {
+        setDescending(event.target.checked);
     }
 
     return (
@@ -21,13 +21,13 @@ function SimplePopup({ data, close }) {
 
             <div className="popupContent">
                 <label className="popupLabel" htmlFor="title">Title: </label>
-                <input type="text" id="title" className="popupInput" onChange={setTables[0]}></input>
+                <input type="text" id="title" className="popupInput" onChange={inputSetterText(setTitle)} />
             </div>
 
 
             <div className="popupContent">
                 <label htmlFor="sortBy" className="popupLabel">Statistic: </label>
-                <select name="Competition" id="sortBy" defaultValue="Choose" className="popupInput" onChange={setTables[1]}>
+                <select name="Competition" id="sortBy" defaultValue="Choose" className="popupInput" onChange={inputSetterText(setStatistic)}>
                     <option value="average_auto_grid_score">Avg Auto Grid Score</option>
                     <option value="average_auto_balance">Avg Auto Balance</option>
                     <option value="average_teleop_grid_score">Avg Teleop Grid Score</option>
@@ -38,28 +38,29 @@ function SimplePopup({ data, close }) {
             </div>
 
             <div className="popupContent">
-                <label className="popupLabelLast" htmlFor="checkbox">Descending?</label>
-                <input type="checkbox" id="checkbox" className="popupInputLast" onClick={listing} onChange={setTables[2]}></input>
+                <label className="popupLabelLast" htmlFor="checkbox">
+                    Descending?
+                    <input type="checkbox" id="checkbox" className="popupInputLast" onChange={handleCheckboxChange} />
+                </label>
             </div>
 
 
 
             <button className="popupClose" onClick={() => {
-
-                // let name = document.getElementById("title").value;
-                // let option = document.getElementById("sortBy");
-                // let sort = option.options[option.selectedIndex].text;
+                
+                
+                onSubmit(new SimpleTableData())
+                
 
                 // console.log([name, sort, descending]);
 
 
-                setTables(name, sort, descending);
-                console.log(tables);
+                console.log(title, statistic, descending);
+
+
+                // console.log(tables);
 
                 close();
-
-
-
             }}>
                 Create Table
             </button>
@@ -68,8 +69,10 @@ function SimplePopup({ data, close }) {
     )
 }
 
-function WeightedPopup({ data, close }) {
+function WeightedPopup({ onSubmit, close }) {
 
+    const [title, setTitle] = useState();
+    const [statistic, setStatistic] = useState([]);
     const [descending, setDescending] = useState(false);
 
     function listing() {
@@ -78,8 +81,35 @@ function WeightedPopup({ data, close }) {
 
     function addStat() {
 
+        console.log('stat');
 
+        // <div>
+        //     <div className="popupContent-Stat">
+        //             <label htmlFor="sortBy" className="popupLabel">Statistic: </label>
+        //             <br />
+        //             <select name="Competition" id="sortBy" defaultValue="Choose" className="popupInput" onChange={inputSetterText(setStatistic)}>
+        //                 <option value="average_auto_grid_score">Avg Auto Grid Score</option>
+        //                 <option value="average_auto_balance">Avg Auto Balance</option>
+        //                 <option value="average_teleop_grid_score">Avg Teleop Grid Score</option>
+        //                 <option value="average_teleop_cycle_time">Avg Teleop Cycle Time</option>
+        //                 <option value="average_total_teleop_points">Avg Total Teleop Points</option>
+        //             </select>
 
+        //         </div>
+
+        //         <div className="popupContent-Weight">
+        //             <label htmlFor="weight" className="popupLabel">Weight: </label>
+        //             <br />
+        //             <input type="number" id="weight" className="popupInput" onChange={inputSetterText(setStatistic[1])}></input>
+
+        //         </div>
+
+        // </div>
+
+    }
+
+    const handleWeightChange = (event) => {
+        setStatistic(event.target.value);
     }
 
     return (
@@ -88,18 +118,16 @@ function WeightedPopup({ data, close }) {
 
             <div className="gallery">
 
-
-
                 <div className="popupContent">
-                    <label className="popupLabel" htmlFor="title">Title: </label>
-                    <input type="text" id="title" className="popupInput"></input>
+                    <label className="popupLabel" htmlFor="title" >Title: </label>
+                    <input type="text" id="title" className="popupInput" onChange={inputSetterText(setTitle)}></input>
                 </div>
 
 
                 <div className="popupContent-Stat">
                     <label htmlFor="sortBy" className="popupLabel">Statistic: </label>
                     <br />
-                    <select name="Competition" id="sortBy" defaultValue="Choose" className="popupInput">
+                    <select name="Competition" id="sortBy" defaultValue="Choose" className="popupInput" onChange={inputSetterText(setStatistic)}>
                         <option value="average_auto_grid_score">Avg Auto Grid Score</option>
                         <option value="average_auto_balance">Avg Auto Balance</option>
                         <option value="average_teleop_grid_score">Avg Teleop Grid Score</option>
@@ -112,7 +140,7 @@ function WeightedPopup({ data, close }) {
                 <div className="popupContent-Weight">
                     <label htmlFor="weight" className="popupLabel">Weight: </label>
                     <br />
-                    <input type="number" id="weight" className="popupInput"></input>
+                    <input type="number" id="weight" className="popupInput" onChange={handleWeightChange}></input>
 
                 </div>
 
@@ -136,14 +164,16 @@ function WeightedPopup({ data, close }) {
 
                 <button className="popupClose" onClick={() => {
 
-                    let name = document.getElementById("title").value;
-                    let option = document.getElementById("sortBy");
-                    let sort = option.options[option.selectedIndex].text;
+                    // let name = document.getElementById("title").value;
+                    // let option = document.getElementById("sortBy");
+                    // let sort = option.options[option.selectedIndex].text;
 
-                    { data = [name, sort, descending] };
-                    console.log([data]);
+                    // { data = [name, sort, descending] };
+                    // console.log([data]);
 
                     close();
+
+                    onSubmit(new WeightedTableData())
 
                 }}>
                     Create Table
@@ -167,7 +197,7 @@ function BlankPopup({ data, close }) {
 
 }
 
-function PopupButton({tables, setTables}) {
+function PopupButton({ tables, setTables }) {
 
     const [showDropdown, setShowDropdown] = useState(false);
     // const [openPopup, setOpenPopup] = useState(null);
@@ -201,7 +231,7 @@ function PopupButton({tables, setTables}) {
     }
 
     return (
-        <div>
+        <div >
             <input type="button" className="popupButton" value="Add table" onClick={buttonMenu}></input>
 
             {showDropdown && (
