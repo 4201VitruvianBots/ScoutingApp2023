@@ -30,7 +30,7 @@ def div(a, b):
     return a / b
 
 # Does processing on a df of matches to get combined statistics
-def calculateMatchScores(matches_df, *, mutate=False):
+def calculate_match_scores(matches_df, *, mutate=False):
     if mutate:
         output_df = matches_df
     else:
@@ -62,12 +62,12 @@ def calculateMatchScores(matches_df, *, mutate=False):
     
     return output_df
 
-def calculateMatchAnalysis(Team_Number, db_connection, *, appendTo = {}):
+def calculate_match_analysis(Team_Number, db_connection, *, appendTo = {}):
     # Read data from MySQL database
     matches_df = pd.read_sql('SELECT * FROM matchData WHERE Team_Number = %s AND No_Show_Robot = FALSE', db_connection, params=(Team_Number,))
 
     # Calculate additional scores
-    calculateMatchScores(matches_df, mutate=True)
+    calculate_match_scores(matches_df, mutate=True)
     
     # Create output variable
     analysis_output = appendTo
@@ -115,7 +115,7 @@ def calculateMatchAnalysis(Team_Number, db_connection, *, appendTo = {}):
     
     return analysis_output
 
-def calculateSuperScoutAnalysis(Team_Number, db_connection, *, appendTo = {}):
+def calculate_super_scout_analysis(Team_Number, db_connection, *, appendTo = {}):
     # Read data from MySQL database
     superScout_df = pd.read_sql('SELECT * FROM superScout WHERE Team_Number = %s', db_connection, params=(Team_Number,))
     fouls_df = pd.read_sql('SELECT * FROM fouls WHERE Team_Number = %s', db_connection, params=(Team_Number,))
@@ -128,6 +128,9 @@ def calculateSuperScoutAnalysis(Team_Number, db_connection, *, appendTo = {}):
 
     # Calculate average fouls
     analysis_output['Average_Fouls'] = div(fouls_df.size, superScout_df.size)
+
+    #Calculate defense ranking
+    analysis_output['Average_Defense'] = superScout_df['Defense'].mean()
     
     # Calculate total of each type of foul
     for index, name in (
