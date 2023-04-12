@@ -1,15 +1,13 @@
-
-
 class BlankTableData {
     /** @type {string} */
     name;
-    /** @type {string[]} */
+    /** @type {number[]} */
     entries;
 
     /**
      * 
      * @param {string} name 
-     * @param {string[]} entries 
+     * @param {number[]} entries 
      */
     constructor(name, entries) {
         this.name = name;
@@ -26,7 +24,7 @@ class SimpleTableData extends BlankTableData {
     /**
      * 
      * @param {string} name 
-     * @param {string[]} entries 
+     * @param {number[]} entries 
      * @param {string} statistic 
      * @param {boolean} descending 
      */
@@ -45,7 +43,7 @@ class WeightedTableData extends BlankTableData {
     /**
      * 
      * @param {string} name 
-     * @param {string[]} entries 
+     * @param {number[]} entries 
      * @param {{statistic: string, weight: number}[]} factors
      */
     constructor(name, entries, factors) {
@@ -54,7 +52,28 @@ class WeightedTableData extends BlankTableData {
     }
 }
 
-function SimpleTable({ data }) {
+/**
+ * 
+ * @param {{entries: {team: number, value: number | string}[]}} param0
+ * @returns 
+ */
+function TeamTable({ entries }) {
+    return (<tbody>
+        {entries.map(e => (
+            <tr>
+                <td>{e.team}</td>
+                <td>{e.value}</td>
+            </tr>
+        ))}
+    </tbody>)
+}
+
+/**
+ * 
+ * @param {{data: SimpleTableData, setData: (data: SimpleTableData) => void}} param0 
+ * @returns 
+ */
+function SimpleTable({ data, setData }) {
 
     return (
         <table>
@@ -62,29 +81,69 @@ function SimpleTable({ data }) {
                 <tr>
                     <th colSpan={2}>Average Auto Grid</th>
                 </tr>
+                <tr>
+                    <td><button>Reset</button></td>
+                    <td><button>Apply</button></td>
+                </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>4201</td>
-                    <td>3.8</td>
-                </tr>
-                <tr>
-                    <td>3476</td>
-                    <td>6.2</td>
-                </tr>
-            </tbody>
+            <TeamTable entries={[
+                { team: 4201, value: 5 },
+                { team: 4201, value: 5 },
+                { team: 4201, value: 5 }
+            ]} />
         </table>
 
     )
 
 }
 
-function WeightedTable({ data }) {
-
+/**
+ * 
+ * @param {{data: WeightedTableData, setData: (data: WeightedTableData) => void}} param0 
+ * @returns 
+ */
+function WeightedTable({ data, setData }) {
+    return (<table>
+        <thead>
+            <tr>
+                <th colSpan={2}>Weighted 1</th>
+            </tr>
+            <tr>
+                <td><button>Reset</button></td>
+                <td><button>Apply</button></td>
+            </tr>
+        </thead>
+        <TeamTable entries={[
+            { team: 4201, value: 5 },
+            { team: 4201, value: 5 },
+            { team: 4201, value: 5 }
+        ]} />
+    </table>);
 }
 
-function BlankTable({ data }) {
-
+/**
+ * 
+ * @param {{data: BlankTableData, setData: (data: BlankTableData) => void}} param0 
+ * @returns 
+ */
+function BlankTable({ data, setData }) {
+    return (<table>
+        <thead>
+            <tr>
+                <th>Blank 1</th>
+            </tr>
+            <tr>
+                <td><button>Apply</button></td>
+            </tr>
+        </thead>
+        <tbody>
+            {[4201, 3307, 8868].map(e => (
+                <tr>
+                    <td>{e}</td>
+                </tr>
+            ))}
+        </tbody>
+    </table>);
 }
 
 function DNPList({ entries, setEntries }) {
@@ -95,4 +154,4 @@ function FinalTable({ entries, setEntries }) {
 
 }
 
-export { SimpleTableData, WeightedTableData, BlankTableData, SimpleTable, WeightedTable, BlankTable, FinalTable };
+export { SimpleTableData, WeightedTableData, BlankTableData, SimpleTable, WeightedTable, BlankTable, FinalTable, DNPList };

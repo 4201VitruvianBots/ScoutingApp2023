@@ -1,7 +1,7 @@
 import './App.css';
 import Popup from 'reactjs-popup';
 import { SimplePopup, PopupButton } from './Popup.js';
-import { BlankTableData, SimpleTableData, WeightedTableData, SimpleTable } from './Table.js';
+import { BlankTableData, SimpleTableData, WeightedTableData, BlankTable, SimpleTable, WeightedTable } from './Table.js';
 import { useState } from 'react';
 import { mutableObject } from './Util';
 
@@ -57,7 +57,9 @@ function App() {
     </div>
      
 
-      <SimpleTable ></SimpleTable>
+      <SimpleTable />
+      <WeightedTable />
+      <BlankTable />
 
       
     </div>
