@@ -5,7 +5,6 @@ body {
   background-color: #4988a8af;
 }
 
-
 main {
   text-align: center;
   --accent-1: white;
@@ -17,20 +16,6 @@ main {
   --bg-color: var(--background-1);
   text-align: center;
   font-family: system-ui;
- 
-
-  /* text-align: center;
-  --accent-1: white;
-  --accent-4: #003800;
-  --background-1: #255025;
-  --main-green: #085f00;
-  --light-green: #83c183;
-  --accent-default: var(--accent-3);
-  --bg-color: var(--background-1);
-  text-align: center;
-  font-family: system-ui;
-  background-color: #528eac9a;
-  height: 300em; */
 }
 
 h1 {
@@ -40,7 +25,6 @@ h1 {
   width: 50%;
   padding: 20px;
   padding-bottom: 30px;
-
 }
 
 
@@ -71,28 +55,33 @@ h1 {
   border-radius: 15px;
   margin-bottom: 25px;
   width: 190px;
-
 }
 
 .hiddenDropdown {
-  background-color: rgba(128, 128, 128, 0.439);
+  background-color: #0042b4;
   border-radius: 15px;
   width: 170px;
-  height: 80px;
+  height: fit-content;
   padding: 10px;
   position: absolute;
   left: 20px;
   top: 20px;
 }
 
-.dropdownButton {
+.dropdownButtons {
+  background-color: #ffffff;
+  border-radius: 15px;
   font-size: 20px;
   font-weight: 900;
   display: inline;
-  margin: 0 5px;
-  color: #003800;
-  background-color: white;
-  border: 2px var(--main-green) solid;
+  margin: 0 auto;
+  color: black;
+  border: none;
+  margin: 5px;
+  padding: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+
 }
 
 .dropdownButton:hover {

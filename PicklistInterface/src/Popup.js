@@ -4,7 +4,7 @@ import Popup from 'reactjs-popup';
 import React from 'react';
 import { SimpleTableData, WeightedTableData } from './Table.js';
 
-function SimplePopup({ onSubmit, close }) {
+function SimplePopup({ onSubmit, close, isEditing}) {
 
     // <SimplePopup onSubmit={updateTable(5)} />
 
@@ -52,7 +52,6 @@ function SimplePopup({ onSubmit, close }) {
 
                 <button className="exitButton" onClick={close}>Exit</button>
 
-
                 <button className="popupClose" onClick={() => {
 
 
@@ -69,8 +68,12 @@ function SimplePopup({ onSubmit, close }) {
 
                     close();
                 }}>
-                    Create Table
+                    {isEditing ? "Edit Table" : "Create Table"}
                 </button>
+
+                {isEditing && <button>DEEEELEEEEETE</button>}
+
+                
             </div>
 
         </div>
@@ -230,21 +233,21 @@ function PopupButton({ tables, setTables }) {
                 <div className='hiddenDropdown'>
 
                     <Popup trigger=
-                        {<button onClick={SimpleSelected} className="dropdownButton">Simple</button>}
+                        {<button onClick={SimpleSelected} className="dropdownButtons">Simple</button>}
                         modal nested>
-                        {close => (<SimplePopup tables={tables} setTables={setTables} close={close} />)}
+                        {close => (<SimplePopup tables={tables} setTables={setTables} close={close} isEditing={false}/>)}
                     </Popup>
 
 
                     <Popup trigger=
-                        {<button onClick={WeightedSelected} className="dropdownButton">Weighted</button>}
+                        {<button onClick={WeightedSelected} className="dropdownButtons">Weighted</button>}
                         modal nested>
                         {close => (<WeightedPopup tables={tables} setTables={setTables} close={close} />)}
                     </Popup>
 
 
                     <Popup trigger=
-                        {<button onClick={BlankSelected} className="dropdownButton">Blank</button>}
+                        {<button onClick={BlankSelected} className="dropdownButtons">Blank</button>}
                         modal nested>
                         {close => (<BlankPopup tables={tables} setTables={setTables} close={close} />)}
                     </Popup>
@@ -278,7 +281,8 @@ function PopupButton({ tables, setTables }) {
 
                     {/* <input type="button" onClick={SimpleSelected("Simple")}>Simple</input> */}
 
-                    <button onClick={end}>Exit</button>
+                    <br/>
+                    <button className="exitButton" onClick={end}>Exit</button>
 
                 </div>
 
