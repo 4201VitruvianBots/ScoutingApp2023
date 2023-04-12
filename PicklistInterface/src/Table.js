@@ -57,15 +57,30 @@ class WeightedTableData extends BlankTableData {
  * @param {{entries: {team: number, value: number | string}[]}} param0
  * @returns 
  */
-function TeamTable({ entries }) {
+function DoubleTeamTable({ entries }) {
     return (<tbody>
-        {entries.map(e => (
-            <tr>
+        {entries.map((e, i) => (
+            <tr key={i}>
                 <td>{e.team}</td>
                 <td>{e.value}</td>
             </tr>
         ))}
-    </tbody>)
+    </tbody>);
+}
+
+/**
+ * 
+ * @param {number[]} param0 
+ * @returns 
+ */
+function SingleTeamTable({ entries }) {
+    return (<tbody>
+        {entries.map((e, i) => (
+            <tr key={i}>
+                <td>{e}</td>
+            </tr>
+        ))}
+    </tbody>);
 }
 
 /**
@@ -79,22 +94,16 @@ function SimpleTable({ data, setData }) {
         <table>
             <thead>
                 <tr>
-                    <th colSpan={2}>Average Auto Grid</th>
+                    <th colSpan={2}>{data.name}</th>
                 </tr>
                 <tr>
                     <td><button>Reset</button></td>
                     <td><button>Apply</button></td>
                 </tr>
             </thead>
-            <TeamTable entries={[
-                { team: 4201, value: 5 },
-                { team: 4201, value: 5 },
-                { team: 4201, value: 5 }
-            ]} />
+            <DoubleTeamTable entries={data.entries} />
         </table>
-
-    )
-
+    );
 }
 
 /**
@@ -106,18 +115,14 @@ function WeightedTable({ data, setData }) {
     return (<table>
         <thead>
             <tr>
-                <th colSpan={2}>Weighted 1</th>
+                <th colSpan={2}>{data.name}</th>
             </tr>
             <tr>
                 <td><button>Reset</button></td>
                 <td><button>Apply</button></td>
             </tr>
         </thead>
-        <TeamTable entries={[
-            { team: 4201, value: 5 },
-            { team: 4201, value: 5 },
-            { team: 4201, value: 5 }
-        ]} />
+        <DoubleTeamTable entries={data.entries} />
     </table>);
 }
 
@@ -130,28 +135,36 @@ function BlankTable({ data, setData }) {
     return (<table>
         <thead>
             <tr>
-                <th>Blank 1</th>
+                <th>{data.name}</th>
             </tr>
             <tr>
                 <td><button>Apply</button></td>
             </tr>
         </thead>
-        <tbody>
-            {[4201, 3307, 8868].map(e => (
-                <tr>
-                    <td>{e}</td>
-                </tr>
-            ))}
-        </tbody>
+        <SingleTeamTable entries={data.entries} />
     </table>);
 }
 
-function DNPList({ entries, setEntries }) {
-
+function DNPTable({ entries, setEntries }) {
+    return (<table>
+        <thead>
+            <tr>
+                <th>DNP List</th>
+            </tr>
+        </thead>
+        <SingleTeamTable entries={entries} />
+    </table>);
 }
 
 function FinalTable({ entries, setEntries }) {
-
+    return (<table>
+        <thead>
+            <tr>
+                <th>Final Pick List</th>
+            </tr>
+        </thead>
+        <SingleTeamTable entries={entries} />
+    </table>);
 }
 
-export { SimpleTableData, WeightedTableData, BlankTableData, SimpleTable, WeightedTable, BlankTable, FinalTable, DNPList };
+export { SimpleTableData, WeightedTableData, BlankTableData, SimpleTable, WeightedTable, BlankTable, FinalTable, DNPTable };

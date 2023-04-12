@@ -1,7 +1,7 @@
 import './App.css';
 import Popup from 'reactjs-popup';
 import { SimplePopup, PopupButton } from './Popup.js';
-import { BlankTableData, SimpleTableData, WeightedTableData, BlankTable, SimpleTable, WeightedTable } from './Table.js';
+import { BlankTableData, SimpleTableData, WeightedTableData, BlankTable, SimpleTable, WeightedTable, DNPTable, FinalTable } from './Table.js';
 import { useState } from 'react';
 import { mutableObject } from './Util';
 
@@ -41,28 +41,28 @@ function App() {
       setTables(tables.map((e, i) => i === index ? table : e));
     }
   }
-  
+
   const addTable = (table) => {
     setTables([...tables, table]);
   }
 
   return (
-    <div className="App">
+    <main>
       {/* File upload to import CSV */}
-
-    
-    <div className='pageHeader'>
-      <p className="pagetitle">Vitruvian Statistical Analysis</p>
-      <PopupButton className="popupButton" />
-    </div>
-     
-
-      <SimpleTable />
-      <WeightedTable />
-      <BlankTable />
-
-      
-    </div>
+      <header>
+        <h1>Vitruvian Statistical Analysis</h1>
+        <PopupButton className="popupButton" />
+      </header>
+      <section>
+        <SimpleTable data={{ name: 'Auto Average Max', entries: [{ team: 4201, value: 5 }, { team: 4201, value: 5 }, { team: 4201, value: 5 }] }} />
+        <WeightedTable data={{ name: 'Weighted 1', entries: [{ team: 4201, value: 5 }, { team: 4201, value: 5 }, { team: 4201, value: 5 }] }} />
+        <BlankTable data={{ name: 'Blank 1', entries: [4201, 4201, 4201] }} />
+      </section>
+      <section className="sidebar">
+        <DNPTable entries={[4201, 4201, 4201]} />
+        <FinalTable entries={[4201, 4201, 4201]} />
+      </section>
+    </main>
   );
 }
 

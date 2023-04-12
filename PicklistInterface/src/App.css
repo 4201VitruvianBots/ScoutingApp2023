@@ -6,7 +6,7 @@ body {
 }
 
 
-.App {
+main {
   text-align: center;
   --accent-1: white;
   --accent-4: #003800;
@@ -33,7 +33,7 @@ body {
   height: 300em; */
 }
 
-.pagetitle {
+h1 {
   font-family: Poppins;
   font-size: 20px;
   margin: 0 auto;
