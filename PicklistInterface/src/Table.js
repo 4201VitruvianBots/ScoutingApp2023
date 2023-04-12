@@ -39,18 +39,18 @@ class SimpleTableData extends BlankTableData {
 }
 
 class WeightedTableData extends BlankTableData {
-    /** @type {{id: string, weight: number}[]} */
-    statistics;
+    /** @type {{statistic: string, weight: number}[]} */
+    factors;
 
     /**
      * 
      * @param {string} name 
      * @param {string[]} entries 
-     * @param {{id: string, weight: number}[]} statistics 
+     * @param {{statistic: string, weight: number}[]} factors
      */
-    constructor(name, entries, statistics) {
+    constructor(name, entries, factors) {
         super(name, entries);
-        this.statistics = statistics;
+        this.factors = factors;
     }
 }
 

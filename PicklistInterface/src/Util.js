@@ -42,8 +42,8 @@ function mutableObject([state, setState]) {
 // }
 // event.target.value
 
-function inputSetterText(setter) {
+function inputSetter(setter) {
     return (event) => setter(event.target.value);
 }
 
-export { mutableObject, inputSetterText };
+export { mutableObject, inputSetter };

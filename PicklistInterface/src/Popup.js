@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { inputSetterText } from './Util.js';
+import { inputSetter } from './Util.js';
 import Popup from 'reactjs-popup';
 import React from 'react';
 import { SimpleTableData, WeightedTableData } from './Table.js';
@@ -22,13 +22,13 @@ function SimplePopup({ onSubmit, close }) {
 
             <div className="popupContent">
                 <label className="popupLabel" htmlFor="title">Title: </label>
-                <input type="text" id="title" className="popupInput" onChange={inputSetterText(setTitle)} />
+                <input type="text" id="title" className="popupInput" onChange={inputSetter(setTitle)} />
             </div>
 
 
             <div className="popupContent">
                 <label htmlFor="sortBy" className="popupLabel">Statistic: </label>
-                <select name="Competition" id="sortBy" defaultValue="Choose" className="popupInput" onChange={inputSetterText(setStatistic)}>
+                <select name="Competition" id="sortBy" defaultValue="Choose" className="popupInput" onChange={inputSetter(setStatistic)}>
                     <option value="average_auto_grid_score">Avg Auto Grid Score</option>
                     <option value="average_auto_balance">Avg Auto Balance</option>
                     <option value="average_teleop_grid_score">Avg Teleop Grid Score</option>
@@ -44,6 +44,8 @@ function SimplePopup({ onSubmit, close }) {
                     <input type="checkbox" id="checkbox" className="popupInputLast" onChange={handleCheckboxChange} />
                 </label>
             </div>
+
+            <button onClick={close}>Exit</button>
 
 
 
@@ -75,7 +77,7 @@ function WeightedPopup({ onSubmit, close }) {
     const [title, setTitle] = useState();
     const [factors, setFactors] = useState([{ statistic: '', weight: 1 }]);
     const [descending, setDescending] = useState(false);
-    
+
     // type factor = {statistic: x, weight: x}
 
     // function listing() {
@@ -85,23 +87,23 @@ function WeightedPopup({ onSubmit, close }) {
     const updateFactor = (index, updatedStatistic) => {
         setFactors(factors.map((e, i) => i === index ? updatedStatistic : e));
     };
-    
+
     const updateFactorStatistic = (index) => (
         (statistic) => {
-            updateFactor(index, {statistic: statistic, weight: factors[index].weight});
+            updateFactor(index, { statistic: statistic, weight: factors[index].weight });
         }
     );
-    
+
     const updateFactorWeight = (index) => (
         (weight) => {
-            updateFactor(index, {statistic: factors[index].statistic, weight: weight});
+            updateFactor(index, { statistic: factors[index].statistic, weight: weight });
         }
     );
-    
+
     const addFactor = () => {
-        setFactors([...factors, {statistic: null, weight: 1}]);
+        setFactors([...factors, { statistic: null, weight: 1 }]);
     };
-    
+
     const removeFactor = (index) => (
         () => {
             setFactors(factors.filter((e, i) => i !== index));
@@ -116,9 +118,9 @@ function WeightedPopup({ onSubmit, close }) {
             <div className="gallery">
                 <div className="popupContent">
                     <label className="popupLabel" htmlFor="title" >Title: </label>
-                    <input type="text" id="title" className="popupInput" onChange={inputSetterText(setTitle)}></input>
+                    <input type="text" id="title" className="popupInput" onChange={inputSetter(setTitle)}></input>
                 </div>
-                
+
                 {factors.map((e, i) => (
                     <React.Fragment key={i}>
                         <div className="popupContent-Stat">
@@ -137,45 +139,32 @@ function WeightedPopup({ onSubmit, close }) {
                         <div className="popupContent-Weight">
                             <label htmlFor="weight" className="popupLabel">Weight: </label>
                             <br />
-                            <input type="number" id="weight" className="popupInput" value={e.weight} onChange={updateFactorWeight(i)}></input>
+                            <input type="number" id="weight" className="popupInput" value={e.weight} onChange={inputSetter(updateFactorWeight(i))}></input>
 
                         </div>
 
-                        <input type="button" onClick={removeFactor(i)} value="X"/>
+                        <input type="button" onClick={removeFactor(i)} value="X" />
                     </React.Fragment>
-                    
+
                 ))}
 
-                <input type="button" onClick={addFactor} value="+"/>
+                <input type="button" onClick={addFactor} value="+" />
 
-                
+
                 {/* how does addStatistic() work with the following? */}
-                                
 
-                    {/* --> NEED TO FINISH THIS!
+
+                {/* --> NEED TO FINISH THIS!
                         - Essentially, this Statistic/Weight selection is the same thing as our Foul cards
                         in SuperScouting. We generate something interactive (buttons, dropdowns, etc), and
                         then set its value to state. We then add each new item (in this case, each
                         new Statisitc) to the exising state array. This allows us to create and delete items. 
                         Use the Foulcards component code in SuperScouting as a reference. */}
-                
 
 
-                {/* <div className="popupContent">
-                    <label className="popupLabelLast" htmlFor="checkbox">Descending?</label>
-                    <input type="checkbox" id="checkbox" className="popupInputLast" onClick={listing}></input>
-                </div> */}
-
-
+                <button onClick={close}>Exit</button>
 
                 <button className="popupClose" onClick={() => {
-
-                    // let name = document.getElementById("title").value;
-                    // let option = document.getElementById("sortBy");
-                    // let sort = option.options[option.selectedIndex].text;
-
-                    // { data = [name, sort, descending] };
-                    // console.log([data]);
 
                     close();
 
@@ -183,7 +172,7 @@ function WeightedPopup({ onSubmit, close }) {
 
                 }}> Create Table </button>
             </div>
-    
+
         </div>
     );
 }
@@ -206,6 +195,9 @@ function PopupButton({ tables, setTables }) {
     function SimpleSelected() {
         setOption('Simple');
         console.log('point 2');
+
+
+
     }
 
     function WeightedSelected() {
@@ -231,26 +223,34 @@ function PopupButton({ tables, setTables }) {
 
             {showDropdown && (
                 <div className='hiddenDropdown'>
-                    <button onClick={SimpleSelected} className="dropdownButton">Simple</button>
-                    <button onClick={WeightedSelected} className="dropdownButton">Weighted</button>
+
+                    <Popup trigger=
+                        {<button onClick={SimpleSelected} className="dropdownButton">Simple</button>}
+                        modal nested>
+                        {close => (<SimplePopup tables={tables} setTables={setTables} close={close} />)}
+                    </Popup>
+
+
+                    <Popup trigger=
+                        {<button onClick={WeightedSelected} className="dropdownButton">Weighted</button>}
+                        modal nested>
+                        {close => (<WeightedPopup tables={tables} setTables={setTables} close={close} />)}
+                    </Popup>
+
+
+
+
                     <button onClick={BlankSelected} className="dropdownButton">Blank</button>
 
-                    {option == 'Simple' && (
-                        <Popup trigger=
-                            {<input type="button" className="dropdownContinue" value="Continue - Simple" ></input>}
-                            modal nested >
-                            {close => (<SimplePopup tables={tables} setTables={setTables} close={end} />)}
-                        </Popup>
 
-                    )}
-                    {option == 'Weighted' && (
+                    {/* {option == 'Weighted' && (
                         <Popup trigger=
                             {<input type="button" className="dropdownContinue" value="Continue - Weighted" ></input>}
                             modal nested >
-                            {close => (<WeightedPopup close={end} />)}
+                            {close => (<close = { end } />)}
                         </Popup>
 
-                    )}
+                    )} */}
 
 
 
@@ -266,9 +266,11 @@ function PopupButton({ tables, setTables }) {
 
                     {/* <input type="button" onClick={SimpleSelected("Simple")}>Simple</input> */}
 
-
+                    <button onClick={end}>Exit</button>
 
                 </div>
+
+
 
 
             )
