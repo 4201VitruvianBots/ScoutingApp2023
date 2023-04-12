@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.cdnfonts.com/css/droidiga');
+
+body {
+  background-color: #4988a8af;
+}
+
+
 .App {
   text-align: center;
   --accent-1: white;
@@ -9,21 +17,32 @@
   --bg-color: var(--background-1);
   text-align: center;
   font-family: system-ui;
-  /* background-color: #83c183; */
-  background-color: #83b7c1;
-  height: 300em;
+ 
+
+  /* text-align: center;
+  --accent-1: white;
+  --accent-4: #003800;
+  --background-1: #255025;
+  --main-green: #085f00;
+  --light-green: #83c183;
+  --accent-default: var(--accent-3);
+  --bg-color: var(--background-1);
+  text-align: center;
+  font-family: system-ui;
+  background-color: #528eac9a;
+  height: 300em; */
 }
 
 .pagetitle {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: Poppins;
   font-size: 20px;
-  font-weight: 600;
   margin: 0 auto;
-  width: fit-content;
+  width: 50%;
   padding: 20px;
   padding-bottom: 30px;
 
 }
+
 
 .App-header {
   background-color: #282c34;
@@ -38,30 +57,32 @@
 
 
 .popupButton {
-  font-size: 20px;
+  font-size: 17px;
   padding: 10px;
   font-family: sans-serif;
-  font-weight: 400;
-  /* background-color: var(--main-green); */
+  font-weight: 500;
   background-color: #0042b4;
   color: white;
   height: 40px;
   border: none;
- 
+  position: absolute;
+  left: 20px;
+  top: 20px;
   border-radius: 15px;
   margin-bottom: 25px;
+  width: 190px;
 
 }
 
 .hiddenDropdown {
-  background-color: var(--main-green);
+  background-color: rgba(128, 128, 128, 0.439);
   border-radius: 15px;
-  width: 300px;
+  width: 170px;
   height: 80px;
-  margin: -70px auto;
   padding: 10px;
-  padding-top: 50px;
-  margin-bottom: -70px;
+  position: absolute;
+  left: 20px;
+  top: 20px;
 }
 
 .dropdownButton {
@@ -72,7 +93,6 @@
   color: #003800;
   background-color: white;
   border: 2px var(--main-green) solid;
-
 }
 
 .dropdownButton:hover {
@@ -83,13 +103,11 @@
   background-color: var(--accent-4);
 }
 
-/* .dropdownButton{
-    background-color: teal;
-  } */
 
 .dropdownContinue,
-.popupClose, 
-.addStat {
+.popupClose,
+.addStat, 
+.exitButton {
   font-size: 15px;
   display: block;
   margin: 15px auto;
@@ -97,19 +115,18 @@
   border-radius: 15px;
   width: 150px;
 
-
 }
 
-.addStat{
-  background-color:#255025;
+.addStat {
+  background-color: #255025;
   color: white;
   width: fit-content;
   padding: 10px;
   margin-bottom: 0px;
-  
+
 }
 
-.addStatBox{
+.addStatBox {
   width: 100%;
 }
 
@@ -121,28 +138,54 @@
   width: fit-content;
 }
 
-.dropdownContinue:active{
+.dropdownContinue:active {
   background-color: black;
+}
+
+.popupClose, .exitButton {
+
+  color: white;
+  width: 120px;
+  padding: 10px;
+  display: inline;
+  margin: 5px;
+  margin-top: 10px;
+  
 }
 
 .popupClose {
   background-color: #085f00;
-  color: white;
-  width: 120px;
-  padding: 10px;
 
+}
+
+.exitButton {
+  width: 50px;
+  background-color: rgba(216, 96, 96, 0.525);
+}
+
+.bottomButtons {
+  
+  margin: 0 auto;
+  width: fit-content;
+  
+  
+  
+  
 }
 
 .popup {
   /* background-color: #00ffff; */
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   border-radius: 15px;
   width: 300px;
   height: fit-content;
   margin: 0 auto;
-  display: block;
   padding: 10px;
-  margin-top: -300px;
+  position: absolute;
+
+  left: 20px;
+  top: 20px;
+ 
 }
 
 .popupContent {
@@ -150,7 +193,12 @@
   margin: 0 auto;
 }
 
-.popupContent-Stat, .popupContent-Weight {
+.popup-content{
+  margin: 0 !important;
+}
+
+.popupContent-Stat,
+.popupContent-Weight {
   height: 45px;
 }
 
@@ -188,7 +236,7 @@
 
   margin: 2px;
   margin-left: 22.5%;
-  
+
 }
 
 
@@ -233,7 +281,7 @@ table {
   border-collapse: collapse;
 }
 
-.test1{
+.test1 {
   background-color: purple;
 }
 

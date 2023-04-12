@@ -45,28 +45,33 @@ function SimplePopup({ onSubmit, close }) {
                 </label>
             </div>
 
-            <button onClick={close}>Exit</button>
 
 
 
-            <button className="popupClose" onClick={() => {
+            <div className="bottomButtons">
+
+                <button className="exitButton" onClick={close}>Exit</button>
 
 
-                onSubmit(new SimpleTableData())
+                <button className="popupClose" onClick={() => {
 
 
-                // console.log([name, sort, descending]);
+                    onSubmit(new SimpleTableData())
 
 
-                console.log(title, statistic, descending);
+                    // console.log([name, sort, descending]);
 
 
-                // console.log(tables);
+                    console.log(title, statistic, descending);
 
-                close();
-            }}>
-                Create Table
-            </button>
+
+                    // console.log(tables);
+
+                    close();
+                }}>
+                    Create Table
+                </button>
+            </div>
 
         </div>
     )
@@ -238,9 +243,16 @@ function PopupButton({ tables, setTables }) {
                     </Popup>
 
 
+                    <Popup trigger=
+                        {<button onClick={BlankSelected} className="dropdownButton">Blank</button>}
+                        modal nested>
+                        {close => (<BlankPopup tables={tables} setTables={setTables} close={close} />)}
+                    </Popup>
 
 
-                    <button onClick={BlankSelected} className="dropdownButton">Blank</button>
+
+
+
 
 
                     {/* {option == 'Weighted' && (
