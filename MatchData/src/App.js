@@ -267,6 +267,53 @@ class App extends React.Component {
         var TeleTotalAverageMin = min?.Tele_Pieces_Total_Average
         var TeleTotalMaxMax = max?.Tele_Pieces_Total_Max
         var TeleTotalMaxMin = min?.Tele_Pieces_Total_Max
+        var TeleHighAverageMax = max?.Tele_Pieces_High_Average
+        var TeleHighAverageMin = min?.Tele_Pieces_High_Average
+        var TeleHighMaxMax = max?.Tele_Pieces_High_Max
+        var TeleHighMaxMin = min?.Tele_Pieces_High_Max
+        var TeleMidAverageMax = max?.Tele_Pieces_Mid_Average
+        var TeleMidAverageMin = min?.Tele_Pieces_Mid_Average
+        var TeleMidMaxMax = max?.Tele_Pieces_Mid_Max
+        var TeleMidMaxMin = min?.Tele_Pieces_Mid_Max
+        var TeleLowAverageMax = max?.Tele_Pieces_Low_Average
+        var TeleLowAverageMin = min?.Tele_Pieces_Low_Average
+        var TeleLowMaxMax = max?.Tele_Pieces_Low_Max
+        var TeleLowMaxMin = min?.Tele_Pieces_Low_Max
+        var TeleTotalCubeAverageMax = max?.Tele_Cube_Total_Average
+        var TeleTotalCubeAverageMin = min?.Tele_Cube_Total_Average
+        var TeleTotalCubeMaxMax = max?.Tele_Cube_Total_Max
+        var TeleTotalCubeMaxMin = min?.Tele_Cube_Total_Max
+        var TeleCubeHighAverageMax = max?.Tele_Cube_High_Average
+        var TeleCubeHighAverageMin = min?.Tele_Cube_High_Average
+        var TeleCubeHighMaxMax = max?.Tele_Cube_High_Max
+        var TeleCubeHighMaxMin = min?.Tele_Cube_High_Max
+        var TeleCubeMidAverageMax = max?.Tele_Cube_Mid_Average
+        var TeleCubeMidAverageMin = min?.Tele_Cube_Mid_Average
+        var TeleCubeMidMaxMax = max?.Tele_Cube_Mid_Max
+        var TeleCubeMidMaxMin = min?.Tele_Cube_Mid_Max
+        var TeleCubeLowAverageMax = max?.Tele_Cube_Low_Average
+        var TeleCubeLowAverageMin = min?.Tele_Cube_Low_Average
+        var TeleCubeLowMaxMax = max?.Tele_Cube_Low_Max
+        var TeleCubeLowMaxMin = min?.Tele_Cube_Low_Max
+        var TeleTotalConeAverageMax = max?.Tele_Cone_Total_Average
+        var TeleTotalConeAverageMin = min?.Tele_Cone_Total_Average
+        var TeleTotalConeMaxMax = max?.Tele_Cone_Total_Max
+        var TeleTotalConeMaxMin = min?.Tele_Cone_Total_Max
+        var TeleConeHighAverageMax = max?.Tele_Cone_High_Average
+        var TeleConeHighAverageMin = min?.Tele_Cone_High_Average
+        var TeleConeHighMaxMax = max?.Tele_Cone_High_Max
+        var TeleConeHighMaxMin = min?.Tele_Cone_High_Max
+        var TeleConeMidAverageMax = max?.Tele_Cone_Mid_Average
+        var TeleConeMidAverageMin = min?.Tele_Cone_Mid_Average
+        var TeleConeMidMaxMax = max?.Tele_Cone_Mid_Max
+        var TeleConeMidMaxMin = min?.Tele_Cone_Mid_Max
+        var TeleConeLowAverageMax = max?.Tele_Cone_Low_Average
+        var TeleConeLowAverageMin = min?.Tele_Cone_Low_Average
+        var TeleConeLowMaxMax = max?.Tele_Cone_Low_Max
+        var TeleConeLowMaxMin = min?.Tele_Cone_Low_Max
+
+
+
         var DockedPercentMax = (max?.End_Dock_Frequency) * 100
         var DockedPercentMin = (min?.End_Dock_Frequency) * 100
         var BalancePercentMax = (max?.End_Balance_Frequency) * 100
@@ -283,6 +330,28 @@ class App extends React.Component {
         var BalanceDockRatioColor = scaleLinear().domain([BalanceToDockMin, ((BalanceToDockMax + BalanceToDockMin) / 2), BalanceToDockMax]).range(ColorRange);
         var TeleTotalAverageColor = scaleLinear().domain([TeleTotalAverageMin, ((TeleTotalAverageMax + TeleTotalAverageMin) / 2), TeleTotalAverageMax]).range(ColorRange);
         var TeleTotalMaxColor = scaleLinear().domain([TeleTotalMaxMin, ((TeleTotalMaxMax + TeleTotalMaxMin) / 2), TeleTotalMaxMax]).range(ColorRange);
+        var TeleHighAverageColor = scaleLinear().domain([TeleHighAverageMin, ((TeleHighAverageMax + TeleHighAverageMin) / 2), TeleHighAverageMax]).range(ColorRange);
+        var TeleHighMaxColor = scaleLinear().domain([TeleHighMaxMin, ((TeleHighMaxMax + TeleHighMaxMin) / 2), TeleHighMaxMax]).range(ColorRange);
+        var TeleMidAverageColor = scaleLinear().domain([TeleMidAverageMin, ((TeleMidAverageMax + TeleMidAverageMin) / 2), TeleMidAverageMax]).range(ColorRange);
+        var TeleMidMaxColor = scaleLinear().domain([TeleMidMaxMin, ((TeleMidMaxMax + TeleMidMaxMin) / 2), TeleMidMaxMax]).range(ColorRange);
+        var TeleLowAverageColor = scaleLinear().domain([TeleLowAverageMin, ((TeleLowAverageMax + TeleLowAverageMin) / 2), TeleLowAverageMax]).range(ColorRange);
+        var TeleLowMaxColor = scaleLinear().domain([TeleLowMaxMin, ((TeleLowMaxMax + TeleLowMaxMin) / 2), TeleLowMaxMax]).range(ColorRange);
+        var TeleTotalCubeAverageColor = scaleLinear().domain([TeleTotalCubeAverageMin, ((TeleTotalCubeAverageMax + TeleTotalCubeAverageMin) / 2), TeleTotalCubeAverageMax]).range(ColorRange);
+        var TeleTotalCubeMaxColor = scaleLinear().domain([TeleTotalCubeMaxMin, ((TeleTotalCubeMaxMax + TeleTotalCubeMaxMin) / 2), TeleTotalCubeMaxMax]).range(ColorRange);
+        var TeleCubeHighAverageColor = scaleLinear().domain([TeleCubeHighAverageMin, ((TeleCubeHighAverageMax + TeleCubeHighAverageMin) / 2), TeleCubeHighAverageMax]).range(ColorRange);
+        var TeleCubeHighMaxColor = scaleLinear().domain([TeleCubeHighMaxMin, ((TeleCubeHighMaxMax + TeleCubeHighMaxMin) / 2), TeleCubeHighMaxMax]).range(ColorRange);
+        var TeleCubeMidAverageColor = scaleLinear().domain([TeleCubeMidAverageMin, ((TeleCubeMidAverageMax + TeleCubeMidAverageMin) / 2), TeleCubeMidAverageMax]).range(ColorRange);
+        var TeleCubeMidMaxColor = scaleLinear().domain([TeleCubeMidMaxMin, ((TeleCubeMidMaxMax + TeleCubeMidMaxMin) / 2), TeleCubeMidMaxMax]).range(ColorRange);
+        var TeleCubeLowAverageColor = scaleLinear().domain([TeleCubeLowAverageMin, ((TeleCubeLowAverageMax + TeleCubeLowAverageMin) / 2), TeleCubeLowAverageMax]).range(ColorRange);
+        var TeleCubeLowMaxColor = scaleLinear().domain([TeleCubeLowMaxMin, ((TeleCubeLowMaxMax + TeleCubeLowMaxMin) / 2), TeleCubeLowMaxMax]).range(ColorRange);
+        var TeleTotalConeAverageColor = scaleLinear().domain([TeleTotalConeAverageMin, ((TeleTotalConeAverageMax + TeleTotalConeAverageMin) / 2), TeleTotalConeAverageMax]).range(ColorRange);
+        var TeleTotalConeMaxColor = scaleLinear().domain([TeleTotalConeMaxMin, ((TeleTotalConeMaxMax + TeleTotalConeMaxMin) / 2), TeleTotalConeMaxMax]).range(ColorRange);
+        var TeleConeHighAverageColor = scaleLinear().domain([TeleConeHighAverageMin, ((TeleConeHighAverageMax + TeleConeHighAverageMin) / 2), TeleConeHighAverageMax]).range(ColorRange);
+        var TeleConeHighMaxColor = scaleLinear().domain([TeleConeHighMaxMin, ((TeleConeHighMaxMax + TeleConeHighMaxMin) / 2), TeleConeHighMaxMax]).range(ColorRange);
+        var TeleConeMidAverageColor = scaleLinear().domain([TeleConeMidAverageMin, ((TeleConeMidAverageMax + TeleConeMidAverageMin) / 2), TeleConeMidAverageMax]).range(ColorRange);
+        var TeleConeMidMaxColor = scaleLinear().domain([TeleConeMidMaxMin, ((TeleConeMidMaxMax + TeleConeMidMaxMin) / 2), TeleConeMidMaxMax]).range(ColorRange);
+        var TeleConeLowAverageColor = scaleLinear().domain([TeleConeLowAverageMin, ((TeleConeLowAverageMax + TeleConeLowAverageMin) / 2), TeleConeLowAverageMax]).range(ColorRange);
+        var TeleConeLowMaxColor = scaleLinear().domain([TeleConeLowMaxMin, ((TeleConeLowMaxMax + TeleConeLowMaxMin) / 2), TeleConeLowMaxMax]).range(ColorRange);
         var DockedPercentColor = scaleLinear().domain([DockedPercentMin, ((DockedPercentMax + DockedPercentMin) / 2), DockedPercentMax]).range(ColorRange);
         var BalancedPercentColor = scaleLinear().domain([BalancePercentMin, ((BalancePercentMax + BalancePercentMin) / 2), BalancePercentMax]).range(ColorRange);
         return (
@@ -334,7 +403,7 @@ class App extends React.Component {
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
                                     <td className="nobgcolor" style={{ backgroundColor: AutoTotalPieceAverageColor(Math.round(this.state[`data${i}`]?.Auto_Total_Average * 100) / 100), }}>{Math.round(this.state[`data${i}`]?.Auto_Total_Average * 100) / 100}</td>
-                                    <td className="test" style={{ backgroundColor: AutoTotalPieceMaxColor(Math.round(this.state[`data${i}`]?.Auto_Total_Max * 100) / 100)}}>{Math.round(this.state[`data${i}`]?.Auto_Total_Max * 100) / 100}</td>
+                                    <td className="test" style={{ backgroundColor: AutoTotalPieceMaxColor(Math.round(this.state[`data${i}`]?.Auto_Total_Max * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Auto_Total_Max * 100) / 100}</td>
                                 </React.Fragment>
                             ))}
                         </tr>
@@ -343,8 +412,8 @@ class App extends React.Component {
                             <td className="colorbg">Game Pieces High</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
-                                    <td className="nobgcolor" style={{backgroundColor: AutoHighAverageColor(Math.round(this.state[`data${i}`]?.Auto_High_Average * 100) / 100)}}>{Math.round(this.state[`data${i}`]?.Auto_High_Average * 100) / 100}</td>
-                                    <td className="test" style={{backgroundColor: AutoHighMaxColor(Math.round(this.state[`data${i}`]?.Auto_High_Max * 100) / 100)}}>{Math.round(this.state[`data${i}`]?.Auto_High_Max * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{ backgroundColor: AutoHighAverageColor(Math.round(this.state[`data${i}`]?.Auto_High_Average * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Auto_High_Average * 100) / 100}</td>
+                                    <td className="test" style={{ backgroundColor: AutoHighMaxColor(Math.round(this.state[`data${i}`]?.Auto_High_Max * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Auto_High_Max * 100) / 100}</td>
                                 </React.Fragment>
                             ))}
                         </tr>
@@ -353,8 +422,8 @@ class App extends React.Component {
                             <td className="colorbg">Game Pieces Mid</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <>
-                                    <td className="nobgcolor" style={{backgroundColor: AutoMidAverageColor(Math.round(this.state[`data${i}`]?.Auto_Mid_Average * 100) / 100)}}>{Math.round(this.state[`data${i}`]?.Auto_Mid_Average * 100) / 100}</td>
-                                    <td className="test" style={{backgroundColor: AutoMidMaxColor(Math.round(this.state[`data${i}`]?.Auto_Mid_Max * 100) / 100)}}>{Math.round(this.state[`data${i}`]?.Auto_Mid_Max * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{ backgroundColor: AutoMidAverageColor(Math.round(this.state[`data${i}`]?.Auto_Mid_Average * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Auto_Mid_Average * 100) / 100}</td>
+                                    <td className="test" style={{ backgroundColor: AutoMidMaxColor(Math.round(this.state[`data${i}`]?.Auto_Mid_Max * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Auto_Mid_Max * 100) / 100}</td>
                                 </>
                             ))}
                         </tr>
@@ -363,8 +432,8 @@ class App extends React.Component {
                             <td className="colorbg">Game Pieces Low</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <>
-                                    <td className="nobgcolor" style={{backgroundColor: AutoLowAverageColor(Math.round(this.state[`data${i}`]?.Auto_Low_Average * 100) / 100)}}>{Math.round(this.state[`data${i}`]?.Auto_Low_Average * 100) / 100}</td>
-                                    <td className="test" style={{backgroundColor: AutoLowMaxColor(Math.round(this.state[`data${i}`]?.Auto_Low_Max * 100) / 100)}}>{Math.round(this.state[`data${i}`]?.Auto_Low_Max * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{ backgroundColor: AutoLowAverageColor(Math.round(this.state[`data${i}`]?.Auto_Low_Average * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Auto_Low_Average * 100) / 100}</td>
+                                    <td className="test" style={{ backgroundColor: AutoLowMaxColor(Math.round(this.state[`data${i}`]?.Auto_Low_Max * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Auto_Low_Max * 100) / 100}</td>
                                 </>
                             ))}
                         </tr>
@@ -379,8 +448,8 @@ class App extends React.Component {
                             <td colspan="2" className="colorbg">Total Game Pieces</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
-                                    <td className="nobgcolor" style={{backgroundColor: TeleTotalAverageColor(Math.round(this.state[`data${i}`]?.Tele_Pieces_Total_Average * 100) / 100)}}>{Math.round(this.state[`data${i}`]?.Tele_Pieces_Total_Average * 100) / 100}</td>
-                                    <td className="test" style={{backgroundColor: TeleTotalMaxColor(Math.round(this.state[`data${i}`]?.Tele_Pieces_Total_Max * 100) / 100)}}>{Math.round(this.state[`data${i}`]?.Tele_Pieces_Total_Max * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{ backgroundColor: TeleTotalAverageColor(Math.round(this.state[`data${i}`]?.Tele_Pieces_Total_Average * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Pieces_Total_Average * 100) / 100}</td>
+                                    <td className="test" style={{ backgroundColor: TeleTotalMaxColor(Math.round(this.state[`data${i}`]?.Tele_Pieces_Total_Max * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Pieces_Total_Max * 100) / 100}</td>
                                 </React.Fragment>
                             ))}
                         </tr>
@@ -389,8 +458,8 @@ class App extends React.Component {
                             <td className="colorbg">Game Pieces High</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
-                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Pieces_High_Average * 100) / 100}</td>
-                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Pieces_High_Max * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{ backgroundColor: TeleHighAverageColor(Math.round(this.state[`data${i}`]?.Tele_Pieces_High_Average * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Pieces_High_Average * 100) / 100}</td>
+                                    <td className="test" style={{ backgroundColor: TeleHighMaxColor(Math.round(this.state[`data${i}`]?.Tele_Pieces_High_Max * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Pieces_High_Max * 100) / 100}</td>
                                 </React.Fragment>
                             ))}
                         </tr>
@@ -399,8 +468,8 @@ class App extends React.Component {
                             <td className="colorbg">Game Pieces Mid</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
-                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Pieces_Mid_Average * 100) / 100}</td>
-                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Pieces_Mid_Max * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{ backgroundColor: TeleMidAverageColor(Math.round(this.state[`data${i}`]?.Tele_Pieces_Mid_Average * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Pieces_Mid_Average * 100) / 100}</td>
+                                    <td className="test" style={{ backgroundColor: TeleMidMaxColor(Math.round(this.state[`data${i}`]?.Tele_Pieces_Mid_Max * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Pieces_Mid_Max * 100) / 100}</td>
                                 </React.Fragment>
                             ))}
                         </tr>
@@ -409,8 +478,8 @@ class App extends React.Component {
                             <td className="colorbg">Game Pieces Low</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
-                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Pieces_Low_Average * 100) / 100}</td>
-                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Pieces_Low_Max * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{ backgroundColor: TeleLowAverageColor(Math.round(this.state[`data${i}`]?.Tele_Pieces_Low_Average * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Pieces_Low_Average * 100) / 100}</td>
+                                    <td className="test" style={{ backgroundColor: TeleLowMaxColor(Math.round(this.state[`data${i}`]?.Tele_Pieces_Low_Max * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Pieces_Low_Max * 100) / 100}</td>
                                 </React.Fragment>
                             ))}
                         </tr>
@@ -418,8 +487,8 @@ class App extends React.Component {
                             <td colspan="2" className="colorbg">Total Cubes Scored</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
-                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Cube_Total_Average * 100) / 100}</td>
-                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Cube_Total_Max * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{ backgroundColor: TeleTotalCubeAverageColor(Math.round(this.state[`data${i}`]?.Tele_Cube_Total_Average * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Cube_Total_Average * 100) / 100}</td>
+                                    <td className="test" style={{ backgroundColor: TeleTotalCubeMaxColor(Math.round(this.state[`data${i}`]?.Tele_Cube_Total_Max * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Cube_Total_Max * 100) / 100}</td>
                                 </React.Fragment>
                             ))}
                         </tr>
@@ -428,8 +497,8 @@ class App extends React.Component {
                             <td className="colorbg">Cube High</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
-                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Cube_High_Average * 100) / 100}</td>
-                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Cube_High_Max * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{ backgroundColor: TeleCubeHighAverageColor(Math.round(this.state[`data${i}`]?.Tele_Cube_High_Average * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Cube_High_Average * 100) / 100}</td>
+                                    <td className="test" style={{ backgroundColor: TeleCubeHighMaxColor(Math.round(this.state[`data${i}`]?.Tele_Cube_High_Max * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Cube_High_Max * 100) / 100}</td>
                                 </React.Fragment>
                             ))}
                         </tr>
@@ -438,8 +507,8 @@ class App extends React.Component {
                             <td className="colorbg">Cube Mid</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
-                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Cube_Mid_Average * 100) / 100}</td>
-                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Cube_Mid_Max * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{ backgroundColor: TeleCubeMidAverageColor(Math.round(this.state[`data${i}`]?.Tele_Cube_Mid_Average * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Cube_Mid_Average * 100) / 100}</td>
+                                    <td className="test" style={{ backgroundColor: TeleCubeMidMaxColor(Math.round(this.state[`data${i}`]?.Tele_Cube_Mid_Max * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Cube_Mid_Max * 100) / 100}</td>
                                 </React.Fragment>
                             ))}
                         </tr>
@@ -448,8 +517,8 @@ class App extends React.Component {
                             <td className="colorbg">Cube Low</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
-                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Cube_Low_Average * 100) / 100}</td>
-                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Cube_Low_Max * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{ backgroundColor: TeleCubeLowAverageColor(Math.round(this.state[`data${i}`]?.Tele_Cube_Low_Average * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Cube_Low_Average * 100) / 100}</td>
+                                    <td className="test" style={{ backgroundColor: TeleCubeLowMaxColor(Math.round(this.state[`data${i}`]?.Tele_Cube_Low_Max * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Cube_Low_Max * 100) / 100}</td>
                                 </React.Fragment>
                             ))}
                         </tr>
@@ -457,8 +526,8 @@ class App extends React.Component {
                             <td colspan="2" className="colorbg">Total Cones Scored</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
-                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Cone_Total_Average * 100) / 100}</td>
-                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Cone_Total_Max * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{ backgroundColor: TeleTotalConeAverageColor(Math.round(this.state[`data${i}`]?.Tele_Cone_Total_Average * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Cone_Total_Average * 100) / 100}</td>
+                                    <td className="test" style={{ backgroundColor: TeleTotalConeMaxColor(Math.round(this.state[`data${i}`]?.Tele_Cone_Total_Max * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Cone_Total_Max * 100) / 100}</td>
                                 </React.Fragment>
                             ))}
                         </tr>
@@ -467,8 +536,8 @@ class App extends React.Component {
                             <td className="colorbg">Cone High</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
-                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Cone_High_Average * 100) / 100}</td>
-                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Cone_High_Max * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{ backgroundColor: TeleConeHighAverageColor(Math.round(this.state[`data${i}`]?.Tele_Cone_High_Average * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Cone_High_Average * 100) / 100}</td>
+                                    <td className="test" style={{ backgroundColor: TeleConeHighMaxColor(Math.round(this.state[`data${i}`]?.Tele_Cone_High_Max * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Cone_High_Max * 100) / 100}</td>
                                 </React.Fragment>
                             ))}
                         </tr>
@@ -477,8 +546,8 @@ class App extends React.Component {
                             <td className="colorbg">Cone Mid</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
-                                    <td className="nobgcolor">{Math.round(this.state[`data${i}`]?.Tele_Cone_Mid_Average * 100) / 100}</td>
-                                    <td className="test">{Math.round(this.state[`data${i}`]?.Tele_Cone_Mid_Max * 100) / 100}</td>
+                                    <td className="nobgcolor" style={{ backgroundColor: TeleConeMidAverageColor(Math.round(this.state[`data${i}`]?.Tele_Cone_Mid_Average * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Cone_Mid_Average * 100) / 100}</td>
+                                    <td className="test" style={{ backgroundColor: TeleConeMidMaxColor(Math.round(this.state[`data${i}`]?.Tele_Cone_Mid_Max * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Cone_Mid_Max * 100) / 100}</td>
                                 </React.Fragment>
                             ))}
                         </tr>
@@ -487,8 +556,8 @@ class App extends React.Component {
                             <td className="colorbg">Cone Low</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
-                                    <td className="conelow">{Math.round(this.state[`data${i}`]?.Tele_Cone_Low_Average * 100) / 100}</td>
-                                    <td className="colorbg2">{Math.round(this.state[`data${i}`]?.Tele_Cone_Low_Max * 100) / 100}</td>
+                                    <td className="conelow" style={{ backgroundColor: TeleConeLowAverageColor(Math.round(this.state[`data${i}`]?.Tele_Cone_Low_Average * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Cone_Low_Average * 100) / 100}</td>
+                                    <td className="colorbg2" style={{ backgroundColor: TeleConeLowMaxColor(Math.round(this.state[`data${i}`]?.Tele_Cone_Low_Max * 100) / 100) }}>{Math.round(this.state[`data${i}`]?.Tele_Cone_Low_Max * 100) / 100}</td>
                                 </React.Fragment>
                             ))}
                         </tr>
@@ -502,7 +571,7 @@ class App extends React.Component {
                         <tr>
                             <td colspan="2" className="colorbg">% Balanced</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <td className="test" colspan="2" key={i} style={{backgroundColor: BalancedPercentColor(Math.round(this.state[`data${i}`]?.End_Balance_Frequency * 10000) / 100), }}>{Math.round(this.state[`data${i}`]?.End_Balance_Frequency * 10000) / 100}%</td>
+                                <td className="test" colspan="2" key={i} style={{ backgroundColor: BalancedPercentColor(Math.round(this.state[`data${i}`]?.End_Balance_Frequency * 10000) / 100), }}>{Math.round(this.state[`data${i}`]?.End_Balance_Frequency * 10000) / 100}%</td>
                             ))}
                         </tr>
                     </table>
