@@ -50,9 +50,10 @@ function csvStringify(data) {
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { signedIn: false, ScouterName: "", EventName: "", TeamAlliance: "", connected: false, teamOption: null, BatteryLevel: null, matchSchedule: null };
+        this.state = { signedIn: false, ScouterName: "", EventName: "", TeamAlliance: null, connected: false, teamOption: null, matchNumber: null, BatteryLevel: null, matchSchedule: null };
         this.setSelected = this.setSelected.bind(this);
         this.setTeamOption = this.setTeamOption.bind(this);
+        this.setMatchNumber = this.setMatchNumber.bind(this);
         this.SignInHandler = this.SignInHandler.bind(this);
         this.handleMatchUpdate = this.handleMatchUpdate.bind(this);
     }
@@ -64,6 +65,11 @@ class App extends React.Component {
 
     setTeamOption(teamOption) {
         this.setState({ teamOption: teamOption });
+    }
+
+    setMatchNumber(matchNumber) {
+        this.setState({ matchNumber: matchNumber });
+        this.handleMatchUpdate(matchNumber);
     }
 
     SignInHandler(e) {
@@ -92,15 +98,15 @@ class App extends React.Component {
                 const time = new Date();
                 const hour = time.getHours().toString().padStart(2, '0');
                 const minute = time.getMinutes().toString().padStart(2, '0');
-                download(csv, `Match_Scout_${hour}${minute}.csv`)
-                localStorage.setItem('matchData', localStorage.getItem('matchData') + csv)
+                const matchNum =  data[0];
+                const teamNum = data[1];
+                download(csv, `Match_Scout_${hour}${minute}_Match-${matchNum}_Team-Num-${teamNum}.csv`)
+                // localStorage.setItem('matchData', localStorage.getItem('matchData') + csv)
                 event.target.submit();
-                const prevMatch = parseInt(answers.Match_Number.value);
+                this.setMatchNumber(this.state.matchNumber + 1)
                 setTimeout(() => {
                     event.target.reset();
-                    // setTeamOption({ value: null });
-                    answers.Match_Number.value = prevMatch + 1;
-                    this.handleMatchUpdate(prevMatch + 1);
+                    this.handleMatchUpdate(this.state.matchNumber + 1);
                     window.location.href = "#SignIn";
                 }, 0);
             } else {
@@ -112,15 +118,15 @@ class App extends React.Component {
         }
     };
 
-    downloadCSV() {
-        download(csvStringify([fields]) + localStorage.getItem('matchData'), 'Match_Scout.csv');
-    }
+    // downloadCSV() {
+    //     download(csvStringify([fields]) + localStorage.getItem('matchData'), 'Match_Scout.csv');
+    // }
 
-    clearData() {
-        if (window.confirm('STOP!!! Ask a scouting coordinator before pressing "ok" :)')) {
-            localStorage.setItem('matchData', '');
-        }
-    }
+    // clearData() {
+    //     if (window.confirm('STOP!!! Ask a scouting coordinator before pressing "ok" :)')) {
+    //         localStorage.setItem('matchData', '');
+    //     }
+    // }
 
     componentDidMount() {
         const fetchData = async () => {
@@ -135,7 +141,8 @@ class App extends React.Component {
                         Scouter_Name: this.state.ScouterName,
                         Battery_Level: this.state.BatteryLevel,
                         Team_Number: this.state.teamOption.value,
-                        Position: document.getElementById('myForm').elements.Team_Alliance.value
+                        Match_Number: this.state.matchNumber,
+                        Position: this.state.TeamAlliance
                     })
                 });
                 const ok = response.ok;
@@ -192,25 +199,15 @@ class App extends React.Component {
                 <Navigation selected={this.state.selected === 'navigation'} />
                 {/* <SignIn selected={this.state.selected === 'sign-in'} /> */}
                 <SignIn onSubmit={this.SignInHandler} />
-                {/*
-            <div >
-                <TabButton headerButtonsonClick={this.setSelected} tabId="pre-game">Pre-Game</TabButton>
-                <TabButton onClick={this.setSelected} tabId="auto">Auto</TabButton>
-                <TabButton onClick={this.setSelected} tabId="tele-op">Teleop</TabButton>
-                <TabButton onClick={this.setSelected} tabId="endgame">Endgame</TabButton>
-                <TabButton onClick={this.setSelected} tabId="save-page">Save</TabButton>
-            </div>
-      */}
 
 
                 <form action={`http://${process.env.REACT_APP_BACKEND_IP}/data/matches`} method="POST" target="frame" id="myForm" onSubmit={this.handleSubmit}>
                     <input type='hidden' value={this.state.EventName} name='Competition' />
                     <input type='hidden' value={this.state.ScouterName} name='Scouter_Name' />
                     <input type='hidden' value={this.state.TeamAlliance} name='Team_Alliance' />
-                    <PreGame selected={this.state.selected === 'pre-game'} teamOption={this.state.teamOption} setTeamOption={this.setTeamOption} onMatchUpdate={this.handleMatchUpdate} />
+                    <PreGame selected={this.state.selected === 'pre-game'} teamOption={this.state.teamOption} setTeamOption={this.setTeamOption} matchNumber={this.state.matchNumber} setMatchNumber={this.setMatchNumber} />
                     <Auto selected={this.state.selected === 'auto'} />
                     <TeleOp selected={this.state.selected === 'tele-op'} />
-
                     <SavePage selected={this.state.selected === 'save-page'} QRCode={this.state.QRCode} downloadCSV={this.downloadCSV} clearData={this.clearData} connected={this.state.connected} />
                     {/* <input type="submit" className="submit-button"></input> */}
                 </form>
