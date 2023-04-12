@@ -91,8 +91,8 @@ class App extends React.Component {
                 if(navigator.canShare && navigator.canShare({ files: filesArray })) {
                 navigator.share({
                     files: filesArray,
-                    text: `Scouting data on team ${data['Team_Number']}}`,
-                    title: 'some_title',
+                    text: `Pit scouting data on team ${data['Team_Number']}}`,
+                    title: `${data['Team_Number']} Pit Scout Data`,
                 }).then(() => console.log('Share was successful.'))
                 .catch((error) => console.log('Sharing failed', error));
               } else {
