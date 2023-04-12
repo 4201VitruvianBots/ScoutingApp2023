@@ -353,6 +353,10 @@ function General(props) {
 
                 <input type="hidden" name="length" value={props.fouls.length} />
 
+                <div className="fullgrid">
+                    <input type="checkbox" name="full-grid" id="full-grid"></input>
+                    <label for="full-grid"><strong>Full Grid?</strong></label>
+                </div>
                 <div className="textArea">
                     <p className="generalLabel">Notes</p>
                     <textarea rows="5" cols="20" id="notes" name="Comments" />
