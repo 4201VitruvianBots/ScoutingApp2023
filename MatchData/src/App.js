@@ -243,7 +243,7 @@ class App extends React.Component {
     render() {
         let max = this.state.maxdata
         let min = this.state.mindata
-        let ColorRange = ['red', 'yellow', 'lime']
+        let ColorRange = ['#EF5850', '#FAF16E', '#52E592']
 
         let AutoAverageMax = max?.Auto_Total_Average
         let AutoAverageMin = min?.Auto_Total_Average
