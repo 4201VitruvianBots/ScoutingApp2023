@@ -133,13 +133,13 @@ function Auto(props) {
                     </div>
 
                     <div className="cones">
-                        <h1 className="conecube"><div class="triangle-up"></div>Cones</h1>
+                        <h1 className="conecube"><img src="Cone Icon.svg" height="50" className="Icon"/>Cones</h1>
                         <NumberInput id="Auto_Cone_High" />
                         <NumberInput id="Auto_Cone_Mid" />
                         <NumberInput id="Auto_Cone_Low" />
                     </div>
                     <div className="cubes">
-                        <h1 className="conecube"><div class="square"></div>Cubes</h1>
+                        <h1 className="conecube"><img src="Cube Icon.svg" height="50" className="Icon"/>Cubes</h1>
                         <NumberInput id="Auto_Cube_High" />
                         <NumberInput id="Auto_Cube_Mid" />
                         <NumberInput id="Auto_Cube_Low" />
@@ -169,17 +169,18 @@ function TeleOp(props) {
 
                     <div className="cones">
 
-                        <h1 className="conecube"><div class="triangle-up"></div>Cones</h1>
+                        <h1 className="conecube"><img src="Cone Icon.svg" height="50" className="Icon"/>Cones</h1>
                         <NumberInput id="Tele_Cone_High" />
                         <NumberInput id="Tele_Cone_Mid" />
                         <NumberInput id="Tele_Cone_Low" />
                     </div>
                     <div className="cubes">
-                        <h1 className="conecube"><div class="square"></div>Cubes</h1>
+                        <h1 className="conecube"><img src="Cube Icon.svg" height="50" className="Icon"/>Cubes</h1>
                         <NumberInput id="Tele_Cube_High" />
                         <NumberInput id="Tele_Cube_Mid" />
                         <NumberInput id="Tele_Cube_Low" />
                     </div>
+                    
                 </div>
 
             </div>
