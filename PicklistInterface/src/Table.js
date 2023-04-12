@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 class BlankTableData {
     /** @type {string} */
     name;
@@ -59,7 +61,7 @@ class WeightedTableData extends BlankTableData {
  */
 function DoubleTeamTable({ entries }) {
     return (<tbody>
-        {entries.map((e, i) => (
+        {entries && entries.map((e, i) => (
             <tr key={i}>
                 <td>{e.team}</td>
                 <td>{e.value}</td>
@@ -70,12 +72,12 @@ function DoubleTeamTable({ entries }) {
 
 /**
  * 
- * @param {number[]} param0 
+ * @param {{entries: number[]}} param0 
  * @returns 
  */
 function SingleTeamTable({ entries }) {
     return (<tbody>
-        {entries.map((e, i) => (
+        {entries && entries.map((e, i) => (
             <tr key={i}>
                 <td>{e}</td>
             </tr>
@@ -88,20 +90,32 @@ function SingleTeamTable({ entries }) {
  * @param {{data: SimpleTableData, setData: (data: SimpleTableData) => void}} param0 
  * @returns 
  */
-function SimpleTable({ data, setData }) {
+function SimpleTable({ data: { name, entries, statistic, descending }, setData }) {
+    const reset = () => {
+        // TODO this is temporary testing data
+        setData(new SimpleTableData(name, [
+            { team: 4201, value: 1 },
+            { team: 4414, value: 2 },
+            { team: 9987, value: 3 }
+        ], statistic, descending))
+    }
+
+    useEffect(() => {
+        if (entries === undefined) reset();
+    }, [entries]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <table>
             <thead>
                 <tr>
-                    <th colSpan={2}>{data.name}</th>
+                    <th colSpan={2}>{name}</th>
                 </tr>
                 <tr>
                     <td><button>Reset</button></td>
                     <td><button>Apply</button></td>
                 </tr>
             </thead>
-            <DoubleTeamTable entries={data.entries} />
+            <DoubleTeamTable entries={entries} />
         </table>
     );
 }
@@ -111,18 +125,31 @@ function SimpleTable({ data, setData }) {
  * @param {{data: WeightedTableData, setData: (data: WeightedTableData) => void}} param0 
  * @returns 
  */
-function WeightedTable({ data, setData }) {
+function WeightedTable({ data: { name, entries, factors }, setData }) {
+    const reset = () => {
+        // TODO this is temporary testing data
+        setData(new WeightedTableData(name, [
+            { team: 4201, value: 1 },
+            { team: 4414, value: 2 },
+            { team: 9987, value: 3 }
+        ], factors))
+    }
+
+    useEffect(() => {
+        if (entries === undefined) reset();
+    }, [entries]); // eslint-disable-line react-hooks/exhaustive-deps
+
     return (<table>
         <thead>
             <tr>
-                <th colSpan={2}>{data.name}</th>
+                <th colSpan={2}>{name}</th>
             </tr>
             <tr>
                 <td><button>Reset</button></td>
                 <td><button>Apply</button></td>
             </tr>
         </thead>
-        <DoubleTeamTable entries={data.entries} />
+        <DoubleTeamTable entries={entries} />
     </table>);
 }
 
@@ -131,20 +158,34 @@ function WeightedTable({ data, setData }) {
  * @param {{data: BlankTableData, setData: (data: BlankTableData) => void}} param0 
  * @returns 
  */
-function BlankTable({ data, setData }) {
+function BlankTable({ data: { name, entries }, setData }) {
+    const reset = () => {
+        // TODO this is temporary testing data
+        setData(new BlankTableData(name, [4201, 4481, 983]))
+    }
+
+    useEffect(() => {
+        if (entries === undefined) reset();
+    }, [entries]); // eslint-disable-line react-hooks/exhaustive-deps
+
     return (<table>
         <thead>
             <tr>
-                <th>{data.name}</th>
+                <th>{name}</th>
             </tr>
             <tr>
                 <td><button>Apply</button></td>
             </tr>
         </thead>
-        <SingleTeamTable entries={data.entries} />
+        <SingleTeamTable entries={entries} />
     </table>);
 }
 
+/**
+ * 
+ * @param {{entries: number[], setEntries: (value: number[]) => void}} param0 
+ * @returns 
+ */
 function DNPTable({ entries, setEntries }) {
     return (<table>
         <thead>
@@ -156,6 +197,11 @@ function DNPTable({ entries, setEntries }) {
     </table>);
 }
 
+/**
+ * 
+ * @param {{entries: number[], setEntries: (value: number[]) => void}} param0 
+ * @returns 
+ */
 function FinalTable({ entries, setEntries }) {
     return (<table>
         <thead>
