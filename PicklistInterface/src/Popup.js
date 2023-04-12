@@ -2,7 +2,7 @@ import { useState } from "react";
 import { inputSetter } from './Util.js';
 import Popup from 'reactjs-popup';
 import React from 'react';
-import { SimpleTableData, WeightedTableData } from './Table.js';
+import { SimpleTableData, WeightedTableData, BlankTableData } from "./Data.js";
 
 function SimplePopup({ onSubmit, close, isEditing}) {
 
@@ -179,16 +179,10 @@ function BlankPopup({ data, close }) {
 function PopupButton({ addTable }) {
 
     const [showDropdown, setShowDropdown] = useState(false);
-    // const [openPopup, setOpenPopup] = useState(null);
-    const [option, setOption] = useState(null);
 
     function buttonMenu() {
         setShowDropdown(true);
-        console.log('point 1');
     }
-
-    console.log(option);
-
 
     function end() {
         setShowDropdown(false);

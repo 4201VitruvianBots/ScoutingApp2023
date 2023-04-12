@@ -1,6 +1,7 @@
 import './App.css';
 import { PopupButton } from './Popup.js';
-import { BlankTableData, SimpleTableData, WeightedTableData, BlankTable, SimpleTable, WeightedTable, DNPTable, FinalTable } from './Table.js';
+import { BlankTable, SimpleTable, WeightedTable, DNPTable, FinalTable } from './Table.js';
+import { BlankTableData, SimpleTableData, WeightedTableData, UploadButton } from './Data';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
       <header>
         <h1>Vitruvian Statistical Analysis</h1>
         <PopupButton className="popupButton" addTable={addTable} />
+        <UploadButton setRobotData={setRobotData} />
       </header>
       <section>
         {tables.map((table, index) => {

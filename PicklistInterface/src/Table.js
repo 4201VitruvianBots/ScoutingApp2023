@@ -1,58 +1,5 @@
 import { useEffect } from "react";
-
-class BlankTableData {
-    /** @type {string} */
-    name;
-    /** @type {number[]} */
-    entries;
-
-    /**
-     * 
-     * @param {string} name 
-     * @param {number[]} entries 
-     */
-    constructor(name, entries) {
-        this.name = name;
-        this.entries = entries;
-    }
-}
-
-class SimpleTableData extends BlankTableData {
-    /** @type {string} */
-    statistic;
-    /** @type {boolean} */
-    descending;
-
-    /**
-     * 
-     * @param {string} name 
-     * @param {number[]} entries 
-     * @param {string} statistic 
-     * @param {boolean} descending 
-     */
-    constructor(name, entries, statistic, descending = true) {
-        super(name, entries);
-        this.statistic = statistic;
-        this.descending = descending;
-    }
-
-}
-
-class WeightedTableData extends BlankTableData {
-    /** @type {{statistic: string, weight: number}[]} */
-    factors;
-
-    /**
-     * 
-     * @param {string} name 
-     * @param {number[]} entries 
-     * @param {{statistic: string, weight: number}[]} factors
-     */
-    constructor(name, entries, factors) {
-        super(name, entries);
-        this.factors = factors;
-    }
-}
+import { SimpleTableData, WeightedTableData, BlankTableData } from './Data.js';
 
 /**
  * 
@@ -213,4 +160,4 @@ function FinalTable({ entries, setEntries }) {
     </table>);
 }
 
-export { SimpleTableData, WeightedTableData, BlankTableData, SimpleTable, WeightedTable, BlankTable, FinalTable, DNPTable };
+export { SimpleTable, WeightedTable, BlankTable, FinalTable, DNPTable };
