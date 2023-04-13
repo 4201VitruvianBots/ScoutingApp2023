@@ -317,7 +317,7 @@ def updateAnalysis(Team_Number):
     
     analyzedData = calculate_match_analysis(Team_Number, mydb)
 
-    request = 'UPDATE dataAnalysis SET ' + ', '.join([f'{field}=%s' for field, value in analyzedData.items()]) + ' WHERE Team_Number = %s'
+    request = 'UPDATE dataAnalysis SET ' + ', '.join([f'{field}=%s' for field in analyzedData.keys()]) + ' WHERE Team_Number = %s'
     mycursor.execute(request, list(analyzedData.values()) + [Team_Number])
 
     mydb.commit()

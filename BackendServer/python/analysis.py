@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import mysql.connector
 from enum import Enum
+import json
 
 class AutoStation(Enum):
     noPoints = 0
@@ -68,9 +69,11 @@ def calculate_match_analysis(Team_Number, db_connection, *, appendTo = {}):
 
     # Calculate additional scores
     calculate_match_scores(matches_df, mutate=True)
-    
+
     # Create output variable
-    analysis_output = appendTo
+    analysis_output = pd.DataFrame()
+    # analysis_output = pd.DataFrame()
+    # matches_df = matches_df.groupby('Team_Number')
     
     # Insert team number
     analysis_output['Team_Number'] = Team_Number
@@ -90,12 +93,18 @@ def calculate_match_analysis(Team_Number, db_connection, *, appendTo = {}):
         ):
             # Get names of all the columns we want
             included_columns = [f"{prefix}_{suffix}" for prefix in prefixes for suffix in suffixes]
+            
+            # Sum up all of the included columns
+            totaled_data = matches_df[included_columns].sum(axis=1)
 
-            # Sum up all of the included columns, then find the mean or max of it
-            analysis_output[f'{type_phase}_{level}_Average'] = matches_df[included_columns].sum(axis=1).mean()
-            analysis_output[f'{type_phase}_{level}_Max'] =     matches_df[included_columns].sum(axis=1).max()
+            # Calculate aggregations
+            analysis_output[f'{type_phase}_{level}_Average'] = totaled_data.mean()
+            analysis_output[f'{type_phase}_{level}_Max'] =     totaled_data.max()
+            # analysis_output[f'{type_phase}_{level}_Min'] =     totaled_data.min()
+            # analysis_output[f'{type_phase}_{level}_StDev'] =   totaled_data.std()
 
     # Calculate station frequencies
+    # The `.sum()`s in this section add up all the `True`s returned by the comparison, in efect counting how many satisfy the condition
     tele_station_attempts = (matches_df['Tele_Station'].isin(TELE_ATTEMPTED_DOCK_STATES)).sum()
     analysis_output['End_Balance_Frequency'] = div((matches_df['Tele_Station'] == TeleStation.engaged).sum(), tele_station_attempts)
     analysis_output['End_Dock_Frequency'] = div((matches_df['Tele_Station'].isin(TELE_SUCCESSFUL_DOCK_STATES)).sum(), tele_station_attempts)
@@ -150,6 +159,14 @@ def calculate_super_scout_analysis(Team_Number, db_connection, *, appendTo = {})
     
     return analysis_output
 
+# def save_analysis_data(db_connection):
+#     matches_df = pd.read_sql('SELECT * FROM matchData', db_connection)
+#     team_numbers = matches_df['Team_Number'].unique()
+#     with open('output.json', 'w') as file:
+#         file.write(json.dumps({
+#             'data': [calculate_match_analysis(team_number, db_connection) for team_number in team_numbers]
+#         }))
+
 # If running directly (i.e. with `python analysis.py`) run debug code
 if __name__ == '__main__':
     mydb = mysql.connector.connect(
@@ -159,5 +176,5 @@ if __name__ == '__main__':
       database="rawData"
     )
 
-    print(calculateMatchAnalysis(8600, mydb))
+    print(calculate_match_analysis(8600, mydb))
     mydb.close()
