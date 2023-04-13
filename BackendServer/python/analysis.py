@@ -4,14 +4,14 @@ import mysql.connector
 from enum import Enum
 import json
 
-class AutoStation(Enum):
+class AutoStation:
     noPoints = 0
     failed = 1
     docked = 2
     engaged = 3
 
 
-class TeleStation(Enum):
+class TeleStation:
     noPoints = 0
     parked = 1
     failed = 2
@@ -61,6 +61,9 @@ def calculate_match_scores(matches_df, *, mutate=False):
     output_df['Total_Tele_Points'] = output_df['Tele_Grid_Points'] + output_df['Tele_Station_Points'] + output_df['Assumed_Link_Points']
     output_df['Total_Points'] = output_df['Total_Auto_Points'] + output_df['Total_Tele_Points']
     
+    print(matches_df.iloc[0])
+    print(output_df.iloc[0])
+    
     return output_df
 
 def calculate_match_analysis(Team_Number, db_connection, *, appendTo = {}):
@@ -71,7 +74,7 @@ def calculate_match_analysis(Team_Number, db_connection, *, appendTo = {}):
     calculate_match_scores(matches_df, mutate=True)
 
     # Create output variable
-    analysis_output = pd.DataFrame()
+    analysis_output = appendTo
     # analysis_output = pd.DataFrame()
     # matches_df = matches_df.groupby('Team_Number')
     
