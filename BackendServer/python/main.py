@@ -5,6 +5,7 @@ import atexit
 import time
 import json
 import threading
+import base64
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -297,7 +298,8 @@ def handle_post6():
 @app.route('/data/pits', methods=['POST'])
 def handle_post3():
     # Handle POST request
-    formData = request.form
+    uploadedfile = request.files['file']
+    formData = json.loads(uploadedfile.read())
     # data = request.get_json()
 
     # Insert all data into table
@@ -311,7 +313,6 @@ def handle_post3():
        # print(i)
     # Do something with the data
     return 'Data received'
-
 
 def updateAnalysis(Team_Number):
     mycursor.execute('INSERT IGNORE INTO dataAnalysis(Team_Number) VALUES (%s)', (Team_Number,))
@@ -421,12 +422,20 @@ def format_data(string, name):
     # print(name)
     if name[-3] == '[' and name[-1] == ']':
         name = name[:-3]
-
+    
+    #images
+    if name in ('Drivetrain_Photo', 'Intake_Photo','Uptake_Photo','Outtake_Photo','Extras_Photo'):
+        data_index = string.index(',')
+        image_data = string[data_index+1:]
+        image_data = base64.b64decode(image_data)
+        return image_data
+    #strings
     if name in ('Scouter_Name', 'Competition', 'Team_Name', 'Comments','DriveTrain_Motor_Type', 'Working_On', 'Autos'):
         return string
-    if name in ('Mobility', 'Show_Time', 'Can_Hold_Cone', 'Can_Hold_Cube', 'No_Show_Robot'):
+    #booleans
+    if name in ('Mobility', 'Show_Time', 'Can_Hold_Cone', 'Can_Hold_Cube', 'No_Show_Robot', 'Low', 'Mid', 'High'):
         return string == 'true'
-
+    #else make it a number
     # len(string)
     if len(string)==0:
         # print(f"string='{string}',with no spaces is empty")
