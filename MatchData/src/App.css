@@ -259,14 +259,14 @@
 
  }
 
- .css-1fdsijx-ValueContainer,
+ /* .css-1fdsijx-ValueContainer,
  .css-13cymwt-control,
  .css-1xc3v61-indicatorContainer,
  .css-1hb7zxy-IndicatorsContainer {
    background-color: rgb(223, 244, 214);
-   /* background-color: #b6d7a8ff; */
+   background-color: #b6d7a8ff;
 
- }
+ } */
 
  path,
  .css-13cymwt-control,
@@ -391,11 +391,11 @@
  } */
 
  .colorbg {
-   background-color: #83c183;
+   background-color: #cdd4cd;
  }
 
  .colorbg1 {
-   background-color: #569c56;
+   background-color: #9ba09b;
  }
 
  .colorbg2 {
