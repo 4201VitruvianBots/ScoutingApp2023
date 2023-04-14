@@ -128,6 +128,7 @@ def calculate_super_scout_analysis(Team_Number, db_connection, *, appendTo = {})
     # Read data from MySQL database
     superScout_df = pd.read_sql('SELECT * FROM superScout WHERE Team_Number = %s', db_connection, params=(Team_Number,))
     fouls_df = pd.read_sql('SELECT * FROM fouls WHERE Team_Number = %s', db_connection, params=(Team_Number,))
+
     
     # Create output variable
     analysis_output = appendTo
@@ -137,6 +138,9 @@ def calculate_super_scout_analysis(Team_Number, db_connection, *, appendTo = {})
 
     # Calculate average fouls
     analysis_output['Average_Fouls'] = div(fouls_df.size, superScout_df.size)
+
+
+    analysis_output['Grid_Filled_Frequency'] = superScout_df['Grid_Filled'].mean()
 
     #Calculate defense ranking
     non_zero_defense = (superScout_df['Defense'] != 0)
