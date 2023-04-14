@@ -144,133 +144,133 @@ class ButtonInput extends React.Component {
     }
 }
 
-class MultiButton extends React.Component {
-    constructor(props) {
-        // eslint-disable-next-line no-restricted-globals
-        addEventListener('reset', () => { this.setState({ selected: 0 }) })
-        super(props);
-        this.state = {
-            items: props.items,
-            id: props.id,
-            label: props.label,
-            selected: null,
-        };
-        this.test1 = this.test1.bind(this);
-        this.generateButtons = this.generateButtons.bind(this);
-    }
-    test1(id) {
-        if (this.props.onChange) {
-            this.props.onChange(this.state.items[id][0]);
-        }
-        this.setState({ selected: id });
-        console.log('I\'ve been called ' + id);
-    }
-    generateButtons() {
-        let output = [];
-        for (let index in this.state.items) {
-            let component;
-            if (this.state.selected === index) {
-                component = (
-                    <input
-                        key={index}
-                        type="button"
-                        className="number-on"
-                        value={this.state.items[index][0]}
-                        onClick={() => this.test1(index)}
-                    />
-                );
-                console.log('Selected button generated');
-            } else {
-                component = (
-                    <input
-                        key={index}
-                        type="button"
-                        className="number-off"
-                        value={this.state.items[index][1]}
-                        onClick={() => this.test1(index)}
-                    />
-                );
-                console.log('Not selected button generated');
-            }
-            output.push(component);
-        }
-        return output;
-    }
-    render() {
-        const colors = ['#FF0000', '#0000FF']; // Define array of background colors
-        const shouldChangeColor = this.props.shouldChangeColor; // Get the shouldChangeColor prop
-        return (
-            <div style={{ backgroundColor: shouldChangeColor ? colors[this.state.selected] : null }}>
-                {this.generateButtons()}
-                <input type="hidden" name={this.state.id} value={this.state.selected} />
-            </div>
-        );
-    }
-}
-
 // class MultiButton extends React.Component {
 //     constructor(props) {
-//         super(props);
-//         this.state = { items: props.items, id: props.id, label: props.label, value: 0, selected: null, onChange: props.onChange };
-//         this.test1 = this.test1.bind(this);
-//         this.generateButtons = this.generateButtons.bind(this);
-
-
 //         // eslint-disable-next-line no-restricted-globals
 //         addEventListener('reset', () => { this.setState({ selected: 0 }) })
-//     }
-
-//     test1(id) {
-
-//         if (this.state.onChange) {
-//             this.state.onChange(this.state.items[id][0]); //when onChange is run (when test1 is run) its setting the state to the first of the array
-
+//         super(props);
+//         this.state = {
+//             items: props.items,
+//             id: props.id,
+//             label: props.label,
+//             selected: null,
 //         };
-//         this.setState({
-//             selected: id
-//         })
-//         console.log('I\'ve been called ' + (id));
-
+//         this.test1 = this.test1.bind(this);
+//         this.generateButtons = this.generateButtons.bind(this);
 //     }
-
+//     test1(id) {
+//         if (this.props.onChange) {
+//             this.props.onChange(this.state.items[id][0]);
+//         }
+//         this.setState({ selected: id });
+//         console.log('I\'ve been called ' + id);
+//     }
 //     generateButtons() {
 //         let output = [];
-
 //         for (let index in this.state.items) {
-
 //             let component;
-
 //             if (this.state.selected === index) {
-//                 component = <input key={index} type="button" className="number-on" value={this.state.items[index][0]} onClick={() => this.test1(index)} />
-
+//                 component = (
+//                     <input
+//                         key={index}
+//                         type="button"
+//                         className="number-on"
+//                         value={this.state.items[index][0]}
+//                         onClick={() => this.test1(index)}
+//                     />
+//                 );
 //                 console.log('Selected button generated');
-
 //             } else {
-
-//                 component = <input key={index} type="button" className="number-off" value={this.state.items[index][1]} onClick={() => this.test1(index)} />
+//                 component = (
+//                     <input
+//                         key={index}
+//                         type="button"
+//                         className="number-off"
+//                         value={this.state.items[index][1]}
+//                         onClick={() => this.test1(index)}
+//                     />
+//                 );
 //                 console.log('Not selected button generated');
 //             }
-
-//             output.push(component)
-
+//             output.push(component);
 //         }
-
 //         return output;
 //     }
-
-//     //rendering twice from here
-
 //     render() {
-
+//         const colors = ['#FF0000', '#0000FF']; // Define array of background colors
+//         const shouldChangeColor = this.props.shouldChangeColor; // Get the shouldChangeColor prop
 //         return (
-//             <div>
-//                 <this.generateButtons />
-//                 <input type='hidden' name={this.state.id} value={this.state.selected} />
+//             <div style={{ backgroundColor: shouldChangeColor ? colors[this.state.selected] : null }}>
+//                 {this.generateButtons()}
+//                 <input type="hidden" name={this.state.id} value={this.state.selected} />
 //             </div>
-//         )
-
+//         );
 //     }
 // }
+
+class MultiButton extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { items: props.items, id: props.id, label: props.label, value: 0, selected: null, onChange: props.onChange };
+        this.test1 = this.test1.bind(this);
+        this.generateButtons = this.generateButtons.bind(this);
+
+
+        // eslint-disable-next-line no-restricted-globals
+        addEventListener('reset', () => { this.setState({ selected: 0 }) })
+    }
+
+    test1(id) {
+
+        if (this.state.onChange) {
+            this.state.onChange(this.state.items[id][0]); //when onChange is run (when test1 is run) its setting the state to the first of the array
+
+        };
+        this.setState({
+            selected: id
+        })
+        console.log('I\'ve been called ' + (id));
+
+    }
+
+    generateButtons() {
+        let output = [];
+
+        for (let index in this.state.items) {
+
+            let component;
+
+            if (this.state.selected === index) {
+                component = <input key={index} type="button" className="number-on" value={this.state.items[index][0]} onClick={() => this.test1(index)} />
+
+                console.log('Selected button generated');
+
+            } else {
+
+                component = <input key={index} type="button" className="number-off" value={this.state.items[index][1]} onClick={() => this.test1(index)} />
+                console.log('Not selected button generated');
+            }
+
+            output.push(component)
+
+        }
+
+        return output;
+    }
+
+    //rendering twice from here
+
+    render() {
+
+        return (
+            <div>
+                <this.generateButtons />
+                <input type='hidden' name={this.state.id} value={this.state.selected} />
+            </div>
+        )
+
+    }
+}
 
 class PageSelector extends React.Component {
     constructor(props) {

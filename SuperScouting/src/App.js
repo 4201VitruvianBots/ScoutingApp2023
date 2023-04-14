@@ -37,7 +37,7 @@ function csvStringify(data) {
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { signedIn: false, ScouterName: "", EventName: "", selected: 'sign-in', fouls: [], matchSchedule: null, team1: options[0], team2: options[0], team3: options[0], matchNumber: null, scouterColor: null };
+        this.state = { signedIn: false, ScouterName: "", EventName: "", selected: 'sign-in', fouls: [], matchSchedule: null, team1: options[0], team2: options[0], team3: options[0], matchNumber: null };
         this.SignInHandler = this.SignInHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.test2 = this.test2.bind(this)
@@ -46,7 +46,6 @@ class App extends React.Component {
         this.setTeamOption1 = this.setTeamOption1.bind(this);
         this.setTeamOption2 = this.setTeamOption2.bind(this);
         this.setTeamOption3 = this.setTeamOption3.bind(this);
-        this.setScouterColor = this.setScouterColor.bind(this);
         this.setMatchNumber = this.setMatchNumber.bind(this);
         this.handleMatchUpdate = this.handleMatchUpdate.bind(this);
     }
@@ -63,8 +62,6 @@ class App extends React.Component {
         this.setState({ team3: option });
     }
 
-    setScouterColor(option) {
-        this.setState({ scouterColor: option });
 
     setMatchNumber(matchNumber) {
         this.setState({ matchNumber: matchNumber });
@@ -109,7 +106,7 @@ class App extends React.Component {
                 const time = new Date();
                 const hour = time.getHours().toString().padStart(2, '0');
                 const minute = time.getMinutes().toString().padStart(2, '0');
-                const matchNum =  data[2];
+                const matchNum = data[2];
                 const teamNum1 = data[4];
                 const teamNum2 = data[5];
                 const teamNum3 = data[6];
@@ -224,7 +221,7 @@ class App extends React.Component {
 
         switch (this.state.selected) {
             case 'sign-in':
-                selectedPage = <SignIn onSubmit={this.SignInHandler} onChange={this.setScouterColor} />;
+                selectedPage = <SignIn onSubmit={this.SignInHandler} />;
 
 
                 break;
@@ -252,9 +249,8 @@ class App extends React.Component {
             default:
         }
 
-        console.log(this.state.scouterColor)
-        var isRedScout = (this.state.scouterColor === "RED");
 
+        console.log(this.state.Alliance)
         return (
             <main>
                 <p className="page-title">Welcome to Vitruvian Scouting</p>
@@ -262,16 +258,18 @@ class App extends React.Component {
                 <input type="button" onClick={() => this.test2('sign-in')} value="Sign In" className="nav" />
                 <input type="button" onClick={() => this.test2('general')} value="Fouls" className="nav" />
                 <form>
-                    {isRedScout ? (
+                    {(this.state.Alliance === "0") && (
                         <div className="redindicator">
                             <p>Your Alliance Color is Red</p>
-                        </div>
-                    ) : (
+                        </div>)}
+
+                    {(this.state.Alliance === "1") && (
                         <div className="blueindicator">
                             <p>Your Alliance Color is Blue</p>
                         </div>
-                    )
-                    }
+                    )}
+
+
 
 
                     {/* <div className="allianceSelect">
