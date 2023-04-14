@@ -48,7 +48,7 @@ function SimplePopup({ onSubmit, close, isEditing}) {
 
 
 
-            <div className="bottomButtons">
+           
 
                 <button className="exitButton" onClick={close}>Exit</button>
 
@@ -74,7 +74,7 @@ function SimplePopup({ onSubmit, close, isEditing}) {
                 {isEditing && <button>DEEEELEEEEETE</button>}
 
                 
-            </div>
+            
 
         </div>
     )
@@ -123,7 +123,7 @@ function WeightedPopup({ onSubmit, close }) {
         <div className="popup">
             <p className="popupHeader">Weighted Statistic</p>
 
-            <div className="gallery">
+           
                 <div className="popupContent">
                     <label className="popupLabel" htmlFor="title" >Title: </label>
                     <input type="text" id="title" className="popupInput" onChange={inputSetter(setTitle)}></input>
@@ -150,14 +150,18 @@ function WeightedPopup({ onSubmit, close }) {
                             <input type="number" id="weight" className="popupInput" value={e.weight} onChange={inputSetter(updateFactorWeight(i))}></input>
 
                         </div>
+                        
 
-                        <input type="button" onClick={removeFactor(i)} value="X" />
+                        <input type="button" className="removeFactor" onClick={removeFactor(i)} value="X" />
+                        
+
                     </React.Fragment>
 
                 ))}
+             
+                <input type="button" className="addFactor" onClick={addFactor} value="+" />
 
-                <input type="button" onClick={addFactor} value="+" />
-
+                
 
                 {/* how does addStatistic() work with the following? */}
 
@@ -170,8 +174,10 @@ function WeightedPopup({ onSubmit, close }) {
                         Use the Foulcards component code in SuperScouting as a reference. */}
 
 
-                <button onClick={close}>Exit</button>
+                <button onClick={close} className="exitButton">Exit</button>
 
+                <br/>
+                <br/>
                 <button className="popupClose" onClick={() => {
 
                     close();
@@ -179,7 +185,7 @@ function WeightedPopup({ onSubmit, close }) {
                     onSubmit(new WeightedTableData())
 
                 }}> Create Table </button>
-            </div>
+           
 
         </div>
     );
@@ -282,7 +288,7 @@ function PopupButton({ tables, setTables }) {
                     {/* <input type="button" onClick={SimpleSelected("Simple")}>Simple</input> */}
 
                     <br/>
-                    <button className="exitButton" onClick={end}>Exit</button>
+                    <button className="exitButtonMain" onClick={end}>X</button>
 
                 </div>
 

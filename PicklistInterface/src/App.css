@@ -2,7 +2,8 @@
 @import url('https://fonts.cdnfonts.com/css/droidiga');
 
 body {
-  background-color: #4988a8af;
+  background-color: #63a963;
+  
 }
 
 main {
@@ -19,7 +20,7 @@ main {
 }
 
 h1 {
-  font-family: Poppins;
+  font-family: Droidiga;
   font-size: 20px;
   margin: 0 auto;
   width: 50%;
@@ -45,7 +46,7 @@ h1 {
   padding: 10px;
   font-family: sans-serif;
   font-weight: 500;
-  background-color: #0042b4;
+  background-color: #000000;
   color: white;
   height: 40px;
   border: none;
@@ -54,24 +55,25 @@ h1 {
   top: 20px;
   border-radius: 15px;
   margin-bottom: 25px;
-  width: 190px;
+  width: 150px;
 }
 
 .hiddenDropdown {
-  background-color: #0042b4;
-  border-radius: 15px;
-  width: 170px;
-  height: fit-content;
+  background-color: #000000;
+  border-radius: 10px;
+  width: 150px;
+  height: 110px;
   padding: 10px;
   position: absolute;
   left: 20px;
   top: 20px;
+  
 }
 
 .dropdownButtons {
   background-color: #ffffff;
   border-radius: 15px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 900;
   display: inline;
   margin: 0 auto;
@@ -132,8 +134,8 @@ h1 {
 }
 
 .popupClose, .exitButton {
-
   color: white;
+  background-color: #085f00;
   width: 120px;
   padding: 10px;
   display: inline;
@@ -144,42 +146,85 @@ h1 {
 
 .popupClose {
   background-color: #085f00;
+  position: relative;
+  left: 85px;
+  top: 15px;
+  margin-bottom: 20px;
+  
 
+}
+
+.exitButtonMain, .exitButton {
+  background-color: rgba(210, 49, 49, 0.763);
+  height: 20px;
+  margin: 5px;
+  padding: 2px;
+  font-size: 15px;
+  position: absolute;
+  left: 145px;
+  top: 5px;
+  border-radius: 10px;
+  border: none;
+  height: 25px;
+  width: 50px;
 }
 
 .exitButton {
-  width: 50px;
-  background-color: rgba(216, 96, 96, 0.525);
+  left: 265px;
+  top: 5px;
+  width: 40px;
+
 }
 
-.bottomButtons {
-  
+.exitButtonMain {
+  left: 127px;
+  top: 2px;
+  width: 30px;
+  font-size: 15px;
+}
+
+
+.bottomButtons { 
   margin: 0 auto;
   width: fit-content;
+
   
-  
-  
+}
+
+
+.addFactor{
+  background-color: rgb(0, 170, 255);
+  margin: 5px;
+  position: absolute;
+  left: 140px;
+  height: 100px;
+  margin-top: 25px;
+  padding: 2px;
+  font-size: 15px;
+  border-radius: 100px;
+  border: none;
+  height: 25px;
+  width: 35px;
+  margin-top:65px;
   
 }
 
 .popup {
-  /* background-color: #00ffff; */
-  background-color: rgb(0, 0, 0);
+  background-color: black;
   border-radius: 15px;
   width: 300px;
   height: fit-content;
   margin: 0 auto;
   padding: 10px;
   position: absolute;
-
   left: 20px;
   top: 20px;
- 
 }
 
 .popupContent {
   width: fit-content;
   margin: 0 auto;
+
 }
 
 .popup-content{
@@ -188,13 +233,15 @@ h1 {
 
 .popupContent-Stat,
 .popupContent-Weight {
-  height: 45px;
+ display: inline-block;
+ padding: 5px; 
+ /* background-color: blue; */
+ width: 120px !important;
 }
 
 .popupContent-Stat {
-  /* background-color: orange; */
-  position: relative;
   width: 150px;
+  height: 45px;
 }
 
 .popupContent-Stat .popupLabel {
@@ -207,12 +254,12 @@ h1 {
   height: 20px;
   margin: 2px;
   margin-left: 6%;
+  
 }
 
 .popupContent-Weight {
-  /* background-color: purple; */
-  position: relative;
-  width: 100px;
+  width: 80px;
+  height: 45px;
 }
 
 .popupContent-Weight .popupLabel {
@@ -222,17 +269,30 @@ h1 {
 
 .popupContent-Weight .popupInput {
   width: 50px;
-
   margin: 2px;
   margin-left: 22.5%;
+}
 
+.removeFactor{
+  background-color: rgba(248, 23, 23, 0.854);
+  margin: 5px;
+  position: absolute;
+  left: 250px;
+  height: 20px;
+  margin-top: 25px;
+  padding: 2px;
+  font-size: 15px;
+  border-radius: 100px;
+  border: none;
+  height: 25px;
+  width: 35px;
 }
 
 
 .popupHeader {
   /* color:#085f00; */
   color: #83c183;
-  font-size: 25px;
+  font-size: 23px;
   font-weight: 650;
   width: fit-content;
   margin: 0px auto 10px;
