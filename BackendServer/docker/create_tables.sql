@@ -74,6 +74,7 @@ CREATE TABLE superScout(
 	Team_Alliance INT NOT NULL,
 	Team_Number INT NULL,
 	Defense INT NULL,
+	Grid_Filled BOOLEAN NULL DEFAULT FALSE,
 	Comments TEXT NULL,
 	PRIMARY KEY (id)
 );
