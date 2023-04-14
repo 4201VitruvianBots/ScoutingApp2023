@@ -5,6 +5,7 @@ import atexit
 import time
 import json
 import threading
+from analysis import calculate_match_analysis, calculate_super_scout_analysis
 import base64
 import io
 
@@ -275,8 +276,6 @@ def handle_post():
 
     mydb.commit()
     updateAnalysis(formData.get("Team_Number"))
-    defineChargePoints(formData.get("Team_Number"))
-    updateDockRatio(formData.get("Team_Number"))
     #for i in variable:
        # print(i)
     # Do something with the data
@@ -300,7 +299,7 @@ def handle_post6():
 
     for team in entries:
         mycursor.execute(
-            'INSERT INTO superScout(Scouter_Name, Competition, Match_Number, Team_Alliance, Team, Defense, Comments) VALUES(%s, %s, %s,%s, %s, %s, %s)',
+            'INSERT INTO superScout(Scouter_Name, Competition, Match_Number, Team_Alliance, Team_Number, Defense, Comments) VALUES(%s, %s, %s,%s, %s, %s, %s)',
             [format_data(formData[key], key) for key in ['Scouter_Name', 'Competition', 'Match_Number', 'Team_Alliance', f'Team_{team}', f'Team_{team}_Defense', 'Comments']]
          )
 
@@ -334,80 +333,22 @@ def handle_post3():
 
 def updateAnalysis(Team_Number):
     mycursor.execute('INSERT IGNORE INTO dataAnalysis(Team_Number) VALUES (%s)', (Team_Number,))
+    
+    analyzedData = calculate_match_analysis(Team_Number, mydb)
 
-    for type_phase, prefixes in ('Auto', ('Auto_Cone', 'Auto_Cube')), ('Tele_Pieces', ('Tele_Cone', 'Tele_Cube')), ('Tele_Cone', ('Tele_Cone',)), ('Tele_Cube', ('Tele_Cube',)):
-
-        for level in 'Total', 'Low', 'Mid', 'High':
-            suffixes = ('Low', 'Mid', 'High') if level == 'Total' else (level,)
-
-            included_columns = [f"{prefix}_{suffix}" for prefix in prefixes for suffix in suffixes ]
-
-            for stat, func in ('Average', 'AVG'), ('Max', 'MAX'):
-                request = f"UPDATE dataAnalysis SET {type_phase}_{level}_{stat} = (SELECT {func}({' + '.join(included_columns)}) FROM matchData WHERE Team_Number = %s AND No_Show_Robot = FALSE) WHERE Team_Number = %s"
-
-                mycursor.execute(
-                    request,
-                    (Team_Number,Team_Number)
-                )
-
-    mycursor.execute("UPDATE dataAnalysis SET End_Balance_Frequency = (SELECT COUNT(*) FROM matchData WHERE Tele_Station = 3 AND Team_Number = %s AND No_Show_Robot = FALSE) / NULLIF((SELECT COUNT(*) FROM matchData WHERE Team_Number = %s AND No_Show_Robot = FALSE), 0) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
-    mycursor.execute("UPDATE dataAnalysis SET End_Dock_Frequency = (SELECT COUNT(*) FROM matchData WHERE (Tele_Station = 2 OR Tele_Station = 3) AND Team_Number = %s AND No_Show_Robot = FALSE) / NULLIF((SELECT COUNT(*) FROM matchData WHERE Team_Number = %s AND No_Show_Robot = FALSE), 0) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
-    mycursor.execute("UPDATE dataAnalysis SET Auto_Balance_Frequency = (SELECT COUNT(*) FROM matchData WHERE Auto_Station = 2 AND Team_Number = %s AND No_Show_Robot = FALSE) / NULLIF((SELECT COUNT(*) FROM matchData WHERE (Auto_Station = 1 OR Auto_Station = 2) AND Team_Number = %s AND No_Show_Robot = FALSE), 0) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
-    mycursor.execute("UPDATE dataAnalysis SET Average_Teleop_Points = (SELECT ((Tele_Pieces_Low_Average * 2) + (Tele_Pieces_Mid_Average * 3) + (Tele_Pieces_High_Average * 5))) WHERE Team_Number = %s", (Team_Number, ))
-    mycursor.execute("UPDATE dataAnalysis SET Average_Auto_Points = (SELECT ((Auto_Low_Average * 3) + (Auto_Mid_Average * 4) + (Auto_High_Average * 6))) WHERE Team_Number = %s", (Team_Number, ))
-    # mycursor.execute("UPDATE dataAnalysis SET Average_Cubes = (SELECT AVG(Auto_Cube_Low + Auto_Cube_Mid + Auto_Cube_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_Cube_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
-    # mycursor.execute("UPDATE dataAnalysis SET Average_Con
-    #es = (SELECT AVG(Auto_Cone_Low + Auto_Cone_Mid + Auto_Cone_High + Tele_Cone_Low + Tele_Cone_Mid + Tele_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
-    # mycursor.execute("UPDATE dataAnalysis SET Average_Pieces = (SELECT AVG(Auto_Cone_Low + Auto_Cone_Mid + Auto_Cone_High + Tele_Cone_Low + Tele_Cone_Mid + Tele_Cone_High + Auto_Cube_Low + Auto_Cube_Mid + Auto_Cube_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_Cube_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
-
-    #UPDATE dataAnalysis SET Tele_Pieces_Total_Max = 
-    #(SELECT MAX(Tele_Cone_Low + Tele_Cone_Mid + Tele_
-    #Cone_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_
-    #Cube_High) FROM matchData WHERE Team_Number = %s) 
-    #WHERE Team_Number = %s
-
-    # mycursor.execute("UPDATE dataAnalysis SET Dock_Frequency = ")
-
+    request = 'UPDATE dataAnalysis SET ' + ', '.join([f'{field}=%s' for field in analyzedData.keys()]) + ' WHERE Team_Number = %s'
+    mycursor.execute(request, list(analyzedData.values()) + [Team_Number])
 
     mydb.commit()
     print('Update Analysis run')
 
-def defineChargePoints(Team_Number):
-    mycursor.execute('INSERT IGNORE INTO chargeStation(Team_Number) VALUES (%s)', (Team_Number,))
-
-    #no points
-    mycursor.execute("UPDATE chargeStation SET No_Points = (SELECT COUNT(*) FROM matchData WHERE Tele_Station = 0 AND Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
-    #parked
-    mycursor.execute("UPDATE chargeStation SET Parked = (SELECT COUNT(*) FROM matchData WHERE Tele_Station = 1 AND Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
-    #failed to balance
-    mycursor.execute("UPDATE chargeStation SET Failed_To_Dock = (SELECT COUNT(*) FROM matchData WHERE Tele_Station = 2 AND Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
-    #docked
-    mycursor.execute("UPDATE chargeStation SET Docked = (SELECT COUNT(*) FROM matchData WHERE Tele_Station = 3 AND Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
-    #engaged
-    mycursor.execute("UPDATE chargeStation SET Engaged = (SELECT COUNT(*) FROM matchData WHERE Tele_Station = 4 AND Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
-
-    
-    mydb.commit()
-    print('Update defineChargePoints run')
-
-        
-def updateDockRatio(Team_Number):
-    mycursor.execute("UPDATE dataAnalysis SET Failed_To_Dock_Ratio = (SELECT (Failed_To_Dock / (Parked + Docked + Engaged)) FROM chargeStation WHERE Team_Number = %s LIMIT 1)", (Team_Number,))
-    mydb.commit()
-    print('Update dock ratio run')
-
-# def updateDockRatio(Team_Number):
-#     mycursor.execute("UPDATE dataAnalysis SET Failed_To_Dock_Ratio = (SELECT (Failed_To_Dock / (Parked + Docked + Engaged)) FROM chargeStation WHERE Team_Number = %s)", (Team_Number, ))
-#     mydb.commit()
-#     print('Update dock ratio run')
-
-
-
 def updateFoulAnalysis(Team_Number):
     mycursor.execute('INSERT IGNORE INTO dataAnalysis(Team_Number) VALUES (%s)', (Team_Number,))
-    mycursor.execute("UPDATE dataAnalysis SET Average_Fouls = (SELECT COUNT(*) FROM fouls WHERE Team_Number = %s) / (SELECT COUNT(*) FROM superScout WHERE Team = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
-    for index, name in (1, 'Pin'), (2, 'Disabled'), (3, 'Overextension'), (4, 'Inside_Robot'), (5, 'Multiple_Pieces'), (6, 'Inside_Protected'):
-        mycursor.execute(f"UPDATE dataAnalysis SET Total_{name}_Fouls = (SELECT COUNT(*) FROM fouls WHERE Team_Number = %s AND CAUSE = %s) WHERE Team_Number = %s", (Team_Number, index, Team_Number))
+
+    analyzedData = calculate_super_scout_analysis(Team_Number, mydb)
+
+    request = 'UPDATE dataAnalysis SET ' + ', '.join([f'{field}=%s' for field, value in analyzedData.items()]) + ' WHERE Team_Number = %s'
+    mycursor.execute(request, list(analyzedData.values()) + [Team_Number])
 
     mydb.commit()
 

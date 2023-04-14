@@ -113,9 +113,9 @@ class App extends React.Component {
                 // localStorage.setItem('superScoutData', localStorage.getItem('superScoutData') + csv)
                 event.target.submit();
                 const prevMatch = parseInt(answers.Match_Number.value);
+                this.setMatchNumber(prevMatch + 1);
                 setTimeout(() => {
                     event.target.reset();
-                    answers.Match_Number.value = prevMatch + 1;
                     this.handleMatchUpdate(prevMatch + 1);
                     this.setFouls([]);
                 }, 0)
