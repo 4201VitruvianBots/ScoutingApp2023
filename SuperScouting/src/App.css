@@ -733,3 +733,7 @@
    height: 100%;
    line-height: 60px;
  }
+ .fullgrid {
+   color: black;
+   font-size: 30px;
+ }

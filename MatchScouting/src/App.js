@@ -104,9 +104,9 @@ class App extends React.Component {
                 // localStorage.setItem('matchData', localStorage.getItem('matchData') + csv)
                 event.target.submit();
                 this.setMatchNumber(this.state.matchNumber + 1)
+                this.handleMatchUpdate(this.state.matchNumber + 1);
                 setTimeout(() => {
                     event.target.reset();
-                    this.handleMatchUpdate(this.state.matchNumber + 1);
                     window.location.href = "#SignIn";
                 }, 0);
             } else {

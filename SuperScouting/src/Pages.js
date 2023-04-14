@@ -191,7 +191,7 @@ function General(props) {
                         </Popup>
                         <div className="pleasecenter">
                             <p className="commentlabel">Team 1 Notes</p>
-                            <textarea rows="5" cols="18" id="notes" name="Team 1 Comments" />
+                            <textarea rows="5" cols="18" id="notes" name="Team_1_Comments" />
                         </div>
 
                     </div>
@@ -259,7 +259,7 @@ function General(props) {
                         </Popup>
                         <div>
                             <p className="commentlabel">Team 2 Notes</p>
-                            <textarea rows="5" cols="18" id="notes" name="Team 2 Comments" />
+                            <textarea rows="5" cols="18" id="notes" name="Team_2_Comments" />
                         </div>
 
                     </div>
@@ -332,7 +332,7 @@ function General(props) {
                         </Popup>
                         <div>
                             <p className="commentlabel">Team 3 Notes</p>
-                            <textarea rows="5" cols="18" id="notes" name="Team 3 Comments" />
+                            <textarea rows="5" cols="18" id="notes" name="Team_3_Comments" />
                         </div>
                     </div>
                 </div>
@@ -354,6 +354,10 @@ function General(props) {
 
                 <input type="hidden" name="length" value={props.fouls.length} />
 
+                <div className="fullgrid">
+                    <input type="checkbox" name="Grid_Filled" id="full-grid"></input>
+                    <label for="full-grid"><strong>Full Grid?</strong></label>
+                </div>
                 <div className="textArea">
                     <p className="generalLabel">Notes</p>
                     <textarea rows="5" cols="20" id="notes" name="Comments" />
