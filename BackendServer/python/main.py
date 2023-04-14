@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, send_file
 from flask_cors import CORS
 import mysql.connector
@@ -8,6 +9,7 @@ import threading
 from analysis import calculate_match_analysis, calculate_super_scout_analysis
 import base64
 import io
+import csv
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -276,6 +278,33 @@ def handle_post():
 
     mydb.commit()
     updateAnalysis(formData.get("Team_Number"))
+    #for i in variable:
+       # print(i)
+    # Do something with the data
+    return 'Data received'
+
+@app.route('/data/matches/csv', methods=['POST'])
+def handle_postcsv():
+    # Handle POST request
+    uploadedfile = request.files['file']
+    formData = []
+    csv_file = csv.reader(uploadedfile.read().decode('utf-8').splitlines())
+    for row in csv_file:
+        formData.append(row)
+    print(formData)
+
+    # Insert all data into table
+    columns = ','.join(formData.pop(0))
+    placeholders = ','.join(['(' + ','.join(row) + ')' for row in formData])
+    mycursor.execute(f'INSERT INTO matchData({columns}) VALUES ({placeholders})', [format_data(value, column) for row in formData for value, column in zip(row, columns)])
+    #     ', '.join(formData.keys()),
+    #     ', '.join(['%s'] * len(formData))
+    # ), [format_data(formData[key], key) for key in formData])
+
+    mydb.commit()
+    teamindex = columns.find('Team_Number')
+    for number in [row[teamindex] for row in formData]:
+        updateAnalysis(number)
     #for i in variable:
        # print(i)
     # Do something with the data
