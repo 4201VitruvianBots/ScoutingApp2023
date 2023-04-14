@@ -291,18 +291,21 @@ def handle_postcsv():
     csv_file = csv.reader(uploadedfile.read().decode('utf-8').splitlines())
     for row in csv_file:
         formData.append(row)
-    print(formData)
 
     # Insert all data into table
-    columns = ','.join(formData.pop(0))
-    placeholders = ','.join(['(' + ','.join(row) + ')' for row in formData])
-    mycursor.execute(f'INSERT INTO matchData({columns}) VALUES ({placeholders})', [format_data(value, column) for row in formData for value, column in zip(row, columns)])
+    columns = formData.pop(0)
+    columnString = ','.join(columns)
+    for row in formData:
+        placeholders = ','.join(['%s' for field in row])
+        sqlrequest = f'INSERT INTO matchData({columnString}) VALUES ({placeholders})'
+        parameters = [format_data(value, column) for value, column in zip(row, columns)]
+        mycursor.execute(sqlrequest, parameters)
     #     ', '.join(formData.keys()),
     #     ', '.join(['%s'] * len(formData))
     # ), [format_data(formData[key], key) for key in formData])
 
     mydb.commit()
-    teamindex = columns.find('Team_Number')
+    teamindex = columns.index('Team_Number')
     for number in [row[teamindex] for row in formData]:
         updateAnalysis(number)
     #for i in variable:

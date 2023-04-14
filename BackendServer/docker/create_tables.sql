@@ -2,10 +2,10 @@ USE rawData;
 
 CREATE TABLE matchData(
 	id INT NOT NULL AUTO_INCREMENT,
-	Match_Number INT NOT NULL,
+	Match_Number INT NULL,
 	Team_Number INT NULL,
 	Scouter_Name TEXT NULL,
-	Team_Alliance INT NOT NULL,
+	Team_Alliance INT NULL,
 	Competition TEXT NULL,
 	Mobility BOOLEAN NULL,
 	Auto_Cube_Low INT NULL,

@@ -71,9 +71,11 @@ def calculate_match_analysis(Team_Number, db_connection, *, appendTo = {}):
     calculate_match_scores(matches_df, mutate=True)
 
     # Create output variable
-    analysis_output = appendTo
-    # analysis_output = pd.DataFrame()
-    # matches_df = matches_df.groupby('Team_Number')
+    if Team_Number == None:
+        analysis_output = appendTo
+    else:
+        analysis_output = pd.DataFrame()
+        matches_df = matches_df.groupby('Team_Number')
     
     # Insert team number
     # analysis_output['Team_Number'] = Team_Number
