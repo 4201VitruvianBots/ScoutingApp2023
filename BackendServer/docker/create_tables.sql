@@ -72,6 +72,7 @@ CREATE TABLE superScout(
 	Competition TEXT NULL,
 	Match_Number INT NOT NULL,
 	Team_Alliance INT NOT NULL,
+	Color_Alliance INT NOT NULL,
 	Team_Number INT NULL,
 	Defense INT NULL,
 	Grid_Filled BOOLEAN NULL DEFAULT FALSE,

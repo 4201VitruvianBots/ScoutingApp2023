@@ -190,7 +190,7 @@ function General(props) {
                         </Popup>
                         <div className="pleasecenter">
                             <p className="commentlabel">Team 1 Notes</p>
-                            <textarea rows="5" cols="18" id="notes" name="Team 1 Comments" />
+                            <textarea rows="5" cols="18" id="notes" name="Team_1_Comments" />
                         </div>
 
                     </div>
@@ -258,7 +258,7 @@ function General(props) {
                         </Popup>
                         <div>
                             <p className="commentlabel">Team 2 Notes</p>
-                            <textarea rows="5" cols="18" id="notes" name="Team 2 Comments" />
+                            <textarea rows="5" cols="18" id="notes" name="Team_2_Comments" />
                         </div>
 
                     </div>
@@ -331,7 +331,7 @@ function General(props) {
                         </Popup>
                         <div>
                             <p className="commentlabel">Team 3 Notes</p>
-                            <textarea rows="5" cols="18" id="notes" name="Team 3 Comments" />
+                            <textarea rows="5" cols="18" id="notes" name="Team_3_Comments" />
                         </div>
                     </div>
                 </div>
