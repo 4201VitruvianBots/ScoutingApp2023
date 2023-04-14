@@ -6,6 +6,7 @@ import time
 import json
 import threading
 import base64
+import io
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -161,6 +162,15 @@ def handle_get4():
     # Format with column names
     return [dict(zip(pitColumns, row)) for row in rows]
 
+@app.route('/data/pits/photos/<int:number>/<string:photo>', methods=['GET'])
+def handle_get_photos(number, photo):
+    request = f"SELECT {photo}_Photo FROM pitData WHERE Team_Number = %s"
+    mycursor.execute(request, (number, ))
+    rows = mycursor.fetchall()
+    image_data = rows[0][0]
+    # [[BLOB]]
+    # Format with column names
+    return send_file(io.BytesIO(image_data), mimetype='image/png')
 
 @app.route('/data/matches/team/<int:number>', methods=['GET'])
 def handle_get_team(number):
