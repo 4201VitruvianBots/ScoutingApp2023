@@ -42,7 +42,7 @@ class NumberInput extends React.Component {
     }
 
     increaseValue() {
-        if (this.state.value < 10)
+        if (this.state.value < 99)
             this.setState({ value: this.state.value + 1 });
     }
 
