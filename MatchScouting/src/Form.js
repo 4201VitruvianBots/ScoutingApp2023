@@ -61,7 +61,7 @@ class NumberInput extends React.Component {
                 </div>
                 <div className="buttonright">
                     <input type="button" className="chonk" value="-" onClick={this.decreaseValue} />
-                    <input type="number" value={this.state.value} onChange={this.handleChange} name={this.state.id} min="0" max="10" step="1" />
+                    <input type="number" value={this.state.value} onChange={this.handleChange} name={this.state.id} min="0" max="99" step="1" />
                     <input type="button" className="chonk" value="+" onClick={this.increaseValue} />
                 </div>
             </div>
