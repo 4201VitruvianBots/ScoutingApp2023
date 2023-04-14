@@ -211,6 +211,9 @@ input[type="button"] {
 
 }
 
+.allianceSelect input[type="button"] {
+  font-size: 24px;
+}
 
 .radioButtons {
   background-color: initial;
