@@ -62,6 +62,7 @@ class App extends React.Component {
         this.setState({ team3: option });
     }
 
+
     setMatchNumber(matchNumber) {
         this.setState({ matchNumber: matchNumber });
         this.handleMatchUpdate(matchNumber);
@@ -105,7 +106,7 @@ class App extends React.Component {
                 const time = new Date();
                 const hour = time.getHours().toString().padStart(2, '0');
                 const minute = time.getMinutes().toString().padStart(2, '0');
-                const matchNum =  data[2];
+                const matchNum = data[2];
                 const teamNum1 = data[4];
                 const teamNum2 = data[5];
                 const teamNum3 = data[6];
@@ -138,7 +139,6 @@ class App extends React.Component {
     //         localStorage.setItem('superScoutData', '');
     //     }
     // }
-
     test2(id) {
         this.setState({
             selected: id
@@ -215,11 +215,13 @@ class App extends React.Component {
     }
 
     render() {
+
         let selectedPage;
 
         switch (this.state.selected) {
             case 'sign-in':
                 selectedPage = <SignIn onSubmit={this.SignInHandler} />;
+
 
                 break;
             case 'general':
@@ -247,13 +249,32 @@ class App extends React.Component {
         }
 
 
+        console.log(this.state.Alliance)
         return (
             <main>
                 <p className="page-title">Welcome to Vitruvian Scouting</p>
 
                 <input type="button" onClick={() => this.test2('sign-in')} value="Sign In" className="nav" />
                 <input type="button" onClick={() => this.test2('general')} value="Fouls" className="nav" />
+                <form>
+                    {(this.state.Alliance === "0") && (
+                        <div className="redindicator">
+                            <p>Your Alliance Color is Red</p>
+                        </div>)}
 
+                    {(this.state.Alliance === "1") && (
+                        <div className="blueindicator">
+                            <p>Your Alliance Color is Blue</p>
+                        </div>
+                    )}
+
+
+
+
+                    {/* <div className="allianceSelect">
+                        <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} shouldChangeColor={true} />
+                    </div> */}
+                </form>
                 {selectedPage}
 
                 <iframe className="frame" name="frame" title="frame"></iframe>

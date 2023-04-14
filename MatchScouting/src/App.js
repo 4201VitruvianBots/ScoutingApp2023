@@ -193,6 +193,7 @@ class App extends React.Component {
     render() {
         return (
             <main>
+
                 <br></br>
                 <br></br>
                 <p className="page-title">Welcome to Vitruvian Scouting</p>
@@ -212,7 +213,6 @@ class App extends React.Component {
                     {/* <input type="submit" className="submit-button"></input> */}
                 </form>
                 <iframe name="frame" title="frame"></iframe>
-
             </main>
         );
     }
