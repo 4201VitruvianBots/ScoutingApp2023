@@ -107,7 +107,7 @@ def handle_get_matches():
     request = 'SELECT Match_Number, Team_Alliance, Team_Number FROM matchData'
     mycursor.execute(request)
     dbMatches = mycursor.fetchall()
-    request = 'SELECT Match_Number, Team_Alliance FROM superScout'
+    request = 'SELECT DISTINCT Match_Number, Color_Alliance FROM superScout'
     mycursor.execute(request)
     dbSScout = mycursor.fetchall()
 
@@ -299,8 +299,8 @@ def handle_post6():
 
     for team in entries:
         mycursor.execute(
-            'INSERT INTO superScout(Scouter_Name, Competition, Match_Number, Team_Alliance, Team_Number, Defense, Grid_Filled, Comments) VALUES(%s, %s, %s,%s, %s, %s, %s, %s)',
-            [format_data(formData.get(key, None), key) for key in ['Scouter_Name', 'Competition', 'Match_Number', 'Team_Alliance', f'Team_{team}', f'Team_{team}_Defense', 'Grid_Filled', 'Comments']]
+            'INSERT INTO superScout(Scouter_Name, Competition, Match_Number, Color_Alliance, Team_Number, Defense, Grid_Filled, Comments, Team_Alliance) VALUES(%s, %s, %s,%s, %s, %s, %s, %s, %s)',
+            [format_data(formData.get(key, None), key) for key in ['Scouter_Name', 'Competition', 'Match_Number', 'Team_Alliance', f'Team_{team}', f'Team_{team}_Defense', 'Grid_Filled', 'Comments']] + [3*int(formData['Team_Alliance'])+team]
          )
 
     mydb.commit()
