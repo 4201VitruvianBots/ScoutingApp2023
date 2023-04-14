@@ -300,7 +300,7 @@ def handle_post6():
     for team in entries:
         mycursor.execute(
             'INSERT INTO superScout(Scouter_Name, Competition, Match_Number, Color_Alliance, Team_Number, Defense, Grid_Filled, Comments, Team_Alliance) VALUES(%s, %s, %s,%s, %s, %s, %s, %s, %s)',
-            [format_data(formData.get(key, None), key) for key in ['Scouter_Name', 'Competition', 'Match_Number', 'Team_Alliance', f'Team_{team}', f'Team_{team}_Defense', 'Grid_Filled', 'Comments']] + [3*int(formData['Team_Alliance'])+team-1]
+            [format_data(formData.get(key, None), key) for key in ['Scouter_Name', 'Competition', 'Match_Number', 'Team_Alliance', f'Team_{team}', f'Team_{team}_Defense', 'Grid_Filled', f'Team_{team}_Comments']] + [3*int(formData['Team_Alliance'])+team-1]
         )
 
     mydb.commit()
@@ -397,7 +397,7 @@ def format_data(string, name):
         image_data = base64.b64decode(image_data)
         return image_data
     #strings
-    if name in ('Scouter_Name', 'Competition', 'Team_Name', 'Comments','DriveTrain_Motor_Type', 'Working_On', 'Autos'):
+    if name in ('Scouter_Name', 'Competition', 'Team_Name', 'Comments','DriveTrain_Motor_Type', 'Working_On', 'Autos') or 'Comments' in name:
         return string
     #booleans
     if name in ('Mobility', 'Show_Time', 'Can_Hold_Cone', 'Can_Hold_Cube', 'No_Show_Robot', 'Low', 'Mid', 'High'):
