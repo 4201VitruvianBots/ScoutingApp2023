@@ -299,8 +299,8 @@ def handle_post6():
 
     for team in entries:
         mycursor.execute(
-            'INSERT INTO superScout(Scouter_Name, Competition, Match_Number, Team_Alliance, Team_Number, Defense, Comments) VALUES(%s, %s, %s,%s, %s, %s, %s)',
-            [format_data(formData[key], key) for key in ['Scouter_Name', 'Competition', 'Match_Number', 'Team_Alliance', f'Team_{team}', f'Team_{team}_Defense', 'Comments']]
+            'INSERT INTO superScout(Scouter_Name, Competition, Match_Number, Team_Alliance, Team_Number, Defense, Grid_Filled, Comments) VALUES(%s, %s, %s,%s, %s, %s, %s, %s)',
+            [format_data(formData.get(key, None), key) for key in ['Scouter_Name', 'Competition', 'Match_Number', 'Team_Alliance', f'Team_{team}', f'Team_{team}_Defense', 'Grid_Filled', 'Comments']]
          )
 
     mydb.commit()
@@ -402,6 +402,8 @@ def format_data(string, name):
     #booleans
     if name in ('Mobility', 'Show_Time', 'Can_Hold_Cone', 'Can_Hold_Cube', 'No_Show_Robot', 'Low', 'Mid', 'High'):
         return string == 'true'
+    if name == 'Grid_Filled':
+        return string != None
     #else make it a number
     # len(string)
     if len(string)==0:

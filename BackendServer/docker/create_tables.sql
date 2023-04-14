@@ -74,6 +74,7 @@ CREATE TABLE superScout(
 	Team_Alliance INT NOT NULL,
 	Team_Number INT NULL,
 	Defense INT NULL,
+	Grid_Filled BOOLEAN NULL DEFAULT FALSE,
 	Comments TEXT NULL,
 	PRIMARY KEY (id)
 );
@@ -129,6 +130,7 @@ CREATE TABLE dataAnalysis(
 	Failed_To_Dock_Ratio FLOAT,
 	End_Dock_Frequency FLOAT,
 	End_Balance_Frequency FLOAT,
+	Grid_Filled_Frequency FLOAT,
 	Average_Fouls FLOAT,
 	Average_Defense FLOAT,
 	Total_Pin_Fouls INT,

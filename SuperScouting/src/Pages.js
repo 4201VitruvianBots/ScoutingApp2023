@@ -354,7 +354,7 @@ function General(props) {
                 <input type="hidden" name="length" value={props.fouls.length} />
 
                 <div className="fullgrid">
-                    <input type="checkbox" name="full-grid" id="full-grid"></input>
+                    <input type="checkbox" name="Grid_Filled" id="full-grid"></input>
                     <label for="full-grid"><strong>Full Grid?</strong></label>
                 </div>
                 <div className="textArea">
