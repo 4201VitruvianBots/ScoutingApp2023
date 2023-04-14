@@ -61,9 +61,6 @@ def calculate_match_scores(matches_df, *, mutate=False):
     output_df['Total_Tele_Points'] = output_df['Tele_Grid_Points'] + output_df['Tele_Station_Points'] + output_df['Assumed_Link_Points']
     output_df['Total_Points'] = output_df['Total_Auto_Points'] + output_df['Total_Tele_Points']
     
-    print(matches_df.iloc[0])
-    print(output_df.iloc[0])
-    
     return output_df
 
 def calculate_match_analysis(Team_Number, db_connection, *, appendTo = {}):
