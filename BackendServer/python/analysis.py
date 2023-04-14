@@ -76,7 +76,7 @@ def calculate_match_analysis(Team_Number, db_connection, *, appendTo = {}):
     # matches_df = matches_df.groupby('Team_Number')
     
     # Insert team number
-    analysis_output['Team_Number'] = Team_Number
+    # analysis_output['Team_Number'] = Team_Number
 
     # Calculate scoring aggregates
     for type_phase, prefixes in (
@@ -133,13 +133,17 @@ def calculate_super_scout_analysis(Team_Number, db_connection, *, appendTo = {})
     analysis_output = appendTo
     
     # Insert team number
-    analysis_output['Team_Number'] = Team_Number
+    # analysis_output['Team_Number'] = Team_Number
 
     # Calculate average fouls
     analysis_output['Average_Fouls'] = div(fouls_df.size, superScout_df.size)
 
     #Calculate defense ranking
-    analysis_output['Average_Defense'] = superScout_df['Defense'].mean()
+    non_zero_defense = (superScout_df['Defense'] != 0)
+    if non_zero_defense.any():
+        analysis_output['Average_Defense'] = superScout_df[non_zero_defense]['Defense'].mean()
+    else:
+        analysis_output['Average_Defense'] = None
     
     # Calculate total of each type of foul
     for index, name in (
