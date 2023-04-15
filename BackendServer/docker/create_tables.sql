@@ -1,10 +1,11 @@
 USE rawData;
 
 CREATE TABLE matchData(
-	Match_Number INT NULL,
+	id INT NOT NULL AUTO_INCREMENT,
+	Match_Number INT NOT NULL,
 	Team_Number INT NULL,
 	Scouter_Name TEXT NULL,
-	Team_Alliance INT NULL,
+	Team_Alliance INT NOT NULL,
 	Competition TEXT NULL,
 	Mobility BOOLEAN NULL,
 	Auto_Cube_Low INT NULL,
@@ -21,49 +22,74 @@ CREATE TABLE matchData(
 	Tele_Cone_Mid INT NULL,
 	Tele_Cone_High INT NULL,
 	Tele_Station INT NULL,
-	No_Show_Robot BOOLEAN,
-	Comments TEXT NULL
+	No_Show_Robot BOOLEAN NULL,
+	Comments TEXT NULL,
+	PRIMARY KEY (id)
 );
+
+CREATE TABLE chargeStation(
+	Team_Number INT NULL,
+	No_Points INT NULL,
+	/* if Tele_Station in matchData is euqal to 0, then add a point to No_Points*/
+	Parked INT NULL,
+	/* if Tele_Station in matchData is euqal to 1, then add a point to Parked*/
+	Failed_To_Dock INT NULL,
+	/* if Tele_Station in matchData is euqal to 2, then add a point to Failed_To_Dock*/
+	Docked INT NULL,
+	/* if Tele_Station in matchData is euqal to 3, then add a point to Docked*/
+	Engaged INT NULL
+	/* if Tele_Station in matchData is euqal to 4, then add a point to Engaged*/
+);
+
 
 CREATE TABLE pitData(
 	Scouter_Name TEXT NULL,
-	Team_Number INT NULL,
+	Team_Number INT NOT NULL,
 	Competition TEXT NULL,
-	Team_Name TEXT NULL,
 	DriveTrain INT NULL,
 	Can_Hold_Cone BOOLEAN NULL,
 	Can_Hold_Cube BOOLEAN NULL,
-	Scoring_Location_Capability INT NULL,
+	Low BOOLEAN NULL,
+	Mid BOOLEAN NULL,
+	High BOOLEAN NULL,
 	Number_Of_Motors INT NULL,
 	Number_Of_Batteries INT NULL,
 	DriveTrain_Motor_Type TEXT NULL,
 	Working_On TEXT NULL,
+	Drivetrain_Photo LONGBLOB NOT NULL,
+	Intake_Photo LONGBLOB NOT NULL,
+	Uptake_Photo LONGBLOB NOT NULL,
+	Outtake_Photo LONGBLOB NOT NULL,
+	Extras_Photo LONGBLOB NOT NULL,
 	Autos TEXT NULL,
-	Comments TEXT NULL
+	Comments TEXT NULL,
+	PRIMARY KEY (Team_Number)
 );
 
 CREATE TABLE superScout(
+	id INT NOT NULL AUTO_INCREMENT,
 	Scouter_Name TEXT NULL,
 	Competition TEXT NULL,
-	Match_Number INT NULL,
-	Team_Alliance INT NULL,
-	Team_1 INT NULL,
-	Team_2 INT NULL,
-	Team_3 INT NULL,
-	Team_1_Defense INT NULL,
-	Team_2_Defense INT NULL,
-	Team_3_Defense INT NULL,
-	Comments TEXT NULL
+	Match_Number INT NOT NULL,
+	Team_Alliance INT NOT NULL,
+	Color_Alliance INT NOT NULL,
+	Team_Number INT NULL,
+	Defense INT NULL,
+	Grid_Filled BOOLEAN NULL DEFAULT FALSE,
+	Comments TEXT NULL,
+	PRIMARY KEY (id)
 );
 
 CREATE TABLE fouls(
+	id INT NOT NULL AUTO_INCREMENT,
 	Scouter_Name TEXT NULL, 
 	Competition TEXT NULL,
 	Match_Number INT NULL,
 	Team_Alliance INT NULL,
 	Team_Number INT NULL,
 	Cause INT NULL,
-	Comments TEXT NULL
+	Comments TEXT NULL,
+	PRIMARY KEY (id)
 );
 
 CREATE TABLE dataAnalysis(
@@ -77,6 +103,7 @@ CREATE TABLE dataAnalysis(
 	Auto_High_Average FLOAT,
 	Auto_High_Max INT,
 	Auto_Balance_Frequency FLOAT,
+	Auto_Dock_Frequency FLOAT,
 	Tele_Pieces_Total_Average FLOAT,
 	Tele_Pieces_Total_Max INT,
 	Tele_Pieces_Low_Average FLOAT,
@@ -101,9 +128,12 @@ CREATE TABLE dataAnalysis(
 	Tele_Cube_Mid_Max INT,
 	Tele_Cube_High_Average FLOAT,
 	Tele_Cube_High_Max INT,
+	Failed_To_Dock_Ratio FLOAT,
 	End_Dock_Frequency FLOAT,
 	End_Balance_Frequency FLOAT,
+	Grid_Filled_Frequency FLOAT,
 	Average_Fouls FLOAT,
+	Average_Defense FLOAT,
 	Total_Pin_Fouls INT,
 	Total_Disabled_Fouls INT,
 	Total_Overextension_Fouls INT,

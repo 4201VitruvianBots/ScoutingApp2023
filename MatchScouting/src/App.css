@@ -72,7 +72,7 @@ input[type="radio"] {
 input[type="number"] {
   display: inline !important;
   background-color: var(--accent-1);
-  width: 100px;
+  width: 75px;
   height: 75px;
   font-size: 50px;
   text-align: center;
@@ -181,11 +181,6 @@ input[type="text"] {
 
 }
 
-/* input[type="text"],
- input::placeholder {
-   
- } */
-
 /* Buttons */
 
 .chonk {
@@ -194,7 +189,6 @@ input[type="text"] {
   width: 80px !important;
   height: 65px !important;
   font-size: 50px !important;
-  /* margin-left: 100; */
 
   background-color: #003800;
 
@@ -210,19 +204,18 @@ input[type=button].chonk {
 
 input[type="button"] {
   border-color: var(--accent-3);
-  /* background-color: var(--accent-2); */
   display: block;
   height: 80px;
-  font-size: 20px;
+  font-size: 15px;
   cursor: default;
 
 }
 
+.allianceSelect input[type="button"] {
+  font-size: 24px;
+}
 
 .radioButtons {
-  /* display: inline-block;
-   text-align: left;
-   cursor: default; */
   background-color: initial;
   cursor: default;
   appearance: auto;
@@ -241,9 +234,7 @@ input[type="button"] {
 .container {
   height: 200px;
   width: 250px;
-
   position: relative;
-  /* border: 3px solid green;  */
 }
 
 .center {
@@ -321,19 +312,8 @@ input[type="button"] {
 }
 
 .align-radio {
-  /* display: inline-block;
-   text-align: left;
-   list-style-type: none; */
   display: inline-flex;
-  /* justify-content: flex-start;
-	margin:auto;
-  text-align: center;
-  width: 34%; */
 }
-
-
-
-
 
 ul {
   list-style-type: none;
@@ -388,14 +368,6 @@ li a:hover {
 
 }
 
-/* .connectionIndicator .check2 {
-  background-color:rgb(0, 255, 0);
-}
-
-.connectionIndicator .x2 {
-  background-color:rgb(255, 0, 0);
-} */
-
 .check2 {
   width: 50px;
   height: 20px;
@@ -406,7 +378,6 @@ li a:hover {
   margin-top: 30%;
   position: absolute;
 }
-
 
 .x2:after {
   position: absolute;
@@ -440,7 +411,7 @@ iframe {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
   margin: 0 auto;
   padding: 10px 0;
 }
@@ -484,7 +455,7 @@ iframe {
 
 .align-radio .number-on,
 .align-radio .number-off {
-  width: 150px;
+  width: 120px;
 }
 
 .teamSearch {
@@ -514,12 +485,6 @@ iframe {
   color: #ccc
 }
 
-/* .nonSubmit .number-on,
-.nonSubmit .number-off {
-  background-color: fuchsia;
-
-} */
-
 .nonSubmit .number-off {
   color: #111;
   background-color: #ddd;
@@ -539,11 +504,76 @@ iframe {
   color: white;
 }
 
-/* input[type="button"] .mobility {
-  background-color: fuchsia;
-} */
+.cubes {
+  background-color: rgb(180, 81, 251);
+  padding: 15px;
+  border-radius: 10px;
+}
 
+.cones {
+  background-color: rgb(253, 210, 39);
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.triangle-up {
+  width: 0;
+  height: 0;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 50px solid white;
+  margin: left;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.square {
+  height: 50px;
+  width: 50px;
+  background-color: white;
+  margin: left;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.conecube {
+  margin: auto;
+}
 
 /* input[type=Multibutton] {
   background-color: red;
 } */
+
+/* .showalliance {
+  display: left;
+} */
+
+.redindicator {
+  background-color: #eb5555;
+  width: 230px;
+  height: 60px;
+  margin: auto;
+  border: #111;
+  font-weight: bold;
+}
+
+
+.blueindicator {
+  background-color: #559eeb;
+  width: 230px;
+  height: 60px;
+  margin: auto;
+  font-weight: bold;
+}
+
+.redindicator p {
+  /* background-color: fuchsia; */
+  height: 100%;
+  line-height: 60px;
+}
+
+.blueindicator p {
+  /* background-color: fuchsia; */
+  height: 100%;
+  line-height: 60px;
+}

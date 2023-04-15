@@ -5,6 +5,9 @@ import atexit
 import time
 import json
 import threading
+from analysis import calculate_match_analysis, calculate_super_scout_analysis
+import base64
+import io
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -37,7 +40,8 @@ try:
 except:
     schedule = None
 
-scoutersStatus = {str(i): {'Scouter_Name': '', 'Team_Number': '', 'Battery_Level': '', 'Last_Update': 0, 'Online': False} for i in range(8)}
+scoutersStatus = {'registered': {str(i): {'Scouter_Name': '', 'Team_Number': '', 'Battery_Level': '', 'Last_Update': 0, 'Online': False} for i in range(8)}, 'unregistered': 0}
+unregisteredScouters = {}
 
 # Position:
 # 0 Red 1
@@ -52,14 +56,24 @@ scoutersStatus = {str(i): {'Scouter_Name': '', 'Team_Number': '', 'Battery_Level
 @app.route('/data/status', methods=['POST'])
 def handle_status():
     data = request.get_json()
-    if (data.get('Position') != None):
-        scoutersStatus[data.get('Position')] = {
+    address = request.remote_addr
+    if (data.get('Position') == None):
+        if not address in unregisteredScouters:
+            unregisteredScouters[address] = time.time()
+    else:
+        if address in unregisteredScouters:
+            del unregisteredScouters[address]
+
+        scoutersStatus['registered'][data.get('Position')] = {
             'Scouter_Name': data.get('Scouter_Name'),
             'Team_Number': data.get('Team_Number'),
+            'Match_Number': data.get('Match_Number'),
             'Battery_Level': data.get('Battery_Level'),
             'Last_Update': time.time(),
             'Online': True
         }
+    scoutersStatus['unregistered'] = len(unregisteredScouters)
+
     return 'OK', 200
 
 @app.route('/data/status/tablets', methods=['GET'])
@@ -68,9 +82,13 @@ def handle_get_tablets():
 
 def checker_thread():
     while True:
-        for i in scoutersStatus:
-            if scoutersStatus[i]['Last_Update'] + 6 < time.time():
-                scoutersStatus[i]['Online'] = False
+        for i in scoutersStatus['registered']:
+            if scoutersStatus['registered'][i]['Last_Update'] + 6 < time.time():
+                scoutersStatus['registered'][i]['Online'] = False
+        for i in unregisteredScouters:
+            if unregisteredScouters[i] + 6 < time.time():
+                del unregisteredScouters[i]
+        scoutersStatus['unregistered'] = len(unregisteredScouters)
         time.sleep(1)
 
 @app.before_first_request
@@ -89,7 +107,7 @@ def handle_get_matches():
     request = 'SELECT Match_Number, Team_Alliance, Team_Number FROM matchData'
     mycursor.execute(request)
     dbMatches = mycursor.fetchall()
-    request = 'SELECT Match_Number, Team_Alliance FROM superScout'
+    request = 'SELECT DISTINCT Match_Number, Color_Alliance FROM superScout'
     mycursor.execute(request)
     dbSScout = mycursor.fetchall()
 
@@ -100,14 +118,15 @@ def handle_get_matches():
     if schedule == None:
         matches = {}
     else:
-        matches = {match: [{'scheduledTeamNumber': i, 'submitted': False} for i in teamNumbers] + [{'submitted': False}, {'submitted': False}] for match, teamNumbers in schedule.items()}
+        matches = {match: [{'teamNumber': i, 'submitted': 0} for i in teamNumbers] + [{'submitted': 0}, {'submitted': 0}] for match, teamNumbers in schedule.items()}
 
     for i in dbMatches:
-        entry = {'submittedTeamNumber': str(i[2]), 'submitted': True}
         match_num = str(i[0])
 
         if not match_num in matches:
-            matches[match_num] = [{'submitted': False} for i in range(8)]
+            matches[match_num] = [{'submitted': 0} for i in range(8)]
+
+        entry = {'teamNumber': str(i[2]), 'submitted': matches[match_num][i[1]]['submitted'] + 1}
 
         matches[match_num][i[1]].update(entry)
     
@@ -115,9 +134,9 @@ def handle_get_matches():
         match_num = str(i[0])
         
         if not match_num in matches:
-            matches[match_num] = [{'submitted': False} for i in range(8)]
+            matches[match_num] = [{'submitted': 0} for i in range(8)]
         
-        matches[match_num][i[1] + 6]['submitted'] = True
+        matches[match_num][i[1] + 6]['submitted'] += 1
     
     return matches
 
@@ -144,6 +163,15 @@ def handle_get4():
     # Format with column names
     return [dict(zip(pitColumns, row)) for row in rows]
 
+@app.route('/data/pits/photos/<int:number>/<string:photo>', methods=['GET'])
+def handle_get_photos(number, photo):
+    request = f"SELECT {photo}_Photo FROM pitData WHERE Team_Number = %s"
+    mycursor.execute(request, (number, ))
+    rows = mycursor.fetchall()
+    image_data = rows[0][0]
+    # [[BLOB]]
+    # Format with column names
+    return send_file(io.BytesIO(image_data), mimetype='image/png')
 
 @app.route('/data/matches/team/<int:number>', methods=['GET'])
 def handle_get_team(number):
@@ -157,6 +185,14 @@ def handle_get_team2(number):
     if len(rows) == 0:
         return "robot not found :3", 404
     return rows[0]
+
+@app.route('/data/analysis/min', methods=['GET'])
+def handle_get6():
+    return getdataAnalysis(Min = True)[0]
+
+@app.route('/data/analysis/max', methods=['GET'])
+def handle_get7():
+    return getdataAnalysis(Max = True)[0]
 
 @app.route('/data/analysis/sortby/<column>')
 def handle_get3(column):
@@ -259,10 +295,13 @@ def handle_post6():
             [format_data(formData[key], key) for key in ['Scouter_Name', 'Competition', 'Match_Number', 'Team_Alliance', f"Team_Number[{i}]", f"Cause[{i}]", f"Comments[{i}]"]]
         )
 
-    mycursor.execute('INSERT INTO superScout({}) VALUES ({})'.format(
-        ', '.join(superScoutColumns),
-        ', '.join(['%s'] * len(superScoutColumns))
-    ), [format_data(formData[key], key) for key in superScoutColumns])
+    entries = [1,2,3]
+
+    for team in entries:
+        mycursor.execute(
+            'INSERT INTO superScout(Scouter_Name, Competition, Match_Number, Color_Alliance, Team_Number, Defense, Grid_Filled, Comments, Team_Alliance) VALUES(%s, %s, %s,%s, %s, %s, %s, %s, %s)',
+            [format_data(formData.get(key, None), key) for key in ['Scouter_Name', 'Competition', 'Match_Number', 'Team_Alliance', f'Team_{team}', f'Team_{team}_Defense', 'Grid_Filled', f'Team_{team}_Comments']] + [3*int(formData['Team_Alliance'])+team-1]
+        )
 
     mydb.commit()
     for num in ('1','2','3'):
@@ -276,7 +315,8 @@ def handle_post6():
 @app.route('/data/pits', methods=['POST'])
 def handle_post3():
     # Handle POST request
-    formData = request.form
+    uploadedfile = request.files['file']
+    formData = json.loads(uploadedfile.read())
     # data = request.get_json()
 
     # Insert all data into table
@@ -291,58 +331,38 @@ def handle_post3():
     # Do something with the data
     return 'Data received'
 
-
 def updateAnalysis(Team_Number):
     mycursor.execute('INSERT IGNORE INTO dataAnalysis(Team_Number) VALUES (%s)', (Team_Number,))
+    
+    analyzedData = calculate_match_analysis(Team_Number, mydb)
 
-    for type_phase, prefixes in ('Auto', ('Auto_Cone', 'Auto_Cube')), ('Tele_Pieces', ('Tele_Cone', 'Tele_Cube')), ('Tele_Cone', ('Tele_Cone',)), ('Tele_Cube', ('Tele_Cube',)):
-
-        for level in 'Total', 'Low', 'Mid', 'High':
-            suffixes = ('Low', 'Mid', 'High') if level == 'Total' else (level,)
-
-            included_columns = [f"{prefix}_{suffix}" for prefix in prefixes for suffix in suffixes ]
-
-            for stat, func in ('Average', 'AVG'), ('Max', 'MAX'):
-                request = f"UPDATE dataAnalysis SET {type_phase}_{level}_{stat} = (SELECT {func}({' + '.join(included_columns)}) FROM matchData WHERE Team_Number = %s AND No_Show_Robot = FALSE) WHERE Team_Number = %s"
-
-                mycursor.execute(
-                    request,
-                    (Team_Number,Team_Number)
-                )
-
-    mycursor.execute("UPDATE dataAnalysis SET End_Balance_Frequency = (SELECT COUNT(*) FROM matchData WHERE Tele_Station = 3 AND Team_Number = %s AND No_Show_Robot = FALSE) / NULLIF((SELECT COUNT(*) FROM matchData WHERE Team_Number = %s AND No_Show_Robot = FALSE), 0) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
-    mycursor.execute("UPDATE dataAnalysis SET End_Dock_Frequency = (SELECT COUNT(*) FROM matchData WHERE (Tele_Station = 2 OR Tele_Station = 3) AND Team_Number = %s AND No_Show_Robot = FALSE) / NULLIF((SELECT COUNT(*) FROM matchData WHERE Team_Number = %s AND No_Show_Robot = FALSE), 0) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
-    mycursor.execute("UPDATE dataAnalysis SET Auto_Balance_Frequency = (SELECT COUNT(*) FROM matchData WHERE Auto_Station = 2 AND Team_Number = %s AND No_Show_Robot = FALSE) / NULLIF((SELECT COUNT(*) FROM matchData WHERE (Auto_Station = 1 OR Auto_Station = 2) AND Team_Number = %s AND No_Show_Robot = FALSE), 0) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number))
-    mycursor.execute("UPDATE dataAnalysis SET Average_Teleop_Points = (SELECT ((Tele_Pieces_Low_Average * 2) + (Tele_Pieces_Mid_Average * 3) + (Tele_Pieces_High_Average * 5))) WHERE Team_Number = %s", (Team_Number, ))
-    mycursor.execute("UPDATE dataAnalysis SET Average_Auto_Points = (SELECT ((Auto_Low_Average * 3) + (Auto_Mid_Average * 4) + (Auto_High_Average * 6))) WHERE Team_Number = %s", (Team_Number, ))
-    # mycursor.execute("UPDATE dataAnalysis SET Average_Cubes = (SELECT AVG(Auto_Cube_Low + Auto_Cube_Mid + Auto_Cube_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_Cube_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
-    # mycursor.execute("UPDATE dataAnalysis SET Average_Con
-    #es = (SELECT AVG(Auto_Cone_Low + Auto_Cone_Mid + Auto_Cone_High + Tele_Cone_Low + Tele_Cone_Mid + Tele_Cone_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
-    # mycursor.execute("UPDATE dataAnalysis SET Average_Pieces = (SELECT AVG(Auto_Cone_Low + Auto_Cone_Mid + Auto_Cone_High + Tele_Cone_Low + Tele_Cone_Mid + Tele_Cone_High + Auto_Cube_Low + Auto_Cube_Mid + Auto_Cube_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_Cube_High) FROM matchData WHERE Team_Number = %s) WHERE Team_Number = %s", (Team_Number,Team_Number))
-
-    #UPDATE dataAnalysis SET Tele_Pieces_Total_Max = 
-    #(SELECT MAX(Tele_Cone_Low + Tele_Cone_Mid + Tele_
-    #Cone_High + Tele_Cube_Low + Tele_Cube_Mid + Tele_
-    #Cube_High) FROM matchData WHERE Team_Number = %s) 
-    #WHERE Team_Number = %s
-
-    # mycursor.execute("UPDATE dataAnalysis SET Dock_Frequency = ")
-
+    request = 'UPDATE dataAnalysis SET ' + ', '.join([f'{field}=%s' for field in analyzedData.keys()]) + ' WHERE Team_Number = %s'
+    mycursor.execute(request, list(analyzedData.values()) + [Team_Number])
 
     mydb.commit()
     print('Update Analysis run')
 
 def updateFoulAnalysis(Team_Number):
     mycursor.execute('INSERT IGNORE INTO dataAnalysis(Team_Number) VALUES (%s)', (Team_Number,))
-    mycursor.execute("UPDATE dataAnalysis SET Average_Fouls = (SELECT COUNT(*) FROM fouls WHERE Team_Number = %s) / (SELECT COUNT(*) FROM superScout WHERE Team_1 = %s OR TEAM_2 = %s OR TEAM_3 = %s) WHERE Team_Number = %s", (Team_Number,Team_Number,Team_Number,Team_Number,Team_Number))
-    for index, name in (1, 'Pin'), (2, 'Disabled'), (3, 'Overextension'), (4, 'Inside_Robot'), (5, 'Multiple_Pieces'), (6, 'Inside_Protected'):
-        mycursor.execute(f"UPDATE dataAnalysis SET Total_{name}_Fouls = (SELECT COUNT(*) FROM fouls WHERE Team_Number = %s AND CAUSE = %s) WHERE Team_Number = %s", (Team_Number, index, Team_Number))
+
+    analyzedData = calculate_super_scout_analysis(Team_Number, mydb)
+
+    request = 'UPDATE dataAnalysis SET ' + ', '.join([f'{field}=%s' for field, value in analyzedData.items()]) + ' WHERE Team_Number = %s'
+    mycursor.execute(request, list(analyzedData.values()) + [Team_Number])
 
     mydb.commit()
 
 def getdataAnalysis(**kwargs):
     request = "SELECT * FROM dataAnalysis"
     requestInput = []
+    # if min, elif max, else request
+    if 'Min' in kwargs:
+        request = "SELECT " + ", ".join([f"MIN({column})" for column in analysisColumns]) + " FROM dataAnalysis"
+    elif 'Max' in kwargs:
+        request = "SELECT " + ", ".join([f"MAX({column})" for column in analysisColumns]) + " FROM dataAnalysis"
+    else:
+        request = "SELECT * FROM dataAnalysis"
+
     if 'teamNumber' in kwargs:
         request += " WHERE Team_Number=%s"
         requestInput.append(kwargs['teamNumber'])
@@ -369,12 +389,22 @@ def format_data(string, name):
     # print(name)
     if name[-3] == '[' and name[-1] == ']':
         name = name[:-3]
-
-    if name in ('Scouter_Name', 'Competition', 'Team_Name', 'Comments','DriveTrain_Motor_Type', 'Working_On', 'Autos'):
+    
+    #images
+    if name in ('Drivetrain_Photo', 'Intake_Photo','Uptake_Photo','Outtake_Photo','Extras_Photo'):
+        data_index = string.index(',')
+        image_data = string[data_index+1:]
+        image_data = base64.b64decode(image_data)
+        return image_data
+    #strings
+    if name in ('Scouter_Name', 'Competition', 'Team_Name', 'Comments','DriveTrain_Motor_Type', 'Working_On', 'Autos') or 'Comments' in name:
         return string
-    if name in ('Mobility', 'Show_Time', 'Can_Hold_Cone', 'Can_Hold_Cube', 'No_Show_Robot'):
+    #booleans
+    if name in ('Mobility', 'Show_Time', 'Can_Hold_Cone', 'Can_Hold_Cube', 'No_Show_Robot', 'Low', 'Mid', 'High'):
         return string == 'true'
-
+    if name == 'Grid_Filled':
+        return string != None
+    #else make it a number
     # len(string)
     if len(string)==0:
         # print(f"string='{string}',with no spaces is empty")

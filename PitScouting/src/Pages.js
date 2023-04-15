@@ -1,4 +1,4 @@
-import { NumberInput, ButtonInput, MultiButton, SearchBar } from "./Form";
+import { NumberInput, ButtonInput, MultiButton, SearchBar, Upload } from "./Form";
 import './App.css';
 import { useState } from "react";
 
@@ -14,11 +14,39 @@ function Page(props) {
 
 function SignIn(props) {
     const [showCheck, setshowCheck] = useState(false);
+    const [name, setName] = useState(false);
+    const [greeting, setGreeting] = useState(null);
 
     const handleSubmit = (event) => {
         setshowCheck(true);
         props.onSubmit(event);
         setTimeout(() => { setshowCheck(false) }, 5000);
+    }
+
+    function gameTime(){
+        let nameInput = document.getElementById("Sname").value;
+        setName(nameInput);
+        console.log(name);
+
+        if (nameInput === 'Fuzz') {
+            setGreeting(
+                <div className="fuzz">
+                    <p><a href="https://forms.gle/xov1pvNc3YLdSRGi9/">CLICK ME!! (please :)</a></p>
+                </div>,
+                setTimeout(() => { setGreeting(false) }, 20000)
+            );
+        } else if (nameInput === 'Aaron') {
+            setGreeting(
+                <div className="aaron">
+                    <p><a href="https://docs.google.com/drawings/d/1bHEsE4DAkc5YnoM38h0RykzZ7TnlbViRHTr0pMcLSOw/edit?usp=sharing">you wouldn't dare</a></p>
+                </div>,
+                setTimeout(() => { setGreeting(false) }, 20000)
+            );
+        } else {
+            setGreeting(null);
+        }
+
+
     }
 
     return (
@@ -27,12 +55,13 @@ function SignIn(props) {
             <p className="topNote">If the robot has an "other" drivetrain, specify it in the notes at the bottom!</p>
             <form onSubmit={handleSubmit} action="#">
                 <div className="textArea">
-                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" className="name" required />
+                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" className="name" onChange={gameTime} required />
+                    {greeting}
                     <br />
                     <select name="Competition" id="Ename" defaultValue="Choose">
-                    <option value="LAR">LAR</option>
+                        <option value="LAR">LAR</option>
                     </select>
-                    {showCheck && <div class="check"></div>}
+                    {showCheck && <div className="check"></div>}
                     <input type="submit" className="SAVE" value="Sign In" />
 
                     {/* when submitted 
@@ -98,13 +127,34 @@ function General(props) {
                     </div>
 
                     <div className="workingOn">
-                        <textarea rows="5" cols="40" placeholder="They're working on..." name="Working_On" required></textarea>
+                        <textarea rows="4" cols="15" placeholder="They're working on..." name="Working_On" required></textarea>
                     </div>
 
                 </div>
 
             </div>
         </Page >
+    );
+}
+
+function Photos(props) {
+    return (
+        <Page selected={props.selected} id="photos">
+            <p className="section-label">Photos</p>
+            <div className="textArea">
+                <p className="smallLabel">DRIVETRAIN</p>
+                <Upload name="Drivetrain_Photo"></Upload>
+                <p className="smallLabel">INTAKE</p>
+                <Upload name="Intake_Photo"></Upload>
+                <p className="smallLabel">UPTAKE</p>
+                <Upload name="Uptake_Photo"></Upload>
+                <p className="smallLabel">OUTTAKE</p>
+                <Upload name="Outtake_Photo"></Upload>
+                <p className="smallLabel">EXTRAS</p>
+                <Upload name="Extras_Photo"></Upload>
+                {/* <input type="file" multiple accept="image/*" /> */}
+            </div>
+        </Page>
     );
 }
 
@@ -119,11 +169,11 @@ function SavePage(props) {
                 <input type="submit" className="submit-button" value="Save" />
                 <br />
                 <br />
-                <div className="nonSubmit">
+                {/* <div className="nonSubmit">
                     <p className="reminder">DO NOT use this section unless instructed</p>
                     <input type="button" className="download-button" value="Download Data" onClick={props.downloadCSV} />
                     <input type="button" className="clear-button" value="Clear Data" onClick={props.clearData} />
-                </div>
+                </div> */}
             </div>
 
             <div>
@@ -134,4 +184,4 @@ function SavePage(props) {
     );
 }
 
-export { SignIn, General, SavePage };
+export { SignIn, General, Photos, SavePage };

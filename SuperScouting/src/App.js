@@ -24,7 +24,6 @@ function download(data, title) {
 }
 
 function csvStringify(data) {
-    console.log(data);
     return data.map(e => (
         e.map(e2 => {
             if (e2.includes('"') || e2.includes('\n') || e2.includes('\r') || e2.includes(',')) {
@@ -38,7 +37,7 @@ function csvStringify(data) {
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { signedIn: false, ScouterName: "", EventName: "", selected: 'sign-in', fouls: [], matchSchedule: null, team1: options[0], team2: options[0], team3: options[0] };
+        this.state = { signedIn: false, ScouterName: "", EventName: "", selected: 'sign-in', fouls: [], matchSchedule: null, team1: options[0], team2: options[0], team3: options[0], matchNumber: null };
         this.SignInHandler = this.SignInHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.test2 = this.test2.bind(this)
@@ -47,6 +46,7 @@ class App extends React.Component {
         this.setTeamOption1 = this.setTeamOption1.bind(this);
         this.setTeamOption2 = this.setTeamOption2.bind(this);
         this.setTeamOption3 = this.setTeamOption3.bind(this);
+        this.setMatchNumber = this.setMatchNumber.bind(this);
         this.handleMatchUpdate = this.handleMatchUpdate.bind(this);
     }
 
@@ -60,6 +60,12 @@ class App extends React.Component {
 
     setTeamOption3(option) {
         this.setState({ team3: option });
+    }
+
+
+    setMatchNumber(matchNumber) {
+        this.setState({ matchNumber: matchNumber });
+        this.handleMatchUpdate(matchNumber);
     }
 
     handleMatchUpdate(matchNumber) {
@@ -100,14 +106,17 @@ class App extends React.Component {
                 const time = new Date();
                 const hour = time.getHours().toString().padStart(2, '0');
                 const minute = time.getMinutes().toString().padStart(2, '0');
-                download(csv, `Super_Scout_${hour}${minute}.csv`)
-                localStorage.setItem('superScoutData', localStorage.getItem('superScoutData') + csv)
+                const matchNum = data[2];
+                const teamNum1 = data[4];
+                const teamNum2 = data[5];
+                const teamNum3 = data[6];
+                download(csv, `Super_Scout_${hour}${minute}_Match-${matchNum}_Teams-${teamNum1}-${teamNum2}-${teamNum3}.csv`)
+                // localStorage.setItem('superScoutData', localStorage.getItem('superScoutData') + csv)
                 event.target.submit();
-                const prevMatch = parseInt(answers.Match_Number.value);
+                this.setMatchNumber(this.state.matchNumber + 1);
+                this.handleMatchUpdate(this.state.matchNumber + 1);
                 setTimeout(() => {
                     event.target.reset();
-                    answers.Match_Number.value = prevMatch + 1;
-                    this.handleMatchUpdate(prevMatch + 1);
                     this.setFouls([]);
                 }, 0)
                 // Save it!
@@ -121,18 +130,15 @@ class App extends React.Component {
         }
     }
 
-    downloadCSV() {
-        download(csvStringify([fields]) + localStorage.getItem('superScoutData'), 'Super_Scout.csv');
-    }
+    // downloadCSV() {
+    //     download(csvStringify([fields]) + localStorage.getItem('superScoutData'), 'Super_Scout.csv');
+    // }
 
-    clearData() {
-        if (window.confirm('STOP!!! Ask a scouting coordinator before pressing "ok" :)')) {
-            localStorage.setItem('superScoutData', '');
-        }
-    }
-
-   
-
+    // clearData() {
+    //     if (window.confirm('STOP!!! Ask a scouting coordinator before pressing "ok" :)')) {
+    //         localStorage.setItem('superScoutData', '');
+    //     }
+    // }
     test2(id) {
         this.setState({
             selected: id
@@ -159,6 +165,7 @@ class App extends React.Component {
                     },
                     body: JSON.stringify({
                         Scouter_Name: this.state.ScouterName,
+                        Match_Number: this.state.matchNumber,
                         Battery_Level: this.state.BatteryLevel,
                         Position: position
                     })
@@ -208,11 +215,13 @@ class App extends React.Component {
     }
 
     render() {
+
         let selectedPage;
 
         switch (this.state.selected) {
             case 'sign-in':
                 selectedPage = <SignIn onSubmit={this.SignInHandler} />;
+
 
                 break;
             case 'general':
@@ -226,12 +235,12 @@ class App extends React.Component {
 
                     <General
                         fouls={this.state.fouls} setFouls={this.setFouls}
-                        downloadCSV={this.downloadCSV} clearData={this.clearData}
+                        // downloadCSV={this.downloadCSV} clearData={this.clearData}
                         connected={this.state.connected}
                         teamOption1={this.state.team1} setTeamOption1={this.setTeamOption1}
                         teamOption2={this.state.team2} setTeamOption2={this.setTeamOption2}
                         teamOption3={this.state.team3} setTeamOption3={this.setTeamOption3}
-                        onMatchUpdate={this.handleMatchUpdate}
+                        matchNumber={this.state.matchNumber} setMatchNumber={this.setMatchNumber}
                     />
 
                 </form>);
@@ -240,13 +249,32 @@ class App extends React.Component {
         }
 
 
+        console.log(this.state.Alliance)
         return (
             <main>
                 <p className="page-title">Welcome to Vitruvian Scouting</p>
 
                 <input type="button" onClick={() => this.test2('sign-in')} value="Sign In" className="nav" />
                 <input type="button" onClick={() => this.test2('general')} value="Fouls" className="nav" />
+                <form>
+                    {(this.state.Alliance === "0") && (
+                        <div className="redindicator">
+                            <p>Your Alliance Color is Red</p>
+                        </div>)}
 
+                    {(this.state.Alliance === "1") && (
+                        <div className="blueindicator">
+                            <p>Your Alliance Color is Blue</p>
+                        </div>
+                    )}
+
+
+
+
+                    {/* <div className="allianceSelect">
+                        <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} shouldChangeColor={true} />
+                    </div> */}
+                </form>
                 {selectedPage}
 
                 <iframe className="frame" name="frame" title="frame"></iframe>
@@ -267,7 +295,11 @@ class App extends React.Component {
     }
 }
 
-
+// function alliancecolor() {
+//     return (
+//         <div className='app'></div>
+//     )
+// }
 
 // function TabButton(props) {
 //     return <button onClick={() => props.onClick(props.tabId)}>{props.children}</button>;
