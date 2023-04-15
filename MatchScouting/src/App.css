@@ -550,7 +550,7 @@ iframe {
 
 .redindicator {
   background-color: #eb5555;
-  width: 200px;
+  width: 230px;
   height: 60px;
   margin: auto;
   border: #111;
@@ -560,7 +560,7 @@ iframe {
 
 .blueindicator {
   background-color: #559eeb;
-  width: 200px;
+  width: 230px;
   height: 60px;
   margin: auto;
   font-weight: bold;
