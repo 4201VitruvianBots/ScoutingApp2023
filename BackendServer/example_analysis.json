@@ -1,0 +1,10 @@
+{
+    "columns": [
+        {"id": "Average_Defense", "name": "Average Defense Ranking"},
+        {"id": "Average_Auto", "name": "Average Auto Score"}
+    ],
+    "data": {
+        "4201": [4, 7],
+        "8898": [2, 11]
+    }
+}

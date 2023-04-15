@@ -3,8 +3,9 @@ import { inputSetter } from './Util.js';
 import Popup from 'reactjs-popup';
 import React from 'react';
 import { SimpleTableData, WeightedTableData, BlankTableData } from "./Data.js";
+import Select from 'react-select';
 
-function SimplePopup({ onSubmit, close, isEditing}) {
+function SimplePopup({ onSubmit, close, isEditing, statisticOptions }) {
 
     // <SimplePopup onSubmit={updateTable(5)} />
 
@@ -28,14 +29,11 @@ function SimplePopup({ onSubmit, close, isEditing}) {
 
             <div className="popupContent">
                 <label htmlFor="sortBy" className="popupLabel">Statistic: </label>
-                <select name="Competition" id="sortBy" defaultValue="Choose" className="popupInput" onChange={inputSetter(setStatistic)}>
-                    <option value="average_auto_grid_score">Avg Auto Grid Score</option>
-                    <option value="average_auto_balance">Avg Auto Balance</option>
-                    <option value="average_teleop_grid_score">Avg Teleop Grid Score</option>
-                    <option value="average_teleop_cycle_time">Avg Teleop Cycle Time</option>
-                    <option value="average_total_teleop_points">Avg Total Teleop Points</option>
-                </select>
-
+                <Select
+                    options={statisticOptions}
+                    value={statisticOptions.find(option => option === statistic)}
+                    onChange={e => setStatistic(e.value)}
+                />
             </div>
 
             <div className="popupContent">
@@ -68,7 +66,7 @@ function SimplePopup({ onSubmit, close, isEditing}) {
     )
 }
 
-function WeightedPopup({ onSubmit, close }) {
+function WeightedPopup({ onSubmit, close, statisticOptions }) {
 
     const [title, setTitle] = useState();
     const [factors, setFactors] = useState([{ statistic: '', weight: 1 }]);
@@ -122,13 +120,11 @@ function WeightedPopup({ onSubmit, close }) {
                         <div className="popupContent-Stat">
                             <label htmlFor="sortBy" className="popupLabel">Statistic: </label>
                             <br />
-                            <select value={e.statistic} className="popupInput" onChange={inputSetter(updateFactorStatistic(i))}>
-                                <option value="average_auto_grid_score">Avg Auto Grid Score</option>
-                                <option value="average_auto_balance">Avg Auto Balance</option>
-                                <option value="average_teleop_grid_score">Avg Teleop Grid Score</option>
-                                <option value="average_teleop_cycle_time">Avg Teleop Cycle Time</option>
-                                <option value="average_total_teleop_points">Avg Total Teleop Points</option>
-                            </select>
+                            <Select
+                                options={statisticOptions}
+                                value={statisticOptions.find(option => option === e.statistic)}
+                                onChange={option => updateFactorStatistic(i)(option.value)}
+                            />
 
                         </div>
 
@@ -182,7 +178,7 @@ function BlankPopup({ data, close }) {
 
 }
 
-function PopupButton({ addTable }) {
+function PopupButton({ addTable, statisticOptions }) {
 
     const [showDropdown, setShowDropdown] = useState(false);
 
@@ -204,14 +200,14 @@ function PopupButton({ addTable }) {
                     <Popup trigger=
                         {<button className="dropdownButtons">Simple</button>}
                         modal nested>
-                        {close => (<SimplePopup onSubmit={addTable} close={close} isEditing={false}/>)}
+                        {close => (<SimplePopup onSubmit={addTable} close={close} isEditing={false} statisticOptions={statisticOptions} />)}
                     </Popup>
 
 
                     <Popup trigger=
                         {<button className="dropdownButtons">Weighted</button>}
                         modal nested>
-                        {close => (<WeightedPopup onSubmit={addTable} close={close} />)}
+                        {close => (<WeightedPopup onSubmit={addTable} close={close} statisticOptions={statisticOptions} />)}
                     </Popup>
 
 

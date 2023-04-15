@@ -2,7 +2,7 @@ import './App.css';
 import { PopupButton } from './Popup.js';
 import { BlankTable, SimpleTable, WeightedTable, DNPTable, FinalTable } from './Table.js';
 import { BlankTableData, SimpleTableData, WeightedTableData, UploadButton } from './Data';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import SearchBar from './Searchbar';
 
 function App() {
@@ -53,12 +53,16 @@ function App() {
     setTables([...tables, table]);
   }
 
+  const statisticOptions = useMemo(() => (
+    robotData?.columns.map(e => ({ value: e.id, label: e.name }))
+  ), [robotData])
+
   return (
     <main>
       {/* File upload to import CSV */}
       <header>
         <h1>Vitruvian Statistical Analysis</h1>
-        <PopupButton className="popupButton" addTable={addTable} />
+        <PopupButton className="popupButton" addTable={addTable} statisticOptions={statisticOptions} />
         <UploadButton setRobotData={setRobotData} />
         <div className="searchSection">
             <p>Team Search</p>
@@ -69,13 +73,13 @@ function App() {
       <section className="allTables">
         {tables.map((table, index) => {
           if (table instanceof SimpleTableData)
-            return <SimpleTable key={index} data={table} setData={updateTable(index)} />;;
+            return <SimpleTable key={index} data={table} setData={updateTable(index)} robotData={robotData} />;;
 
           if (table instanceof WeightedTableData)
-            return <WeightedTable key={index} data={table} setData={updateTable(index)} />;
+            return <WeightedTable key={index} data={table} setData={updateTable(index)} robotData={robotData} />;
 
           if (table instanceof BlankTableData)
-            return <BlankTable key={index} data={table} setData={updateTable(index)} />;
+            return <BlankTable key={index} data={table} setData={updateTable(index)} robotData={robotData} />;
 
           return null;
         })}

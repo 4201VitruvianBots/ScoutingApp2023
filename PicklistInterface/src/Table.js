@@ -37,7 +37,7 @@ function SingleTeamTable({ entries }) {
  * @param {{data: SimpleTableData, setData: (data: SimpleTableData) => void}} param0 
  * @returns 
  */
-function SimpleTable({ data: { name, entries, statistic, descending }, setData }) {
+function SimpleTable({ data: { name, entries, statistic, descending }, setData, robotData }) {
     const reset = () => {
         // TODO this is temporary testing data
         setData(new SimpleTableData(name, [
@@ -72,7 +72,7 @@ function SimpleTable({ data: { name, entries, statistic, descending }, setData }
  * @param {{data: WeightedTableData, setData: (data: WeightedTableData) => void}} param0 
  * @returns 
  */
-function WeightedTable({ data: { name, entries, factors }, setData }) {
+function WeightedTable({ data: { name, entries, factors }, setData, robotData }) {
     const reset = () => {
         // TODO this is temporary testing data
         setData(new WeightedTableData(name, [
@@ -105,7 +105,7 @@ function WeightedTable({ data: { name, entries, factors }, setData }) {
  * @param {{data: BlankTableData, setData: (data: BlankTableData) => void}} param0 
  * @returns 
  */
-function BlankTable({ data: { name, entries }, setData }) {
+function BlankTable({ data: { name, entries }, setData, robotData }) {
     const reset = () => {
         // TODO this is temporary testing data
         setData(new BlankTableData(name, [4201, 4481, 983]))
