@@ -14,11 +14,32 @@ function Page(props) {
 
 function SignIn(props) {
     const [showCheck, setshowCheck] = useState(false);
+    const [name, setName] = useState(false);
+    const [greeting, setGreeting] = useState(null);
 
     const handleSubmit = (event) => {
         setshowCheck(true);
         props.onSubmit(event);
         setTimeout(() => { setshowCheck(false) }, 5000);
+    }
+
+    function gameTime(){
+        let nameInput = document.getElementById("Sname").value;
+        setName(nameInput);
+        console.log(name);
+
+        if (nameInput === 'Fuzz') {
+            setGreeting(
+                <div className="fuzz">
+                    <p><a href="https://forms.gle/xov1pvNc3YLdSRGi9/">CLICK ME!! (please :)</a></p>
+                </div>,
+                setTimeout(() => { setGreeting(false) }, 20000)
+            );
+        } else {
+            setGreeting(null);
+        }
+
+
     }
 
     return (
@@ -27,12 +48,13 @@ function SignIn(props) {
             <p className="topNote">If the robot has an "other" drivetrain, specify it in the notes at the bottom!</p>
             <form onSubmit={handleSubmit} action="#">
                 <div className="textArea">
-                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" className="name" required />
+                    <input type="text" id="Sname" name="Scouter_Name" placeholder="Scouter Name" className="name" onChange={gameTime} required />
+                    {greeting}
                     <br />
                     <select name="Competition" id="Ename" defaultValue="Choose">
                         <option value="LAR">LAR</option>
                     </select>
-                    {showCheck && <div class="check"></div>}
+                    {showCheck && <div className="check"></div>}
                     <input type="submit" className="SAVE" value="Sign In" />
 
                     {/* when submitted 
