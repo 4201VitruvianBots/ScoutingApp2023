@@ -2,7 +2,7 @@ import './App.css';
 import { PopupButton } from './Popup.js';
 import { BlankTable, SimpleTable, WeightedTable, DNPTable, FinalTable } from './Table.js';
 import { BlankTableData, SimpleTableData, WeightedTableData, UploadButton } from './Data';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import SearchBar from './Searchbar';
 
 function App() {
@@ -51,11 +51,7 @@ function App() {
   const [robotData, setRobotData] = useState();
   const [comments, setComments] = useState({})
 
-  // Temporary testing data
-  useEffect(() => {
-    setFinalPicklist(['4201', '987', '254']);
-    setDNPList(['9999', '9998', '9997'])
-  }, [])
+  const teamOptions = useMemo(() => Object.keys(robotData ?? {}).map(e => ({ value: e, label: e })), [robotData]);
 
   const updateTable = (index) => {
     return (table) => {
@@ -76,7 +72,7 @@ function App() {
         <UploadButton setRobotData={setRobotData} setStatisticOptions={setStatisticOptions} />
         <div className="searchSection">
             <p>Team Search</p>
-            <SearchBar></SearchBar>
+          <SearchBar teamOptions={teamOptions} ></SearchBar>
         </div>
         
       </header>
@@ -89,14 +85,14 @@ function App() {
             return <WeightedTable key={index} data={table} setData={updateTable(index)} robotData={robotData} />;
 
           if (table instanceof BlankTableData)
-            return <BlankTable key={index} data={table} setData={updateTable(index)} robotData={robotData} />;
+            return <BlankTable key={index} data={table} setData={updateTable(index)} teamOptions={teamOptions} />;
 
           return null;
         })}
       </section>
       <section className="sidebar">
-        <DNPTable entries={DNPList} setEntries={setDNPList} />
-        <FinalTable entries={finalPicklist} setEntries={setFinalPicklist} />
+        <DNPTable entries={DNPList} setEntries={setDNPList} teamOptions={teamOptions} />
+        <FinalTable entries={finalPicklist} setEntries={setFinalPicklist} teamOptions={teamOptions} />
       </section>
     </main>
   );

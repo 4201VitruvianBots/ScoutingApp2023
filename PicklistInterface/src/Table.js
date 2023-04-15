@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from "react";
+import Select from 'react-select';
 import { SimpleTableData, WeightedTableData, BlankTableData } from './Data.js';
 
 /**
@@ -6,7 +7,7 @@ import { SimpleTableData, WeightedTableData, BlankTableData } from './Data.js';
  * @param {{entries: {team: number, value: number | string}[]}} param0
  * @returns 
  */
-function DoubleTeamTable({ entries }) {
+function GeneratedTeamTable({ entries }) {
     return (<tbody>
         {entries && entries.map((e, i) => (
             <tr key={i}>
@@ -22,13 +23,41 @@ function DoubleTeamTable({ entries }) {
  * @param {{entries: number[]}} param0 
  * @returns 
  */
-function SingleTeamTable({ entries }) {
+function ManualTeamTable({ entries, setEntries, teamOptions }) {
+    const handleEntryChange = (index) => (
+        (option) => setEntries(entries.map((e, i) => i === index ? option.value : e))
+    );
+
+    const handleAddEntry = (option) => {
+        setEntries(entries.concat([option.value]));
+    }
+
+    const deleteEntry = (index) => (
+        () => setEntries(entries.filter((_, i) => i !== index))
+    );
+
     return (<tbody>
         {entries && entries.map((e, i) => (
             <tr key={i}>
-                <td>{e}</td>
+                <td>
+                    <Select
+                        options={teamOptions}
+                        value={teamOptions.find(option => e === option.value)}
+                        onChange={handleEntryChange(i)}
+                    />
+                    <button onClick={deleteEntry(i)}>X</button>
+                </td>
             </tr>
         ))}
+        <tr>
+            <td>
+                <Select
+                    options={teamOptions}
+                    value={null}
+                    onChange={handleAddEntry}
+                />
+            </td>
+        </tr>
     </tbody>);
 }
 
@@ -64,7 +93,7 @@ function SimpleTable({ data: { name, entries, statistic, descending }, setData, 
                     <td><button>Apply</button></td>
                 </tr>
             </thead>
-            <DoubleTeamTable entries={entries} />
+            <GeneratedTeamTable entries={entries} />
         </table>
     );
 }
@@ -113,7 +142,7 @@ function WeightedTable({ data: { name, entries, factors }, setData, robotData })
                 <td><button>Apply</button></td>
             </tr>
         </thead>
-        <DoubleTeamTable entries={entries} />
+        <GeneratedTeamTable entries={entries} />
     </table>);
 }
 
@@ -122,15 +151,18 @@ function WeightedTable({ data: { name, entries, factors }, setData, robotData })
  * @param {{data: BlankTableData, setData: (data: BlankTableData) => void}} param0 
  * @returns 
  */
-function BlankTable({ data: { name, entries }, setData, robotData }) {
+function BlankTable({ data: { name, entries }, setData, teamOptions }) {
     const reset = () => {
-        // TODO this is temporary testing data
-        setData(new BlankTableData(name, [4201, 4481, 983]))
-    }
+        setData(new BlankTableData(name, []))
+    };
 
     useEffect(() => {
         if (entries === undefined) reset();
     }, [entries]); // eslint-disable-line react-hooks/exhaustive-deps
+
+    const setEntries = (newEntries) => {
+        setData(new BlankTableData(name, newEntries))
+    };
 
     return (<table>
         <thead>
@@ -141,7 +173,7 @@ function BlankTable({ data: { name, entries }, setData, robotData }) {
                 <td><button>Apply</button></td>
             </tr>
         </thead>
-        <SingleTeamTable entries={entries} />
+        <ManualTeamTable entries={entries} setEntries={setEntries} teamOptions={teamOptions} />
     </table>);
 }
 
@@ -150,14 +182,14 @@ function BlankTable({ data: { name, entries }, setData, robotData }) {
  * @param {{entries: number[], setEntries: (value: number[]) => void}} param0 
  * @returns 
  */
-function DNPTable({ entries, setEntries }) {
+function DNPTable({ entries, setEntries, teamOptions }) {
     return (<table>
         <thead>
             <tr>
                 <th>DNP List</th>
             </tr>
         </thead>
-        <SingleTeamTable entries={entries} />
+        <ManualTeamTable entries={entries} setEntries={setEntries} teamOptions={teamOptions} />
     </table>);
 }
 
@@ -166,14 +198,14 @@ function DNPTable({ entries, setEntries }) {
  * @param {{entries: number[], setEntries: (value: number[]) => void}} param0 
  * @returns 
  */
-function FinalTable({ entries, setEntries }) {
+function FinalTable({ entries, setEntries, teamOptions }) {
     return (<table>
         <thead>
             <tr>
                 <th>Final Pick List</th>
             </tr>
         </thead>
-        <SingleTeamTable entries={entries} />
+        <ManualTeamTable entries={entries} setEntries={setEntries} teamOptions={teamOptions} />
     </table>);
 }
 

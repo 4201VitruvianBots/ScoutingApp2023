@@ -174,8 +174,26 @@ function WeightedPopup({ onSubmit, close, statisticOptions }) {
     );
 }
 
-function BlankPopup({ data, close }) {
+function BlankPopup({ onSubmit, close, isEditing }) {
 
+    const [title, setTitle] = useState();
+
+    return (
+        <div className="popup">
+            <p className="popupHeader">Blank</p>
+            <div className="popupContent">
+                <label className="popupLabel" htmlFor="title">Title: </label>
+                <input type="text" id="title" className="popupInput" onChange={inputSetter(setTitle)} />
+            </div>
+            <button className="popupClose" onClick={() => {
+                onSubmit(new BlankTableData(title, undefined));
+                close();
+            }}>
+                {isEditing ? "Edit Table" : "Create Table"}
+            </button>
+            {isEditing && <button>DEEEELEEEEETE</button>}
+        </div>
+    )
 }
 
 function PopupButton({ addTable, statisticOptions }) {
