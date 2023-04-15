@@ -20,10 +20,10 @@ function Navigation(props) {
                     <li><a href="#Auto">Auto</a></li>
                     <li><a href="#Tele">Tele-Op</a></li>
                     <li><a href="#Save">Submit</a></li> {/*change the rest of the code to 'submit' as well? does it matter?*/}
-                    <br />
-                    <br />
-                    <li className="showalliance">Team ????</li>
-                    <li>1/2/3</li>
+                    {/* <br />
+                    <br /> */}
+                    {/* <li className="showalliance">Team ????</li>
+                    <li>1/2/3</li> */}
                 </ul>
             </div>
 
@@ -133,13 +133,13 @@ function Auto(props) {
                     </div>
 
                     <div className="cones">
-                        <h1 className="conecube"><img src="Cone Icon.svg" height="50" className="Icon" alt="Cone Icon"/></h1>
+                        <h1 className="conecube"><img src="Cone Icon.svg" height="50" className="Icon" alt="Cone Icon" /></h1>
                         <NumberInput id="Auto_Cone_High" />
                         <NumberInput id="Auto_Cone_Mid" />
                         <NumberInput id="Auto_Cone_Low" />
                     </div>
                     <div className="cubes">
-                        <h1 className="conecube"><img src="Cube Icon.svg" height="50" className="Icon" alt="Cube Icon"/></h1>
+                        <h1 className="conecube"><img src="Cube Icon.svg" height="50" className="Icon" alt="Cube Icon" /></h1>
                         <NumberInput id="Auto_Cube_High" />
                         <NumberInput id="Auto_Cube_Mid" />
                         <NumberInput id="Auto_Cube_Low" />
@@ -169,18 +169,18 @@ function TeleOp(props) {
 
                     <div className="cones">
 
-                        <h1 className="conecube"><img src="Cone Icon.svg" height="50" className="Icon" alt="Cone Icon"/></h1>
+                        <h1 className="conecube"><img src="Cone Icon.svg" height="50" className="Icon" alt="Cone Icon" /></h1>
                         <NumberInput id="Tele_Cone_High" />
                         <NumberInput id="Tele_Cone_Mid" />
                         <NumberInput id="Tele_Cone_Low" />
                     </div>
                     <div className="cubes">
-                        <h1 className="conecube"><img src="Cube Icon.svg" height="50" className="Icon" alt="Cube Icon"/></h1>
+                        <h1 className="conecube"><img src="Cube Icon.svg" height="50" className="Icon" alt="Cube Icon" /></h1>
                         <NumberInput id="Tele_Cube_High" />
                         <NumberInput id="Tele_Cube_Mid" />
                         <NumberInput id="Tele_Cube_Low" />
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -197,7 +197,7 @@ function TeleOp(props) {
             </div>
         </Page>
     );
-    }
+}
 // charge station
 // button for mobility
 function SavePage(props) {
