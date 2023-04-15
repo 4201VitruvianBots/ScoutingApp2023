@@ -211,6 +211,9 @@ input[type="button"] {
 
 }
 
+.allianceSelect input[type="button"] {
+  font-size: 24px;
+}
 
 .radioButtons {
   background-color: initial;
@@ -544,3 +547,33 @@ iframe {
 /* .showalliance {
   display: left;
 } */
+
+.redindicator {
+  background-color: #eb5555;
+  width: 200px;
+  height: 60px;
+  margin: auto;
+  border: #111;
+  font-weight: bold;
+}
+
+
+.blueindicator {
+  background-color: #559eeb;
+  width: 200px;
+  height: 60px;
+  margin: auto;
+  font-weight: bold;
+}
+
+.redindicator p {
+  /* background-color: fuchsia; */
+  height: 100%;
+  line-height: 60px;
+}
+
+.blueindicator p {
+  /* background-color: fuchsia; */
+  height: 100%;
+  line-height: 60px;
+}
