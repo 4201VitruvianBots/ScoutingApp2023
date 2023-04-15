@@ -6,7 +6,7 @@ import QRCode from 'react-qr-code';
 
 function calc_domain(min, max) {
     const max_bad = 0.1; // bottom 10%
-    const min_good = 0.9; // top 10%
+    const min_good = 0.85; // top 15%
 
     return [
         min,
