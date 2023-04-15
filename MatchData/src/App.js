@@ -4,6 +4,17 @@ import { SearchBar, Title, PopupGfg, options } from "./Pages";
 import React from "react";
 import QRCode from 'react-qr-code';
 
+function calc_domain(min, max) {
+    const max_bad = 0.1; // bottom 10%
+    const min_good = 0.85; // top 15%
+
+    return [
+        min,
+        min + max_bad * (max - min),
+        min + min_good * (max - min),
+        max
+    ];
+}
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -243,7 +254,7 @@ class App extends React.Component {
     render() {
         let max = this.state.maxdata
         let min = this.state.mindata
-        let ColorRange = ['#EF5850', '#FAF16E', '#52E592']
+        let ColorRange = ['#EF5850', '#FFFFFF', '#FFFFFF', '#52E592']
 
         let AutoAverageMax = max?.Auto_Total_Average
         let AutoAverageMin = min?.Auto_Total_Average
@@ -318,42 +329,42 @@ class App extends React.Component {
         let BalancePercentMax = (max?.End_Balance_Frequency) * 100
         let BalancePercentMin = (min?.End_Balance_Frequency) * 100
 
-        let AutoTotalPieceAverageColor = scaleLinear().domain([AutoAverageMin, ((AutoAverageMax + AutoAverageMin) / 2), AutoAverageMax]).range(ColorRange);
-        let AutoTotalPieceMaxColor = scaleLinear().domain([AutoMaxMin, ((AutoMaxMax + AutoMaxMin) / 2), AutoMaxMax]).range(ColorRange);
-        let AutoHighAverageColor = scaleLinear().domain([AutoHighAverageMin, ((AutoHighAverageMax + AutoHighAverageMin) / 2), AutoHighAverageMax]).range(ColorRange);
-        let AutoHighMaxColor = scaleLinear().domain([AutoHighMaxMin, ((AutoHighMaxMax + AutoHighMaxMin) / 2), AutoHighMaxMax]).range(ColorRange)
-        let AutoMidAverageColor = scaleLinear().domain([AutoMidAverageMin, ((AutoMidAverageMax + AutoMidAverageMin) / 2), AutoMidAverageMax]).range(ColorRange);
-        let AutoMidMaxColor = scaleLinear().domain([AutoMidMaxMin, ((AutoMidMaxMax + AutoMidMaxMin) / 2), AutoMidMaxMax]).range(ColorRange);
-        let AutoLowAverageColor = scaleLinear().domain([AutoLowAverageMin, ((AutoLowAverageMax + AutoLowAverageMin) / 2), AutoLowAverageMax]).range(ColorRange);
-        let AutoLowMaxColor = scaleLinear().domain([AutoLowMaxMin, ((AutoLowMaxMax + AutoLowMaxMin) / 2), AutoLowMaxMax]).range(ColorRange);
-        let AutoBalanceFrequencyColor = scaleLinear().domain([AutoBalanceFrequencyMin, ((AutoBalanceFrequencyMax + AutoBalanceFrequencyMin) / 2), AutoBalanceFrequencyMax]).range(ColorRange);
-        let AutoDockFrequencyColor = scaleLinear().domain([AutoDockFrequencyMin, ((AutoDockFrequencyMax + AutoDockFrequencyMin) / 2), AutoDockFrequencyMax]).range(ColorRange);
-        let TeleTotalAverageColor = scaleLinear().domain([TeleTotalAverageMin, ((TeleTotalAverageMax + TeleTotalAverageMin) / 2), TeleTotalAverageMax]).range(ColorRange);
-        let TeleTotalMaxColor = scaleLinear().domain([TeleTotalMaxMin, ((TeleTotalMaxMax + TeleTotalMaxMin) / 2), TeleTotalMaxMax]).range(ColorRange);
-        let TeleHighAverageColor = scaleLinear().domain([TeleHighAverageMin, ((TeleHighAverageMax + TeleHighAverageMin) / 2), TeleHighAverageMax]).range(ColorRange);
-        let TeleHighMaxColor = scaleLinear().domain([TeleHighMaxMin, ((TeleHighMaxMax + TeleHighMaxMin) / 2), TeleHighMaxMax]).range(ColorRange);
-        let TeleMidAverageColor = scaleLinear().domain([TeleMidAverageMin, ((TeleMidAverageMax + TeleMidAverageMin) / 2), TeleMidAverageMax]).range(ColorRange);
-        let TeleMidMaxColor = scaleLinear().domain([TeleMidMaxMin, ((TeleMidMaxMax + TeleMidMaxMin) / 2), TeleMidMaxMax]).range(ColorRange);
-        let TeleLowAverageColor = scaleLinear().domain([TeleLowAverageMin, ((TeleLowAverageMax + TeleLowAverageMin) / 2), TeleLowAverageMax]).range(ColorRange);
-        let TeleLowMaxColor = scaleLinear().domain([TeleLowMaxMin, ((TeleLowMaxMax + TeleLowMaxMin) / 2), TeleLowMaxMax]).range(ColorRange);
-        let TeleTotalCubeAverageColor = scaleLinear().domain([TeleTotalCubeAverageMin, ((TeleTotalCubeAverageMax + TeleTotalCubeAverageMin) / 2), TeleTotalCubeAverageMax]).range(ColorRange);
-        let TeleTotalCubeMaxColor = scaleLinear().domain([TeleTotalCubeMaxMin, ((TeleTotalCubeMaxMax + TeleTotalCubeMaxMin) / 2), TeleTotalCubeMaxMax]).range(ColorRange);
-        let TeleCubeHighAverageColor = scaleLinear().domain([TeleCubeHighAverageMin, ((TeleCubeHighAverageMax + TeleCubeHighAverageMin) / 2), TeleCubeHighAverageMax]).range(ColorRange);
-        let TeleCubeHighMaxColor = scaleLinear().domain([TeleCubeHighMaxMin, ((TeleCubeHighMaxMax + TeleCubeHighMaxMin) / 2), TeleCubeHighMaxMax]).range(ColorRange);
-        let TeleCubeMidAverageColor = scaleLinear().domain([TeleCubeMidAverageMin, ((TeleCubeMidAverageMax + TeleCubeMidAverageMin) / 2), TeleCubeMidAverageMax]).range(ColorRange);
-        let TeleCubeMidMaxColor = scaleLinear().domain([TeleCubeMidMaxMin, ((TeleCubeMidMaxMax + TeleCubeMidMaxMin) / 2), TeleCubeMidMaxMax]).range(ColorRange);
-        let TeleCubeLowAverageColor = scaleLinear().domain([TeleCubeLowAverageMin, ((TeleCubeLowAverageMax + TeleCubeLowAverageMin) / 2), TeleCubeLowAverageMax]).range(ColorRange);
-        let TeleCubeLowMaxColor = scaleLinear().domain([TeleCubeLowMaxMin, ((TeleCubeLowMaxMax + TeleCubeLowMaxMin) / 2), TeleCubeLowMaxMax]).range(ColorRange);
-        let TeleTotalConeAverageColor = scaleLinear().domain([TeleTotalConeAverageMin, ((TeleTotalConeAverageMax + TeleTotalConeAverageMin) / 2), TeleTotalConeAverageMax]).range(ColorRange);
-        let TeleTotalConeMaxColor = scaleLinear().domain([TeleTotalConeMaxMin, ((TeleTotalConeMaxMax + TeleTotalConeMaxMin) / 2), TeleTotalConeMaxMax]).range(ColorRange);
-        let TeleConeHighAverageColor = scaleLinear().domain([TeleConeHighAverageMin, ((TeleConeHighAverageMax + TeleConeHighAverageMin) / 2), TeleConeHighAverageMax]).range(ColorRange);
-        let TeleConeHighMaxColor = scaleLinear().domain([TeleConeHighMaxMin, ((TeleConeHighMaxMax + TeleConeHighMaxMin) / 2), TeleConeHighMaxMax]).range(ColorRange);
-        let TeleConeMidAverageColor = scaleLinear().domain([TeleConeMidAverageMin, ((TeleConeMidAverageMax + TeleConeMidAverageMin) / 2), TeleConeMidAverageMax]).range(ColorRange);
-        let TeleConeMidMaxColor = scaleLinear().domain([TeleConeMidMaxMin, ((TeleConeMidMaxMax + TeleConeMidMaxMin) / 2), TeleConeMidMaxMax]).range(ColorRange);
-        let TeleConeLowAverageColor = scaleLinear().domain([TeleConeLowAverageMin, ((TeleConeLowAverageMax + TeleConeLowAverageMin) / 2), TeleConeLowAverageMax]).range(ColorRange);
-        let TeleConeLowMaxColor = scaleLinear().domain([TeleConeLowMaxMin, ((TeleConeLowMaxMax + TeleConeLowMaxMin) / 2), TeleConeLowMaxMax]).range(ColorRange);
-        let DockedPercentColor = scaleLinear().domain([DockedPercentMin, ((DockedPercentMax + DockedPercentMin) / 2), DockedPercentMax]).range(ColorRange);
-        let BalancedPercentColor = scaleLinear().domain([BalancePercentMin, ((BalancePercentMax + BalancePercentMin) / 2), BalancePercentMax]).range(ColorRange);
+        let AutoTotalPieceAverageColor = scaleLinear().domain(calc_domain(AutoAverageMin, AutoAverageMax)).range(ColorRange);
+        let AutoTotalPieceMaxColor = scaleLinear().domain(calc_domain(AutoMaxMin, AutoMaxMax)).range(ColorRange);
+        let AutoHighAverageColor = scaleLinear().domain(calc_domain(AutoHighAverageMin, AutoHighAverageMax)).range(ColorRange);
+        let AutoHighMaxColor = scaleLinear().domain(calc_domain(AutoHighMaxMin, AutoHighMaxMax)).range(ColorRange)
+        let AutoMidAverageColor = scaleLinear().domain(calc_domain(AutoMidAverageMin, AutoMidAverageMax)).range(ColorRange);
+        let AutoMidMaxColor = scaleLinear().domain(calc_domain(AutoMidMaxMin, AutoMidMaxMax)).range(ColorRange);
+        let AutoLowAverageColor = scaleLinear().domain(calc_domain(AutoLowAverageMin, AutoLowAverageMax)).range(ColorRange);
+        let AutoLowMaxColor = scaleLinear().domain(calc_domain(AutoLowMaxMin, AutoLowMaxMax)).range(ColorRange);
+        let AutoBalanceFrequencyColor = scaleLinear().domain(calc_domain(AutoBalanceFrequencyMin, AutoBalanceFrequencyMax)).range(ColorRange);
+        let AutoDockFrequencyColor = scaleLinear().domain(calc_domain(AutoDockFrequencyMin, AutoDockFrequencyMax)).range(ColorRange);
+        let TeleTotalAverageColor = scaleLinear().domain(calc_domain(TeleTotalAverageMin, TeleTotalAverageMax)).range(ColorRange);
+        let TeleTotalMaxColor = scaleLinear().domain(calc_domain(TeleTotalMaxMin, TeleTotalMaxMax)).range(ColorRange);
+        let TeleHighAverageColor = scaleLinear().domain(calc_domain(TeleHighAverageMin, TeleHighAverageMax)).range(ColorRange);
+        let TeleHighMaxColor = scaleLinear().domain(calc_domain(TeleHighMaxMin, TeleHighMaxMax)).range(ColorRange);
+        let TeleMidAverageColor = scaleLinear().domain(calc_domain(TeleMidAverageMin, TeleMidAverageMax)).range(ColorRange);
+        let TeleMidMaxColor = scaleLinear().domain(calc_domain(TeleMidMaxMin, TeleMidMaxMax)).range(ColorRange);
+        let TeleLowAverageColor = scaleLinear().domain(calc_domain(TeleLowAverageMin, TeleLowAverageMax)).range(ColorRange);
+        let TeleLowMaxColor = scaleLinear().domain(calc_domain(TeleLowMaxMin, TeleLowMaxMax)).range(ColorRange);
+        let TeleTotalCubeAverageColor = scaleLinear().domain(calc_domain(TeleTotalCubeAverageMin, TeleTotalCubeAverageMax)).range(ColorRange);
+        let TeleTotalCubeMaxColor = scaleLinear().domain(calc_domain(TeleTotalCubeMaxMin, TeleTotalCubeMaxMax)).range(ColorRange);
+        let TeleCubeHighAverageColor = scaleLinear().domain(calc_domain(TeleCubeHighAverageMin, TeleCubeHighAverageMax)).range(ColorRange);
+        let TeleCubeHighMaxColor = scaleLinear().domain(calc_domain(TeleCubeHighMaxMin, TeleCubeHighMaxMax)).range(ColorRange);
+        let TeleCubeMidAverageColor = scaleLinear().domain(calc_domain(TeleCubeMidAverageMin, TeleCubeMidAverageMax)).range(ColorRange);
+        let TeleCubeMidMaxColor = scaleLinear().domain(calc_domain(TeleCubeMidMaxMin, TeleCubeMidMaxMax)).range(ColorRange);
+        let TeleCubeLowAverageColor = scaleLinear().domain(calc_domain(TeleCubeLowAverageMin, TeleCubeLowAverageMax)).range(ColorRange);
+        let TeleCubeLowMaxColor = scaleLinear().domain(calc_domain(TeleCubeLowMaxMin, TeleCubeLowMaxMax)).range(ColorRange);
+        let TeleTotalConeAverageColor = scaleLinear().domain(calc_domain(TeleTotalConeAverageMin, TeleTotalConeAverageMax)).range(ColorRange);
+        let TeleTotalConeMaxColor = scaleLinear().domain(calc_domain(TeleTotalConeMaxMin, TeleTotalConeMaxMax)).range(ColorRange);
+        let TeleConeHighAverageColor = scaleLinear().domain(calc_domain(TeleConeHighAverageMin, TeleConeHighAverageMax)).range(ColorRange);
+        let TeleConeHighMaxColor = scaleLinear().domain(calc_domain(TeleConeHighMaxMin, TeleConeHighMaxMax)).range(ColorRange);
+        let TeleConeMidAverageColor = scaleLinear().domain(calc_domain(TeleConeMidAverageMin, TeleConeMidAverageMax)).range(ColorRange);
+        let TeleConeMidMaxColor = scaleLinear().domain(calc_domain(TeleConeMidMaxMin, TeleConeMidMaxMax)).range(ColorRange);
+        let TeleConeLowAverageColor = scaleLinear().domain(calc_domain(TeleConeLowAverageMin, TeleConeLowAverageMax)).range(ColorRange);
+        let TeleConeLowMaxColor = scaleLinear().domain(calc_domain(TeleConeLowMaxMin, TeleConeLowMaxMax)).range(ColorRange);
+        let DockedPercentColor = scaleLinear().domain(calc_domain(DockedPercentMin, DockedPercentMax)).range(ColorRange);
+        let BalancedPercentColor = scaleLinear().domain(calc_domain(BalancePercentMin, BalancePercentMax)).range(ColorRange);
         return (
             <main>
                 <form onSubmit={this.SubmitHandler} action="#">
