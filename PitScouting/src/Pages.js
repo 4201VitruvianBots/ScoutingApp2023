@@ -35,6 +35,13 @@ function SignIn(props) {
                 </div>,
                 setTimeout(() => { setGreeting(false) }, 20000)
             );
+        } else if (nameInput === 'Aaron') {
+            setGreeting(
+                <div className="aaron">
+                    <p><a href="https://docs.google.com/drawings/d/1bHEsE4DAkc5YnoM38h0RykzZ7TnlbViRHTr0pMcLSOw/edit?usp=sharing">you wouldn't dare</a></p>
+                </div>,
+                setTimeout(() => { setGreeting(false) }, 20000)
+            );
         } else {
             setGreeting(null);
         }
