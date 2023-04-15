@@ -64,7 +64,7 @@ class WeightedTableData extends BlankTableData {
  * 
  * @param {{setRobotData: (data: RobotData) => void)}} param0 
  */
-function UploadButton({ setRobotData }) {
+function UploadButton({ setStatisticOptions, setRobotData }) {
     /**
      * 
      * @param {React.ChangeEvent<HTMLInputElement>} event 
@@ -73,7 +73,17 @@ function UploadButton({ setRobotData }) {
         const file = event.target.files[0];
         const reader = new FileReader();
         reader.onload = (event) => {
-            setRobotData(JSON.parse(event.target.result));
+            const inputData = JSON.parse(event.target.result);
+            const columns = inputData.columns;
+            const rawData = inputData.data;
+            const outputData = Object.fromEntries(
+                Object.entries(rawData).map(([team_number, values]) => [
+                    team_number,
+                    Object.fromEntries(values.map((stat, index) => [columns[index].value, stat]))
+                ])
+            );
+            setRobotData(outputData);
+            setStatisticOptions(columns);
         }
         reader.readAsText(file);
     };

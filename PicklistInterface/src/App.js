@@ -34,6 +34,20 @@ function App() {
 
   const [finalPicklist, setFinalPicklist] = useState([]);
   const [DNPList, setDNPList] = useState([]);
+
+  /*
+  {
+    columns: [
+      { id: 'Average_Defense', name: 'Average Defense Ranking' },
+      { id: 'Average_Auto', name: 'Average Auto Score' }
+    ],
+    data: {
+      '4201': [ 4, 7 ],
+      '8898': [ 2, 11 ]
+    }
+  }
+  */
+  const [statisticOptions, setStatisticOptions] = useState();
   const [robotData, setRobotData] = useState();
   const [comments, setComments] = useState({})
 
@@ -53,17 +67,13 @@ function App() {
     setTables([...tables, table]);
   }
 
-  const statisticOptions = useMemo(() => (
-    robotData?.columns.map(e => ({ value: e.id, label: e.name }))
-  ), [robotData])
-
   return (
     <main>
       {/* File upload to import CSV */}
       <header>
         <h1>Vitruvian Statistical Analysis</h1>
         <PopupButton className="popupButton" addTable={addTable} statisticOptions={statisticOptions} />
-        <UploadButton setRobotData={setRobotData} />
+        <UploadButton setRobotData={setRobotData} setStatisticOptions={setStatisticOptions} />
         <div className="searchSection">
             <p>Team Search</p>
             <SearchBar></SearchBar>

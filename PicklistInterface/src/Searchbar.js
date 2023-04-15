@@ -1,7 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
 import { useState } from "react";
-import Popup from 'reactjs-popup';
 
 function SearchBar() {
     const [selectedOption, setSelectedOption] = useState();

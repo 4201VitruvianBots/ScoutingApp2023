@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { SimpleTableData, WeightedTableData, BlankTableData } from './Data.js';
 
 /**
@@ -38,17 +38,19 @@ function SingleTeamTable({ entries }) {
  * @returns 
  */
 function SimpleTable({ data: { name, entries, statistic, descending }, setData, robotData }) {
-    const reset = () => {
+    const sort = () => {
+        const newEntries = Object.entries(robotData)
+            .map(([team_number, stats]) => ({ team: team_number, value: stats[statistic] }))
+            .sort(descending
+                ? (a, b) => b.value - a.value
+                : (a, b) => a.value - b.value
+            );
         // TODO this is temporary testing data
-        setData(new SimpleTableData(name, [
-            { team: 4201, value: 1 },
-            { team: 4414, value: 2 },
-            { team: 9987, value: 3 }
-        ], statistic, descending))
+        setData(new SimpleTableData(name, newEntries, statistic, descending))
     }
 
     useEffect(() => {
-        if (entries === undefined) reset();
+        if (entries === undefined) sort();
     }, [entries]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
@@ -73,17 +75,32 @@ function SimpleTable({ data: { name, entries, statistic, descending }, setData, 
  * @returns 
  */
 function WeightedTable({ data: { name, entries, factors }, setData, robotData }) {
-    const reset = () => {
-        // TODO this is temporary testing data
-        setData(new WeightedTableData(name, [
-            { team: 4201, value: 1 },
-            { team: 4414, value: 2 },
-            { team: 9987, value: 3 }
-        ], factors))
+    const mins = useMemo(
+        () => Object.fromEntries(factors.map(({ statistic }) => [statistic, Object.values(robotData).reduce((min, current) => Math.min(min, current[statistic]), Number.MAX_VALUE)])),
+        [factors, robotData]
+    );
+
+    const maxes = useMemo(
+        () => Object.fromEntries(factors.map(({ statistic }) => [statistic, Object.values(robotData).reduce((max, current) => Math.max(max, current[statistic]), 0)])),
+        [factors, robotData]
+    );
+
+    const sort = () => {
+        const newEntries = Object.entries(robotData)
+            .map(([team_number, stats]) => ({
+                team: team_number,
+                value: factors
+                    .map(({ statistic, weight }) => weight *
+                        (stats[statistic] - mins[statistic]) /
+                        (maxes[statistic] - mins[statistic]))
+                    .reduce((sum, current) => sum + current, 0)
+            }))
+            .sort((a, b) => b.value - a.value);
+        setData(new WeightedTableData(name, newEntries, factors))
     }
 
     useEffect(() => {
-        if (entries === undefined) reset();
+        if (entries === undefined) sort();
     }, [entries]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (<table>
