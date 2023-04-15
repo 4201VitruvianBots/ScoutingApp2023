@@ -179,8 +179,8 @@ function MatchesDisplay({ allMatches = {} }: { allMatches?: AllMatches }) {
                             const selected = matchNumber === selectedmatch;
                             return (<tr onClick={() => setSelectedMatch(matchNumber)} key={i} >
                                 <td className={selected ? 'selected' : ''}>{matchNumber}</td>
-                                <MatchStatus match={status[1]} colorClass="status-red" selected={selected} />
                                 <MatchStatus match={status[0]} colorClass="status-red" selected={selected} />
+                                <MatchStatus match={status[1]} colorClass="status-red" selected={selected} />
                                 <MatchStatus match={status[2]} colorClass="status-red" selected={selected} />
                                 <MatchStatus match={status[6]} colorClass="status-red" selected={selected} />
                                 <MatchStatus match={status[3]} colorClass="status-blue" selected={selected} />
