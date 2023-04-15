@@ -261,8 +261,10 @@ class App extends React.Component {
         let AutoLowAverageMin = min?.Auto_Low_Average
         let AutoLowMaxMax = max?.Auto_Low_Max
         let AutoLowMaxMin = min?.Auto_Low_Max
-        let BalanceToDockMax = (max?.Auto_Balance_Frequency) * 100
-        let BalanceToDockMin = (min?.Auto_Balance_Frequency) * 100
+        let AutoBalanceFrequencyMax = (max?.Auto_Balance_Frequency) * 100
+        let AutoBalanceFrequencyMin = (min?.Auto_Balance_Frequency) * 100
+        let AutoDockFrequencyMax = (max?.Auto_Dock_Frequency) * 100
+        let AutoDockFrequencyMin = (min?.Auto_Dock_Frequency) * 100
         let TeleTotalAverageMax = max?.Tele_Pieces_Total_Average
         let TeleTotalAverageMin = min?.Tele_Pieces_Total_Average
         let TeleTotalMaxMax = max?.Tele_Pieces_Total_Max
@@ -311,7 +313,6 @@ class App extends React.Component {
         let TeleConeLowAverageMin = min?.Tele_Cone_Low_Average
         let TeleConeLowMaxMax = max?.Tele_Cone_Low_Max
         let TeleConeLowMaxMin = min?.Tele_Cone_Low_Max
-
         let DockedPercentMax = (max?.End_Dock_Frequency) * 100
         let DockedPercentMin = (min?.End_Dock_Frequency) * 100
         let BalancePercentMax = (max?.End_Balance_Frequency) * 100
@@ -325,7 +326,8 @@ class App extends React.Component {
         let AutoMidMaxColor = scaleLinear().domain([AutoMidMaxMin, ((AutoMidMaxMax + AutoMidMaxMin) / 2), AutoMidMaxMax]).range(ColorRange);
         let AutoLowAverageColor = scaleLinear().domain([AutoLowAverageMin, ((AutoLowAverageMax + AutoLowAverageMin) / 2), AutoLowAverageMax]).range(ColorRange);
         let AutoLowMaxColor = scaleLinear().domain([AutoLowMaxMin, ((AutoLowMaxMax + AutoLowMaxMin) / 2), AutoLowMaxMax]).range(ColorRange);
-        let BalanceDockRatioColor = scaleLinear().domain([BalanceToDockMin, ((BalanceToDockMax + BalanceToDockMin) / 2), BalanceToDockMax]).range(ColorRange);
+        let AutoBalanceFrequencyColor = scaleLinear().domain([AutoBalanceFrequencyMin, ((AutoBalanceFrequencyMax + AutoBalanceFrequencyMin) / 2), AutoBalanceFrequencyMax]).range(ColorRange);
+        let AutoDockFrequencyColor = scaleLinear().domain([AutoDockFrequencyMin, ((AutoDockFrequencyMax + AutoDockFrequencyMin) / 2), AutoDockFrequencyMax]).range(ColorRange);
         let TeleTotalAverageColor = scaleLinear().domain([TeleTotalAverageMin, ((TeleTotalAverageMax + TeleTotalAverageMin) / 2), TeleTotalAverageMax]).range(ColorRange);
         let TeleTotalMaxColor = scaleLinear().domain([TeleTotalMaxMin, ((TeleTotalMaxMax + TeleTotalMaxMin) / 2), TeleTotalMaxMax]).range(ColorRange);
         let TeleHighAverageColor = scaleLinear().domain([TeleHighAverageMin, ((TeleHighAverageMax + TeleHighAverageMin) / 2), TeleHighAverageMax]).range(ColorRange);
@@ -384,6 +386,12 @@ class App extends React.Component {
                             ))}
                         </tr>
                         <tr>
+                            <td colspan="3" className="colorbg1">Defense Rating</td>
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <td key={i} colspan="2" className="colorbg2">{Math.round(this.state[`data${i}`]?.Average_Defense * 100) / 100}</td>
+                            ))}
+                        </tr>
+                        <tr>
                             <td colspan="3" className="colorbg1">Pin Fouls</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <td key={i} colspan="2" className="colorbg2">{this.state[`data${i}`]?.Total_Pin_Fouls}</td>
@@ -396,7 +404,7 @@ class App extends React.Component {
                             ))}
                         </tr>
                         <tr>
-                            <td rowspan="5" className="colorbg1">Auto</td>
+                            <td rowspan="6" className="colorbg1">Auto</td>
                             <td colspan="2" className="colorbg">Total Game Pieces</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <React.Fragment key={i}>
@@ -435,10 +443,16 @@ class App extends React.Component {
                                 </>
                             ))}
                         </tr>
-                        <tr>
-                            <td colSpan="2" className="colorbg">% Balanced / Docked</td>
+                        <tr>  {/* different */}
+                            <td colspan="2" className="colorbg">% Docked</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <td colSpan="2" className="colorbg2" style={{ backgroundColor: BalanceDockRatioColor((this.state[`data${i}`]?.Auto_Balance_Frequency) * 100) }}>{`${(this.state[`data${i}`]?.Auto_Balance_Frequency) * 100}%`}</td>
+                                <td className="test" colspan="2" key={i} style={{ backgroundColor: AutoDockFrequencyColor(Math.round(this.state[`data${i}`]?.Auto_Dock_Frequency * 10000) / 100) }}>{Math.round(this.state[`data${i}`]?.Auto_Dock_Frequency * 10000) / 100}%</td>
+                            ))}
+                        </tr>
+                        <tr> {/* different */}
+                            <td colspan="2" className="colorbg">% Balanced</td>
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <td className="test" colspan="2" key={i} style={{ backgroundColor: AutoBalanceFrequencyColor(Math.round(this.state[`data${i}`]?.Auto_Balance_Frequency * 10000) / 100) }}>{Math.round(this.state[`data${i}`]?.Auto_Balance_Frequency * 10000) / 100}%</td>
                             ))}
                         </tr>
                         <tr>
@@ -570,6 +584,12 @@ class App extends React.Component {
                             <td colspan="2" className="colorbg">% Balanced</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
                                 <td className="test" colspan="2" key={i} style={{ backgroundColor: BalancedPercentColor(Math.round(this.state[`data${i}`]?.End_Balance_Frequency * 10000) / 100), }}>{Math.round(this.state[`data${i}`]?.End_Balance_Frequency * 10000) / 100}%</td>
+                            ))}
+                        </tr>
+                        <tr>
+                            <td colspan="3" className="colorbg1">Grid Filled Frequency</td>
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <td key={i} colspan="2" className="colorbg2">{Math.round(this.state[`data${i}`]?.Grid_Filled_Frequency * 10000) / 100}%</td>
                             ))}
                         </tr>
                     </table>
