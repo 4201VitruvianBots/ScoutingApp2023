@@ -457,13 +457,13 @@ class App extends React.Component {
                         <tr>  {/* different */}
                             <td colspan="2" className="colorbg">% Docked</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <td className="test" colspan="2" key={i} style={{ backgroundColor: AutoDockFrequencyColor(Math.round(this.state[`data${i}`]?.Auto_Dock_Frequency * 10000) / 100) }}>{Math.round(this.state[`data${i}`]?.Auto_Dock_Frequency * 10000) / 100}%</td>
+                                <td className="test" colspan="2" key={i} style={{ backgroundColor: this.state[`data${i}`]?.Auto_Dock_Frequency === null ? null : AutoDockFrequencyColor(Math.round(this.state[`data${i}`]?.Auto_Dock_Frequency * 10000) / 100) }}>{this.state[`data${i}`]?.Auto_Dock_Frequency === null ? 'N/A' : Math.round(this.state[`data${i}`]?.Auto_Dock_Frequency * 10000) / 100}%</td>
                             ))}
                         </tr>
                         <tr> {/* different */}
                             <td colspan="2" className="colorbg">% Balanced</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <td className="test" colspan="2" key={i} style={{ backgroundColor: AutoBalanceFrequencyColor(Math.round(this.state[`data${i}`]?.Auto_Balance_Frequency * 10000) / 100) }}>{Math.round(this.state[`data${i}`]?.Auto_Balance_Frequency * 10000) / 100}%</td>
+                                <td className="test" colspan="2" key={i} style={{ backgroundColor: this.state[`data${i}`]?.Auto_Balance_Frequency === null ? null : AutoBalanceFrequencyColor(Math.round(this.state[`data${i}`]?.Auto_Balance_Frequency * 10000) / 100) }}>{this.state[`data${i}`]?.Auto_Balance_Frequency === null ? 'N/A' : Math.round(this.state[`data${i}`]?.Auto_Balance_Frequency * 10000) / 100}%</td>
                             ))}
                         </tr>
                         <tr>
@@ -588,13 +588,13 @@ class App extends React.Component {
                             <td rowspan="2" className="colorbg1">Endgame</td>
                             <td colspan="2" className="colorbg">% Docked</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <td className="test" colspan="2" key={i} style={{ backgroundColor: DockedPercentColor(Math.round(this.state[`data${i}`]?.End_Dock_Frequency * 10000) / 100), }}>{Math.round(this.state[`data${i}`]?.End_Dock_Frequency * 10000) / 100}%</td>
+                                <td className="test" colspan="2" key={i} style={{ backgroundColor: this.state[`data${i}`]?.End_Dock_Frequency === null ? null : DockedPercentColor(Math.round(this.state[`data${i}`]?.End_Dock_Frequency * 10000) / 100) }}>{this.state[`data${i}`]?.End_Dock_Frequency === null ? 'N/A' : Math.round(this.state[`data${i}`]?.End_Dock_Frequency * 10000) / 100}%</td>
                             ))}
                         </tr>
                         <tr>
                             <td colspan="2" className="colorbg">% Balanced</td>
                             {[1, 2, 3, 4, 5, 6].map((i) => (
-                                <td className="test" colspan="2" key={i} style={{ backgroundColor: BalancedPercentColor(Math.round(this.state[`data${i}`]?.End_Balance_Frequency * 10000) / 100), }}>{Math.round(this.state[`data${i}`]?.End_Balance_Frequency * 10000) / 100}%</td>
+                                <td className="test" colspan="2" key={i} style={{ backgroundColor: this.state[`data${i}`]?.End_Balance_Frequency === null ? null : BalancedPercentColor(Math.round(this.state[`data${i}`]?.End_Balance_Frequency * 10000) / 100) }}>{this.state[`data${i}`]?.End_Balance_Frequency === null ? 'N/A' : Math.round(this.state[`data${i}`]?.End_Balance_Frequency * 10000) / 100}%</td>
                             ))}
                         </tr>
                         <tr>
