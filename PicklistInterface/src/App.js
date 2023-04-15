@@ -1,9 +1,8 @@
 import './App.css';
-import Popup from 'reactjs-popup';
-import { SimplePopup, PopupButton } from './Popup.js';
-import { BlankTableData, SimpleTableData, WeightedTableData, BlankTable, SimpleTable, WeightedTable, DNPTable, FinalTable } from './Table.js';
-import { useState } from 'react';
-import { mutableObject } from './Util';
+import { PopupButton } from './Popup.js';
+import { BlankTable, SimpleTable, WeightedTable, DNPTable, FinalTable } from './Table.js';
+import { BlankTableData, SimpleTableData, WeightedTableData, UploadButton } from './Data';
+import { useEffect, useState } from 'react';
 import SearchBar from './Searchbar';
 
 function App() {
@@ -36,6 +35,13 @@ function App() {
   const [finalPicklist, setFinalPicklist] = useState([]);
   const [DNPList, setDNPList] = useState([]);
   const [robotData, setRobotData] = useState();
+  const [comments, setComments] = useState({})
+
+  // Temporary testing data
+  useEffect(() => {
+    setFinalPicklist(['4201', '987', '254']);
+    setDNPList(['9999', '9998', '9997'])
+  }, [])
 
   const updateTable = (index) => {
     return (table) => {
@@ -52,7 +58,8 @@ function App() {
       {/* File upload to import CSV */}
       <header>
         <h1>Vitruvian Statistical Analysis</h1>
-        <PopupButton className="popupButton" />
+        <PopupButton className="popupButton" addTable={addTable} />
+        <UploadButton setRobotData={setRobotData} />
         <div className="searchSection">
             <p>Team Search</p>
             <SearchBar></SearchBar>
@@ -60,13 +67,22 @@ function App() {
         
       </header>
       <section className="allTables">
-        <SimpleTable data={{ name: 'Auto Average Max', entries: [{ team: 4201, value: 5 }, { team: 4201, value: 5 }, { team: 4201, value: 5 }] }} />
-        <WeightedTable data={{ name: 'Weighted 1', entries: [{ team: 4201, value: 5 }, { team: 4201, value: 5 }, { team: 4201, value: 5 }] }} />
-        <BlankTable data={{ name: 'Blank 1', entries: [4201, 4201, 4201] }} />
+        {tables.map((table, index) => {
+          if (table instanceof SimpleTableData)
+            return <SimpleTable key={index} data={table} setData={updateTable(index)} />;;
+
+          if (table instanceof WeightedTableData)
+            return <WeightedTable key={index} data={table} setData={updateTable(index)} />;
+
+          if (table instanceof BlankTableData)
+            return <BlankTable key={index} data={table} setData={updateTable(index)} />;
+
+          return null;
+        })}
       </section>
       <section className="sidebar">
-        <DNPTable entries={[4201, 4201, 4201]} />
-        <FinalTable entries={[4201, 4201, 4201]} />
+        <DNPTable entries={DNPList} setEntries={setDNPList} />
+        <FinalTable entries={finalPicklist} setEntries={setFinalPicklist} />
       </section>
     </main>
   );

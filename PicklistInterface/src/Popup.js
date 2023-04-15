@@ -2,7 +2,7 @@ import { useState } from "react";
 import { inputSetter } from './Util.js';
 import Popup from 'reactjs-popup';
 import React from 'react';
-import { SimpleTableData, WeightedTableData } from './Table.js';
+import { SimpleTableData, WeightedTableData, BlankTableData } from "./Data.js";
 
 function SimplePopup({ onSubmit, close, isEditing}) {
 
@@ -53,19 +53,7 @@ function SimplePopup({ onSubmit, close, isEditing}) {
                 <button className="exitButton" onClick={close}>Exit</button>
 
                 <button className="popupClose" onClick={() => {
-
-
-                    onSubmit(new SimpleTableData())
-
-
-                    // console.log([name, sort, descending]);
-
-
-                    console.log(title, statistic, descending);
-
-
-                    // console.log(tables);
-
+                    onSubmit(new SimpleTableData(title, undefined, statistic, descending));
                     close();
                 }}>
                     {isEditing ? "Edit Table" : "Create Table"}
@@ -84,7 +72,7 @@ function WeightedPopup({ onSubmit, close }) {
 
     const [title, setTitle] = useState();
     const [factors, setFactors] = useState([{ statistic: '', weight: 1 }]);
-    const [descending, setDescending] = useState(false);
+    // const [descending, setDescending] = useState(false);
 
     // type factor = {statistic: x, weight: x}
 
@@ -180,9 +168,8 @@ function WeightedPopup({ onSubmit, close }) {
                 <br/>
                 <button className="popupClose" onClick={() => {
 
+                    onSubmit(new WeightedTableData(title, undefined, factors));
                     close();
-
-                    onSubmit(new WeightedTableData())
 
                 }}> Create Table </button>
            
@@ -195,37 +182,13 @@ function BlankPopup({ data, close }) {
 
 }
 
-function PopupButton({ tables, setTables }) {
+function PopupButton({ addTable }) {
 
     const [showDropdown, setShowDropdown] = useState(false);
-    // const [openPopup, setOpenPopup] = useState(null);
-    const [option, setOption] = useState(null);
 
     function buttonMenu() {
         setShowDropdown(true);
-        console.log('point 1');
     }
-
-    function SimpleSelected() {
-        setOption('Simple');
-        console.log('point 2');
-
-
-
-    }
-
-    function WeightedSelected() {
-        setOption('Weighted');
-        console.log('point 3');
-    }
-
-    function BlankSelected() {
-        setOption('Blank');
-        console.log('point 4');
-    }
-
-    console.log(option);
-
 
     function end() {
         setShowDropdown(false);
@@ -239,23 +202,23 @@ function PopupButton({ tables, setTables }) {
                 <div className='hiddenDropdown'>
 
                     <Popup trigger=
-                        {<button onClick={SimpleSelected} className="dropdownButtons">Simple</button>}
+                        {<button className="dropdownButtons">Simple</button>}
                         modal nested>
-                        {close => (<SimplePopup tables={tables} setTables={setTables} close={close} isEditing={false}/>)}
+                        {close => (<SimplePopup onSubmit={addTable} close={close} isEditing={false}/>)}
                     </Popup>
 
 
                     <Popup trigger=
-                        {<button onClick={WeightedSelected} className="dropdownButtons">Weighted</button>}
+                        {<button className="dropdownButtons">Weighted</button>}
                         modal nested>
-                        {close => (<WeightedPopup tables={tables} setTables={setTables} close={close} />)}
+                        {close => (<WeightedPopup onSubmit={addTable} close={close} />)}
                     </Popup>
 
 
                     <Popup trigger=
-                        {<button onClick={BlankSelected} className="dropdownButtons">Blank</button>}
+                        {<button className="dropdownButtons">Blank</button>}
                         modal nested>
-                        {close => (<BlankPopup tables={tables} setTables={setTables} close={close} />)}
+                        {close => (<BlankPopup onSubmit={addTable} close={close} />)}
                     </Popup>
 
 
