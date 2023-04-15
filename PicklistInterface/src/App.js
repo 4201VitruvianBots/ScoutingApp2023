@@ -4,6 +4,7 @@ import { SimplePopup, PopupButton } from './Popup.js';
 import { BlankTableData, SimpleTableData, WeightedTableData, BlankTable, SimpleTable, WeightedTable, DNPTable, FinalTable } from './Table.js';
 import { useState } from 'react';
 import { mutableObject } from './Util';
+import SearchBar from './Searchbar';
 
 function App() {
   /** @type {(BlankTableData | SimpleTableData | WeightedTableData )[]} */
@@ -52,8 +53,13 @@ function App() {
       <header>
         <h1>Vitruvian Statistical Analysis</h1>
         <PopupButton className="popupButton" />
+        <div className="searchSection">
+            <p>Team Search</p>
+            <SearchBar></SearchBar>
+        </div>
+        
       </header>
-      <section>
+      <section className="allTables">
         <SimpleTable data={{ name: 'Auto Average Max', entries: [{ team: 4201, value: 5 }, { team: 4201, value: 5 }, { team: 4201, value: 5 }] }} />
         <WeightedTable data={{ name: 'Weighted 1', entries: [{ team: 4201, value: 5 }, { team: 4201, value: 5 }, { team: 4201, value: 5 }] }} />
         <BlankTable data={{ name: 'Blank 1', entries: [4201, 4201, 4201] }} />

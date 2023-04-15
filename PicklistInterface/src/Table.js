@@ -94,7 +94,7 @@ function SimpleTable({ data, setData }) {
         <table>
             <thead>
                 <tr>
-                    <th colSpan={2}>{data.name}</th>
+                    <th className="tableTitle" colSpan={2}>{data.name}</th>
                 </tr>
                 <tr>
                     <td><button>Reset</button></td>
@@ -115,7 +115,7 @@ function WeightedTable({ data, setData }) {
     return (<table>
         <thead>
             <tr>
-                <th colSpan={2}>{data.name}</th>
+                <th className="tableTitle" colSpan={2}>{data.name}</th>
             </tr>
             <tr>
                 <td><button>Reset</button></td>
@@ -135,7 +135,7 @@ function BlankTable({ data, setData }) {
     return (<table>
         <thead>
             <tr>
-                <th>{data.name}</th>
+                <th className="tableTitle" >{data.name}</th>
             </tr>
             <tr>
                 <td><button>Apply</button></td>

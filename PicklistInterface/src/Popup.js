@@ -134,7 +134,7 @@ function WeightedPopup({ onSubmit, close }) {
                         <div className="popupContent-Stat">
                             <label htmlFor="sortBy" className="popupLabel">Statistic: </label>
                             <br />
-                            <select value={e.statistic} className="popupInput" onChange={updateFactorStatistic(i)}>
+                            <select value={e.statistic} className="popupInput" onChange={inputSetter(updateFactorStatistic(i))}>
                                 <option value="average_auto_grid_score">Avg Auto Grid Score</option>
                                 <option value="average_auto_balance">Avg Auto Balance</option>
                                 <option value="average_teleop_grid_score">Avg Teleop Grid Score</option>
