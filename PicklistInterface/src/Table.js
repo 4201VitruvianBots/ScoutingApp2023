@@ -4,6 +4,7 @@ import { SimpleTableData, WeightedTableData, BlankTableData } from './Data.js';
 import { SimplePopup, WeightedPopup, BlankPopup } from "./Popup.js";
 import Popup from "reactjs-popup";
 import { TeamOptionsContext } from "./App.js";
+import Sortable from "./Sortable.js";
 
 /**
  * 
@@ -30,11 +31,15 @@ function ManualTeamTable({ entries, setEntries }) {
     const teamOptions = useContext(TeamOptionsContext);
 
     const handleEntryChange = (index) => (
-        (option) => setEntries(entries.map((e, i) => i === index ? option.value : e))
+        (option) => {
+            if (!entries.includes(option.value))
+                setEntries(entries.map((e, i) => i === index ? option.value : e))
+        }
     );
 
     const handleAddEntry = (option) => {
-        setEntries(entries.concat([option.value]));
+        if (!entries.includes(option.value))
+            setEntries(entries.concat([option.value]));
     }
 
     const deleteEntry = (index) => (
@@ -42,24 +47,24 @@ function ManualTeamTable({ entries, setEntries }) {
     );
 
     return (<tbody>
-        {entries && entries.map((e, i) => (
-            <tr key={i}>
-                <td>
-                    <Select
-                        options={teamOptions}
-                        value={teamOptions.find(option => e === option.value)}
-                        onChange={handleEntryChange(i)}
-                    />
-                    <button onClick={deleteEntry(i)}>X</button>
-                </td>
-            </tr>
-        ))}
+        <Sortable list={entries} setList={setEntries}>
+            {(entry, index) => <>
+                <Select
+                    options={teamOptions}
+                    value={teamOptions.find(option => entry === option.value)}
+                    onChange={handleEntryChange(index)}
+                    openMenuOnClick={false}
+                />
+                <button onClick={deleteEntry(index)}>X</button>
+            </>}
+        </Sortable>
         <tr>
             <td>
                 <Select
                     options={teamOptions}
                     value={null}
                     onChange={handleAddEntry}
+                    openMenuOnClick={false}
                 />
             </td>
         </tr>

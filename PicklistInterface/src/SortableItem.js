@@ -19,8 +19,7 @@ export function SortableItem(props) {
   return (
     
     <tr ref={setNodeRef} style={style} {...attributes} {...listeners}>
-        <td>{props.id.toString()}</td>
-      
+      <td>{props.children}</td>
     </tr>
   );
 }

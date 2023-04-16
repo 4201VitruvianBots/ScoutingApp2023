@@ -4,9 +4,6 @@ import { BlankTable, SimpleTable, WeightedTable, DNPTable, FinalTable } from './
 import { BlankTableData, SimpleTableData, WeightedTableData, UploadButton } from './Data';
 import { createContext, useMemo, useState } from 'react';
 import SearchBar from './Searchbar';
-import Sortable from './Sortable';
-import { SortableItem } from './SortableItem';
-
 
 const TeamOptionsContext = createContext([]);
 const StatisticOptionsContext = createContext([]);
@@ -75,23 +72,20 @@ function App() {
     }
   };
 
-  const arr = ["4201", "330", "48", "331"];
-
   return (
     <TeamOptionsContext.Provider value={teamOptions}>
       <StatisticOptionsContext.Provider value={statisticOptions}>
         <main>
-          {/* File upload to import CSV */}
           <header>
             <h1>Vitruvian Statistical Analysis</h1>
             <PopupButton className="popupButton" addTable={addTable} />
             <UploadButton setRobotData={setRobotData} setStatisticOptions={setStatisticOptions} />
             <div className="searchSection">
-            <p>Team Search</p>
+              <p>Team Search</p>
               <SearchBar ></SearchBar>
             </div>
-
           </header>
+
           <section className="allTables">
             {tables.map((table, index) => {
               if (table instanceof SimpleTableData)
@@ -106,14 +100,11 @@ function App() {
               return null;
             })}
           </section>
+
           <section className="sidebar">
-            <DNPTable entries={[4201, 4201, 4201]} />
-            <FinalTable entries={[4201, 4201, 4201]} />
-        <tbody>
-         <Sortable initialTeamList={arr}/>
-            </tbody>
-        
-      </section>
+            <DNPTable entries={DNPList} setEntries={setDNPList} />
+            <FinalTable entries={finalPicklist} setEntries={setFinalPicklist} />
+          </section>
         </main>
       </StatisticOptionsContext.Provider>
     </TeamOptionsContext.Provider>

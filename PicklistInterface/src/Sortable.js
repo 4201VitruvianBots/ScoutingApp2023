@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
     DndContext,
     closestCenter,
@@ -16,9 +15,7 @@ import {
 
 import { SortableItem } from './SortableItem';
 
-function Sortable(props) {
-
-    const [teamList,  setTeamList] = useState(props.initialTeamList);
+function Sortable({ list, setList, children }) {
     
     const sensors = useSensors(
         useSensor(PointerSensor),
@@ -32,12 +29,10 @@ function Sortable(props) {
         
 
         if (active.id !== over.id) {
-            setTeamList((teamList) => {
-                const oldIndex = teamList.indexOf(active.id);
-                const newIndex = teamList.indexOf(over.id);
+            const oldIndex = list.indexOf(active.id);
+            const newIndex = list.indexOf(over.id);
 
-                return arrayMove(teamList, oldIndex, newIndex);
-            });
+            setList(arrayMove(list, oldIndex, newIndex));
         }
     }
 
@@ -48,10 +43,10 @@ function Sortable(props) {
             onDragEnd={handleDragEnd}
         >
             <SortableContext
-                items={teamList}
+                items={list}
                 strategy={verticalListSortingStrategy}
             >
-                {teamList.map(team => <SortableItem key={team} id={team} />)}
+                {list.map((item, index) => <SortableItem key={item} id={item}>{children(item, index)}</SortableItem>)}
             </SortableContext>
         </DndContext>
     );
