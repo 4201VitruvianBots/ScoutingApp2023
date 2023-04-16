@@ -66,7 +66,7 @@ function App() {
     setTables([...tables, table]);
   };
 
-  const deleteTable = (index) => {
+  const onDelete = (index) => {
     return () => {
       setTables(tables.filter((_, i) => index !== i));
     }
@@ -90,13 +90,13 @@ function App() {
           <section className="allTables">
             {tables.map((table, index) => {
               if (table instanceof SimpleTableData)
-                return <SimpleTable key={index} data={table} setData={updateTable(index)} deleteTable={deleteTable(index)} robotData={robotData} />;;
+                return <SimpleTable key={index} data={table} setData={updateTable(index)} onDelete={onDelete(index)} robotData={robotData} onApply={setFinalPicklist} />;;
 
               if (table instanceof WeightedTableData)
-                return <WeightedTable key={index} data={table} setData={updateTable(index)} deleteTable={deleteTable(index)} robotData={robotData} />;
+                return <WeightedTable key={index} data={table} setData={updateTable(index)} onDelete={onDelete(index)} robotData={robotData} onApply={setFinalPicklist} />;
 
               if (table instanceof BlankTableData)
-                return <BlankTable key={index} data={table} setData={updateTable(index)} deleteTable={deleteTable(index)} />;
+                return <BlankTable key={index} data={table} setData={updateTable(index)} onDelete={onDelete(index)} onApply={setFinalPicklist} />;
 
               return null;
             })}

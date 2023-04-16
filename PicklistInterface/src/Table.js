@@ -71,7 +71,7 @@ function ManualTeamTable({ entries, setEntries }) {
  * @param {{data: SimpleTableData, setData: (data: SimpleTableData) => void}} param0 
  * @returns 
  */
-function SimpleTable({ data, setData, deleteTable, robotData }) {
+function SimpleTable({ data, setData, onDelete, robotData, onApply }) {
     const { name, entries, statistic, descending } = data;
 
     const sort = () => {
@@ -88,6 +88,10 @@ function SimpleTable({ data, setData, deleteTable, robotData }) {
     useEffect(sort,
         [name, statistic, descending, robotData]) // eslint-disable-line react-hooks/exhaustive-deps
 
+    const handleApply = () => {
+        onApply(entries.map(e => e.team));
+    }
+
     return (
         <table>
             <thead>
@@ -95,13 +99,12 @@ function SimpleTable({ data, setData, deleteTable, robotData }) {
                     <th className="tableTitle" colSpan={2}>
                         {name}
                         <Popup trigger={<button>Edit</button>} modal nested>
-                            {close => (<SimplePopup currentData={data} onSubmit={setData} onDelete={deleteTable} close={close} isEditing={true} />)}
+                            {close => (<SimplePopup currentData={data} onSubmit={setData} onDelete={onDelete} close={close} isEditing={true} />)}
                         </Popup>
                     </th>
                 </tr>
                 <tr>
-                    <td><button>Reset</button></td>
-                    <td><button>Apply</button></td>
+                    <td colSpan={2}><button onClick={handleApply}>Apply</button></td>
                 </tr>
             </thead>
             <GeneratedTeamTable entries={entries} />
@@ -114,7 +117,7 @@ function SimpleTable({ data, setData, deleteTable, robotData }) {
  * @param {{data: WeightedTableData, setData: (data: WeightedTableData) => void}} param0 
  * @returns 
  */
-function WeightedTable({ data, setData, deleteTable, robotData }) {
+function WeightedTable({ data, setData, onDelete, robotData, onApply }) {
     const { name, entries, factors } = data;
 
     const mins = useMemo(
@@ -144,19 +147,22 @@ function WeightedTable({ data, setData, deleteTable, robotData }) {
     useEffect(sort,
         [name, factors, robotData]) // eslint-disable-line react-hooks/exhaustive-deps
 
+    const handleApply = () => {
+        onApply(entries.map(e => e.team));
+    }
+
     return (<table>
         <thead>
             <tr>
                 <th className="tableTitle" colSpan={2}>
                     {name}
                     <Popup trigger={<button>Edit</button>} modal nested>
-                        {close => (<WeightedPopup currentData={data} onSubmit={setData} onDelete={deleteTable} close={close} isEditing={true} />)}
+                        {close => (<WeightedPopup currentData={data} onSubmit={setData} onDelete={onDelete} close={close} isEditing={true} />)}
                     </Popup>
                 </th>
             </tr>
             <tr>
-                <td><button>Reset</button></td>
-                <td><button>Apply</button></td>
+                <td colSpan={2}><button onClick={handleApply}>Apply</button></td>
             </tr>
         </thead>
         <GeneratedTeamTable entries={entries} />
@@ -168,12 +174,16 @@ function WeightedTable({ data, setData, deleteTable, robotData }) {
  * @param {{data: BlankTableData, setData: (data: BlankTableData) => void}} param0 
  * @returns 
  */
-function BlankTable({ data, setData, deleteTable }) {
+function BlankTable({ data, setData, onDelete, onApply }) {
     const { name, entries } = data;
 
     const setEntries = (newEntries) => {
         setData(new BlankTableData(name, newEntries))
     };
+
+    const handleApply = () => {
+        onApply(entries);
+    }
 
     return (<table>
         <thead>
@@ -181,12 +191,12 @@ function BlankTable({ data, setData, deleteTable }) {
                 <th className="tableTitle" >
                     {name}
                     <Popup trigger={<button>Edit</button>} modal nested>
-                        {close => (<BlankPopup currentData={data} onSubmit={setData} onDelete={deleteTable} close={close} isEditing={true} />)}
+                        {close => (<BlankPopup currentData={data} onSubmit={setData} onDelete={onDelete} close={close} isEditing={true} />)}
                     </Popup>
                 </th>
             </tr>
             <tr>
-                <td><button>Apply</button></td>
+                <td><button onClick={handleApply}>Apply</button></td>
             </tr>
         </thead>
         <ManualTeamTable entries={entries} setEntries={setEntries} />
