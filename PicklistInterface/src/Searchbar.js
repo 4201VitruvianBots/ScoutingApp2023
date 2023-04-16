@@ -26,7 +26,7 @@ function SearchBar() {
                 // value={setSelectedOption}
                 onChange={handleChange}
             />
-            <input type="checkbox"  classname="showInfo" onClick={handleCheckboxChange}></input>
+            <input type="checkbox"  className="showInfo" onClick={handleCheckboxChange}></input>
 
             
             {ifselected && (

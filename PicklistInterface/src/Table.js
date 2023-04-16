@@ -7,8 +7,14 @@ import { SimpleTableData, WeightedTableData, BlankTableData } from './Data.js';
  * @returns 
  */
 function DoubleTeamTable({ entries }) {
-    return (<tbody>
-        {entries && entries.map((e, i) => (
+    return (
+
+        
+    
+    
+    
+    <tbody>
+        {entries.map((e, i) => (
             <tr key={i}>
                 <td>{e.team}</td>
                 <td>{e.value}</td>

@@ -4,6 +4,9 @@ import { BlankTable, SimpleTable, WeightedTable, DNPTable, FinalTable } from './
 import { BlankTableData, SimpleTableData, WeightedTableData, UploadButton } from './Data';
 import { useEffect, useState } from 'react';
 import SearchBar from './Searchbar';
+import Sortable from './Sortable';
+import { SortableItem } from './SortableItem';
+
 
 function App() {
   /** @type {(BlankTableData | SimpleTableData | WeightedTableData )[]} */
@@ -53,6 +56,8 @@ function App() {
     setTables([...tables, table]);
   }
 
+  const arr = ["4201", "330", "48", "331"];
+
   return (
     <main>
       {/* File upload to import CSV */}
@@ -81,8 +86,12 @@ function App() {
         })}
       </section>
       <section className="sidebar">
-        <DNPTable entries={DNPList} setEntries={setDNPList} />
-        <FinalTable entries={finalPicklist} setEntries={setFinalPicklist} />
+        <DNPTable entries={[4201, 4201, 4201]} />
+        <FinalTable entries={[4201, 4201, 4201]} />
+        <tbody>
+         <Sortable initialTeamList={arr}/>
+        </tbody>
+        
       </section>
     </main>
   );
