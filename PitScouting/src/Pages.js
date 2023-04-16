@@ -59,7 +59,7 @@ function SignIn(props) {
                     {greeting}
                     <br />
                     <select name="Competition" id="Ename" defaultValue="Choose">
-                        <option value="LAR">LAR</option>
+                        <option value="Daly">Daly Division</option>
                     </select>
                     {showCheck && <div className="check"></div>}
                     <input type="submit" className="SAVE" value="Sign In" />
@@ -177,7 +177,7 @@ function SavePage(props) {
             </div>
 
             <div>
-                <p className="version">Version LAR.0.1</p>
+                <p className="version">Version Daly.0</p>
             </div>
 
         </Page>

@@ -51,7 +51,7 @@ function SignIn(props) {
                     <br />
                     <select name="Competition" id="Ename" defaultValue="Choose" >
 
-                        <option value="LAR">LAR</option>
+                        <option value="Daly">Daly Division</option>
                     </select>
                     <p className="itemLabel" htmlFor="Match_Number">ALLIANCE</p>
                     <div className="allianceSelect">
@@ -236,7 +236,7 @@ function SavePage(props) {
                 {/* <div id="QRCode">{props.QRCode}</div> */}
             </div>
             <div>
-                <p className="version">Version LAR.0.1</p>
+                <p className="version">Version Daly.0</p>
             </div>
 
 
