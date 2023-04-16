@@ -1,20 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useMemo, useContext } from "react";
+import Select from 'react-select';
 import { SimpleTableData, WeightedTableData, BlankTableData } from './Data.js';
+import { SimplePopup, WeightedPopup, BlankPopup } from "./Popup.js";
+import Popup from "reactjs-popup";
+import { TeamOptionsContext } from "./App.js";
 
 /**
  * 
  * @param {{entries: {team: number, value: number | string}[]}} param0
  * @returns 
  */
-function DoubleTeamTable({ entries }) {
-    return (
-
-        
-    
-    
-    
-    <tbody>
-        {entries.map((e, i) => (
+function GeneratedTeamTable({ entries }) {
+    return (<tbody>
+        {entries && entries.map((e, i) => (
             <tr key={i}>
                 <td>{e.team}</td>
                 <td>{e.value}</td>
@@ -28,13 +26,43 @@ function DoubleTeamTable({ entries }) {
  * @param {{entries: number[]}} param0 
  * @returns 
  */
-function SingleTeamTable({ entries }) {
+function ManualTeamTable({ entries, setEntries }) {
+    const teamOptions = useContext(TeamOptionsContext);
+
+    const handleEntryChange = (index) => (
+        (option) => setEntries(entries.map((e, i) => i === index ? option.value : e))
+    );
+
+    const handleAddEntry = (option) => {
+        setEntries(entries.concat([option.value]));
+    }
+
+    const deleteEntry = (index) => (
+        () => setEntries(entries.filter((_, i) => i !== index))
+    );
+
     return (<tbody>
         {entries && entries.map((e, i) => (
             <tr key={i}>
-                <td>{e}</td>
+                <td>
+                    <Select
+                        options={teamOptions}
+                        value={teamOptions.find(option => e === option.value)}
+                        onChange={handleEntryChange(i)}
+                    />
+                    <button onClick={deleteEntry(i)}>X</button>
+                </td>
             </tr>
         ))}
+        <tr>
+            <td>
+                <Select
+                    options={teamOptions}
+                    value={null}
+                    onChange={handleAddEntry}
+                />
+            </td>
+        </tr>
     </tbody>);
 }
 
@@ -43,32 +71,43 @@ function SingleTeamTable({ entries }) {
  * @param {{data: SimpleTableData, setData: (data: SimpleTableData) => void}} param0 
  * @returns 
  */
-function SimpleTable({ data: { name, entries, statistic, descending }, setData }) {
-    const reset = () => {
+function SimpleTable({ data, setData, onDelete, robotData, onApply }) {
+    const { name, entries, statistic, descending } = data;
+
+    const sort = () => {
+        const newEntries = Object.entries(robotData)
+            .map(([team_number, stats]) => ({ team: team_number, value: stats[statistic] }))
+            .sort(descending
+                ? (a, b) => b.value - a.value
+                : (a, b) => a.value - b.value
+            );
         // TODO this is temporary testing data
-        setData(new SimpleTableData(name, [
-            { team: 4201, value: 1 },
-            { team: 4414, value: 2 },
-            { team: 9987, value: 3 }
-        ], statistic, descending))
+        setData(new SimpleTableData(name, newEntries, statistic, descending))
     }
 
-    useEffect(() => {
-        if (entries === undefined) reset();
-    }, [entries]); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(sort,
+        [name, statistic, descending, robotData]) // eslint-disable-line react-hooks/exhaustive-deps
+
+    const handleApply = () => {
+        onApply(entries.map(e => e.team));
+    }
 
     return (
         <table>
             <thead>
                 <tr>
-                    <th className="tableTitle" colSpan={2}>{name}</th>
+                    <th className="tableTitle" colSpan={2}>
+                        {name}
+                        <Popup trigger={<button>Edit</button>} modal nested>
+                            {close => (<SimplePopup currentData={data} onSubmit={setData} onDelete={onDelete} close={close} isEditing={true} />)}
+                        </Popup>
+                    </th>
                 </tr>
                 <tr>
-                    <td><button>Reset</button></td>
-                    <td><button>Apply</button></td>
+                    <td colSpan={2}><button onClick={handleApply}>Apply</button></td>
                 </tr>
             </thead>
-            <DoubleTeamTable entries={entries} />
+            <GeneratedTeamTable entries={entries} />
         </table>
     );
 }
@@ -78,31 +117,55 @@ function SimpleTable({ data: { name, entries, statistic, descending }, setData }
  * @param {{data: WeightedTableData, setData: (data: WeightedTableData) => void}} param0 
  * @returns 
  */
-function WeightedTable({ data: { name, entries, factors }, setData }) {
-    const reset = () => {
-        // TODO this is temporary testing data
-        setData(new WeightedTableData(name, [
-            { team: 4201, value: 1 },
-            { team: 4414, value: 2 },
-            { team: 9987, value: 3 }
-        ], factors))
+function WeightedTable({ data, setData, onDelete, robotData, onApply }) {
+    const { name, entries, factors } = data;
+
+    const mins = useMemo(
+        () => Object.fromEntries(factors.map(({ statistic }) => [statistic, Object.values(robotData).reduce((min, current) => Math.min(min, current[statistic]), Number.MAX_VALUE)])),
+        [factors, robotData]
+    );
+
+    const maxes = useMemo(
+        () => Object.fromEntries(factors.map(({ statistic }) => [statistic, Object.values(robotData).reduce((max, current) => Math.max(max, current[statistic]), 0)])),
+        [factors, robotData]
+    );
+
+    const sort = () => {
+        const newEntries = Object.entries(robotData)
+            .map(([team_number, stats]) => ({
+                team: team_number,
+                value: factors
+                    .map(({ statistic, weight }) => weight *
+                        (stats[statistic] - mins[statistic]) /
+                        (maxes[statistic] - mins[statistic]))
+                    .reduce((sum, current) => sum + current, 0)
+            }))
+            .sort((a, b) => b.value - a.value);
+        setData(new WeightedTableData(name, newEntries, factors))
     }
 
-    useEffect(() => {
-        if (entries === undefined) reset();
-    }, [entries]); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(sort,
+        [name, factors, robotData]) // eslint-disable-line react-hooks/exhaustive-deps
+
+    const handleApply = () => {
+        onApply(entries.map(e => e.team));
+    }
 
     return (<table>
         <thead>
             <tr>
-                <th className="tableTitle" colSpan={2}>{name}</th>
+                <th className="tableTitle" colSpan={2}>
+                    {name}
+                    <Popup trigger={<button>Edit</button>} modal nested>
+                        {close => (<WeightedPopup currentData={data} onSubmit={setData} onDelete={onDelete} close={close} isEditing={true} />)}
+                    </Popup>
+                </th>
             </tr>
             <tr>
-                <td><button>Reset</button></td>
-                <td><button>Apply</button></td>
+                <td colSpan={2}><button onClick={handleApply}>Apply</button></td>
             </tr>
         </thead>
-        <DoubleTeamTable entries={entries} />
+        <GeneratedTeamTable entries={entries} />
     </table>);
 }
 
@@ -111,26 +174,32 @@ function WeightedTable({ data: { name, entries, factors }, setData }) {
  * @param {{data: BlankTableData, setData: (data: BlankTableData) => void}} param0 
  * @returns 
  */
-function BlankTable({ data: { name, entries }, setData }) {
-    const reset = () => {
-        // TODO this is temporary testing data
-        setData(new BlankTableData(name, [4201, 4481, 983]))
-    }
+function BlankTable({ data, setData, onDelete, onApply }) {
+    const { name, entries } = data;
 
-    useEffect(() => {
-        if (entries === undefined) reset();
-    }, [entries]); // eslint-disable-line react-hooks/exhaustive-deps
+    const setEntries = (newEntries) => {
+        setData(new BlankTableData(name, newEntries))
+    };
+
+    const handleApply = () => {
+        onApply(entries);
+    }
 
     return (<table>
         <thead>
             <tr>
-                <th className="tableTitle" >{name}</th>
+                <th className="tableTitle" >
+                    {name}
+                    <Popup trigger={<button>Edit</button>} modal nested>
+                        {close => (<BlankPopup currentData={data} onSubmit={setData} onDelete={onDelete} close={close} isEditing={true} />)}
+                    </Popup>
+                </th>
             </tr>
             <tr>
-                <td><button>Apply</button></td>
+                <td><button onClick={handleApply}>Apply</button></td>
             </tr>
         </thead>
-        <SingleTeamTable entries={entries} />
+        <ManualTeamTable entries={entries} setEntries={setEntries} />
     </table>);
 }
 
@@ -146,7 +215,7 @@ function DNPTable({ entries, setEntries }) {
                 <th>DNP List</th>
             </tr>
         </thead>
-        <SingleTeamTable entries={entries} />
+        <ManualTeamTable entries={entries} setEntries={setEntries} />
     </table>);
 }
 
@@ -162,7 +231,7 @@ function FinalTable({ entries, setEntries }) {
                 <th>Final Pick List</th>
             </tr>
         </thead>
-        <SingleTeamTable entries={entries} />
+        <ManualTeamTable entries={entries} setEntries={setEntries} />
     </table>);
 }
 

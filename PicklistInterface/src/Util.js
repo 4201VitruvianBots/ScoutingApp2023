@@ -46,4 +46,10 @@ function inputSetter(setter) {
     return (event) => setter(event.target.value);
 }
 
-export { mutableObject, inputSetter };
+function mapObject(object, fn) {
+    return Object.fromEntries(
+        Object.entries(object).map(([key, value]) => [key, fn(value)])
+    );
+}
+
+export { mutableObject, inputSetter, mapObject };

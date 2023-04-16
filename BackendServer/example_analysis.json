@@ -1,0 +1,16 @@
+{
+    "columns": [
+        {
+            "value": "Average_Defense",
+            "label": "Average Defense Ranking"
+        },
+        {
+            "value": "Average_Auto",
+            "label": "Average Auto Score"
+        }
+    ],
+    "data": {
+        "4201": [4, 7],
+        "8898": [2, 11]
+    }
+}

@@ -2,11 +2,14 @@ import './App.css';
 import { PopupButton } from './Popup.js';
 import { BlankTable, SimpleTable, WeightedTable, DNPTable, FinalTable } from './Table.js';
 import { BlankTableData, SimpleTableData, WeightedTableData, UploadButton } from './Data';
-import { useEffect, useState } from 'react';
+import { createContext, useMemo, useState } from 'react';
 import SearchBar from './Searchbar';
 import Sortable from './Sortable';
 import { SortableItem } from './SortableItem';
 
+
+const TeamOptionsContext = createContext([]);
+const StatisticOptionsContext = createContext([]);
 
 function App() {
   /** @type {(BlankTableData | SimpleTableData | WeightedTableData )[]} */
@@ -37,68 +40,89 @@ function App() {
 
   const [finalPicklist, setFinalPicklist] = useState([]);
   const [DNPList, setDNPList] = useState([]);
+
+  /*
+  {
+    columns: [
+      { id: 'Average_Defense', name: 'Average Defense Ranking' },
+      { id: 'Average_Auto', name: 'Average Auto Score' }
+    ],
+    data: {
+      '4201': [ 4, 7 ],
+      '8898': [ 2, 11 ]
+    }
+  }
+  */
+  const [statisticOptions, setStatisticOptions] = useState([]);
   const [robotData, setRobotData] = useState();
   const [comments, setComments] = useState({})
 
-  // Temporary testing data
-  useEffect(() => {
-    setFinalPicklist(['4201', '987', '254']);
-    setDNPList(['9999', '9998', '9997'])
-  }, [])
+  const teamOptions = useMemo(() => Object.keys(robotData ?? {}).map(e => ({ value: e, label: e })), [robotData]);
 
   const updateTable = (index) => {
     return (table) => {
       setTables(tables.map((e, i) => i === index ? table : e));
     }
-  }
+  };
 
   const addTable = (table) => {
     setTables([...tables, table]);
-  }
+  };
+
+  const onDelete = (index) => {
+    return () => {
+      setTables(tables.filter((_, i) => index !== i));
+    }
+  };
 
   const arr = ["4201", "330", "48", "331"];
 
   return (
-    <main>
-      {/* File upload to import CSV */}
-      <header>
-        <h1>Vitruvian Statistical Analysis</h1>
-        <PopupButton className="popupButton" addTable={addTable} />
-        <UploadButton setRobotData={setRobotData} />
-        <div className="searchSection">
+    <TeamOptionsContext.Provider value={teamOptions}>
+      <StatisticOptionsContext.Provider value={statisticOptions}>
+        <main>
+          {/* File upload to import CSV */}
+          <header>
+            <h1>Vitruvian Statistical Analysis</h1>
+            <PopupButton className="popupButton" addTable={addTable} />
+            <UploadButton setRobotData={setRobotData} setStatisticOptions={setStatisticOptions} />
+            <div className="searchSection">
             <p>Team Search</p>
-            <SearchBar></SearchBar>
-        </div>
-        
-      </header>
-      <section className="allTables">
-        {tables.map((table, index) => {
-          if (table instanceof SimpleTableData)
-            return <SimpleTable key={index} data={table} setData={updateTable(index)} />;;
+              <SearchBar ></SearchBar>
+            </div>
 
-          if (table instanceof WeightedTableData)
-            return <WeightedTable key={index} data={table} setData={updateTable(index)} />;
+          </header>
+          <section className="allTables">
+            {tables.map((table, index) => {
+              if (table instanceof SimpleTableData)
+                return <SimpleTable key={index} data={table} setData={updateTable(index)} onDelete={onDelete(index)} robotData={robotData} onApply={setFinalPicklist} />;;
 
-          if (table instanceof BlankTableData)
-            return <BlankTable key={index} data={table} setData={updateTable(index)} />;
+              if (table instanceof WeightedTableData)
+                return <WeightedTable key={index} data={table} setData={updateTable(index)} onDelete={onDelete(index)} robotData={robotData} onApply={setFinalPicklist} />;
 
-          return null;
-        })}
-      </section>
-      <section className="sidebar">
-        <DNPTable entries={[4201, 4201, 4201]} />
-        <FinalTable entries={[4201, 4201, 4201]} />
+              if (table instanceof BlankTableData)
+                return <BlankTable key={index} data={table} setData={updateTable(index)} onDelete={onDelete(index)} onApply={setFinalPicklist} />;
+
+              return null;
+            })}
+          </section>
+          <section className="sidebar">
+            <DNPTable entries={[4201, 4201, 4201]} />
+            <FinalTable entries={[4201, 4201, 4201]} />
         <tbody>
          <Sortable initialTeamList={arr}/>
-        </tbody>
+            </tbody>
         
       </section>
-    </main>
+        </main>
+      </StatisticOptionsContext.Provider>
+    </TeamOptionsContext.Provider>
   );
 }
 
 
 export default App;
+export { StatisticOptionsContext, TeamOptionsContext };
 
 
 
