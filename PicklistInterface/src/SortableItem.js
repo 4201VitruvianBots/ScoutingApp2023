@@ -18,8 +18,10 @@ export function SortableItem(props) {
   
   return (
     
-    <tr ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <td>{props.children}</td>
+    <tr ref={setNodeRef} style={style} {...attributes}>
+      <td>
+        {props.children(<span className="drag-handle" {...listeners}>{'<>'}</span>)}
+      </td>
     </tr>
   );
 }

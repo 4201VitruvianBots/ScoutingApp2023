@@ -46,14 +46,15 @@ function ManualTeamTable({ entries, setEntries }) {
         () => setEntries(entries.filter((_, i) => i !== index))
     );
 
-    return (<tbody>
+    return (<tbody className="sort-table-body">
         <Sortable list={entries} setList={setEntries}>
-            {(entry, index) => <>
+            {(entry, index, handle) => <>
+                {handle}
                 <Select
                     options={teamOptions}
                     value={teamOptions.find(option => entry === option.value)}
                     onChange={handleEntryChange(index)}
-                    openMenuOnClick={false}
+                    classNamePrefix='sort-table-select' className='sort-table-select'
                 />
                 <button onClick={deleteEntry(index)}>X</button>
             </>}
@@ -64,7 +65,7 @@ function ManualTeamTable({ entries, setEntries }) {
                     options={teamOptions}
                     value={null}
                     onChange={handleAddEntry}
-                    openMenuOnClick={false}
+                    classNamePrefix='sort-table-select' className='sort-table-select'
                 />
             </td>
         </tr>

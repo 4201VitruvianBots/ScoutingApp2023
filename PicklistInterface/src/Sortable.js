@@ -46,7 +46,7 @@ function Sortable({ list, setList, children }) {
                 items={list}
                 strategy={verticalListSortingStrategy}
             >
-                {list.map((item, index) => <SortableItem key={item} id={item}>{children(item, index)}</SortableItem>)}
+                {list.map((item, index) => <SortableItem key={item} id={item}>{handle => children(item, index, handle)}</SortableItem>)}
             </SortableContext>
         </DndContext>
     );
