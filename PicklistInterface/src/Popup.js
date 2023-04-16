@@ -1,17 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { inputSetter } from './Util.js';
 import Popup from 'reactjs-popup';
 import React from 'react';
 import { SimpleTableData, WeightedTableData, BlankTableData } from "./Data.js";
 import Select from 'react-select';
+import { StatisticOptionsContext } from "./App.js";
 
-function SimplePopup({ onSubmit, close, isEditing, statisticOptions }) {
+function SimplePopup({ currentData, onSubmit, onDelete, close, isEditing }) {
+    const statisticOptions = useContext(StatisticOptionsContext);
 
     // <SimplePopup onSubmit={updateTable(5)} />
 
-    const [title, setTitle] = useState();
-    const [statistic, setStatistic] = useState();
-    const [descending, setDescending] = useState(false);
+    const [title, setTitle] = useState(currentData?.name ?? '');
+    const [statistic, setStatistic] = useState(currentData?.statistic);
+    const [descending, setDescending] = useState(currentData?.descending ?? true);
 
     const handleCheckboxChange = (event) => {
         setDescending(event.target.checked);
@@ -23,7 +25,7 @@ function SimplePopup({ onSubmit, close, isEditing, statisticOptions }) {
 
             <div className="popupContent">
                 <label className="popupLabel" htmlFor="title">Title: </label>
-                <input type="text" id="title" className="popupInput" onChange={inputSetter(setTitle)} />
+                <input type="text" id="title" className="popupInput" value={title} onChange={inputSetter(setTitle)} />
             </div>
 
 
@@ -31,7 +33,7 @@ function SimplePopup({ onSubmit, close, isEditing, statisticOptions }) {
                 <label htmlFor="sortBy" className="popupLabel">Statistic: </label>
                 <Select
                     options={statisticOptions}
-                    value={statisticOptions.find(option => option === statistic)}
+                    value={statisticOptions.find(option => option.value === statistic)}
                     onChange={e => setStatistic(e.value)}
                 />
             </div>
@@ -39,7 +41,7 @@ function SimplePopup({ onSubmit, close, isEditing, statisticOptions }) {
             <div className="popupContent">
                 <label className="popupLabelLast" htmlFor="checkbox">
                     Descending?
-                    <input type="checkbox" id="checkbox" className="popupInputLast" onChange={handleCheckboxChange} />
+                    <input type="checkbox" id="checkbox" className="popupInputLast" checked={descending} onChange={handleCheckboxChange} />
                 </label>
             </div>
 
@@ -51,13 +53,13 @@ function SimplePopup({ onSubmit, close, isEditing, statisticOptions }) {
                 <button className="exitButton" onClick={close}>Exit</button>
 
                 <button className="popupClose" onClick={() => {
-                    onSubmit(new SimpleTableData(title, undefined, statistic, descending));
+                onSubmit(new SimpleTableData(title, currentData?.entries, statistic, descending));
                     close();
                 }}>
                     {isEditing ? "Edit Table" : "Create Table"}
                 </button>
 
-                {isEditing && <button>DEEEELEEEEETE</button>}
+            {isEditing && <button onClick={onDelete}>DEEEELEEEEETE</button>}
 
                 
             
@@ -66,10 +68,11 @@ function SimplePopup({ onSubmit, close, isEditing, statisticOptions }) {
     )
 }
 
-function WeightedPopup({ onSubmit, close, statisticOptions }) {
+function WeightedPopup({ currentData, onSubmit, onDelete, close, isEditing }) {
+    const statisticOptions = useContext(StatisticOptionsContext);
 
-    const [title, setTitle] = useState();
-    const [factors, setFactors] = useState([{ statistic: '', weight: 1 }]);
+    const [title, setTitle] = useState(currentData?.name ?? '');
+    const [factors, setFactors] = useState(currentData?.factors ?? [{ statistic: '', weight: 1 }]);
     // const [descending, setDescending] = useState(false);
 
     // type factor = {statistic: x, weight: x}
@@ -112,7 +115,7 @@ function WeightedPopup({ onSubmit, close, statisticOptions }) {
            
                 <div className="popupContent">
                     <label className="popupLabel" htmlFor="title" >Title: </label>
-                    <input type="text" id="title" className="popupInput" onChange={inputSetter(setTitle)}></input>
+                <input type="text" id="title" className="popupInput" value={title} onChange={inputSetter(setTitle)}></input>
                 </div>
 
                 {factors.map((e, i) => (
@@ -122,7 +125,7 @@ function WeightedPopup({ onSubmit, close, statisticOptions }) {
                             <br />
                             <Select
                                 options={statisticOptions}
-                                value={statisticOptions.find(option => option === e.statistic)}
+                                value={statisticOptions.find(option => option.value === e.statistic)}
                                 onChange={option => updateFactorStatistic(i)(option.value)}
                             />
 
@@ -164,34 +167,37 @@ function WeightedPopup({ onSubmit, close, statisticOptions }) {
                 <br/>
                 <button className="popupClose" onClick={() => {
 
-                    onSubmit(new WeightedTableData(title, undefined, factors));
+                onSubmit(new WeightedTableData(title, currentData?.entries, factors));
                     close();
 
-                }}> Create Table </button>
+            }}>
+                {isEditing ? "Edit Table" : "Create Table"}
+            </button>
+
+            {isEditing && <button onClick={onDelete}>DEEEELEEEEETE</button>}
            
 
         </div>
     );
 }
 
-function BlankPopup({ onSubmit, close, isEditing }) {
-
-    const [title, setTitle] = useState();
+function BlankPopup({ currentData, onSubmit, onDelete, close, isEditing }) {
+    const [title, setTitle] = useState(currentData?.name ?? '');
 
     return (
         <div className="popup">
             <p className="popupHeader">Blank</p>
             <div className="popupContent">
                 <label className="popupLabel" htmlFor="title">Title: </label>
-                <input type="text" id="title" className="popupInput" onChange={inputSetter(setTitle)} />
+                <input type="text" id="title" className="popupInput" value={title} onChange={inputSetter(setTitle)} />
             </div>
             <button className="popupClose" onClick={() => {
-                onSubmit(new BlankTableData(title, undefined));
+                onSubmit(new BlankTableData(title, currentData?.entries ?? []));
                 close();
             }}>
                 {isEditing ? "Edit Table" : "Create Table"}
             </button>
-            {isEditing && <button>DEEEELEEEEETE</button>}
+            {isEditing && <button onClick={onDelete}>DEEEELEEEEETE</button>}
         </div>
     )
 }
@@ -218,21 +224,21 @@ function PopupButton({ addTable, statisticOptions }) {
                     <Popup trigger=
                         {<button className="dropdownButtons">Simple</button>}
                         modal nested>
-                        {close => (<SimplePopup onSubmit={addTable} close={close} isEditing={false} statisticOptions={statisticOptions} />)}
+                        {close => (<SimplePopup onSubmit={addTable} close={close} isEditing={false} />)}
                     </Popup>
 
 
                     <Popup trigger=
                         {<button className="dropdownButtons">Weighted</button>}
                         modal nested>
-                        {close => (<WeightedPopup onSubmit={addTable} close={close} statisticOptions={statisticOptions} />)}
+                        {close => (<WeightedPopup onSubmit={addTable} close={close} isEditing={false} />)}
                     </Popup>
 
 
                     <Popup trigger=
                         {<button className="dropdownButtons">Blank</button>}
                         modal nested>
-                        {close => (<BlankPopup onSubmit={addTable} close={close} />)}
+                        {close => (<BlankPopup onSubmit={addTable} close={close} isEditing={false} />)}
                     </Popup>
 
 

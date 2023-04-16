@@ -2,8 +2,11 @@ import './App.css';
 import { PopupButton } from './Popup.js';
 import { BlankTable, SimpleTable, WeightedTable, DNPTable, FinalTable } from './Table.js';
 import { BlankTableData, SimpleTableData, WeightedTableData, UploadButton } from './Data';
-import { useMemo, useState } from 'react';
+import { createContext, useMemo, useState } from 'react';
 import SearchBar from './Searchbar';
+
+const TeamOptionsContext = createContext([]);
+const StatisticOptionsContext = createContext([]);
 
 function App() {
   /** @type {(BlankTableData | SimpleTableData | WeightedTableData )[]} */
@@ -47,7 +50,7 @@ function App() {
     }
   }
   */
-  const [statisticOptions, setStatisticOptions] = useState();
+  const [statisticOptions, setStatisticOptions] = useState([]);
   const [robotData, setRobotData] = useState();
   const [comments, setComments] = useState({})
 
@@ -57,49 +60,60 @@ function App() {
     return (table) => {
       setTables(tables.map((e, i) => i === index ? table : e));
     }
-  }
+  };
 
   const addTable = (table) => {
     setTables([...tables, table]);
-  }
+  };
+
+  const deleteTable = (index) => {
+    return () => {
+      setTables(tables.filter((_, i) => index !== i));
+    }
+  };
 
   return (
-    <main>
-      {/* File upload to import CSV */}
-      <header>
-        <h1>Vitruvian Statistical Analysis</h1>
-        <PopupButton className="popupButton" addTable={addTable} statisticOptions={statisticOptions} />
-        <UploadButton setRobotData={setRobotData} setStatisticOptions={setStatisticOptions} />
-        <div className="searchSection">
+    <TeamOptionsContext.Provider value={teamOptions}>
+      <StatisticOptionsContext.Provider value={statisticOptions}>
+        <main>
+          {/* File upload to import CSV */}
+          <header>
+            <h1>Vitruvian Statistical Analysis</h1>
+            <PopupButton className="popupButton" addTable={addTable} />
+            <UploadButton setRobotData={setRobotData} setStatisticOptions={setStatisticOptions} />
+            <div className="searchSection">
             <p>Team Search</p>
-          <SearchBar teamOptions={teamOptions} ></SearchBar>
-        </div>
-        
-      </header>
-      <section className="allTables">
-        {tables.map((table, index) => {
-          if (table instanceof SimpleTableData)
-            return <SimpleTable key={index} data={table} setData={updateTable(index)} robotData={robotData} />;;
+              <SearchBar ></SearchBar>
+            </div>
 
-          if (table instanceof WeightedTableData)
-            return <WeightedTable key={index} data={table} setData={updateTable(index)} robotData={robotData} />;
+          </header>
+          <section className="allTables">
+            {tables.map((table, index) => {
+              if (table instanceof SimpleTableData)
+                return <SimpleTable key={index} data={table} setData={updateTable(index)} deleteTable={deleteTable(index)} robotData={robotData} />;;
 
-          if (table instanceof BlankTableData)
-            return <BlankTable key={index} data={table} setData={updateTable(index)} teamOptions={teamOptions} />;
+              if (table instanceof WeightedTableData)
+                return <WeightedTable key={index} data={table} setData={updateTable(index)} deleteTable={deleteTable(index)} robotData={robotData} />;
 
-          return null;
-        })}
-      </section>
-      <section className="sidebar">
-        <DNPTable entries={DNPList} setEntries={setDNPList} teamOptions={teamOptions} />
-        <FinalTable entries={finalPicklist} setEntries={setFinalPicklist} teamOptions={teamOptions} />
-      </section>
-    </main>
+              if (table instanceof BlankTableData)
+                return <BlankTable key={index} data={table} setData={updateTable(index)} deleteTable={deleteTable(index)} />;
+
+              return null;
+            })}
+          </section>
+          <section className="sidebar">
+            <DNPTable entries={DNPList} setEntries={setDNPList} />
+            <FinalTable entries={finalPicklist} setEntries={setFinalPicklist} />
+          </section>
+        </main>
+      </StatisticOptionsContext.Provider>
+    </TeamOptionsContext.Provider>
   );
 }
 
 
 export default App;
+export { StatisticOptionsContext, TeamOptionsContext };
 
 
 
