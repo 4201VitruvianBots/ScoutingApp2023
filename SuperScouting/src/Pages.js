@@ -81,19 +81,20 @@ function SignIn(props) {
                     <select name="Competition" id="Ename" defaultValue="Choose" >
 
 
-                        <option value="LAR">LAR</option>
+                        <option value="Daly">Daly Division</option>
                     </select>
                     <br />
                     <div className="allianceSelect">
-                        <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} id="Team_Alliance" />
+                        <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} id="Team_Alliance" onChange={props.onChange} />
                     </div>
 
 
                     {showCheck && <div class="check"></div>}
 
                     <input type="submit" className="SAVE" value="Sign In" />
-
+                    <br></br>
                 </div>
+
             </form>
         </div>
     );
@@ -380,8 +381,9 @@ function General(props) {
             </div>
 
             <div>
-                <p className="version">Version LAR.0.1</p>
+                <p className="version">Version Daly.0</p>
             </div>
+
 
         </Page >
     );

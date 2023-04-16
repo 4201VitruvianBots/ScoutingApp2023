@@ -98,7 +98,7 @@ class App extends React.Component {
                 const time = new Date();
                 const hour = time.getHours().toString().padStart(2, '0');
                 const minute = time.getMinutes().toString().padStart(2, '0');
-                const matchNum =  data[0];
+                const matchNum = data[0];
                 const teamNum = data[1];
                 download(csv, `Match_Scout_${hour}${minute}_Match-${matchNum}_Team-Num-${teamNum}.csv`)
                 // localStorage.setItem('matchData', localStorage.getItem('matchData') + csv)
@@ -191,15 +191,56 @@ class App extends React.Component {
 
 
     render() {
+        console.log(this.state.TeamAlliance)
         return (
             <main>
+
                 <br></br>
                 <br></br>
                 <p className="page-title">Welcome to Vitruvian Scouting</p>
                 <Navigation selected={this.state.selected === 'navigation'} />
                 {/* <SignIn selected={this.state.selected === 'sign-in'} /> */}
-                <SignIn onSubmit={this.SignInHandler} />
+                {(this.state.TeamAlliance === "0") && (
+                    <div className="redindicator">
+                        <p>Your Alliance Color is Red 1</p>
+                    </div>)}
 
+                {(this.state.TeamAlliance === "1") && (
+                    <div className="redindicator">
+                        <p>Your Alliance Color is Red 2</p>
+                    </div>)}
+
+                {(this.state.TeamAlliance === "2") && (
+                    <div className="redindicator">
+                        <p>Your Alliance Color is Red 3</p>
+                    </div>)}
+
+                {(this.state.TeamAlliance === "3") && (
+                    <div className="blueindicator">
+                        <p>Your Alliance Color is Blue 1</p>
+                    </div>
+                )}
+
+                {(this.state.TeamAlliance === "4") && (
+                    <div className="blueindicator">
+                        <p>Your Alliance Color is Blue 2</p>
+                    </div>
+                )}
+
+                {(this.state.TeamAlliance === "5") && (
+                    <div className="blueindicator">
+                        <p>Your Alliance Color is Blue 3</p>
+                    </div>
+                )}
+                <SignIn onSubmit={this.SignInHandler} />
+                <form>
+
+
+
+                    {/* <div className="allianceSelect">
+                        <MultiButton items={[['RED', 'Red'], ['BLUE', 'Blue']]} shouldChangeColor={true} />
+                    </div> */}
+                </form>
 
                 <form action={`http://${process.env.REACT_APP_BACKEND_IP}/data/matches`} method="POST" target="frame" id="myForm" onSubmit={this.handleSubmit}>
                     <input type='hidden' value={this.state.EventName} name='Competition' />
@@ -212,7 +253,6 @@ class App extends React.Component {
                     {/* <input type="submit" className="submit-button"></input> */}
                 </form>
                 <iframe name="frame" title="frame"></iframe>
-
             </main>
         );
     }

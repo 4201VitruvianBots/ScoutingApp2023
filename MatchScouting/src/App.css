@@ -72,7 +72,7 @@ input[type="radio"] {
 input[type="number"] {
   display: inline !important;
   background-color: var(--accent-1);
-  width: 100px;
+  width: 75px;
   height: 75px;
   font-size: 50px;
   text-align: center;
@@ -211,6 +211,9 @@ input[type="button"] {
 
 }
 
+.allianceSelect input[type="button"] {
+  font-size: 24px;
+}
 
 .radioButtons {
   background-color: initial;
@@ -408,7 +411,7 @@ iframe {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
   margin: 0 auto;
   padding: 10px 0;
 }
@@ -452,7 +455,7 @@ iframe {
 
 .align-radio .number-on,
 .align-radio .number-off {
-  width: 165px;
+  width: 120px;
 }
 
 .teamSearch {
@@ -503,13 +506,13 @@ iframe {
 
 .cubes {
   background-color: rgb(180, 81, 251);
-  padding: 20px;
+  padding: 15px;
   border-radius: 10px;
 }
 
 .cones {
   background-color: rgb(253, 210, 39);
-  padding: 20px;
+  padding: 15px;
   border-radius: 10px;
 }
 
@@ -537,10 +540,6 @@ iframe {
   margin: auto;
 }
 
-img.Icon {
-  margin-right: 10px;
-}
-
 /* input[type=Multibutton] {
   background-color: red;
 } */
@@ -548,3 +547,33 @@ img.Icon {
 /* .showalliance {
   display: left;
 } */
+
+.redindicator {
+  background-color: #eb5555;
+  width: 230px;
+  height: 60px;
+  margin: auto;
+  border: #111;
+  font-weight: bold;
+}
+
+
+.blueindicator {
+  background-color: #559eeb;
+  width: 230px;
+  height: 60px;
+  margin: auto;
+  font-weight: bold;
+}
+
+.redindicator p {
+  /* background-color: fuchsia; */
+  height: 100%;
+  line-height: 60px;
+}
+
+.blueindicator p {
+  /* background-color: fuchsia; */
+  height: 100%;
+  line-height: 60px;
+}

@@ -351,25 +351,25 @@
    /* background-color: #ffe599; */
    border-right-color: grey;
    border-bottom-color: grey;
-   background-color: #b6d7a8ff;
+  background-color: #eeeeee;
  }
 
  .nobgcolor {
    border-right-color: grey;
    border-bottom-color: grey;
-   background-color: #b6d7a8ff;
+  background-color: #eeeeee;
  }
 
  .test {
    border-right-color: black;
    border-bottom-color: grey;
-   background-color: #b6d7a8ff;
+  background-color: #eeeeee;
    /* border-right-color: black; */
  }
 
  .conelow {
    border-right-color: grey;
-   background-color: #b6d7a8ff;
+  background-color: #eeeeee;
  }
 
  .testleft {
@@ -399,5 +399,5 @@
  }
 
  .colorbg2 {
-   background-color: #b6d7a8ff;
+  background-color: #eeeeee;
  }
