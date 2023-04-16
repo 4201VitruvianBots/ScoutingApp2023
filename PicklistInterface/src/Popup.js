@@ -56,7 +56,7 @@ function SimplePopup({ currentData, onSubmit, onDelete, close, isEditing }) {
                 onSubmit(new SimpleTableData(title, currentData?.entries, statistic, descending));
                     close();
                 }}>
-                    {isEditing ? "Edit Table" : "Create Table"}
+                {isEditing ? "Update Table" : "Create Table"}
                 </button>
 
             {isEditing && <button onClick={onDelete}>DEEEELEEEEETE</button>}
@@ -171,7 +171,7 @@ function WeightedPopup({ currentData, onSubmit, onDelete, close, isEditing }) {
                     close();
 
             }}>
-                {isEditing ? "Edit Table" : "Create Table"}
+                {isEditing ? "Update Table" : "Create Table"}
             </button>
 
             {isEditing && <button onClick={onDelete}>DEEEELEEEEETE</button>}
@@ -195,7 +195,7 @@ function BlankPopup({ currentData, onSubmit, onDelete, close, isEditing }) {
                 onSubmit(new BlankTableData(title, currentData?.entries ?? []));
                 close();
             }}>
-                {isEditing ? "Edit Table" : "Create Table"}
+                {isEditing ? "Update Table" : "Create Table"}
             </button>
             {isEditing && <button onClick={onDelete}>DEEEELEEEEETE</button>}
         </div>
