@@ -35,6 +35,18 @@ class SimpleTableData extends BlankTableData {
         this.descending = descending;
     }
 
+    sort(robotData) {
+        const newEntries = Object.entries(robotData)
+            .map(([team_number, stats]) => ({ team: team_number, value: stats[this.statistic] }))
+            .sort(this.descending
+                ? (a, b) => b.value - a.value
+                : (a, b) => a.value - b.value
+            );
+        // TODO this is temporary testing data
+        return new SimpleTableData(this.name, newEntries, this.statistic, this.descending);
+    }
+
+
 }
 
 class WeightedTableData extends BlankTableData {
@@ -50,6 +62,43 @@ class WeightedTableData extends BlankTableData {
     constructor(name, entries, factors) {
         super(name, entries);
         this.factors = factors;
+    }
+
+    sort(robotData, mins, maxes) {
+        const newEntries = Object.entries(robotData)
+            .map(([team_number, stats]) => ({
+                team: team_number,
+                value: this.factors
+                    .map(({ statistic, weight }) => weight *
+                        (stats[statistic] - mins[statistic]) /
+                        (maxes[statistic] - mins[statistic]))
+                    .map(number => Math.round(number * 100) / 100)
+                    .reduce((sum, current) => sum + current, 0)
+            }))
+            .sort((a, b) => b.value - a.value);
+        return new WeightedTableData(this.name, newEntries, this.factors);
+    }
+
+    mins(robotData) {
+        return Object.fromEntries(
+            this.factors.map(({ statistic }) => [
+                statistic,
+                Object.values(robotData).reduce(
+                    (min, current) => Math.min(min, current[statistic]),
+                    Number.MAX_VALUE)
+            ])
+        );
+    }
+
+    maxes(robotData) {
+        return Object.fromEntries(
+            this.factors.map(({ statistic }) => [
+                statistic,
+                Object.values(robotData).reduce(
+                    (min, current) => Math.max(min, current[statistic]),
+                    0)
+            ])
+        );
     }
 }
 
