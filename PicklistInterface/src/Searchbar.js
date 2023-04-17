@@ -1,13 +1,13 @@
 import React, { useContext } from 'react'
 import Select from 'react-select'
 import { useState } from "react";
-import { TeamOptionsContext } from './App';
+import { OptionsContext } from './App';
 
 function SearchBar() {
     const [selectedOption, setSelectedOption] = useState();
     const [ifselected, setIfSelected] = useState(false);
 
-    const teamOptions = useContext(TeamOptionsContext);
+    const { teams: teamOptions } = useContext(OptionsContext);
 
     const handleChange = (selectedOption) => {
 
@@ -28,7 +28,7 @@ function SearchBar() {
             />
             <input type="checkbox" className="showInfo" onClick={handleCheckboxChange}></input>
 
-            
+
             {ifselected && (
                 <div >
 

@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { SimpleTableData, WeightedTableData, BlankTableData } from './Data.js';
 import { SimplePopup, WeightedPopup, BlankPopup } from "./Popup.js";
 import Popup from "reactjs-popup";
-import { TeamOptionsContext } from "./App.js";
+import { ListContext, OptionsContext } from "./App.js";
 import Sortable from "./Sortable.js";
 
 /**
@@ -12,10 +12,12 @@ import Sortable from "./Sortable.js";
  * @returns 
  */
 function GeneratedTeamTable({ entries }) {
+    const { DNP: DNPList } = useContext(ListContext);
+
     return (<tbody>
         {entries && entries.map((e, i) => (
             <tr key={i}>
-                <td>{e.team}</td>
+                <td className={DNPList.includes(e.team) ? 'dnp' : ''}>{e.team}</td>
                 <td>{e.value}</td>
             </tr>
         ))}
@@ -28,7 +30,8 @@ function GeneratedTeamTable({ entries }) {
  * @returns 
  */
 function ManualTeamTable({ entries, setEntries }) {
-    const teamOptions = useContext(TeamOptionsContext);
+    const { teams: teamOptions } = useContext(OptionsContext);
+    const { DNP: DNPList } = useContext(ListContext);
 
     const handleEntryChange = (index) => (
         (option) => {
@@ -54,7 +57,8 @@ function ManualTeamTable({ entries, setEntries }) {
                     options={teamOptions}
                     value={teamOptions.find(option => entry === option.value)}
                     onChange={handleEntryChange(index)}
-                    classNamePrefix='sort-table-select' className='sort-table-select'
+                    classNamePrefix='sort-table-select'
+                    className={'sort-table-select' + (DNPList.includes(entry) ? ' dnp' : '')}
                 />
                 <button onClick={deleteEntry(index)}><span className="material-icons-outlined">close</span></button>
             </>}

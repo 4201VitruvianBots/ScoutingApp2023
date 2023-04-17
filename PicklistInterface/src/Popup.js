@@ -4,10 +4,10 @@ import Popup from 'reactjs-popup';
 import React from 'react';
 import { SimpleTableData, WeightedTableData, BlankTableData } from "./Data.js";
 import Select from 'react-select';
-import { StatisticOptionsContext } from "./App.js";
+import { OptionsContext } from "./App.js";
 
 function SimplePopup({ currentData, onSubmit, onDelete, close, isEditing }) {
-    const statisticOptions = useContext(StatisticOptionsContext);
+    const { statistics: statisticOptions } = useContext(OptionsContext);
 
     // <SimplePopup onSubmit={updateTable(5)} />
 
@@ -23,53 +23,48 @@ function SimplePopup({ currentData, onSubmit, onDelete, close, isEditing }) {
         <div className="popup">
             <p className="popupHeader">Simple Statistic</p>
 
-            <div className="popupContent">
+            <p>
                 <label className="popupLabel" htmlFor="title">Title: </label>
                 <input type="text" id="title" className="popupInput" value={title} onChange={inputSetter(setTitle)} />
-            </div>
+            </p>
 
 
-            <div className="popupContent">
+            <p>
                 <label htmlFor="sortBy" className="popupLabel">Statistic: </label>
                 <Select
                     options={statisticOptions}
                     value={statisticOptions.find(option => option.value === statistic)}
                     onChange={e => setStatistic(e.value)}
+                    className="popup-dropdown"
                 />
-            </div>
+            </p>
 
-            <div className="popupContent">
-                <label className="popupLabelLast" htmlFor="checkbox">
+            <p>
+                <label className="popupLabel" htmlFor="checkbox">
                     Descending?
                     <input type="checkbox" id="checkbox" className="popupInputLast" checked={descending} onChange={handleCheckboxChange} />
                 </label>
-            </div>
+            </p>
 
-
-
-
-           
-
-            <button className="exitButton" onClick={close}><span className="material-icons-outlined">close</span></button>
-
+            <div>
                 <button className="popupClose" onClick={() => {
-                onSubmit(new SimpleTableData(title, currentData?.entries, statistic, descending));
+                    onSubmit(new SimpleTableData(title, currentData?.entries, statistic, descending));
                     close();
                 }}>
-                {isEditing ? "Update Table" : "Create Table"}
+                    {isEditing ? "Update Table" : "Create Table"}
                 </button>
 
-            {isEditing && <button onClick={onDelete}><span className="material-icons-outlined">delete</span></button>}
+                {isEditing && <button className="delete-button" onClick={onDelete}><span className="material-icons-outlined">delete</span></button>}
+            </div>
 
-                
-            
+            <button className="exitButton" onClick={close}><span className="material-icons-outlined">close</span></button>
 
         </div>
     )
 }
 
 function WeightedPopup({ currentData, onSubmit, onDelete, close, isEditing }) {
-    const statisticOptions = useContext(StatisticOptionsContext);
+    const { statistics: statisticOptions } = useContext(OptionsContext);
 
     const [title, setTitle] = useState(currentData?.name ?? '');
     const [factors, setFactors] = useState(currentData?.factors ?? [{ statistic: '', weight: 1 }]);
@@ -109,51 +104,47 @@ function WeightedPopup({ currentData, onSubmit, onDelete, close, isEditing }) {
 
 
     return (
-        <div className="popup">
+        <div className="popup popup-weighted">
             <p className="popupHeader">Weighted Statistic</p>
 
-           
-                <div className="popupContent">
-                    <label className="popupLabel" htmlFor="title" >Title: </label>
+
+            <p>
+                <label className="popupLabel" htmlFor="title" >Title: </label>
                 <input type="text" id="title" className="popupInput" value={title} onChange={inputSetter(setTitle)}></input>
+            </p>
+
+            <div className="weighted-labels">
+                <label className="popupLabel labelStatistic">Statistic</label>
+                <label className="popupLabel labelWeight">Weight</label>
+            </div>
+
+            {factors.map((e, i) => (
+                <div className="factor" key={i}>
+
+                    <Select
+                        options={statisticOptions}
+                        value={statisticOptions.find(option => option.value === e.statistic)}
+                        onChange={option => updateFactorStatistic(i)(option.value)}
+                        className="popup-dropdown"
+                    />
+
+                    <input type="number" id="weight" className="popupInput" value={e.weight} onChange={inputSetter(updateFactorWeight(i))}></input>
+
+
+                    <button className="removeFactor" onClick={removeFactor(i)}><span className="material-icons-outlined">remove</span></button>
+
                 </div>
 
-                {factors.map((e, i) => (
-                    <React.Fragment key={i}>
-                        <div className="popupContent-Stat">
-                            <label htmlFor="sortBy" className="popupLabel">Statistic: </label>
-                            <br />
-                            <Select
-                                options={statisticOptions}
-                                value={statisticOptions.find(option => option.value === e.statistic)}
-                                onChange={option => updateFactorStatistic(i)(option.value)}
-                            />
+            ))}
 
-                        </div>
-
-                        <div className="popupContent-Weight">
-                            <label htmlFor="weight" className="popupLabel">Weight: </label>
-                            <br />
-                            <input type="number" id="weight" className="popupInput" value={e.weight} onChange={inputSetter(updateFactorWeight(i))}></input>
-
-                        </div>
-                        
-
-                        <button className="removeFactor" onClick={removeFactor(i)}><span className="material-icons-outlined">remove</span></button>
-                        
-
-                    </React.Fragment>
-
-                ))}
-             
             <button className="addFactor" onClick={addFactor}><span className="material-icons-outlined">add</span></button>
 
-                
-
-                {/* how does addStatistic() work with the following? */}
 
 
-                {/* --> NEED TO FINISH THIS!
+            {/* how does addStatistic() work with the following? */}
+
+
+            {/* --> NEED TO FINISH THIS!
                         - Essentially, this Statistic/Weight selection is the same thing as our Foul cards
                         in SuperScouting. We generate something interactive (buttons, dropdowns, etc), and
                         then set its value to state. We then add each new item (in this case, each
@@ -161,21 +152,20 @@ function WeightedPopup({ currentData, onSubmit, onDelete, close, isEditing }) {
                         Use the Foulcards component code in SuperScouting as a reference. */}
 
 
-            <button className="exitButton" onClick={close}><span className="material-icons-outlined">close</span></button>
-
-                <br/>
-                <br/>
+            <div>
                 <button className="popupClose" onClick={() => {
 
-                onSubmit(new WeightedTableData(title, currentData?.entries, factors));
+                    onSubmit(new WeightedTableData(title, currentData?.entries, factors));
                     close();
 
-            }}>
-                {isEditing ? "Update Table" : "Create Table"}
-            </button>
+                }}>
+                    {isEditing ? "Update Table" : "Create Table"}
+                </button>
 
-            {isEditing && <button onClick={onDelete}><span className="material-icons-outlined">delete</span></button>}
-           
+                {isEditing && <button className="delete-button" onClick={onDelete}><span className="material-icons-outlined">delete</span></button>}
+            </div>
+
+            <button className="exitButton" onClick={close}><span className="material-icons-outlined">close</span></button>
 
         </div>
     );
@@ -187,17 +177,18 @@ function BlankPopup({ currentData, onSubmit, onDelete, close, isEditing }) {
     return (
         <div className="popup">
             <p className="popupHeader">Blank</p>
-            <div className="popupContent">
-                <label className="popupLabel" htmlFor="title">Title: </label>
-                <input type="text" id="title" className="popupInput" value={title} onChange={inputSetter(setTitle)} />
+            <label className="popupLabel" htmlFor="title">Title: </label>
+            <input type="text" id="title" className="popupInput" value={title} onChange={inputSetter(setTitle)} />
+            <div>
+                <button className="popupClose" onClick={() => {
+                    onSubmit(new BlankTableData(title, currentData?.entries ?? []));
+                    close();
+                }}>
+                    {isEditing ? "Update Table" : "Create Table"}
+                </button>
+                {isEditing && <button className="delete-button" onClick={onDelete}><span className="material-icons-outlined">delete</span></button>}
             </div>
-            <button className="popupClose" onClick={() => {
-                onSubmit(new BlankTableData(title, currentData?.entries ?? []));
-                close();
-            }}>
-                {isEditing ? "Update Table" : "Create Table"}
-            </button>
-            {isEditing && <button onClick={onDelete}><span className="material-icons-outlined">delete</span></button>}
+            <button className="exitButton" onClick={close}><span className="material-icons-outlined">close</span></button>
         </div>
     )
 }
@@ -270,7 +261,7 @@ function PopupButton({ addTable, statisticOptions }) {
 
                     {/* <input type="button" onClick={SimpleSelected("Simple")}>Simple</input> */}
 
-                    <br/>
+                    <br />
                     <button className="exitButtonMain" onClick={end}><span className="material-icons-outlined">close</span></button>
 
                 </div>

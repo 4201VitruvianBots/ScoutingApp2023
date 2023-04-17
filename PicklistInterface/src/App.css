@@ -65,7 +65,6 @@ h1 {
   background-color: #000000;
   border-radius: 10px;
   width: 150px;
-  height: 110px;
   padding: 10px;
   position: absolute;
   left: 20px;
@@ -102,15 +101,11 @@ h1 {
 .dropdownContinue,
 .popupClose,
 .addStat, 
-.exitButton {
-  font-size: 15px;
-  display: block;
-  margin: 15px auto;
+.exitButton,
+  .delete-button {
   border: 0px;
   border-radius: 15px;
-  width: 150px;
   cursor: pointer;
-
 }
 
 .addStat {
@@ -138,56 +133,32 @@ h1 {
   background-color: black;
 }
 
-.popupClose, .exitButton {
+.popupClose, .exitButton, .delete-button  {
   color: white;
   background-color: #085f00;
-  width: 120px;
   padding: 10px;
   display: inline;
-  margin: 5px;
-  margin-top: 10px;
   
 }
 
 .popupClose {
   background-color: #085f00;
-  position: relative;
-  left: 85px;
-  top: 15px;
-  margin-bottom: 20px;
-  
-
+  text-align: center;
 }
 
 .exitButtonMain, .exitButton {
   background-color: rgba(210, 49, 49, 0.763);
-  height: 20px;
+  display: inline-block;
   margin: 5px;
   padding: 2px;
   font-size: 15px;
   position: absolute;
-  left: 145px;
+  right: 5px;
   top: 5px;
   border-radius: 10px;
   border: none;
-  height: 25px;
-  width: 50px;
+  line-height: 0;
 }
-
-.exitButton {
-  left: 265px;
-  top: 5px;
-  width: 40px;
-
-}
-
-.exitButtonMain {
-  left: 127px;
-  top: 2px;
-  width: 30px;
-  font-size: 15px;
-}
-
 
 .bottomButtons { 
   margin: 0 auto;
@@ -201,18 +172,11 @@ h1 {
   background-color: rgb(0, 170, 255);
   cursor: pointer;
   margin: 5px;
-  position: absolute;
-  left: 140px;
-  height: 100px;
-  margin-top: 25px;
   padding: 2px;
   font-size: 15px;
   border-radius: 100px;
   border: none;
-  height: 25px;
-  width: 35px;
-  margin-top:65px;
-  
+  line-height: 1;
 }
 
 .popup {
@@ -220,12 +184,20 @@ h1 {
   
   border-radius: 15px;
   width: 300px;
-  height: fit-content;
   margin: 0 auto;
   padding: 10px;
   position: absolute;
   left: 20px;
   top: 20px;
+  text-align: center;
+}
+
+.popup-weighted {
+  width: 400px;
+}
+
+.popup p {
+  margin: 1em 0;
 }
 
 .popupContent {
@@ -281,30 +253,28 @@ h1 {
   margin-left: 22.5%;
 }
 
-.removeFactor{
+.removeFactor {
   background-color: rgba(248, 23, 23, 0.854);
   cursor: pointer;
-  margin: 5px;
-  position: absolute;
-  left: 250px;
-  height: 20px;
-  margin-top: 25px;
   padding: 2px;
   font-size: 15px;
   border-radius: 100px;
   border: none;
-  height: 25px;
-  width: 35px;
+  line-height: 1;
 }
 
+.delete-button {
+  background-color: rgba(210, 49, 49, 0.763);
+  color: white;
+  margin-left: 1em;
+  padding: 5px;
+}
 
 .popupHeader {
   /* color:#085f00; */
   color: #83c183;
   font-size: 23px;
   font-weight: 650;
-  width: fit-content;
-  margin: 0px auto 10px;
   padding: 5px;
 }
 
@@ -319,12 +289,42 @@ h1 {
   color: black;
 }
 
-.popupLabel,
 .popupInput {
   margin-bottom: 15px;
 }
 
 
+.popup-dropdown {
+  display: block;
+}
+
+.popupInput[type="number"] {
+  width: 3em;
+  margin: 0;
+}
+
+.factor {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  gap: 0.5em;
+  margin: 0.5em 0;
+}
+
+.factor .popup-dropdown {
+  flex-grow: 1;
+  display: inline-block;
+}
+
+.weighted-labels {
+  display: flex;
+  flex-flow: row;
+  padding-right: 2em;
+}
+
+.labelStatistic {
+  flex-grow: 1;
+}
 
 table,
 th,

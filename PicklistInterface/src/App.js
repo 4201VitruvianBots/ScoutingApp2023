@@ -6,8 +6,8 @@ import { BlankTableData, SimpleTableData, WeightedTableData, UploadButton } from
 import { createContext, useMemo, useState } from 'react';
 import SearchBar from './Searchbar';
 
-const TeamOptionsContext = createContext([]);
-const StatisticOptionsContext = createContext([]);
+const OptionsContext = createContext([]);
+const ListContext = createContext([]);
 
 function App() {
   /** @type {(BlankTableData | SimpleTableData | WeightedTableData )[]} */
@@ -74,8 +74,8 @@ function App() {
   };
 
   return (
-    <TeamOptionsContext.Provider value={teamOptions}>
-      <StatisticOptionsContext.Provider value={statisticOptions}>
+    <OptionsContext.Provider value={{ teams: teamOptions, statistics: statisticOptions }}>
+      <ListContext.Provider value={{ DNP: DNPList, comments: comments }}>
         <main>
           <header>
             <h1>Vitruvian Statistical Analysis</h1>
@@ -107,14 +107,14 @@ function App() {
             <FinalTable entries={finalPicklist} setEntries={setFinalPicklist} />
           </section>
         </main>
-      </StatisticOptionsContext.Provider>
-    </TeamOptionsContext.Provider>
+      </ListContext.Provider>
+    </OptionsContext.Provider>
   );
 }
 
 
 export default App;
-export { StatisticOptionsContext, TeamOptionsContext };
+export { OptionsContext, ListContext };
 
 
 
@@ -122,6 +122,6 @@ export { StatisticOptionsContext, TeamOptionsContext };
  - Combine CSV files from Match, Pit, and Super scouting into one Mega-CSV file
  - Import the Mega-CSV file into PicklistInterface
  - (Python script to turn it into a json file?)
- - Use the data from the CSV file 
+ - Use the data from the CSV file
 
 */
