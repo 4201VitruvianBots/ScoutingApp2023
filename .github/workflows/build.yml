@@ -17,6 +17,7 @@ jobs:
           - SuperScouting
           - MatchData
           - AdminInterface
+          - PicklistInterface
       fail-fast: false
 
     defaults:
