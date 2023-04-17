@@ -413,3 +413,7 @@ table {
 .popupButtonClos:hover {
   background-color: orange;
 }
+
+.sort-table-select {
+  display: inline-block;
+}

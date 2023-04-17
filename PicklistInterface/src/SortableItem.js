@@ -1,6 +1,7 @@
 import React from 'react';
 import {useSortable} from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities';
+import 'material-icons/iconfont/outlined.css';
 
 export function SortableItem(props) {
   const {
@@ -20,7 +21,7 @@ export function SortableItem(props) {
     
     <tr ref={setNodeRef} style={style} {...attributes}>
       <td>
-        {props.children(<span className="drag-handle" {...listeners}>{'<>'}</span>)}
+        {props.children(<span className="material-icons-outlined" {...listeners}>drag_indicator</span>)}
       </td>
     </tr>
   );

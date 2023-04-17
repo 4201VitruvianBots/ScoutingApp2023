@@ -1,4 +1,5 @@
 import './App.css';
+import 'material-icons/iconfont/outlined.css';
 import { PopupButton } from './Popup.js';
 import { BlankTable, SimpleTable, WeightedTable, DNPTable, FinalTable } from './Table.js';
 import { BlankTableData, SimpleTableData, WeightedTableData, UploadButton } from './Data';

@@ -50,7 +50,7 @@ function SimplePopup({ currentData, onSubmit, onDelete, close, isEditing }) {
 
            
 
-                <button className="exitButton" onClick={close}>Exit</button>
+            <button className="exitButton" onClick={close}><span className="material-icons-outlined">close</span></button>
 
                 <button className="popupClose" onClick={() => {
                 onSubmit(new SimpleTableData(title, currentData?.entries, statistic, descending));
@@ -59,7 +59,7 @@ function SimplePopup({ currentData, onSubmit, onDelete, close, isEditing }) {
                 {isEditing ? "Update Table" : "Create Table"}
                 </button>
 
-            {isEditing && <button onClick={onDelete}>DEEEELEEEEETE</button>}
+            {isEditing && <button onClick={onDelete}><span className="material-icons-outlined">delete</span></button>}
 
                 
             
@@ -139,14 +139,14 @@ function WeightedPopup({ currentData, onSubmit, onDelete, close, isEditing }) {
                         </div>
                         
 
-                        <input type="button" className="removeFactor" onClick={removeFactor(i)} value="X" />
+                        <button className="removeFactor" onClick={removeFactor(i)}><span className="material-icons-outlined">remove</span></button>
                         
 
                     </React.Fragment>
 
                 ))}
              
-                <input type="button" className="addFactor" onClick={addFactor} value="+" />
+            <button className="addFactor" onClick={addFactor}><span className="material-icons-outlined">add</span></button>
 
                 
 
@@ -161,7 +161,7 @@ function WeightedPopup({ currentData, onSubmit, onDelete, close, isEditing }) {
                         Use the Foulcards component code in SuperScouting as a reference. */}
 
 
-                <button onClick={close} className="exitButton">Exit</button>
+            <button className="exitButton" onClick={close}><span className="material-icons-outlined">close</span></button>
 
                 <br/>
                 <br/>
@@ -174,7 +174,7 @@ function WeightedPopup({ currentData, onSubmit, onDelete, close, isEditing }) {
                 {isEditing ? "Update Table" : "Create Table"}
             </button>
 
-            {isEditing && <button onClick={onDelete}>DEEEELEEEEETE</button>}
+            {isEditing && <button onClick={onDelete}><span className="material-icons-outlined">delete</span></button>}
            
 
         </div>
@@ -197,7 +197,7 @@ function BlankPopup({ currentData, onSubmit, onDelete, close, isEditing }) {
             }}>
                 {isEditing ? "Update Table" : "Create Table"}
             </button>
-            {isEditing && <button onClick={onDelete}>DEEEELEEEEETE</button>}
+            {isEditing && <button onClick={onDelete}><span className="material-icons-outlined">delete</span></button>}
         </div>
     )
 }
@@ -271,7 +271,7 @@ function PopupButton({ addTable, statisticOptions }) {
                     {/* <input type="button" onClick={SimpleSelected("Simple")}>Simple</input> */}
 
                     <br/>
-                    <button className="exitButtonMain" onClick={end}>X</button>
+                    <button className="exitButtonMain" onClick={end}><span className="material-icons-outlined">close</span></button>
 
                 </div>
 

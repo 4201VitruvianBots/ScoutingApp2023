@@ -56,7 +56,7 @@ function ManualTeamTable({ entries, setEntries }) {
                     onChange={handleEntryChange(index)}
                     classNamePrefix='sort-table-select' className='sort-table-select'
                 />
-                <button onClick={deleteEntry(index)}>X</button>
+                <button onClick={deleteEntry(index)}><span className="material-icons-outlined">close</span></button>
             </>}
         </Sortable>
         <tr>
@@ -104,7 +104,7 @@ function SimpleTable({ data, setData, onDelete, robotData, onApply }) {
                 <tr>
                     <th className="tableTitle" colSpan={2}>
                         {name}
-                        <Popup trigger={<button>Edit</button>} modal nested>
+                        <Popup trigger={<button><span className="material-icons-outlined">edit</span></button>} modal nested>
                             {close => (<SimplePopup currentData={data} onSubmit={setData} onDelete={onDelete} close={close} isEditing={true} />)}
                         </Popup>
                     </th>
@@ -162,7 +162,7 @@ function WeightedTable({ data, setData, onDelete, robotData, onApply }) {
             <tr>
                 <th className="tableTitle" colSpan={2}>
                     {name}
-                    <Popup trigger={<button>Edit</button>} modal nested>
+                    <Popup trigger={<button><span className="material-icons-outlined">edit</span></button>} modal nested>
                         {close => (<WeightedPopup currentData={data} onSubmit={setData} onDelete={onDelete} close={close} isEditing={true} />)}
                     </Popup>
                 </th>
@@ -196,7 +196,7 @@ function BlankTable({ data, setData, onDelete, onApply }) {
             <tr>
                 <th className="tableTitle" >
                     {name}
-                    <Popup trigger={<button>Edit</button>} modal nested>
+                    <Popup trigger={<button><span className="material-icons-outlined">edit</span></button>} modal nested>
                         {close => (<BlankPopup currentData={data} onSubmit={setData} onDelete={onDelete} close={close} isEditing={true} />)}
                     </Popup>
                 </th>
