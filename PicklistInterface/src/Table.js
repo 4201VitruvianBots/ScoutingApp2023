@@ -6,6 +6,7 @@ import Popup from "reactjs-popup";
 import { ListContext, OptionsContext } from "./App.js";
 import Sortable from "./Sortable.js";
 import { inputSetter } from "./Util.js";
+import TextareaAutosize from 'react-textarea-autosize';
 
 function TeamComment({ team }) {
     const { comments, setComments } = useContext(ListContext);
@@ -17,7 +18,7 @@ function TeamComment({ team }) {
         <Popup trigger={
             <button className={'comment-button' + (comment ? '' : ' no-comment')}><span className="material-icons-outlined">comment</span></button>
         } closeOnDocumentClick position="right center">
-            <textarea onChange={inputSetter(handleChange)} value={comment} />
+            <TextareaAutosize onChange={inputSetter(handleChange)} value={comment} spellCheck={false} />
         </Popup>
     );
 }

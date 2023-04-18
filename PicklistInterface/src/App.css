@@ -429,3 +429,7 @@ td.dnp, .dnp .sort-table-select__control {
 .no-comment {
   color: black;
 }
+
+textarea {
+  resize: none;
+}
