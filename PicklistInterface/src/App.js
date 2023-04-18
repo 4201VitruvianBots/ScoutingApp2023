@@ -75,7 +75,7 @@ function App() {
 
   return (
     <OptionsContext.Provider value={{ teams: teamOptions, statistics: statisticOptions }}>
-      <ListContext.Provider value={{ DNP: DNPList, comments: comments }}>
+      <ListContext.Provider value={{ DNP: DNPList, comments: comments, setComments: setComments }}>
         <main>
           <header>
             <h1>Vitruvian Statistical Analysis</h1>

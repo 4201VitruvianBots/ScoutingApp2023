@@ -1,10 +1,26 @@
 import { useEffect, useMemo, useContext } from "react";
 import Select from 'react-select';
-import { SimpleTableData, WeightedTableData, BlankTableData } from './Data.js';
+import { BlankTableData } from './Data.js';
 import { SimplePopup, WeightedPopup, BlankPopup } from "./Popup.js";
 import Popup from "reactjs-popup";
 import { ListContext, OptionsContext } from "./App.js";
 import Sortable from "./Sortable.js";
+import { inputSetter } from "./Util.js";
+
+function TeamComment({ team }) {
+    const { comments, setComments } = useContext(ListContext);
+
+    const comment = comments?.[team];
+    const handleChange = (text) => setComments({ ...comments, [team]: text });
+
+    return (
+        <Popup trigger={
+            <button className={'comment-button' + (comment ? '' : ' no-comment')}><span className="material-icons-outlined">comment</span></button>
+        } closeOnDocumentClick position="right center">
+            <textarea onChange={inputSetter(handleChange)} value={comment} />
+        </Popup>
+    );
+}
 
 /**
  * 
@@ -15,10 +31,13 @@ function GeneratedTeamTable({ entries }) {
     const { DNP: DNPList } = useContext(ListContext);
 
     return (<tbody>
-        {entries && entries.map((e, i) => (
+        {entries && entries.map(({ team, value }, i) => (
             <tr key={i}>
-                <td className={DNPList.includes(e.team) ? 'dnp' : ''}>{e.team}</td>
-                <td>{e.value}</td>
+                <td className={DNPList.includes(team) ? 'dnp' : ''}>
+                    {team}
+                    <TeamComment team={team} />
+                </td>
+                <td className={DNPList.includes(team) ? 'dnp' : ''}>{value}</td>
             </tr>
         ))}
     </tbody>);
@@ -60,6 +79,7 @@ function ManualTeamTable({ entries, setEntries }) {
                     classNamePrefix='sort-table-select'
                     className={'sort-table-select' + (DNPList.includes(entry) ? ' dnp' : '')}
                 />
+                <TeamComment team={entry} />
                 <button onClick={deleteEntry(index)}><span className="material-icons-outlined">close</span></button>
             </>}
         </Sortable>

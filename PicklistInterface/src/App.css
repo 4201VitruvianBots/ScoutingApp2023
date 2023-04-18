@@ -417,3 +417,15 @@ table {
 .sort-table-select {
   display: inline-block;
 }
+
+td.dnp, .dnp .sort-table-select__control {
+  background-color: rgba(210, 49, 49, 0.763);
+}
+
+.comment-button {
+  color: #1553ca;
+}
+
+.no-comment {
+  color: black;
+}
