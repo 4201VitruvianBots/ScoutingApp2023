@@ -1,0 +1,60 @@
+body {
+    background-color: #ccc;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    flex-flow: column;
+    align-items: stretch;
+    align-content: center;
+    justify-content: center;
+    gap: 1em;
+    margin: 0;
+    height: 100vh;
+    padding: 2em;
+    box-sizing: border-box;
+}
+
+.section {
+    padding: 1em;
+    background-color: #eee;
+    border-radius: 1em;
+}
+
+.columns {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.column {
+    display: flex;
+    flex-flow: column;
+    gap: 0.5em;
+    flex-grow: 1;
+    flex-basis: 1;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+input[type="number"] {
+    margin-right: 0.5em;
+}
+
+input[type="number"], .field {
+    width: 3em;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 0.5em;
+    background-color: #0000003f;
+    border: none;
+}
+
+.field {
+    margin: auto;
+    font-size: 2em;
+}
