@@ -8,6 +8,8 @@ const inputs = Object.fromEntries([
 
 const output = document.getElementById('score')!;
 
+const resetButton = document.getElementById('reset')!;
+
 console.log(inputs);
 
 const updateScore = () => {
@@ -35,5 +37,13 @@ const updateScore = () => {
     output.innerText = score.toString();
 }
 
+const resetAll= () => {
+    Object.values(inputs).forEach(e => e.value = '0');
+    updateScore();
+}
+
 Object.values(inputs).forEach(e => e.addEventListener('change', updateScore));
 
+resetButton.addEventListener('click', resetAll);
+
+updateScore();
