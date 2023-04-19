@@ -236,7 +236,7 @@ function SavePage(props) {
                 {/* <div id="QRCode">{props.QRCode}</div> */}
             </div>
             <div>
-                <p className="version">Version Daly.0</p>
+                <p className="version">Version Daly.1</p>
             </div>
 
 
