@@ -4,7 +4,7 @@
     "typescript": "^5.0.4"
   },
   "scripts": {
-      "build": "tsc",
-      "start": "tsc --watch & live-server ."
+    "build": "tsc",
+    "start": "tsc --watch & live-server --host=0.0.0.0 ."
   }
 }

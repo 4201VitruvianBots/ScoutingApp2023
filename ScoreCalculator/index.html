@@ -10,10 +10,9 @@
 
 <body>
     <h1>Scoring Calculator</h2>
-    <div class="section">
-        <h2>Grid Scores</h2>
-        <div class="columns">
-            <div class="column">
+        <div class="section">
+            <h2>Autonomous</h2>
+            <div class="columns">
                 <div>
                     <label>
                         <input id="auto_low" type="number" value="0">
@@ -32,8 +31,29 @@
                         Auto High Pieces
                     </label>
                 </div>
+                <div>
+                    <label>
+                        <input id="auto_dock" type="number" value="0">
+                        Auto docked robots
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input id="auto_balance" type="number" value="0">
+                        Auto balanced robots
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input id="mobility" type="number" value="0">
+                        Number of mobility robots
+                    </label>
+                </div>
             </div>
-            <div class="column">
+        </div>
+        <div class="section">
+            <h2>Teleop</h2>
+            <div class="columns">
                 <div>
                     <label>
                         <input id="tele_low" type="number" value="0">
@@ -52,8 +72,24 @@
                         Teleop High Pieces
                     </label>
                 </div>
-            </div>
-            <div class="column">
+                <div>
+                    <label>
+                        <input id="tele_dock" type="number" value="0">
+                        Teleop docked robots
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input id="tele_balance" type="number" value="0">
+                        Teleop balanced robots
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input id="parked" type="number" value="0">
+                        Number of parked robots
+                    </label>
+                </div>
                 <div>
                     <label>
                         <input id="supercharged" type="number" value="0">
@@ -68,61 +104,13 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="section">
-        <h2>Charging Station</h2>
-        <div class="columns">
-            <div class="column">
-                <div>
-                    <label>
-                        <input id="auto_dock" type="number" value="0">
-                        Auto docked robots
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input id="auto_balance" type="number" value="0">
-                        Auto balanced robots
-                    </label>
-                </div>
-            </div>
-            <div class="column">
-                <div>
-                    <label>
-                        <input id="tele_dock" type="number" value="0">
-                        Teleop docked robots
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input id="tele_balance" type="number" value="0">
-                        Teleop balanced robots
-                    </label>
-                </div>
-            </div>
-            <div class="column">
-                <div>
-                    <label>
-                        <input id="mobility" type="number" value="0">
-                        Number of mobility robots
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <input id="parked" type="number" value="0">
-                        Number of parked robots
-                    </label>
-                </div>
-            </div>
+        <div class="section">
+            <h2>Final Score:</h2>
+            <div id="score" class="field">0</div>
+            <button id="reset">Reset</button>
         </div>
-    </div>
-    <div class="section">
-        <h2>Final Score:</h2>
-        <div id="score" class="field">0</div>
-        <button id="reset">Reset</button>
-    </div>
-    <script src="script.js"></script>
+        <script src="script.js"></script>
 </body>
 
 </html>
