@@ -71,11 +71,11 @@ def calculate_match_analysis(Team_Number, db_connection, *, appendTo = {}):
     calculate_match_scores(matches_df, mutate=True)
 
     # Create output variable
-    if Team_Number == None:
-        analysis_output = appendTo
-    else:
-        analysis_output = pd.DataFrame()
-        matches_df = matches_df.groupby('Team_Number')
+    # if Team_Number == None:
+    analysis_output = appendTo
+    # else:
+        # analysis_output = pd.DataFrame()
+        # matches_df = matches_df.groupby('Team_Number')
     
     # Insert team number
     # analysis_output['Team_Number'] = Team_Number
@@ -98,6 +98,7 @@ def calculate_match_analysis(Team_Number, db_connection, *, appendTo = {}):
             
             # Sum up all of the included columns
             totaled_data = matches_df[included_columns].sum(axis=1)
+            # totaled_data = matches_df.apply(lambda x: x[included_columns].sum())
 
             # Calculate aggregations
             analysis_output[f'{type_phase}_{level}_Average'] = totaled_data.mean()

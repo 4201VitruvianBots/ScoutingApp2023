@@ -306,7 +306,7 @@ def handle_postcsv():
 
     mydb.commit()
     teamindex = columns.index('Team_Number')
-    for number in [row[teamindex] for row in formData]:
+    for number in set([row[teamindex] for row in formData]):
         updateAnalysis(number)
     #for i in variable:
        # print(i)
