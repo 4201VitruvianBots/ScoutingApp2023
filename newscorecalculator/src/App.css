@@ -1,0 +1,53 @@
+.ScorePage {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.ScoreRows {
+    display: inline-block;
+    margin-right: 118px;
+    margin-left: 118px;
+}
+
+.ToggleButton {
+    display: inline-block;
+    margin: 15px;
+}
+
+input[type="button"] {
+    width: 40px;
+    height: 40px;
+}
+
+.ToggleButton .number-on {
+    background-color: green;
+    color: black;
+    font-weight: 900;
+    border: 3px black solid;
+
+}
+
+.ToggleButton .number-off {
+    background-color: #93c093;
+    color: white;
+}
+
+.BottomRow {
+    background-color: gray;
+}
+
+.container {
+    display: flex;
+    margin-right: 100px;
+    margin-left: 100px
+}
+
+.container>div {
+    flex: 1;
+}
+
+
+.conecube {
+    display: inline-block;
+    margin: 10px;
+}
