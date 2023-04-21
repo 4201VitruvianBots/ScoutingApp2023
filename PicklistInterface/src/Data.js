@@ -5,6 +5,8 @@ class BlankTableData {
     /** @type {number[]} */
     entries;
 
+    type = 'blank'
+
     /**
      * 
      * @param {string} name 
@@ -21,6 +23,8 @@ class SimpleTableData extends BlankTableData {
     statistic;
     /** @type {boolean} */
     descending;
+
+    type = 'simple';
 
     /**
      * 
@@ -52,6 +56,8 @@ class SimpleTableData extends BlankTableData {
 class WeightedTableData extends BlankTableData {
     /** @type {{statistic: string, weight: number}[]} */
     factors;
+
+    type = 'weighted';
 
     /**
      * 

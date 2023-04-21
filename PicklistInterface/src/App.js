@@ -1,6 +1,7 @@
 import './App.css';
 import 'material-icons/iconfont/outlined.css';
 import { PopupButton } from './Popup.js';
+import { OpenButton, SaveButton } from './Saving.js';
 import { BlankTable, SimpleTable, WeightedTable, DNPTable, FinalTable } from './Table.js';
 import { BlankTableData, SimpleTableData, WeightedTableData, UploadButton } from './Data';
 import { createContext, useMemo, useState } from 'react';
@@ -81,6 +82,8 @@ function App() {
             <h1>Vitruvian Statistical Analysis</h1>
             <PopupButton className="popupButton" addTable={addTable} />
             <UploadButton setRobotData={setRobotData} setStatisticOptions={setStatisticOptions} />
+            <SaveButton robotData={robotData} statisticOptions={statisticOptions} tables={tables} DNPList={DNPList} finalPicklist={finalPicklist} comments={comments} />
+            <OpenButton setRobotData={setRobotData} setStatisticOptions={setStatisticOptions} setTables={setTables} setDNPList={setDNPList} setFinalPicklist={setFinalPicklist} setComments={setComments} />
             <div className="searchSection">
               <p>Team Search</p>
               <SearchBar ></SearchBar>
@@ -108,7 +111,7 @@ function App() {
           </section>
         </main>
       </ListContext.Provider>
-    </OptionsContext.Provider>
+    </OptionsContext.Provider >
   );
 }
 

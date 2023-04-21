@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useContext } from "react";
+import { useState, useEffect, useMemo, useContext } from "react";
 import Select from 'react-select';
 import { BlankTableData } from './Data.js';
 import { SimplePopup, WeightedPopup, BlankPopup } from "./Popup.js";
@@ -11,14 +11,17 @@ import TextareaAutosize from 'react-textarea-autosize';
 function TeamComment({ team }) {
     const { comments, setComments } = useContext(ListContext);
 
-    const comment = comments?.[team];
-    const handleChange = (text) => setComments({ ...comments, [team]: text });
+    const [comment, setComment] = useState();
+
+    useEffect(() => setComment(comments?.[team]), [comments]);
+
+    const handleClose = () => setComments({ ...comments, [team]: comment });
 
     return (
         <Popup trigger={
             <button className={'comment-button' + (comment ? '' : ' no-comment')}><span className="material-icons-outlined">comment</span></button>
-        } closeOnDocumentClick position="right center">
-            <TextareaAutosize onChange={inputSetter(handleChange)} value={comment} spellCheck={false} />
+        } closeOnDocumentClick position="right center" onClose={handleClose}>
+            <TextareaAutosize onChange={inputSetter(setComment)} value={comment} spellCheck={false} />
         </Popup>
     );
 }
