@@ -38,7 +38,7 @@ function GeneratedTeamTable({ entries }) {
                     {team}
                     <TeamComment team={team} />
                 </td>
-                <td className={DNPList.includes(team) ? 'dnp' : ''}>{value}</td>
+                <td className={DNPList.includes(team) ? 'dnp' : ''}>{Math.round(100 * value) / 100}</td>
             </tr>
         ))}
     </tbody>);

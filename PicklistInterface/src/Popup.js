@@ -19,13 +19,14 @@ function SimplePopup({ currentData, onSubmit, onDelete, close, isEditing }) {
         setDescending(event.target.checked);
     }
 
+
     return (
         <div className="popup">
             <p className="popupHeader">Simple Statistic</p>
 
             <p>
                 <label className="popupLabel" htmlFor="title">Title: </label>
-                <input type="text" id="title" className="popupInput" value={title} onChange={inputSetter(setTitle)} />
+                <input type="text" id="title" className="popupInput" value={title} onChange={inputSetter(setTitle)} placeholder={statistic?.label} />
             </p>
 
 
@@ -33,8 +34,8 @@ function SimplePopup({ currentData, onSubmit, onDelete, close, isEditing }) {
                 <label htmlFor="sortBy" className="popupLabel">Statistic: </label>
                 <Select
                     options={statisticOptions}
-                    value={statisticOptions.find(option => option.value === statistic)}
-                    onChange={e => setStatistic(e.value)}
+                    value={statistic}
+                    onChange={setStatistic}
                     className="popup-dropdown"
                 />
             </p>
@@ -48,7 +49,7 @@ function SimplePopup({ currentData, onSubmit, onDelete, close, isEditing }) {
 
             <div>
                 <button className="popupClose" onClick={() => {
-                    onSubmit(new SimpleTableData(title, currentData?.entries, statistic, descending));
+                    onSubmit(new SimpleTableData(title || statistic.label, currentData?.entries, statistic, descending));
                     close();
                 }}>
                     {isEditing ? "Update Table" : "Create Table"}
@@ -67,7 +68,7 @@ function WeightedPopup({ currentData, onSubmit, onDelete, close, isEditing }) {
     const { statistics: statisticOptions } = useContext(OptionsContext);
 
     const [title, setTitle] = useState(currentData?.name ?? '');
-    const [factors, setFactors] = useState(currentData?.factors ?? [{ statistic: '', weight: 1 }]);
+    const [factors, setFactors] = useState(currentData?.factors ?? [{ statistic: null, weight: 1 }]);
     // const [descending, setDescending] = useState(false);
 
     // type factor = {statistic: x, weight: x}
@@ -110,7 +111,7 @@ function WeightedPopup({ currentData, onSubmit, onDelete, close, isEditing }) {
 
             <p>
                 <label className="popupLabel" htmlFor="title" >Title: </label>
-                <input type="text" id="title" className="popupInput" value={title} onChange={inputSetter(setTitle)}></input>
+                <input type="text" id="title" className="popupInput" value={title} onChange={inputSetter(setTitle)} placeholder="Untitled Weighted" />
             </p>
 
             <div className="weighted-labels">
@@ -123,8 +124,8 @@ function WeightedPopup({ currentData, onSubmit, onDelete, close, isEditing }) {
 
                     <Select
                         options={statisticOptions}
-                        value={statisticOptions.find(option => option.value === e.statistic)}
-                        onChange={option => updateFactorStatistic(i)(option.value)}
+                        value={e.statistic}
+                        onChange={option => updateFactorStatistic(i)(option)}
                         className="popup-dropdown"
                     />
 
@@ -155,7 +156,7 @@ function WeightedPopup({ currentData, onSubmit, onDelete, close, isEditing }) {
             <div>
                 <button className="popupClose" onClick={() => {
 
-                    onSubmit(new WeightedTableData(title, currentData?.entries, factors));
+                    onSubmit(new WeightedTableData(title || 'Untitled Weighted', currentData?.entries, factors));
                     close();
 
                 }}>
@@ -178,10 +179,10 @@ function BlankPopup({ currentData, onSubmit, onDelete, close, isEditing }) {
         <div className="popup">
             <p className="popupHeader">Blank</p>
             <label className="popupLabel" htmlFor="title">Title: </label>
-            <input type="text" id="title" className="popupInput" value={title} onChange={inputSetter(setTitle)} />
+            <input type="text" id="title" className="popupInput" value={title} onChange={inputSetter(setTitle)} placeholder="Untitled Blank" />
             <div>
                 <button className="popupClose" onClick={() => {
-                    onSubmit(new BlankTableData(title, currentData?.entries ?? []));
+                    onSubmit(new BlankTableData(title || 'Untitled Blank', currentData?.entries ?? []));
                     close();
                 }}>
                     {isEditing ? "Update Table" : "Create Table"}
@@ -193,7 +194,7 @@ function BlankPopup({ currentData, onSubmit, onDelete, close, isEditing }) {
     )
 }
 
-function PopupButton({ addTable, statisticOptions }) {
+function PopupButton({ addTable }) {
 
     const [showDropdown, setShowDropdown] = useState(false);
 

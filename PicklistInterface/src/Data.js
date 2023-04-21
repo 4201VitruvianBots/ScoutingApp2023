@@ -37,7 +37,7 @@ class SimpleTableData extends BlankTableData {
 
     sort(robotData) {
         const newEntries = Object.entries(robotData)
-            .map(([team_number, stats]) => ({ team: team_number, value: stats[this.statistic] }))
+            .map(([team_number, stats]) => ({ team: team_number, value: stats[this.statistic.value] }))
             .sort(this.descending
                 ? (a, b) => b.value - a.value
                 : (a, b) => a.value - b.value
@@ -69,9 +69,9 @@ class WeightedTableData extends BlankTableData {
             .map(([team_number, stats]) => ({
                 team: team_number,
                 value: this.factors
-                    .map(({ statistic, weight }) => weight *
-                        (stats[statistic] - mins[statistic]) /
-                        (maxes[statistic] - mins[statistic]))
+                    .map(({ statistic: { value }, weight }) => weight *
+                        (stats[value] - mins[value]) /
+                        (maxes[value] - mins[value]))
                     .map(number => Math.round(number * 100) / 100)
                     .reduce((sum, current) => sum + current, 0)
             }))
@@ -81,10 +81,10 @@ class WeightedTableData extends BlankTableData {
 
     mins(robotData) {
         return Object.fromEntries(
-            this.factors.map(({ statistic }) => [
-                statistic,
+            this.factors.map(({ statistic: { value } }) => [
+                value,
                 Object.values(robotData).reduce(
-                    (min, current) => Math.min(min, current[statistic]),
+                    (min, current) => Math.min(min, current[value]),
                     Number.MAX_VALUE)
             ])
         );
@@ -92,10 +92,10 @@ class WeightedTableData extends BlankTableData {
 
     maxes(robotData) {
         return Object.fromEntries(
-            this.factors.map(({ statistic }) => [
-                statistic,
+            this.factors.map(({ statistic: { value } }) => [
+                value,
                 Object.values(robotData).reduce(
-                    (min, current) => Math.max(min, current[statistic]),
+                    (min, current) => Math.max(min, current[value]),
                     0)
             ])
         );
