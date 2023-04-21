@@ -52,8 +52,23 @@ function App() {
     }
   }
   */
-  const [statisticOptions, setStatisticOptions] = useState([]);
-  const [robotData, setRobotData] = useState();
+
+  const [inputData, setInputData] = useState();
+  const statisticOptions = useMemo(() => inputData?.columns ?? [], [inputData]);
+
+  const robotData = useMemo(() => {
+    if (!inputData) return undefined;
+    const columns = statisticOptions;
+    const rawData = inputData.data;
+    const outputData = Object.fromEntries(
+        Object.entries(rawData).map(([team_number, values]) => [
+            team_number,
+            Object.fromEntries(values.map((stat, index) => [columns[index].value, stat]))
+        ])
+    );
+    return outputData
+  }, [inputData, statisticOptions]);
+
   const [comments, setComments] = useState({})
 
   const teamOptions = useMemo(() => Object.keys(robotData ?? {}).map(e => ({ value: e, label: e })), [robotData]);
@@ -81,9 +96,9 @@ function App() {
           <header>
             <h1>Vitruvian Statistical Analysis</h1>
             <PopupButton className="popupButton" addTable={addTable} />
-            <UploadButton setRobotData={setRobotData} setStatisticOptions={setStatisticOptions} />
-            <SaveButton robotData={robotData} statisticOptions={statisticOptions} tables={tables} DNPList={DNPList} finalPicklist={finalPicklist} comments={comments} />
-            <OpenButton setRobotData={setRobotData} setStatisticOptions={setStatisticOptions} setTables={setTables} setDNPList={setDNPList} setFinalPicklist={setFinalPicklist} setComments={setComments} />
+            <UploadButton setInputData={setInputData} />
+            <SaveButton inputData={inputData} tables={tables} DNPList={DNPList} finalPicklist={finalPicklist} comments={comments} />
+            <OpenButton setInputData={setInputData} setTables={setTables} setDNPList={setDNPList} setFinalPicklist={setFinalPicklist} setComments={setComments} />
             <div className="searchSection">
               <p>Team Search</p>
               <SearchBar ></SearchBar>

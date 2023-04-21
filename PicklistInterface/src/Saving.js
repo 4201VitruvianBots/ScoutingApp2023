@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { BlankTableData, SimpleTableData, WeightedTableData } from "./Data";
 
-function SaveButton({ robotData, statisticOptions, tables, DNPList, finalPicklist, comments }) {
+function SaveButton({ inputData, tables, DNPList, finalPicklist, comments }) {
     const [fileContent, setFileContent] = useState();
 
     const handleClick = () => {
         setFileContent(encodeURIComponent(JSON.stringify({
-            robotData: robotData,
-            statisticOptions: statisticOptions,
+            inputData: inputData,
             tables: tables,
             DNPList: DNPList,
             finalPicklist: finalPicklist,
@@ -22,14 +21,13 @@ function SaveButton({ robotData, statisticOptions, tables, DNPList, finalPicklis
     >Save to File</a>);
 }
 
-function OpenButton({ setRobotData, setStatisticOptions, setTables, setDNPList, setFinalPicklist, setComments }) {
+function OpenButton({ setInputData, setTables, setDNPList, setFinalPicklist, setComments }) {
     const handleInput = (event) => {
         const reader = new FileReader();
         reader.onload = (event) => {
-            const loaded = JSON.parse(event.target.result);
-            setRobotData(loaded.robotData);
-            setStatisticOptions(loaded.statisticOptions);
-            setTables(loaded.tables.map(e => {
+            const {inputData, tables, DNPList, finalPicklist, comments} = JSON.parse(event.target.result);
+            setInputData(inputData);
+            setTables(tables.map(e => {
                 switch (e.type) {
                     case 'blank':
                         return new BlankTableData(e.name, e.entries);
@@ -41,9 +39,9 @@ function OpenButton({ setRobotData, setStatisticOptions, setTables, setDNPList, 
                         return null;
                 }
             }));
-            setDNPList(loaded.DNPList);
-            setFinalPicklist(loaded.finalPicklist);
-            setComments(loaded.comments);
+            setDNPList(DNPList);
+            setFinalPicklist(finalPicklist);
+            setComments(comments);
         };
         reader.readAsText(event.target.files[0])
     }
