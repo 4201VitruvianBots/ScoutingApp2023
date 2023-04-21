@@ -6,6 +6,13 @@ import { SimpleTableData, WeightedTableData, BlankTableData } from "./Data.js";
 import Select from 'react-select';
 import { OptionsContext } from "./App.js";
 
+const filter = (option, searchText) => {
+    const words = searchText.split(/\s+/g); // split search text into words
+    const label = option.label.toLowerCase();
+    // check if each word appears in the label, regardless of order and character position
+    return words.every(word => label.includes(word.toLowerCase()));
+};
+
 function SimplePopup({ currentData, onSubmit, onDelete, close, isEditing }) {
     const { statistics: statisticOptions } = useContext(OptionsContext);
 
@@ -36,6 +43,7 @@ function SimplePopup({ currentData, onSubmit, onDelete, close, isEditing }) {
                     options={statisticOptions}
                     value={statistic}
                     onChange={setStatistic}
+                    filterOption={filter}
                     className="popup-dropdown"
                 />
             </p>
@@ -126,6 +134,7 @@ function WeightedPopup({ currentData, onSubmit, onDelete, close, isEditing }) {
                         options={statisticOptions}
                         value={e.statistic}
                         onChange={option => updateFactorStatistic(i)(option)}
+                        filterOption={filter}
                         className="popup-dropdown"
                     />
 
