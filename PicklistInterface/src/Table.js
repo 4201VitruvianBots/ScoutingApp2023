@@ -13,7 +13,7 @@ function TeamComment({ team }) {
 
     const [comment, setComment] = useState();
 
-    useEffect(() => setComment(comments?.[team]), [comments]);
+    useEffect(() => setComment(comments?.[team]), [comments?.[team]]); //eslint-disable-line react-hooks/exhaustive-deps
 
     const handleClose = () => setComments({ ...comments, [team]: comment });
 
