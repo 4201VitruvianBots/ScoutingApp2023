@@ -135,7 +135,7 @@ function UploadButton({ setInputData }) {
     };
 
     return (
-        <label className="file-upload-button">
+        <label className="topButton">
             <input type="file" onChange={handleChange} style={{ display: 'none' }} />
             Upload Data
         </label>

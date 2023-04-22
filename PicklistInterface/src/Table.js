@@ -127,7 +127,7 @@ function SimpleTable({ data, setData, onDelete, robotData, onApply }) {
                     </th>
                 </tr>
                 <tr>
-                    <td colSpan={2}><button onClick={handleApply}>Apply</button></td>
+                    <td colSpan={2}><button onClick={handleApply} className="applyButtonActual">Apply</button></td>
                 </tr>
             </thead>
             <GeneratedTeamTable entries={entries} />
@@ -169,7 +169,7 @@ function WeightedTable({ data, setData, onDelete, robotData, onApply }) {
                 </th>
             </tr>
             <tr>
-                <td colSpan={2}><button onClick={handleApply}>Apply</button></td>
+                <td colSpan={2}><button onClick={handleApply} className="applyButtonActual">Apply</button></td>
             </tr>
         </thead>
         <GeneratedTeamTable entries={entries} />
@@ -203,7 +203,7 @@ function BlankTable({ data, setData, onDelete, onApply }) {
                 </th>
             </tr>
             <tr>
-                <td><button onClick={handleApply}>Apply</button></td>
+                <td><button onClick={handleApply} className="applyButtonActual" >Apply</button></td>
             </tr>
         </thead>
         <ManualTeamTable entries={entries} setEntries={setEntries} />
@@ -216,7 +216,7 @@ function BlankTable({ data, setData, onDelete, onApply }) {
  * @returns 
  */
 function DNPTable({ entries, setEntries }) {
-    return (<table>
+    return (<table className="DNP">
         <thead>
             <tr>
                 <th>DNP List</th>
@@ -232,7 +232,7 @@ function DNPTable({ entries, setEntries }) {
  * @returns 
  */
 function FinalTable({ entries, setEntries }) {
-    return (<table>
+    return (<table className="final">
         <thead>
             <tr>
                 <th>Final Pick List</th>

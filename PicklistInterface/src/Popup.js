@@ -45,6 +45,7 @@ function SimplePopup({ currentData, onSubmit, onDelete, close, isEditing }) {
                     onChange={setStatistic}
                     filterOption={filter}
                     className="popup-dropdown"
+                    required
                 />
             </p>
 
@@ -136,6 +137,7 @@ function WeightedPopup({ currentData, onSubmit, onDelete, close, isEditing }) {
                         onChange={option => updateFactorStatistic(i)(option)}
                         filterOption={filter}
                         className="popup-dropdown"
+                        required
                     />
 
                     <input type="number" id="weight" className="popupInput" value={e.weight} onChange={inputSetter(updateFactorWeight(i))}></input>

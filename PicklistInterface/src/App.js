@@ -99,13 +99,15 @@ function App() {
             <UploadButton setInputData={setInputData} />
             <SaveButton inputData={inputData} tables={tables} DNPList={DNPList} finalPicklist={finalPicklist} comments={comments} />
             <OpenButton setInputData={setInputData} setTables={setTables} setDNPList={setDNPList} setFinalPicklist={setFinalPicklist} setComments={setComments} />
-            <div className="searchSection">
+            {/* <div className="searchSection">
               <p>Team Search</p>
               <SearchBar ></SearchBar>
-            </div>
+            </div> */}
           </header>
 
+          
           <section className="allTables">
+            <div className="magicContainer" align="left">
             {tables.map((table, index) => {
               if (table instanceof SimpleTableData)
                 return <SimpleTable key={index} data={table} setData={updateTable(index)} onDelete={onDelete(index)} robotData={robotData} onApply={setFinalPicklist} />;;
@@ -118,11 +120,13 @@ function App() {
 
               return null;
             })}
+            </div>
           </section>
 
           <section className="sidebar">
-            <DNPTable entries={DNPList} setEntries={setDNPList} />
-            <FinalTable entries={finalPicklist} setEntries={setFinalPicklist} />
+          <FinalTable entries={finalPicklist} setEntries={setFinalPicklist} className="DNP"/>
+            <DNPTable entries={DNPList} setEntries={setDNPList} className="final"/>
+            
           </section>
         </main>
       </ListContext.Provider>

@@ -18,6 +18,7 @@ function SaveButton({ inputData, tables, DNPList, finalPicklist, comments }) {
         href={'data:text/plain;charset=utf-8,' + fileContent}
         onClick={handleClick}
         download={'Picklist.json'}
+        className="topButton"
     >Save to File</a>);
 }
 
@@ -47,7 +48,7 @@ function OpenButton({ setInputData, setTables, setDNPList, setFinalPicklist, set
     }
 
     return (
-        <label>
+        <label className="topButton">
             Open from file
             <input type="file" onInput={handleInput} style={{ display: 'none' }} />
         </label>
