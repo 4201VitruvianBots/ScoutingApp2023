@@ -81,7 +81,7 @@ function SignIn(props) {
                     <select name="Competition" id="Ename" defaultValue="Choose" >
 
 
-                        <option value="Daly">Daly Division</option>
+                        <option value="Socal">Socal Showdown</option>
                     </select>
                     <br />
                     <div className="allianceSelect">
@@ -381,7 +381,7 @@ function General(props) {
             </div>
 
             <div>
-                <p className="version">Version Daly.1</p>
+                <p className="version">Version Socal.0</p>
             </div>
 
 
