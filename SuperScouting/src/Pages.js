@@ -81,7 +81,7 @@ function SignIn(props) {
                     <select name="Competition" id="Ename" defaultValue="Choose" >
 
 
-                        <option value="Socal">Socal Showdown</option>
+                        <option value="Socal">Beach Blitz</option>
                     </select>
                     <br />
                     <div className="allianceSelect">
@@ -153,7 +153,6 @@ function General(props) {
                                                 <option value="Disabled">Disabled</option>
                                                 <option value="Overextension">Overextension</option>
                                                 <option value="InsideOtherRobot">Inside other robot</option>
-                                                <option value="MultipleGameObjects">Holding multiple game pieces</option>
                                                 <option value="InsideProtectedZone">Inside protected zone</option>
                                                 <option value="Unknown">Unknown</option>
                                                 <option value="InsideProtectedZone">Other (specify)</option>
@@ -225,7 +224,6 @@ function General(props) {
                                                 <option value="Disabled">Disabled</option>
                                                 <option value="Overextension">Overextension</option>
                                                 <option value="InsideOtherRobot">Inside other robot</option>
-                                                <option value="MultipleGameObjects">Holding multiple game pieces</option>
                                                 <option value="InsideProtectedZone">Inside protected zone</option>
                                                 <option value="InsideProtectedZone">Other (specify)</option>
                                                 <option value="Unknown">Unknown</option>
@@ -293,7 +291,6 @@ function General(props) {
                                                 <option value="Disabled">Disabled</option>
                                                 <option value="Overextension">Overextension</option>
                                                 <option value="InsideOtherRobot">Inside other robot</option>
-                                                <option value="MultipleGameObjects">Holding multiple game pieces</option>
                                                 <option value="InsideProtectedZone">Inside protected zone</option>
                                                 <option value="InsideProtectedZone">Other (specify)</option>
                                                 <option value="Unknown">Unknown</option>

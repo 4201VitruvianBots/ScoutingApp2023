@@ -402,7 +402,6 @@ class FoulCards extends React.Component {
                                                 <option value="Disabled">Disabled</option>
                                                 <option value="Overextension">Overextension</option>
                                                 <option value="InsideOtherRobot">Inside other robot</option>
-                                                <option value="MultipleGameObjects">Holding multiple game pieces</option>
                                                 <option value="InsideProtectedZone">Inside protected zone</option>
                                                 <option value="InsideProtectedZone">Other (specify)</option>
                                             </select>
@@ -536,44 +535,52 @@ class SearchBar extends React.Component {
 }
 
 
-const options = [
-    { value: null, label: 'Select...' },
-    { value: '4',    label: '4'},
-    { value: '294',  label: '294'},
-    { value: '597',  label: '597'},
-    { value: '599',  label: '599'},
-    { value: '687',  label: '687'},
-    { value: '696',  label: '696'},
-    { value: '968',  label: '968'},
-    { value: '1138', label: '1138'},
-    { value: '1197', label: '1197'},
-    { value: '1452', label: '1452'},
-    { value: '2584', label: '2584'},
-    { value: '2637', label: '2637'},
-    { value: '2710', label: '2710'},
-    { value: '3473', label: '3473'},
-    { value: '3759', label: '3759'},
-    { value: '4123', label: '4123'},
-    { value: '4201', label: '4201'},
-    { value: '4322', label: '4322'},
-    { value: '4470', label: '4470'},
-    { value: '4999', label: '4999'},
-    { value: '5089', label: '5089'},
-    { value: '5199', label: '5199'},
-    { value: '6072', label: '6072'},
-    { value: '6220', label: '6220'},
-    { value: '6904', label: '6904'},
-    { value: '7042', label: '7042'},
-    { value: '8006', label: '8006'},
-    { value: '9408', label: '9408'},
-    { value: '9993', label: '9993'},
-    { value: '9995', label: '9995'},
-    { value: '9996', label: '9996'},
-    { value: '9997', label: '9997'},
-    { value: '9998', label: '9998'},
-    { value: '9999', label: '9999'},
-];
-
+const options =
+    [
+        { value: null, label: "Select..." },
+        { value: 1160, label: 1160 },
+        { value: 1836, label: 1836 },
+        { value: 2102, label: 2102 },
+        { value: 2122, label: 2122 },
+        { value: 2658, label: 2658 },
+        { value: 2710, label: 2710 },
+        { value: 2839, label: 2839 },
+        { value: 294, label: 294 },
+        { value: 3128, label: 3128 },
+        { value: 3255, label: 3255 },
+        { value: 3309, label: 3309 },
+        { value: 3473, label: 3473 },
+        { value: 3476, label: 3476 },
+        { value: 359, label: 359 },
+        { value: 3647, label: 3647 },
+        { value: 3952, label: 3952 },
+        { value: 399, label: 399 },
+        { value: 4079, label: 4079 },
+        { value: 4141, label: 4141 },
+        { value: 4201, label: 4201 },
+        { value: 4276, label: 4276 },
+        { value: 4322, label: 4322 },
+        { value: 4415, label: 4415 },
+        { value: 4419, label: 4419 },
+        { value: 4501, label: 4501 },
+        { value: 4738, label: 4738 },
+        { value: 498, label: 498 },
+        { value: 5199, label: 5199 },
+        { value: 597, label: 597 },
+        { value: 6072, label: 6072 },
+        { value: 6220, label: 6220 },
+        { value: 6560, label: 6560 },
+        { value: 696, label: 696 },
+        { value: 6995, label: 6995 },
+        { value: 7042, label: 7042 },
+        { value: 7157, label: 7157 },
+        { value: 7447, label: 7447 },
+        { value: 8888, label: 8888 },
+        { value: 9271, label: 9271 },
+        { value: 9408, label: 9408 },
+        { value: 968, label: 968 },
+        { value: 987, label: 987 }
+    ];
 function CheckDecimal(props) {
     const inputField = document.getElementById("Match_Number");
 
