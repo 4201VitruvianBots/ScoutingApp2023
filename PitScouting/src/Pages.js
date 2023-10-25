@@ -1,3 +1,4 @@
+/* eslint-disable react/style-prop-object */
 import { NumberInput, ButtonInput, MultiButton, SearchBar, Upload } from "./Form";
 import './App.css';
 import { useState } from "react";
@@ -101,17 +102,14 @@ function General(props) {
 
                     <div className="scoringLocation">
                         <p className="generalLabel">Scoring Location Capability</p>
-                        <ButtonInput on_label='LOW' off_label='Low' id='Low' />
-                        <ButtonInput on_label='MID' off_label='Mid' id='Mid' />
                         <ButtonInput on_label='HIGH' off_label='High' id='High' />
+                        <ButtonInput on_label='MID' off_label='Mid' id='Mid' />
+                        <ButtonInput on_label='LOW' off_label='low' id='Low' />
 
 
                     </div>
 
-                    <div className="motors">
-                        <p className="generalLabel"># of Motors </p> {/*(Tank- on each side)*/}
-                        <NumberInput id="Number_Of_Motors" />
-                    </div>
+                    
 
                     <div className="batteries">
                         <p className="generalLabel"># of Batteries (total)</p>
@@ -126,10 +124,6 @@ function General(props) {
                         <textarea rows="4" cols="15" placeholder="Autos (# and type)" name="Autos" required></textarea>
                     </div>
 
-                    <div className="workingOn">
-                        <textarea rows="4" cols="15" placeholder="They're working on..." name="Working_On" required></textarea>
-                    </div>
-
                 </div>
 
             </div>
@@ -141,11 +135,11 @@ function Photos(props) {
     return (
         <Page selected={props.selected} id="photos">
             <p className="section-label">Photos</p>
+            <p className="topNote">Only Take Photos If Applicable :3</p>
             <div className="textArea">
-                <p className="smallLabel">DRIVETRAIN</p>
-                <Upload name="Drivetrain_Photo"></Upload>
+
                 <p className="smallLabel">INTAKE</p>
-                <Upload name="Intake_Photo"></Upload>
+                <Upload name="Intake_Photo" ></Upload>
                 <p className="smallLabel">UPTAKE</p>
                 <Upload name="Uptake_Photo"></Upload>
                 <p className="smallLabel">OUTTAKE</p>

@@ -236,11 +236,18 @@ p {
   color: black;
 }
 
+.img{
+  width: 50px;
+  height: 50px;
+  object-fit:contain;
+}
+
 .photoInput {
 
-  max-height: 300px;
-  max-width: 300px;
-}
+  max-height: 50px;
+  max-width: 50px;
+  object-fit: contain;
+}                                        
 
 /* .img {
   height: 100px;
@@ -447,6 +454,8 @@ textarea {
 
 .upload input {
   display: none;
+  width: 200px;
+  height: 200px;
 }
 
  .topNote {
