@@ -297,7 +297,7 @@ class Upload extends React.Component {
                 <div class="upload">
                     <input type="file" onChange={this.handleChange} />
                     <input type="hidden" name={this.props.name} value={this.state.base64data} />
-                    <img src={this.state.file} alt="Upload" />
+                    <img src={this.state.file} alt="Upload" className="photoInput"/>
                 </div>
             </label>
         );
