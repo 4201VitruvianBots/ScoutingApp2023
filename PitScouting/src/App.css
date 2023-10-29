@@ -243,7 +243,6 @@ p {
 } */
 
 .photoInput {
-
   max-height: 270px;
   max-width: 200px;
   object-fit: contain;
@@ -557,7 +556,6 @@ textarea {
  
 .upload img {
   color: black;
-  max-width: 500px;
 }
 
 .aaron{
