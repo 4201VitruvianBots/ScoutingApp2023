@@ -3,3 +3,4 @@
 # For legacy reasons
 node_modules
 build
+venv
